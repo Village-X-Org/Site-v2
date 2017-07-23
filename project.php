@@ -260,67 +260,145 @@
 <hr width="85%">
 
 <br>
-<h5 class="center">Data Trends</h5>
+<h5>Data Trends</h5>
 <div class="section">
 	<div class="row">
-
-		<div class="col s12 m6 l6">
-
-			<div>
-				<canvas id="chart1" width="500" height="500"></canvas>
+		<div class="card-panel grey lighten-5 z-depth-1">
+			<div class="row valign-wrapper">
+				<p style="font-size: 12px"
+					class="brown-text text-lighten-2 line-height: 120%">
+					<b>We track the quantitative impact of your donation. In
+						particular, we collect data on several development indicators,
+						calculate an annual village development score, and observe how
+						that score changes over time. You can learn more about our
+						methodolody <a href="#!">here</a>.
+					</b>
+			
 			</div>
-			<script>
-var ctx = document.getElementById("chart1").getContext('2d');
-var chart1 = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-        datasets: [{
-            label: '# of Votes',
-            data: [12, 19, 3, 5, 2, 3],
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)'
-            ],
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)'
-            ],
-            borderWidth: 1,
-        
-        }]
-    },
-    options: {
-        responsive: true,
-    maintainAspectRatio: false,
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true,
-                }
-            }]
-        }
-    }
-});
-</script>
-
 		</div>
 
 		<div class="col s12 m6 l6">
-
+			<h5>Dollars Invested</h5>
 			<div>
-				<canvas id="chart2" width="500" height="500"></canvas>
+				<canvas id="chart1" width="250" height="250"></canvas>
+			</div>
+			<script>
+var ctx = document.getElementById("chart1").getContext('2d');
+    Chart.defaults.global.defaultFontFamily = "'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+    var chart1 = new Chart(ctx, {
+   
+    type: 'bar',
+    data: {
+        
+        labels: ['Well, 2015', 'School, 2016', 'Goats, 2017'],
+        datasets: 
+        [{
+        data: [6000, 2000, 2000],
+        backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+    }]},
+    options: {responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+        yAxes: [{
+            ticks: {
+                beginAtZero:true
+            }
+        }]
+    },
+    legend: {
+            display: false, 
+        },
+                           }
+});
+    
+</script>
+			<br>
+		</div>
+
+
+		<div class="col s12 m6 l6">
+			<h5>How Score Components Changed</h5>
+			<div>
+				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
 
 			<script>
+var ctx = document.getElementById("chart2").getContext('2d');            
+var chart2 = new Chart(ctx, {
+    type: 'radar',
+    data: { 
+    labels: ['Business', 'Lifestyle', 'Education', 'Agriculture', 'Livestock'],
+    datasets: [{
+        
+        fill: true,
+        backgroundColor: "#ff6384",
+        label: '2014',
+        data: [3, 5, 3, 5, 6],
+
+    },
+     {   
+        fill: true,
+        backgroundColor: "#36a2eb",
+         label: '2015',
+        data: [4, 7, 3, 3, 6],
+    },
+    {
+        fill: true,
+        backgroundColor: "#ffce56",
+        label: '2016',
+        data: [6, 9, 5, 6, 8],
+}
+    ],
+} ,
+    options: {responsive: true,
+    maintainAspectRatio: false,}
+});           
+            
+       </script>
+		</div>
+
+	</div>
+
+	<br>
+
+	<h5>How Overall Score Changed</h5>
+	<div>
+		<canvas id="chart3" width="250" height="250"></canvas>
+	</div>
+
+	<script>
+var ctx = document.getElementById("chart3").getContext('2d');   
+       
+       var chart3 = new Chart(ctx, {
+    type: 'line',
+    data: { 
+    labels: ['2014', '2015', '2016'],
+    datasets: [{
+        fill: true,
+        backgroundColor: "#ffce56",
+        data: [-5, 10, 15],
+    }]
+},
+    options: {responsive: true,
+    maintainAspectRatio: false,
+    legend: {
+            display: true, 
+        }
+}
+        
+});
+        
+</script>
+
+</div>
+
+<div class="col s12 m6 l6">
+
+	<div>
+		<canvas id="chart2" width="500" height="500"></canvas>
+	</div>
+
+	<script>
 var ctx = document.getElementById("chart2").getContext('2d');            
 var chart2 = new Chart(ctx, {
     type: 'radar',
@@ -335,10 +413,6 @@ var chart2 = new Chart(ctx, {
 });           
             
        </script>
-		</div>
-
-	</div>
-
 </div>
 
 <br>
