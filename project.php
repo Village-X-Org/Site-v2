@@ -260,7 +260,7 @@
 <hr width="85%">
 
 <br>
-<h5>Data Trends</h5>
+<h5 class="center">Data Trends</h5>
 <div class="section">
 	<div class="row">
 		<div class="card-panel grey lighten-5 z-depth-1">
