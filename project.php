@@ -9,37 +9,34 @@
 
 		</div>
 
-		<div class="col s12 m6 l6">
+		<div class="col s12 m6 l6 center">
 			<h4
 				class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Nakhwala
 				Village needs $2,000 to build a nursery school.</h4>
 
-			<br> <br> <br> <br> <br> <br>
+<br><br><br><br><br><br>
+				<center><div class="progress-bar" data-percent="60" data-duration="1000"
+					data-color="#ccc, #4b86db"></div></center>
+			<script>
+					$(".progress-bar").loading();
+				</script>
+			<br>
 
-			<div class="section center">
-				<div class="progress-bar position" align="center" data-percent="60"
-					data-duration="1000" data-color="#ccc, #4b86db"></div>
-				<script>
-		$(".progress-bar").loading();
-	</script>
-				<br>
-
-				<div class="center">
-					<h6>
-						<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b>
-					</h6>
-				</div>
-				<br>
-				<div class="center">
-					<a href="http://materializecss.com/getting-started.html"
-						id="download-button"
-						class="waves-effect waves-light light blue lighten-1 btn-large"
-						style="text-align: center;">Donate</a>
-				</div>
-
+			<div class="center">
+				<h6>
+					<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b>
+				</h6>
 			</div>
+			<br>
+			<div class="center">
+				<a href="http://materializecss.com/getting-started.html"
+					id="download-button"
+					class="waves-effect waves-light light blue lighten-1 btn-large"
+					style="text-align: center;">Donate</a>
+			</div>
+		</div>
 
-			<!-- <h8 class="center"><b>70% funded by 10 donors</b></h8>
+		<!-- <h8 class="center"><b>70% funded by 10 donors</b></h8>
     <div class="progress">
       <div class="determinate" style="width: 70%"></div>
     </div>
@@ -49,9 +46,9 @@
         <div><h7><b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></h7></div><br>
        <div><a href="http://materializecss.com/getting-started.html" id="download-button" class="waves-effect waves-light light blue lighten-1 btn-large" style="text-align:center;">Donate</a></div> --->
 
-			<!-- <form><input type="text"><button type="submit" >Donate</button></form> --->
+		<!-- <form><input type="text"><button type="submit" >Donate</button></form> --->
 
-			<!--- <div class=section>    
+		<!--- <div class=section>    
         <div class="progress-bar position" align="center" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db"></div>
 	<script>
 		$(".progress-bar").loading();
@@ -59,8 +56,8 @@
         <br>
         </div>  --->
 
-		</div>
 	</div>
+</div>
 </div>
 <hr width="85%">
 
