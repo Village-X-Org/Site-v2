@@ -4,7 +4,7 @@
 		<br>
 		<br>
 		<div class="row">
-			<div class="col s12 m6 l6" style="margin-left: 10px;">
+			<div class="col s12 m6 l6">
 				<img src="temp/nakhwala_goats.jpg" class="responsive-img" height="400"
 					width="400" style="vertical-align: middle">
 				<p>
