@@ -14,9 +14,17 @@
 
 			<div class="col s12 m6 l6">
 				<h4
-					class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Nakhwala
-					Village needs $2,000 to build a nursery school.</h4>
+					class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school.</h4>
 
+<script>
+			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
+			{
+				onLoadStart: function() { activityIndicatorOn(); },
+				onLoadEnd:	 function() { activityIndicatorOff(); },
+				onEnd:		 function() { activityIndicatorOff(); }
+			});
+</script>
 				<br>
 				<br> <br>
 				<br>
