@@ -29,7 +29,7 @@
 <script
 	src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
 
-<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 <script
@@ -37,12 +37,13 @@
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
 
-
+<link rel="stylesheet" href="css/jquery-plugin-progressbar.css">
+  <script src="js/jquery-plugin-progressbar.js"></script>
 </head>
 <body>
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="#" class="brand-logo"><img
+			<a id="logo-container" href="index.php" class="brand-logo"><img
 				src="images/logo.png"></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="project.php">Projects</a></li>
