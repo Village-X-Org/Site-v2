@@ -180,7 +180,6 @@ arrowsOff = function()
 				<li><a href="project.php">Projects</a></li>
 				<li><a href="#">Impacts</a></li>
 				<li><a href="map.php">Map</a></li>
-				<li><a href="#">FAQ</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
 
@@ -188,7 +187,6 @@ arrowsOff = function()
 				<li><a href="project.php">Projects</a></li>
 				<li><a href="#">Impacts</a></li>
 				<li><a href="map.php">Map</a></li>
-				<li><a href="#">FAQ</a></li>
 				<li><a href="#">About</a></li>
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i

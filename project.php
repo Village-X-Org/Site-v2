@@ -1,21 +1,24 @@
 <?php include('header.inc'); ?>
 
-	<div class="container">
-		<br>
-		<br>
-		<div class="row">
-			<div class="col s12 m6 l6">
-				<img src="temp/nakhwala_goats.jpg" class="responsive-img" height="400"
-					width="400" style="vertical-align: middle">
-				<p>
-					<b>This project will help 1,500 people and 200 households.</b>
-				</p>
-			</div>
+<script>
+$(document).ready(function(){
+    $('.scrollspy').scrollSpy();
+  });
+</script>
 
-			<div class="col s12 m6 l6">
-				<h4
-					class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school.</h4>
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3);">
+
+	<div class="parallax">
+		<img src="temp/project banner.jpg">
+	</div>
+</div>
+
+	<div class="container">
+	
+		<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school. This project will help 1,500 people and 200 households.
+		</h4>
 
 <script>
 			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
@@ -24,111 +27,118 @@
 				onLoadEnd:	 function() { activityIndicatorOff(); },
 				onEnd:		 function() { activityIndicatorOff(); }
 			});
-</script>
-				<br>
-				<br> <br>
-				<br>
-				<br>
-				<br>
-
-				<div class=section>
-					<center>
-						<div class="progress-bar position" align="center"
-							data-percent="60" data-duration="1000" data-color="#ccc, #4b86db"></div>
-					</center>
+</script>	
+		
+  <div class="row">			
+		<div class="col s12 m6 l6" style="text-align:center">
+		<br>
+				<img src="temp/nursery school example.png" class="responsive-img" height="500"
+					width="500" style="vertical-align: middle">
+				<p>
+					Here's an example of the project.
+				</p>
+		</div>
+				
+		<div class="col s12 m6 l6" style="text-align:center">
+		<br>
+				<div class="section" style="text-align:center; vertical-align:middle">
+					
+						<div class="progress-bar" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db" style="display:inline-block"></div>
+					
 					<script>
 						$(".progress-bar").loading();
 					</script>
 					<br>
 
-					<div>
-						<center>
-							<h7>
-							<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></h7>
+				<div>
+					<br>
+						<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b>
 					</div>
 					<br>
 					<div>
-						<center>
 							<a href="http://materializecss.com/getting-started.html"
 								id="download-button"
 								class="waves-effect waves-light light blue lighten-1 btn-large"
-								style="text-align: center;">Donate</a>
-						</center>
+								><i class="material-icons left">favorite_border</i>Donate</a>
 					</div>
-
+					<p>
+					<br>
+						<b>10 people have donated!</b>
+					</p>
 				</div>
-
-				<!-- <h8 class="center"><b>70% funded by 10 donors</b></h8>
-    <div class="progress">
-      <div class="determinate" style="width: 70%"></div>
-    </div>
-        <p><b>Locals Contributed: $100 + labor + materials</b></p>
-    </p>
-        <br>
-        <div><h7><b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></h7></div><br>
-       <div><a href="http://materializecss.com/getting-started.html" id="download-button" class="waves-effect waves-light light blue lighten-1 btn-large" style="text-align:center;">Donate</a></div> --->
-
-				<!-- <form><input type="text"><button type="submit" >Donate</button></form> --->
-
-				<!--- <div class=section>    
-        <div class="progress-bar position" align="center" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db"></div>
-	<script>
-		$(".progress-bar").loading();
-	</script>
-        <br>
-        </div>  --->
-
 			</div>
 		</div>
-
-		<div class="card-panel grey lighten-5 z-depth-1">
+				
 			<div class="row valign-wrapper">
-				<div class="col s12 m3 l3">
-					<center>
+				<div class="col s12 m4 l4" style="text-align: right; vertical-align:middle">
 						<img src="images/stripe_payments.png" alt=""
 							class="circle responsive-img"
-							style="width: 100px; height: 100px;">
-					</center>
+							style="width: 75px; height: 75px; display:inline-block">
 				</div>
-				<div class="col s12 m9 l9">
+				<div class="col s12 m8 l8" style="text-align: left; vertical-align:middle">
 					<span class="black-text">
-						<center>
-							<p>
-								<b>donations 100% tax dedutible & securely processed by
+								<b>donations 100% tax deductible and securely processed by
 									Stripe</b>
-							</p>
-						</center>
 					</span>
-
 				</div>
-			</div>
-		</div>
+			</div>   
+	
+	<br>
 
-		<br>
+<div class="section">
+	<nav class="light blue" role="navigation">
+    		<ul class="center-align row">
+          <li class="waves-effect col s3">
+              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
+          </li>
+          <li class="waves-effect col s3" style="display: inline">
+              <i class="material-icons" style="font-size: 30px">collections</i> Pics
+          </li>
+          <li class="waves-effect col s3">
+              <a href="#costbreakdown"><i class="material-icons" style="font-size: 30px">monetization_on</i></a>
+          </li>
+          <li class="waves-effect col s3">
+              <a href="#databreakdown"><i class="material-icons" style="font-size: 30px">insert_chart</i></a>
+          </li>
+      	</ul>
+  
+  	<script>
+			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
+			{
+				onLoadStart: function() { activityIndicatorOn(); },
+				onLoadEnd:	 function() { activityIndicatorOff(); },
+				onEnd:		 function() { activityIndicatorOff(); }
+			});
+	</script>
+	
+	</nav>
+</div>
 
-		<center>
-			<h5>Project Info</h5>
-		</center>
+<br>
 
+	<div class="section" style="text-align:center">
+		<h5>Project Info</h5>
+	</div>
+	
+	<div class="section">	
 		<div class="row">
-
-			<div class="col s12 m9 l9">
-
+				<div class="col s12 m9 l9">
 				<div class="card grey lighten-5 z-depth-1">
-					<div class="card-content">
-
-						<span class="brown-text text-lighten-2 line-height: 120%">
+					<div class="card-content brown-text text-lighten-2 line-height: 120%">
 
 							<p class="flow-text">Likoswe wants to build a nursery school
 								to solve a persistent problem involving early childhood
-								education.</p> <br>
+								education.
+							</p> <br>
 
 							<p>
 								<b>Community Problem:</b> Parents in Likoswe Village work long
 								days on remote farms, making it difficult for them to supervise
 								and educate their young children. Consequently, children receive
 								very little formal education before the age of five.
-							</p> <br>
+							</p> 
+							
+							<br>
 
 							<p>
 								<b>Community Solution:</b> Likoswe will construct a small
@@ -146,6 +156,7 @@
 							<p>
 								<b>Partners:</b> National Peace Corps Association
 							</p>
+						
 					</div>
 				</div>
 
@@ -157,24 +168,20 @@
 								style="width: 100px; height: 100px;">
 							<!-- notice the "circle" class -->
 						</div>
-						<div class="col s12 m9 l9">
-							<span class="black-text"> <b>Field Officer Myson Jambo</b>
-								<p>
-									<b>Email:</b> mysonjambo@gmail.com, <b>Phone Number:</b>
+						<div class="col s12 m9 l9 black-text">
+								<b>Field Officer Myson Jambo</b>
+								<p/>
+								<b>Email:</b> mysonjambo@gmail.com, <b>Phone Number:</b>
 									+2659783408
-								</p>
-							</span>
-
 						</div>
 					</div>
 				</div>
 
 			</div>
 
-
 			<div class="col s12 m3 l3">
-				<center>
-					<div class="timeline-container">
+		
+					<div class="timeline-container" style="textalign:center">
 						<div class="timeline-block timeline-block-right">
 							<div class="marker"></div>
 							<div class="timeline-content">
@@ -208,12 +215,13 @@
 						</div>
 					</div>
 
+			<br><br>
 
 					<h6 class="center brown-text">
 						<b>Share Likoswe's Story</b>
 					</h6>
 					<br>
-					<div class="col s6 m6 l6">
+					<div class="col s6 m6 l6" style="text-align: center">
 						<a
 							href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com"
 							target="_blank"> <img
@@ -221,7 +229,7 @@
 							alt="Facebook" align="middle" height="60" width="60" />
 						</a><br>
 					</div>
-					<div class="col s6 m6 l6">
+					<div class="col s6 m6 l6" style="text-align: center">
 						<a
 							href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
 							target="_blank"> <img
@@ -229,17 +237,15 @@
 							alt="Twitter" align="middle" height="60" width="60" />
 						</a>
 					</div>
-				</center>
 
 			</div>
 		</div>
+	</div>
 
 		<br>
 
-		<div class="section">
-			<center>
-				<h5>Cost Breakdown</h5>
-			</center>
+		<div id="costbreakdown" class="section scrollspy">
+				<h5 style="text-align: center">Cost Breakdown</h5>
 			<br>
 
 			<div class="row">
@@ -249,7 +255,7 @@
 						<h5>labor</h5>
 						<h5 class="light center">
 							$400
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -260,7 +266,7 @@
 						<h5 class="center brown-test">materials</h5>
 						<h5 class="light center">
 							$1100
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -271,7 +277,7 @@
 						<h5 class="center brown-test">admin</h5>
 						<h5 class="light center">
 							$200
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -282,7 +288,7 @@
 						<h5 class="center brown-test">transport</h5>
 						<h5 class="light center">
 							$100
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -293,7 +299,7 @@
 						<h5 class="center brown-test">fees</h5>
 						<h5 class="light center">
 							$100
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -304,7 +310,7 @@
 						<h5 class="center brown-test">community</h5>
 						<h5 class="light center">
 							$100
-							</h6>
+							</h5>
 							<br>
 					</div>
 				</div>
@@ -314,33 +320,21 @@
 		</div>
 
 		<hr width="85%">
-
-		<br>
-		<center>
-			<h5>Data Trends</h5>
-		</center>
-		<div class="section">
+	
+		<div id="databreakdown" class="section scrollspy"></div>
+			<h5 style="text-align: center">Data Trends</h5>
+				<p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
+					<b>We track the quantitative impact of your donation. In
+					particular, we collect data on several development indicators,
+					calculate an annual village development score, and observe how
+					that score changes over time. You can learn more about our
+					methodolody <a href="#!">here</a>.
+					</b>
+				</p>
+					
 			<div class="row">
-				<div class="card-panel grey lighten-5 z-depth-1">
-					<div class="row valign-wrapper">
-						<center>
-							<p style="font-size: 20px"
-								class="brown-text text-lighten-2 line-height: 120%">
-								<b>We track the quantitative impact of your donation. In
-									particular, we collect data on several development indicators,
-									calculate an annual village development score, and observe how
-									that score changes over time. You can learn more about our
-									methodolody <a href="#!">here</a>.
-								</b>
-							</h6>
-						</center>
-					</div>
-				</div>
-
 				<div class="col s12 m6 l6">
-					<center>
-						<h5>Dollars Invested</h5>
-					</center>
+						<h6 style="text-align: center"><b>Dollars Invested</b></h6>
 					<div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
@@ -382,9 +376,7 @@
 
 
 				<div class="col s12 m6 l6">
-					<center>
-						<h5>How Score Components Changed</h5>
-					</center>
+						<h6 style="text-align: center"><b>How Score Components Changed</b></h6>
 					<div>
 						<canvas id="chart2" width="250" height="250"></canvas>
 					</div>
@@ -430,9 +422,7 @@
 
 	<br>
 
-			<center>
-				<h5>How Overall Score Changed</h5>
-			</center>
+				<h6 style="text-align: center"><b>How Overall Score Changed</b></h6>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -461,8 +451,6 @@
 				});
 			</script>
 		</div>
-
-</div>
 
 <br/>
 <?php include('footer.inc'); ?>
