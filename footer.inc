@@ -58,7 +58,7 @@
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p>
-						<a href="">Terms of Use</a><br> <a href="">Privacy Policy</a>
+						<a href="termsofservice.php">Terms of Service</a><br> <a href="privacypolicy.php">Privacy Policy</a>
 					</p>
 				</div>
 			</div>
