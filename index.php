@@ -1,4 +1,7 @@
-<?php include('header.inc'); ?>
+<?php 
+require_once('utilities.php');
+include('header.inc');
+ ?>
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3);">
@@ -84,111 +87,50 @@
 
 		<!--   project section   -->
 		<div class="row">
-			<div class="col s12 m4">
+		
+<?php 
+		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id WHERE project_status = 'funding' LIMIT 3");
 
-				<div class="card sticky-action hoverable">
-					<div class="card-image waves-effect waves-block waves-light">
-						<img class="activator" src="temp/likoswe_nursery.jpg">
+		while ($row = $result->fetch_assoc()) {
+		      $funded = $row['project_funded'];
+		      $projectTotal = $row['project_budget'];
+		      $fundedPercent = $funded / $projectTotal * 100;
+		      $villageContribution = $projectTotal * .05;
+		      print "<div class='col s12 m4'>
+				<div class='card sticky-action hoverable'>
+					<div class='card-image waves-effect waves-block waves-light'>
+						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
 					</div>
-					<div class="card-content">
-						<span class="card-title activator grey-text text-darken-4">Likoswe,
-							Malawi<a href='project.php'><i class="material-icons right">more_vert</i></a>
+					<div class='card-content'>
+						<span class='card-title activator grey-text text-darken-4'>{$row['village_name']}
+							<a href='project.php'><i class='material-icons right'>more_vert</i></a>
 						</span>
-						<h6 class="brown-text">
-							<b>Build a School</b>
+						<h6 class='brown-text'>
+							<b>{$row['project_name']}</b>
 						</h6>
 						<br>
-						<h6 class="center">
-							<b>70% funded by 10 donors</b>
+						<h6 class='center'>
+							<b>\$$funded funded out of \$$projectTotal</b>
 						</h6>
-						<div class="progress">
-							<div class="determinate" style="width: 70%"></div>
+						<div class='progress'>
+							<div class='determinate' style='width: $fundedPercent%'></div>
 						</div>
-						<p>Locals Contributed: $100</p>
+						<p>Locals Contributed: \$$villageContribution</p>
 					</div>
 
-					<div class="card-action">
-						<div class="row center">
-							<div class="col s12">
-								<h6 align="center">
-									<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b>
-								</h6>
-							</div>
-							<br> <br>
-							<div class="col s12">
-								<a href="http://materializecss.com/getting-started.html"
-									id="download-button"
-									class="btn waves-effect waves-light light blue lighten-1">Donate</a>
+					<div class='card-action'>
+						<div class='row center'>
+							<div class='col s12'>
+								<a href='http://materializecss.com/getting-started.html'
+									id='download-button'
+									class='btn waves-effect waves-light light blue lighten-1'>Donate</a>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="card sticky-action hoverable">
-					<div class="card-image waves-effect waves-block waves-light">
-						<img class="activator" src="temp/siyabu_water.jpg">
-					</div>
-					<div class="card-content">
-						<span class="card-title activator grey-text text-darken-4">Siyabu,
-							Malawi<a href='project.php'><i class="material-icons right">more_vert</i></a>
-						</span>
-						<h6 class="brown-text">
-							<b>Provide Clean Water</b>
-						</h6>
-						<br> <b>Budget: $6,000</b>
-						<h6 class="center">, 60% Funded</h6>
-						<div class="progress">
-							<div class="determinate" style="width: 60%"></div>
-						</div>
-						<p>Local Cash Contribution: $300</p>
-					</div>
-
-					<div class="card-action">
-						<div class="row center">
-							<div class="col s12">
-								<a href="http://materializecss.com/getting-started.html"
-									id="download-button"
-									class="btn waves-effect waves-light light blue lighten-1">Donate</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-
-			<div class="col s12 m4">
-				<div class="card sticky-action hoverable">
-					<div class="card-image waves-effect waves-block waves-light">
-						<img class="activator" src="temp/nakhwala_goats.jpg">
-					</div>
-					<div class="card-content">
-						<span class="card-title activator grey-text text-darken-4">Nakhwala,
-							Malawi<a href='project.php'><i class="material-icons right">more_vert</i></a>
-						</span>
-						<h6 class="brown-text">
-							<b>Start a Goat Herd</b>
-						</h6>
-						<br> <b>Budget: $2,000</b>
-						<h6 class="center">, 40% Funded</h6>
-						<div class="progress">
-							<div class="determinate" style="width: 40%"></div>
-						</div>
-						<p>Local Cash Contribution: $100</p>
-					</div>
-					<div class="card-action">
-						<div class="row center">
-							<div class="col s12">
-								<a href="http://materializecss.com/getting-started.html"
-									id="download-button"
-									class="btn waves-effect waves-light light blue lighten-1">Donate</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
+			 </div>";
+		}
+?>			
 		</div>
 		<br>
 
