@@ -3,8 +3,8 @@ require_once('utilities.php');
 include('header.inc');
  ?>
 
-<div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3);">
+<div id="index-banner" class="parallax-container valign-wrapper"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot">
 		<div class="container">
 			<h2
@@ -143,9 +143,9 @@ include('header.inc');
 	</div>
 </div>
 
-<hr width="85%">
+<!-- <hr width="85%">
 
-<div class="container">
+  <div class="container">
 	<br>
 	<h5 class="header center brown-text text-lighten-2">Map-Based
 		Reporting</h5>
@@ -153,7 +153,7 @@ include('header.inc');
 		<img src="images/map_screenshot.png"
 			style="opacity: 0.7; width: 100%; height: auto;">
 	</p>
-</div>
+</div> -->
 
 <hr width="85%">
 
@@ -205,18 +205,21 @@ include('header.inc');
 					<br> <br> <br>
 				</div>
 			</div>
-			<h6 class="light center">
+		</div>
+		
+			<div>
+			<h6 class="light center-align">
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages (more info <a href="">here</a>)
 			</h6>
+			</div>
 			<br>
-		</div>
 	</div>
 
 </div>
 
 <div class="parallax-container valign-wrapper"
-	style="background-color: rgba(0, 0, 0, 0.3);">
+	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot">
 		<div class="container">
 			<div class="row center">

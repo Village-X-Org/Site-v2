@@ -7,7 +7,7 @@ $(document).ready(function(){
 </script>
 
 <div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3);">
+	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 
 	<div class="parallax">
 		<img src="temp/project banner.jpg">
@@ -16,8 +16,8 @@ $(document).ready(function(){
 
 	<div class="container">
 	
-		<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school. This project will help 1,500 people and 200 households.
+		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school. This project will help 1,500 people and 200 households. Nakhwala has contributed $100.
 		</h4>
 
 <script>
@@ -28,60 +28,58 @@ $(document).ready(function(){
 				onEnd:		 function() { activityIndicatorOff(); }
 			});
 </script>	
-		
-  <div class="row">			
-		<div class="col s12 m6 l6" style="text-align:center">
-		<br>
-				<img src="temp/nursery school example.png" class="responsive-img" height="500"
-					width="500" style="vertical-align: middle">
-				<p>
-					Here's an example of the project.
-				</p>
+		</div>
+	
+  	
+  	<div style="display:table; width:100%">
+  	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+				<img src="temp/nursery school example.png" class="responsive-img">
+				<p class="valign-wrapper; center-align">
+					<b>Here's a similar project.</b>
+				<br>
 		</div>
 				
-		<div class="col s12 m6 l6" style="text-align:center">
-		<br>
-				<div class="section" style="text-align:center; vertical-align:middle">
-					
-						<div class="progress-bar" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db" style="display:inline-block"></div>
+		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+							
+					<div class="progress-bar" style="margin: 0 auto;" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db"></div>
 					
 					<script>
 						$(".progress-bar").loading();
 					</script>
-					<br>
-
-				<div>
-					<br>
-						<b><font color="#4FC1E9">$1400 raised, $600 to go</font></b>
-					</div>
-					<br>
-					<div>
-							<a href="http://materializecss.com/getting-started.html"
-								id="download-button"
-								class="waves-effect waves-light light blue lighten-1 btn-large"
-								><i class="material-icons left">favorite_border</i>Donate</a>
-					</div>
-					<p>
-					<br>
-						<b>10 people have donated!</b>
-					</p>
-				</div>
-			</div>
-		</div>
 				
-			<div class="row valign-wrapper">
-				<div class="col s12 m4 l4" style="text-align: right; vertical-align:middle">
+				<br>
+				
+		<div class="center-align"><b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></div>
+				
+					<br>
+					
+		<div class="center-align">
+				<a href="http://materializecss.com/getting-started.html"
+				id="download-button"
+				class="waves-effect waves-light light blue lighten-1 btn-large">
+				<i class="material-icons left">favorite_border</i>Donate</a>
+		</div>
+
+					<br>
+					
+		<div style="margin:auto;" class="center-align">
+								<b>10 people have donated!</b>
+		</div>
+		
+			<br><br>
+	
+			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px;">
 						<img src="images/stripe_payments.png" alt=""
-							class="circle responsive-img"
-							style="width: 75px; height: 75px; display:inline-block">
-				</div>
-				<div class="col s12 m8 l8" style="text-align: left; vertical-align:middle">
-					<span class="black-text">
-								<b>donations 100% tax deductible and securely processed by
-									Stripe</b>
+							class="circle"
+							style="width: 100px; height: 100px; vertical-align:middle; padding: 20px 20px 20px 20px">
+							<br><br>
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 20px 20px 20px 0px;">
+							<i>100% tax deductible and securely processed by Stripe</i>
 					</span>
-				</div>
-			</div>   
+			</div>
+
+	</div>
+	</div>
 	
 	<br>
 
@@ -92,7 +90,7 @@ $(document).ready(function(){
               <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
           </li>
           <li class="waves-effect col s3" style="display: inline">
-              <i class="material-icons" style="font-size: 30px">collections</i> Pics
+              <i class="material-icons" style="font-size: 30px">collections</i>
           </li>
           <li class="waves-effect col s3">
               <a href="#costbreakdown"><i class="material-icons" style="font-size: 30px">monetization_on</i></a>
@@ -160,23 +158,6 @@ $(document).ready(function(){
 					</div>
 				</div>
 
-				<div class="card-panel grey lighten-5 z-depth-1">
-					<div class="row valign-wrapper">
-						<div class="col s12 m3 l3">
-							<img src="temp/myson_profile.png"
-								alt="" class="circle responsive-img"
-								style="width: 100px; height: 100px;">
-							<!-- notice the "circle" class -->
-						</div>
-						<div class="col s12 m9 l9 black-text">
-								<b>Field Officer Myson Jambo</b>
-								<p/>
-								<b>Email:</b> mysonjambo@gmail.com, <b>Phone Number:</b>
-									+2659783408
-						</div>
-					</div>
-				</div>
-
 			</div>
 
 			<div class="col s12 m3 l3">
@@ -214,35 +195,52 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-
-			<br><br>
-
-					<h6 class="center brown-text">
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col s12 m9 l9">
+					<div class="card-panel grey lighten-5 z-depth-1">
+						<div class="row valign-wrapper">
+							<div class="col s12 m3 l3">
+							<img src="temp/myson_profile.png"
+								alt="" class="circle responsive-img"
+								style="width: 100px; height: 100px;">
+							<!-- notice the "circle" class -->
+							</div>
+							<div class="col s12 m9 l9 black-text">
+								<b>Field Officer Myson Jambo</b>
+								<p/>
+								<b>Email:</b> mysonjambo@gmail.com, <b>Phone Number:</b>
+									+2659783408
+							</div>
+						</div>
+					</div>
+				</div>
+     			
+				<div class="col s12 m3 l3 center-align">
+					<h6 class="brown-text">
 						<b>Share Likoswe's Story</b>
 					</h6>
 					<br>
-					<div class="col s6 m6 l6" style="text-align: center">
+					
 						<a
 							href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/facebook.png"
 							alt="Facebook" align="middle" height="60" width="60" />
-						</a><br>
-					</div>
-					<div class="col s6 m6 l6" style="text-align: center">
+						</a>
+						&nbsp;&nbsp;&nbsp;
 						<a
 							href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/twitter.png"
 							alt="Twitter" align="middle" height="60" width="60" />
 						</a>
-					</div>
-
+				</div>
 			</div>
-		</div>
+			
 	</div>
-
-		<br>
 
 		<div id="costbreakdown" class="section scrollspy">
 				<h5 style="text-align: center">Cost Breakdown</h5>
@@ -303,17 +301,18 @@ $(document).ready(function(){
 							<br>
 					</div>
 				</div>
-
+				
 				<div class="col s12 m2 l2">
 					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">insert_emoticon</i>
-						<h5 class="center brown-test">community</h5>
+						<i class="material-icons" style="font-size: 30px">camera_alt</i>
+						<h5 class="center brown-test">pics/data</h5>
 						<h5 class="light center">
-							$100
+							$0
 							</h5>
 							<br>
 					</div>
 				</div>
+				
 				<br>
 			</div>
 
@@ -333,8 +332,8 @@ $(document).ready(function(){
 				</p>
 					
 			<div class="row">
-				<div class="col s12 m6 l6">
-						<h6 style="text-align: center"><b>Dollars Invested</b></h6>
+				<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+						<h6 style="text-align: center"><b>Dollars Invested Over Time</b></h6>
 					<div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
@@ -375,8 +374,8 @@ $(document).ready(function(){
 				</div>
 
 
-				<div class="col s12 m6 l6">
-						<h6 style="text-align: center"><b>How Score Components Changed</b></h6>
+				<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+						<h6 style="text-align: center"><b>Select Score Components Over Time</b></h6>
 					<div>
 						<canvas id="chart2" width="250" height="250"></canvas>
 					</div>
@@ -390,7 +389,7 @@ $(document).ready(function(){
 									data : {
 										labels : [ 'Business', 'Lifestyle',
 												'Education', 'Agriculture',
-												'Livestock' ],
+												'Livestock'],
 										datasets : [ {
 
 											fill : true,
@@ -419,10 +418,11 @@ $(document).ready(function(){
 				</div>
 
 	</div>
-
-	<br>
-
-				<h6 style="text-align: center"><b>How Overall Score Changed</b></h6>
+	
+	<div class="row">
+		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Waterborne Illness Over Time</b></h6>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -436,6 +436,39 @@ $(document).ready(function(){
 						labels : [ '2014', '2015', '2016' ],
 						datasets : [ {
 							fill : true,
+							backgroundColor : "#6495ED",
+							data : [ 130, 50, 20 ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						}
+					}
+
+				});
+			</script>
+				
+		</div>
+	
+		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+
+				<h6 style="text-align: center"><b>Overall Score Over Time</b></h6>
+			<div>
+				<canvas id="chart4" width="250" height="250"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart4").getContext('2d');
+
+				var chart4 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ '2014', '2015', '2016' ],
+						datasets : [ {
+							fill : true,
 							backgroundColor : "#ffce56",
 							data : [ -5, 10, 15 ],
 						} ]
@@ -444,13 +477,15 @@ $(document).ready(function(){
 						responsive : true,
 						maintainAspectRatio : false,
 						legend : {
-							display : true,
+							display : false,
 						}
 					}
 
 				});
 			</script>
 		</div>
+	</div>
+</div>
 
 <br/>
 <?php include('footer.inc'); ?>
