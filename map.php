@@ -1,4 +1,5 @@
-<?php include('header.inc'); ?>
+<?php include('header.inc'); 
+include('lightbox.inc'); ?>
 <style>
 .mapboxgl-ctrl-geocoder {
 	font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -56,6 +57,24 @@
 	visibility: hidden;
 }
 
+div.pictureScroller {
+	margin:0px;
+	padding:0px;
+	height:0px;
+	width:100%;
+	overflow-x:scroll;
+	overflow-y:hidden;
+	white-space:nowrap;
+}
+
+#imagelightbox {
+	position: fixed;
+	z-index: 9999;
+	 
+	-ms-touch-action: none;
+	touch-action: none;
+}
+
 div.projectCell {
 	background: white;
 	background-repeat: no-repeat;
@@ -72,6 +91,20 @@ div.projectCell {
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	overflow: hidden;
+}
+
+div.expandoCell {
+    width:calc(99vw - 30vh);
+    margin-left:calc(30vh + 5px);
+   	height:calc(30vh - 10px);
+   	padding-left: 5px;
+   	padding-right: 5px;
+   	padding-top: 5px;
+   	padding-bottom: 5px;
+   	overflow-y:scroll;
+   	white-space:normal;
+   	vertical-align:top;
+    background-color:white;
 }
 
 div.progressBar {
@@ -108,11 +141,15 @@ div.progressBar .ui-progressbar-value {
 
 			<a class="btn-floating btn-large blue" id='zoomOutButton'
 				onclick="zoomToCountryBounds(selectedCountry);"
-				style='margin-left: 10px;visibility:hidden;'> <i class="large material-icons"
-				id='addProjectButtonText'>add_location</i>
+				style='margin-left:10px;visibility:hidden;'> <i class="large material-icons"
+				id='zoomOutButtonText'>zoom_out</i>
 			</a>
 		</div>
 
+ 	    <!-- Pop-up picture lightbox -->
+ 	    <div id='pictureDiv' class='pictureScroller' style='z-index:1000;position:absolute;top:0px;left:0px;right:0px;display:none;'>
+ 	    </div>
+ 	    
 		<!-- Project/village tiles at bottom of map -->
 		<div id="projectScroller" class='hide-scrollbar'></div>
 	</div>
@@ -121,7 +158,7 @@ div.progressBar .ui-progressbar-value {
 
 <script>
 	// Global variables.
-	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1;
+	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, expandoCell;
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ';
 
@@ -140,13 +177,17 @@ div.progressBar .ui-progressbar-value {
 			selectVillage(e.features[0]);
 		});
 
-		map.on('click', 'projects', function(e) {
-			if (selectedElem == e.features[0]) {
-				return;
-			}
-			document.location = "project.php?projectId=" + e.features[0].id;
-		});
-
+	    map.on('click', 'projects', function (e) {
+    		if (selectedElem == e.features[0]) {
+		        return;
+	        }
+		  	if (selectedCell) {
+				hideCell(function() { expandCell(e.features[0]); });
+		  	} else {
+			  	expandCell(e.features[0]);
+		  	}
+	    });
+	    
 		map.on("mousemove", "villages", function(e) {
 			map.getCanvas().style.cursor = 'pointer';
 		});
@@ -173,7 +214,7 @@ div.progressBar .ui-progressbar-value {
 			count = 0;
 			lastElem = 0;
 
-			$("#addProjectButtonText").html("zoom_out");
+			$("#zoomOutButtonText").html("zoom_out");
 
 			projects = map.queryRenderedFeatures({
 				layers : [ 'projects' ]
@@ -276,7 +317,84 @@ div.progressBar .ui-progressbar-value {
 			});
 		}
 	}
+	
+	function expandCell(elem) {
+		selectedElem = elem;
 
+	    $('#modalBlock').show();
+		selectedCell = $("#projectDiv" + elem.properties.id);
+		selectedCell.css("left", "0px");
+		selectedCell.css("cursor", "default");
+
+		selectedCell.animate({ width: '100%'}, 500);
+		$("#projectScroller").animate({ scrollLeft: document.getElementById("projectDiv" + elem.properties.id).offsetLeft });
+		
+		expandoCell = $("<div>", {"class": "expandoCell"});
+		
+		pictureDiv = $("#pictureDiv");
+	  	pictureDiv.empty();
+	  
+		var updatePictures = 0;
+	  	
+	  	if (elem.properties.updatePictures) {
+		  	updatePictures = elem.properties.updatePictures.split("~");
+		  	for (i = 0; i < updatePictures.length; i++) {
+			  	breakPoint = updatePictures[i].indexOf(':');
+			  	imageId = updatePictures[i].substring(0, breakPoint);
+			  	description = updatePictures[i].substring(breakPoint + 1);
+			  	pictureDiv.append("<a href='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' data-imagelightbox='d'><img style='height:25vh;' src='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' alt=\"" + description + "\" /></a>");
+				var instanceD = $( 'a[data-imagelightbox="d"]' ).imageLightbox(
+				{
+					onLoadStart: function() { captionOff(); activityIndicatorOn(); },
+					onLoadEnd:	 function() { captionOn(); activityIndicatorOff(); },
+					onEnd:		 function() { captionOff(); activityIndicatorOff(); }
+				});
+			}
+			if (updatePictures.length > 0) {
+		  		pictureDiv.css("display", "block");
+		  		pictureDiv.animate({height: "25vh"}, 500);
+	  	  	}
+	  	}
+
+	  	expandoCell.append("<div style='margin:5px;text-align:left;font-weight:bold;font-size:22px;'>" + elem.properties.name + ' in ' + elem.properties.villageName + "</div>"
+	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + "</P>"
+	  			+ "<img style='position:absolute;top:5px;right:5px;width:24px;height:24px;cursor:pointer;' src='images/close_button.png' onclick='hideCell();window.event.stopPropagation();' />");
+		
+	  	selectedCell.append(expandoCell);
+	}
+
+
+	function hideCell(nextAction) {
+		if (expandoCell) {
+			expandoCell.remove();
+			expandoCell = null;
+		}
+	    
+	    $('#modalBlock').hide();
+		
+		if (nextAction) {
+			selectedCell.animate({ width: '30vh'}, 500, nextAction);
+		} else {
+			selectedCell.animate({ width: '30vh'}, 500);
+		}
+
+		if ($(window).width() < 720) {
+			selectedCell.css('backgroundImage', "url('https://4and.me/uploads/" + selectedElem.properties.picture_filename + "')");
+		}
+		
+		selectedCell.css("cursor", "pointer");
+		selectedCell = null;
+		$("#pictureDiv").animate({height: "0vh"}, 500);
+	    
+	    newVillageDiv = $("#villageDivNew");
+	    if (newVillageDiv) {
+		    	newVillageDiv.off('click');
+		    	$("#expandedNewVillage").off("click");
+	    }
+	    		
+	    selectedElem = null;
+	}
+	
 	function drawVillage(elem, hasListener) {
 		completed = parseInt(elem.properties.completedCount);
 		funding = parseInt(elem.properties.fundingCount);
