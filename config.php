@@ -1,20 +1,21 @@
 <?php
+//session_save_path("/Users/jeff.depree/nonworkspace/tmp");
 date_default_timezone_set("America/New_York");
 //require_once "Mail.php";
 define('DB_HOST', 'localhost');
-define('DB_USER', '');
-define('DB_PASSWORD', '');
+define('DB_USER', 'root');
+define('DB_PASSWORD', 'nextpage');
 define('DB_DATABASE', 'villagex');
-define('PICTURES_DIR', 'uploads/');
+define('PICTURES_DIR', 'https://4and.me/uploads/');
 
 // The following are probably optional
-define('GOOGLE_API_KEY', '');
-define('MAPBOX_API_KEY', '');
-define("FACEBOOK_APP_ID", "");
-define("FACEBOOK_SECRET", "");
+define('GOOGLE_API_KEY', 'AIzaSyBI0lHSGrRmWKb7OoK-sD_x36i1XH9i1Bc');
+define('MAPBOX_API_KEY', 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ');
+define("FACEBOOK_APP_ID", "107425412747634");
+define("FACEBOOK_SECRET", "baf7876396ab74cab819d30bd806f0c0");
 
 function sendMailSend($to, $subject, $body, $fromName, $replyEmail) {
-	$host = "";
+	$host = "ssl://secure53.webhostinghub.com";
 	$port = "465";
 	$username = "";
 	$password = "";

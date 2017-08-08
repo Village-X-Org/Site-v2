@@ -37,9 +37,9 @@ include('header.inc');
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img src="images/icon_village.png">
+						<img src="images/icon_village.png" height="75px" width="75px">
 					</h2>
-					<h5 class="center">Choose a village</h5>
+					<h5 class="center">Find a village</h5>
 
 					<p class="light center">Our partner villages want to escape
 						extreme poverty. They identify their biggest problems and propose
@@ -51,7 +51,7 @@ include('header.inc');
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img src="images/icon_heart.png">
+						<img src="images/icon_heart.png" height="75px" width="75px">
 					</h2>
 					<h5 class="center">Fund a project</h5>
 
@@ -64,7 +64,7 @@ include('header.inc');
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img src="images/icon_pic.png">
+						<img src="images/icon_pic.png" height="75px" width="75px">
 					</h2>
 					<h5 class="center">Track your impact</h5>
 
@@ -87,7 +87,6 @@ include('header.inc');
 
 		<!--   project section   -->
 		<div class="row">
-		
 <?php 
 		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id WHERE project_status = 'funding' LIMIT 3");
 
@@ -117,7 +116,6 @@ include('header.inc');
 						</div>
 						<p>Locals Contributed: \$$villageContribution</p>
 					</div>
-
 					<div class='card-action'>
 						<div class='row center'>
 							<div class='col s12'>
@@ -135,10 +133,9 @@ include('header.inc');
 		<br>
 
 		<div class="row center">
-			<a href="http://materializecss.com/getting-started.html"
-				id="download-button"
+			<a href='ProjectTiles.php' id="download-button"
 				class="btn-large waves-effect waves-light light blue lighten-1">more
-				villages</a>
+				projects</a>
 		</div>
 	</div>
 </div>
