@@ -133,6 +133,19 @@ function closeDBConn() {
 }
 // End DB functions
 
+function doStatQuery($villageId, $statName) {
+    return doQuery("SELECT stat_value FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+}
+
+function getLatestValueForStat($villageId, $statName) {
+    $result = doQuery("SELECT stat_value FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName') ORDER BY stat_year DESC LIMIT 1");
+    if ($row = $result->fetch_assoc()) {
+        return $row['stat_value'];
+    } else {
+        return -1;
+    }
+}
+
 // Request processing
 function getGet($key) {
 	return getFromReq($key, $_GET);

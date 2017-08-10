@@ -2,19 +2,21 @@
 require_once("utilities.php");
 include('header.inc'); 
 
-$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type, village_population, village_households FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id");
+$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id");
 while ($row = $result->fetch_assoc()) {
     $projectId = $row['project_id'];
     $projectName = $row['project_name'];
     $pictureFilename = $row['picture_filename'];
     $summary = $row['project_summary'];
+    $villageId = $row['village_id'];
     $villageName = $row['village_name'];
     $funded = $row['project_funded'];
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
-    $population = $row['village_population'];
-    $households = $row['village_households'];
     $villageContribution = $total * .05;
+    
+    $households = getLatestValueForStat($villageId, "# of HH");
+    $population = getLatestValueForStat($villageId, "# of People");
 }
 
 ?>
