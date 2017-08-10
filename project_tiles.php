@@ -1,8 +1,3 @@
-<?php 
-require_once("utilities.php");
-include('header.inc');
-?>
-
 <div class="container">
 	
 	<div class="row">
