@@ -137,11 +137,11 @@ div.progressBar .ui-progressbar-value {
 
 		<!-- Buttons on map (world and add project) -->
 		<div class="fixed-action-btn" id='buttonHolder'
-			style='position: absolute; top: 0px; right: 5px; z-index: 3;'>
+			style='position: absolute; display:none;top: 0px; right: 5px; z-index: 3;'>
 
 			<a class="btn-floating btn-large blue" id='zoomOutButton'
 				onclick="zoomToCountryBounds(selectedCountry);"
-				style='margin-left:10px;visibility:hidden;'> <i class="large material-icons"
+				style='margin-left:10px;'> <i class="large material-icons"
 				id='zoomOutButtonText'>zoom_out</i>
 			</a>
 		</div>
@@ -187,6 +187,10 @@ div.progressBar .ui-progressbar-value {
 			  	expandCell(e.features[0]);
 		  	}
 	    });
+
+		map.on("zoomend", function(e) {
+			getTilesForBounds();
+		});
 	    
 		map.on("mousemove", "villages", function(e) {
 			map.getCanvas().style.cursor = 'pointer';
@@ -201,12 +205,17 @@ div.progressBar .ui-progressbar-value {
 			map.getCanvas().style.cursor = 'default';
 		});
 
-		getTilesForBounds();
 		// Bounding box for Malawi.
 		selectedCountry = [ [ 35.14799880981445, -15.829999923706055 ],
 				[ 35.52799987792969, -15.473999977111816 ] ];
 	});
 
+	function zoomToCountryBounds(bounds) {
+		selectedCountry = bounds;
+
+		map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}});
+	}
+	
 	function getTilesForBounds() {
 		zoom = map.getZoom();
 		$("#projectScroller").empty();
@@ -214,19 +223,19 @@ div.progressBar .ui-progressbar-value {
 			count = 0;
 			lastElem = 0;
 
-			$("#zoomOutButtonText").html("zoom_out");
+			$("#buttonHolder").show();
 
 			projects = map.queryRenderedFeatures({
 				layers : [ 'projects' ]
 			});
 
-			if (projects.length == 0) {
+			/*if (projects.length == 0) {
 				if (retryCount > 0) {
 					map.once('moveend', getTilesForBounds);
 					retryCount--;
 				}
 				return;
-			}
+			}*/
 
 			projects.sort(function(a, b) {
 				diffA = a.properties.project_funded
@@ -296,17 +305,17 @@ div.progressBar .ui-progressbar-value {
 				expandVillage(selectedVillage);
 			}
 		} else if (zoom >= 5) {
-			$("#addProjectButtonText").html("add_location");
+			$("#buttonHolder").hide();
 			villages = map.queryRenderedFeatures({
 				layers : [ 'villages' ]
 			});
-			if (villages.length == 0) {
+			/*if (villages.length == 0) {
 				if (retryCount > 0) {
 					map.once('moveend', getTilesForBounds);
 					retryCount--;
 				}
 				return;
-			}
+			}*/
 			villages.sort(function(a, b) {
 				return b.properties.fundingCount - a.properties.fundingCount;
 			});
@@ -357,7 +366,8 @@ div.progressBar .ui-progressbar-value {
 	  	}
 
 	  	expandoCell.append("<div style='margin:5px;text-align:left;font-weight:bold;font-size:22px;'>" + elem.properties.name + ' in ' + elem.properties.villageName + "</div>"
-	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + "</P>"
+	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + ""
+	  			+ "<button onclick=\"document.location='project.php?projectId=" + elem.properties.id + "';\">View Project Details</button></P>"
 	  			+ "<img style='position:absolute;top:5px;right:5px;width:24px;height:24px;cursor:pointer;' src='images/close_button.png' onclick='hideCell();window.event.stopPropagation();' />");
 		
 	  	selectedCell.append(expandoCell);
@@ -456,7 +466,6 @@ div.progressBar .ui-progressbar-value {
 			}
 		});
 		retryCount = 1;
-		map.once('moveend', getTilesForBounds);
 	}
 	
 	function getProgressBar(id, funded, total) {
