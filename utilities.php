@@ -174,6 +174,18 @@ function param($key) {
 	return getFromReq($key, $reqVar);
 }
 
+function paramInt($key) {
+    global $reqVar;
+    $value = getFromReq($key, $reqVar);
+    $matches = array();
+    preg_match('/([\d]+)/', $value, $matches);
+    if (count($matches) > 0) {
+        return $matches[0];
+    } else {
+        return 0;
+    }
+}
+
 function hasParam($key) {
 	global $reqVar;
 	return isset($reqVar[$key]);

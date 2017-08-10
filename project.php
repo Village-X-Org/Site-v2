@@ -2,9 +2,10 @@
 require_once("utilities.php");
 include('header.inc'); 
 
-$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id");
+$projectId = paramInt('projectId');
+
+$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
 while ($row = $result->fetch_assoc()) {
-    $projectId = $row['project_id'];
     $projectName = $row['project_name'];
     $pictureFilename = $row['picture_filename'];
     $summary = $row['project_summary'];
