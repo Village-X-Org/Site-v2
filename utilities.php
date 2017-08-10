@@ -134,7 +134,16 @@ function closeDBConn() {
 // End DB functions
 
 function doStatQuery($villageId, $statName) {
-    return doQuery("SELECT stat_value FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    return doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+}
+
+function getStatYearAssociative($villageId, $statName) {
+    $arr = array();
+    $result = doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    while ($row = $result->fetch_assoc()) {
+        $arr[$row['stat_year']] = $row['stat_value'];
+    }
+    return $arr;
 }
 
 function getLatestValueForStat($villageId, $statName) {

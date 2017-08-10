@@ -1,7 +1,7 @@
 <?php
 require_once("utilities.php");
 
-$fptr = fopen('data/village_stats.csv', 'r');
+$fptr = fopen('data/comp_score.csv', 'r');
 $labels = fgetcsv($fptr);
 while ($statRow = fgetcsv($fptr)) {
     $village = $statRow[1];

@@ -401,6 +401,14 @@ $(document).ready(function(){
 						<canvas id="chart2" width="250" height="250"></canvas>
 					</div>
 
+		<?php
+		  $business = getStatYearAssociative($villageId, "Biz Score");
+		  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
+		  $education = getStatYearAssociative($villageId, "Edu Score");
+		  $agriculture = getStatYearAssociative($villageId, "Ag Score");
+		  $livestock = getStatYearAssociative($villageId, "Livestock Score");
+		?>
+
 					<script>
 						var ctx = document.getElementById("chart2").getContext(
 								'2d');
@@ -411,24 +419,23 @@ $(document).ready(function(){
 										labels : [ 'Business', 'Lifestyle',
 												'Education', 'Agriculture',
 												'Livestock'],
-										datasets : [ {
-
-											fill : true,
-											backgroundColor : "#ff6384",
-											label : '2014',
-											data : [ 3, 5, 3, 5, 6 ],
-
-										}, {
-											fill : true,
-											backgroundColor : "#36a2eb",
-											label : '2015',
-											data : [ 4, 7, 3, 3, 6 ],
-										}, {
-											fill : true,
-											backgroundColor : "#ffce56",
-											label : '2016',
-											data : [ 6, 9, 5, 6, 8 ],
-										} ],
+										datasets : [<?php 
+										  $count = 0;
+										  $keys = array_keys($business);
+										  $colors = array('#ff6384', '#36a2eb', '#ffce56', '#bbaecc', '#dd7733');
+										  foreach ($keys as $year) {
+										      if ($count > 0) {
+										          print ", \n";
+										      }
+										      print "{
+        											fill : true,
+        											backgroundColor : '{$colors[$count]}',
+        											label : '$year',
+        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
+										      }";
+										      $count++;
+										  }
+										?>],
 									},
 									options : {
 										responsive : true,
@@ -448,17 +455,26 @@ $(document).ready(function(){
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
 
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
 			<script>
 				var ctx = document.getElementById("chart3").getContext('2d');
 
 				var chart3 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ '2014', '2015', '2016' ],
+						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
 							fill : true,
 							backgroundColor : "#6495ED",
-							data : [ 130, 50, 20 ],
+							data : [ <?php print join(',', $values); ?> ],
 						} ]
 					},
 					options : {
