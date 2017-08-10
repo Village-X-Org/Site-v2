@@ -91,42 +91,43 @@ include('header.inc');
 		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id WHERE project_status = 'funding' LIMIT 3");
 
 		while ($row = $result->fetch_assoc()) {
-		      $funded = $row['project_funded'];
-		      $projectTotal = $row['project_budget'];
-		      $fundedPercent = $funded / $projectTotal * 100;
-		      $villageContribution = $projectTotal * .05;
-		      print "<div class='col s12 m4'>
-				<div class='card sticky-action hoverable'>
-					<div class='card-image waves-effect waves-block waves-light'>
-						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
+		  $projectId = $row['project_id'];
+    	      $funded = $row['project_funded'];
+    	      $projectTotal = $row['project_budget'];
+    	      $fundedPercent = $funded / $projectTotal * 100;
+    	      $villageContribution = $projectTotal * .05;
+	      print "<div class='col s12 m4'>
+			<div class='card sticky-action hoverable'>
+				<div class='card-image waves-effect waves-block waves-light'>
+					<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
+				</div>
+				<div class='card-content'>
+					<span class='card-title activator grey-text text-darken-4'  onclick=\"document.location='project.php?id=$projectId';\">{$row['village_name']}
+						<i class='material-icons right'>more_vert</i>
+					</span>
+					<h6 class='brown-text'>
+						<b>{$row['project_name']}</b>
+					</h6>
+					<br>
+					<h6 class='center'>
+						<b>\$$funded funded out of \$$projectTotal</b>
+					</h6>
+					<div class='progress'>
+						<div class='determinate' style='width: $fundedPercent%'></div>
 					</div>
-					<div class='card-content'>
-						<span class='card-title activator grey-text text-darken-4'>{$row['village_name']}
-							<a href='project.php'><i class='material-icons right'>more_vert</i></a>
-						</span>
-						<h6 class='brown-text'>
-							<b>{$row['project_name']}</b>
-						</h6>
-						<br>
-						<h6 class='center'>
-							<b>\$$funded funded out of \$$projectTotal</b>
-						</h6>
-						<div class='progress'>
-							<div class='determinate' style='width: $fundedPercent%'></div>
-						</div>
-						<p>Locals Contributed: \$$villageContribution</p>
-					</div>
-					<div class='card-action'>
-						<div class='row center'>
-							<div class='col s12'>
-								<a href='http://materializecss.com/getting-started.html'
-									id='download-button'
-									class='btn waves-effect waves-light light blue lighten-1'>Donate</a>
-							</div>
+					<p>Locals Contributed: \$$villageContribution</p>
+				</div>
+				<div class='card-action'>
+					<div class='row center'>
+						<div class='col s12'>
+							<a href='http://materializecss.com/getting-started.html'
+								id='download-button'
+								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>
 						</div>
 					</div>
 				</div>
-			 </div>";
+			</div>
+	      </div>";
 		}
 ?>			
 		</div>

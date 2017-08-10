@@ -367,7 +367,7 @@ div.progressBar .ui-progressbar-value {
 
 	  	expandoCell.append("<div style='margin:5px;text-align:left;font-weight:bold;font-size:22px;'>" + elem.properties.name + ' in ' + elem.properties.villageName + "</div>"
 	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + ""
-	  			+ "<button onclick=\"document.location='project.php?projectId=" + elem.properties.id + "';\">View Project Details</button></P>"
+	  			+ "<button onclick=\"document.location='project.php?id=" + elem.properties.id + "';\">View Project Details</button></P>"
 	  			+ "<img style='position:absolute;top:5px;right:5px;width:24px;height:24px;cursor:pointer;' src='images/close_button.png' onclick='hideCell();window.event.stopPropagation();' />");
 		
 	  	selectedCell.append(expandoCell);
