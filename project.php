@@ -1,4 +1,23 @@
-<?php include('header.inc'); ?>
+<?php 
+require_once("utilities.php");
+include('header.inc'); 
+
+$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type, village_population, village_households FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id");
+while ($row = $result->fetch_assoc()) {
+    $projectId = $row['project_id'];
+    $projectName = $row['project_name'];
+    $pictureFilename = $row['picture_filename'];
+    $summary = $row['project_summary'];
+    $villageName = $row['village_name'];
+    $funded = $row['project_funded'];
+    $total = $row['project_budget'];
+    $projectType = $row['project_type'];
+    $population = $row['village_population'];
+    $households = $row['village_households'];
+    $villageContribution = $total * .05;
+}
+
+?>
 
 <script>
 $(document).ready(function(){
@@ -17,7 +36,7 @@ $(document).ready(function(){
 	<div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school. This project will help 1,500 people and 200 households. Nakhwala has contributed $100.
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>
@@ -33,7 +52,7 @@ $(document).ready(function(){
   	
   	<div style="display:table; width:100%">
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-				<img src="temp/nursery school example.png" class="responsive-img">
+				<img src="<?php print PICTURES_DIR."/$pictureFilename"; ?>" class="responsive-img">
 				<p class="valign-wrapper; center-align">
 					<b>Here's a similar project.</b>
 				<br>
@@ -49,7 +68,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></div>
+		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
 				
 					<br>
 					

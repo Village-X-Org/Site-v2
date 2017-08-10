@@ -35,6 +35,7 @@ include('header.inc');
 
 		$count = 0;
 		while ($row = $result->fetch_assoc()) {
+		    $projectId = $row['project_id'];
 		      $funded = $row['project_funded'];
 		      $projectTotal = $row['project_budget'];
 		      $fundedPercent = $funded / $projectTotal * 100;
@@ -53,11 +54,11 @@ include('header.inc');
 		      print "<div class='col s12 m4 projectCell $projectTypeClass'>
 				<div class='card sticky-action hoverable'>
 					<div class='card-image waves-effect waves-block waves-light'>
-						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
+						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
 					</div>
 					<div class='card-content'>
-						<span class='card-title activator grey-text text-darken-4'>{$row['village_name']}
-							<a href='project.php'><i class='material-icons right'>more_vert</i></a>
+						<span class='card-title activator grey-text text-darken-4' onclick=\"document.location='project.php?id=$projectId';\">{$row['village_name']}
+							<i class='material-icons right'>more_vert</i>
 						</span>
 						<h6 class='brown-text'>
 							<b>{$row['project_name']}</b>
