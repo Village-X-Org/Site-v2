@@ -19,19 +19,19 @@ include('header.inc');
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">
-            		<li><a href="#!">Agriculture</a></li>
-            		<li><a href="#!">Education</a></li>
-           	 	<li><a href="#!">Livestock</a></li>
-            		<li><a href="#!">Water</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Agriculture</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Education</a></li>
+           	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); return false;">Livestock</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.water').show(); return false;">Water</a></li>
           	</ul>
 		</div>
 	</div>
 		
 		
 		
-	<div class="section">		
+	<div class="section"><div class='row'>		
 			<?php 
-		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id ORDER BY project_status = 'funding' DESC, project_funded DESC");
+		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id ORDER BY project_status = 'funding' DESC, project_funded DESC");
 
 		$count = 0;
 		while ($row = $result->fetch_assoc()) {
@@ -39,14 +39,18 @@ include('header.inc');
 		      $projectTotal = $row['project_budget'];
 		      $fundedPercent = $funded / $projectTotal * 100;
 		      $villageContribution = $projectTotal * .05;
-		      
-		      if ($count % 3 == 0) {
-		          if ($count > 0) {
-		              print "</div>";
-		          }
-		          print "<div class='row'>";
+
+		      $projectType = $row['project_type'];
+		      $projectTypeClass = 'education';
+		      if ($projectType == 'farm') {
+		          $projectTypeClass = 'agriculture';
+		      } elseif ($projectType == 'livestock') {
+		          $projectTypeClass = 'livestock';
+		      } elseif ($projectType == 'water') {
+		          $projectTypeClass = 'water';
 		      }
-		      print "<div class='col s12 m4'>
+		      
+		      print "<div class='col s12 m4 projectCell $projectTypeClass'>
 				<div class='card sticky-action hoverable'>
 					<div class='card-image waves-effect waves-block waves-light'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
@@ -80,8 +84,8 @@ include('header.inc');
 			 </div>";
 		      $count++;
 		}
-?>			
-		</div>
+?>			</div><!-- row end -->
+		</div> <!-- section end -->
 	</div>
 
 		<!-- <div class="row center">
