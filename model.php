@@ -5,7 +5,7 @@
 	<h2 class="white-text text-lighten-2 text-shadow: 2px 2px 7px #111111 valign-wrapper" style="height: 100%; width:100%;">Our Model</h2>	
 
 	<div class="parallax" style="background-size: cover;">
-		<img src="temp/villagemtg.jpg">
+		<img src="images/model_header.jpg">
 	</div>
 </div>
 
@@ -36,12 +36,12 @@
         		<h5>Step 1:</h5><br> Identify an extreme poverty village in a rural area, using local knowledge and poverty maps.  	
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        		<img style="border:5px solid black" width="100%" height="100%" src="temp/headcount.jpg">
+        		<img style="border:5px solid black" width="100%" height="100%" src="images/model_step1.jpg">
         		</div>
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/community meeting square.jpg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step2.jpg">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
         			<h5>Step 2:</h5><br> Call a village meeting to explain our "village choice" model and offer a longterm partnership.
@@ -52,12 +52,12 @@
         			<h5>Step 3:</h5><br> Listen as the community identifies its biggest development challenges and locally appropriate solutions.
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/mlenga problem.jpeg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step3.jpg">
         		</div>
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/mlenga committee marking the spot.jpg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step4.jpg">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
         			<h5>Step 4:</h5><br> Wait for the village's project committee to propose a project, write a budget, and raise the required cash contribution.
@@ -68,12 +68,12 @@
         			<h5>Step 5:</h5><br> Raise additional financing for the project from individuals, schools, companies, and partner NGOs.
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/mlenga sign.jpeg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step5.jpg">
         		</div>
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/mlengadrilling.jpg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step6.jpg">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
         			<h5>Step 6:</h5><br> Immediately deploy funds, start the project, and share multimedia project updates with donors.
@@ -84,12 +84,12 @@
         			<h5>Step 7:</h5><br> Complete the project (usually within one month after deploying funds) and mark the occasion with a ceremony.
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/message.jpg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step7.jpg">
         		</div>
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/waterborne illness graph.png">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step8.png">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
         			<h5>Step 8:</h5><br> Rigorously measure and share impact data with donors to evaluate how the project made a difference.
@@ -100,12 +100,12 @@
         			<h5>Step 9:</h5><br> Monitor the project over time based on community feedback and multimedia updates. 
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/clean water mlenga.png">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step9.jpg">
         		</div>
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="temp/img_1582.jpg">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step10.jpg">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
         			<h5>Step 10:</h5><br> Repeat steps 3 - 9 for 10 years, one project per year, as communities escape from extreme poverty.
