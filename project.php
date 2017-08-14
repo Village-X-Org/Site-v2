@@ -1,4 +1,31 @@
-<?php include('header.inc'); ?>
+<?php 
+require_once("utilities.php");
+include('header.inc'); 
+
+if (hasParam('id')) {
+    $projectId = paramInt('id');
+} else {
+    include('project_tiles.php');
+    return;
+}
+
+$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
+while ($row = $result->fetch_assoc()) {
+    $projectName = $row['project_name'];
+    $pictureFilename = $row['picture_filename'];
+    $summary = $row['project_summary'];
+    $villageId = $row['village_id'];
+    $villageName = $row['village_name'];
+    $funded = $row['project_funded'];
+    $total = $row['project_budget'];
+    $projectType = $row['project_type'];
+    $villageContribution = $total * .05;
+    
+    $households = getLatestValueForStat($villageId, "# of HH");
+    $population = getLatestValueForStat($villageId, "# of People");
+}
+
+?>
 
 <script>
 $(document).ready(function(){
@@ -17,7 +44,7 @@ $(document).ready(function(){
 	<div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map">Nakhwala Village</a> needs $2,000 to build a nursery school. This project will help 1,500 people and 200 households. Nakhwala has contributed $100.
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>
@@ -33,7 +60,7 @@ $(document).ready(function(){
   	
   	<div style="display:table; width:100%">
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-				<img src="temp/nursery school example.png" class="responsive-img">
+				<img src="<?php print PICTURES_DIR."/$pictureFilename"; ?>" class="responsive-img">
 				<p class="valign-wrapper; center-align">
 					<b>Here's a similar project.</b>
 				<br>
@@ -49,7 +76,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$1400 raised, $600 to go</font></b></div>
+		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
 				
 					<br>
 					
@@ -380,6 +407,14 @@ $(document).ready(function(){
 						<canvas id="chart2" width="250" height="250"></canvas>
 					</div>
 
+		<?php
+		  $business = getStatYearAssociative($villageId, "Biz Score");
+		  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
+		  $education = getStatYearAssociative($villageId, "Edu Score");
+		  $agriculture = getStatYearAssociative($villageId, "Ag Score");
+		  $livestock = getStatYearAssociative($villageId, "Livestock Score");
+		?>
+
 					<script>
 						var ctx = document.getElementById("chart2").getContext(
 								'2d');
@@ -390,24 +425,23 @@ $(document).ready(function(){
 										labels : [ 'Business', 'Lifestyle',
 												'Education', 'Agriculture',
 												'Livestock'],
-										datasets : [ {
-
-											fill : true,
-											backgroundColor : "#ff6384",
-											label : '2014',
-											data : [ 3, 5, 3, 5, 6 ],
-
-										}, {
-											fill : true,
-											backgroundColor : "#36a2eb",
-											label : '2015',
-											data : [ 4, 7, 3, 3, 6 ],
-										}, {
-											fill : true,
-											backgroundColor : "#ffce56",
-											label : '2016',
-											data : [ 6, 9, 5, 6, 8 ],
-										} ],
+										datasets : [<?php 
+										  $count = 0;
+										  $keys = array_keys($business);
+										  $colors = array('#ff6384', '#36a2eb', '#ffce56', '#bbaecc', '#dd7733');
+										  foreach ($keys as $year) {
+										      if ($count > 0) {
+										          print ", \n";
+										      }
+										      print "{
+        											fill : true,
+        											backgroundColor : '{$colors[$count]}',
+        											label : '$year',
+        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
+										      }";
+										      $count++;
+										  }
+										?>],
 									},
 									options : {
 										responsive : true,
@@ -427,17 +461,26 @@ $(document).ready(function(){
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
 
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
 			<script>
 				var ctx = document.getElementById("chart3").getContext('2d');
 
 				var chart3 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ '2014', '2015', '2016' ],
+						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
 							fill : true,
 							backgroundColor : "#6495ED",
-							data : [ 130, 50, 20 ],
+							data : [ <?php print join(',', $values); ?> ],
 						} ]
 					},
 					options : {
