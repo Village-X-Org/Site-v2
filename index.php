@@ -3,28 +3,26 @@ require_once('utilities.php');
 include('header.inc');
  ?>
 
-<div id="index-banner" class="parallax-container valign-wrapper"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
-	<div class="section no-pad-bot">
-		<div class="container">
-			<h2
-				class="header center white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund
-				Projects Villages Choose</h2>
-			<div class="row center">
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111">because
-					everyone deserves local development</h5>
-			</div>
-			<div class="row center">
-				<a href="project_tiles.php"
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
+		<div class="row center">
+			<div style="padding: 5% 5% 5% 5%;"><h2
+				class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund
+				Projects That Villages Choose</h2></div>
+		
+			<div style="padding: 5% 5% 5% 5%;"><br><br><h5 class="header center light text-shadow: 2px 2px 7px #111111">because
+					everyone deserves democracy and development</h5></div>
+		
+			<div style="padding: 0% 5% 5% 5%;"><br><br><a href="project_tiles.php"
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1">meet
-					the villages</a>
+					the villages</a></div>
+					
+			<div class="parallax">
+				<img src="images/header1.jpg">
 			</div>
-			<br>
 		</div>
-	</div>
-	<div class="parallax">
-		<img src="images/header1.jpg">
 	</div>
 </div>
 
@@ -41,9 +39,8 @@ include('header.inc');
 					</h2>
 					<h5 class="center">Find a village</h5>
 
-					<p class="light center">Our partner villages want to escape
-						extreme poverty. They identify their biggest problems and propose
-						locally appropriate solutions.</p>
+					<p class="light center">Our partner villages are located in rural Africa, where extreme poverty is on the rise.
+					Our model elevates their voices in international development.</p>
 
 				</div>
 			</div>
@@ -55,9 +52,9 @@ include('header.inc');
 					</h2>
 					<h5 class="center">Fund a project</h5>
 
-					<p class="light center">Villages put skin in the game by
-						contributing cash, labor, and materials. You invest in their
-						development aspirations.</p>
+					<p class="light center">Villages identify their biggest problems and propose
+						locally appropriate solutions. They also put skin in the game by
+						contributing cash, labor, and materials.</p>
 				</div>
 			</div>
 
@@ -68,8 +65,8 @@ include('header.inc');
 					</h2>
 					<h5 class="center">Track your impact</h5>
 
-					<p class="light center">Receive email updates with project
-						pictures and data showing exactly how your donation helped. It's
+					<p class="light center">Donors receive email updates with project
+						pictures and data showing exactly how each donation has helped. It's
 						our 100% transparency guarantee.</p>
 				</div>
 			</div>

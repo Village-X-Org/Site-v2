@@ -7,12 +7,12 @@
 					<b>Village X Org</b>
 				</h6>
 				<ul>
-					<li><a class="white-text" href="#!">Projects</a></li>
-					<li><a class="white-text" href="#!">Map</a></li>
-					<li><a class="white-text" href="#!">Model</a></li>
-					<li><a class="white-text" href="#!">Impacts</a></li>
-					<li><a class="white-text" href="#!">FAQ</a></li>
-					<li><a class="white-text" href="#!">About</a></li>
+					<li><a class="white-text" href="ProjectTiles.php">Projects</a></li>
+					<li><a class="white-text" href="map.php">Map</a></li>
+					<li><a class="white-text" href="Model.php">Model</a></li>
+					<li><a class="white-text" href="Impacts.php">Impacts</a></li>
+					<li><a class="white-text" href="faq.php">FAQ</a></li>
+					<li><a class="white-text" href="About.php">About</a></li>
 				</ul>
 			</div>
 
