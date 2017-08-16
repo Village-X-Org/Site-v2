@@ -10,7 +10,7 @@
 		<div class="col s12 m4 l4; valign-wrapper; center-align" style="vertical-align: middle; padding: 20px;">		
 	
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn light blue" href='#' data-activates='dropdown1'>Filter by Project Category</a>
+      		<a class="dropdown-button btn light blue" href='#' data-activates='dropdown1'>Filter by Type</a>
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">

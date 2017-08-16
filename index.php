@@ -15,7 +15,7 @@ include('header.inc');
 					everyone deserves local development</h5>
 			</div>
 			<div class="row center">
-				<a href="http://materializecss.com/getting-started.html"
+				<a href="project_tiles.php"
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1">meet
 					the villages</a>

@@ -177,17 +177,19 @@ arrowsOff = function()
 			<a id="logo-container" href="index.php" class="brand-logo"><img
 				src="images/logo.png"></a>
 			<ul class="right hide-on-med-and-down">
-				<li><a href="project.php">Projects</a></li>
-				<li><a href="#">Impacts</a></li>
+				<li><a href="project_tiles.php">Projects</a></li>
 				<li><a href="map.php">Map</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="model.php">Model</a></li>
+				<li><a href="impacts.php">Impacts</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
 
 			<ul id="nav-mobile" class="side-nav">
-				<li><a href="project.php">Projects</a></li>
-				<li><a href="#">Impacts</a></li>
+				<li><a href="project_tiles.php">Projects</a></li>
 				<li><a href="map.php">Map</a></li>
-				<li><a href="#">About</a></li>
+				<li><a href="model.php">Model</a></li>
+				<li><a href="impacts.php">Impacts</a></li>
+				<li><a href="about.php">About</a></li>
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 				class="material-icons">menu</i></a>
