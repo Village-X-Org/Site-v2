@@ -52,10 +52,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
-					<p>©Village X Org, 501(c)(3) nonprofit, 2017</p>
+					<p>©Village X Org, 501(c)(3) nonprofit, 2017. EIN: 47-1845825</p>
 				</div>
-				<div class="col s12 m4 l4" align="center">
-					<p></p>
+				<div class="col s12 m4 l4" align="left">
+					<p>Our technology finances community-led projects at scale and democratizes development.</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p>

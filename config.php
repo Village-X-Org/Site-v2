@@ -4,7 +4,7 @@ date_default_timezone_set("America/New_York");
 //require_once "Mail.php";
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
-define('DB_PASSWORD', 'nextpage');
+define('DB_PASSWORD', 'mulanje');
 define('DB_DATABASE', 'villagex');
 define('PICTURES_DIR', 'https://4and.me/uploads/');
 

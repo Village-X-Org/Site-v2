@@ -13,29 +13,33 @@
 </div>
 
 <div class="container">
-
-		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="padding:3% 0% 0% 0%;">
-			Why do we say "reward good development"?
-		</h4>
 	
-	<div class="section flow-text left"> 
-		<p><b>Village X started with a question: why doesn't rural Malawi develop?</b> Year after year, it looks the same. On a per capita 
-		basis, village residents are as poor as they were in 1980. Grinding poverty has become the norm.</p>  
-		<p>The primary reason is that 15 million people living in rural Malawi are disempowered. Their voices 
-		are not heard. Their stories are not shared. Their capabilities are not utlized. They are "beneficiaries," not decision makers.</p>
-		<p><b>Our solution: aid that's wanted, not wasted.</b> We match donor funds with community development projects owned and partially financed by rural villages. 
-		Villages receive direct investment for local development. Donors enjoy a rich philanthropic experience, including fast multimedia updates showing exactly how 
-		their money makes a difference.</p>
+	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
+			Why do we say "reward good development"?
+	</h4></div><br>
+	
+	<div class="section flow-text" style="width:100%;"> 
+		<p>We are data nerds. We believe, as a matter of integrity and intellectual honesty, that organizations claiming
+		to help others should support those claims with convincing quantitative evidence of impact. We rely on such evidence
+		in law, public policy, medicine, engineering, and other diciplines that affect our daily lives. We should hold well-intentioned 
+		charities to the same standard.</p>
 	</div>
 	
 	<hr>
-
-	<div class="section align-left"><h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+	
+	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
 			Evaluation Results
-	</h4></div>
+	</h4></div><br>
+	
+	<div class="section flow-text" style="width:100%;"> 
+		<p>In 2016, after two years of funding projects, we evaluated our impact. Our approach wasn't fancy or expensive (more on that
+		below). Instead, it tested a foundational assumption that financing village-led projects without any sort of preconceived 
+		development agenda would allow local communities to illuminate development pathways obscured from the outside. In other words, 
+		we funded a bunch of projects, collected a bunch of development indicators, and tested whether anything had changed. 
+		Did communitites improve and, if so, how? Here's what we found.</p>
+	</div>
 	
 <div class="section">
-<br>
 		<!--   Icon Section   -->
 		<div class="row center">
 			<br>
@@ -79,50 +83,97 @@
 				</div>
 			</div>
 		</div>
-		
-			<div>
-			<h6 class="light center-align">
-				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages
-			</h6>
-			</div>
-			<br>
 	</div>
 
 <hr>
 
-<div class="section align-center"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 			How We Got These Results
 	</h4></div>
 
 <br>
 
 	<div class="section flow-text"> 
-		<p><b>Village X started with a question: why doesn't rural Malawi develop?</b> Year after year, it looks the same. On a per capita 
-		basis, village residents are as poor as they were in 1980. Grinding poverty has become the norm.</p>  
-		<p>The primary reason is that 15 million people living in rural Malawi are disempowered. Their voices 
-		are not heard. Their stories are not shared. Their capabilities are not utlized. They are "beneficiaries," not decision makers.</p>
-		<p><b>Our solution: aid that's wanted, not wasted.</b> We match donor funds with community development projects owned and partially financed by rural villages. 
-		Villages receive direct investment for local development. Donors enjoy a rich philanthropic experience, including fast multimedia updates showing exactly how 
-		their money makes a difference.</p>
+		<p>Using community surveys spanning 2014 to 2016, across 21 projects and 32 villages, we tracked the following 13 development 
+		indicators pertaining to health, education, business, lifestyle, agriculture, and livestock, both in partner villages and 
+		villages that want to partner with Village X. We chose these indicators because they are easy to collect and indicative of
+		 village development trends. We then applied a difference-in-differences analysis to detect our model’s impacts, 
+		controlling for village population and number of households.</p>
 	</div>
 	
-<hr>	
+	<div class="section">
+		<!--   Icon Section   -->
+		<div class="row center">
+			<br>
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">local_hospital</i>
+					<h5 class="center brown-test">health</h5>
+					<h6 class="light center">waterborne illness</h6>
+				</div>
+				<br>
+			</div>
 
-	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-			Impacts v Outcomes
-	</h4></div> <br>
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">school</i>
+					<h5 class="center brown-test">education</h5>
+					<h6 class="light center"># of boys/girls in nursery</h6>
+					<h6 class="light center"># of boys/girls in primary</h6>
+					<h6 class="light center"># of boys/girls in secondary</h6>
+					<h6 class="light center"># of boys/girls in tertiary</h6>
+				</div>
+				<br>
+			</div>
 
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">local_convenience_store</i>
+					<h5 class="center brown-test">business</h5>
+					<h6 class="light center"># of agricultural businesses</h6>
+					<h6 class="light center"># of non-agricultural businesses</h6>
+				</div>
+				<br>
+			</div>
+
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">tv</i>
+					<h5 class="center brown-test">lifestyle</h5>
+					<h6 class="light center"># of TVs</h6>
+					<h6 class="light center"># of motorcycles</h6>
+					<h6 class="light center"># of steel roofs</h6>
+				</div>
+				<br>
+			</div>
+			
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">spa</i>
+					<h5 class="center brown-test">agriculture</h5>
+					<h6 class="light center"># of kilograms of maize</h6>
+				</div>
+				<br>
+			</div>
+
+			<div class="col s12 m2 l2">
+				<div class="icon-block">
+					<i class="material-icons" style="font-size: 50px">goat</i>
+					<h5 class="center brown-test">livestock</h5>
+					<h6 class="light center"># of goats</h6>
+					<h6 class="light center"># of cows</h6>
+				</div>
+			</div>
+		</div>
+	</div>
+	
 	<div class="section flow-text"> 
-		<p><b>What do villages want?</b> Year after year, it looks the same. On a per capita 
-		basis, village residents are as poor as they were in 1980. Grinding poverty has become the norm.</p>  
-		<p><b>Why do they choose certain projects over others?</b> Their voices 
-		are not heard. Their stories are not shared. Their capabilities are not utlized. They are "beneficiaries," not decision makers.</p>
-		<p><b>What's the quantitative impact per dollar of villages choosing projects over .</b> We match donor funds with community development projects owned and partially financed by rural villages. 
-		Villages receive direct investment in local development. Donors enjoy a rich philanthropic experience, including rapid multimedia project updates, 
-		and impact analyses, showing how their money makes a difference.</p>
+		<p>Each project profile on this website has graphs showing how development scores for a given village change
+		over time, including an overall village development score and scores for each of the categories above. These scores 
+		are not precision instruments. Instead, they capture village development trends over time.</p>
+		<p>Want to take a deeper dive? Checkout our dataset <a href="#">here</a>. It's part of our 100% tranparency guarantee.</p>
 	</div>
-	
+
 <hr>	
 
 	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
@@ -130,13 +181,13 @@
 	</h4></div> <br>
 
 	<div class="section flow-text"> 
-		<p><b>What do villages want?</b> Year after year, it looks the same. On a per capita 
-		basis, village residents are as poor as they were in 1980. Grinding poverty has become the norm.</p>  
-		<p><b>Why do they choose certain projects over others?</b> Their voices 
-		are not heard. Their stories are not shared. Their capabilities are not utlized. They are "beneficiaries," not decision makers.</p>
-		<p><b>What's the quantitative impact per dollar of villages choosing projects over .</b> We match donor funds with community development projects owned and partially financed by rural villages. 
-		Villages receive direct investment in local development. Donors enjoy a rich philanthropic experience, including rapid multimedia project updates, 
-		and impact analyses, showing how their money makes a difference.</p>
+		<p>We are not satisfied with our impact evaluation. It's a good start, but we can do better. In particular, we could
+		track how projects we finance affect individual household spending within a village. How do families modify their
+		spending in response to village-led projets? Do the projects make families wealthier?</p>
+		<p>Answering these questions requires overcoming two challenges: (1) our current portfolio of partner villages
+		is not large enough (we need at least 300 per year); and (2) we do not possess a large monitoring and evaluation budget. 
+		We plan to scale our operations to overcome the first challenge and to partner with academic researchers to overcome
+		the second one.</p>
 	</div>
 		
 </div>

@@ -11,8 +11,8 @@ include('header.inc');
 				class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund
 				Projects That Villages Choose</h2></div>
 		
-			<div style="padding: 5% 5% 5% 5%;"><br><br><h5 class="header center light text-shadow: 2px 2px 7px #111111">because
-					everyone deserves democracy and development</h5></div>
+			<div style="padding: 5% 5% 5% 5%;"><br><br><h5 class="header center light text-shadow: 2px 2px 7px #111111">because everyone deserves
+			 a voice in development</h5></div>
 		
 			<div style="padding: 0% 5% 5% 5%;"><br><br><a href="project_tiles.php"
 					id="download-button"
@@ -28,7 +28,9 @@ include('header.inc');
 
 <div class="container">
 	<br>
-	<h5 class="header center brown-text text-lighten-2">How It Works</h5>
+	<h4 class="header center light blue-text text-lighten-2">Help us disrupt the growth of extreme poverty in rural Africa</h4>
+
+	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">
 		<!--   Icon Section   -->
 		<div class="row">
@@ -40,7 +42,7 @@ include('header.inc');
 					<h5 class="center">Find a village</h5>
 
 					<p class="light center">Our partner villages are located in rural Africa, where extreme poverty is on the rise.
-					Our model elevates their voices in international development.</p>
+					Our model and technology elevate their voices in international development.</p>
 
 				</div>
 			</div>
@@ -78,8 +80,7 @@ include('header.inc');
 
 <div class="container">
 	<br>
-	<h5 class="header center brown-text text-lighten-2">100% locally
-		owned</h5>
+	<h5 class="header center brown-text text-lighten-2">Featured Projects</h5>
 	<div class="section">
 
 		<!--   project section   -->
@@ -99,14 +100,14 @@ include('header.inc');
 					<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
 				</div>
 				<div class='card-content'>
-					<span class='card-title activator grey-text text-darken-4'  onclick=\"document.location='project.php?id=$projectId';\">{$row['village_name']}
+					<span class='card-title activator grey-text text-darken-4'  onclick=\"document.location='project.php?id=$projectId';\">{$row['project_name']}
 						<i class='material-icons right'>more_vert</i>
 					</span>
 					<h6 class='brown-text'>
-						<b>{$row['project_name']}</b>
+						<b>{$row['village_name']} Village</b>
 					</h6>
 					<br>
-					<h6 class='center'>
+					<h6>
 						<b>\$$funded funded out of \$$projectTotal</b>
 					</h6>
 					<div class='progress'>
@@ -131,7 +132,7 @@ include('header.inc');
 		<br>
 
 		<div class="row center">
-			<a href='ProjectTiles.php' id="download-button"
+			<a href='Project_Tiles.php' id="download-button"
 				class="btn-large waves-effect waves-light light blue lighten-1">more
 				projects</a>
 		</div>
@@ -154,7 +155,7 @@ include('header.inc');
 
 <div class="container">
 	<br>
-	<h5 class="header center brown-text text-lighten-2">Data-Driven
+	<h5 class="header center brown-text text-lighten-2">Our
 		Impact</h5>
 	<div class="section">
 
@@ -205,7 +206,7 @@ include('header.inc');
 			<div>
 			<h6 class="light center-align">
 				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages (more info <a href="">here</a>)
+				to 2016, on 21 projects and 32 villages (more info <a href='Impacts.php'>here</a>)
 			</h6>
 			</div>
 			<br>
@@ -213,9 +214,9 @@ include('header.inc');
 
 </div>
 
-<div class="parallax-container valign-wrapper"
+<div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
-	<div class="section no-pad-bot">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 		<div class="container">
 			<div class="row center">
 				<h5
@@ -228,6 +229,26 @@ include('header.inc');
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1">Give
 					Monthly</a>
+			</div><br>
+			<div class="row center">
+				<h6
+					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
+					automatically donate to a project each month,<br> and enjoy impact updates all year long
+				</h6>
+			</div>
+			<div class="row center">
+				<h5
+					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
+					starting at
+				</h5>
+				<h3
+					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
+					$5
+				</h3>
+				<h5
+					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
+					/ month
+				</h5>
 			</div>
 		</div>
 	</div>
@@ -235,4 +256,5 @@ include('header.inc');
 		<img src="images/footer1.jpg" alt="Unsplashed background img 2">
 	</div>
 </div>
+
 <?php include('footer.inc'); ?>
