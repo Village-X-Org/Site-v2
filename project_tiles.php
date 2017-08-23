@@ -10,7 +10,7 @@ include('header.inc');
 				Choose a project to fund
 			</h5>
 		</div>
-
+		<script>var statusFilter = 0, typeFilter = 0;</script>
 		<div class="col s12 m3 l3 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
@@ -18,9 +18,9 @@ include('header.inc');
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').show(); $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.funding').show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.funded').show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
+          		<li><a href="" onclick="statusFilter=0; if (typeFilter) { $('.' + typeFilter).show(); } else { $('.projectCell').show(); }  $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
           	</ul>
           </div>
 	
@@ -30,11 +30,11 @@ include('header.inc');
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown2" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').show(); $('#typeFilter').html('Filter by Type'); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
-           	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.water').show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
+          		<li><a href="" onclick="typeFilter=0; if (statusFilter) { $('.' + statusFilter).show(); } else { $('.projectCell').show(); } $('#typeFilter').html('Filter by Type'); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='agriculture';className = '.agriculture' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
+           	 	<li><a href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
           	</ul>
 		</div>
 	</div>
