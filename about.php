@@ -19,7 +19,7 @@
       <div class="col s12 m12 l12">
         <div class="card-panel light blue" style="padding: 5% 5% 5% 5%;">
           <div class="center-align white-text flow-text"><b>Mission</b></div><br>
-          <div class="center-align white-text flow-text">End extreme poverty in rural, sub-Saharan Africa -- one village at a time.</div>
+          <div class="center-align white-text flow-text">Disrupt extreme poverty in rural, sub-Saharan Africa.</div>
         </div>
       </div>
     </div>
@@ -30,19 +30,25 @@
           <div class="center-align white-text flow-text"><b>Problem and Opportunity</b></div><br>
           <div class="center-align white-text flow-text">390 million people (and growing) live in extreme poverty in rural 
           sub-Saharan Africa. We believe this results from a deprivation of empowerment -- the inability of people to choose lives they value. 
-          People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
+          </div>
+          <div style="padding: 5% 5% 5% 5%;">
+      		<img class="activator" width="100%" height="100%" src="images/extreme-poverty-by-world-region.jpg">
+    		</div>
+         <div class="center-align white-text flow-text">People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
           achievable. This has always been true, but a confluence of recent trends provides hope that their voices will be heard: 
           (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
-          telecommunications within rural Africa.</div>
+          telecommunications within rural Africa.
         </div>
       </div>
+    </div>
     </div>
   
 	<div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel light blue" style="padding: 5% 5% 5% 5%;">
           <div class="center-align white-text flow-text"><b>Our Solution</b></div><br>
-          <div class="center-align white-text flow-text">Build and deploy technology that does these two things really well.</div>
+          <div class="center-align white-text flow-text">Build and deploy technology that democratizes local 
+          development at scale.</div>
         </div>
       </div>
     </div>
@@ -55,8 +61,8 @@
 			<div class="col s12 m6 l6" style="padding: 0% 5% 0% 5%;">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 100px">attach_money</i>
-					<h5 class="center brown-test">Finances community-led projects at scale.</h5>
-					<p class="light center flow-text">Deploys financing and retrieves data from all 
+					<h5 class="center brown-test">Finance village-led projects on a continental scale.</h5>
+					<p class="light center flow-text">Deploy financing and retrieve data from all 
 					the extreme poverty villages in a country or region within sub-Saharan Africa. This would cost 
 					approximately $10-$20 million per year in Malawi, depending on the types of projects chosen by villages.</p>
 					<br> <br>
@@ -66,10 +72,11 @@
 			<div class="col s12 m6 l6" style="padding: 0% 5% 0% 5%;">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 100px">data_usage</i>
-					<h5 class="center brown-test">Democratizes development through data.</h5>
-					<p class="light center flow-text">Harmonizes development aspirations of villages (as revealed by predictive data models) with 
-					governmental programming and development assistance (the latter is $1 billion per year in Malawi). Coordinates many stakeholders 
-					to end extreme poverty.</p>
+					<h5 class="center brown-test">Share data to inform the work of other development actors.</h5>
+					<p class="light center flow-text">Harmonize development aspirations of villages 
+					with governmental programming and development assistance (the latter is $1 billion per year in Malawi). Coordinate
+					the development activities of many stakeholders 
+					to disrupt extreme poverty.</p>
 					<br>
 				</div>
 			</div>
@@ -307,7 +314,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="center-align">
+		<!--  <div class="center-align">
 		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 			Board Members
 		</h4>
@@ -352,7 +359,7 @@
 				
 				</div>
 			</div>
-		</div>
+		</div> -->
 </div>
 
 <?php include('footer.inc'); ?>

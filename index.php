@@ -28,7 +28,7 @@ include('header.inc');
 
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Help us disrupt the growth of extreme poverty in rural Africa</h4>
+	<h4 class="header center light blue-text text-lighten-2">Help African villages disrupt extreme poverty</h4>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">

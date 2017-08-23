@@ -122,8 +122,8 @@
 			Sustainable and Scalable
 	</h4></div> 
 
-	<div class="flow-text" style="display:table; width:100%; padding: 0% 2% 2% 2%">
-				<div class="col-project valign-wrapper" style="vertical-align: middle;"> 
+	<div class="flow-text center-align" style="display:table; width:100%; padding: 0% 0% 0% 0%">
+				<div class="col-project valign-wrapper" style="vertical-align: middle; text-align: center;"> 
                     		<p>To acheive <b>sustainability</b>, we collect 10% of every project donation to cover adminstrative costs (e.g., improving our technology). 
                     		On an average project, villages receive about $3,000, and Village X receives $350. That's a vast improvement over the industry standard, 
                     		where a small fraction of donated money reaches the ground. Village X will reach financial sustainability crowdfunding about 500 projects per 
@@ -133,7 +133,7 @@
 				<div class="col-project valign-wrapper" style="vertical-align: middle;">
 						<h6 style="text-align: center"><b>Donations Breakdown (%)</b></h6>
 					<div>
-						<canvas id="project_cost_breakdown" width="100%" height="100%" style="display: block; margin: 0 auto;"></canvas>
+						<canvas id="project_cost_breakdown" width="100%" height="100%" style="display: block; margin: 0 auto; padding: 15% 15% 15% 15%;"></canvas>
 					</div>
 
 					<script>
@@ -160,8 +160,8 @@
 				</div>
 	</div>	
 	
-	<div class="flow-text" style="display:table; width:100%; padding: 0% 2% 2% 2%">
-			<div class="col-project valign-wrapper" style="vertical-align: middle;">
+	<div class="flow-text center-align" style="display:table; width:100%; padding: 0% 0% 2% 0%">
+			<div class="col-project valign-wrapper" style="vertical-align: middle; text-align: center;">
 				<p>To acheive <b>scalabilty</b>, we recruit local field officers. Rural Africa teems with future field officers 
 				(educated young men and women with smartphones and a passion for community development). 
                	A single field officer covers up to 50 villages a year, using local transportation to reach up to 70,000 people. 
@@ -185,7 +185,7 @@
 
 <div class="row">
 	<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
-			Pilot Findings (2014-16)*
+			Pilot Findings*
 	</h4>
 </div>
 
@@ -233,7 +233,7 @@
 	
 	<div class="row center">
 		<h6 class="brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
-			*based on 21 projects in 14 villages
+			*based on 21 projects in 14 villages, spanning 2014 to 2016
 		</h6>
 	</div>
 	

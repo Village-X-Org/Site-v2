@@ -1,15 +1,17 @@
-<?php require_once("utilities.php");
+<?php require_once('utilities.php');
 include('header.inc');
 ?>
+
 <div class="container">
 	
-	<div class="row" style="padding:2% 0% 0% 0%;">
+	<div class="row" style="padding:2% 1% 1% 1%;">
 		<div class="col s12 m6 l6; valign-wrapper" style="vertical-align: middle; height:50px;">
-			<h4 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 				Choose a project to fund
-			</h4>
+			</h5>
 		</div>
-		<div class="col s12 m3 l3 valign-wrapper" style="height:50px;">		
+
+		<div class="col s12 m3 l3 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1'>Filter by Status</a>
@@ -22,7 +24,7 @@ include('header.inc');
           	</ul>
           </div>
 	
-		 <div class="col s12 m3 l3 center-align valign-wrapper" style="vertical-align: middle; height:50px;">			
+		 <div class="col s12 m3 l3 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2'>Filter by Type</a>
 

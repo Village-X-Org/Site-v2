@@ -4,15 +4,15 @@
 		<div class="row">
 			<div class="col l4 s12">
 				<h6 class="white-text">
-					<b>Village X Org</b>
+					<b><a class="white-text" href="index.php">Village X Org</a></b>
 				</h6>
 				<ul>
-					<li><a class="white-text" href="ProjectTiles.php">Projects</a></li>
+					<li><a class="white-text" href="project_tiles.php">Projects</a></li>
 					<li><a class="white-text" href="map.php">Map</a></li>
-					<li><a class="white-text" href="Model.php">Model</a></li>
-					<li><a class="white-text" href="Impacts.php">Impacts</a></li>
+					<li><a class="white-text" href="model.php">Model</a></li>
+					<li><a class="white-text" href="impacts.php">Impacts</a></li>
 					<li><a class="white-text" href="faq.php">FAQ</a></li>
-					<li><a class="white-text" href="About.php">About</a></li>
+					<li><a class="white-text" href="about.php">About</a></li>
 				</ul>
 			</div>
 
@@ -41,7 +41,7 @@
 					<li><a class="white-text">Village X Org</a></li>
 					<li><a class="white-text">3717 W Street NW</a></li>
 					<li><a class="white-text">Washington, DC 20007</a></li>
-					<li><a class="white-text">202-360-9931</a></li>
+					<li><a class="white-text">202&#65279;-360&#65279;-9931</a></li>
 					<li><a class="white-text">chat@villagex.org</a></li>
 				</ul>
 			</div>
@@ -52,14 +52,14 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
-					<p>©Village X Org, 501(c)(3) nonprofit, 2017. EIN: 47-1845825</p>
+					<p>©Village X Org, 501(c)(3) nonprofit, 2017. EIN: 47&#65279;-1845825&#65279;</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
-					<p>Our technology finances community-led projects at scale and democratizes development.</p>
+					<p><b>Our technology disrupts extreme poverty in Africa by democratizing local development at scale.</b></p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p>
-						<a href="termsofservice.php">Terms of Service</a><br> <a href="privacypolicy.php">Privacy Policy</a>
+						<a href="tos.php">Terms of Service</a><br> <a href="privacy_policy.php">Privacy Policy</a>
 					</p>
 				</div>
 			</div>
