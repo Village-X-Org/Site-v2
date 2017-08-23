@@ -18,9 +18,9 @@ include('header.inc');
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Seeking Funds</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Funded</a></li>
+          		<li><a href="" onclick="$('.projectCell').show(); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.funding').show(); return false;">Seeking Funds</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.funded').show(); return false;">Funded</a></li>
           	</ul>
           </div>
 	
@@ -30,7 +30,7 @@ include('header.inc');
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown2" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">All</a></li>
+          		<li><a href="" onclick="$('.projectCell').show(); return false;">All</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Agriculture</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Education</a></li>
            	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); return false;">Livestock</a></li>
@@ -61,7 +61,12 @@ include('header.inc');
 		          $projectTypeClass = 'water';
 		      }
 		      
-		      print "<div class='col s12 m4 projectCell $projectTypeClass'>
+		      $fundedClass = 'funding';
+		      if ($fundedPercent >= 100) {
+		          $fundedClass = 'funded';
+		      }
+		      
+		      print "<div class='col s12 m4 projectCell $projectTypeClass $fundedClass' style='min-width:350px;'>
 				<div class='card sticky-action hoverable'>
 					<div class='card-image waves-effect waves-block waves-light'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
