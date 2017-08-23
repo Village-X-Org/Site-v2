@@ -97,7 +97,7 @@ $(document).ready(function(){
 	
 			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px;">
 						<img src="images/stripe_payments.png" alt=""
-							class="circle"
+							class="circle responsive-img"
 							style="width: 100px; height: 100px; vertical-align:middle; padding: 20px 20px 20px 20px">
 							<br><br>
 					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 20px 20px 20px 0px;">
@@ -105,7 +105,7 @@ $(document).ready(function(){
 					</span>
 			</div>
 
-	</div>
+		</div>
 	</div>
 	
 	<br>
@@ -117,7 +117,7 @@ $(document).ready(function(){
               <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
           </li>
           <li class="waves-effect col s3" style="display: inline">
-              <i class="material-icons" style="font-size: 30px">collections</i>
+              <a href="#pics"><i class="material-icons" style="font-size: 30px">collections</i></a>
           </li>
           <li class="waves-effect col s3">
               <a href="#costbreakdown"><i class="material-icons" style="font-size: 30px">monetization_on</i></a>
@@ -229,16 +229,16 @@ $(document).ready(function(){
 				<div class="col s12 m9 l9">
 					<div class="card-panel grey lighten-5 z-depth-1">
 						<div class="row valign-wrapper">
-							<div class="col s12 m3 l3">
+							<div class="col s12 m4 l4">
 							<img src="temp/myson_profile.png"
-								alt="" class="circle responsive-img"
+								alt="" class="responsive-img circle"
 								style="width: 100px; height: 100px;">
 							<!-- notice the "circle" class -->
 							</div>
-							<div class="col s12 m9 l9 black-text">
+							<div class="col s12 m8 l8 black-text">
 								<b>Field Officer Myson Jambo</b>
 								<p/>
-								<b>Email:</b> mysonjambo@gmail.com, <b>Phone Number:</b>
+								<b>Email:</b> myson@villagex.org <b><br>Phone Number:</b>
 									+2659783408
 							</div>
 						</div>
@@ -252,22 +252,22 @@ $(document).ready(function(){
 					<br>
 					
 						<a
-							href="http://www.facebook.com/sharer.php?u=https://simplesharebuttons.com"
-							target="_blank"> <img
+							href="http://www.facebook.com/sharer.php?s=100&p[title]=&p[summary]=Kazembe Village Fights Extreme Poverty&p[url]=localhost/Site-v2/project.php?id=99&p[images][0]=temp/project banner.jpg"
+  							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/facebook.png"
 							alt="Facebook" align="middle" height="60" width="60" />
 						</a>
 						&nbsp;&nbsp;&nbsp;
 						<a
-							href="https://twitter.com/share?url=https://simplesharebuttons.com&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
+							href="https://twitter.com/share?url=http://localhost/Site-v2/project.php?id=101;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/twitter.png"
 							alt="Twitter" align="middle" height="60" width="60" />
 						</a>
 				</div>
 			</div>
-			
-	</div>
+		</div>	
+	
 
 		<div id="costbreakdown" class="section scrollspy">
 				<h5 style="text-align: center">Cost Breakdown</h5>
@@ -344,10 +344,30 @@ $(document).ready(function(){
 			</div>
 
 		</div>
+	
+	<hr width="85%">
+	
+		<div id="pics" class="section scrollspy">
+				<h5 style="text-align: center">Field Updates</h5>
+
+    <div class="carousel">
+        <a class="carousel-item" href="#one!"><img src="temp/img_1707.jpg"></a>
+        <a class="carousel-item" href="#two!"><img src="temp/siyabu_water.jpg"></a>
+        <a class="carousel-item" href="#three!"><img src="temp/nakhwala_goats.jpg"></a>
+        <a class="carousel-item" href="#four!"><img src="temp/mlenga 4116.jpg"></a>
+        <a class="carousel-item" href="#five!"><img src="temp/nursery school example.png"></a>
+      </div>
+      <h6 style="text-align: center">(swipe to view on mobile)</h6>
+  </div>
+  <script>
+  $(document).ready(function(){
+      $('.carousel').carousel();
+    });
+  </script>
 
 		<hr width="85%">
 	
-		<div id="databreakdown" class="section scrollspy"></div>
+		<div id="databreakdown" class="section scrollspy">
 			<h5 style="text-align: center">Data Trends</h5>
 				<p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
 					<b>We track the quantitative impact of your donation. In
@@ -359,15 +379,51 @@ $(document).ready(function(){
 				</p>
 					
 			<div class="row">
-				<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 						<h6 style="text-align: center"><b>Dollars Invested Over Time</b></h6>
-					<div>
+					 <div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
+					
+					<script>
+				var ctx = document.getElementById("chart1").getContext('2d');
+
+				var chart1 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ 'Well, 2014', 'School, 2015', 'Goats, 2016' ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#ffce56",
+							data : [ 6000, 2000, 2000 ],
+							cubicInterpolationMode: 'monotone',
+							
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : true,
+								stacked:true,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>	
+					
+					<!--
 					<script>
 						var ctx = document.getElementById("chart1").getContext(
 								'2d');
-						Chart.defaults.global.defaultFontFamily = "'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif";
+						Chart.defaults.global.defaultFontFamily = "'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
 						var chart1 = new Chart(ctx, {
 
 							type : 'bar',
@@ -396,12 +452,12 @@ $(document).ready(function(){
 								},
 							}
 						});
-					</script>
+					</script> -->
 					<br>
 				</div>
 
 
-				<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+				<!--  <div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
 						<h6 style="text-align: center"><b>Select Score Components Over Time</b></h6>
 					<div>
 						<canvas id="chart2" width="250" height="250"></canvas>
@@ -449,12 +505,51 @@ $(document).ready(function(){
 									}
 								});
 					</script>
-				</div>
+				</div>  -->
+
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+
+				<h6 style="text-align: center"><b>Development Score Over Time</b></h6>
+			<div>
+				<canvas id="chart2" width="250" height="250"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart2").getContext('2d');
+
+				var chart2 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ '2014', '2015', '2016' ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#ffce56",
+							data : [ -5, 10, 15 ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : true,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>
+		</div>
 
 	</div>
 	
 	<div class="row">
-		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 				
 		<h6 style="text-align: center"><b>Waterborne Illness Over Time</b></h6>
 			<div>
@@ -488,7 +583,14 @@ $(document).ready(function(){
 						maintainAspectRatio : false,
 						legend : {
 							display : false,
-						}
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
 					}
 
 				});
@@ -496,24 +598,33 @@ $(document).ready(function(){
 				
 		</div>
 	
-		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-
-				<h6 style="text-align: center"><b>Overall Score Over Time</b></h6>
+				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Education Score Over Time</b></h6>
 			<div>
 				<canvas id="chart4" width="250" height="250"></canvas>
 			</div>
 
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
 			<script>
 				var ctx = document.getElementById("chart4").getContext('2d');
 
 				var chart4 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ '2014', '2015', '2016' ],
+						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
 							fill : true,
-							backgroundColor : "#ffce56",
-							data : [ -5, 10, 15 ],
+							backgroundColor : "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
 						} ]
 					},
 					options : {
@@ -521,13 +632,223 @@ $(document).ready(function(){
 						maintainAspectRatio : false,
 						legend : {
 							display : false,
-						}
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
 					}
 
 				});
 			</script>
+				
 		</div>
 	</div>
+	
+		<div class="row align-center">
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Business Score Over Time</b></h6>
+			<div>
+				<canvas id="chart5" width="250" height="250"></canvas>
+			</div>
+
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
+			<script>
+				var ctx = document.getElementById("chart5").getContext('2d');
+
+				var chart5 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
+					}
+
+				});
+			</script>
+				
+		</div>
+	
+				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Lifestyle Score Over Time</b></h6>
+			<div>
+				<canvas id="chart6" width="250" height="250"></canvas>
+			</div>
+
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
+			<script>
+				var ctx = document.getElementById("chart6").getContext('2d');
+
+				var chart6 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
+					}
+
+				});
+			</script>
+				
+		</div>
+	</div>
+	
+		<div class="row">
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Agriculture Score Over Time</b></h6>
+			<div>
+				<canvas id="chart7" width="250" height="250"></canvas>
+			</div>
+
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
+			<script>
+				var ctx = document.getElementById("chart7").getContext('2d');
+
+				var chart7 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
+					}
+
+				});
+			</script>
+				
+		</div>
+	
+				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+				
+		<h6 style="text-align: center"><b>Livestock Score Over Time</b></h6>
+			<div>
+				<canvas id="chart8" width="250" height="250"></canvas>
+			</div>
+
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
+			<script>
+				var ctx = document.getElementById("chart8").getContext('2d');
+
+				var chart8 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : true,
+							backgroundColor : "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+								}
+							} ]
+						},
+					}
+
+				});
+			</script>
+				
+		</div>
+	</div>
+</div>
+
 </div>
 
 <br/>

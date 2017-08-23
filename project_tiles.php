@@ -1,22 +1,36 @@
-<?php require_once("utilities.php");
+<?php require_once('utilities.php');
 include('header.inc');
 ?>
+
 <div class="container">
 	
-	<div class="row">
-		<div class="col s12 m8 l8;">
-			<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+	<div class="row" style="padding:2% 1% 1% 1%;">
+		<div class="col s12 m6 l6; valign-wrapper" style="vertical-align: middle; height:50px;">
+			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 				Choose a project to fund
-			</h4>
+			</h5>
 		</div>
-	
-		<div class="col s12 m4 l4; valign-wrapper; center-align" style="vertical-align: middle; padding: 20px;">		
+
+		<div class="col s12 m3 l3 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn light blue" href='#' data-activates='dropdown1'>Filter by Type</a>
+      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1'>Filter by Status</a>
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">
+          		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Seeking Funds</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Funded</a></li>
+          	</ul>
+          </div>
+	
+		 <div class="col s12 m3 l3 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
+    		    <!-- Dropdown Trigger -->
+      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2'>Filter by Type</a>
+
+            <!-- Dropdown Structure -->
+          	<ul id="dropdown2" class="dropdown-content">
+          		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">All</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Agriculture</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Education</a></li>
            	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); return false;">Livestock</a></li>
@@ -24,9 +38,7 @@ include('header.inc');
           	</ul>
 		</div>
 	</div>
-		
-		
-		
+	
 	<div class="section"><div class='row'>		
 			<?php 
 		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id ORDER BY project_status = 'funding' DESC, project_funded DESC");
@@ -55,14 +67,14 @@ include('header.inc');
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
 					</div>
 					<div class='card-content'>
-						<span class='card-title activator grey-text text-darken-4' onclick=\"document.location='project.php?id=$projectId';\">{$row['village_name']}
+						<span class='card-title activator grey-text text-darken-4' onclick=\"document.location='project.php?id=$projectId';\">{$row['project_name']}
 							<i class='material-icons right'>more_vert</i>
 						</span>
 						<h6 class='brown-text'>
-							<b>{$row['project_name']}</b>
+							<b>{$row['village_name']} Village</b>
 						</h6>
 						<br>
-						<h6 class='center'>
+						<h6>
 							<b>\$$funded funded out of \$$projectTotal</b>
 						</h6>
 						<div class='progress'>
@@ -85,7 +97,6 @@ include('header.inc');
 		}
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->
-	</div>
 
 		<!-- <div class="row center">
 			<a href='ProjectTiles.php' id="download-button"
