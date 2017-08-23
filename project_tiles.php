@@ -14,27 +14,27 @@ include('header.inc');
 		<div class="col s12 m3 l3 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1'>Filter by Status</a>
+      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1' id='statusFilter'>Filter by Status</a>
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').show(); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.funding').show(); return false;">Seeking Funds</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.funded').show(); return false;">Funded</a></li>
+          		<li><a href="" onclick="$('.projectCell').show(); $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.funding').show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.funded').show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
           	</ul>
           </div>
 	
 		 <div class="col s12 m3 l3 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2'>Filter by Type</a>
+      		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2' id='typeFilter'>Filter by Type</a>
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown2" class="dropdown-content">
-          		<li><a href="" onclick="$('.projectCell').show(); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); return false;">Agriculture</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); return false;">Education</a></li>
-           	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); return false;">Livestock</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();$('.water').show(); return false;">Water</a></li>
+          		<li><a href="" onclick="$('.projectCell').show(); $('#typeFilter').html('Filter by Type'); return false;">All</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.agriculture').show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.education').show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
+           	 	<li><a href="" onclick="$('.projectCell').hide();$('.livestock').show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();$('.water').show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
           	</ul>
 		</div>
 	</div>
