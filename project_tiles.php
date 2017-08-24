@@ -66,7 +66,7 @@ include('header.inc');
 		          $fundedClass = 'funded';
 		      }
 		      
-		      print "<div class='col s12 m4 projectCell $projectTypeClass $fundedClass'>
+		      print "<div class='col s12 m4 projectCell $projectTypeClass $fundedClass' style='min-width:300px;'>
 				<div class='card sticky-action hoverable'>
 					<div class='card-image waves-effect waves-block waves-light'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
