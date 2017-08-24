@@ -245,21 +245,58 @@ while ($row = $result->fetch_assoc()) {
 				<a
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href="#subscriptionModal" 
-					>Give Monthly</a>
-				<div id="subscriptionModal" class="modal">
+					>Give Monthly</a>	
+				<script>
+                		$(document).ready(function(){
+                    		$('.modal').modal();
+                  	});
+                </script>
+				<div id="subscriptionModal" class="modal" style='color:black;'>
 					<div class="modal-content">
 						<h4>Give Monthly</h4>
 						<p>A bunch of text</p>
 					</div>
 					<div class="modal-footer">
-						<form action="/create_subscription.php" method="POST">
-            					<script src="https://checkout.stripe.com/checkout.js"
-            						class="stripe-button" data-key="pk_live_nE8o2Y70d89STcP6UkhSDvxM"
-            						data-image="/images/marketplace.png" data-name="Emma's Farm CSA"
-            						data-description="Subscription for 1 weekly box"
-            						data-amount="2000" data-label="GIVE MONTHLY">
-                             </script>
-            				</form>
+						<div class='row'>
+							<div class='col'>
+								$ <input type='text' id='amountText' value='20' />
+							</div>
+							<div class='col'>
+                        			<button id="customButton">Subscribe!</button>
+                        		</div>
+                        </div>
+                        <script>
+                        var handler = StripeCheckout.configure({
+                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
+                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
+                          locale: 'auto',
+                          token: function(token) {
+                        	  $.post("subscribe.php", {
+                			        stripeToken: token.id,
+                			        stripeEmail: token.email,
+                			        stripeAmount: $('#amountText').val() * 100
+                			    },
+                			    function(data, status) {
+                			    	 	Materialize.toast(data, 4000);
+                			    });
+                          }
+                        });
+                        
+                        document.getElementById('customButton').addEventListener('click', function(e) {
+                          // Open Checkout with further options:
+                          handler.open({
+                            name: 'Village X Org',
+                            description: 'Monthly Subscription',
+                            amount: $('#amountText').val() * 100
+                          });
+                          e.preventDefault();
+                        });
+                        
+                        // Close Checkout on page navigation:
+                        window.addEventListener('popstate', function() {
+                          handler.close();
+                        });
+                        </script>
 					</div>
 				</div>
 			</div>
