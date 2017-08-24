@@ -158,15 +158,15 @@ div.progressBar .ui-progressbar-value {
 
 <script>
 	// Global variables.
-	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, expandoCell;
+	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, expandoCell, timer;
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ';
 
 	var map = new mapboxgl.Map({
 		container : 'mapContainer',
 		style : 'mapbox://styles/jdepree/cj37ll51d00032smurmbauiq4',
-		center : [ 35.2749, -15.7 ],
-		zoom : 9
+		center : [20.5, 2.5],
+		zoom : 4
 	});
 
 	map.addControl(new mapboxgl.NavigationControl(), 'top-left');
@@ -188,8 +188,14 @@ div.progressBar .ui-progressbar-value {
 		  	}
 	    });
 
-		map.on("zoomend", function(e) {
-			getTilesForBounds();
+		map.on("data", function(data) {
+			if (timer) {
+				clearInterval(timer);
+				timer = 0;
+			}
+			timer = setTimeout(function() {
+				getTilesForBounds();
+			}, 1000);
 		});
 	    
 		map.on("mousemove", "villages", function(e) {
@@ -208,6 +214,7 @@ div.progressBar .ui-progressbar-value {
 		// Bounding box for Malawi.
 		selectedCountry = [ [ 35.14799880981445, -15.829999923706055 ],
 				[ 35.52799987792969, -15.473999977111816 ] ];
+		zoomToCountryBounds(selectedCountry);
 	});
 
 	function zoomToCountryBounds(bounds) {
@@ -302,7 +309,6 @@ div.progressBar .ui-progressbar-value {
 				expandCell(lastElem);
 			} else if (count == 0 && selectedVillage) {
 				drawVillage(selectedVillage, false);
-				expandVillage(selectedVillage);
 			}
 		} else if (zoom >= 5) {
 			$("#buttonHolder").hide();
