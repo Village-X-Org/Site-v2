@@ -170,6 +170,39 @@ arrowsOff = function()
 	$( '.imagelightbox-arrow' ).remove();
 };
 // Lightbox End
+
+// Stripe
+var handler = StripeCheckout.configure({
+  key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
+  image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
+  locale: 'auto',
+  token: function(token) {
+	  $.post("donateWithStripe.php", {
+	        stripeToken: token.id,
+	        stripeEmail: token.email,
+	        stripeAmount: $('#amountText').val() * 100
+	    },
+	    function(data, status) {
+	    	 	Materialize.toast(data, 4000);
+	    });
+  }
+});
+
+//Close Checkout on page navigation:
+window.addEventListener('popstate', function() {
+  handler.close();
+});
+
+function donateWithStripe(subscribe, donationAmount, title, projectId) {
+  handler.open({
+    name: 'Village X Org',
+    description: (subscribe ? 'Monthly Subscription' : title),
+    amount: donationAmount,
+    isSubscription: subscribe
+  });
+}
+// End Stripe
+
 </script>
 </head>
 <body>

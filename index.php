@@ -106,6 +106,7 @@ $result = doQuery("SELECT project_id, project_name, picture_filename, project_su
 
 while ($row = $result->fetch_assoc()) {
     $projectId = $row['project_id'];
+    $projectName = $row['project_name'];
     $funded = $row['project_funded'];
     $projectTotal = $row['project_budget'];
     $fundedPercent = $funded / $projectTotal * 100;
@@ -116,7 +117,7 @@ while ($row = $result->fetch_assoc()) {
 					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
 				</div>
 				<div class='card-content'>
-					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">{$row['project_name']}
+					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
 						<i class='material-icons right'>more_vert</i>
 					</span>
 					<h6 class='brown-text'>
@@ -133,11 +134,15 @@ while ($row = $result->fetch_assoc()) {
 				</div>
 				<div class='card-action'>
 					<div class='row center'>
-						<div class='col s12'>
-							<a href='http://materializecss.com/getting-started.html'
-								id='download-button'
-								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>
-						</div>
+						<div class='col s12'>";
+    if ($fundedPercent < 100) {
+        print "<a href='' onclick=\"donateWithStripe(false, 500, '$projectName', $projectId); return false;\"
+								id='donate_button'
+								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
+    } else {
+        print "<button href='' class='btn grey'>Fully Funded!</button>";
+    }
+    print "</div>
 					</div>
 				</div>
 			</div>
@@ -243,7 +248,7 @@ while ($row = $result->fetch_assoc()) {
 			</div>
 			<div class="row center">
 				<a
-					id="download-button"
+					id="donate-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href="#subscriptionModal" 
 					>Give Monthly</a>	
 				<script>
@@ -262,41 +267,9 @@ while ($row = $result->fetch_assoc()) {
 								$ <input type='text' id='amountText' value='20' />
 							</div>
 							<div class='col'>
-                        			<button id="customButton">Subscribe!</button>
+                        			<button id="subscribeButton" onclick="donateWithStripe(true, $('#amountText').val() * 100);">Subscribe!</button>
                         		</div>
                         </div>
-                        <script>
-                        var handler = StripeCheckout.configure({
-                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
-                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-                          locale: 'auto',
-                          token: function(token) {
-                        	  $.post("subscribe.php", {
-                			        stripeToken: token.id,
-                			        stripeEmail: token.email,
-                			        stripeAmount: $('#amountText').val() * 100
-                			    },
-                			    function(data, status) {
-                			    	 	Materialize.toast(data, 4000);
-                			    });
-                          }
-                        });
-                        
-                        document.getElementById('customButton').addEventListener('click', function(e) {
-                          // Open Checkout with further options:
-                          handler.open({
-                            name: 'Village X Org',
-                            description: 'Monthly Subscription',
-                            amount: $('#amountText').val() * 100
-                          });
-                          e.preventDefault();
-                        });
-                        
-                        // Close Checkout on page navigation:
-                        window.addEventListener('popstate', function() {
-                          handler.close();
-                        });
-                        </script>
 					</div>
 				</div>
 			</div>

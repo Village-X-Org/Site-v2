@@ -81,8 +81,8 @@ $(document).ready(function(){
 					<br>
 					
 		<div class="center-align">
-				<a href="http://materializecss.com/getting-started.html"
-				id="download-button"
+				<a href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
+				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate</a>
 		</div>
