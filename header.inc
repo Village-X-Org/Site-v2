@@ -29,7 +29,8 @@
 <script
 	src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
 
-  <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+
+      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 <script

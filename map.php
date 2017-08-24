@@ -50,29 +50,16 @@ include('lightbox.inc'); ?>
 	width: 100%;
 	overflow-x: scroll;
 	white-space: nowrap;
-	z-index: 5;
+	z-index: 6;
 }
+
+    #pictureCaption {
+      background: #FFFFFF;
+      box-shadow: 0 0 15px 10px #FFFFFF;
+    }
 
 .hide-scrollbar ::-webkit-scrollbar-thumb {
 	visibility: hidden;
-}
-
-div.pictureScroller {
-	margin:0px;
-	padding:0px;
-	height:0px;
-	width:100%;
-	overflow-x:scroll;
-	overflow-y:hidden;
-	white-space:nowrap;
-}
-
-#imagelightbox {
-	position: fixed;
-	z-index: 9999;
-	 
-	-ms-touch-action: none;
-	touch-action: none;
 }
 
 div.projectCell {
@@ -140,14 +127,14 @@ div.progressBar .ui-progressbar-value {
 			style='position: absolute; display:none;top: 0px; right: 5px; z-index: 3;'>
 
 			<a class="btn-floating btn-large blue" id='zoomOutButton'
-				onclick="zoomToCountryBounds(selectedCountry);"
+				onclick="hideCell(); zoomToCountryBounds(selectedCountry);"
 				style='margin-left:10px;'> <i class="large material-icons"
 				id='zoomOutButtonText'>zoom_out</i>
 			</a>
 		</div>
 
  	    <!-- Pop-up picture lightbox -->
- 	    <div id='pictureDiv' class='pictureScroller' style='z-index:1000;position:absolute;top:0px;left:0px;right:0px;display:none;'>
+ 	    <div id='pictureDiv' style='z-index:5;position:absolute;top:50px;left:0px;right:0px;display:none;'>
  	    </div>
  	    
 		<!-- Project/village tiles at bottom of map -->
@@ -346,31 +333,34 @@ div.progressBar .ui-progressbar-value {
 		
 		expandoCell = $("<div>", {"class": "expandoCell"});
 		
-		pictureDiv = $("#pictureDiv");
-	  	pictureDiv.empty();
-	  
 		var updatePictures = 0;
-	  	
+
 	  	if (elem.properties.updatePictures) {
 		  	updatePictures = elem.properties.updatePictures.split("~");
 		  	for (i = 0; i < updatePictures.length; i++) {
+			  	if (i == 0) {
+					$("#pictureDiv").append("<div class='carousel' id='pictureCarousel'></div>"
+			       			+ "<h6 style='text-align: center; margin-left:12%;margin-right:12%;' id='pictureCaption'>(swipe to view on mobile)</h6>");
+			  		
+			  		$("#pictureDiv").show();
+			  	    $(document).ready(function(){
+			  	      $('.carousel').carousel();
+			  	    });
+			  	}
 			  	breakPoint = updatePictures[i].indexOf(':');
 			  	imageId = updatePictures[i].substring(0, breakPoint);
 			  	description = updatePictures[i].substring(breakPoint + 1);
-			  	pictureDiv.append("<a href='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' data-imagelightbox='d'><img style='height:25vh;' src='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' alt=\"" + description + "\" /></a>");
-				var instanceD = $( 'a[data-imagelightbox="d"]' ).imageLightbox(
-				{
-					onLoadStart: function() { captionOff(); activityIndicatorOn(); },
-					onLoadEnd:	 function() { captionOn(); activityIndicatorOff(); },
-					onEnd:		 function() { captionOff(); activityIndicatorOff(); }
-				});
-			}
-			if (updatePictures.length > 0) {
-		  		pictureDiv.css("display", "block");
-		  		pictureDiv.animate({height: "25vh"}, 500);
-	  	  	}
-	  	}
 
+                $("#pictureCarousel").append("<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('" + description + "'); return false;\"><img src='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' /></a>");
+			  	
+			}
+			if (updatePictures.length == 0) {
+		  		$("#pictureDiv").hide();
+	  	  	}
+	  	} else {
+	  		$("#pictureDiv").hide();
+	  	}
+	  	
 	  	expandoCell.append("<div style='margin:5px;text-align:left;font-weight:bold;font-size:22px;'>" + elem.properties.name + ' in ' + elem.properties.villageName + "</div>"
 	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + ""
 	  			+ "<button onclick=\"document.location='project.php?id=" + elem.properties.id + "';\">View Project Details</button></P>"
@@ -384,6 +374,9 @@ div.progressBar .ui-progressbar-value {
 		if (expandoCell) {
 			expandoCell.remove();
 			expandoCell = null;
+		}
+		if (!selectedCell) {
+			return;
 		}
 	    
 	    $('#modalBlock').hide();
@@ -400,7 +393,8 @@ div.progressBar .ui-progressbar-value {
 		
 		selectedCell.css("cursor", "pointer");
 		selectedCell = null;
-		$("#pictureDiv").animate({height: "0vh"}, 500);
+		$("#pictureDiv").empty();
+		$("#pictureDiv").hide();
 	    
 	    newVillageDiv = $("#villageDivNew");
 	    if (newVillageDiv) {
