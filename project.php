@@ -345,14 +345,12 @@ $(document).ready(function(){
 
 		</div>
 	
-	<hr width="85%">
-	
     <?php 
         $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             if ($count == 0) {
-                print "<div id='pics' class='section scrollspy'>
+                print "<hr width='85%'><div id='pics' class='section scrollspy'>
 				           <h5 style='text-align: center;'>Field Updates</h5>
                                 <div class='carousel'>";
             }
