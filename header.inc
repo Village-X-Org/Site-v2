@@ -44,6 +44,7 @@
 	href='css/lightbox.css'
 	type='text/css' />
 <script src="js/imagelightbox.min.js"></script>  
+<script src="https://checkout.stripe.com/checkout.js"></script>
   
 <style>
 #imagelightbox {
