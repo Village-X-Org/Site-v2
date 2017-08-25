@@ -93,7 +93,7 @@ include('header.inc');
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
-                print "<a href='' onclick=\"donateWithStripe(false, 500, '$projectName', $projectId); return false;\"
+                print "<a href='#donationModal'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
             } else {
