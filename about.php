@@ -35,9 +35,10 @@
       		<img class="activator" width="100%" height="100%" src="images/extreme-poverty-by-world-region.jpg">
     		</div>
          <div class="center-align white-text flow-text">People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
-          achievable. This has always been true, but a confluence of recent trends provides hope that their voices will be heard: 
+          achievable. Although some existing organizations have employed community-driven development models, none has done so in a way that's scales to the size of the extreme povery problem. 
+          Yet, a confluence of recent trends has presented an opportunity to support community-driven development at scale: 
           (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
-          telecommunications within rural Africa.
+          telecommunications within rural Africa. Now is the time for technology-fueled  poverty disruption.
         </div>
       </div>
     </div>
@@ -61,7 +62,7 @@
 			<div class="col s12 m6 l6" style="padding: 0% 5% 0% 5%;">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 100px">attach_money</i>
-					<h5 class="center brown-test">Finance village-led projects on a continental scale.</h5>
+					<h5 class="center brown-test">Finance and evaluate village-led projects in remote places, with ruthless efficiency.</h5>
 					<p class="light center flow-text">Deploy financing and retrieve data from all 
 					the extreme poverty villages in a country or region within sub-Saharan Africa. This would cost 
 					approximately $10-$20 million per year in Malawi, depending on the types of projects chosen by villages.</p>
@@ -72,11 +73,11 @@
 			<div class="col s12 m6 l6" style="padding: 0% 5% 0% 5%;">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 100px">data_usage</i>
-					<h5 class="center brown-test">Share data to inform the work of other development actors.</h5>
-					<p class="light center flow-text">Harmonize development aspirations of villages 
-					with governmental programming and development assistance (the latter is $1 billion per year in Malawi). Coordinate
-					the development activities of many stakeholders 
-					to disrupt extreme poverty.</p>
+					<h5 class="center brown-test">Harmonize development aspirations of villages 
+					with donor funding.</h5>
+					<p class="light center flow-text">Share field data to inform and coordinate the work of other development actors 
+					committed to disrupting extreme poverty. Improve the effectiveness of governmental programming and development assistance (the latter is $1 
+					billion per year in Malawi).</p>
 					<br>
 				</div>
 			</div>

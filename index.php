@@ -29,7 +29,7 @@ function addSubscription() {
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1">meet
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">meet
 					the villages</a>
 			</div>
 
@@ -42,8 +42,7 @@ function addSubscription() {
 
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Help African
-		villages disrupt extreme poverty</h4>
+	<h4 class="header center light blue-text text-lighten-2">Support 35,000 Africans (and growing) disrupting extreme poverty.</h4>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">
@@ -154,7 +153,7 @@ while ($row = $result->fetch_assoc()) {
 
 		<div class="row center">
 			<a href='project_tiles.php' id="download-button"
-				class="btn-large waves-effect waves-light light blue lighten-1">more
+				class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">more
 				projects</a>
 		</div>
 	</div>
@@ -172,7 +171,46 @@ while ($row = $result->fetch_assoc()) {
 	</p>
 </div> -->
 
-<hr width="85%">
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper"
+		style="height: 100%; width: 100%;">
+		
+		<div class="row center">
+        	<div class="valign-wrapper">
+          <div class="card white" style="opacity: 0.7; border-radius:20px;">
+            <div class="card-content black-text">
+              <span class="card-title"><b>want good stories from Africa?<br> try our quarterly newsletter</b></span>
+      		
+    		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
+      		<div class="row">
+        			<div class="input-field col s12">
+         			<input value="" name="EMAIL" id="mce-EMAIL" placeholder="enter your email address" id="mcd-email" type="email" class="email validate">
+        			</div>
+      		</div>
+    		
+			
+        		<div class="center-align" style="width:100%;">
+          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">count me in
+  					</button>
+    			</div>
+    		
+    			<div style="position: absolute; left: -5000px;" aria-hidden="true">
+								<input type="text" name="b_0aa3c6538384ca95760dc6be6_2efaede0d4" tabindex="-1" value="">
+			</div>
+			
+			</form>
+			
+			</div>	
+          </div>
+        </div>
+      
+			<div class="parallax">
+				<img src="images/newsletter_banner_2.jpg">
+			</div>
+		</div>
+	</div>
+</div>
 
 <div class="container">
 	<br>
@@ -233,70 +271,6 @@ while ($row = $result->fetch_assoc()) {
 		<br>
 	</div>
 
-</div>
-
-<div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		<div class="container">
-			<div class="row center">
-				<h5
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					support the<br> <b>VILLAGE FUND</b>
-				</h5>
-			</div>
-			<div class="row center">
-				<a
-					id="donate-button"
-					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href="#subscriptionModal" 
-					>Give Monthly</a>	
-				<script>
-                		$(document).ready(function(){
-                    		$('#subscriptionModal').modal();
-                  	});
-                </script>
-				<div id="subscriptionModal" class="modal" style='color:black;'>
-					<div class="modal-content">
-						<h4>Give Monthly</h4>
-						<p>A bunch of text</p>
-					</div>
-					<div class="modal-footer">
-						<div class='row'>
-							<div class='col'>
-								$ <input type='text' id='amountText' value='20' />
-							</div>
-							<div class='col'>
-                        			<button id="subscribeButton" onclick="donateWithStripe(true, $('#amountText').val() * 100);">Subscribe!</button>
-                        		</div>
-                        </div>
-					</div>
-				</div>
-			</div>
-			<br>
-			<div class="row center">
-				<h6
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					automatically donate to a project each month,<br> and enjoy impact
-					updates all year long
-				</h6>
-			</div>
-			<div class="row center">
-				<h5
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					starting at</h5>
-				<h3
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					$5</h3>
-				<h5
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					/ month</h5>
-			</div>
-		</div>
-	</div>
-	<div class="parallax">
-		<img src="images/footer1.jpg" alt="Unsplashed background img 2">
-	</div>
 </div>
 
 <?php include('footer.inc'); ?>
