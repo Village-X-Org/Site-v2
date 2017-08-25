@@ -122,15 +122,18 @@
 			Sustainable and Scalable
 	</h4></div> 
 
-	<div class="flow-text center-align" style="display:table; width:100%; padding: 0% 0% 0% 0%">
-				<div class="col-project valign-wrapper" style="vertical-align: middle; text-align: center;"> 
+	<div class="center-align" style="display:table; width:100%; padding: 0% 0% 0% 0%">
+				<div class="col-project valign-wrapper flow-text" style="vertical-align: middle; text-align: center;"> 
                     		<p>To acheive <b>sustainability</b>, we collect 10% of every project donation to cover adminstrative costs (e.g., improving our technology). 
-                    		On an average project, villages receive about $3,000, and Village X receives $350. That's a vast improvement over the industry standard, 
+                    		On an average project, villages receive about $3,000, while Village X receives 10%, about the same amount consumed by credit card and money transfer fees.* 
+                    		That's a vast improvement over the industry standard, 
                     		where a small fraction of donated money reaches the ground. Village X will reach financial sustainability crowdfunding about 500 projects per 
                     		year (roughly $2 million in revenue).</p>
+			
+				<span><h6>*money transfer fees include explicit fees and unfavorable exchange rate conversions</h6></span>
 				</div>
 
-				<div class="col-project valign-wrapper" style="vertical-align: middle;">
+				<div class="col-project valign-wrapper flow-text" style="vertical-align: middle;">
 						<h6 style="text-align: center"><b>Donations Breakdown (%)</b></h6>
 					<div>
 						<canvas id="project_cost_breakdown" width="100%" height="100%" style="display: block; margin: 0 auto; padding: 15% 15% 15% 15%;"></canvas>
@@ -162,8 +165,7 @@
 	
 	<div class="flow-text center-align" style="display:table; width:100%; padding: 0% 0% 2% 0%">
 			<div class="col-project valign-wrapper" style="vertical-align: middle; text-align: center;">
-				<p>To acheive <b>scalabilty</b>, we recruit local field officers. Rural Africa teems with future field officers 
-				(educated young men and women with smartphones and a passion for community development). 
+				<p>To acheive <b>scalabilty</b>, we keep costs low and recruit local field officers -- educated young men and women with smartphones and a passion for community development. 
                	A single field officer covers up to 50 villages a year, using local transportation to reach up to 70,000 people. 
                 We can finance projects in every extreme poverty village in Malawi for only $10 to $20 million per year, depending on
                 the mix of projects chosen by villages. That's a sliver of the $1 billion in overseas development assistance
