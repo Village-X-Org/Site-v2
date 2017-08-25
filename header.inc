@@ -230,3 +230,60 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
 				class="material-icons">menu</i></a>
 		</div>
 	</nav>
+		<div id="donationModal" class="modal">
+		<div class="modal-content" style='color:black;'>
+			<h4>Make a Donation</h4>
+			<p>Define all the parameters here.</p>
+		</div>
+		<div class='row'>
+					<div class="modal-footer">
+						<div class='row'>
+							<div class='col'>
+								$ <input type='text' id='donationAmountText' value='20' />
+							</div>
+							<div class='col'>
+                        			<button id="modalDonateButton">Donate!</button>
+                        		</div>
+                        </div>
+                        <script>
+                        var handler = StripeCheckout.configure({
+                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
+                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
+                          locale: 'auto',
+                              token: function(token) {
+                            	  $.post("recordDonation.php", {
+                    			        stripeToken: token.id,
+                    			        stripeEmail: token.email,
+                    			        stripeAmount: $('#donationAmountText').val() * 100
+                    			    },
+                    			    function(data, status) {
+                    			    	 	Materialize.toast(data, 4000);
+                    			    });
+                              }
+                        });
+                        
+                        document.getElementById('modalDonateButton').addEventListener('click', function(e) {
+                          // Open Checkout with further options:
+                          handler.open({
+                            name: 'Village X Org',
+                            description: 'Monthly Subscription',
+                            amount: $('#amountText').val() * 100
+                          });
+                          e.preventDefault();
+                        });
+                        
+                        // Close Checkout on page navigation:
+                        window.addEventListener('popstate', function() {
+                          handler.close();
+                        });
+                        </script>
+					</div>
+				</div>
+		</div>
+		<script>
+		  $(document).ready(function(){
+		    $('#donationModal').modal();
+		  });
+		</script>
+	</div>
+	

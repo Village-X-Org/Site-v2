@@ -136,7 +136,7 @@ while ($row = $result->fetch_assoc()) {
 					<div class='row center'>
 						<div class='col s12'>";
     if ($fundedPercent < 100) {
-        print "<a href='' onclick=\"donateWithStripe(false, 500, '$projectName', $projectId); return false;\"
+        print "<a href='#donationModal'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
     } else {
@@ -153,7 +153,7 @@ while ($row = $result->fetch_assoc()) {
 		<br>
 
 		<div class="row center">
-			<a href='Project_Tiles.php' id="download-button"
+			<a href='project_tiles.php' id="download-button"
 				class="btn-large waves-effect waves-light light blue lighten-1">more
 				projects</a>
 		</div>
@@ -227,7 +227,7 @@ while ($row = $result->fetch_assoc()) {
 			<h6 class="light center-align">
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages (more info <a
-					href='Impacts.php'>here</a>)
+					href='impacts.php'>here</a>)
 			</h6>
 		</div>
 		<br>
@@ -253,7 +253,7 @@ while ($row = $result->fetch_assoc()) {
 					>Give Monthly</a>	
 				<script>
                 		$(document).ready(function(){
-                    		$('.modal').modal();
+                    		$('#subscriptionModal').modal();
                   	});
                 </script>
 				<div id="subscriptionModal" class="modal" style='color:black;'>
