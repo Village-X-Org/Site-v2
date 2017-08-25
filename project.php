@@ -81,8 +81,8 @@ $(document).ready(function(){
 					<br>
 					
 		<div class="center-align">
-				<a href="http://materializecss.com/getting-started.html"
-				id="download-button"
+				<a href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
+				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate</a>
 		</div>
@@ -345,25 +345,33 @@ $(document).ready(function(){
 
 		</div>
 	
-	<hr width="85%">
-	
-		<div id="pics" class="section scrollspy">
-				<h5 style="text-align: center">Field Updates</h5>
+    <?php 
+        $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
+        $count = 0;
+        while ($row = $result->fetch_assoc()) {
+            if ($count == 0) {
+                print "<hr width='85%'><div id='pics' class='section scrollspy'>
+				           <h5 style='text-align: center;'>Field Updates</h5>
+                                <div class='carousel'>";
+            }
+            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('{$row['pu_description']}'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
+            $count++;
+        }
+        if ($count > 0) {
+            ?>
+                  </div>
+                      <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
+                  </div>
+                  <script>
+                  $(document).ready(function(){
+                      $('.carousel').carousel();
+                    });
+                  </script>
+            <?php 
+        }
+    ?>
+    
 
-    <div class="carousel">
-        <a class="carousel-item" href="#one!"><img src="temp/img_1707.jpg"></a>
-        <a class="carousel-item" href="#two!"><img src="temp/siyabu_water.jpg"></a>
-        <a class="carousel-item" href="#three!"><img src="temp/nakhwala_goats.jpg"></a>
-        <a class="carousel-item" href="#four!"><img src="temp/mlenga 4116.jpg"></a>
-        <a class="carousel-item" href="#five!"><img src="temp/nursery school example.png"></a>
-      </div>
-      <h6 style="text-align: center">(swipe to view on mobile)</h6>
-  </div>
-  <script>
-  $(document).ready(function(){
-      $('.carousel').carousel();
-    });
-  </script>
 
 		<hr width="85%">
 	

@@ -105,17 +105,18 @@ $result = doQuery("SELECT project_id, project_name, picture_filename, project_su
 
 while ($row = $result->fetch_assoc()) {
     $projectId = $row['project_id'];
+    $projectName = $row['project_name'];
     $funded = $row['project_funded'];
     $projectTotal = $row['project_budget'];
     $fundedPercent = $funded / $projectTotal * 100;
     $villageContribution = $projectTotal * .05;
-    print "<div class='col s12 m4'>
+    print "<div class='col s12 m4' style='min-width:300px;'>
 			<div class='card sticky-action hoverable'>
 				<div class='card-image waves-effect waves-block waves-light'>
 					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
 				</div>
 				<div class='card-content'>
-					<span class='card-title activator grey-text text-darken-4'  onclick=\"document.location='project.php?id=$projectId';\">{$row['project_name']}
+					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
 						<i class='material-icons right'>more_vert</i>
 					</span>
 					<h6 class='brown-text'>
@@ -132,11 +133,15 @@ while ($row = $result->fetch_assoc()) {
 				</div>
 				<div class='card-action'>
 					<div class='row center'>
-						<div class='col s12'>
-							<a href='http://materializecss.com/getting-started.html'
-								id='download-button'
-								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>
-						</div>
+						<div class='col s12'>";
+    if ($fundedPercent < 100) {
+        print "<a href='#donationModal'
+								id='donate_button'
+								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
+    } else {
+        print "<button href='' class='btn grey'>Fully Funded!</button>";
+    }
+    print "</div>
 					</div>
 				</div>
 			</div>
@@ -147,7 +152,7 @@ while ($row = $result->fetch_assoc()) {
 		<br>
 
 		<div class="row center">
-			<a href='Project_Tiles.php' id="download-button"
+			<a href='project_tiles.php' id="download-button"
 				class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">more
 				projects</a>
 		</div>
@@ -260,7 +265,7 @@ while ($row = $result->fetch_assoc()) {
 			<h6 class="light center-align">
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages (more info <a
-					href='Impacts.php'>here</a>)
+					href='impacts.php'>here</a>)
 			</h6>
 		</div>
 		<br>
