@@ -250,86 +250,134 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
   .right-alert textarea.materialize-textarea + label:after{
       right:70px;
   }
-  </style>
+</style>
+
+<!-- jQuery Library -->
+    <script type="text/javascript" src="js/plugins/jquery-1.11.2.min.js"></script>    
+    <!--angularjs-->
+    <script type="text/javascript" src="js/plugins/angular.min.js"></script>
+    <!--materialize js-->
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <!--prism -->
+    <script type="text/javascript" src="js/plugins/prism/prism.js"></script>
+    <!--scrollbar-->
+    <script type="text/javascript" src="js/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <!-- chartist -->
+    <script type="text/javascript" src="js/plugins/chartist-js/chartist.min.js"></script>
+    
+    <!-- chartist -->
+    <script type="text/javascript" src="js/plugins/jquery-validation/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="js/plugins/jquery-validation/additional-methods.min.js"></script>
+    
+    <!--plugins.js - Some Specific JS codes for Plugin Settings-->
+    <script type="text/javascript" src="js/plugins.min.js"></script>
+    <!--custom-script.js - Add your own theme custom JS-->
+    <script type="text/javascript" src="js/custom-script.js"></script>
+    
+    <script type="text/javascript">
+    $("#formValidate").validate({
+        rules: {
+            uname: {
+                required: true,
+                minlength: 5
+            },
+            cemail: {
+                required: true,
+                email:true
+            },
+            password: {
+				required: true,
+				minlength: 5
+			},
+			cpassword: {
+				required: true,
+				minlength: 5,
+				equalTo: "#password"
+			},
+			curl: {
+                required: true,
+                url:true
+            },
+            crole:"required",
+            ccomment: {
+				required: true,
+				minlength: 15
+            },
+            cgender:"required",
+			cagree:"required",
+        },
+        //For custom messages
+        messages: {
+            uname:{
+                required: "Enter a username",
+                minlength: "Enter at least 5 characters"
+            },
+            curl: "Enter your website",
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+     });
+    </script>
 
 </head>
-<body>
-	<nav class="white" role="navigation">
-		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.php" class="brand-logo"><img
-				src="images/logo.png"></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a href="project_tiles.php">Projects</a></li>
-				<li><a href="map.php">Map</a></li>
-				<li><a href="model.php">Model</a></li>
-				<li><a href="impacts.php">Impacts</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
 
-			<ul id="nav-mobile" class="side-nav">
-				<li><a href="project_tiles.php">Projects</a></li>
-				<li><a href="map.php">Map</a></li>
-				<li><a href="model.php">Model</a></li>
-				<li><a href="impacts.php">Impacts</a></li>
-				<li><a href="about.php">About</a></li>
-			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-				class="material-icons">menu</i></a>
-		</div>
-	</nav>
-		<div id="donationModal" class="modal">
-		<div class="modal-content" style='color:black;'>
-			<h4>Make a Donation</h4>
-			<p>Define all the parameters here.</p>
-		</div>
-		<div class='row'>
-					<div class="modal-footer">
-						<div class='row'>
-							<div class='col'>
-								$ <input type='text' id='donationAmountText' value='20' />
-							</div>
-							<div class='col'>
-                        			<button id="modalDonateButton">Donate!</button>
-                        		</div>
-                        </div>
-                        <script>
-                        var handler = StripeCheckout.configure({
-                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
-                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-                          locale: 'auto',
-                              token: function(token) {
-                            	  $.post("recordDonation.php", {
-                    			        stripeToken: token.id,
-                    			        stripeEmail: token.email,
-                    			        stripeAmount: $('#donationAmountText').val() * 100
-                    			    },
-                    			    function(data, status) {
-                    			    	 	Materialize.toast(data, 4000);
-                    			    });
-                              }
-                        });
-                        
-                        document.getElementById('modalDonateButton').addEventListener('click', function(e) {
-                          // Open Checkout with further options:
-                          handler.open({
-                            name: 'Village X Org',
-                            description: 'Monthly Subscription',
-                            amount: $('#amountText').val() * 100
-                          });
-                          e.preventDefault();
-                        });
-                        
-                        // Close Checkout on page navigation:
-                        window.addEventListener('popstate', function() {
-                          handler.close();
-                        });
-                        </script>
-					</div>
+<body>
+<div class="container">
+<br>
+
+	<div id="jquery-validation" class="section" style="display:table; width:100%">
+		<div class="col-project valign-wrapper" style="vertical-align: middle;">
+			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px;">
+            		<div class="card-content blue-text" style="height:100%;">
+            		<span class="card-title black-text">You are donating to Start a Goat Herd in Saiti Village, Malawi.</span>
+         				<div class="row" style="padding:5% 5% 5% 5%;">
+         				<h6 class="center-align" style="color:blue;">please enter an amount and your name</h6>
+         				<form class="col s12 formValidate" style="width:100%" id="formValidate" method="get" action="">
+         					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
+         						<div class="input-field col s12 center-align">
+         							<i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
+          							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
+          							<p class="center-align">The community contributed $100.</p><br>	
+                                <div class="input-field col s6">
+                                  <label for="uname">First Name</label>
+                                  <input id="uname" name="uname" type="text" data-error=".errorTxt1">
+               					 <div class="errorTxt1"></div>
+                                </div>
+                                <div class="input-field col s6">
+                                	 <label for="last_name">Last Name</label>
+                                  <input id="uname" name="uname" type="text" data-error=".errorTxt1"
+                                  <div class="errorTxt1"></div>
+                                </div>
+                              </div>
+                           </div>
+                           <br>
+        			<div class="input-field col s12">
+        			<a class="button center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
+				id="donate-button">Donate
+				</a>
 				</div>
+                     </form>
+        			</div>
+			</div>
 		</div>
-		<script>
-		  $(document).ready(function(){
-		    $('#donationModal').modal();
-		  });
-		</script>
-	
+	</div>
+		
+		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+			<img src="temp/mlenga 4116.jpg" class="responsive-img" style="border-radius:20px;">
+			<p>Here's a similar project.</p>
+		</div>
+		
+	</div>
+</div>
+
+<?php include('footer.inc'); ?>
+
+</body>
+</html>
