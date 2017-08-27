@@ -32,7 +32,7 @@
           sub-Saharan Africa. We believe this results from a deprivation of empowerment -- the inability of people to choose lives they value. 
           </div>
           <div style="padding: 5% 5% 5% 5%;">
-      		<img class="activator" width="100%" height="100%" src="images/extreme-poverty-by-world-region.jpg">
+      		<img class="activator" width="100%" height="100%" src="images/extreme_poverty_by_world_region.jpg">
     		</div>
          <div class="center-align white-text flow-text">People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
           achievable. Although some existing organizations have employed community-driven development models, none has done so in a way that's scales to the size of the extreme povery problem. 
