@@ -3,7 +3,7 @@ include('header.inc');
 ?>
 
 <div class="container">
-	
+
 	<div class="row" style="padding:2% 1% 1% 1%;">
 		<div class="col s12 m6 l6; valign-wrapper" style="vertical-align: middle; height:50px;">
 			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
@@ -93,7 +93,7 @@ include('header.inc');
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
-                print "<a href='#donationModal'
+                print "<a href='one_time_payment_modal.php'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
             } else {
