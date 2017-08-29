@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <?php include('header.inc'); ?>
 
 <div class="container">

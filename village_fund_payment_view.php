@@ -1,6 +1,10 @@
 <?php
-require_once ('utilities.php');
-include ('header.inc');
+require_once("utilities.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php include('header.inc');
 ?>
             
  <div class="container">

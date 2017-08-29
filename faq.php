@@ -1,5 +1,7 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <?php include('header.inc'); ?>
-
 <div class="container">
 
 	<h3 style="text-align:center">FAQ</h3>

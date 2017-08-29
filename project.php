@@ -1,6 +1,10 @@
 <?php 
 require_once("utilities.php");
-include('header.inc'); 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php
 
 if (hasParam('id')) {
     $projectId = paramInt('id');
@@ -9,16 +13,23 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
+$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, village_name, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount FROM projects JOIN villages ON village_id=project_village_id JOIN pictures AS similar_pictures ON project_image_id=similar_pictures.picture_id JOIN pictures AS banner_pictures ON project_banner_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
-    $pictureFilename = $row['picture_filename'];
+    $pictureFilename = $row['similar_picture'];
+    $bannerPicture = $row['banner_picture'];
     $summary = $row['project_summary'];
+    $problem = $row['project_community_problem'];
+    $solution = $row['project_community_solution'];
+    $partners = $row['project_community_partners'];
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
     $funded = $row['project_funded'];
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
+    $staffId = $row['project_staff_id'];
+    $hasEvents = $row['eventCount'] > 0;
+    
     $villageContribution = $total * .05;
     
     $households = getLatestValueForStat($villageId, "# of HH");
@@ -26,7 +37,13 @@ while ($row = $result->fetch_assoc()) {
 }
 
 ?>
-
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
+<meta property="og:title" content="<?php print $projectName; ?>"/>
+<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
+<meta property="og:description" content="<?php print $summary; ?>"/>
+<?php 
+include('header.inc'); 
+?>
 <script>
 $(document).ready(function(){
     $('.scrollspy').scrollSpy();
@@ -37,7 +54,7 @@ $(document).ready(function(){
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 
 	<div class="parallax">
-		<img src="temp/project banner.jpg">
+		<img src="<?php print PICTURES_DIR.$bannerPicture; ?>">
 	</div>
 </div>
 
@@ -144,103 +161,81 @@ $(document).ready(function(){
 	
 	<div class="section">	
 		<div class="row">
-				<div class="col s12 m9 l9">
+				<div class="col s12 <?php print ($hasEvents ? "m9 l9" : "m12 l12"); ?>">
 				<div class="card grey lighten-5 z-depth-1">
 					<div class="card-content brown-text text-lighten-2 line-height: 120%">
 
-							<p class="flow-text">Likoswe wants to build a nursery school
-								to solve a persistent problem involving early childhood
-								education.
+							<p class="flow-text"><?php print $summary; ?>
 							</p> <br>
 
 							<p>
-								<b>Community Problem:</b> Parents in Likoswe Village work long
-								days on remote farms, making it difficult for them to supervise
-								and educate their young children. Consequently, children receive
-								very little formal education before the age of five.
+								<b>Community Problem:</b><?php print $problem; ?>
 							</p> 
 							
 							<br>
 
 							<p>
-								<b>Community Solution:</b> Likoswe will construct a small
-								nursery school that will serve as a daycare and pre-school
-								education facility. The school will provide a safe and
-								educational environment for kids! After building the nursery
-								school and stocking it with materials like a blackboard, chalk
-								and books, community members will hire a teacher and pay that
-								teacher with contributions provided by parents of children in
-								attendance. The community has raised 5% of the project cost in
-								cash (about $100) and will contribute labor, cement, bricks and
-								sand to make it happen!
+								<b>Community Solution:</b> <?php print $solution; ?>
 							</p> <br>
 
 							<p>
-								<b>Partners:</b> National Peace Corps Association
+								<b>Partners:</b> <?php print $partners; ?>
 							</p>
 						
 					</div>
 				</div>
 
 			</div>
-
-			<div class="col s12 m3 l3">
+			<?php 
+		
+        		$result = doQuery("SELECT pe_date, pe_description FROM project_events WHERE pe_project_id=$projectId");
+        	    $count = 0;
+        	    while ($row = $result->fetch_assoc()) {
+        	        if ($count == 0) {
+        	            ?>
+        	            <div class="col s12 m3 l3">
 		
 					<div class="timeline-container" style="textalign:center">
-						<div class="timeline-block timeline-block-right">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>Dec 2016</h6>
-								<span>village raises cash contribution</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-left">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>Jan 2017</h6>
-								<span>project posted</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-right">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>March 2017</h6>
-								<span>project funded</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-left">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>May 2017</h6>
-								<span>project completed</span>
-							</div>
+					<?php
+        	        } 
+			     ?>
+    	        			<div class="timeline-block timeline-block-right">
+						<div class="marker"></div>
+						<div class="timeline-content">
+							<h6><?php print date("M Y", strtotime($row['pe_date'])); ?></h6>
+							<span><?php print $row['pe_description']; ?></span>
 						</div>
 					</div>
+		  <?php $count++; 
+        	  }
+		  if ($count > 0) { ?>
 				</div>
 			</div>
+		  <?php } ?>
 			
-			<div class="row">
-				<div class="col s12 m9 l9">
-					<div class="card-panel grey lighten-5 z-depth-1">
-						<div class="row valign-wrapper">
-							<div class="col s12 m4 l4">
-							<img src="temp/myson_profile.png"
-								alt="" class="responsive-img circle"
-								style="width: 100px; height: 100px;">
-							<!-- notice the "circle" class -->
-							</div>
-							<div class="col s12 m8 l8 black-text">
-								<b>Field Officer Myson Jambo</b>
-								<p/>
-								<b>Email:</b> myson@villagex.org <b><br>Phone Number:</b>
-									+2659783408
-							</div>
-						</div>
-					</div>
-				</div>
+			<?php $result = doQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
+			if ($row = $result->fetch_assoc()) {        
+			?>
+    			<div class="row">
+    				<div class="col s12 m9 l9">
+    					<div class="card-panel grey lighten-5 z-depth-1">
+    						<div class="row valign-wrapper">
+    							<div class="col s12 m4 l4">
+    							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
+    								alt="" class="responsive-img circle"
+    								style="width: 100px; height: 100px;">
+    							<!-- notice the "circle" class -->
+    							</div>
+    							<div class="col s12 m8 l8 black-text">
+    								<b>Field Officer <?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></b>
+    								<p/>
+    								<b>Email:</b> <?php print $row['fo_email']; ?><b><br>Phone Number:</b>
+    									<?php print $row['fo_phone']; ?>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+            <?php } ?>
      			
 				<div class="col s12 m3 l3 center-align">
 					<h6 class="brown-text">
@@ -249,14 +244,17 @@ $(document).ready(function(){
 					<br>
 					
 						<a
-							href="http://www.facebook.com/sharer.php?s=100&p[title]=&p[summary]=Kazembe Village Fights Extreme Poverty&p[url]=localhost/Site-v2/project.php?id=99&p[images][0]=temp/project banner.jpg"
-  							target="_blank"> <img
+							href="https://www.facebook.com/dialog/feed?
+  									app_id=<?php print FACEBOOK_APP_ID; ?>
+  									&display=popup&caption=<?php print $projectName; ?>
+  									&link=https://4and.me/project.php?id=<?php print $projectId; ?>"
+							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/facebook.png"
 							alt="Facebook" align="middle" height="60" width="60" />
 						</a>
 						&nbsp;&nbsp;&nbsp;
 						<a
-							href="https://twitter.com/share?url=http://localhost/Site-v2/project.php?id=101;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons"
+							href="https://twitter.com/share?url=https://4and.me/project.php?id=<?php print $projectId; ?>;text=<?php print $projectName; ?>&amp;hashtags=villagex"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/twitter.png"
 							alt="Twitter" align="middle" height="60" width="60" />
@@ -266,83 +264,38 @@ $(document).ready(function(){
 		</div>	
 	
 
-		<div id="costbreakdown" class="section scrollspy">
+		<?php $result = doQuery("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=$projectId");
+	    $count = 0;
+	    while ($row = $result->fetch_assoc()) {
+	    		if ($count == 0) { ?>
+			<div id="costbreakdown" class="section scrollspy">
 				<h5 style="text-align: center">Cost Breakdown</h5>
 			<br>
-
 			<div class="row">
+			<?php } 
+			$icon = $row['ct_icon'];
+			$label = $row['pc_label'];
+			$amount = $row['pc_amount']; 
+			?>
 				<div class="col s12 m2 l2">
 					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">directions_run</i>
-						<h5>labor</h5>
+						<i class="material-icons" style="font-size: 30px"><?php print $icon; ?></i>
+						<h5><?php print $label; ?></h5>
 						<h5 class="light center">
-							$400
-							</h5>
+							$<?php print $amount; ?>
+						</h5>
 							<br>
 					</div>
 				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">domain</i>
-						<h5 class="center brown-test">materials</h5>
-						<h5 class="light center">
-							$1100
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">all_inclusive</i>
-						<h5 class="center brown-test">admin</h5>
-						<h5 class="light center">
-							$200
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">directions_bus</i>
-						<h5 class="center brown-test">transport</h5>
-						<h5 class="light center">
-							$100
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">account_balance</i>
-						<h5 class="center brown-test">fees</h5>
-						<h5 class="light center">
-							$100
-							</h5>
-							<br>
-					</div>
-				</div>
-				
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">camera_alt</i>
-						<h5 class="center brown-test">pics/data</h5>
-						<h5 class="light center">
-							$0
-							</h5>
-							<br>
-					</div>
-				</div>
-				
-				<br>
-			</div>
-
-		</div>
+		<?php $count++; 
+	    } 
+		if ($count > 0) { ?>
 		
-	<div>
+			<br>
+			</div>	
+			</div>
+		<?php } ?>
+		
     <?php 
         $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
         $count = 0;
