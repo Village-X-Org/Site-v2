@@ -1,4 +1,10 @@
-<?php include('header.inc'); 
+<?php
+require_once("utilities.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<?php include('header.inc');
 include('lightbox.inc'); ?>
 <style>
 .mapboxgl-ctrl-geocoder {
