@@ -9,17 +9,21 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type, project_staff_id FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
+$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, project_community_problem, project_community_solution, project_community_partners, village_name, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id LEFT JOIN project_events ON pe_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $pictureFilename = $row['picture_filename'];
     $summary = $row['project_summary'];
+    $problem = $row['project_community_problem'];
+    $solution = $row['project_community_solution'];
+    $partners = $row['project_community_partners'];
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
     $funded = $row['project_funded'];
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
     $staffId = $row['project_staff_id'];
+    $hasEvents = $row['eventCount'] > 0;
     
     $villageContribution = $total * .05;
     
@@ -146,39 +150,25 @@ $(document).ready(function(){
 	
 	<div class="section">	
 		<div class="row">
-				<div class="col s12 m9 l9">
+				<div class="col s12 <?php print ($hasEvents ? "m9 l9" : "m12 l12"); ?>">
 				<div class="card grey lighten-5 z-depth-1">
 					<div class="card-content brown-text text-lighten-2 line-height: 120%">
 
-							<p class="flow-text">Likoswe wants to build a nursery school
-								to solve a persistent problem involving early childhood
-								education.
+							<p class="flow-text"><?php print $summary; ?>
 							</p> <br>
 
 							<p>
-								<b>Community Problem:</b> Parents in Likoswe Village work long
-								days on remote farms, making it difficult for them to supervise
-								and educate their young children. Consequently, children receive
-								very little formal education before the age of five.
+								<b>Community Problem:</b><?php print $problem; ?>
 							</p> 
 							
 							<br>
 
 							<p>
-								<b>Community Solution:</b> Likoswe will construct a small
-								nursery school that will serve as a daycare and pre-school
-								education facility. The school will provide a safe and
-								educational environment for kids! After building the nursery
-								school and stocking it with materials like a blackboard, chalk
-								and books, community members will hire a teacher and pay that
-								teacher with contributions provided by parents of children in
-								attendance. The community has raised 5% of the project cost in
-								cash (about $100) and will contribute labor, cement, bricks and
-								sand to make it happen!
+								<b>Community Solution:</b> <?php print $solution; ?>
 							</p> <br>
 
 							<p>
-								<b>Partners:</b> National Peace Corps Association
+								<b>Partners:</b> <?php print $partners; ?>
 							</p>
 						
 					</div>
