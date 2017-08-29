@@ -41,7 +41,7 @@ $(document).ready(function(){
 	</div>
 </div>
 
-	<div class="container">
+<div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
@@ -341,7 +341,8 @@ $(document).ready(function(){
 			</div>
 
 		</div>
-	
+		
+	<div>
     <?php 
         $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
         $count = 0;
@@ -356,9 +357,6 @@ $(document).ready(function(){
         }
         if ($count > 0) {
             ?>
-                  </div>
-                      <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
-                  </div>
                   <script>
                   $(document).ready(function(){
                       $('.carousel').carousel();
@@ -367,7 +365,11 @@ $(document).ready(function(){
             <?php 
         }
     ?>
+    </div>
     
+  
+                      <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
+                 
 
 
 		<hr width="85%">
@@ -384,8 +386,64 @@ $(document).ready(function(){
 				</p>
 					
 			<div class="row">
+			
+			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
+
+				<h6 style="text-align: center"><b>Development Score Over Time Compared to Control Villages</b></h6>
+			<div>
+				<canvas id="chart2" width="250" height="250"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart2").getContext('2d');
+
+				var chart2 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ '2014', '2015', '2016' ],
+						datasets : [ {
+							label: "Mlenga Village",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "#6495ED",
+                             pointBackgroundColor: "#6495ED",
+                             pointRadius: 10,
+							data : [ -5, 10, 15 ],
+							cubicInterpolationMode: 'monotone',
+						}, 
+
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+							data : [ 13, 12.2, 12.7 ],
+							cubicInterpolationMode: 'monotone',
+						}]
+						}, 
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : true,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>
+		</div>
+			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Dollars Invested Over Time</b></h6>
+						<h6 style="text-align: center"><b>Dollars Invested Over Time (cumulative)</b></h6>
 					 <div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
@@ -398,9 +456,12 @@ $(document).ready(function(){
 					data : {
 						labels : [ 'Well, 2014', 'School, 2015', 'Goats, 2016' ],
 						datasets : [ {
-							fill : true,
+							fill : false,
 							backgroundColor : "#ffce56",
-							data : [ 6000, 2000, 2000 ],
+							pointBackgroundColor: "#6495ED",
+                            	pointRadius: 10,
+                            	borderColor: "#6495ED",
+							data : [ 6000, 8000, 10000 ],
 							cubicInterpolationMode: 'monotone',
 							
 						} ]
@@ -461,96 +522,6 @@ $(document).ready(function(){
 					<br>
 				</div>
 
-
-				<!--  <div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Select Score Components Over Time</b></h6>
-					<div>
-						<canvas id="chart2" width="250" height="250"></canvas>
-					</div>
-
-		<?php
-		  $business = getStatYearAssociative($villageId, "Biz Score");
-		  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
-		  $education = getStatYearAssociative($villageId, "Edu Score");
-		  $agriculture = getStatYearAssociative($villageId, "Ag Score");
-		  $livestock = getStatYearAssociative($villageId, "Livestock Score");
-		?>
-
-					<script>
-						var ctx = document.getElementById("chart2").getContext(
-								'2d');
-						var chart2 = new Chart(ctx,
-								{
-									type : 'radar',
-									data : {
-										labels : [ 'Business', 'Lifestyle',
-												'Education', 'Agriculture',
-												'Livestock'],
-										datasets : [<?php 
-										  $count = 0;
-										  $keys = array_keys($business);
-										  $colors = array('#ff6384', '#36a2eb', '#ffce56', '#bbaecc', '#dd7733');
-										  foreach ($keys as $year) {
-										      if ($count > 0) {
-										          print ", \n";
-										      }
-										      print "{
-        											fill : true,
-        											backgroundColor : '{$colors[$count]}',
-        											label : '$year',
-        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
-										      }";
-										      $count++;
-										  }
-										?>],
-									},
-									options : {
-										responsive : true,
-										maintainAspectRatio : false,
-									}
-								});
-					</script>
-				</div>  -->
-
-		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-
-				<h6 style="text-align: center"><b>Development Score Over Time</b></h6>
-			<div>
-				<canvas id="chart2" width="250" height="250"></canvas>
-			</div>
-
-			<script>
-				var ctx = document.getElementById("chart2").getContext('2d');
-
-				var chart2 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ '2014', '2015', '2016' ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#ffce56",
-							data : [ -5, 10, 15 ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : true,
-							}
-						} ]
-					},
-					}
-
-				});
-			</script>
-		</div>
-
 	</div>
 	
 	<div class="row">
@@ -578,8 +549,11 @@ $(document).ready(function(){
 					data : {
 						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
-							fill : true,
+							fill : false,
 							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
 						} ]
 					},
@@ -603,258 +577,57 @@ $(document).ready(function(){
 				
 		</div>
 	
-				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Education Score Over Time</b></h6>
-			<div>
-				<canvas id="chart4" width="250" height="250"></canvas>
-			</div>
+		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
+						<h6 style="text-align: center"><b>Remaining Score Components Over Time</b></h6>
+					<div>
+						<canvas id="chart4" width="250" height="250"></canvas>
+					</div>
 
 		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
+		  $business = getStatYearAssociative($villageId, "Biz Score");
+		  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
+		  $education = getStatYearAssociative($villageId, "Edu Score");
+		  $agriculture = getStatYearAssociative($villageId, "Ag Score");
+		  $livestock = getStatYearAssociative($villageId, "Livestock Score");
 		?>
-			<script>
-				var ctx = document.getElementById("chart4").getContext('2d');
 
-				var chart4 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
+					<script>
+						var ctx = document.getElementById("chart4").getContext(
+								'2d');
+						var chart4 = new Chart(ctx,
+								{
+									type : 'radar',
+									data : {
+										labels : [ 'Business', 'Lifestyle',
+												'Education', 'Agriculture',
+												'Livestock'],
+										datasets : [<?php 
+										  $count = 0;
+										  $keys = array_keys($business);
+										  $colors = array('rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,206,86,0.6)', 'rgba(187,174,204,0.6)', 'rgba(221,119,51,0.6)');
+										  foreach ($keys as $year) {
+										      if ($count > 0) {
+										          print ", \n";
+										      }
+										      print "{
+        											fill : true,
+        											backgroundColor : '{$colors[$count]}',
+                                                 pointRadius: 2,
+        											label : '$year',
+        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
+										      }";
+										      $count++;
+										  }
+										?>],
+									},
+									options : {
+										responsive : true,
+										maintainAspectRatio : false,
+									}
+								});
+					</script>
+			</div> 
 		</div>
 	</div>
-	
-		<div class="row align-center">
-		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Business Score Over Time</b></h6>
-			<div>
-				<canvas id="chart5" width="250" height="250"></canvas>
-			</div>
-
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
-			<script>
-				var ctx = document.getElementById("chart5").getContext('2d');
-
-				var chart5 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
-		</div>
-	
-				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Lifestyle Score Over Time</b></h6>
-			<div>
-				<canvas id="chart6" width="250" height="250"></canvas>
-			</div>
-
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
-			<script>
-				var ctx = document.getElementById("chart6").getContext('2d');
-
-				var chart6 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
-		</div>
-	</div>
-	
-		<div class="row">
-		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Agriculture Score Over Time</b></h6>
-			<div>
-				<canvas id="chart7" width="250" height="250"></canvas>
-			</div>
-
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
-			<script>
-				var ctx = document.getElementById("chart7").getContext('2d');
-
-				var chart7 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
-		</div>
-	
-				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Livestock Score Over Time</b></h6>
-			<div>
-				<canvas id="chart8" width="250" height="250"></canvas>
-			</div>
-
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
-			<script>
-				var ctx = document.getElementById("chart8").getContext('2d');
-
-				var chart8 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : true,
-							backgroundColor : "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
-		</div>
-	</div>
-</div>
-
-</div>
-
-<br/>
+</div>	
 <?php include('footer.inc'); ?>
