@@ -347,21 +347,30 @@ $(document).ready(function(){
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
 
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		?>
 			<script>
 				var ctx = document.getElementById("chart2").getContext('2d');
 
 				var chart2 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ '2014', '2015', '2016' ],
+						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
-							label: "Mlenga Village",
+							label: "<?php print $villageName; ?>",
 							fill : false,
 							backgroundColor : "#ffce56",
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ -5, 10, 15 ],
+							data : [ <?php print join(',', $values); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
