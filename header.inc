@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Village X Org - Fund Projects Villages Choose</title>
@@ -250,9 +247,9 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
   .right-alert textarea.materialize-textarea + label:after{
       right:70px;
   }
-  </style>
-
+</style>
 </head>
+
 <body>
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
@@ -326,10 +323,9 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
                         </script>
 					</div>
 				</div>
-		</div>
-		<script>
+				<script>
 		  $(document).ready(function(){
 		    $('#donationModal').modal();
 		  });
 		</script>
-	
+		</div>
