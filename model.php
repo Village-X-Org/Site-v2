@@ -14,21 +14,14 @@
 
 <div class="container">
 
-	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
+	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
 			Three words: let locals lead.
-	</h4></div> <br>
-
-		<div class="section flow-text"> 
-			<p><b>Village X started with a question: why doesn't rural Malawi develop?</b> Year after year, it looks the same. On a per capita 
-        		basis, village residents are as poor as they were in 1980. Grinding poverty has become the norm for 15 million people.</p>
-        		<p>That's why we partner directly with villages in rural Africa and deploy cash for public projects chosen, partially financed (in cash), 
-        		and implemented by locals, under the direction of project committees overseen by chiefs. We top that off with a deep data dive to
-        		determine how the projects improve local development outcomes.</p> 
+	</h4></div> 
 		
-		<div class="video-container">
+		<div class="video-container" style="border-style:solid"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
       	</div>
-      	</div><br>
+      	<br>
  <hr>
  <div class="row"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 			Step by Step
@@ -111,7 +104,7 @@
         			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step10.jpg">
         		</div>
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<h5>Step 10:</h5><br> Repeat steps 3 - 9 for 10 years, one project per year, as communities escape from extreme poverty.
+        			<h5>Step 10:</h5><br> Repeat steps 3 - 9 for 10 years, one project per year, as communities disrupt extreme poverty.
         		</div>
         	</div>
       </div>
@@ -130,13 +123,13 @@
                     		where a small fraction of donated money reaches the ground. Village X will reach financial sustainability crowdfunding about 500 projects per 
                     		year (roughly $2 million in revenue).</p>
 			
-				<span><h6>*money transfer fees include explicit fees and unfavorable exchange rate conversions</h6></span>
+				<h6>*money transfer fees include explicit fees and unfavorable exchange rate conversions</h6>
 				</div>
 
 				<div class="col-project valign-wrapper flow-text" style="vertical-align: middle;">
 						<h6 style="text-align: center"><b>Donations Breakdown (%)</b></h6>
 					<div>
-						<canvas id="project_cost_breakdown" width="100%" height="100%" style="display: block; margin: 0 auto; padding: 15% 15% 15% 15%;"></canvas>
+						<canvas id="project_cost_breakdown" width="100%" height="100%" style="display: block; margin: 0 auto; padding: 10% 10% 10% 10%;"></canvas>
 					</div>
 
 					<script>
