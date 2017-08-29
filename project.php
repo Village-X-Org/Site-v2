@@ -97,7 +97,7 @@ $(document).ready(function(){
 	
 			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
 						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 20px 20px 20px 0px;">
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 5% 20% 0px 20%;">
 							<i>100% tax deductible and securely processed by Stripe</i>
 					</span>
 			</div>
