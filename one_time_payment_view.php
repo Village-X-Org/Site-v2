@@ -181,7 +181,7 @@ var handler = StripeCheckout.configure({
 	  $.post("donateWithStripe.php", {
 	        stripeToken: token.id,
 	        stripeEmail: token.email,
-	        stripeAmount: $('#amountText').val() * 100
+	        stripeAmount: $('#donation_amount').val() * 100
 	    },
 	    function(data, status) {
 	    	 	Materialize.toast(data, 4000);
@@ -359,7 +359,7 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
                            </div>
                            
         			<div class="input-field col s12">
-        			<a class="button center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
+        			<a class="button center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" href='' onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(false, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
 				id="donate-button">Donate
 				</a>
 				</div>
