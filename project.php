@@ -272,82 +272,38 @@ $(document).ready(function(){
 		</div>	
 	
 
-		<div id="costbreakdown" class="section scrollspy">
+		<?php $result = doQuery("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=$projectId");
+	    $count = 0;
+	    while ($row = $result->fetch_assoc()) {
+	    		if ($count == 0) { ?>
+			<div id="costbreakdown" class="section scrollspy">
 				<h5 style="text-align: center">Cost Breakdown</h5>
 			<br>
-
 			<div class="row">
+			<?php } 
+			$icon = $row['ct_icon'];
+			$label = $row['pc_label'];
+			$amount = $row['pc_amount']; 
+			?>
 				<div class="col s12 m2 l2">
 					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">directions_run</i>
-						<h5>labor</h5>
+						<i class="material-icons" style="font-size: 30px"><?php print $icon; ?></i>
+						<h5><?php print $label; ?></h5>
 						<h5 class="light center">
-							$400
-							</h5>
+							$<?php print $amount; ?>
+						</h5>
 							<br>
 					</div>
 				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">domain</i>
-						<h5 class="center brown-test">materials</h5>
-						<h5 class="light center">
-							$1100
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">all_inclusive</i>
-						<h5 class="center brown-test">admin</h5>
-						<h5 class="light center">
-							$200
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">directions_bus</i>
-						<h5 class="center brown-test">transport</h5>
-						<h5 class="light center">
-							$100
-							</h5>
-							<br>
-					</div>
-				</div>
-
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">account_balance</i>
-						<h5 class="center brown-test">fees</h5>
-						<h5 class="light center">
-							$100
-							</h5>
-							<br>
-					</div>
-				</div>
-				
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px">camera_alt</i>
-						<h5 class="center brown-test">pics/data</h5>
-						<h5 class="light center">
-							$0
-							</h5>
-							<br>
-					</div>
-				</div>
-				
-				<br>
+		<?php $count++; 
+	    } 
+		if ($count > 0) { ?>
+		
+			<br>
+			</div>	
 			</div>
-
-		</div>
-	
+		<?php } ?>
+		
     <?php 
         $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
         $count = 0;
