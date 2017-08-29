@@ -185,44 +185,32 @@ $(document).ready(function(){
 				</div>
 
 			</div>
-
-			<div class="col s12 m3 l3">
+			<?php 
+		
+        		$result = doQuery("SELECT pe_date, pe_description FROM project_events WHERE pe_project_id=$projectId");
+        	    $count = 0;
+        	    while ($row = $result->fetch_assoc()) {
+        	        if ($count == 0) {
+        	            ?>
+        	            <div class="col s12 m3 l3">
 		
 					<div class="timeline-container" style="textalign:center">
-						<div class="timeline-block timeline-block-right">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>Dec 2016</h6>
-								<span>village raises cash contribution</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-left">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>Jan 2017</h6>
-								<span>project posted</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-right">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>March 2017</h6>
-								<span>project funded</span>
-							</div>
-						</div>
-
-						<div class="timeline-block timeline-block-left">
-							<div class="marker"></div>
-							<div class="timeline-content">
-								<h6>May 2017</h6>
-								<span>project completed</span>
-							</div>
+					<?php
+        	        } 
+			     ?>
+    	        			<div class="timeline-block timeline-block-right">
+						<div class="marker"></div>
+						<div class="timeline-content">
+							<h6><?php print date("M Y", strtotime($row['pe_date'])); ?></h6>
+							<span><?php print $row['pe_description']; ?></span>
 						</div>
 					</div>
+		  <?php $count++; 
+        	  }
+		  if ($count > 0) { ?>
 				</div>
 			</div>
+		  <?php } ?>
 			
 			<?php $result = doQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
 			if ($row = $result->fetch_assoc()) {        
