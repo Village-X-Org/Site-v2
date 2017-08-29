@@ -9,7 +9,7 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
+$result = doQuery("SELECT project_id, village_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type, project_staff_id FROM projects JOIN villages ON village_id=project_village_id JOIN pictures ON project_image_id=picture_id WHERE project_id=$projectId");
 while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $pictureFilename = $row['picture_filename'];
@@ -19,6 +19,8 @@ while ($row = $result->fetch_assoc()) {
     $funded = $row['project_funded'];
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
+    $staffId = $row['project_staff_id'];
+    
     $villageContribution = $total * .05;
     
     $households = getLatestValueForStat($villageId, "# of HH");
@@ -222,25 +224,29 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col s12 m9 l9">
-					<div class="card-panel grey lighten-5 z-depth-1">
-						<div class="row valign-wrapper">
-							<div class="col s12 m4 l4">
-							<img src="temp/myson_profile.png"
-								alt="" class="responsive-img circle"
-								style="width: 100px; height: 100px;">
-							<!-- notice the "circle" class -->
-							</div>
-							<div class="col s12 m8 l8 black-text">
-								<b>Field Officer Myson Jambo</b>
-								<p/>
-								<b>Email:</b> myson@villagex.org <b><br>Phone Number:</b>
-									+2659783408
-							</div>
-						</div>
-					</div>
-				</div>
+			<?php $result = doQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
+			if ($row = $result->fetch_assoc()) {        
+			?>
+    			<div class="row">
+    				<div class="col s12 m9 l9">
+    					<div class="card-panel grey lighten-5 z-depth-1">
+    						<div class="row valign-wrapper">
+    							<div class="col s12 m4 l4">
+    							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
+    								alt="" class="responsive-img circle"
+    								style="width: 100px; height: 100px;">
+    							<!-- notice the "circle" class -->
+    							</div>
+    							<div class="col s12 m8 l8 black-text">
+    								<b>Field Officer <?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></b>
+    								<p/>
+    								<b>Email:</b> <?php print $row['fo_email']; ?><b><br>Phone Number:</b>
+    									<?php print $row['fo_phone']; ?>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+            <?php } ?>
      			
 				<div class="col s12 m3 l3 center-align">
 					<h6 class="brown-text">
