@@ -395,6 +395,25 @@ $(document).ready(function(){
 			</script>
 		</div>
 			
+			<?php $result = doQuery("SELECT project_name, project_budget, YEAR(project_date_posted) AS yearPosted FROM projects WHERE project_village_id=$villageId AND project_id<>$projectId");
+			$count = 0;
+			$labels = '';
+			$amounts = '';
+			$accum = 0;
+			while ($row = $result->fetch_assoc()) {
+			     if ($count > 0) {
+			         $labels .= ", ";
+			         $amounts .= ", ";
+			     }
+			     $labels .= "'{$row['project_name']}, {$row['yearPosted']}'";
+			     $accum += $row['project_budget'];
+			     $amounts .= $accum;
+			     $count++;
+			}
+			
+			if ($count > 1) {
+			?>
+			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 						<h6 style="text-align: center"><b>Dollars Invested Over Time (cumulative)</b></h6>
 					 <div>
@@ -407,14 +426,14 @@ $(document).ready(function(){
 				var chart1 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 'Well, 2014', 'School, 2015', 'Goats, 2016' ],
+						labels : [ <?php print $labels; ?> ],
 						datasets : [ {
 							fill : false,
 							backgroundColor : "#ffce56",
 							pointBackgroundColor: "#6495ED",
                             	pointRadius: 10,
                             	borderColor: "#6495ED",
-							data : [ 6000, 8000, 10000 ],
+							data : [ <?php print $amounts; ?> ],
 							cubicInterpolationMode: 'monotone',
 							
 						} ]
@@ -438,43 +457,10 @@ $(document).ready(function(){
 				});
 			</script>	
 					
-					<!--
-					<script>
-						var ctx = document.getElementById("chart1").getContext(
-								'2d');
-						Chart.defaults.global.defaultFontFamily = "'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif'";
-						var chart1 = new Chart(ctx, {
-
-							type : 'bar',
-							data : {
-
-								labels : [ 'Well, 2015', 'School, 2016',
-										'Goats, 2017' ],
-								datasets : [ {
-									data : [ 6000, 2000, 2000 ],
-									backgroundColor : [ '#ff6384', '#36a2eb',
-											'#ffce56' ]
-								} ]
-							},
-							options : {
-								responsive : true,
-								maintainAspectRatio : false,
-								scales : {
-									yAxes : [ {
-										ticks : {
-											beginAtZero : true
-										}
-									} ]
-								},
-								legend : {
-									display : false,
-								},
-							}
-						});
-					</script> -->
+					
 					<br>
 				</div>
-
+		<?php } ?>
 	</div>
 	
 	<div class="row">
