@@ -71,8 +71,8 @@
 			<br>
 			<div class="row center">
 				<h6
-					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					automatically donate to a project each month,<br> and enjoy impact
+					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;" style="padding:0% 5% 0% 5%;">
+					automatically donate to a project each<br> month, and enjoy impact
 					updates all year long
 				</h6>
 			</div>
@@ -147,13 +147,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
-					<p>©Village X Org, 501(c)(3) nonprofit, 2017. EIN: 47&#65279;-1845825&#65279;</p>
+					<p style="line-height:1.5;">©Village X Org, 2017 <br>501(c)(3) nonprofit <br>EIN: 47&#65279;-1845825&#65279;</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
-					<p><b>Our technology disrupts extreme poverty by democratizing local development. Aiming to reach 390 million people in rural Africa.</b></p>
+					<p style="line-height:1.5;"><b>Our technology disrupts extreme poverty by democratizing local development. Aiming to reach 390 million people in rural Africa.</b></p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
-					<p>
+					<p style="line-height:1.5;">
 						<a href="tos.php">Terms of Service</a><br> <a href="privacy_policy.php">Privacy Policy</a>
 					</p>
 				</div>

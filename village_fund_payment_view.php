@@ -337,9 +337,9 @@ var handler = StripeCheckout.configure({
             <div class="col-project valign-wrapper" style="vertical-align: middle;">
             <div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             <div class="card-content blue-text" style="height:100%;">
-            <span class="card-title black-text">Give monthly and disrupt extreme poverty throughout the year</span>
+            <span class="card-title black-text">Give monthly and disrupt extreme poverty all year long</span>
             <div class="row" style="padding:5% 5% 5% 5%;">
-            <h6 class="center-align" style="color:blue;">enter the amount and your name</h6>
+            <h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
             <form class="col s12 formValidate" style="width:100%" id="formValidate" method="get" action="">
             <div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
             <div class="input-field col s12 center-align">
@@ -395,7 +395,7 @@ var handler = StripeCheckout.configure({
             
             <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
             <img src="images/monthly_giving_donation_page.jpg" class="responsive-img">
-            <p>Receive rolling updates of your impact on the ground.</p>
+            <p>You'll receive rolling updates of your impact on the ground.</p>
 		</div>
                 
 	</div>
