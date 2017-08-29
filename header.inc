@@ -34,9 +34,9 @@
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 <script
-	src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
   	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>
+<script src="js/morris-0.4.1.min.js"></script>
 
 <link rel="stylesheet" href="css/jquery-plugin-progressbar.css">
   <script src="js/jquery-plugin-progressbar.js"></script>
