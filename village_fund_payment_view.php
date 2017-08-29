@@ -360,7 +360,7 @@ var handler = StripeCheckout.configure({
             </div>
             
             <div class="input-field col s12">
-            <button class="center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" id="customButton" style="width:100%;">Donate</button>
+            <button class="center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(false, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;">Donate</button>
     
             </div>
             
@@ -373,22 +373,12 @@ var handler = StripeCheckout.configure({
                         	  $.post("subscribe.php", {
                 			        stripeToken: token.id,
                 			        stripeEmail: token.email,
-                			        stripeAmount: $('#amountText').val() * 100
+                			        stripeAmount: $('#donation_amount').val() * 100
                 			    },
                 			    function(data, status) {
                 			    	 	Materialize.toast(data, 4000);
                 			    });
                           }
-                        });
-                        
-                        document.getElementById('customButton').addEventListener('click', function(e) {
-                          // Open Checkout with further options:
-                          handler.open({
-                            name: 'Village X Org',
-                            description: 'Monthly Subscription',
-                            amount: $('#amountText').val() * 100
-                          });
-                          e.preventDefault();
                         });
                         
                         // Close Checkout on page navigation:
