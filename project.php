@@ -81,7 +81,7 @@ $(document).ready(function(){
 					<br>
 					
 		<div class="center-align">
-				<a href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
+				<a href='one_time_payment_view.php'
 				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate</a>
@@ -93,13 +93,10 @@ $(document).ready(function(){
 								<b>10 people have donated!</b>
 		</div>
 		
-			<br><br>
+			<br>
 	
-			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px;">
-						<img src="images/stripe_payments.png" alt=""
-							class="circle responsive-img"
-							style="width: 100px; height: 100px; vertical-align:middle; padding: 20px 20px 20px 20px">
-							<br><br>
+			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
+						
 					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 20px 20px 20px 0px;">
 							<i>100% tax deductible and securely processed by Stripe</i>
 					</span>

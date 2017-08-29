@@ -5,13 +5,13 @@ include('header.inc');
 <div class="container">
 
 	<div class="row" style="padding:2% 1% 1% 1%;">
-		<div class="col s12 m6 l6; valign-wrapper" style="vertical-align: middle; height:50px;">
+		<div class="col s12 m4 l4; valign-wrapper" style="vertical-align: middle; height:50px;">
 			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-				Choose a project to fund
+				Choose a project
 			</h5>
 		</div>
 		<script>var statusFilter = 0, typeFilter = 0;</script>
-		<div class="col s12 m3 l3 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
+		<div class="col s12 m4 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1' id='statusFilter'>Filter by Status</a>
@@ -24,7 +24,7 @@ include('header.inc');
           	</ul>
           </div>
 	
-		 <div class="col s12 m3 l3 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
+		 <div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-button btn light blue" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2' id='typeFilter'>Filter by Type</a>
 
@@ -67,7 +67,7 @@ include('header.inc');
 		          $fundedClass = 'funded';
 		      }
 		      
-		      print "<div class='col s12 m4 projectCell $projectTypeClass $fundedClass' style='min-width:300px;'>
+		      print "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;'>
 				<div class='card sticky-action hoverable'>
 					<div class='card-image waves-effect waves-block waves-light'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
@@ -81,7 +81,7 @@ include('header.inc');
 						</h6>
 						<br>
 						<h6>
-							<b>\$$funded funded out of \$$projectTotal</b>
+							<b>\$$funded out of \$$projectTotal</b>
 						</h6>
 						<div class='progress'>
 							<div class='determinate' style='width: $fundedPercent%'></div>
@@ -93,7 +93,7 @@ include('header.inc');
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
-                print "<a href='one_time_payment_modal.php'
+                print "<a href='one_time_payment_view.php'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
             } else {

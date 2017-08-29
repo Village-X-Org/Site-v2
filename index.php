@@ -42,7 +42,7 @@ function addSubscription() {
 
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Support 35,000 Africans (and growing) disrupting extreme poverty.</h4>
+	<h5 class="header center light blue-text text-lighten-2">Support African villages disrupting extreme poverty</h5>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">
@@ -80,7 +80,7 @@ function addSubscription() {
 					<h2 class="center brown-text">
 						<img src="images/icon_pic.png" height="75px" width="75px">
 					</h2>
-					<h5 class="center">Track your impact</h5>
+					<h5 class="center">See your impact</h5>
 
 					<p class="light center">Donors receive email updates with project
 						pictures and data showing exactly how each donation has helped.
@@ -110,7 +110,7 @@ while ($row = $result->fetch_assoc()) {
     $projectTotal = $row['project_budget'];
     $fundedPercent = $funded / $projectTotal * 100;
     $villageContribution = $projectTotal * .05;
-    print "<div class='col s12 m4' style='min-width:300px;'>
+    print "<div class='col s12 m6 l4' style='min-width:225px;'>
 			<div class='card sticky-action hoverable'>
 				<div class='card-image waves-effect waves-block waves-light'>
 					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
@@ -124,7 +124,7 @@ while ($row = $result->fetch_assoc()) {
 					</h6>
 					<br>
 					<h6>
-						<b>\$$funded funded out of \$$projectTotal</b>
+						<b>\$$funded out of \$$projectTotal</b>
 					</h6>
 					<div class='progress'>
 						<div class='determinate' style='width: $fundedPercent%'></div>
@@ -135,7 +135,7 @@ while ($row = $result->fetch_assoc()) {
 					<div class='row center'>
 						<div class='col s12'>";
     if ($fundedPercent < 100) {
-        print "<a href='one_time_payment_modal.php'
+        print "<a href='one_time_payment_view.php'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
     } else {
@@ -191,7 +191,7 @@ while ($row = $result->fetch_assoc()) {
     		
 			
         		<div class="center-align" style="width:100%;">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">count me in
+          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">yes, please
   					</button>
     			</div>
     		
@@ -264,7 +264,7 @@ while ($row = $result->fetch_assoc()) {
 		<div>
 			<h6 class="light center-align">
 				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages (more info <a
+				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years (more info <a
 					href='impacts.php'>here</a>)
 			</h6>
 		</div>

@@ -334,17 +334,17 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
 
 	<div id="jquery-validation" class="section" style="display:table; width:100%">
 		<div class="col-project valign-wrapper" style="vertical-align: middle;">
-			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px;">
+			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content blue-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to Start a Goat Herd in Saiti Village, Malawi.</span>
          				<div class="row" style="padding:5% 5% 5% 5%;">
-         				<h6 class="center-align" style="color:blue;">please enter an amount and your name</h6>
+         				<h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
          				<form class="col s12 formValidate" style="width:100%" id="formValidate" method="get" action="">
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
           							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
-          							<p class="center-align">The community contributed $100.</p><br>	
+          							<p class="center-align">The community gave $100.</p><br>	
                                 <div class="input-field col s6">
                                   <label for="uname">First Name</label>
                                   <input id="uname" name="uname" type="text" data-error=".errorTxt1">
@@ -352,12 +352,12 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
                                 </div>
                                 <div class="input-field col s6">
                                 	 <label for="last_name">Last Name</label>
-                                  <input id="uname" name="uname" type="text" data-error=".errorTxt1"
+                                  <input id="uname" name="uname" type="text" data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
                                 </div>
                               </div>
                            </div>
-                           <br>
+                           
         			<div class="input-field col s12">
         			<a class="button center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" href='' onclick="donateWithStripe(false, 500, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;"
 				id="donate-button">Donate
