@@ -243,7 +243,7 @@ $(document).ready(function(){
      			
 				<div class="col s12 m3 l3 center-align">
 					<h6 class="brown-text">
-						<b>Share Likoswe's Story</b>
+						<b>Share <?php print $villageName; ?>'s Story</b>
 					</h6>
 					<br>
 					
@@ -349,7 +349,7 @@ $(document).ready(function(){
 		<?php
 		  $years = array();
 		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
+		  $result = doStatQuery($villageId, "Comp Score");
 		  while ($row = $result->fetch_assoc()) {
 		      $years[] = $row['stat_year'];
 		      $values[] = $row['stat_value'];
