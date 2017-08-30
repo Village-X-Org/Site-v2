@@ -40,7 +40,7 @@ include('lightbox.inc'); ?>
 
 #mapScreenDiv {
 	position: relative;
-	height: 100vh;
+	height: calc(100vh - 60px);
 }
 
 #mapContainer {

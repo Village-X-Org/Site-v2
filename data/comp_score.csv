@@ -1,4 +1,4 @@
-District,Village,Year,BNursery,BPrimary,BSecondary,BTertiary,GNursery,GPrimary,GSecondary,GTertiary,Goats,Cows,Ag Biz,Other Biz,Homes with Iron Sheets,# of Motorcycles,# of TVs,# of People,# of HH,Biz Score,LIfestyle Score,Waterborne Illness,Edu Score,Ag Score,Livestock Score,Score,Treated,Time Treated
+District,Village,Year,BNursery,BPrimary,BSecondary,BTertiary,GNursery,GPrimary,GSecondary,GTertiary,Goats,Cows,Ag Biz,Other Biz,Homes with Iron Sheets,# of Motorcycles,# of TVs,# of People,# of HH,Biz Score,LIfestyle Score,Waterborne Illness,Edu Score,Ag Score,Livestock Score,Comp Score,Treated,Time Treated
 Zomba,Chilipo,2014,12,40,3,0,8,35,3,0,17,4,14,3,4,0,2,1380,166,17,6,112,101,600,21,5,0,0
 Zomba,Chilipo,2015,6,35,4,0,5,38,4,0,22,2,16,3,2,0,0,1380,166,19,2,72,92,350,24,7,0,0
 Zomba,Chilipo,2016,0,49,5,0,0,30,8,0,13,2,17,4,3,1,0,1380,166,21,4,133,92,200,15,1,0,0
