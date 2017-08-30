@@ -212,7 +212,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		  <?php } ?>
-			
+		</div>
 			<?php $result = doQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
 			if ($row = $result->fetch_assoc()) {        
 			?>
@@ -261,8 +261,6 @@ $(document).ready(function(){
 						</a>
 				</div>
 			</div>
-		</div>	
-	
 
 		<?php $result = doQuery("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=$projectId");
 	    $count = 0;
@@ -315,10 +313,10 @@ $(document).ready(function(){
                       $('.carousel').carousel();
                     });
                   </script>
+                  </div>
             <?php 
         }
     ?>
-    </div>
     
   
                       <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
@@ -338,7 +336,7 @@ $(document).ready(function(){
 					</b>
 				</p>
 					
-			<div class="row">
+		<div class="row">
 			
 			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
@@ -568,5 +566,5 @@ $(document).ready(function(){
 			</div> 
 		</div>
 	</div>
-</div>	
+</div></div></div>
 <?php include('footer.inc'); ?>
