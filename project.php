@@ -13,7 +13,7 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, village_name, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount FROM projects JOIN villages ON village_id=project_village_id JOIN pictures AS similar_pictures ON project_image_id=similar_pictures.picture_id JOIN pictures AS banner_pictures ON project_banner_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
+$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, village_name, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount, COUNT(donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id JOIN pictures AS similar_pictures ON project_image_id=similar_pictures.picture_id JOIN pictures AS banner_pictures ON project_banner_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $pictureFilename = $row['similar_picture'];
@@ -29,8 +29,10 @@ while ($row = $result->fetch_assoc()) {
     $projectType = $row['project_type'];
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
+    $donationCount = $row['donationCount'];
     
     $villageContribution = $total * .05;
+    $percentFunded = round($funded * 100 / $total);
     
     $households = getLatestValueForStat($villageId, "# of HH");
     $population = getLatestValueForStat($villageId, "# of People");
@@ -85,7 +87,7 @@ $(document).ready(function(){
 				
 		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
 							
-					<div class="progress-bar" style="margin: 0 auto;" data-percent="60" data-duration="1000" data-color="#ccc, #4b86db"></div>
+					<div class="progress-bar" style="margin: 0 auto;" data-percent="<?php print $percentFunded; ?>" data-duration="1000" data-color="#ccc, #4b86db"></div>
 					
 					<script>
 						$(".progress-bar").loading();
@@ -105,10 +107,12 @@ $(document).ready(function(){
 		</div>
 
 					<br>
-					
+				
+		<?php if ($donationCount > 1) { ?>	
 		<div style="margin:auto;" class="center-align">
-								<b>10 people have donated!</b>
+								<b><?php print $donationCount; ?> people have donated!</b>
 		</div>
+		<?php } ?>
 		
 			<br>
 	
@@ -212,7 +216,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 		  <?php } ?>
-			
+		</div>
 			<?php $result = doQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
 			if ($row = $result->fetch_assoc()) {        
 			?>
@@ -261,8 +265,6 @@ $(document).ready(function(){
 						</a>
 				</div>
 			</div>
-		</div>	
-	
 
 		<?php $result = doQuery("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=$projectId");
 	    $count = 0;
@@ -315,17 +317,14 @@ $(document).ready(function(){
                       $('.carousel').carousel();
                     });
                   </script>
+                  </div>
+                  
+                <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
+                <hr width="85%">
             <?php 
         }
     ?>
-    </div>
-    
-  
-                      <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
-                 
-
-
-		<hr width="85%">
+   
 	
 		<div id="databreakdown" class="section scrollspy">
 			<h5 style="text-align: center">Data Trends</h5>
@@ -338,7 +337,7 @@ $(document).ready(function(){
 					</b>
 				</p>
 					
-			<div class="row">
+		<div class="row">
 			
 			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
@@ -577,5 +576,5 @@ $(document).ready(function(){
 			</div> 
 		</div>
 	</div>
-</div>	
+</div></div></div>
 <?php include('footer.inc'); ?>
