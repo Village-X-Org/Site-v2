@@ -561,7 +561,7 @@ $(document).ready(function(){
         											backgroundColor : '{$colors[$count]}',
                                                  pointRadius: 2,
         											label : '$year',
-        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
+        											data : [ ".round($business[$year]).", ".round($lifestyle[$year]).", ".round($education[$year] * .2).", ".round($agriculture[$year] * .05).", ".round($livestock[$year])."],
 										      }";
 										      $count++;
 										  }
