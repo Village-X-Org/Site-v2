@@ -403,17 +403,20 @@ $(document).ready(function(){
 			</script>
 		</div>
 			
-			<?php $result = doQuery("SELECT project_name, project_budget, YEAR(project_date_posted) AS yearPosted FROM projects WHERE project_village_id=$villageId AND project_id<>$projectId");
+			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(project_date_posted) AS yearPosted FROM projects WHERE project_village_id=$villageId ORDER BY yearPosted");
 			$count = 0;
 			$labels = '';
 			$amounts = '';
+			$ids = '';
 			$accum = 0;
 			while ($row = $result->fetch_assoc()) {
 			     if ($count > 0) {
 			         $labels .= ", ";
 			         $amounts .= ", ";
+			         $ids .= ", ";
 			     }
-			     $labels .= "'{$row['project_name']}, {$row['yearPosted']}'";
+			     $ids .= $row['project_id'];
+			     $labels .= $row['yearPosted'];
 			     $accum += $row['project_budget'];
 			     $amounts .= $accum;
 			     $count++;
@@ -434,6 +437,7 @@ $(document).ready(function(){
 				var chart1 = new Chart(ctx, {
 					type : 'line',
 					data : {
+						ids: [<?php print $ids; ?>],
 						labels : [ <?php print $labels; ?> ],
 						datasets : [ {
 							fill : false,
@@ -452,17 +456,25 @@ $(document).ready(function(){
 						legend : {
 							display : false,
 						},
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : true,
-								stacked:true,
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : true,
+									stacked:true,
+								}
+							} ]
+						},
+						onClick: function(event, active) {
+							if (active && active.length > 0) {
+								id = active[0]._chart.data.ids[active[0]._index];
+								if (id != <?php print $projectId; ?>) {
+									window.location.href = "project.php?id=" + id;
+								}
 							}
-						} ]
-					},
+						}
 					}
-
 				});
+				
 			</script>	
 					
 					
@@ -561,7 +573,7 @@ $(document).ready(function(){
         											backgroundColor : '{$colors[$count]}',
                                                  pointRadius: 2,
         											label : '$year',
-        											data : [ {$business[$year]}, {$lifestyle[$year]}, {$education[$year]} * .2, {$agriculture[$year]} * .05, {$livestock[$year]}],
+        											data : [ ".round($business[$year]).", ".round($lifestyle[$year]).", ".round($education[$year] * .2).", ".round($agriculture[$year] * .05).", ".round($livestock[$year])."],
 										      }";
 										      $count++;
 										  }
