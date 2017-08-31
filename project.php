@@ -32,7 +32,7 @@ while ($row = $result->fetch_assoc()) {
     $donationCount = $row['donationCount'];
     
     $villageContribution = $total * .05;
-    $percentFunded = round($funded * 100 / $total);
+    $percentFunded = max(5, round($funded * 100 / $total));
     
     $households = getLatestValueForStat($villageId, "# of HH");
     $population = getLatestValueForStat($villageId, "# of People");
@@ -79,7 +79,7 @@ $(document).ready(function(){
   	
   	<div style="display:table; width:100%">
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-				<img src="<?php print PICTURES_DIR."/$pictureFilename"; ?>" class="responsive-img">
+				<img src="<?php print PICTURES_DIR."/$pictureFilename"; ?>" class="responsive-img" style='width:400px;'>
 				<p class="valign-wrapper; center-align">
 					<b>Here's a similar project.</b>
 				<br>
