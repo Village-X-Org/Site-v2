@@ -31,7 +31,7 @@ while ($row = $result->fetch_assoc()) {
     $hasEvents = $row['eventCount'] > 0;
     $donationCount = $row['donationCount'];
     
-    $villageContribution = $total * .05;
+    $villageContribution = round($total * .05);
     $percentFunded = max(5, round($funded * 100 / $total));
     
     $households = getLatestValueForStat($villageId, "# of HH");
@@ -95,7 +95,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
+		<div class="center-align"><b><font color="#4FC1E9">$<?php print $villageContribution; ?> contributed, $<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
 				
 					<br>
 					
