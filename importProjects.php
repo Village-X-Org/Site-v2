@@ -27,7 +27,8 @@ while ($projRow = fgetcsv($fptr)) {
     $dateProjectPosted = $projRow[21];
     $dateProjectFunded = $projRow[22];
     $dateProjectCompleted = $projRow[23];
-    $projBanner = $projRow[24];
+    $projProfile = $projRow[24];
+    $projExample = $projRow[25];
     
     $result = doQuery("SELECT district_id FROM districts WHERE district_name='$district'");
     if ($row = $result->fetch_assoc()) {
@@ -65,27 +66,41 @@ while ($projRow = fgetcsv($fptr)) {
         $villageId = $link->insert_id;;
     }
    
-    if (strlen($projBanner) < 5) {
-        $bannerId = 2146;
+    $result = doQuery("SELECT picture_id FROM pictures WHERE picture_filename='$projProfile'");
+    if ($row = $result->fetch_assoc()) {
+        $profileId = $row['picture_id'];
     } else {
-        $result = doQuery("SELECT picture_id FROM pictures WHERE picture_filename='$projBanner'");
-        if ($row = $result->fetch_assoc()) {
-            $bannerId = $row['picture_id'];
-        } else {
-            doQuery("INSERT INTO pictures (picture_filename) VALUES ('$projBanner')");
-            $bannerId = $link->insert_id;
-        }
+        doQuery("INSERT INTO pictures (picture_filename) VALUES ('$projProfile')");
+        $profileId = $link->insert_id;
+    }
+    
+    $projBanner = str_replace("profile", "banner", $projProfile);
+    $result = doQuery("SELECT picture_id FROM pictures WHERE picture_filename='$projBanner'");
+    if ($row = $result->fetch_assoc()) {
+        $bannerId = $row['picture_id'];
+    } else {
+        doQuery("INSERT INTO pictures (picture_filename) VALUES ('$projBanner')");
+        $bannerId = $link->insert_id;
+    }
+   
+    $result = doQuery("SELECT picture_id FROM pictures WHERE picture_filename='$projExample'");
+    if ($row = $result->fetch_assoc()) {
+        $exampleId = $row['picture_id'];
+    } else {
+        doQuery("INSERT INTO pictures (picture_filename) VALUES ('$projExample')");
+        $exampleId = $link->insert_id;
     }
     
     $result = doQuery("SELECT project_id FROM projects WHERE project_village_id=$villageId AND project_name='$projName'") ;
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
-        doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y') WHERE project_id=$projectId");
+        doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y') WHERE project_id=$projectId");
     } else {
-        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_id) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId)");
+        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_example_image_id) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId)");
         $projectId = $link->insert_id;
     }
     
+    doQuery("DELETE FROM project_costs WHERE pc_project_id=$projectId");
     doQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'labor', $projLaborCost, 1)");
     doQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'materials', $projMaterialsCost, 2)");
     doQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'admin', $projAdminCost, 3)");
@@ -93,6 +108,7 @@ while ($projRow = fgetcsv($fptr)) {
     doQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'fees', $projFees, 5)");
     doQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'pics/data', $projDataPics, 6)");
     
+    doQuery("DELETE FROM project_events WHERE pe_project_id=$projectId");
     doQuery("INSERT INTO project_events (pe_description, pe_date, pe_project_id) VALUES ('Village Raises Cash Contribution', STR_TO_DATE('$dateCommunityContribution', '%m/%d/%Y'), $projectId)");
     doQuery("INSERT INTO project_events (pe_description, pe_date, pe_project_id) VALUES ('Project Posted', STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), $projectId)");
     if (strlen($dateProjectFunded) > 3) {

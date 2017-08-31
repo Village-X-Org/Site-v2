@@ -104,7 +104,7 @@ function addSubscription() {
 		<!--   project section   -->
 		<div class="row">
 <?php
-$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_image_id=picture_id WHERE project_status = 'funding' LIMIT 3");
+$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status = 'funding' LIMIT 3");
 
 while ($row = $result->fetch_assoc()) {
     $projectId = $row['project_id'];
