@@ -30,6 +30,9 @@ while ($projRow = fgetcsv($fptr)) {
     $projProfile = $projRow[24];
     $projExample = $projRow[25];
     
+    $date = DateTime::createFromFormat("d/m/Y", $dateProjectPosted);
+    $projYear = $date->format("Y");
+    
     $result = doQuery("SELECT district_id FROM districts WHERE district_name='$district'");
     if ($row = $result->fetch_assoc()) {
         $districtId = $row['district_id'];
@@ -115,4 +118,8 @@ while ($projRow = fgetcsv($fptr)) {
         doQuery("INSERT INTO project_events (pe_description, pe_date, pe_project_id) VALUES ('Project Funded', STR_TO_DATE('$dateProjectFunded', '%m/%d/%Y'), $projectId)");
         doQuery("INSERT INTO project_events (pe_description, pe_date, pe_project_id) VALUES ('Project Completed', STR_TO_DATE('$dateProjectCompleted', '%m/%d/%Y'), $projectId)");
     }
+    
+    doQuery("DELETE FROM village_stats WHERE stat_village_id=$villageId AND (stat_type_id=18 OR stat_type_id=19) AND stat_year=$projYear");
+    doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, $population, $projYear)");
+    doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (19, $villageId, $households, $projYear)");
 }
