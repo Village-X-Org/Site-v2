@@ -325,7 +325,16 @@ $(document).ready(function(){
         }
     ?>
    
-	
+		<?php
+		  $years = array();
+		  $values = array();
+		  $result = doStatQuery($villageId, "Comp Score");
+		  while ($row = $result->fetch_assoc()) {
+		      $years[] = $row['stat_year'];
+		      $values[] = $row['stat_value'];
+		  }
+		  if (count($years) > 1) {
+		?>
 		<div id="databreakdown" class="section scrollspy">
 			<h5 style="text-align: center">Data Trends</h5>
 				<p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
@@ -346,15 +355,6 @@ $(document).ready(function(){
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
 
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Comp Score");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
 			<script>
 				var ctx = document.getElementById("chart2").getContext('2d');
 
@@ -588,5 +588,6 @@ $(document).ready(function(){
 			</div> 
 		</div>
 	</div>
+	<?php } ?>
 </div></div></div>
 <?php include('footer.inc'); ?>
