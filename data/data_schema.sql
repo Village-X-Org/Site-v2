@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 29, 2017 at 07:15 PM
+-- Generation Time: Aug 31, 2017 at 02:40 PM
 -- Server version: 5.7.19
--- PHP Version: 5.6.30
+-- PHP Version: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cost_types` (
   `ct_id` int(11) NOT NULL,
-  `ct_icon` varchar(255) NOT NULL
+  `ct_icon` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,10 +103,10 @@ CREATE TABLE `field_officers` (
   `fo_id` int(11) NOT NULL,
   `fo_first_name` varchar(50) NOT NULL,
   `fo_last_name` varchar(50) NOT NULL,
-  `fo_picture_id` int(11) NOT NULL,
-  `fo_bio` text NOT NULL,
+  `fo_picture_id` int(11) DEFAULT NULL,
+  `fo_bio` text,
   `fo_email` varchar(100) NOT NULL,
-  `fo_phone` varchar(20) NOT NULL
+  `fo_phone` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -130,15 +130,20 @@ CREATE TABLE `projects` (
   `project_id` int(11) NOT NULL,
   `project_village_id` int(11) NOT NULL,
   `project_image_id` int(11) NOT NULL DEFAULT '0',
+  `project_banner_id` varchar(200) NOT NULL,
   `project_name` varchar(200) NOT NULL,
   `project_lat` float NOT NULL,
   `project_lng` float NOT NULL,
   `project_summary` text,
+  `project_community_problem` varchar(1023) DEFAULT NULL,
+  `project_community_solution` varchar(1023) DEFAULT NULL,
+  `project_community_partners` varchar(512) DEFAULT NULL,
   `project_budget` float NOT NULL,
-  `project_funded` float NOT NULL,
+  `project_funded` float NOT NULL DEFAULT '0',
   `project_type` enum('farm','house','library','livestock','nursery','office','school','water') DEFAULT NULL,
   `project_status` enum('proposed','funding','construction','completed','cancelled') DEFAULT NULL,
-  `project_staff_id` int(11) NOT NULL
+  `project_staff_id` int(11) NOT NULL,
+  `project_date_posted` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -220,7 +225,7 @@ CREATE TABLE `villages` (
   `village_lat` float NOT NULL,
   `village_lng` float NOT NULL,
   `village_thumbnail` int(11) DEFAULT '0',
-  `village_summary` text NOT NULL,
+  `village_summary` text,
   `village_pending` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -340,7 +345,7 @@ ALTER TABLE `village_stats`
 -- AUTO_INCREMENT for table `cost_types`
 --
 ALTER TABLE `cost_types`
-  MODIFY `ct_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ct_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `countries`
 --
@@ -350,7 +355,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `districts`
 --
 ALTER TABLE `districts`
-  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `donations`
 --
@@ -365,27 +370,27 @@ ALTER TABLE `donors`
 -- AUTO_INCREMENT for table `field_officers`
 --
 ALTER TABLE `field_officers`
-  MODIFY `fo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `fo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2137;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2163;
 --
 -- AUTO_INCREMENT for table `projects`
 --
 ALTER TABLE `projects`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=102;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
 --
 -- AUTO_INCREMENT for table `project_costs`
 --
 ALTER TABLE `project_costs`
-  MODIFY `pc_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pc_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1135;
 --
 -- AUTO_INCREMENT for table `project_events`
 --
 ALTER TABLE `project_events`
-  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `pe_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=725;
 --
 -- AUTO_INCREMENT for table `project_updates`
 --
@@ -405,7 +410,7 @@ ALTER TABLE `stat_types`
 -- AUTO_INCREMENT for table `villages`
 --
 ALTER TABLE `villages`
-  MODIFY `village_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `village_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 --
 -- AUTO_INCREMENT for table `village_stats`
 --
