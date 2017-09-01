@@ -2,63 +2,15 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.528, -15.643]
-		},
-		"properties": {
-			"id": "26",
-			"name": "Mwanga",
-			"picture_filename": "thumb_767_default_buy_list.jpeg",
-			"boundsSwLat": "-15.643",
-			"boundsSwLng": "35.528",
-			"boundsNeLat": "-15.643",
-			"boundsNeLng": "35.528",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-0.876, 10.711]
-		},
-		"properties": {
-			"id": "27",
-			"name": "Awaradonne",
-			"picture_filename": "thumb_990_default_buy_list.png",
-			"boundsSwLat": "10.711",
-			"boundsSwLng": "-0.876",
-			"boundsNeLat": "10.711",
-			"boundsNeLng": "-0.876",
-			"projectCount": "",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.346, -15.474]
-		},
-		"properties": {
-			"id": "30",
-			"name": "Chikumbu",
-			"picture_filename": "thumb_1815_default_buy_list.png",
-			"boundsSwLat": "-15.474",
-			"boundsSwLng": "35.346",
-			"boundsNeLat": "-15.474",
-			"boundsNeLng": "35.346",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [35.33, -15.74]
 		},
 		"properties": {
 			"id": "31",
 			"name": "Kazembe",
-			"picture_filename": "thumb_755_default_buy_list.jpeg",
+			"picture_filename": "thumb_1248_default_buy_list.png",
+			"fundingCount": "1",
+			"completedCount": "2",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.74",
 			"boundsSwLng": "35.33",
 			"boundsNeLat": "-15.74",
@@ -70,358 +22,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.148, -15.83]
-		},
-		"properties": {
-			"id": "32",
-			"name": "Likoswe",
-			"picture_filename": "thumb_1002_default_buy_list.png",
-			"boundsSwLat": "-15.83",
-			"boundsSwLng": "35.148",
-			"boundsNeLat": "-15.83",
-			"boundsNeLng": "35.148",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.523, -15.656]
-		},
-		"properties": {
-			"id": "33",
-			"name": "Maluwa",
-			"picture_filename": "thumb_757_default_buy_list.jpeg",
-			"boundsSwLat": "-15.656",
-			"boundsSwLng": "35.523",
-			"boundsNeLat": "-15.656",
-			"boundsNeLng": "35.523",
-			"projectCount": "1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3608, -15.8031]
-		},
-		"properties": {
-			"id": "34",
-			"name": "Manyumba",
-			"picture_filename": "thumb_766_default_buy_list.jpeg",
-			"boundsSwLat": "-15.803",
-			"boundsSwLng": "35.361",
-			"boundsNeLat": "-15.803",
-			"boundsNeLng": "35.361",
-			"projectCount": "1 in funding, 1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.341, -15.476]
-		},
-		"properties": {
-			"id": "35",
-			"name": "Nakhwala",
-			"picture_filename": "thumb_1817_default_buy_list.png",
-			"boundsSwLat": "-15.476",
-			"boundsSwLng": "35.341",
-			"boundsNeLat": "-15.476",
-			"boundsNeLng": "35.341",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.352, -15.805]
-		},
-		"properties": {
-			"id": "36",
-			"name": "Namphungo",
-			"picture_filename": "thumb_768_default_buy_list.jpeg",
-			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.805",
-			"boundsNeLng": "35.352",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.336, -15.48]
-		},
-		"properties": {
-			"id": "37",
-			"name": "Saiti",
-			"picture_filename": "thumb_1816_default_buy_list.png",
-			"boundsSwLat": "-15.48",
-			"boundsSwLng": "35.336",
-			"boundsNeLat": "-15.48",
-			"boundsNeLng": "35.336",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-0.829, 10.7]
-		},
-		"properties": {
-			"id": "38",
-			"name": "Gorzori",
-			"picture_filename": "water_example.jpg",
-			"boundsSwLat": "10.7",
-			"boundsSwLng": "-0.829",
-			"boundsNeLat": "10.7",
-			"boundsNeLng": "-0.829",
-			"projectCount": "",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.352, -15.486]
-		},
-		"properties": {
-			"id": "39",
-			"name": "Mlenga",
-			"picture_filename": "thumb_2087_default_buy_list.png",
-			"boundsSwLat": "-15.486",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.486",
-			"boundsNeLng": "35.352",
-			"projectCount": "1 in funding, 1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3756, -15.7012]
-		},
-		"properties": {
-			"id": "41",
-			"name": "Bakili",
-			"picture_filename": "thumb_1252_default_buy_list.png",
-			"boundsSwLat": "-15.701",
-			"boundsSwLng": "35.376",
-			"boundsNeLat": "-15.701",
-			"boundsNeLng": "35.376",
-			"projectCount": "2 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.219, -15.49]
-		},
-		"properties": {
-			"id": "42",
-			"name": "Chitimbe",
-			"picture_filename": "thumb_1476_default_buy_list.png",
-			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.805",
-			"boundsNeLng": "35.352",
-			"projectCount": "1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3519, -15.4858]
-		},
-		"properties": {
-			"id": "43",
-			"name": "Siyabu",
-			"picture_filename": "thumb_1496_default_buy_list.jpeg",
-			"boundsSwLat": "-15.486",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.486",
-			"boundsNeLng": "35.352",
-			"projectCount": "1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3427, -15.4892]
-		},
-		"properties": {
-			"id": "44",
-			"name": "Nachuma",
-			"picture_filename": "thumb_1495_default_buy_list.jpeg",
-			"boundsSwLat": "-15.4892",
-			"boundsSwLng": "35.3519",
-			"boundsNeLat": "-15.4892",
-			"boundsNeLng": "35.3519",
-			"projectCount": "1 completed",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-11.1224, 8.54861]
-		},
-		"properties": {
-			"id": "45",
-			"name": "Jaiama Nimikoro",
-			"picture_filename": "UP_1899314_10104794620618661_696057008_o1496597722",
-			"boundsSwLat": "",
-			"boundsSwLng": "",
-			"boundsNeLat": "",
-			"boundsNeLng": "",
-			"projectCount": "",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-11.2556, 8.54481]
-		},
-		"properties": {
-			"id": "46",
-			"name": "Jaiama Nimikoro",
-			"picture_filename": "UP_1899314_10104794620618661_696057008_o1496599184",
-			"boundsSwLat": "",
-			"boundsSwLng": "",
-			"boundsNeLat": "",
-			"boundsNeLng": "",
-			"projectCount": "",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [-15.3021, 29.3206]
-		},
-		"properties": {
-			"id": "47",
-			"name": "Lusaka",
-			"picture_filename": "UP_thumb_695_default_see_800x6001496636551.jpeg",
-			"boundsSwLat": "",
-			"boundsSwLng": "",
-			"boundsNeLat": "",
-			"boundsNeLng": "",
-			"projectCount": "",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
 			"coordinates": [35.3463, -15.4745]
 		},
 		"properties": {
 			"id": "48",
 			"name": "Chikumbu",
-			"picture_filename": "chikumbu_agriculture_profile.jpg",
+			"picture_filename": "thumb_1815_default_buy_list.png",
+			"fundingCount": "2",
+			"completedCount": "2",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.4745",
-			"boundsSwLng": "35.3463",
-			"boundsNeLat": "-15.4745",
+			"boundsSwLng": "35.346",
+			"boundsNeLat": "-15.474",
 			"boundsNeLng": "35.3463",
-			"projectCount": "2 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3296, -15.7396]
-		},
-		"properties": {
-			"id": "49",
-			"name": "Kazembe",
-			"picture_filename": "kazembe_water_profile.jpg",
-			"boundsSwLat": "-15.7396",
-			"boundsSwLng": "35.3296",
-			"boundsNeLat": "-15.7396",
-			"boundsNeLng": "35.3296",
-			"projectCount": "2 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.1476, -15.8297]
-		},
-		"properties": {
-			"id": "50",
-			"name": "Likoswe",
-			"picture_filename": "likoswe_goats_profile.jpg",
-			"boundsSwLat": "-15.8297",
-			"boundsSwLng": "35.1476",
-			"boundsNeLat": "-15.8297",
-			"boundsNeLng": "35.1476",
-			"projectCount": "3 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.5227, -15.6562]
-		},
-		"properties": {
-			"id": "51",
-			"name": "Maluwa",
-			"picture_filename": "maluwa_nursery_profile.jpg",
-			"boundsSwLat": "-15.6562",
-			"boundsSwLng": "35.5227",
-			"boundsNeLat": "-15.6562",
-			"boundsNeLng": "35.5227",
-			"projectCount": "1 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2148, -15.4816]
-		},
-		"properties": {
-			"id": "52",
-			"name": "Manyumba",
-			"picture_filename": "manyumba_school_office_profile.jpg",
-			"boundsSwLat": "-15.4816",
-			"boundsSwLng": "35.2148",
-			"boundsNeLat": "-15.4816",
-			"boundsNeLng": "35.2148",
-			"projectCount": "1 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3519, -15.4858]
-		},
-		"properties": {
-			"id": "53",
-			"name": "Mlenga",
-			"picture_filename": "mlenga_water_profile.jpg",
-			"boundsSwLat": "-15.4858",
-			"boundsSwLng": "35.3519",
-			"boundsNeLat": "-15.4858",
-			"boundsNeLng": "35.3519",
-			"projectCount": "1 in funding",
-			"village_summary": ""
+			"projectCount": "2 in funding, 2 completed",
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -432,13 +47,16 @@
 		"properties": {
 			"id": "54",
 			"name": "Mwanga",
-			"picture_filename": "mwanga_water_profile.jpg",
+			"picture_filename": "thumb_1204_default_buy_list.jpeg",
+			"fundingCount": "2",
+			"completedCount": "2",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.6433",
-			"boundsSwLng": "35.5282",
-			"boundsNeLat": "-15.6433",
+			"boundsSwLng": "35.528",
+			"boundsNeLat": "-15.643",
 			"boundsNeLng": "35.5282",
-			"projectCount": "2 in funding",
-			"village_summary": ""
+			"projectCount": "2 in funding, 2 completed",
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -449,13 +67,16 @@
 		"properties": {
 			"id": "55",
 			"name": "Nakhwala",
-			"picture_filename": "nakhwala_goats_profile.jpg",
+			"picture_filename": "nakhwala_agriculture_profile.jpg",
+			"fundingCount": "2",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.4762",
 			"boundsSwLng": "35.3412",
 			"boundsNeLat": "-15.4762",
 			"boundsNeLng": "35.3412",
 			"projectCount": "2 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -466,13 +87,16 @@
 		"properties": {
 			"id": "56",
 			"name": "Namphungo",
-			"picture_filename": "namphungo_goats_profile.jpg",
-			"boundsSwLat": "-15.8049",
+			"picture_filename": "namphungo_teacher_house_profile.jpg",
+			"fundingCount": "2",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.805",
 			"boundsSwLng": "35.3518",
 			"boundsNeLat": "-15.8049",
-			"boundsNeLng": "35.3518",
-			"projectCount": "2 in funding",
-			"village_summary": ""
+			"boundsNeLng": "35.352",
+			"projectCount": "2 in funding, 2 completed",
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -483,81 +107,16 @@
 		"properties": {
 			"id": "57",
 			"name": "Saiti",
-			"picture_filename": "saiti_agriculture_profile.jpg",
+			"picture_filename": "saiti_water_profile.jpg",
+			"fundingCount": "3",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.4798",
 			"boundsSwLng": "35.3362",
 			"boundsNeLat": "-15.4798",
 			"boundsNeLng": "35.3362",
 			"projectCount": "3 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3756, -15.7012]
-		},
-		"properties": {
-			"id": "58",
-			"name": "Bakili",
-			"picture_filename": "bakili_water_profile.jpg",
-			"boundsSwLat": "-15.7012",
-			"boundsSwLng": "35.3756",
-			"boundsNeLat": "-15.7012",
-			"boundsNeLng": "35.3756",
-			"projectCount": "2 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2128, -15.3017]
-		},
-		"properties": {
-			"id": "59",
-			"name": "Siyabu",
-			"picture_filename": "siyabu_nursery_profile.jpg",
-			"boundsSwLat": "-15.3017",
-			"boundsSwLng": "35.2128",
-			"boundsNeLat": "-15.3017",
-			"boundsNeLng": "35.2128",
-			"projectCount": "2 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2216, -15.2914]
-		},
-		"properties": {
-			"id": "60",
-			"name": "Nachuma",
-			"picture_filename": "nachuma_water_profile.jpg",
-			"boundsSwLat": "-15.2914",
-			"boundsSwLng": "35.2216",
-			"boundsNeLat": "-15.2914",
-			"boundsNeLng": "35.2216",
-			"projectCount": "1 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2713, -15.4916]
-		},
-		"properties": {
-			"id": "61",
-			"name": "Chitimbe",
-			"picture_filename": "chitimbe_water_profile.jpg",
-			"boundsSwLat": "-15.4916",
-			"boundsSwLng": "35.2713",
-			"boundsNeLat": "-15.4916",
-			"boundsNeLng": "35.2713",
-			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -569,12 +128,15 @@
 			"id": "62",
 			"name": "Maloya ",
 			"picture_filename": "maloya_water_profile.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-14.3066",
 			"boundsSwLng": "34.5302",
 			"boundsNeLat": "-14.3066",
 			"boundsNeLng": "34.5302",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -586,12 +148,15 @@
 			"id": "63",
 			"name": "Matandala",
 			"picture_filename": "matandala_goats_profile.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-10.3561",
 			"boundsSwLng": "34.2213",
 			"boundsNeLat": "-10.3561",
 			"boundsNeLng": "34.2213",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -603,12 +168,15 @@
 			"id": "64",
 			"name": "Sosola",
 			"picture_filename": "agriculture_example.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-14.2548",
 			"boundsSwLng": "34.4718",
 			"boundsNeLat": "-14.2548",
 			"boundsNeLng": "34.4718",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -620,12 +188,15 @@
 			"id": "65",
 			"name": "Kela",
 			"picture_filename": "kera_water_profile.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-14.3066",
 			"boundsSwLng": "34.5302",
 			"boundsNeLat": "-14.3066",
 			"boundsNeLng": "34.5302",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -637,12 +208,15 @@
 			"id": "66",
 			"name": "Chamba",
 			"picture_filename": "chamba_goats_profile.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-14.2335",
 			"boundsSwLng": "34.4832",
 			"boundsNeLat": "-14.2335",
 			"boundsNeLng": "34.4832",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -654,29 +228,15 @@
 			"id": "67",
 			"name": "Chantulo",
 			"picture_filename": "chantulo_water_profile.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-14.189",
 			"boundsSwLng": "34.4834",
 			"boundsNeLat": "-14.189",
 			"boundsNeLng": "34.4834",
 			"projectCount": "1 in funding",
-			"village_summary": ""
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.205, -15.2638]
-		},
-		"properties": {
-			"id": "68",
-			"name": "Jemus ",
-			"picture_filename": "nursery_example.jpg",
-			"boundsSwLat": "-15.2638",
-			"boundsSwLng": "35.205",
-			"boundsNeLat": "-15.2638",
-			"boundsNeLng": "35.205",
-			"projectCount": "",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -688,12 +248,15 @@
 			"id": "69",
 			"name": "Chisuzi",
 			"picture_filename": "goats_example.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.2722",
 			"boundsSwLng": "35.2125",
 			"boundsNeLat": "-15.2722",
 			"boundsNeLng": "35.2125",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	},{
 		"type": "Feature",
@@ -705,11 +268,14 @@
 			"id": "70",
 			"name": "Sabola",
 			"picture_filename": "water_example.jpg",
+			"fundingCount": "1",
+			"completedCount": "0",
+			"constructionCount": "0",
 			"boundsSwLat": "-15.4743",
 			"boundsSwLng": "35.1967",
 			"boundsNeLat": "-15.4743",
 			"boundsNeLng": "35.1967",
 			"projectCount": "1 in funding",
-			"village_summary": ""
+			"village_summary": null
 		}
 	}]}

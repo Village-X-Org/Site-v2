@@ -2,7 +2,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5278, -15.6429]
+			"coordinates": [35.5271, -15.6427]
 		},
 		"properties": {
 			"id": "70",
@@ -20,7 +20,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.8762, 10.7114]
+			"coordinates": [-0.8757, 10.7101]
 		},
 		"properties": {
 			"id": "71",
@@ -38,7 +38,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3463, -15.4731]
+			"coordinates": [35.3464, -15.4744]
 		},
 		"properties": {
 			"id": "74",
@@ -56,7 +56,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3308, -15.7397]
+			"coordinates": [35.3306, -15.7408]
 		},
 		"properties": {
 			"id": "75",
@@ -74,7 +74,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1485, -15.8308]
+			"coordinates": [35.1477, -15.8303]
 		},
 		"properties": {
 			"id": "76",
@@ -92,7 +92,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5236, -15.6554]
+			"coordinates": [35.5235, -15.6559]
 		},
 		"properties": {
 			"id": "77",
@@ -110,7 +110,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3609, -15.8034]
+			"coordinates": [35.3614, -15.8039]
 		},
 		"properties": {
 			"id": "78",
@@ -128,7 +128,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3403, -15.4752]
+			"coordinates": [35.3413, -15.4758]
 		},
 		"properties": {
 			"id": "79",
@@ -146,7 +146,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3515, -15.8051]
+			"coordinates": [35.3523, -15.8043]
 		},
 		"properties": {
 			"id": "80",
@@ -164,7 +164,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3351, -15.4795]
+			"coordinates": [35.3365, -15.4794]
 		},
 		"properties": {
 			"id": "81",
@@ -182,7 +182,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.8284, 10.7004]
+			"coordinates": [-0.8288, 10.6998]
 		},
 		"properties": {
 			"id": "82",
@@ -200,7 +200,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3522, -15.4854]
+			"coordinates": [35.3511, -15.4862]
 		},
 		"properties": {
 			"id": "83",
@@ -218,7 +218,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1485, -15.8294]
+			"coordinates": [35.1485, -15.8303]
 		},
 		"properties": {
 			"id": "85",
@@ -236,7 +236,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5287, -15.6432]
+			"coordinates": [35.5275, -15.6438]
 		},
 		"properties": {
 			"id": "86",
@@ -254,7 +254,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3296, -15.7398]
+			"coordinates": [35.3308, -15.74]
 		},
 		"properties": {
 			"id": "87",
@@ -272,7 +272,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3756, -15.7007]
+			"coordinates": [35.3752, -15.7002]
 		},
 		"properties": {
 			"id": "88",
@@ -283,14 +283,14 @@
 			"project_budget": "7200",
 			"project_funded": "7200",
 		 	"updatePictures": "1255:Sep 6th, 2015 The community currently fetches water from shallow wells like this one near the river.~1256:Sep 6th, 2015 Existing conditions: a girl retrieving water from a shallow hole in the ground.~1322:Oct 1st, 2015 ~1323:Oct 1st, 2015 ~1324:Oct 1st, 2015 ~1325:Oct 1st, 2015 ~1326:Oct 1st, 2015 ~1327:Oct 1st, 2015 ~1328:Oct 1st, 2015 ~1329:Oct 1st, 2015 ~1330:Oct 1st, 2015 ~1331:Oct 1st, 2015 ~1332:Oct 1st, 2015 ~1333:Oct 1st, 2015 ~1350:Oct 9th, 2015 ~1351:Oct 9th, 2015 ~1352:Oct 9th, 2015 ~1353:Oct 9th, 2015 ~1354:Oct 9th, 2015 ~1355:Oct 9th, 2015 ~1446:Nov 21st, 2015 ~1519:Dec 17th, 2015 ~1783:Jun 13th, 2016 ",
-			"project_summary": "Bakili Village wants to drill a borehole to provide clean water to village residents. They are currently drinking from unclean water sources."
+			"project_summary": ""
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3514, -15.8046]
+			"coordinates": [35.3513, -15.8046]
 		},
 		"properties": {
 			"id": "89",
@@ -301,14 +301,14 @@
 			"project_budget": "6600",
 			"project_funded": "6600",
 		 	"updatePictures": "1755:May 4th, 2016 ~1756:May 4th, 2016 ~1757:May 4th, 2016 ~1758:May 4th, 2016 This broken borehole was installed years ago and only to a depth of 6 meters.~1820:Jun 23rd, 2016 ~1821:Jun 23rd, 2016 ~1822:Jun 23rd, 2016 ~1823:Jun 23rd, 2016 ~1824:Jun 23rd, 2016 ~1825:Jun 23rd, 2016 ~1826:Jun 23rd, 2016 ~1827:Jun 23rd, 2016 ~1828:Jun 23rd, 2016 ~1829:Jun 23rd, 2016 ~1830:Jun 23rd, 2016 ~1837:Jun 29th, 2016 ~1838:Jun 29th, 2016 ~1839:Jun 29th, 2016 ~1840:Jun 29th, 2016 ~1844:Jul 14th, 2016 ~1845:Jul 14th, 2016 ~1846:Jul 14th, 2016 ~1847:Jul 14th, 2016 ~1848:Jul 14th, 2016 ~1849:Jul 14th, 2016 ~1850:Jul 14th, 2016 ~1851:Jul 14th, 2016 Community members perform a drama during the handing-over ceremony.~1852:Jul 14th, 2016 ",
-			"project_summary": "Chitimbe Village wants to drill a borehole to provide clean water to village residents. They are currently drinking from unclean water sources. "
+			"project_summary": ""
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3518, -15.4854]
+			"coordinates": [35.3529, -15.4854]
 		},
 		"properties": {
 			"id": "90",
@@ -319,14 +319,14 @@
 			"project_budget": "6000",
 			"project_funded": "6000",
 		 	"updatePictures": "1499:Dec 17th, 2015 ~1500:Dec 17th, 2015 ~1501:Dec 17th, 2015 ~1502:Dec 17th, 2015 ~1503:Dec 17th, 2015 ~1504:Dec 17th, 2015 ~1505:Dec 17th, 2015 ~1506:Dec 17th, 2015 ~1507:Dec 17th, 2015 ~1508:Dec 17th, 2015 ~1509:Dec 17th, 2015 ~1510:Dec 17th, 2015 ~1511:Dec 17th, 2015 ~1512:Dec 17th, 2015 ~1513:Dec 17th, 2015 ~1514:Dec 17th, 2015 ~1515:Dec 17th, 2015 ~1516:Dec 17th, 2015 ~1517:Dec 17th, 2015 ~1518:Dec 17th, 2015 ~1520:Dec 17th, 2015 ~1521:Dec 17th, 2015 ~1522:Dec 17th, 2015 ~1523:Dec 17th, 2015 ~1524:Dec 17th, 2015 ~1525:Dec 17th, 2015 ~1811:Jun 13th, 2016 ",
-			"project_summary": "Siyabu Village wants to drill a borehole to provide clean water to village residents. They are currently drinking from unclean water sources. "
+			"project_summary": ""
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3523, -15.4895]
+			"coordinates": [35.3528, -15.4886]
 		},
 		"properties": {
 			"id": "91",
@@ -344,7 +344,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3519, -15.8051]
+			"coordinates": [35.3527, -15.8053]
 		},
 		"properties": {
 			"id": "92",
@@ -362,7 +362,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3408, -15.4764]
+			"coordinates": [35.3404, -15.4757]
 		},
 		"properties": {
 			"id": "93",
@@ -380,7 +380,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3355, -15.4794]
+			"coordinates": [35.3367, -15.4793]
 		},
 		"properties": {
 			"id": "94",
@@ -398,7 +398,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3461, -15.4742]
+			"coordinates": [35.3464, -15.474]
 		},
 		"properties": {
 			"id": "95",
@@ -416,7 +416,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3765, -15.7004]
+			"coordinates": [35.376, -15.7013]
 		},
 		"properties": {
 			"id": "96",
@@ -434,7 +434,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3617, -15.8024]
+			"coordinates": [35.3608, -15.8034]
 		},
 		"properties": {
 			"id": "98",
@@ -452,7 +452,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3301, -15.7397]
+			"coordinates": [35.3293, -15.7409]
 		},
 		"properties": {
 			"id": "99",
@@ -470,7 +470,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3521, -15.4866]
+			"coordinates": [35.3523, -15.4867]
 		},
 		"properties": {
 			"id": "101",
@@ -488,7 +488,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3463, -15.4749]
+			"coordinates": [35.3461, -15.4747]
 		},
 		"properties": {
 			"id": "102",
@@ -499,104 +499,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3287, -15.7399]
-		},
-		"properties": {
-			"id": "103",
-			"name": "Build a Nursery School",
-			"villageName": "Kazembe",
-            "icon": "nursery",
-			"picture_filename": "kazembe_nursery_profile.jpg",
-			"project_budget": "1900",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.148, -15.8301]
-		},
-		"properties": {
-			"id": "104",
-			"name": "Build a Nursery School",
-			"villageName": "Likoswe",
-            "icon": "nursery",
-			"picture_filename": "likoswe_nursery_profile.jpg",
-			"project_budget": "1900",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.5235, -15.6571]
-		},
-		"properties": {
-			"id": "105",
-			"name": "Build a Nursery School",
-			"villageName": "Maluwa",
-            "icon": "nursery",
-			"picture_filename": "maluwa_nursery_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2157, -15.4824]
-		},
-		"properties": {
-			"id": "106",
-			"name": "Build a School Office",
-			"villageName": "Manyumba",
-            "icon": "school",
-			"picture_filename": "manyumba_school_office_profile.jpg",
-			"project_budget": "1900",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3523, -15.4861]
-		},
-		"properties": {
-			"id": "107",
-			"name": "Provide Clean Water",
-			"villageName": "Mlenga",
-            "icon": "water",
-			"picture_filename": "mlenga_water_profile.jpg",
-			"project_budget": "7200",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.529, -15.6434]
+			"coordinates": [35.5282, -15.6431]
 		},
 		"properties": {
 			"id": "108",
@@ -607,14 +517,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3416, -15.4764]
+			"coordinates": [35.3411, -15.4764]
 		},
 		"properties": {
 			"id": "109",
@@ -625,14 +535,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3525, -15.8056]
+			"coordinates": [35.3511, -15.8049]
 		},
 		"properties": {
 			"id": "110",
@@ -643,14 +553,14 @@
 			"project_budget": "1800",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3365, -15.4806]
+			"coordinates": [35.3359, -15.4803]
 		},
 		"properties": {
 			"id": "111",
@@ -661,50 +571,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3305, -15.7401]
-		},
-		"properties": {
-			"id": "112",
-			"name": "Provide Clean Water",
-			"villageName": "Kazembe",
-            "icon": "water",
-			"picture_filename": "kazembe_water_profile.jpg",
-			"project_budget": "7200",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.1475, -15.8293]
-		},
-		"properties": {
-			"id": "113",
-			"name": "Provide Clean Water",
-			"villageName": "Likoswe",
-            "icon": "water",
-			"picture_filename": "likoswe_water_profile.jpg",
-			"project_budget": "7200",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.5273, -15.6437]
+			"coordinates": [35.5277, -15.6437]
 		},
 		"properties": {
 			"id": "114",
@@ -715,86 +589,14 @@
 			"project_budget": "7200",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3757, -15.7011]
-		},
-		"properties": {
-			"id": "115",
-			"name": "Provide Clean Water",
-			"villageName": "Bakili",
-            "icon": "water",
-			"picture_filename": "bakili_water_profile.jpg",
-			"project_budget": "7200",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2136, -15.3025]
-		},
-		"properties": {
-			"id": "116",
-			"name": "Provide Clean Water",
-			"villageName": "Siyabu",
-            "icon": "water",
-			"picture_filename": "siyabu_water_profile.jpg",
-			"project_budget": "6000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.222, -15.2916]
-		},
-		"properties": {
-			"id": "117",
-			"name": "Provide Clean Water",
-			"villageName": "Nachuma",
-            "icon": "water",
-			"picture_filename": "nachuma_water_profile.jpg",
-			"project_budget": "6000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2711, -15.4911]
-		},
-		"properties": {
-			"id": "118",
-			"name": "Provide Clean Water",
-			"villageName": "Chitimbe",
-            "icon": "water",
-			"picture_filename": "chitimbe_water_profile.jpg",
-			"project_budget": "6600",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3367, -15.4806]
+			"coordinates": [35.3354, -15.4803]
 		},
 		"properties": {
 			"id": "119",
@@ -805,14 +607,14 @@
 			"project_budget": "1800",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3403, -15.4759]
+			"coordinates": [35.3405, -15.4753]
 		},
 		"properties": {
 			"id": "120",
@@ -823,14 +625,14 @@
 			"project_budget": "1800",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3456, -15.4736]
+			"coordinates": [35.3464, -15.4749]
 		},
 		"properties": {
 			"id": "121",
@@ -841,14 +643,14 @@
 			"project_budget": "1800",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3367, -15.4791]
+			"coordinates": [35.3365, -15.48]
 		},
 		"properties": {
 			"id": "122",
@@ -859,14 +661,14 @@
 			"project_budget": "6300",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3515, -15.8045]
+			"coordinates": [35.3512, -15.8052]
 		},
 		"properties": {
 			"id": "123",
@@ -877,68 +679,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2124, -15.3026]
-		},
-		"properties": {
-			"id": "124",
-			"name": "Build a Nursery School",
-			"villageName": "Siyabu",
-            "icon": "nursery",
-			"picture_filename": "siyabu_nursery_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.1468, -15.8304]
-		},
-		"properties": {
-			"id": "125",
-			"name": "Start a Goat Herd",
-			"villageName": "Likoswe",
-            "icon": "livestock",
-			"picture_filename": "likoswe_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.375, -15.7007]
-		},
-		"properties": {
-			"id": "126",
-			"name": "Build a Nursery School",
-			"villageName": "Bakili",
-            "icon": "nursery",
-			"picture_filename": "bakili_nursery_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "0",
-		 	"updatePictures": null,
-			"project_summary": ""
-
-		}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [34.5296, -14.3073]
+			"coordinates": [34.5309, -14.3063]
 		},
 		"properties": {
 			"id": "127",
@@ -949,14 +697,14 @@
 			"project_budget": "6000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.2204, -10.3558]
+			"coordinates": [34.2216, -10.3565]
 		},
 		"properties": {
 			"id": "128",
@@ -967,14 +715,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4725, -14.2556]
+			"coordinates": [34.4727, -14.2542]
 		},
 		"properties": {
 			"id": "129",
@@ -985,14 +733,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.5311, -14.3068]
+			"coordinates": [34.5298, -14.3064]
 		},
 		"properties": {
 			"id": "130",
@@ -1003,14 +751,14 @@
 			"project_budget": "6000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4835, -14.2327]
+			"coordinates": [34.484, -14.2331]
 		},
 		"properties": {
 			"id": "131",
@@ -1021,14 +769,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4834, -14.1892]
+			"coordinates": [34.4825, -14.1892]
 		},
 		"properties": {
 			"id": "132",
@@ -1039,14 +787,14 @@
 			"project_budget": "6000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2047, -15.2631]
+			"coordinates": [35.2046, -15.2638]
 		},
 		"properties": {
 			"id": "133",
@@ -1057,14 +805,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2118, -15.273]
+			"coordinates": [35.2131, -15.2724]
 		},
 		"properties": {
 			"id": "134",
@@ -1075,14 +823,14 @@
 			"project_budget": "2000",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1976, -15.475]
+			"coordinates": [35.1958, -15.475]
 		},
 		"properties": {
 			"id": "135",
@@ -1093,7 +841,7 @@
 			"project_budget": "5700",
 			"project_funded": "0",
 		 	"updatePictures": null,
-			"project_summary": ""
+			"project_summary": null
 
 		}
 	}]}

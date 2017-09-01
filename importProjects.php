@@ -65,7 +65,7 @@ while ($projRow = fgetcsv($fptr)) {
         $villageId = $row['village_id'];
         doQuery("UPDATE villages SET village_district=$districtId, village_pending=0 WHERE village_id=$villageId");
     } else {
-        doQuery("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending) VALUES ('$village', $districtId, $lat, $lng, 0)");
+        doQuery("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending, village_country) VALUES ('$village', $districtId, $lat, $lng, 0, $countryId)");
         $villageId = $link->insert_id;;
     }
    
