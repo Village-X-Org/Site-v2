@@ -45,7 +45,7 @@ function addSubscription() {
 
 <div class="container">
 	<br>
-	<h5 class="header center light blue-text text-lighten-2">Support African villages disrupting extreme poverty</h5>
+	<h4 class="header center light blue-text text-lighten-2">You can disrupt extreme poverty in rural Africa</h4>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">
@@ -58,9 +58,8 @@ function addSubscription() {
 					</h2>
 					<h5 class="center">Find a village</h5>
 
-					<p class="light center">Our partner villages are located in rural
-						Africa, where extreme poverty is on the rise. Our model and
-						technology elevate their voices in international development.</p>
+					<p class="light center">Search our projects page or interactive map for tenacious villages battling extreme poverty in rural
+						Africa. Find a village-led development project that resonates with you.</p>
 
 				</div>
 			</div>
@@ -72,22 +71,20 @@ function addSubscription() {
 					</h2>
 					<h5 class="center">Fund a project</h5>
 
-					<p class="light center">Villages identify their biggest problems
-						and propose locally appropriate solutions. They also put skin in
-						the game by contributing cash, labor, and materials.</p>
+					<p class="light center">Show your generosity to rural villages that not only identify local solutions to their
+					biggest problems, but also put skin in the game by contributing labor, materials, and, importantly, cash.</p>
 				</div>
 			</div>
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text">
-						<img src="images/icon_pic.png" height="75px" width="75px">
+					<h2 class="center black-text">
+						<i class="material-icons" style="font-size: 75px">timeline</i>
 					</h2>
-					<h5 class="center">See your impact</h5>
+					<h5 class="center">Track your impact</h5>
 
-					<p class="light center">Donors receive email updates with project
-						pictures and data showing exactly how each donation has helped.
-						It's our 100% transparency guarantee.</p>
+					<p class="light center">Enjoy multimedia updates and data breakdowns from the field providing a vivid accounting
+					 of exactly how your direct donation made a difference. It's our 100% transparency guarantee.</p>
 				</div>
 			</div>
 		</div>
@@ -194,7 +191,7 @@ while ($row = $result->fetch_assoc()) {
     		
 			
         		<div class="center-align" style="width:100%;">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">yes, please
+          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
   					</button>
     			</div>
     		
