@@ -9,7 +9,7 @@
 			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for joining the Village Fund!</h2>	
 
 			<div class="parallax" style="background-size: cover;">
-				<img src="images/woman_with_goat.jpg">
+				<img src="temp/woman_with_goat.jpg">
 			</div>
 		</div>
 	</div>

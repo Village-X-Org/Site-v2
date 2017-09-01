@@ -56,7 +56,7 @@ $(document).ready(function(){
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 
 	<div class="parallax">
-		<img src="<?php print PICTURES_DIR.$bannerPicture; ?>">
+		<img style="width:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
 	</div>
 </div>
 
