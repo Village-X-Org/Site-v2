@@ -40,7 +40,7 @@ include('lightbox.inc'); ?>
 
 #mapScreenDiv {
 	position: relative;
-	height: calc(100vh - 60px);
+	height: calc(100vh - 110px);
 }
 
 #mapContainer {
@@ -66,19 +66,25 @@ include('lightbox.inc'); ?>
 div.projectCell {
 	background: white;
 	background-repeat: no-repeat;
-	background-size: 30vh;
+	background-size: 30vmin;
 	display: inline-block;
-	width: 30vh;
+	width: 30vmin;
 	margin-right: 2px;
 	text-align: center;
 	cursor: pointer;
-	height: 30vh;
+	height: 30vmin;
 	-webkit-filter: contrast(1);
 	filter: contrast(1);
 	border: 2px solid black;
 	border-radius: 15px;
 	-moz-border-radius: 15px;
 	overflow: hidden;
+}
+
+@media (min-width: 720px) {
+    #mapScreenDiv {
+	   height: calc(100vh - 60px);
+    }
 }
 
 div.progressBar {
@@ -113,11 +119,11 @@ div.progressBar .ui-progressbar-value {
 		<div class="fixed-action-btn" id='buttonHolder'
 			style='position: absolute; display:none;top: 0px; right: 5px; z-index: 3;'>
 
-			<a class="btn-floating btn-large blue" id='zoomOutButton'
-				onclick="zoomToCountryBounds(selectedCountry);"
+			<button class="btn-floating btn-large blue" id='zoomOutButton'
+				onclick="zoomToCountry(selectedCountry);"
 				style='margin-left:10px;'> <i class="large material-icons"
 				id='zoomOutButtonText'>zoom_out</i>
-			</a>
+			</button>
 		</div>
  	    
 		<!-- Project/village tiles at bottom of map -->
@@ -143,6 +149,7 @@ div.progressBar .ui-progressbar-value {
 	map.scrollZoom.disable();
 
 	map.on('load', function() {
+		window.scrollTo(0,1);
 		map.on('click', 'villages', function(e) {
 			selectVillage(e.features[0]);
 		});
@@ -151,7 +158,7 @@ div.progressBar .ui-progressbar-value {
     			if (selectedElem == e.features[0]) {
 		        return;
 	        }
-    			document.location = "project.php?projectId=" + e.features[0].id;
+    			window.open("project.php?id=" + e.features[0].properties.id, '_blank');
 	    });
 
 		map.on("data", function(data) {
@@ -177,16 +184,15 @@ div.progressBar .ui-progressbar-value {
 			map.getCanvas().style.cursor = 'default';
 		});
 
-		// Bounding box for Malawi.
-		
-		selectedCountry = [ [34, -14], [35, -11] ];
-		zoomToCountryBounds(selectedCountry);
+		zoomToCountry([35,-15.024]);
 	});
 
-	function zoomToCountryBounds(bounds) {
-		selectedCountry = bounds;
+	function zoomToCountry(coords) {
+		selectedCountry = coords;
+		$("#buttonHolder").hide();
 
-		map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
+		map.flyTo({center: coords, zoom: 7, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60}); 
+		//map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 	
 	function getTilesForBounds() {
@@ -195,8 +201,6 @@ div.progressBar .ui-progressbar-value {
 		if (zoom >= 14) {
 			count = 0;
 			lastElem = 0;
-
-			$("#buttonHolder").show();
 
 			projects = map.queryRenderedFeatures({
 				layers : [ 'projects' ]
@@ -243,11 +247,7 @@ div.progressBar .ui-progressbar-value {
 
 						$("#projectDiv" + elem.properties.id).on(
 								"click", function(e) {
-									if (selectedElem == elem) {
-										return;
-									}
-
-									e.preventDefault();
+					    				window.open("project.php?id=" + elem.properties.id, '_blank');
 								});
 						lastElem = elem;
 						count++;
@@ -257,7 +257,6 @@ div.progressBar .ui-progressbar-value {
 				drawVillage(selectedVillage, false);
 			}
 		} else if (zoom >= 5) {
-			$("#buttonHolder").hide();
 			villages = map.queryRenderedFeatures({
 				layers : [ 'villages' ]
 			});
@@ -324,7 +323,7 @@ div.progressBar .ui-progressbar-value {
 			ne[1] += .005;
 			sw[1] -= .005;
 		}
-		map.fitBounds([ sw, ne ], {
+		map.flyTo({ center: village.geometry.coordinates, zoom: 18,
 			padding : {
 				top : 20,
 				bottom : 150,
@@ -332,6 +331,8 @@ div.progressBar .ui-progressbar-value {
 				right : 20
 			}
 		});
+
+		$("#buttonHolder").show();
 		retryCount = 1;
 	}
 	

@@ -23,11 +23,11 @@ while ($row = $result->fetch_assoc()) {
             "icon": "'.$row['project_type'].'",
 			"picture_filename": "'.$row['picture_filename'].'",
 			"project_budget": "'.$row['project_budget'].'",
-			"project_funded": "'.$row['project_funded'].'",
+			"project_funded": "'.$row['project_funded'].'"'/*,
 		 	"updatePictures": '.json_encode($row['updatePictures']).',
 			"project_summary": '.json_encode($row['project_summary']).'
-
-		}
+            */
+		.'}
 	}');
 	$count++;
 }

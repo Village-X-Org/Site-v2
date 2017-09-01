@@ -15,9 +15,7 @@
 			"boundsSwLng": "35.33",
 			"boundsNeLat": "-15.74",
 			"boundsNeLng": "35.33",
-			"projectCount": "1 in funding, 2 completed",
-			"village_summary": ""
-		}
+			"projectCount": "1 in funding, 2 completed"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -28,16 +26,14 @@
 			"id": "48",
 			"name": "Chikumbu",
 			"picture_filename": "thumb_1815_default_buy_list.png",
-			"fundingCount": "2",
+			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.4745",
+			"boundsSwLat": "-15.474",
 			"boundsSwLng": "35.346",
 			"boundsNeLat": "-15.474",
-			"boundsNeLng": "35.3463",
-			"projectCount": "2 in funding, 2 completed",
-			"village_summary": null
-		}
+			"boundsNeLng": "35.346",
+			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -48,16 +44,14 @@
 			"id": "54",
 			"name": "Mwanga",
 			"picture_filename": "thumb_1204_default_buy_list.jpeg",
-			"fundingCount": "2",
+			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.6433",
+			"boundsSwLat": "-15.643",
 			"boundsSwLng": "35.528",
 			"boundsNeLat": "-15.643",
-			"boundsNeLng": "35.5282",
-			"projectCount": "2 in funding, 2 completed",
-			"village_summary": null
-		}
+			"boundsNeLng": "35.528",
+			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -75,9 +69,7 @@
 			"boundsSwLng": "35.3412",
 			"boundsNeLat": "-15.4762",
 			"boundsNeLng": "35.3412",
-			"projectCount": "2 in funding",
-			"village_summary": null
-		}
+			"projectCount": "2 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -88,16 +80,14 @@
 			"id": "56",
 			"name": "Namphungo",
 			"picture_filename": "namphungo_teacher_house_profile.jpg",
-			"fundingCount": "2",
+			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
 			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.3518",
-			"boundsNeLat": "-15.8049",
+			"boundsSwLng": "35.352",
+			"boundsNeLat": "-15.805",
 			"boundsNeLng": "35.352",
-			"projectCount": "2 in funding, 2 completed",
-			"village_summary": null
-		}
+			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -115,9 +105,7 @@
 			"boundsSwLng": "35.3362",
 			"boundsNeLat": "-15.4798",
 			"boundsNeLng": "35.3362",
-			"projectCount": "3 in funding",
-			"village_summary": null
-		}
+			"projectCount": "3 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -135,9 +123,7 @@
 			"boundsSwLng": "34.5302",
 			"boundsNeLat": "-14.3066",
 			"boundsNeLng": "34.5302",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -155,9 +141,7 @@
 			"boundsSwLng": "34.2213",
 			"boundsNeLat": "-10.3561",
 			"boundsNeLng": "34.2213",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -175,9 +159,7 @@
 			"boundsSwLng": "34.4718",
 			"boundsNeLat": "-14.2548",
 			"boundsNeLng": "34.4718",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -195,9 +177,7 @@
 			"boundsSwLng": "34.5302",
 			"boundsNeLat": "-14.3066",
 			"boundsNeLng": "34.5302",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -215,9 +195,7 @@
 			"boundsSwLng": "34.4832",
 			"boundsNeLat": "-14.2335",
 			"boundsNeLng": "34.4832",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -235,9 +213,7 @@
 			"boundsSwLng": "34.4834",
 			"boundsNeLat": "-14.189",
 			"boundsNeLng": "34.4834",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -255,9 +231,7 @@
 			"boundsSwLng": "35.2125",
 			"boundsNeLat": "-15.2722",
 			"boundsNeLng": "35.2125",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -275,7 +249,5 @@
 			"boundsSwLng": "35.1967",
 			"boundsNeLat": "-15.4743",
 			"boundsNeLng": "35.1967",
-			"projectCount": "1 in funding",
-			"village_summary": null
-		}
+			"projectCount": "1 in funding"}
 	}]}
