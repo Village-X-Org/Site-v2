@@ -205,15 +205,15 @@ div.progressBar .ui-progressbar-value {
 		});
 
 		// Bounding box for Malawi.
-		selectedCountry = [ [ 35.14799880981445, -15.829999923706055 ],
-				[ 35.52799987792969, -15.473999977111816 ] ];
+		
+		selectedCountry = [ [34, -13], [35, -11] ];
 		zoomToCountryBounds(selectedCountry);
 	});
 
 	function zoomToCountryBounds(bounds) {
 		selectedCountry = bounds;
 
-		map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}});
+		map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 	
 	function getTilesForBounds() {
