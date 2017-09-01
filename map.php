@@ -40,7 +40,7 @@ include('lightbox.inc'); ?>
 
 #mapScreenDiv {
 	position: relative;
-	height: calc(100vh - 60px);
+	height: calc(100vh - 110px);
 }
 
 #mapContainer {
@@ -59,11 +59,6 @@ include('lightbox.inc'); ?>
 	z-index: 6;
 }
 
-    #pictureCaption {
-      background: #FFFFFF;
-      box-shadow: 0 0 15px 10px #FFFFFF;
-    }
-
 .hide-scrollbar ::-webkit-scrollbar-thumb {
 	visibility: hidden;
 }
@@ -71,13 +66,13 @@ include('lightbox.inc'); ?>
 div.projectCell {
 	background: white;
 	background-repeat: no-repeat;
-	background-size: 30vh;
+	background-size: 30vmin;
 	display: inline-block;
-	width: 30vh;
+	width: 30vmin;
 	margin-right: 2px;
 	text-align: center;
 	cursor: pointer;
-	height: 30vh;
+	height: 30vmin;
 	-webkit-filter: contrast(1);
 	filter: contrast(1);
 	border: 2px solid black;
@@ -86,18 +81,10 @@ div.projectCell {
 	overflow: hidden;
 }
 
-div.expandoCell {
-    width:calc(99vw - 30vh);
-    margin-left:calc(30vh + 5px);
-   	height:calc(30vh - 10px);
-   	padding-left: 5px;
-   	padding-right: 5px;
-   	padding-top: 5px;
-   	padding-bottom: 5px;
-   	overflow-y:scroll;
-   	white-space:normal;
-   	vertical-align:top;
-    background-color:white;
+@media (min-width: 720px) {
+    #mapScreenDiv {
+	   height: calc(100vh - 60px);
+    }
 }
 
 div.progressBar {
@@ -132,16 +119,12 @@ div.progressBar .ui-progressbar-value {
 		<div class="fixed-action-btn" id='buttonHolder'
 			style='position: absolute; display:none;top: 0px; right: 5px; z-index: 3;'>
 
-			<a class="btn-floating btn-large blue" id='zoomOutButton'
-				onclick="hideCell(); zoomToCountryBounds(selectedCountry);"
+			<button class="btn-floating btn-large blue" id='zoomOutButton'
+				onclick="zoomToCountry(selectedCountry);"
 				style='margin-left:10px;'> <i class="large material-icons"
 				id='zoomOutButtonText'>zoom_out</i>
-			</a>
+			</button>
 		</div>
-
- 	    <!-- Pop-up picture lightbox -->
- 	    <div id='pictureDiv' style='z-index:5;position:absolute;top:50px;left:0px;right:0px;display:none;'>
- 	    </div>
  	    
 		<!-- Project/village tiles at bottom of map -->
 		<div id="projectScroller" class='hide-scrollbar'></div>
@@ -151,7 +134,7 @@ div.progressBar .ui-progressbar-value {
 
 <script>
 	// Global variables.
-	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, expandoCell, timer;
+	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, timer;
 
 	mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ';
 
@@ -166,19 +149,16 @@ div.progressBar .ui-progressbar-value {
 	map.scrollZoom.disable();
 
 	map.on('load', function() {
+		window.scrollTo(0,1);
 		map.on('click', 'villages', function(e) {
 			selectVillage(e.features[0]);
 		});
 
 	    map.on('click', 'projects', function (e) {
-    		if (selectedElem == e.features[0]) {
+    			if (selectedElem == e.features[0]) {
 		        return;
 	        }
-		  	if (selectedCell) {
-				hideCell(function() { expandCell(e.features[0]); });
-		  	} else {
-			  	expandCell(e.features[0]);
-		  	}
+    			window.open("project.php?id=" + e.features[0].properties.id, '_blank');
 	    });
 
 		map.on("data", function(data) {
@@ -204,16 +184,15 @@ div.progressBar .ui-progressbar-value {
 			map.getCanvas().style.cursor = 'default';
 		});
 
-		// Bounding box for Malawi.
-		selectedCountry = [ [ 35.14799880981445, -15.829999923706055 ],
-				[ 35.52799987792969, -15.473999977111816 ] ];
-		zoomToCountryBounds(selectedCountry);
+		zoomToCountry([35,-15.024]);
 	});
 
-	function zoomToCountryBounds(bounds) {
-		selectedCountry = bounds;
+	function zoomToCountry(coords) {
+		selectedCountry = coords;
+		$("#buttonHolder").hide();
 
-		map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}});
+		map.flyTo({center: coords, zoom: 7, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60}); 
+		//map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 	
 	function getTilesForBounds() {
@@ -223,19 +202,9 @@ div.progressBar .ui-progressbar-value {
 			count = 0;
 			lastElem = 0;
 
-			$("#buttonHolder").show();
-
 			projects = map.queryRenderedFeatures({
 				layers : [ 'projects' ]
 			});
-
-			/*if (projects.length == 0) {
-				if (retryCount > 0) {
-					map.once('moveend', getTilesForBounds);
-					retryCount--;
-				}
-				return;
-			}*/
 
 			projects.sort(function(a, b) {
 				diffA = a.properties.project_funded
@@ -249,6 +218,8 @@ div.progressBar .ui-progressbar-value {
 				projects,
 				function(i, elem) {
 					if ($("#projectDiv" + elem.properties.id).length == 0) {
+						filled = Math.max(5, Math.floor(100 * elem.properties.project_funded / elem.properties.project_budget));
+						unfilled = 100 - filled;
 						$("#projectScroller")
 								.append(
 										"<div id='projectDiv"
@@ -256,17 +227,13 @@ div.progressBar .ui-progressbar-value {
 												+ "' class='projectCell' style=\"position:relative;background-image:url('https://4and.me/uploads/"
 												+ elem.properties.picture_filename
 												+ "');\">"
-												+ "<div id='progressbar"
-												+ elem.properties.id
-												+ "' class='progressBar' style='position:absolute;bottom:25px;left:0px;width:100%;'>"
-												+ "<div class='progressBar-label'>"
-												+ Math
-														.floor(100
-																* elem.properties.project_funded
-																/ elem.properties.project_budget)
-												+ "% of $"
-												+ elem.properties.project_budget
-												+ "</div></div>"
+        											+ "<span style='position:absolute;bottom:25px;height:25px;left:0px;width:100%;background:linear-gradient(90deg, #8ABC5C "
+												+ filled
+												+ "%, #CCCCCC "
+												+ unfilled
+												+ "%);border: solid 1px white;font-size:12px;font-weight:bold;'>"
+												+ filled + "% of $" + elem.properties.project_budget
+												+ "</span>"
 												+ "<button id='donateButton"
 												+ elem.properties.id
 												+ "' class='waves-effect waves-light' style='position:absolute;bottom:0px;left:0px;height:25px;width:100%;text-align:center;font-size:14px;color:black;font-weight:bold;'>"
@@ -280,41 +247,19 @@ div.progressBar .ui-progressbar-value {
 
 						$("#projectDiv" + elem.properties.id).on(
 								"click", function(e) {
-									if (selectedElem == elem) {
-										return;
-									}
-
-									e.preventDefault();
-
-									if (selectedCell) {
-										hideCell(function() {
-											expandCell(elem);
-										});
-									} else {
-										expandCell(elem);
-									}
+					    				window.open("project.php?id=" + elem.properties.id, '_blank');
 								});
 						lastElem = elem;
 						count++;
 					}
 				});
-			if (count == 1) {
-				expandCell(lastElem);
-			} else if (count == 0 && selectedVillage) {
+			if (count == 0 && selectedVillage) {
 				drawVillage(selectedVillage, false);
 			}
 		} else if (zoom >= 5) {
-			$("#buttonHolder").hide();
 			villages = map.queryRenderedFeatures({
 				layers : [ 'villages' ]
 			});
-			/*if (villages.length == 0) {
-				if (retryCount > 0) {
-					map.once('moveend', getTilesForBounds);
-					retryCount--;
-				}
-				return;
-			}*/
 			villages.sort(function(a, b) {
 				return b.properties.fundingCount - a.properties.fundingCount;
 			});
@@ -324,91 +269,6 @@ div.progressBar .ui-progressbar-value {
 				}
 			});
 		}
-	}
-	
-	function expandCell(elem) {
-		selectedElem = elem;
-
-	    $('#modalBlock').show();
-		selectedCell = $("#projectDiv" + elem.properties.id);
-		selectedCell.css("left", "0px");
-		selectedCell.css("cursor", "default");
-
-		selectedCell.animate({ width: '100%'}, 500);
-		$("#projectScroller").animate({ scrollLeft: document.getElementById("projectDiv" + elem.properties.id).offsetLeft });
-		
-		expandoCell = $("<div>", {"class": "expandoCell"});
-		
-		var updatePictures = 0;
-
-	  	if (elem.properties.updatePictures) {
-		  	updatePictures = elem.properties.updatePictures.split("~");
-		  	for (i = 0; i < updatePictures.length; i++) {
-			  	if (i == 0) {
-					$("#pictureDiv").append("<div class='carousel' id='pictureCarousel'></div>"
-			       			+ "<h6 style='text-align: center; margin-left:12%;margin-right:12%;' id='pictureCaption'>(swipe to view on mobile)</h6>");
-			  		
-			  		$("#pictureDiv").show();
-			  	    $(document).ready(function(){
-			  	      $('.carousel').carousel();
-			  	    });
-			  	}
-			  	breakPoint = updatePictures[i].indexOf(':');
-			  	imageId = updatePictures[i].substring(0, breakPoint);
-			  	description = updatePictures[i].substring(breakPoint + 1);
-
-                $("#pictureCarousel").append("<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('" + description + "'); return false;\"><img src='https://4and.me/uploads/thumb_" + imageId + "_default_see_800x600.jpeg' /></a>");
-			  	
-			}
-			if (updatePictures.length == 0) {
-		  		$("#pictureDiv").hide();
-	  	  	}
-	  	} else {
-	  		$("#pictureDiv").hide();
-	  	}
-	  	
-	  	expandoCell.append("<div style='margin:5px;text-align:left;font-weight:bold;font-size:22px;'>" + elem.properties.name + ' in ' + elem.properties.villageName + "</div>"
-	  			+ "<P style='margin:5px;margin-top:10px;margin-bottom:50px;text-align:left;font-size:16px;'>" + elem.properties.project_summary + ""
-	  			+ "<button onclick=\"document.location='project.php?id=" + elem.properties.id + "';\">View Project Details</button></P>"
-	  			+ "<img style='position:absolute;top:5px;right:5px;width:24px;height:24px;cursor:pointer;' src='images/close_button.png' onclick='hideCell();window.event.stopPropagation();' />");
-		
-	  	selectedCell.append(expandoCell);
-	}
-
-
-	function hideCell(nextAction) {
-		if (expandoCell) {
-			expandoCell.remove();
-			expandoCell = null;
-		}
-		if (!selectedCell) {
-			return;
-		}
-	    
-	    $('#modalBlock').hide();
-		
-		if (nextAction) {
-			selectedCell.animate({ width: '30vh'}, 500, nextAction);
-		} else {
-			selectedCell.animate({ width: '30vh'}, 500);
-		}
-
-		if ($(window).width() < 720) {
-			selectedCell.css('backgroundImage', "url('https://4and.me/uploads/" + selectedElem.properties.picture_filename + "')");
-		}
-		
-		selectedCell.css("cursor", "pointer");
-		selectedCell = null;
-		$("#pictureDiv").empty();
-		$("#pictureDiv").hide();
-	    
-	    newVillageDiv = $("#villageDivNew");
-	    if (newVillageDiv) {
-		    	newVillageDiv.off('click');
-		    	$("#expandedNewVillage").off("click");
-	    }
-	    		
-	    selectedElem = null;
 	}
 	
 	function drawVillage(elem, hasListener) {
@@ -463,7 +323,7 @@ div.progressBar .ui-progressbar-value {
 			ne[1] += .005;
 			sw[1] -= .005;
 		}
-		map.fitBounds([ sw, ne ], {
+		map.flyTo({ center: village.geometry.coordinates, zoom: 18,
 			padding : {
 				top : 20,
 				bottom : 150,
@@ -471,6 +331,8 @@ div.progressBar .ui-progressbar-value {
 				right : 20
 			}
 		});
+
+		$("#buttonHolder").show();
 		retryCount = 1;
 	}
 	
