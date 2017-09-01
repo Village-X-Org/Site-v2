@@ -65,7 +65,7 @@ while ($projRow = fgetcsv($fptr)) {
         $villageId = $row['village_id'];
         doQuery("UPDATE villages SET village_district=$districtId, village_pending=0 WHERE village_id=$villageId");
     } else {
-        doQuery("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending) VALUES ('$village', $districtId, $lat, $lng, 0)");
+        doQuery("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending, village_country) VALUES ('$village', $districtId, $lat, $lng, 0, $countryId)");
         $villageId = $link->insert_id;;
     }
    
@@ -99,8 +99,9 @@ while ($projRow = fgetcsv($fptr)) {
         $projectId = $row['project_id'];
         doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y') WHERE project_id=$projectId");
     } else {
-        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_example_image_id) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId)");
+        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId)");
         $projectId = $link->insert_id;
+        print "New Project Added for $village";
     }
     
     doQuery("DELETE FROM project_costs WHERE pc_project_id=$projectId");
