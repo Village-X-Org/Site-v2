@@ -367,7 +367,7 @@ $(document).ready(function(){
 					particular, we collect data on several development indicators,
 					calculate an annual village development score, and observe how
 					that score changes over time. You can learn more about our
-					methodolody <a href="#!">here</a>.
+					methodology <a href="impacts.php">here</a>.
 					</b>
 				</p>
 					
