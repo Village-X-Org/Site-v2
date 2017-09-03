@@ -41,29 +41,7 @@ require_once("utilities.php");
             <button class="center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(false, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;">Donate</button>
     
             </div>
-            
-            <script>
-                        var handler = StripeCheckout.configure({
-                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
-                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-                          locale: 'auto',
-                          token: function(token) {
-                        	  $.post("subscribe.php", {
-                			        stripeToken: token.id,
-                			        stripeEmail: token.email,
-                			        stripeAmount: $('#donation_amount').val() * 100
-                			    },
-                			    function(data, status) {
-                			    	 	Materialize.toast(data, 4000);
-                			    });
-                          }
-                        });
-                        
-                        // Close Checkout on page navigation:
-                        window.addEventListener('popstate', function() {
-                          handler.close();
-                        });
-            </script>
+           
             
             </form>
             </div>

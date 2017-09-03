@@ -101,7 +101,7 @@ $(document).ready(function(){
 					<br>
 					
 		<div class="center-align">
-				<a href='one_time_payment_view.php'
+				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>'
 				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate</a>
