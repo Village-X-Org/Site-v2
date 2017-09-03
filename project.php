@@ -332,7 +332,7 @@ $(document).ready(function(){
 				           <h5 style='text-align: center;'>Field Updates</h5>
                                 <div class='carousel'>";
             }
-            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('{$row['pu_description']}'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
+            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
             $count++;
         }
         if ($count > 0) {
