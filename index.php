@@ -4,7 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta property="fb:appid" content=""/>
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://4and.me/images/header1.jpg"/>
 <meta property="og:title" content="Village X"/>
