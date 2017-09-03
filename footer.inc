@@ -27,42 +27,22 @@
 					<div class="modal-footer">
 						<div class='row'>
 							<div class='col'>
-								$ <input type='text' id='amountText' value='20' />
+								$ <input type='text' id='footerAmountText' value='20' />
 							</div>
 							<div class='col'>
                         			<button id="customButton">Subscribe!</button>
                         		</div>
                         </div>
                         <script>
-                        var handler = StripeCheckout.configure({
-                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
-                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-                          locale: 'auto',
-                          token: function(token) {
-                        	  $.post("subscribe.php", {
-                			        stripeToken: token.id,
-                			        stripeEmail: token.email,
-                			        stripeAmount: $('#amountText').val() * 100
-                			    },
-                			    function(data, status) {
-                			    	 	Materialize.toast(data, 4000);
-                			    });
-                          }
-                        });
-                        
+
                         document.getElementById('customButton').addEventListener('click', function(e) {
                           // Open Checkout with further options:
                           handler.open({
                             name: 'Village X Org',
                             description: 'Monthly Subscription',
-                            amount: $('#amountText').val() * 100
+                            amount: $('#footerAmountText').val() * 100
                           });
                           e.preventDefault();
-                        });
-                        
-                        // Close Checkout on page navigation:
-                        window.addEventListener('popstate', function() {
-                          handler.close();
                         });
                         </script>
 					</div>

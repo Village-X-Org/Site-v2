@@ -56,6 +56,7 @@
 </style>
 
 <script>
+var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -176,13 +177,19 @@ var handler = StripeCheckout.configure({
   image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
   locale: 'auto',
   token: function(token) {
+	  console.log(token);
 	  $.post("donateWithStripe.php", {
 	        stripeToken: token.id,
 	        stripeEmail: token.email,
-	        stripeAmount: $('#amountText').val() * 100
+	        stripeAmount: donationAmount,
+	        isSubscription: donationIsSubscription,
+	        firstName: donationFirstName,
+	        lastName: donationLastName,
+	        projectId: donationProjectId
 	    },
 	    function(data, status) {
 	    	 	Materialize.toast(data, 4000);
+	    	 	setTimeout(function(){ document.location = 'project.php'; }, 2000);
 	    });
   }
 });
@@ -192,12 +199,16 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, donationAmount, title, projectId) {
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName) {
+  donationIsSubscription = subscribe;
+  donationFirstName = firstName;
+  donationLastName = lastName;
+  donationProjectId = projectId;
+  donationAmount = amount;
   handler.open({
     name: 'Village X Org',
     description: (subscribe ? 'Monthly Subscription' : title),
-    amount: donationAmount,
-    isSubscription: subscribe
+    amount: donationAmount
   });
 }
 // End Stripe
@@ -272,43 +283,28 @@ function donateWithStripe(subscribe, donationAmount, title, projectId) {
 		</div>
 	</nav>
 		<div id="donationModal" class="modal">
-		<div class="modal-content" style='color:black;'>
-			<h4>Make a Donation</h4>
-			<p>Define all the parameters here.</p>
-		</div>
-		<div class='row'>
+        		<div class="modal-content" style='color:black;'>
+        			<h4>Make a Donation</h4>
+        			<p>Define all the parameters here.</p>
+        		</div>
+        		<div class='row'>
 					<div class="modal-footer">
 						<div class='row'>
 							<div class='col'>
-								$ <input type='text' id='donationAmountText' value='20' />
+								$ <input type='text' id='headerAmountText' value='20' />
 							</div>
 							<div class='col'>
                         			<button id="modalDonateButton">Donate!</button>
                         		</div>
                         </div>
                         <script>
-                        var handler = StripeCheckout.configure({
-                          key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
-                          image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-                          locale: 'auto',
-                              token: function(token) {
-                            	  $.post("recordDonation.php", {
-                    			        stripeToken: token.id,
-                    			        stripeEmail: token.email,
-                    			        stripeAmount: $('#donationAmountText').val() * 100
-                    			    },
-                    			    function(data, status) {
-                    			    	 	Materialize.toast(data, 4000);
-                    			    });
-                              }
-                        });
                         
                         document.getElementById('modalDonateButton').addEventListener('click', function(e) {
                           // Open Checkout with further options:
                           handler.open({
                             name: 'Village X Org',
                             description: 'Monthly Subscription',
-                            amount: $('#amountText').val() * 100
+                            amount: $('#headerAmountText').val() * 100
                           });
                           e.preventDefault();
                         });
