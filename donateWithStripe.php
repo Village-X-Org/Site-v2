@@ -41,11 +41,13 @@ if ($isSubscription) {
          ));
          $subscriptionId = "'$planName'";
         print "You successfully registered for monthly payments.  Thank you!";
+        sendMailSend($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
     } catch (Exception $e) {
         print "Problem creating subscription: ".$e->getMessage();
     }
 } else {
     print "Your donation was successful!  Thank you!";
+    sendMailSend($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
 }
 
 doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $amount, $projectId, $subscriptionId)");

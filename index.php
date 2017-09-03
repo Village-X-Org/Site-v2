@@ -4,12 +4,14 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta property="fb:appid" content=""/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://4and.me/images/header1.jpg"/>
+<meta property="og:title" content="Village X"/>
+<meta property="og:url" content="https://4and.me/"/>
+<meta property="og:description" content="Fund Projects That Villages Choose - because everyone deserves a voice in development"/>
 <?php include('header.inc'); ?>
-<script>
-function addSubscription() {
-	
-}
-</script>
+
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper"
