@@ -13,7 +13,7 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount, COUNT(donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
+$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount, COUNT(donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $pictureFilename = $row['similar_picture'];
@@ -25,6 +25,8 @@ while ($row = $result->fetch_assoc()) {
     $impact = $row['project_impact'];
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
+    $villageLat = $row['village_lat'];
+    $villageLng = $row['village_lng'];
     $funded = $row['project_funded'];
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
@@ -65,7 +67,7 @@ $(document).ready(function(){
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>
@@ -141,7 +143,7 @@ $(document).ready(function(){
 	<nav class="light blue" role="navigation">
     		<ul class="center-align row">
           <li class="waves-effect col s3">
-              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/35.340250,-15.477861,14.60,-17.60,30.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
+              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
           </li>
           <li class="waves-effect col s3" style="display: inline">
               <a href="#pics"><i class="material-icons" style="font-size: 30px">collections</i></a>
