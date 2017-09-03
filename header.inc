@@ -189,7 +189,7 @@ var handler = StripeCheckout.configure({
 	    },
 	    function(data, status) {
 	    	 	Materialize.toast(data, 4000);
-	    	 	setTimeout(function(){ document.location = 'project.php'; }, 2000);
+	    	 	setTimeout(function(){ document.location = 'project.php'; }, 500);
 	    });
   }
 });

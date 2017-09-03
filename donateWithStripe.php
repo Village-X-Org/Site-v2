@@ -48,4 +48,5 @@ if ($isSubscription) {
     print "Your donation was successful!  Thank you!";
 }
 
-doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $donationAmount, $projectId, $subscriptionId)");
+doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_is_pending) VALUES ($donorId, $donationAmount, $projectId, $subscriptionId, ".($subscriptionId ? 1 : 0).")");
+
