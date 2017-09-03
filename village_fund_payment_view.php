@@ -5,6 +5,7 @@ require_once("utilities.php");
 <html lang="en">
 <head>
 <?php include('header.inc');
+
 ?>
 
            
@@ -26,19 +27,19 @@ require_once("utilities.php");
             <h5 class="center-align">/ month</h5>
             <div class="input-field col s6">
             <label for="uname">First Name</label>
-            <input id="uname" name="uname" type="text" data-error=".errorTxt1">
+            <input id="donationFirstName" name="uname" type="text" data-error=".errorTxt1">
             <div class="errorTxt1"></div>
             </div>
             <div class="input-field col s6">
             <label for="last_name">Last Name</label>
-            <input id="uname" name="uname" type="text" data-error=".errorTxt1">
+            <input id="donationLastName" name="uname" type="text" data-error=".errorTxt1">
             <div class="errorTxt1"></div>
             </div>
             </div>
             </div>
             
             <div class="input-field col s12">
-            <button class="center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(false, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>); return false;">Donate</button>
+            <button class="center-align waves-effect waves-light light blue lighten-1 btn-large submit" type="submit" style="width:100%;" onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val()); return false;">Donate</button>
     
             </div>
            

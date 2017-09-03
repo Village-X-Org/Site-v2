@@ -13,27 +13,6 @@ $donationAmount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 
-if ($isSubscription) {
-    $plan = \Stripe\Plan::create(array(
-        "name" => "Basic Plan",
-        "id" => "basic-monthly",
-        "interval" => "month",
-        "currency" => "usd",
-        "amount" => paramInt('stripeAmount'),
-    ));
-    
-    try {
-        $customer = \Stripe\Customer::create(array(
-            'email' => $donorEmail,
-            'source'  => param('stripeToken'),
-            'plan' => 'basic-monthly'
-        ));
-        print "You successfully registered for monthly payments.  Thank you!";
-        exit;
-    } catch(Exception $e) {
-        print "Registration failed.  Please contact us and let us know this happened.";
-    }
-}
 $result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
@@ -41,4 +20,32 @@ if ($row = $result->fetch_assoc()) {
     doQuery("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES ('$donorEmail', '$donorFirstName', '$donorLastName')");
     $donorId = $link->insert_id;
 }
-doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_is_subscription) VALUES ($donorId, $donationAmount, $projectId, $isSubscription)");
+
+$subscriptionId = "NULL";
+
+if ($isSubscription) {
+    $planName = "basic-monthly-$donorId-".time();
+     try {
+         $plan = \Stripe\Plan::create(array(
+             "name" => "Basic Plan",
+             "id" => $planName,
+             "interval" => "month",
+             "currency" => "usd",
+             "amount" => $donationAmount,
+         ));
+             
+         $customer = \Stripe\Customer::create(array(
+             'email' => $donorEmail,
+             'source'  => param('stripeToken'),
+             'plan' => $plan
+         ));
+         $subscriptionId = "'$planName'";
+        print "You successfully registered for monthly payments.  Thank you!";
+    } catch (Exception $e) {
+        print "Problem creating subscription: ".$e->getMessage();
+    }
+} else {
+    print "Your donation was successful!  Thank you!";
+}
+
+doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $donationAmount, $projectId, $subscriptionId)");
