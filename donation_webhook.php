@@ -8,15 +8,15 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     $subscriptionId = $event_json->data->object->lines->data->plan->id;
     $amount = $event_json->data->object->total;
     $donorId = -1;
-    $result = doQuery("SELECT donation_donor_id, donation_is_pending FROM donations WHERE donation_subscription_id='$subscriptionId'");
+    $result = doQuery("SELECT donation_donor_id FROM donations WHERE donation_subscription_id='$subscriptionId' AND donation_date>DATE_SUB(NOW(), INTERVAL 1 DAY)");
     if ($row = $result->fetch_assoc()) {
         $donorId = $row['donor_id'];
-        $isPending = $row['donation_is_pending'];
     }
     if ($isPending) {
         doQuery("UPDATE donations SET donation_amount=$amount, donation_is_pending=0 WHERE donation_subscription_id='$subscriptionId'");   
     } else {
         doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, $amount, '$subscriptionId')");
+        include("disburseSubscriptionPayment.php");
     }
 }
 

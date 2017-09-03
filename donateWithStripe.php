@@ -9,7 +9,7 @@ require_once('lib/stripe/init.php');
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
-$donationAmount = param('stripeAmount');
+$amount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 
@@ -29,9 +29,9 @@ if ($isSubscription) {
          $plan = \Stripe\Plan::create(array(
              "name" => "Basic Plan",
              "id" => $planName,
-             "interval" => "month",
+             "interval" => "day",
              "currency" => "usd",
-             "amount" => $donationAmount,
+             "amount" => $amount,
          ));
              
          $customer = \Stripe\Customer::create(array(
@@ -48,5 +48,9 @@ if ($isSubscription) {
     print "Your donation was successful!  Thank you!";
 }
 
-doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_is_pending) VALUES ($donorId, $donationAmount, $projectId, $subscriptionId, ".($subscriptionId ? 1 : 0).")");
-
+doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $amount, $projectId, $subscriptionId)");
+if ($projectId) {
+    doQuery("UPDATE projects SET project_funded=project_funded + $amount WHERE project_id=$projectId");
+} else {
+    include("disburseSubscriptionPayment.php");
+}
