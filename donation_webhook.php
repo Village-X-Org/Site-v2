@@ -1,18 +1,28 @@
 <?php
 require_once("utilities.php");
 
-// Set your secret key: remember to change this to your live secret key in production
-// See your keys here: https://dashboard.stripe.com/account/apikeys
-\Stripe\Stripe::setApiKey("sk_test_DGoi26vx76FlFn7sen3IDSC8");
-
 // Retrieve the request's body and parse it as JSON
 $input = @file_get_contents("php://input");
 $event_json = json_decode($input);
+if ($event_json->type == 'invoice.payment_succeeded') {
+    $subscriptionId = $event_json->data->object->lines->data->plan->id;
+    $amount = $event_json->data->object->total;
+    $donorId = -1;
+    $result = doQuery("SELECT donation_donor_id FROM donations WHERE donation_subscription_id='$subscriptionId' AND donation_date>DATE_SUB(NOW(), INTERVAL 1 DAY)");
+    if ($row = $result->fetch_assoc()) {
+        $donorId = $row['donor_id'];
+    }
+    if ($isPending) {
+        doQuery("UPDATE donations SET donation_amount=$amount, donation_is_pending=0 WHERE donation_subscription_id='$subscriptionId'");   
+    } else {
+        doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, $amount, '$subscriptionId')");
+        include("disburseSubscriptionPayment.php");
+    }
+}
 
-// Do something with $event_json
+doQuery("INSERT INTO webhook_events (we_content) VALUES ('".$link->escape_string($input)."')");
 
-doQuery("INSERT INTO stripe_donations (stripe_token, stripe_is_subscription, stripe_amount) VALUES (.., .., ..)");
+//http_response_code(200); // PHP 5.4 or greater
 
-http_response_code(200); // PHP 5.4 or greater
-
+?>
 
