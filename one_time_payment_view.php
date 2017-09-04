@@ -6,14 +6,16 @@ require_once("utilities.php");
 <head>
 <?php include('header.inc');
 $projectId = paramInt('id');
-$result = doQuery("SELECT project_name, project_budget, village_name, country_label FROM projects 
+$result = doQuery("SELECT project_name, project_budget, village_name, country_label, picture_filename FROM projects 
         JOIN villages ON project_village_id=village_id 
-        JOIN countries ON village_country=country_id 
+        JOIN countries ON village_country=country_id
+        JOIN pictures ON project_similar_image_id=picture_id 
         WHERE project_id=$projectId");
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $villageName = $row['village_name'];
     $projectBudget = $row['project_budget'];
+    $similarPicture = $row['picture_filename'];
     $countryName = $row['country_label'];
     $communityContribution = $projectBudget * .05;
 }
@@ -60,7 +62,7 @@ if ($row = $result->fetch_assoc()) {
 	</div>
 		
 		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-			<img src="temp/mlenga_4116.jpg" class="responsive-img" style="border-radius:20px;">
+			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" class="responsive-img" style="border-radius:20px;">
 			<p>Here's a similar project.</p>
 		</div>
 		

@@ -4,6 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://4and.me/images/header1.jpg"/>
@@ -112,10 +113,10 @@ while ($row = $result->fetch_assoc()) {
     $projectTotal = $row['project_budget'];
     $fundedPercent = $funded / $projectTotal * 100;
     $villageContribution = $projectTotal * .05;
-    print "<div class='col s12 m6 l4' style='min-width:225px;'>
+    print "<div class='col s12 m6 l4 waves-effect waves-block waves-light ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
 			<div class='card sticky-action hoverable'>
 				<div class='card-image waves-effect waves-block waves-light'>
-					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}' onclick=\"document.location='project.php?id=$projectId';\">
+					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
 				</div>
 				<div class='card-content'>
 					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
