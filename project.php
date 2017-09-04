@@ -106,10 +106,10 @@ $(document).ready(function(){
 		<div class="center-align">
 		
 				<?php if ($funded < $total) { ?>
-				<button href='one_time_payment_view.php?id=<?php print $projectId; ?>'
+				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>'
 				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
-				<i class="material-icons left">favorite_border</i>Donate</button>
+				<i class="material-icons left">favorite_border</i>Donate</a>
 				<?php } else { ?>
 				<button 
 				class="btn-large grey">
