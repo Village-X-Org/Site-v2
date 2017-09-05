@@ -15,6 +15,65 @@
 </div>
 
 <div class="container">
+
+<div class="row">
+			
+			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
+
+				<h5 style="text-align: center"><b>Development Scores Over Time</b></h5>
+				<h6 style="text-align: center"><b>Partner Villages (blue) v. Control Villages (gray)</b></h6>
+			<div>
+				<canvas id="chart1" width="350" height="350"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart1").getContext('2d');
+
+				var chart1 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ 2014, 2015, 2016],
+						datasets : [ {
+							label: "Partner Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "#6495ED",
+                             pointBackgroundColor: "#6495ED",
+                             pointRadius: 10,
+							data : [ 11.92, 12.42, 16.93 ],
+							cubicInterpolationMode: 'monotone',
+						}, 
+
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+							data : [ 13.72, 12.11, 9.5 ],
+							cubicInterpolationMode: 'monotone',
+						}]
+						}, 
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : false,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>
+		</div>
+	</div>
 	
 	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
 			Why do we say "reward good development"?
