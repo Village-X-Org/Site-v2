@@ -20,10 +20,8 @@ require_once("utilities.php");
 
 <div class="container">
 
-	<div class="section"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
-			Three words: let locals lead.
-	</h4></div> 
-		
+	<div class="section"></div> 	
+	
 		<div class="video-container" style="border-style:solid"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
       	</div>
