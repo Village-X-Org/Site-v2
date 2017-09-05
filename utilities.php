@@ -16,12 +16,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$trace = print_r(debug_backtrace(), true);
 	//doQuery("INSERT INTO error_log (error_message, error_file, error_lineno, error_name) VALUES ('$errstr', '$errfile', '$errline', '$name')");
 	$serverInfo = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').' '.(isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '').' '.(isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '').' '.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').' '.(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '').' '.(isset($_SERVER['USER_AGENT']) ? $_SERVER['USER_AGENT'] : '').' '.(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : ''); 
-	if (isset($_SESSION['pcv_user_id'])) {
-		$session_user_id = $_SESSION['pcv_user_id'];
-	} else {
-		$session_user_id = 0;
-	}
-	//sendMailSend(getAdminEmail(), "Diagnostic Error ($session_user_id): $errstr", "$serverInfo\n\n$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
+	sendMailSend(getAdminEmail(), "VillageX Diagnostic Error ($session_user_id): $errstr", "$serverInfo\n\n$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
 	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr</P>";
 	exit();
 }

@@ -21,7 +21,7 @@ while ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $villageName = $row['village_name'];
  
-    $donationAmount = min($amount, $remaining);
+    $donationAmount = round(min($amount, $remaining), 2);
     $amount -= $donationAmount;
     doQuery("INSERT INTO subscription_disbursals (sd_amount, sd_project_id, sd_donor_id) VALUES ($donationAmount, $projectId, $donorId)");
     doQuery("UPDATE projects SET project_funded=project_funded + $donationAmount WHERE project_id=$projectId");
