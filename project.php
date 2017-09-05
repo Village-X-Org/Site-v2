@@ -53,10 +53,10 @@ $(document).ready(function(){
 </script>
 
 <div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 
 	<div class="parallax">
-		<img style="width:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
+		<img style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
 	</div>
 </div>
 
@@ -95,7 +95,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$<?php print $villageContribution; ?> contributed, $<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
+		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
 				
 					<br>
 					
@@ -222,9 +222,9 @@ $(document).ready(function(){
 			?>
     			<div class="row">
     				<div class="col s12 m9 l9">
-    					<div class="card-panel grey lighten-5 z-depth-1">
-    						<div class="row valign-wrapper">
-    							<div class="col s12 m4 l4">
+    					<div class="grey lighten-5 z-depth-1">
+    						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
+    							<div class="col s12 m4 l4 center-align">
     							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
     								alt="" class="responsive-img circle"
     								style="width: 100px; height: 100px;">
@@ -380,7 +380,7 @@ $(document).ready(function(){
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-							data : [ 13, 12.2, 12.7 ],
+                             data : [ 13.72, 12.11, 9.5 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
