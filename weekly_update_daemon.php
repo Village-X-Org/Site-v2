@@ -31,6 +31,6 @@ while ($row = $result->fetch_assoc()) {
     $emailBuffer .= "<TR><TD><img src='".PICTURES_DIR.$updatePicture."' style='width:400px;' /></TD><TD>$updateTime<BR>$updateText</TD>";
 }
 if (strlen($emailBuffer) > 5) {
-    sendMailSend($email, "Project Updates for this Past Week", $emailBuffer, "admin@adventureanywhere.org", "admin@adventureanywhere.org");
+    sendMail($email, "Project Updates for this Past Week", $emailBuffer, "Village X <jdepree@gmail.com>");
 }
 ?>

@@ -5,6 +5,9 @@ require_once('config.php');
 $link = getDBConn();
 session_start();
 
+define('MAX_MAIL_PER_REQUEST', 10);
+define('MAX_MAIL_PER_HOUR', 600);
+
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
 } else {
@@ -36,26 +39,34 @@ function emailAdmin($subject, $str) {
 }
 
 function sendMail($receiver, $subject, $body, $from) {
-	global $affAbbr; 
-
+    global $link;
+    
 	$body = str_replace("\\r\\n", "\n", $body);
 	$body = str_replace("\\n", "\n", $body);
-	
+
 	$subject = stripslashes($subject);
 	$body = stripslashes($body);
 	$caret = strpos($from, '<');
 	$fromName = 0;
+	$fromEmail = 0;
 	if ($caret > 0) {
-		$fromName = trim(substr($from, 0, $caret - 1));
+	    $fromName = trim(substr($from, 0, $caret - 1));
+	    $fromEmail = substr($from, $caret + 1, strlen($from) - $caret - 2);
+	} else {
+	    $fromEmail = $fromName = $from;
 	}
-	$from =  "From: ".($fromName ? $fromName : $affAbbr)." <".getAdminEmail().">\r\nReply-To: ".$from;
+	if (1) {
+	    $from =  "From: $fromName <".getAdminEmail().">\r\nReply-To: ".($fromEmail ? $fromEmail : $from);
+	} else {
+	    $from = "From: $from";
+	}
 	$to = $receiver;
-
+	
 	if (strlen($to) < 2) {
-		return 0;
+	    return 0;
 	}
-
-	sendMailSend($receiver, $subject, $body, $from);
+	
+	doQuery("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES ('".$link->real_escape_string($subject)."', '".$link->real_escape_string($body)."', '".$link->real_escape_string($fromName)."', '".$link->real_escape_string($to)."', '".$link->real_escape_string($fromEmail)."')");
 	
 	return 1;
 }
