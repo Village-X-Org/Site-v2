@@ -17,15 +17,14 @@ function addSubscription() {
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund
-					Projects That Villages Choose</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Africa</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
 				<br>
 				<br>
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111">because
-					everyone deserves a voice in development</h5>
+				<h5 class="header center light text-shadow: 2px 2px 7px #111111">
+					by funding projects that villages choose</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">
@@ -45,7 +44,7 @@ function addSubscription() {
 
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">You can disrupt extreme poverty in rural Africa</h4>
+	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
 	<div class="section">
@@ -53,49 +52,104 @@ function addSubscription() {
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text">
-						<img src="images/icon_village.png" height="75px" width="75px">
-					</h2>
+					<!-- <h2 class="center brown-text">
+						<img style="border:5px solid black" class="circle" src="temp/Bakili.jpg" height="275px" width="275px">
+					</h2> -->
+				
+				<h2 class="center brown-text">
+					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
+						<source src="temp/nachuma_fetching_cropped.mp4" type="video/mp4">
+					</video>
+				</h2>
+					
 					<h5 class="center">Find a village</h5>
 
 					<p class="light center">Search our projects page or interactive map for tenacious villages battling extreme poverty in rural
-						Africa. Find a village-led development project that resonates with you.</p>
+						Africa. Find a village-led development project that speaks to you.</p>
+						
+					<h6 class="center">#letlocalslead</h6>
 
 				</div>
 			</div>
 
 			<div class="col s12 m4">
 				<div class="icon-block">
+					<!-- <h2 class="center brown-text">
+						<img style="border:5px solid black" class="circle" src="temp/building_school.jpg" height="275px" width="275px">
+					</h2> -->
+					
 					<h2 class="center brown-text">
-						<img src="images/icon_heart.png" height="75px" width="75px">
-					</h2>
+					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
+						<source src="temp/drilling_well_cropped.mp4" type="video/mp4">
+					</video>
+				</h2>
+					
 					<h5 class="center">Fund a project</h5>
 
-					<p class="light center">Show your generosity to rural villages that not only identify local solutions to their
-					biggest problems, but also put skin in the game by contributing labor, materials, and, importantly, cash.</p>
+					<p class="light center">Make a donation directly to rural villages that not only identify local solutions to their
+					biggest problems, but also contribute labor, materials, and, importantly, cash.</p>
+					
+					<h6 class="center">#aidthatswanted</h6>
 				</div>
 			</div>
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center black-text">
-						<i class="material-icons" style="font-size: 75px">timeline</i>
+					<!-- <h2 class="center black-text">
+						<img style="border:5px solid black;"class="circle" src="temp/kids_on_school_floor.jpg" height="275px" width="275px">
+					</h2> -->
+					
+					<h2 class="center brown-text">
+					<video autoplay loop muted height="250px" width="250x" class="circle" style="border:5px solid black; object-fit:cover;">
+						<source src="temp/kids_borehole_cropped.mp4" type="video/mp4">
+					</video>
 					</h2>
-					<h5 class="center">Track your impact</h5>
+					
+					<h5 class="center">Follow your impact</h5>
 
 					<p class="light center">Enjoy multimedia updates and data breakdowns from the field providing a vivid accounting
-					 of exactly how your direct donation made a difference. It's our 100% transparency guarantee.</p>
+					 of how your donations change development outcomes for rural Africans.</p>
+					 
+					 <h6 class="center">#headandheart</h6>
 				</div>
 			</div>
 		</div>
 
 	</div>
 </div>
-<hr width="85%">
+
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper"
+		style="height: 100%; width: 100%;">
+		<div class="row center">
+			
+			<div style="padding: 5% 5% 5% 5%;">
+				<br>
+				<br>
+		
+				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:2% 2% 2% 2%">elevating local voices with data and direct giving</h5>
+			</div>
+
+			<div style="padding: 0% 5% 5% 5%;">
+				<br>
+				<br>
+				<a href="model.php" id="download-button"
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
+			</div>
+
+			<div class="parallax">
+				<img src="images/woman_with_goat.jpg">
+			</div>
+			
+		<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:2% 2% 2% 2%">a platform for 390 million Africans living in extreme poverty</h6>
+		</div>
+	</div>
+</div>
 
 <div class="container">
 	<br>
-	<h5 class="header center brown-text text-lighten-2">Featured Projects</h5>
+	<h4 class="header center light blue-text text-lighten-2">Featured Projects</h4>
 	<div class="section">
 
 		<!--   project section   -->
@@ -214,19 +268,77 @@ while ($row = $result->fetch_assoc()) {
 
 <div class="container">
 	<br>
-	<h5 class="header center brown-text text-lighten-2">Our Impact</h5>
-	<div class="section">
+	<h4 class="header center light blue-text text-lighten-2">Data-Verified Impact of Donations</h4>
+	
+	<div class="row">
+			
+			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
 
+				<h6 style="text-align: center"><b>Average Composite Development Scores: Partner Villages (blue) v. Control Villages (gray)</b></h6>
+			<div>
+				<canvas id="chart1" width="350" height="350"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart1").getContext('2d');
+
+				var chart1 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ 2014, 2015, 2016],
+						datasets : [ {
+							label: "Partner Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "#6495ED",
+                             pointBackgroundColor: "#6495ED",
+                             pointRadius: 10,
+							data : [ 11.92, 12.42, 16.93 ],
+							cubicInterpolationMode: 'monotone',
+						}, 
+
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+							data : [ 13.72, 12.11, 9.5 ],
+							cubicInterpolationMode: 'monotone',
+						}]
+						}, 
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : false,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>
+		</div>
+	</div>
+	
+	<div class="section">
+	
 		<!--   Icon Section   -->
 		<div class="row center">
-			<br>
 			<div class="col s12 m3 l3">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">trending_down</i>
 					<h5 class="center brown-test">waterborne illness</h5>
 					<h4 class="light center">-70%</h4>
 					<h6 class="light center">p-value&lt;=0.01</h6>
-					<br> <br> <br>
+					<br> 
 				</div>
 			</div>
 
@@ -236,7 +348,7 @@ while ($row = $result->fetch_assoc()) {
 					<h5 class="center brown-test">boys/girls in nursery school</h5>
 					<h4 class="light center">+66%/60%</h4>
 					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> <br> <br>
+					<br> 
 				</div>
 			</div>
 
@@ -246,7 +358,7 @@ while ($row = $result->fetch_assoc()) {
 					<h5 class="center brown-test">non-agricultural businesses</h5>
 					<h4 class="light center">+100%</h4>
 					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> <br> <br>
+					<br> 
 				</div>
 			</div>
 
@@ -256,7 +368,7 @@ while ($row = $result->fetch_assoc()) {
 					<h5 class="center brown-test">girls in high school</h5>
 					<h4 class="light center">+80%</h4>
 					<h6 class="light center">p-value~0.1</h6>
-					<br> <br> <br>
+					<br>
 				</div>
 			</div>
 		</div>
