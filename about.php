@@ -192,8 +192,8 @@
     					
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More about Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree is the CTO and primary software developer for Village X.</p> 
-      					<p>He builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
+      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
