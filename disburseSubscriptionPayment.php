@@ -26,11 +26,11 @@ while ($row = $result->fetch_assoc()) {
     doQuery("INSERT INTO subscription_disbursals (sd_amount, sd_project_id, sd_donor_id) VALUES ($donationAmount, $projectId, $donorId)");
     doQuery("UPDATE projects SET project_funded=project_funded + $donationAmount WHERE project_id=$projectId");
     $body .= "<TR><TD><B>$$donationAmount</B></TD><TD>$projectName in $villageName</TD><TR>";
-    if ($amount == 0) {
+    if ($amount < .01) {
         break;
     }
 }
-if ($amount > 0) {
+if ($amount >= .01) {
     doQuery("INSERT INTO subscription_disbursals (sd_amount, sd_project_id, sd_donor_id) VALUES ($amount, -1, $donorId)");
     $body .= "<TR><TD><B>$amount</B></TD><TD>Leftover for manual distribution</TD></TR>";
 }
