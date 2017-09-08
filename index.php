@@ -5,13 +5,6 @@ require_once("utilities.php");
 <html lang="en">
 <head>
 
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:type" content="website" />
-<meta property="og:image" content="temp/IMG_1707.jpg"/>
-<meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
-<meta property="og:url" content="https://4and.me/"/>
-<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Villages choose and partially finance the projects."/>
-
 <?php include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container"
