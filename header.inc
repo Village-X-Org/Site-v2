@@ -1,5 +1,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php if (!isset($metaProvided) || !$metaProvided) { ?>
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content="temp/IMG_1707.jpg"/>
+<meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
+<meta property="og:url" content="https://4and.me/"/>
+<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Villages choose and partially finance the projects."/>
+<?php } ?>
 <title>Village X Org - Fund Projects Villages Choose</title>
 
 <!-- CSS  -->

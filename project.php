@@ -48,6 +48,7 @@ while ($row = $result->fetch_assoc()) {
 <meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
 <meta property="og:description" content="<?php print $summary; ?>"/>
 <?php 
+$metaProvided = 1;
 include('header.inc'); 
 ?>
 <script>
