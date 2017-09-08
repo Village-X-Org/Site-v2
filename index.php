@@ -5,12 +5,6 @@ require_once("utilities.php");
 <html lang="en">
 <head>
 
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:type" content="website" />
-<meta property="og:image" content="https://4and.me/images/header1.jpg"/>
-<meta property="og:title" content="Village X"/>
-<meta property="og:url" content="https://4and.me/"/>
-<meta property="og:description" content="Fund Projects That Villages Choose - because everyone deserves a voice in development"/>
 <?php include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container"
@@ -55,13 +49,13 @@ require_once("utilities.php");
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<!-- <h2 class="center brown-text">
+					<h2 class="center brown-text hide-on-med-and-up">
 						<img style="border:5px solid black" class="circle" src="temp/Bakili.jpg" height="275px" width="275px">
-					</h2> -->
+					</h2> 
 				
-				<h2 class="center brown-text">
+				<h2 class="center brown-text hide-on-small-only">
 					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
-						<source src="temp/nachuma_fetching_cropped.mp4" type="video/mp4">
+						<source src="images/nachuma_water_low.mp4" type="video/mp4">
 					</video>
 				</h2>
 					
@@ -77,13 +71,13 @@ require_once("utilities.php");
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<!-- <h2 class="center brown-text">
+					<h2 class="center brown-text hide-on-med-and-up">
 						<img style="border:5px solid black" class="circle" src="temp/building_school.jpg" height="275px" width="275px">
-					</h2> -->
+					</h2>
 					
-					<h2 class="center brown-text">
+					<h2 class="center brown-text hide-on-small-only">
 					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
-						<source src="temp/drilling_well_cropped.mp4" type="video/mp4">
+						<source src="images/geyser_spray_low.mp4" type="video/mp4">
 					</video>
 				</h2>
 					
@@ -98,13 +92,13 @@ require_once("utilities.php");
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<!-- <h2 class="center black-text">
+					<h2 class="center black-text hide-on-med-and-up">
 						<img style="border:5px solid black;"class="circle" src="temp/kids_on_school_floor.jpg" height="275px" width="275px">
-					</h2> -->
+					</h2>
 					
-					<h2 class="center brown-text">
-					<video autoplay loop muted height="250px" width="250x" class="circle" style="border:5px solid black; object-fit:cover;">
-						<source src="temp/kids_borehole_cropped.mp4" type="video/mp4">
+					<h2 class="center brown-text hide-on-small-only">
+					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
+						<source src="images/kids_borehole_low.mp4" type="video/mp4">
 					</video>
 					</h2>
 					
@@ -131,7 +125,7 @@ require_once("utilities.php");
 				<br>
 				<br>
 		
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:2% 2% 2% 2%">elevating local voices with data and direct giving</h5>
+				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:2% 2% 2% 2%">elevating entire communities with data and direct giving</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">

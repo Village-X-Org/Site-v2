@@ -1,5 +1,13 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php if (!isset($metaProvided) || !$metaProvided) { ?>
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content="temp/IMG_1707.jpg"/>
+<meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
+<meta property="og:url" content="https://4and.me/"/>
+<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Villages choose and partially finance the projects."/>
+<?php } ?>
 <title>Village X Org - Fund Projects Villages Choose</title>
 
 <!-- CSS  -->
@@ -214,48 +222,68 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 // End Stripe
 
 </script>
-<style type="text/css">
-  .input-field div.error{
-    position: relative;
-    top: -1rem;
-    left: 0rem;
-    font-size: 0.8rem;
-    color:#FF4081;
-    -webkit-transform: translateY(0%);
-    -ms-transform: translateY(0%);
-    -o-transform: translateY(0%);
-    transform: translateY(0%);
-  }
-  .input-field label.active{
-      width:100%;
-  }
-  .left-alert input[type=text] + label:after, 
-  .left-alert input[type=password] + label:after, 
-  .left-alert input[type=email] + label:after, 
-  .left-alert input[type=url] + label:after, 
-  .left-alert input[type=time] + label:after,
-  .left-alert input[type=date] + label:after, 
-  .left-alert input[type=datetime-local] + label:after, 
-  .left-alert input[type=tel] + label:after, 
-  .left-alert input[type=number] + label:after, 
-  .left-alert input[type=search] + label:after, 
-  .left-alert textarea.materialize-textarea + label:after{
-      left:0px;
-  }
-  .right-alert input[type=text] + label:after, 
-  .right-alert input[type=password] + label:after, 
-  .right-alert input[type=email] + label:after, 
-  .right-alert input[type=url] + label:after, 
-  .right-alert input[type=time] + label:after,
-  .right-alert input[type=date] + label:after, 
-  .right-alert input[type=datetime-local] + label:after, 
-  .right-alert input[type=tel] + label:after, 
-  .right-alert input[type=number] + label:after, 
-  .right-alert input[type=search] + label:after, 
-  .right-alert textarea.materialize-textarea + label:after{
-      right:70px;
-  }
-</style>
+
+<!-- form validation code -->
+<script src="https://jqueryvalidation.org/files/lib/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script>
+
+	$().ready(function() {
+		// validate the comment form when it is submitted
+		$("#commentForm").validate();
+		
+		// validate signup form on keyup and submit
+		$("#signupForm").validate({
+			rules: {
+				firstname: "required",
+				lastname: "required",
+				username: {
+					required: true,
+					minlength: 2
+				},
+				password: {
+					required: true,
+					minlength: 5
+				},
+				confirm_password: {
+					required: true,
+					minlength: 5,
+					equalTo: "#password"
+				},
+				email: {
+					required: true,
+					email: true
+				},
+				topic: {
+					required: "#newsletter:checked",
+					minlength: 2
+				},
+				agree: "required"
+			},
+			messages: {
+				firstname: "Please enter your firstname",
+				lastname: "Please enter your lastname",
+				username: {
+					required: "Please enter a username",
+					minlength: "Your username must consist of at least 2 characters"
+				},
+				password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long"
+				},
+				confirm_password: {
+					required: "Please provide a password",
+					minlength: "Your password must be at least 5 characters long",
+					equalTo: "Please enter the same password as above"
+				},
+				email: "Please enter a valid email address",
+				agree: "Please accept our policy",
+				topic: "Please select at least 2 topics"
+			}
+		});
+	});
+	</script>
+
 </head>
 
 <body>
