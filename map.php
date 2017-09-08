@@ -136,7 +136,7 @@ div.progressBar .ui-progressbar-value {
 	// Global variables.
 	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, timer;
 
-	mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ';
+	mapboxgl.accessToken = '<?php print MAPBOX_API_KEY; ?>;
 
 	var map = new mapboxgl.Map({
 		container : 'mapContainer',

@@ -45,7 +45,7 @@ require_once("utilities.php");
 	
 	<div class="section"><div class='row'>		
 			<?php 
-		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status<>'cancelled' ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
+		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, ROUND(project_funded) AS project_funded, project_budget, project_type, SUM(donation_amount) as donationSum FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_status<>'cancelled' GROUP BY project_id ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
 
 		$count = 0;
 		while ($row = $result->fetch_assoc()) {
@@ -53,6 +53,7 @@ require_once("utilities.php");
 		    $projectName = $row['project_name'];
 		      $funded = $row['project_funded'];
 		      $projectTotal = $row['project_budget'];
+		      $donationSum = $row['donationSum'];
 		      $fundedPercent = $funded / $projectTotal * 100;
 		      $villageContribution = $projectTotal * .05;
 
@@ -85,7 +86,7 @@ require_once("utilities.php");
 						</h6>
 						<br>
 						<h6>
-							<b>\$$funded out of \$$projectTotal</b>
+							<b>\$$funded ($".round($donationSum).") out of \$$projectTotal</b>
 						</h6>
 						<div class='progress'>
 							<div class='determinate' style='width: $fundedPercent%'></div>
