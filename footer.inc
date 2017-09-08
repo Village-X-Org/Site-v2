@@ -106,6 +106,29 @@
 						href="https://twitter.com/villagexorg" target="_blank"><i
 							style="font-size: 15px" class="fa">&#xf081;</i> Twitter</a></li>
 				</ul>
+				
+				<h6 class="white-text">
+						<b>Share Our Mission</b>
+					</h6>
+					
+					
+						<a
+							href="https://www.facebook.com/dialog/feed?
+  									app_id=<?php print FACEBOOK_APP_ID; ?>
+  									&display=popup&caption=This site disrupts extreme poverty in Africa
+  									&link=https://www.4and.me"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/facebook.png"
+							alt="Facebook" align="middle" height="30" width="30" />
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a
+							href="https://twitter.com/share?url=https://www.4and.me;text=This site disrupts extreme Poverty in Africa&amp;hashtags=villagex"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/twitter.png"
+							alt="Twitter" align="middle" height="30" width="30" />
+						</a>
+				
 			</div>
 
 			<div class="col l4 s12">
@@ -130,7 +153,7 @@
 					<p style="line-height:1.5;">©Village X Org, 2017 <br>501(c)(3) nonprofit <br>EIN: 47&#65279;-1845825&#65279;</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
-					<p style="line-height:1.5;"><b>Our technology disrupts extreme poverty by democratizing local development. Aiming to reach 390 million people in rural Africa.</b></p>
+					<p style="line-height:1.5;"><b>Our technology disrupts extreme poverty with data and direct giving. Aiming to reach 390 million people in rural Africa.</b></p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height:1.5;">
@@ -141,61 +164,6 @@
 		</div>
 	</div>
 </footer>
-
-    <!--materialize js-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
-    
-    <script type="text/javascript">
-    $("#formValidate").validate({
-        rules: {
-            uname: {
-                required: true,
-                minlength: 5
-            },
-            cemail: {
-                required: true,
-                email:true
-            },
-            password: {
-				required: true,
-				minlength: 5
-			},
-			cpassword: {
-				required: true,
-				minlength: 5,
-				equalTo: "#password"
-			},
-			curl: {
-                required: true,
-                url:true
-            },
-            crole:"required",
-            ccomment: {
-				required: true,
-				minlength: 15
-            },
-            cgender:"required",
-			cagree:"required",
-        },
-        //For custom messages
-        messages: {
-            uname:{
-                required: "Enter a username",
-                minlength: "Enter at least 5 characters"
-            },
-            curl: "Enter your website",
-        },
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }
-     });
-    </script>
 
 </body>
 
