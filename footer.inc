@@ -1,11 +1,3 @@
-
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:type" content="website" />
-<meta property="og:image" content="temp/IMG_1707.jpg"/>
-<meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
-<meta property="og:url" content="https://4and.me/"/>
-<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Villages choose and partially finance the projects."/>
-
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot valign-wrapper"
