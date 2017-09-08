@@ -85,7 +85,7 @@ $(document).ready(function(){
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
 				<img src="<?php print PICTURES_DIR."/$pictureFilename"; ?>" class="responsive-img" style='width:400px;'>
 				<p class="valign-wrapper; center-align">
-					<b>Here's a similar project.</b>
+					<b>Here's a photo of a similar project.</b>
 				<br>
 		</div>
 				
