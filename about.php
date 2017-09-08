@@ -17,7 +17,8 @@
 
 <div class="container">
 <br>
-<h5 class="col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align">Village X is the crowdfunding site for African villages fighting extreme poverty.</h5>
+<h4 class="col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align">Village X is a data and direct giving platform for 390 million rural Africans fighting extreme poverty.</h4>
+	<br>
 	<div class="row">
 	<div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
@@ -94,37 +95,6 @@
 	</div>
 
 <div>
-    <img class="responsive-img" style="padding: 2% 2% 2% 2%;" src="images/chitenje.jpg">
-    </div>
-
-<ul class="collapsible" data-collapsible="accordion">
-    <li>
-      <div class="collapsible-header center-align"><div class="flow-text" style="width:100%"><b>Three Things We Want To Learn</b></div>
-      <br><div><i class="material-icons center-align" style="font-size: 100px; width:100%">lightbulb_outline</i></div><br><br><div class="center-align" style="width:100%">(click to reveal)</div></div>
-      <div class="collapsible-body">
-      	<span>
-            <span class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 0% 2% 0%;"><b>What do villages want? Let's put extreme poverty villages on the map and reveal their project preferences.</b></span>
-        		<span style="width:100%; padding: 2% 0% 2% 0%;">In our work, clean water projects are foundational. Other popular projects include goat herds, nursery schools, teacher houses,
-        		and agricultural inputs. What's interesting is not only what villages choose, but the order in which they choose it.</span>  
-        		<span class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 0% 2% 0%;"><b>Why do villages choose certain projects over others? Let's build models that predict projects villages will chose and use
-        		that information to better match development resources with local preferences.</b></span> 
-        		<span style="padding: 2% 0% 2% 0%; width:100%;">Discrete choice models and machine learning can illuminate how projects chosen by villages relate to their 
-        		characteristics (e.g., demographics), in much the same way that car companies predict buying habits based on customer profiles. At this time we 
-        		do not have enough data to perform such an analysis, although we hope that changes soon.</span>
-        		<span class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 0% 2% 0%;"><b>What's the quantitative impact per dollar of funding village-led projects? Let's figure out when village-led projects
-        		add the most development bang per buck and, conversely, where the cost of outside experise is justified.</b></span> 
-        		<span style="width:100%; padding: 2% 0% 2% 0%;">We measure 13 development indicators per village, in partner villages and villages that want to partner with Village X. We then apply a 
-        		difference-in-difference model to detect impacts. Village X partner villages saw large and statistically significant 
-        		increases in five indicators: nursery school attendance increased by 66% for boys and 60%; secondary school attendance for girls increased 
-        		by 80%; non-agricultural businesses increased by 100%; and waterborne illnesses decreased by 70%. Projects cost about 50% of the average NGO
-        		price, and villages typically complete them within one month of funding. We expect to replicate or improve these findings as we expand to 
-        		more villages inside and outside of Malawi. Find more on our impact <a href="impacts.php">here</a>.</span>
-        	</span>
-	 </div>
-    </li>
- </ul>
- 
- <div>
     <img class="responsive-img" style="padding: 2% 2% 2% 2%;" src="images/chitenje.jpg">
     </div>
 	
