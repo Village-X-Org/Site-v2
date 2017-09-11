@@ -2,6 +2,11 @@
 require_once("utilities.php");
 require_once("utility_readSheets.php");
 
+$spreadsheetId = '1UInm1feS27-iZz6TTZEZvP_1yY4VrW8psqrm7ZBPskc';
+$range = 'CompScore!A1:AC97';
+$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+$sheet = $response->getValues();
+
 $rowCount = 0;
 foreach ($sheet as $statRow) {
     if ($rowCount == 0) {

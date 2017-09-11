@@ -75,8 +75,3 @@ function expandHomeDirectory($path) {
 // Get the API client and construct the service object.
 $client = getClient();
 $service = new Google_Service_Sheets($client);
-
-$spreadsheetId = '1YdE_8GNlF1HAKSnDozYZm9cRt0uzD877mRPgEF4Ub2A';
-$range = 'Sheet1!A1:AH36';
-$response = $service->spreadsheets_values->get($spreadsheetId, $range);
-$sheet = $response->getValues();
