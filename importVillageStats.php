@@ -1,9 +1,13 @@
 <?php
 require_once("utilities.php");
+require_once("utility_readSheets.php");
 
-$fptr = fopen('data/comp_score.csv', 'r');
-$labels = fgetcsv($fptr);
-while ($statRow = fgetcsv($fptr)) {
+$rowCount = 0;
+foreach ($sheet as $statRow) {
+    if ($rowCount == 0) {
+        $labels = $statRow;
+        continue;
+    }
     $village = $statRow[1];
     $year = $statRow[2];
     
@@ -29,5 +33,7 @@ while ($statRow = fgetcsv($fptr)) {
             doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES ($typeId, $villageId, {$statRow[$j]}, $year)");
         }
     }
+    
+    $rowCount++;
 }
 ?>
