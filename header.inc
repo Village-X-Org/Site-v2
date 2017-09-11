@@ -35,7 +35,8 @@
 	src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.1.0/mapbox-gl-geocoder.min.js'></script>
 
 
-      <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="js/materialize.min.js"></script>
 <script src="js/materialize.js"></script>
 <script src="js/init.js"></script>
 
@@ -224,7 +225,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </script>
 
 <!-- form validation code -->
-<script src="https://jqueryvalidation.org/files/lib/jquery.js"></script>
+<!--   <script src="https://jqueryvalidation.org/files/lib/jquery.js"></script> (removed because it created conflicts with other functionality) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <script>
 
