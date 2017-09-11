@@ -180,7 +180,7 @@ $(document).ready(function(){
 		<div class="row">
 				<div class="col s12 <?php print ($hasEvents ? "m9 l9" : "m12 l12"); ?>">
 				<div class="card grey lighten-5 z-depth-1">
-					<div class="card-content brown-text text-lighten-2 line-height: 120%">
+					<div class="card-content brown-text text-lighten-2">
 
 							<p class="flow-text"><?php print $summary; ?>
 							</p>

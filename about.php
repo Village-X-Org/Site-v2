@@ -17,7 +17,7 @@
 
 <div class="container">
 <br>
-<h4 class="col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align">Village X is a data and direct giving platform for 390 million rural Africans fighting extreme poverty.</h4>
+<h4 class="card col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align" style="padding: 5% 5% 5% 5%; width:100%;">Village X is a data and direct giving platform for 390 million rural Africans fighting extreme poverty.</h4>
 	<br>
 	<div class="row">
 	<div class="col s12 m6 l6">
@@ -29,7 +29,7 @@
       <div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
           <div class="center-align flow-text"><b>Mission</b></div><br>
-          <div class="center-align flow-text">Disrupt extreme poverty in rural, sub-Saharan Africa.</div>
+          <div class="center-align flow-text">Disrupt extreme poverty in rural Africa.</div>
         </div>
       </div>
     </div>
@@ -59,8 +59,7 @@
     <div class="card-panel" style="padding: 5% 5% 5% 5%;">
 		<div class="row">
           <div class="center-align flow-text"><b>Our Solution</b></div><br>
-          <div class="center-align flow-text">Build and deploy technology that democratizes local 
-          development at scale.</div>
+          <div class="center-align flow-text">Build and deploy technology that disrupts extreme poverty at scale using data and direct giving.</div>
       </div>
    
 	<div class="section">
@@ -194,10 +193,16 @@
     					
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Myson<i class="material-icons right">close</i></span>
-      					<p>Myson grew up in villages within the Upper Shire Highlands of Southern Malawi. He holds a Malawi School Certificate 
-      					of Education (MSCE) and an Advanced Diploma in Public Health. He has worked for a variety of NGOs in Malawi over the 
-      					last 7 years. Myson has served as Village X’s Malawi Country Director since 2014.
-</p>
+      					<p>Myson Jambo is from the Zomba District of Malawi. He holds an advanced degree in public health, for which he wrote his research paper 
+      					on the impact of urbanization on human health in peri-urban areas. He has several years of experience working with NGOs in the area of
+      					programming at the community level, including vetting and facilitating projects, youth engagement programming, peer mentoring, monitoring 
+      					and evaluation, meeting with government officials and other stakeholders, managing and administering finances, and responding to community 
+      					concerns/offering assistance where needed. He also volunteered to approve proposals from other organizations and collected projects records 
+      					for one year with Friends of Malawi. He spent another year conducting health and hygiene trainings and small loans management with the 
+      					Association for Rural Community Development. He believes that communities having the power to decide on projects is the key to successes 
+      					in development efforts. When he is not working, Myson enjoys traveling and watching football with 
+      					his favorite team, Manchester United.
+						</p>
     					</div>
   				</div>
 					
@@ -298,7 +303,13 @@
     					
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Katherine<i class="material-icons right">close</i></span>
-      					<p>Here is some more information about this product that is only revealed once clicked on.</p>
+      					<p>Katherine Raynor is originally from New York. After receiving her undergraduate degree in Human Services at SUNY New Paltz, she worked for Family Services, 
+      					a local non-profit organization in New York, for seven years. She started as Youth Prevention and Education Coordinator in their domestic violence program, 
+      					before being promoted to Volunteer Coordinator, and ultimately to Program Coordinator. During her work there, she received her Masters in Social Work from 
+      					Adelphi University, which also enabled her to work with Family Services' Crime Victim and Rape Crisis Center, as well as their Nurturing Parent Program. 
+      					After joining the Peace Corps in 2015, she served in El Salvador as a Youth Development Volunteer. Due to increasing gang violence in the country, Katherine's 
+      					service was interrupted after ten months when all Volunteers country-wide were removed. While saddened by the circumstances surrounding the interruption of her 
+      					service, Katherine is excited that it has given her the opportunity to come to Malawi as a Peace Corps Response Volunteer.</p>
     					</div>
   				</div>
 					
