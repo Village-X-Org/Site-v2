@@ -36,4 +36,4 @@ if ($amount >= .01) {
 }
 $body .= "</TABLE>";
 
-sendMailSend(getAdminEmail(), "Monthly Distribution of $donorFirstName $donorLastName's Subscription", $body);
+sendMail(getAdminEmail(), "Monthly Distribution of $donorFirstName $donorLastName's Subscription", $body, getAdminEmail());

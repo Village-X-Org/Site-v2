@@ -19,15 +19,15 @@
     $result = doQuery("SELECT project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
         FROM projects JOIN villages ON project_id=$projectId AND project_village_id=village_id
         JOIN countries ON country_id=village_country
-        JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id AND peopleStats.stat_year=YEAR(project_date_posted)
-        JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id AND hhStats.stat_year=YEAR(project_date_posted)
-        JOIN pictures ON picture_id=project_banner_image_id"); 
+        JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
+        JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
+        JOIN pictures ON picture_id=project_banner_image_id ORDER BY hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1"); 
     if ($row = $result->fetch_assoc()) {
         $projectName = $row['project_name'];
         $villageName = $row['village_name'];
         $countryName = $row['country_label'];
         $numPeople = $row['peopleCount'];
-        $householdCount = $row['householdCount'];
+        $numHouseholds = $row['householdCount'];
     }
 }?>
 <div class="container">
@@ -37,7 +37,7 @@
         
           <div class="black-text flow-text"><p class="flow-text">
           	<p><?php print $donorFirstName; ?>,</p> 
-			<p>We processed your first monthly donation of $<?php print ($amount / 100); ?>! We applied this donation to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>. You have disrupted extreme poverty for <?php print $numPeople; ?> people and <?php print $numHouseholds; ?> households.</p>
+			<p>We processed your first monthly donation of $<?php print $donationAmountDollars; ?>! We applied this donation to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>. You have disrupted extreme poverty for <?php print $numPeople; ?> people and <?php print $numHouseholds; ?> households.</p>
 			<p>We deeply appreciate your commitment to Village X Org. With each montly donation, we'll send you a thank you email identifying the project you've supported.</p> 
 			<p>Please stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
         		<p>Sincerely,</p>
