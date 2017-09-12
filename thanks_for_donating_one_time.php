@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
 <?php include('header.inc'); ?>
-<?php $result = doQuery("SELECT project_name, village_name, country_name, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+<?php $result = doQuery("SELECT project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
         FROM projects JOIN villages ON project_id=$projectId AND project_village_id=village_id
-        JOIN countries ON country_id=village_country 
-        JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id AND peopleStats.stat_year=project_year
-        JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id AND hhStats.stat_year=project_year
+        JOIN countries ON country_id=village_country
+        JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id AND peopleStats.stat_year=YEAR(project_date_posted)
+        JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id AND hhStats.stat_year=YEAR(project_date_posted)
         JOIN pictures ON picture_id=project_banner_image_id"); 
 if ($row = $result->fetch_assoc()) {
     $villageName = $row['village_name'];
