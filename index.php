@@ -83,8 +83,8 @@ require_once("utilities.php");
 					
 					<h5 class="center">Fund a project</h5>
 
-					<p class="light center">Make a donation directly to rural villages that not only identify local solutions to their
-					biggest problems, but also contribute labor, materials, and, importantly, cash.</p>
+					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
+					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
 					
 					<h6 class="center">#aidthatswanted</h6>
 				</div>
