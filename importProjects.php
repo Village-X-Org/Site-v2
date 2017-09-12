@@ -38,6 +38,12 @@ foreach ($sheet as $projRow) {
     $dateProjectCompleted = $projRow[23];
     $projProfile = $projRow[24];
     $projExample = $projRow[25];
+    $summary = $projRow[27];
+    $problem = $projRow[28];
+    $solution = $projRow[29];
+    $partners = $projRow[30];
+    $impact = $projRow[31];
+    $funded = $projRow[32];
     
     $date = DateTime::createFromFormat("d/m/Y", $dateProjectPosted);
     $projYear = $date->format("Y");
@@ -106,9 +112,9 @@ foreach ($sheet as $projRow) {
     $result = doQuery("SELECT project_id FROM projects WHERE project_village_id=$villageId AND project_name='$projName'") ;
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
-        doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y') WHERE project_id=$projectId");
+        doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_funded=$funded WHERE project_id=$projectId");
     } else {
-        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId)");
+        doQuery("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded) VALUES ($villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded)");
         $projectId = $link->insert_id;
         print "New Project Added for $village";
     }
@@ -135,3 +141,8 @@ foreach ($sheet as $projRow) {
     
     $rowCount++;
 }
+
+include('getProjects.php');
+include('getVillages.php');
+
+?>
