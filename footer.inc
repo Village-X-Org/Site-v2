@@ -14,11 +14,7 @@
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href='village_fund_payment_view.php' 
 					>Give Monthly</a>	
-			<!--  	<script>
-                		$(document).ready(function(){
-                    		$('.modal').modal();
-                  	});
-                </script>
+
 				<div id="subscriptionModal" class="modal" style='color:black;'>
 					<div class="modal-content">
 						<h4>Give Monthly</h4>
