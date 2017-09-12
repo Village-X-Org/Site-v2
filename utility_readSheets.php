@@ -27,6 +27,7 @@ function getClient() {
   $client->setClientId(CLIENT_ID);
   $client->setScopes(SCOPES);
   $client->setAuthConfig(CLIENT_SECRET_PATH);
+  $client->setAccessType('offline');
 
   // Load previously authorized credentials from a file.
   $credentialsPath = expandHomeDirectory(CREDENTIALS_PATH);
