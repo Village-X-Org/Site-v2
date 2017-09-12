@@ -26,12 +26,12 @@
 								$ <input type='text' id='footerAmountText' value='20' />
 							</div>
 							<div class='col'>
-                        			<button id="customButton">Subscribe!</button>
+                        			<button id="monthlySubscribeButton">Subscribe!</button>
                         		</div>
                         </div>
                         <script>
 
-                        document.getElementById('customButton').addEventListener('click', function(e) {
+                        document.getElementById('monthlySubscribeButton').addEventListener('click', function(e) {
                           // Open Checkout with further options:
                           handler.open({
                             name: 'Village X Org',
@@ -42,7 +42,7 @@
                         });
                         </script>
 					</div>
-				</div> --->
+				</div>
 			</div>
 			<br>
 			<div class="row center">
@@ -91,56 +91,23 @@
       <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">To cancel your subscription, please enter your email address below and click on the "Submit" button.</p>
       <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can rejoin the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
     
-    <div class="section" id="jqueryvalidation" style="display:table; width:100%; padding:0% 10% 0% 10%">
-		<form style="width:100%" id="donateForm" method="get" action="">
-		<div class="col-project valign-wrapper" style="vertical-align: middle;">
-			
-         					<div class="row" style="padding:3% 3% 3% 3%; width:100%">
-         						<div class="input-field col s12 m12 l12 center-align">
-         							<i class="material-icons prefix" style="font-size:20px;">email&nbsp;&nbsp;</i>
-          							<input placeholder="jane@gmail.com" id="email" name="email" data-error=".errorTxt1" style="font-size:20px; color:blue;" id="email" type="email">
-          							<div class="errorTxt1"></div>
-          						</div>
-							</div>
-         </div>	   
-         <div class="col-project valign-wrapper" style="vertical-align: middle; width:100%">
-        			<div class="input-field col s12 m12 l12">
-        			<button id="myBtn" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Submit</button>
-				</div>
-
-	<script>
-document.getElementById("myBtn").onclick = function() {gotoStripe()};
-				
-	<script type="text/javascript">
-
-	$().ready(function() {
-		// validate donatation form on keyup and submit
-		$("#donateForm").validate({
-			rules: {
-				firstname: "required",
-				lastname: "required",
-				email: "required",
-			},
-		messages: {
-		      firstname: "this field is required",
-		      lastname: "this field is required",
-		      email: "this field is required",
-		},
-
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        }	
-		});
-	});
-	</script>
-				</div>
-              </form>
+    		<div class="section" id="jqueryvalidation" style="display:table; width:100%; padding:0% 10% 0% 10%">
+    			<form style="width:100%" id="donateForm" method="get" action="">
+        			<div class="col-project valign-wrapper" style="vertical-align: middle;">
+     					<div class="row" style="padding:3% 3% 3% 3%; width:100%">
+     						<div class="input-field col s12 m12 l12 center-align">
+     							<i class="material-icons prefix" style="font-size:20px;">email&nbsp;&nbsp;</i>
+      							<input placeholder="jane@gmail.com" id="email" name="email" data-error=".errorTxt1" style="font-size:20px; color:blue;" id="email" type="email">
+      							<div class="errorTxt1"></div>
+      						</div>
+						</div>
+                 	</div>	   
+                 	<div class="col-project valign-wrapper" style="vertical-align: middle; width:100%">
+                			<div class="input-field col s12 m12 l12">
+                			<button id="emailListSignupButton" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Submit</button>
+        				</div>
+        			</div>
+            </form>
 			
 		</div>
 	</div>	

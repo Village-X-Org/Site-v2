@@ -40,19 +40,23 @@ if ($isSubscription) {
              'plan' => $plan
          ));
          $subscriptionId = "'$planName'";
-        print "You successfully registered for monthly payments.  Thank you!";
-        sendMailSend($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
+        sendMail($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
     } catch (Exception $e) {
-        print "Problem creating subscription: ".$e->getMessage();
+        sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
 } else {
-    print "Your donation was successful!  Thank you!";
-    sendMailSend($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
+    sendMail($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
 }
 
-doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $amount, $projectId, $subscriptionId)");
+doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $amount / 100, $projectId, $subscriptionId)");
 if ($projectId) {
-    doQuery("UPDATE projects SET project_funded=project_funded + $amount WHERE project_id=$projectId");
+    doQuery("UPDATE projects SET project_funded=project_funded + ($amount / 100) WHERE project_id=$projectId");
 } else {
     include("disburseSubscriptionPayment.php");
+}
+
+if ($isSubscription) {
+    include("thanks_for_donating_monthly.php");
+} else {
+    include("thanks_for_donating_one_time.php");
 }

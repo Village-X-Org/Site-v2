@@ -50,7 +50,7 @@ if ($row = $result->fetch_assoc()) {
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>.</span>
          				<div class="row" style="padding:5% 5% 5% 5%;">
          				<h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
-         				<form class="col s12" style="width:100%" id="donateForm" method="get" action="">
+         				<form class="col s12" style="width:100%" id="donateForm">
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
@@ -67,22 +67,28 @@ if ($row = $result->fetch_assoc()) {
                               </div>
                            </div>
                            
-        			<div class="input-field col s12">
-        			<button id="myBtn" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Donate</button>
-				</div>
-
-	<script>
-document.getElementById("myBtn").onclick = function() {gotoStripe()};
-
+                    		   <div class="input-field col s12">
+                    				<button id="donationButton" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" 
+                    						name="action" style="width:100%;" onclick="gotoStripe(); return false;">
+                    					Donate
+                    				</button>
+            				   </div>
+				
+				
+              			</form>
+<script>
 function gotoStripe() {
-	amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); return false;);
+	amount = $('#donation_amount').val(); 
+	if (!amount) { 
+		amount = $('#donation_amount').attr('placeholder'); 
+	}
+	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
 }
 </script>
 				
 	<script type="text/javascript">
 
 	$().ready(function() {
-		// validate donatation form on keyup and submit
 		$("#donateForm").validate({
 			rules: {
 				firstname: "required",
@@ -105,10 +111,6 @@ function gotoStripe() {
 		});
 	});
 	</script>
-	
-
-				
-              </form>
              
         			</div>
 			</div>
