@@ -16,9 +16,14 @@ $isSubscription = param('isSubscription');
 $result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
+    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId");
+    if ($row = $result->fetch_assoc()) {
+        $donationCount = $row['donationCount'] + 1;
+    }
 } else {
     doQuery("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES ('$donorEmail', '$donorFirstName', '$donorLastName')");
     $donorId = $link->insert_id;
+    $donationCount = 1;
 }
 
 $subscriptionId = "NULL";
