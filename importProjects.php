@@ -1,9 +1,18 @@
 <?php
 require_once("utilities.php");
+require_once("utility_readSheets.php");
 
-$fptr = fopen('data/projects.csv', 'r');
-$labels = fgetcsv($fptr);
-while ($projRow = fgetcsv($fptr)) {
+$spreadsheetId = '1YdE_8GNlF1HAKSnDozYZm9cRt0uzD877mRPgEF4Ub2A';
+$range = 'Sheet1!A1:AH36';
+$response = $service->spreadsheets_values->get($spreadsheetId, $range);
+$sheet = $response->getValues();
+
+$rowCount = 0;
+foreach ($sheet as $projRow) {
+    if ($rowCount == 0) {
+        $labels = $projRow;
+        continue;
+    }
     $village = $projRow[1];
     $district = $projRow[2];
     $country = $projRow[3];
@@ -123,4 +132,6 @@ while ($projRow = fgetcsv($fptr)) {
     doQuery("DELETE FROM village_stats WHERE stat_village_id=$villageId AND (stat_type_id=18 OR stat_type_id=19) AND stat_year=$projYear");
     doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, $population, $projYear)");
     doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (19, $villageId, $households, $projYear)");
+    
+    $rowCount++;
 }
