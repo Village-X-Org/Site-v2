@@ -20,6 +20,150 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
+			"coordinates": [35.148, -15.83]
+		},
+		"properties": {
+			"id": "32",
+			"name": "Likoswe",
+			"picture_filename": "thumb_756_default_buy_list.jpeg",
+			"fundingCount": "1",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.83",
+			"boundsSwLng": "35.1476",
+			"boundsNeLat": "-15.8297",
+			"boundsNeLng": "35.148",
+			"projectCount": "1 in funding, 2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.523, -15.656]
+		},
+		"properties": {
+			"id": "33",
+			"name": "Maluwa",
+			"picture_filename": "thumb_757_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.656",
+			"boundsSwLng": "35.523",
+			"boundsNeLat": "-15.656",
+			"boundsNeLng": "35.523",
+			"projectCount": "1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3608, -15.8031]
+		},
+		"properties": {
+			"id": "34",
+			"name": "Manyumba",
+			"picture_filename": "thumb_766_default_buy_list.jpeg",
+			"fundingCount": "1",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.803",
+			"boundsSwLng": "35.361",
+			"boundsNeLat": "-15.803",
+			"boundsNeLng": "35.361",
+			"projectCount": "1 in funding, 1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.352, -15.486]
+		},
+		"properties": {
+			"id": "39",
+			"name": "Mlenga",
+			"picture_filename": "thumb_2087_default_buy_list.png",
+			"fundingCount": "1",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.486",
+			"boundsSwLng": "35.352",
+			"boundsNeLat": "-15.486",
+			"boundsNeLng": "35.352",
+			"projectCount": "1 in funding, 1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3756, -15.7012]
+		},
+		"properties": {
+			"id": "41",
+			"name": "Bakili",
+			"picture_filename": "thumb_2088_default_buy_list.png",
+			"fundingCount": "0",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.701",
+			"boundsSwLng": "35.376",
+			"boundsNeLat": "-15.701",
+			"boundsNeLng": "35.376",
+			"projectCount": "2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.219, -15.49]
+		},
+		"properties": {
+			"id": "42",
+			"name": "Chitimbe",
+			"picture_filename": "thumb_1476_default_buy_list.png",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.805",
+			"boundsSwLng": "35.352",
+			"boundsNeLat": "-15.805",
+			"boundsNeLng": "35.352",
+			"projectCount": "1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3519, -15.4858]
+		},
+		"properties": {
+			"id": "43",
+			"name": "Siyabu",
+			"picture_filename": "thumb_1496_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.486",
+			"boundsSwLng": "35.2128",
+			"boundsNeLat": "-15.3017",
+			"boundsNeLng": "35.352",
+			"projectCount": "2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3427, -15.4892]
+		},
+		"properties": {
+			"id": "44",
+			"name": "Nachuma",
+			"picture_filename": "thumb_1495_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.4892",
+			"boundsSwLng": "35.3519",
+			"boundsNeLat": "-15.4892",
+			"boundsNeLng": "35.3519",
+			"projectCount": "1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
 			"coordinates": [35.3463, -15.4745]
 		},
 		"properties": {

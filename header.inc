@@ -344,9 +344,4 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
                         </script>
 					</div>
 				</div>
-				<script>
-		  $(document).ready(function(){
-		    $('#donationModal').modal();
-		  });
-		</script>
 		</div>
