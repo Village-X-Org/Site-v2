@@ -14,6 +14,7 @@
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href='village_fund_payment_view.php' 
 					>Give Monthly</a>	
+
 				<div id="subscriptionModal" class="modal" style='color:black;'>
 					<div class="modal-content">
 						<h4>Give Monthly</h4>
@@ -41,7 +42,7 @@
                         });
                         </script>
 					</div>
-				</div>
+				</div> --->
 			</div>
 			<br>
 			<div class="row center">
@@ -61,9 +62,97 @@
 				<h5
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
 					/ month</h5>
-			</div>
+					
+				<br><br><br>
+	
+	
+				<!-- Modal Trigger -->
+	<div style="padding: 20% 0% 0% 0%">
+  <script>
+	
+  $(document).ready(function(){
+	     $('.modal').modal({
+	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
+	      opacity: .5, // Opacity of modal background
+	      inDuration: 300, // Transition in duration
+	      outDuration: 200, // Transition out duration
+	      startingTop: '4%', // Starting top style attribute
+	      endingTop: '10%', // Ending top style attribute
+	   });
+	});
+  </script>	
+  <a class="modal-trigger" href="#modal1"><i>cancel a subscription</i></a>
+  	</div>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal modal-fixed-footer" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px;">
+    <div class="modal-content">
+      <h4 class="flow-text black-text" style="padding:10% 5% 0% 5%"><b>Subscription Cancellation</b></h4>
+      <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">To cancel your subscription, please enter your email address below and click on the "Submit" button.</p>
+      <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can rejoin the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
+    
+    <div class="section" id="jqueryvalidation" style="display:table; width:100%; padding:0% 10% 0% 10%">
+		<form style="width:100%" id="donateForm" method="get" action="">
+		<div class="col-project valign-wrapper" style="vertical-align: middle;">
+			
+         					<div class="row" style="padding:3% 3% 3% 3%; width:100%">
+         						<div class="input-field col s12 m12 l12 center-align">
+         							<i class="material-icons prefix" style="font-size:20px;">email&nbsp;&nbsp;</i>
+          							<input placeholder="jane@gmail.com" id="email" name="email" data-error=".errorTxt1" style="font-size:20px; color:blue;" id="email" type="email">
+          							<div class="errorTxt1"></div>
+          						</div>
+							</div>
+         </div>	   
+         <div class="col-project valign-wrapper" style="vertical-align: middle; width:100%">
+        			<div class="input-field col s12 m12 l12">
+        			<button id="myBtn" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Submit</button>
+				</div>
+
+	<script>
+document.getElementById("myBtn").onclick = function() {gotoStripe()};
+				
+	<script type="text/javascript">
+
+	$().ready(function() {
+		// validate donatation form on keyup and submit
+		$("#donateForm").validate({
+			rules: {
+				firstname: "required",
+				lastname: "required",
+				email: "required",
+			},
+		messages: {
+		      firstname: "this field is required",
+		      lastname: "this field is required",
+		      email: "this field is required",
+		},
+
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }	
+		});
+	});
+	</script>
+				</div>
+              </form>
+			
 		</div>
-	</div>
+	</div>	
+    
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close light-blue waves-effect waves-blue btn-flat ">close</a>
+    </div>
+  </div>
+  </div>
+			</div>
+		</div>	
+
 	<div class="parallax">
 		<img src="images/footer1.jpg" alt="Unsplashed background img 2">
 	</div>
@@ -123,8 +212,10 @@
 							src="https://simplesharebuttons.com/images/somacro/twitter.png"
 							alt="Twitter" align="middle" height="30" width="30" />
 						</a>
-				
+			
+				<br><br>
 			</div>
+			
 
 			<div class="col l4 s12">
 				<h6 class="white-text">
