@@ -51,9 +51,9 @@ require_once("utilities.php");
 		while ($row = $result->fetch_assoc()) {
 		    $projectId = $row['project_id'];
 		    $projectName = $row['project_name'];
-		      $funded = $row['project_funded'];
+		      $funded = round($row['project_funded']);
 		      $projectTotal = $row['project_budget'];
-		      $fundedPercent = $funded / $projectTotal * 100;
+		      $fundedPercent = round($funded / $projectTotal * 100);
 		      $villageContribution = $projectTotal * .05;
 
 		      $projectType = $row['project_type'];
