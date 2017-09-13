@@ -136,7 +136,7 @@ div.progressBar .ui-progressbar-value {
 	// Global variables.
 	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, timer;
 
-	mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ';
+	mapboxgl.accessToken = '<?php print MAPBOX_API_KEY; ?>';
 
 	var map = new mapboxgl.Map({
 		container : 'mapContainer',
@@ -241,10 +241,6 @@ div.progressBar .ui-progressbar-value {
 												+ "</button>"
 												+ "<button id='viewDetailsButton" + elem.properties.id + "' class='waves-effect waves-light' style='position:absolute;bottom:0px;right:0px;height:25px;display:none;text-align:center;font-size:14px;color:black;font-weight:bold;border-left: solid 1px;background-color:#59ACA1'>View Project Details</button>"
 												+ "</div>");
-						getProgressBar(elem.properties.id,
-								elem.properties.project_funded,
-								elem.properties.project_budget);
-
 						$("#projectDiv" + elem.properties.id).on(
 								"click", function(e) {
 					    				window.open("project.php?id=" + elem.properties.id, '_blank');
@@ -335,13 +331,5 @@ div.progressBar .ui-progressbar-value {
 		$("#buttonHolder").show();
 		retryCount = 1;
 	}
-	
-	function getProgressBar(id, funded, total) {
-	    $( "#progressbar" + id).progressbar({
-	      	value: Math.round(funded),
-	      	max: Math.round(total)
-	    });
-	}
-	
 </script>
 <?php include('footer.inc'); ?>

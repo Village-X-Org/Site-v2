@@ -11,11 +11,155 @@
 			"fundingCount": "1",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.74",
-			"boundsSwLng": "35.33",
-			"boundsNeLat": "-15.74",
-			"boundsNeLng": "35.33",
+			"boundsSwLat": "-15.7396",
+			"boundsSwLng": "35.3296",
+			"boundsNeLat": "-15.7396",
+			"boundsNeLng": "35.3296",
 			"projectCount": "1 in funding, 2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.148, -15.83]
+		},
+		"properties": {
+			"id": "32",
+			"name": "Likoswe",
+			"picture_filename": "thumb_756_default_buy_list.jpeg",
+			"fundingCount": "1",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.8297",
+			"boundsSwLng": "35.1476",
+			"boundsNeLat": "-15.8297",
+			"boundsNeLng": "35.1476",
+			"projectCount": "1 in funding, 2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.523, -15.656]
+		},
+		"properties": {
+			"id": "33",
+			"name": "Maluwa",
+			"picture_filename": "thumb_757_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.6562",
+			"boundsSwLng": "35.5227",
+			"boundsNeLat": "-15.6562",
+			"boundsNeLng": "35.5227",
+			"projectCount": "1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3608, -15.8031]
+		},
+		"properties": {
+			"id": "34",
+			"name": "Manyumba",
+			"picture_filename": "thumb_766_default_buy_list.jpeg",
+			"fundingCount": "1",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.4816",
+			"boundsSwLng": "35.2148",
+			"boundsNeLat": "-15.4816",
+			"boundsNeLng": "35.2148",
+			"projectCount": "1 in funding, 1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.352, -15.486]
+		},
+		"properties": {
+			"id": "39",
+			"name": "Mlenga",
+			"picture_filename": "thumb_2087_default_buy_list.png",
+			"fundingCount": "1",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.4858",
+			"boundsSwLng": "35.3519",
+			"boundsNeLat": "-15.4858",
+			"boundsNeLng": "35.3519",
+			"projectCount": "1 in funding, 1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3756, -15.7012]
+		},
+		"properties": {
+			"id": "41",
+			"name": "Bakili",
+			"picture_filename": "thumb_2088_default_buy_list.png",
+			"fundingCount": "0",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.7012",
+			"boundsSwLng": "35.3756",
+			"boundsNeLat": "-15.7012",
+			"boundsNeLng": "35.3756",
+			"projectCount": "2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.219, -15.49]
+		},
+		"properties": {
+			"id": "42",
+			"name": "Chitimbe",
+			"picture_filename": "thumb_1476_default_buy_list.png",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.4916",
+			"boundsSwLng": "35.2713",
+			"boundsNeLat": "-15.4916",
+			"boundsNeLng": "35.2713",
+			"projectCount": "1 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3519, -15.4858]
+		},
+		"properties": {
+			"id": "43",
+			"name": "Siyabu",
+			"picture_filename": "thumb_1496_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "2",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.3017",
+			"boundsSwLng": "35.2128",
+			"boundsNeLat": "-15.3017",
+			"boundsNeLng": "35.2128",
+			"projectCount": "2 completed"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3427, -15.4892]
+		},
+		"properties": {
+			"id": "44",
+			"name": "Nachuma",
+			"picture_filename": "thumb_1495_default_buy_list.jpeg",
+			"fundingCount": "0",
+			"completedCount": "1",
+			"constructionCount": "0",
+			"boundsSwLat": "-15.2914",
+			"boundsSwLng": "35.2216",
+			"boundsNeLat": "-15.2914",
+			"boundsNeLng": "35.2216",
+			"projectCount": "1 completed"}
 	},{
 		"type": "Feature",
 		"geometry": {
@@ -29,10 +173,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.474",
-			"boundsSwLng": "35.346",
-			"boundsNeLat": "-15.474",
-			"boundsNeLng": "35.346",
+			"boundsSwLat": "-15.4745",
+			"boundsSwLng": "35.3463",
+			"boundsNeLat": "-15.4745",
+			"boundsNeLng": "35.3463",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -47,10 +191,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.643",
-			"boundsSwLng": "35.528",
-			"boundsNeLat": "-15.643",
-			"boundsNeLng": "35.528",
+			"boundsSwLat": "-15.6433",
+			"boundsSwLng": "35.5282",
+			"boundsNeLat": "-15.6433",
+			"boundsNeLng": "35.5282",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -83,10 +227,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.805",
-			"boundsNeLng": "35.352",
+			"boundsSwLat": "-15.8049",
+			"boundsSwLng": "35.3518",
+			"boundsNeLat": "-15.8049",
+			"boundsNeLng": "35.3518",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -191,10 +335,10 @@
 			"fundingCount": "1",
 			"completedCount": "0",
 			"constructionCount": "0",
-			"boundsSwLat": "-14.2335",
-			"boundsSwLng": "34.4832",
-			"boundsNeLat": "-14.2335",
-			"boundsNeLng": "34.4832",
+			"boundsSwLat": "-14.4814",
+			"boundsSwLng": "34.8881",
+			"boundsNeLat": "-14.4814",
+			"boundsNeLng": "34.8881",
 			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
@@ -209,10 +353,10 @@
 			"fundingCount": "1",
 			"completedCount": "0",
 			"constructionCount": "0",
-			"boundsSwLat": "-14.189",
-			"boundsSwLng": "34.4834",
-			"boundsNeLat": "-14.189",
-			"boundsNeLng": "34.4834",
+			"boundsSwLat": "-14.5489",
+			"boundsSwLng": "34.8953",
+			"boundsNeLat": "-14.5489",
+			"boundsNeLng": "34.8953",
 			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",

@@ -14,11 +14,7 @@
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href='village_fund_payment_view.php' 
 					>Give Monthly</a>	
-			<!--  	<script>
-                		$(document).ready(function(){
-                    		$('.modal').modal();
-                  	});
-                </script>
+
 				<div id="subscriptionModal" class="modal" style='color:black;'>
 					<div class="modal-content">
 						<h4>Give Monthly</h4>
@@ -30,12 +26,12 @@
 								$ <input type='text' id='footerAmountText' value='20' />
 							</div>
 							<div class='col'>
-                        			<button id="customButton">Subscribe!</button>
+                        			<button id="monthlySubscribeButton">Subscribe!</button>
                         		</div>
                         </div>
                         <script>
 
-                        document.getElementById('customButton').addEventListener('click', function(e) {
+                        document.getElementById('monthlySubscribeButton').addEventListener('click', function(e) {
                           // Open Checkout with further options:
                           handler.open({
                             name: 'Village X Org',
@@ -46,7 +42,7 @@
                         });
                         </script>
 					</div>
-				</div> --->
+				</div>
 			</div>
 			<br>
 			<div class="row center">
@@ -85,92 +81,66 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal modal-fixed-footer">
     <div class="modal-content" id="jqueryvalidation">
-     <div class="container" style="width:100%">
-     <h4 class="flow-text black-text center-align" style="padding:5% 10% 5% 10%"><b>Subscription Cancellation</b></h4>
-      <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">To cancel your subscription, please enter your email address below and click on the "Submit" button.</p>
-      <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can rejoin the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
-    </div> 
-    
-    <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
-		<form id="cancelForm" method="get" action="" class="center-align">
-		
-		<div class="row center-align">
-		<div class="col s12 m12 l12 center-align">
-			
-         					
-         						<div class="input-field col s12 center-align">
-          							<input placeholder="jane@gmail.com" id="cancellation_email" name="email" required data-error=".errorTxt3" style="font-size:20px; color:black;" type="email">
-          							<div class="errorTxt3" style="font-size:10px; color:red; padding:1% 0% 0% 0%"></div>
-          						</div>
-         </div> 	
-         </div>
-         <div class="row">
-          						 <div class="input-field col s12 m6 l6">  
-                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required  data-error=".errorTxt1" style="font-size:20px; color:black;">
-                                  <div class="errorTxt1" style="font-size:10px; color:red; padding:2% 0% 0% 0%"></div>
-                                </div>
-                                <div class="input-field col s12 m6 l6">
-                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2" style="font-size:20px; color:black;">
-                                  <div class="errorTxt2" style="font-size:10px; color:red; padding:2% 0% 0% 0%"></div>
-                                </div>
-          						
-          						
-         </div>	  
-    
-         
-         <div class="row s12 m12 l12 center-align" style="padding:3% 0% 0% 0%;">
-        			<div class="input-field">
-        			<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Submit</button>
-				</div>
+     	<div class="container" style="width:100%">
+         <h4 class="flow-text black-text center-align" style="padding:5% 10% 5% 10%"><b>Subscription Cancellation</b></h4>
+          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
+        </div> 
+        <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
+        		<form id="cancelForm" method="get" action="" class="center-align">
+            		<div class="row center-align">
+            			<div class="col s12 m12 l12 center-align"> 					
+            				<div class="input-field col s12 center-align">
+            					<input placeholder="jane@gmail.com" id="cancellation_email" name="email" required data-error=".errorTxt3" style="font-size:20px; color:black;" type="email">
+            					<div class="errorTxt3" style="font-size:10px; color:red; padding:1% 0% 0% 0%"></div>
+            				</div>
+                     	</div> 	
+                     </div>
+            
+                     <div class="row s12 m12 l12 center-align" style="padding:0% 0% 0% 0%;">
+                			<div class="input-field">
+                				<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Cancel My Subscription</button>
+            			</div>
+            		</div>
+        		</form>		
+    		</div>
+	</div>	
 
-		</div>
-				
 	<script>
-document.getElementById("myBtn").onclick = function()
-	</script>
-				
-	<script>
-
-	$().ready(function() {
-		// validate donatation form on keyup and submit
-		$("#cancelForm").validate({
-			rules: {
-				firstname: "required",
-				lastname: "required",
-				email: {
-			        required: true,
-			        // Specify that email should be validated
-			        // by the built-in "email" rule
-			        email: true
-			      },
-			},
-		messages: {
-		      firstname: "this field is required",
-		      lastname: "this field is required",
-		      email: "please enter a valid email address",
-		},
-
-        errorElement : 'div',
-        errorPlacement: function(error, element) {
-          var placement = $(element).data('error');
-          if (placement) {
-            $(placement).append(error)
-          } else {
-            error.insertAfter(element);
-          }
-        },	
-		submitHandler: function(form) {
-		      form.submit();
-		    }
-		});
-	});
+        	$().ready(function() {
+        		// validate donatation form on keyup and submit
+        		$("#cancelForm").validate({
+        			rules: {
+        				firstname: "required",
+        				lastname: "required",
+        				email: {
+        			        required: true,
+        			        // Specify that email should be validated
+        			        // by the built-in "email" rule
+        			        email: true
+        			      },
+        			},
+        		messages: {
+        		      firstname: "this field is required",
+        		      lastname: "this field is required",
+        		      email: "please enter a valid email address",
+        		},
+        
+                errorElement : 'div',
+                errorPlacement: function(error, element) {
+                  var placement = $(element).data('error');
+                  if (placement) {
+                    $(placement).append(error)
+                  } else {
+                    error.insertAfter(element);
+                  }
+                },	
+        		submitHandler: function(form) {
+        		      form.submit();
+        		    }
+        		});
+        	});
 	</script>
 	
-              </form>
-			
-		</div>
-	</div>	
-    
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close black white-text waves-effect waves-blue btn-flat">close</a>
     </div>

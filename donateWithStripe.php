@@ -12,13 +12,19 @@ $donorLastName = param('lastName');
 $amount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
+$token = param('stripeToken');
 
 $result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
+    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_stripe_token<>'$token'");
+    if ($row = $result->fetch_assoc()) {
+        $donationCount = $row['donationCount'] + 1;
+    }
 } else {
     doQuery("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES ('$donorEmail', '$donorFirstName', '$donorLastName')");
     $donorId = $link->insert_id;
+    $donationCount = 1;
 }
 
 $subscriptionId = "NULL";
@@ -40,19 +46,30 @@ if ($isSubscription) {
              'plan' => $plan
          ));
          $subscriptionId = "'$planName'";
-        print "You successfully registered for monthly payments.  Thank you!";
-        sendMailSend($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
+        sendMail($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>", getAdminEmail());
     } catch (Exception $e) {
-        print "Problem creating subscription: ".$e->getMessage();
+        sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
 } else {
-    print "Your donation was successful!  Thank you!";
-    sendMailSend($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>");
+    sendMail($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>", getAdminEmail());
 }
 
-doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id) VALUES ($donorId, $amount, $projectId, $subscriptionId)");
-if ($projectId) {
-    doQuery("UPDATE projects SET project_funded=project_funded + $amount WHERE project_id=$projectId");
+$donationAmountDollars = $amount / 100;
+
+$result = doQuery("SELECT donation_id FROM donations WHERE donation_stripe_token='$token'");
+if ($row = $result->fetch_assoc()) {
+    $donationId = $row['donation_id'];
 } else {
-    include("disburseSubscriptionPayment.php");
+    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_stripe_token) VALUES ($donorId, $amount / 100, $projectId, $subscriptionId, '$token')");
+    if ($projectId) {
+        doQuery("UPDATE projects SET project_funded=project_funded + ($amount / 100) WHERE project_id=$projectId");
+    } else {
+        include("disburseSubscriptionPayment.php");
+    }
+}
+
+if ($isSubscription) {
+    include("thanks_for_donating_monthly.php");
+} else {
+    include("thanks_for_donating_one_time.php");
 }
