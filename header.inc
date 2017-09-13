@@ -6,8 +6,9 @@
 <meta property="og:image" content="temp/IMG_1707.jpg"/>
 <meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
 <meta property="og:url" content="https://4and.me/"/>
-<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Villages choose and partially finance the projects."/>
+<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
 <?php } ?>
+
 <title>Village X Org - Fund Projects Villages Choose</title>
 
 <!-- CSS  -->

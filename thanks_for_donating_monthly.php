@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
+<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
+<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
+
 <?php include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
@@ -38,6 +45,24 @@
           <div class="black-text flow-text"><p class="flow-text">
           	<p><?php print $donorFirstName; ?>,</p> 
 			<p>We processed your first monthly donation of $<?php print $donationAmountDollars; ?>! We applied this donation to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>. You have disrupted extreme poverty for <?php print $numPeople; ?> people and <?php print $numHouseholds; ?> households.</p>
+			<p class="center-align"><b>Share the good news:</b> 
+						<a
+							href="https://www.facebook.com/dialog/feed?
+  									app_id=<?php print FACEBOOK_APP_ID; ?>
+  									&display=popup&caption=I disrupt extreme poverty every month by funding projects villages choose.
+  									&link=https://www.4and.me"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/facebook.png"
+							alt="Facebook" align="middle" height="30" width="30" />
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a
+							href="https://twitter.com/share?url=https://www.4and.me;text=I donate monthly to projects chosen by extreme poverty villages in Africa.&amp;hashtags=villagex"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/twitter.png"
+							alt="Twitter" align="middle" height="30" width="30" />
+						</a>
+			</p>
 			<p>We deeply appreciate your commitment to Village X Org. With each montly donation, we'll send you a thank you email identifying the project you've supported.</p> 
 			<p>Please stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
         		<p>Sincerely,</p>
@@ -47,4 +72,5 @@
     </div>
 	</div>
 </div>
-<?php include('footer.inc'); ?>
+</body>
+</html>

@@ -23,6 +23,12 @@ require_once("utilities.php");
   }
   </style>
 
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
+<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
+<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
+
 <?php include('header.inc');
 $projectId = paramInt('id');
 $result = doQuery("SELECT project_name, project_budget, village_name, country_label, picture_filename FROM projects 
@@ -54,8 +60,8 @@ if ($row = $result->fetch_assoc()) {
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
-         							<i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
+         							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
+          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
@@ -98,7 +104,9 @@ if ($row = $result->fetch_assoc()) {
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
     }
+</script>
 
+<script>
 	$().ready(function() {
 		$("#donateForm").validate({
 			rules: {
