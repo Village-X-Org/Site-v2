@@ -9,7 +9,7 @@ $sheet = $response->getValues();
 
 $rowCount = 0;
 foreach ($sheet as $statRow) {
-    if ($rowCount == 0) {
+    if ($rowCount++ == 0) {
         $labels = $statRow;
         continue;
     }
@@ -38,7 +38,6 @@ foreach ($sheet as $statRow) {
             doQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES ($typeId, $villageId, {$statRow[$j]}, $year)");
         }
     }
-    
-    $rowCount++;
 }
+
 ?>

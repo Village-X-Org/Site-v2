@@ -27,7 +27,7 @@ while ($row = $result->fetch_assoc()) {
     $villageName = $row['village_name'];
     $villageLat = $row['village_lat'];
     $villageLng = $row['village_lng'];
-    $funded = $row['project_funded'];
+    $funded = round($row['project_funded']);
     $total = $row['project_budget'];
     $projectType = $row['project_type'];
     $staffId = $row['project_staff_id'];
@@ -218,7 +218,7 @@ $(document).ready(function(){
 			</div>
 			<?php 
 		
-        		$result = doQuery("SELECT pe_date, pe_description FROM project_events WHERE pe_project_id=$projectId");
+        		$result = doQuery("SELECT pe_date, pet_label FROM project_events JOIN project_event_types ON pe_type=pet_id WHERE pe_project_id=$projectId");
         	    $count = 0;
         	    while ($row = $result->fetch_assoc()) {
         	        if ($count == 0) {
@@ -233,7 +233,7 @@ $(document).ready(function(){
 						<div class="marker"></div>
 						<div class="timeline-content">
 							<h6><?php print date("M Y", strtotime($row['pe_date'])); ?></h6>
-							<span><?php print $row['pe_description']; ?></span>
+							<span><?php print $row['pet_label']; ?></span>
 						</div>
 					</div>
 		  <?php $count++; 
@@ -431,7 +431,7 @@ $(document).ready(function(){
 			</script>
 		</div>
 			
-			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(project_date_posted) AS yearPosted FROM projects WHERE project_village_id=$villageId ORDER BY yearPosted");
+			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=$villageId AND pe_project_id=project_id AND pe_type=4");
 			$count = 0;
 			$labels = '';
 			$amounts = '';
