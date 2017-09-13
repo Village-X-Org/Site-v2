@@ -225,7 +225,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </script>
 
 <!-- form validation code -->
-<!--   <script src="https://jqueryvalidation.org/files/lib/jquery.js"></script> (removed because it created conflicts with other functionality) -->
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
 <script>
 
@@ -301,11 +301,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			</ul>
 
 			<ul id="nav-mobile" class="side-nav">
-				<li><a href="project_tiles.php">Projects</a></li>
-				<li><a href="map.php">Map</a></li>
-				<li><a href="model.php">Model</a></li>
-				<li><a href="impacts.php">Impacts</a></li>
-				<li><a href="about.php">About</a></li>
+				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
+				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
+				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
+				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
+				<li><a href="about.php"><i class="material-icons">info</i>About</a></li>
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 				class="material-icons">menu</i></a>

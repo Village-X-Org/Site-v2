@@ -114,7 +114,7 @@ $(document).ready(function(){
 				<?php } else { ?>
 				<button 
 				class="btn-large grey">
-				<i class="material-icons left">done_all</i>Fully Funded!</button>
+				Fully Funded!</button>
 				<?php } ?>
 		</div>
 

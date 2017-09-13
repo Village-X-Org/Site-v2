@@ -9,11 +9,15 @@
 
 <p><b>What is Village X in a nutshell?</b></p>
 
-We are a democracy NGO, disrupting extreme poverty by financing development projects chosen by villages. Villages living in extreme poverty excel at identifying local solutions that are not only technically feasible, but politically and culturally achievable. Locals also implement solutions faster and less expensively than outsiders.
+We are a democracy NGO. We fund projects village choose. We disrupt extreme poverty with data and direct giving.
+
+<p><b>What is Village X's secret sauce?</b></p>
+
+A scalable, data-driven model that celebrates the capacity of local people to identify solutions that are not only technically feasible, but politically and culturally achievable. Locals also implement solutions faster and less expensively than outsiders.
 
 <p><b>Why did you start Village X?</b></p>
 
-We need a new approach to development in Africa, where extreme poverty is growing in the rural areas. In our world of plenty, no human being should live in extreme poverty. Victory depends on the emergence of organizations that deliver targeted financing to remote places, at scale, with ruthless efficiency.
+We need a new approach to development in Africa, where extreme poverty is growing in the rural areas. In our world of plenty, no human being should live in extreme poverty. Victory over extreme poverty depends on the emergence of organizations that deliver targeted financing to remote places, at scale, with ruthless efficiency.
 
 <p><b>How big is the problem?</b></p>
 
@@ -25,11 +29,11 @@ Technology and donor demand for transparent giving experiences. Thanks to the ex
 
 <p><b>Are you trying to solve all of Africa's problems?</b></p>
 
-Not by a long shot. Governance is a foundational problem in much of Africa. Overcoming that challenge requires a willingness among American and European policymakers to reduce or cease development assistance to corrupt governments. We try to disrupt extreme poverty. We focus on villages because that's where democracy works. 
+Not by a long shot. Governance is a foundational problem in much of Africa. Overcoming that challenge requires a willingness among American and European policymakers to reduce or cease development assistance to corrupt governments. We try to disrupt extreme poverty in rural areas. We focus on villages because that's where democracy works. 
 
 <p><b>Why should I donate to Village X Org?</b></p>
     
-Two reasons: (1) The cause is noble -- extreme poverty in Africa is one of the biggest social justice problems of our time; and (2) Our model actually works (see our <a href="Impacts.php">Impacts</a> page).
+Two reasons: (1) the cause is noble -- extreme poverty in Africa is one of the biggest injustices of our time; and (2) our model works (see our <a href="Impacts.php">Impacts</a> page).
     
 <p><b>Why should a village participate?</b></p>
 
@@ -46,6 +50,10 @@ Some are, yes. But village chiefs are typically far less corrupt than officials 
 <p><b>What happens if the village doesn't use donated money as expected?</b></p>
 
 If villages or their representatives misuse donated money, they sever their relationship with Village X and jeopardize the cash they have contributed to the project. In addition, Village X will report the indiscretion to the broader development community.
+
+<p><b>How are you different from GiveDirectly?</b></p>
+
+We're big fans of GiveDirectly, which transfers cash to low-income households in Kenya and Uganda. Village X takes a different approach, transfering cash to entire villages for public good projects. We take this approach because it's much cheaper than transfering cash to households and solves a collection action problem that persists when cash is transfered to households (when households have money, they don't necessarily pool some of that money for the provision of public goods).
 
 <p><b>Do you store my credit card info?</b></p>
 

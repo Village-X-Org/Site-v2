@@ -66,69 +66,88 @@
 				<h5
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
 					/ month</h5>
-					
-				<br><br><br>
+			</div>	
+				
 	
 	
 				<!-- Modal Trigger -->
-	<div style="padding: 20% 0% 0% 0%">
+	<div class="center-align" style="padding: 5% 0% 0% 0%">
+  
   <script>
 	
   $(document).ready(function(){
-	     $('.modal').modal({
-	      dismissible: true, // Modal can be dismissed by clicking outside of the modal
-	      opacity: .5, // Opacity of modal background
-	      inDuration: 300, // Transition in duration
-	      outDuration: 200, // Transition out duration
-	      startingTop: '4%', // Starting top style attribute
-	      endingTop: '10%', // Ending top style attribute
-	   });
+	     $('.modal').modal();
 	});
   </script>	
-  <a class="modal-trigger" href="#modal1"><i>cancel a subscription</i></a>
+  <a class="modal-trigger" href="#modal1">(cancel a subscription)</a>
   	</div>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px;">
-    <div class="modal-content">
-      <h4 class="flow-text black-text" style="padding:10% 5% 0% 5%"><b>Subscription Cancellation</b></h4>
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content" id="jqueryvalidation">
+     <div class="container" style="width:100%">
+     <h4 class="flow-text black-text center-align" style="padding:5% 10% 5% 10%"><b>Subscription Cancellation</b></h4>
       <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">To cancel your subscription, please enter your email address below and click on the "Submit" button.</p>
       <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can rejoin the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
+    </div> 
     
-    <div class="section" id="jqueryvalidation" style="display:table; width:100%; padding:0% 10% 0% 10%">
-		<form style="width:100%" id="donateForm" method="get" action="">
-		<div class="col-project valign-wrapper" style="vertical-align: middle;">
+    <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
+		<form id="cancelForm" method="get" action="" class="center-align">
+		
+		<div class="row center-align">
+		<div class="col s12 m12 l12 center-align">
 			
-         					<div class="row" style="padding:3% 3% 3% 3%; width:100%">
-         						<div class="input-field col s12 m12 l12 center-align">
-         							<i class="material-icons prefix" style="font-size:20px;">email&nbsp;&nbsp;</i>
-          							<input placeholder="jane@gmail.com" id="email" name="email" data-error=".errorTxt1" style="font-size:20px; color:blue;" id="email" type="email">
-          							<div class="errorTxt1"></div>
+         					
+         						<div class="input-field col s12 center-align">
+          							<input placeholder="jane@gmail.com" id="cancellation_email" name="email" required data-error=".errorTxt3" style="font-size:20px; color:black;" type="email">
+          							<div class="errorTxt3" style="font-size:10px; color:red; padding:1% 0% 0% 0%"></div>
           						</div>
-							</div>
-         </div>	   
-         <div class="col-project valign-wrapper" style="vertical-align: middle; width:100%">
-        			<div class="input-field col s12 m12 l12">
-        			<button id="myBtn" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Submit</button>
+         </div> 	
+         </div>
+         <div class="row">
+          						 <div class="input-field col s12 m6 l6">  
+                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required  data-error=".errorTxt1" style="font-size:20px; color:black;">
+                                  <div class="errorTxt1" style="font-size:10px; color:red; padding:2% 0% 0% 0%"></div>
+                                </div>
+                                <div class="input-field col s12 m6 l6">
+                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2" style="font-size:20px; color:black;">
+                                  <div class="errorTxt2" style="font-size:10px; color:red; padding:2% 0% 0% 0%"></div>
+                                </div>
+          						
+          						
+         </div>	  
+    
+         
+         <div class="row s12 m12 l12 center-align" style="padding:3% 0% 0% 0%;">
+        			<div class="input-field">
+        			<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Submit</button>
 				</div>
 
-	<script>
-document.getElementById("myBtn").onclick = function() {gotoStripe()};
+		</div>
 				
-	<script type="text/javascript">
+	<script>
+document.getElementById("myBtn").onclick = function()
+	</script>
+				
+	<script>
 
 	$().ready(function() {
 		// validate donatation form on keyup and submit
-		$("#donateForm").validate({
+		$("#cancelForm").validate({
 			rules: {
 				firstname: "required",
 				lastname: "required",
-				email: "required",
+				email: {
+			        required: true,
+			        // Specify that email should be validated
+			        // by the built-in "email" rule
+			        email: true
+			      },
 			},
 		messages: {
 		      firstname: "this field is required",
 		      lastname: "this field is required",
-		      email: "this field is required",
+		      email: "please enter a valid email address",
 		},
 
         errorElement : 'div',
@@ -139,21 +158,24 @@ document.getElementById("myBtn").onclick = function() {gotoStripe()};
           } else {
             error.insertAfter(element);
           }
-        }	
+        },	
+		submitHandler: function(form) {
+		      form.submit();
+		    }
 		});
 	});
 	</script>
-				</div>
+	
               </form>
 			
 		</div>
 	</div>	
     
     <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close light-blue waves-effect waves-blue btn-flat ">close</a>
+      <a href="#!" class="modal-action modal-close black white-text waves-effect waves-blue btn-flat">close</a>
     </div>
   </div>
-  </div>
+  
 			</div>
 		</div>	
 

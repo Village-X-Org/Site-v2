@@ -55,13 +55,13 @@ require_once("utilities.php");
 				
 				<h2 class="center brown-text hide-on-small-only">
 					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
-						<source src="images/nachuma_water_low.mp4" type="video/mp4">
+						<source src="images/nachuma_water_480.mp4" type="video/mp4">
 					</video>
 				</h2>
 					
 					<h5 class="center">Find a village</h5>
 
-					<p class="light center">Search our projects page or interactive map for tenacious villages battling extreme poverty in rural
+					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
 						
 					<h6 class="center">#letlocalslead</h6>
@@ -77,7 +77,7 @@ require_once("utilities.php");
 					
 					<h2 class="center brown-text hide-on-small-only">
 					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">
-						<source src="images/geyser_spray_low.mp4" type="video/mp4">
+						<source src="images/geyser_spray_480.mp4" type="video/mp4">
 					</video>
 				</h2>
 					
@@ -161,9 +161,9 @@ while ($row = $result->fetch_assoc()) {
     $projectTotal = $row['project_budget'];
     $fundedPercent = $funded / $projectTotal * 100;
     $villageContribution = $projectTotal * .05;
-    print "<div class='col s12 m6 l4 waves-effect waves-block waves-light ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+    print "<div class='col s12 m6 l4 ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
 			<div class='card sticky-action hoverable'>
-				<div class='card-image waves-effect waves-block waves-light'>
+				<div class='card-image'>
 					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
 				</div>
 				<div class='card-content'>
