@@ -71,9 +71,9 @@ require_once("utilities.php");
 		          $fundedClass = 'funded';
 		      }
 		      
-		      print "<div class='col s12 m6 l4 projectCell waves-effect waves-block waves-light $projectTypeClass $fundedClass' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+		      print "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
 				<div class='card sticky-action hoverable'>
-					<div class='card-image waves-effect waves-block waves-light'>
+					<div class='card-image'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
 					</div>
 					<div class='card-content'>

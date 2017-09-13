@@ -58,17 +58,18 @@ if ($row = $result->fetch_assoc()) {
           							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
                                 <div class="input-field col s6">  
-                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required  data-error=".errorTxt1">
+                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
                                 </div>
                                 <div class="input-field col s6">
-                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required>
+                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2">
+                                  <div class="errorTxt2"></div>
                                 </div>
                               </div>
                            </div>
                            
         			<div class="input-field col s12">
-        			<button id="myBtn" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" name="action" style="width:100%;">Donate</button>
+        			<button id="myBtn" class="btn-large center-align light-blue submit" type="submit" name="action" style="width:100%;">Donate</button>
 				</div>
 
 	<script>
