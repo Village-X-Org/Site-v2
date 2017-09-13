@@ -2,7 +2,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5274, -15.6423]
+			"coordinates": [35.5275, -15.6431]
 		},
 		"properties": {
 			"id": "70",
@@ -16,7 +16,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.876, 10.7107]
+			"coordinates": [-0.8766, 10.7117]
 		},
 		"properties": {
 			"id": "71",
@@ -30,7 +30,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3463, -15.4741]
+			"coordinates": [35.346, -15.4747]
 		},
 		"properties": {
 			"id": "74",
@@ -39,12 +39,12 @@
             "icon": "livestock",
 			"picture_filename": "chikumbu_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "2033.49"}
+			"project_funded": "2000"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.33, -15.7396]
+			"coordinates": [35.3297, -15.7392]
 		},
 		"properties": {
 			"id": "75",
@@ -53,12 +53,12 @@
             "icon": "nursery",
 			"picture_filename": "kazembe_nursery_profile.jpg",
 			"project_budget": "1900",
-			"project_funded": "1984"}
+			"project_funded": "1900"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1481, -15.8297]
+			"coordinates": [35.1481, -15.8304]
 		},
 		"properties": {
 			"id": "76",
@@ -67,12 +67,12 @@
             "icon": "nursery",
 			"picture_filename": "likoswe_nursery_profile.jpg",
 			"project_budget": "1900",
-			"project_funded": "1936"}
+			"project_funded": "1900"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.523, -15.6562]
+			"coordinates": [35.523, -15.6566]
 		},
 		"properties": {
 			"id": "77",
@@ -86,7 +86,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3619, -15.8024]
+			"coordinates": [35.2148, -15.482]
 		},
 		"properties": {
 			"id": "78",
@@ -100,7 +100,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3415, -15.4766]
+			"coordinates": [35.3411, -15.4751]
 		},
 		"properties": {
 			"id": "79",
@@ -114,7 +114,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3512, -15.8041]
+			"coordinates": [35.3519, -15.804]
 		},
 		"properties": {
 			"id": "80",
@@ -123,12 +123,12 @@
             "icon": "house",
 			"picture_filename": "namphungo_teacher_house_profile.jpg",
 			"project_budget": "1800",
-			"project_funded": "1807"}
+			"project_funded": "1800"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3356, -15.4809]
+			"coordinates": [35.3358, -15.4792]
 		},
 		"properties": {
 			"id": "81",
@@ -142,7 +142,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.829, 10.7008]
+			"coordinates": [-0.8286, 10.6994]
 		},
 		"properties": {
 			"id": "82",
@@ -156,7 +156,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3518, -15.4868]
+			"coordinates": [35.3527, -15.4861]
 		},
 		"properties": {
 			"id": "83",
@@ -164,13 +164,13 @@
 			"villageName": "Mlenga",
             "icon": "water",
 			"picture_filename": "mlenga_water_profile.jpg",
-			"project_budget": "7200",
-			"project_funded": "6622"}
+			"project_budget": "6600",
+			"project_funded": "6600"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1478, -15.8291]
+			"coordinates": [35.1476, -15.8296]
 		},
 		"properties": {
 			"id": "85",
@@ -184,7 +184,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5276, -15.6424]
+			"coordinates": [35.5287, -15.6442]
 		},
 		"properties": {
 			"id": "86",
@@ -198,7 +198,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3294, -15.7393]
+			"coordinates": [35.33, -15.7393]
 		},
 		"properties": {
 			"id": "87",
@@ -212,7 +212,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3752, -15.7013]
+			"coordinates": [35.3755, -15.7006]
 		},
 		"properties": {
 			"id": "88",
@@ -226,7 +226,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3525, -15.8048]
+			"coordinates": [35.2708, -15.4913]
 		},
 		"properties": {
 			"id": "89",
@@ -240,7 +240,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3523, -15.4862]
+			"coordinates": [35.2132, -15.3016]
 		},
 		"properties": {
 			"id": "90",
@@ -254,7 +254,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.351, -15.4899]
+			"coordinates": [35.2208, -15.2919]
 		},
 		"properties": {
 			"id": "91",
@@ -268,7 +268,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3513, -15.8049]
+			"coordinates": [35.3513, -15.8043]
 		},
 		"properties": {
 			"id": "92",
@@ -277,12 +277,12 @@
             "icon": "livestock",
 			"picture_filename": "namphungo_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "1800"}
+			"project_funded": "2000"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3416, -15.4758]
+			"coordinates": [35.3408, -15.4752]
 		},
 		"properties": {
 			"id": "93",
@@ -296,7 +296,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3369, -15.4795]
+			"coordinates": [35.3352, -15.4792]
 		},
 		"properties": {
 			"id": "94",
@@ -310,7 +310,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3459, -15.4736]
+			"coordinates": [35.3458, -15.4743]
 		},
 		"properties": {
 			"id": "95",
@@ -324,7 +324,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3769, -15.701]
+			"coordinates": [35.3763, -15.7007]
 		},
 		"properties": {
 			"id": "96",
@@ -338,49 +338,49 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3614, -15.8034]
+			"coordinates": [35.215, -15.4821]
 		},
 		"properties": {
 			"id": "98",
 			"name": "Start a Goat Herd",
 			"villageName": "Manyumba",
             "icon": "livestock",
-			"picture_filename": "thumb_2084_default_buy_list.png",
+			"picture_filename": "manyumba_goats_profile.jpg",
 			"project_budget": "2000",
 			"project_funded": "100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3301, -15.7406]
+			"coordinates": [35.3299, -15.7399]
 		},
 		"properties": {
 			"id": "99",
 			"name": "Start a Goat Herd",
 			"villageName": "Kazembe",
             "icon": "livestock",
-			"picture_filename": "thumb_2085_default_buy_list.png",
+			"picture_filename": "kazembe_goats_profile.jpg",
 			"project_budget": "2000",
 			"project_funded": "1200"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3514, -15.4852]
+			"coordinates": [35.3517, -15.4856]
 		},
 		"properties": {
 			"id": "101",
 			"name": "Start a Goat Herd",
 			"villageName": "Mlenga",
             "icon": "livestock",
-			"picture_filename": "thumb_2087_default_buy_list.png",
+			"picture_filename": "mlenga_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "1200"}
+			"project_funded": "1500"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3407, -15.476]
+			"coordinates": [35.3415, -15.4754]
 		},
 		"properties": {
 			"id": "109",
@@ -389,12 +389,12 @@
             "icon": "livestock",
 			"picture_filename": "nakhwala_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "0"}
+			"project_funded": "2000"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.337, -15.4798]
+			"coordinates": [35.3355, -15.48]
 		},
 		"properties": {
 			"id": "111",
@@ -402,13 +402,13 @@
 			"villageName": "Saiti",
             "icon": "livestock",
 			"picture_filename": "saiti_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "0"}
+			"project_budget": "2100",
+			"project_funded": "2100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.336, -15.4806]
+			"coordinates": [35.337, -15.4791]
 		},
 		"properties": {
 			"id": "119",
@@ -417,12 +417,12 @@
             "icon": "farm",
 			"picture_filename": "saiti_agriculture_profile.jpg",
 			"project_budget": "1800",
-			"project_funded": "0"}
+			"project_funded": "1800"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.341, -15.4763]
+			"coordinates": [35.3403, -15.4764]
 		},
 		"properties": {
 			"id": "120",
@@ -431,12 +431,12 @@
             "icon": "farm",
 			"picture_filename": "nakhwala_agriculture_profile.jpg",
 			"project_budget": "1800",
-			"project_funded": "0"}
+			"project_funded": "1800"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.336, -15.4805]
+			"coordinates": [35.3365, -15.4803]
 		},
 		"properties": {
 			"id": "122",
@@ -445,12 +445,12 @@
             "icon": "water",
 			"picture_filename": "saiti_water_profile.jpg",
 			"project_budget": "6300",
-			"project_funded": "0"}
+			"project_funded": "6300"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.212, -15.3026]
+			"coordinates": [35.2119, -15.302]
 		},
 		"properties": {
 			"id": "124",
@@ -464,7 +464,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1477, -15.8305]
+			"coordinates": [35.1482, -15.8305]
 		},
 		"properties": {
 			"id": "125",
@@ -473,12 +473,12 @@
             "icon": "livestock",
 			"picture_filename": "likoswe_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "0"}
+			"project_funded": "2000"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.5296, -14.3063]
+			"coordinates": [34.5304, -14.3075]
 		},
 		"properties": {
 			"id": "127",
@@ -486,13 +486,13 @@
 			"villageName": "Maloya ",
             "icon": "water",
 			"picture_filename": "maloya_water_profile.jpg",
-			"project_budget": "6000",
-			"project_funded": "0"}
+			"project_budget": "6200",
+			"project_funded": "310"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.2216, -10.3552]
+			"coordinates": [34.222, -10.357]
 		},
 		"properties": {
 			"id": "128",
@@ -501,12 +501,12 @@
             "icon": "livestock",
 			"picture_filename": "matandala_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "0"}
+			"project_funded": "100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4714, -14.2546]
+			"coordinates": [34.4726, -14.2539]
 		},
 		"properties": {
 			"id": "129",
@@ -520,7 +520,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.5307, -14.3062]
+			"coordinates": [34.531, -14.3073]
 		},
 		"properties": {
 			"id": "130",
@@ -528,13 +528,13 @@
 			"villageName": "Kela",
             "icon": "water",
 			"picture_filename": "kera_water_profile.jpg",
-			"project_budget": "6000",
-			"project_funded": "0"}
+			"project_budget": "6200",
+			"project_funded": "310"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4829, -14.233]
+			"coordinates": [34.8883, -14.4809]
 		},
 		"properties": {
 			"id": "131",
@@ -543,12 +543,12 @@
             "icon": "livestock",
 			"picture_filename": "chamba_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "0"}
+			"project_funded": "100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.4829, -14.1899]
+			"coordinates": [34.896, -14.5495]
 		},
 		"properties": {
 			"id": "132",
@@ -556,13 +556,13 @@
 			"villageName": "Chantulo",
             "icon": "water",
 			"picture_filename": "chantulo_water_profile.jpg",
-			"project_budget": "6000",
-			"project_funded": "0"}
+			"project_budget": "6200",
+			"project_funded": "310"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2041, -15.2633]
+			"coordinates": [35.2041, -15.2637]
 		},
 		"properties": {
 			"id": "133",
@@ -576,7 +576,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2119, -15.2728]
+			"coordinates": [35.2126, -15.2724]
 		},
 		"properties": {
 			"id": "134",
@@ -590,7 +590,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.197, -15.4744]
+			"coordinates": [35.196, -15.4749]
 		},
 		"properties": {
 			"id": "135",
@@ -600,4 +600,32 @@
 			"picture_filename": "water_example.jpg",
 			"project_budget": "5700",
 			"project_funded": "0"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.4347, -15.5993]
+		},
+		"properties": {
+			"id": "137",
+			"name": "Build a Nursery School",
+			"villageName": "Balakasi",
+            "icon": "",
+			"picture_filename": "balakasi_nursery_profile.jpg",
+			"project_budget": "2000",
+			"project_funded": "100"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.4352, -15.5994]
+		},
+		"properties": {
+			"id": "138",
+			"name": "Provide Clean Water",
+			"villageName": "Balakasi",
+            "icon": "",
+			"picture_filename": "balakasi_water_profile.jpg",
+			"project_budget": "6200",
+			"project_funded": "310"}
 	}]}

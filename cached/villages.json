@@ -11,10 +11,10 @@
 			"fundingCount": "1",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.74",
-			"boundsSwLng": "35.33",
-			"boundsNeLat": "-15.74",
-			"boundsNeLng": "35.33",
+			"boundsSwLat": "-15.7396",
+			"boundsSwLng": "35.3296",
+			"boundsNeLat": "-15.7396",
+			"boundsNeLng": "35.3296",
 			"projectCount": "1 in funding, 2 completed"}
 	},{
 		"type": "Feature",
@@ -29,10 +29,10 @@
 			"fundingCount": "1",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.83",
+			"boundsSwLat": "-15.8297",
 			"boundsSwLng": "35.1476",
 			"boundsNeLat": "-15.8297",
-			"boundsNeLng": "35.148",
+			"boundsNeLng": "35.1476",
 			"projectCount": "1 in funding, 2 completed"}
 	},{
 		"type": "Feature",
@@ -47,10 +47,10 @@
 			"fundingCount": "0",
 			"completedCount": "1",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.656",
-			"boundsSwLng": "35.523",
-			"boundsNeLat": "-15.656",
-			"boundsNeLng": "35.523",
+			"boundsSwLat": "-15.6562",
+			"boundsSwLng": "35.5227",
+			"boundsNeLat": "-15.6562",
+			"boundsNeLng": "35.5227",
 			"projectCount": "1 completed"}
 	},{
 		"type": "Feature",
@@ -65,10 +65,10 @@
 			"fundingCount": "1",
 			"completedCount": "1",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.803",
-			"boundsSwLng": "35.361",
-			"boundsNeLat": "-15.803",
-			"boundsNeLng": "35.361",
+			"boundsSwLat": "-15.4816",
+			"boundsSwLng": "35.2148",
+			"boundsNeLat": "-15.4816",
+			"boundsNeLng": "35.2148",
 			"projectCount": "1 in funding, 1 completed"}
 	},{
 		"type": "Feature",
@@ -83,10 +83,10 @@
 			"fundingCount": "1",
 			"completedCount": "1",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.486",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.486",
-			"boundsNeLng": "35.352",
+			"boundsSwLat": "-15.4858",
+			"boundsSwLng": "35.3519",
+			"boundsNeLat": "-15.4858",
+			"boundsNeLng": "35.3519",
 			"projectCount": "1 in funding, 1 completed"}
 	},{
 		"type": "Feature",
@@ -101,10 +101,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.701",
-			"boundsSwLng": "35.376",
-			"boundsNeLat": "-15.701",
-			"boundsNeLng": "35.376",
+			"boundsSwLat": "-15.7012",
+			"boundsSwLng": "35.3756",
+			"boundsNeLat": "-15.7012",
+			"boundsNeLng": "35.3756",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -119,10 +119,10 @@
 			"fundingCount": "0",
 			"completedCount": "1",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.805",
-			"boundsNeLng": "35.352",
+			"boundsSwLat": "-15.4916",
+			"boundsSwLng": "35.2713",
+			"boundsNeLat": "-15.4916",
+			"boundsNeLng": "35.2713",
 			"projectCount": "1 completed"}
 	},{
 		"type": "Feature",
@@ -137,10 +137,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.486",
+			"boundsSwLat": "-15.3017",
 			"boundsSwLng": "35.2128",
 			"boundsNeLat": "-15.3017",
-			"boundsNeLng": "35.352",
+			"boundsNeLng": "35.2128",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -155,10 +155,10 @@
 			"fundingCount": "0",
 			"completedCount": "1",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.4892",
-			"boundsSwLng": "35.3519",
-			"boundsNeLat": "-15.4892",
-			"boundsNeLng": "35.3519",
+			"boundsSwLat": "-15.2914",
+			"boundsSwLng": "35.2216",
+			"boundsNeLat": "-15.2914",
+			"boundsNeLng": "35.2216",
 			"projectCount": "1 completed"}
 	},{
 		"type": "Feature",
@@ -173,10 +173,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.474",
-			"boundsSwLng": "35.346",
-			"boundsNeLat": "-15.474",
-			"boundsNeLng": "35.346",
+			"boundsSwLat": "-15.4745",
+			"boundsSwLng": "35.3463",
+			"boundsNeLat": "-15.4745",
+			"boundsNeLng": "35.3463",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -191,10 +191,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.643",
-			"boundsSwLng": "35.528",
-			"boundsNeLat": "-15.643",
-			"boundsNeLng": "35.528",
+			"boundsSwLat": "-15.6433",
+			"boundsSwLng": "35.5282",
+			"boundsNeLat": "-15.6433",
+			"boundsNeLng": "35.5282",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -227,10 +227,10 @@
 			"fundingCount": "0",
 			"completedCount": "2",
 			"constructionCount": "0",
-			"boundsSwLat": "-15.805",
-			"boundsSwLng": "35.352",
-			"boundsNeLat": "-15.805",
-			"boundsNeLng": "35.352",
+			"boundsSwLat": "-15.8049",
+			"boundsSwLng": "35.3518",
+			"boundsNeLat": "-15.8049",
+			"boundsNeLng": "35.3518",
 			"projectCount": "2 completed"}
 	},{
 		"type": "Feature",
@@ -335,10 +335,10 @@
 			"fundingCount": "1",
 			"completedCount": "0",
 			"constructionCount": "0",
-			"boundsSwLat": "-14.2335",
-			"boundsSwLng": "34.4832",
-			"boundsNeLat": "-14.2335",
-			"boundsNeLng": "34.4832",
+			"boundsSwLat": "-14.4814",
+			"boundsSwLng": "34.8881",
+			"boundsNeLat": "-14.4814",
+			"boundsNeLng": "34.8881",
 			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
@@ -353,10 +353,10 @@
 			"fundingCount": "1",
 			"completedCount": "0",
 			"constructionCount": "0",
-			"boundsSwLat": "-14.189",
-			"boundsSwLng": "34.4834",
-			"boundsNeLat": "-14.189",
-			"boundsNeLng": "34.4834",
+			"boundsSwLat": "-14.5489",
+			"boundsSwLng": "34.8953",
+			"boundsNeLat": "-14.5489",
+			"boundsNeLng": "34.8953",
 			"projectCount": "1 in funding"}
 	},{
 		"type": "Feature",
