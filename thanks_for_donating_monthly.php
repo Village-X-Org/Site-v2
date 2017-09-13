@@ -46,22 +46,9 @@
           	<p><?php print $donorFirstName; ?>,</p> 
 			<p>We processed your first monthly donation of $<?php print $donationAmountDollars; ?>! We applied this donation to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>. You have disrupted extreme poverty for <?php print $numPeople; ?> people and <?php print $numHouseholds; ?> households.</p>
 			<p class="center-align"><b>Share the good news:</b> 
-						<a
-							href="https://www.facebook.com/dialog/feed?
-  									app_id=<?php print FACEBOOK_APP_ID; ?>
-  									&display=popup&caption=I disrupt extreme poverty every month by funding projects villages choose.
-  									&link=https://www.4and.me"
-							target="_blank"> <img
-							src="https://simplesharebuttons.com/images/somacro/facebook.png"
-							alt="Facebook" align="middle" height="30" width="30" />
-						</a>
-						&nbsp;&nbsp;&nbsp;
-						<a
-							href="https://twitter.com/share?url=https://www.4and.me;text=I donate monthly to projects chosen by extreme poverty villages in Africa.&amp;hashtags=villagex"
-							target="_blank"> <img
-							src="https://simplesharebuttons.com/images/somacro/twitter.png"
-							alt="Twitter" align="middle" height="30" width="30" />
-						</a>
+						<?php printShareButtons($projectId, 
+						    "I disrupt extreme poverty every month by funding projects villages choose.", 
+						    "I donate monthly to projects chosen by extreme poverty villages in Africa."); ?>
 			</p>
 			<p>We deeply appreciate your commitment to Village X Org. With each montly donation, we'll send you a thank you email identifying the project you've supported.</p> 
 			<p>Please stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
