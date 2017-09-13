@@ -58,17 +58,18 @@ if ($row = $result->fetch_assoc()) {
           							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
                                 <div class="input-field col s6">  
-                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required  data-error=".errorTxt1">
+                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
                                 </div>
                                 <div class="input-field col s6">
-                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required>
+                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2">
+                                  <div class="errorTxt2"></div>
                                 </div>
                               </div>
                            </div>
                            
                     		   <div class="input-field col s12">
-                    				<button id="donationButton" class="btn-large center-align waves-effect waves-light light-blue submit" type="submit" 
+                    				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" 
                     						name="action" style="width:100%;" onclick="gotoStripe(); return false;">
                     					Donate
                     				</button>
@@ -76,17 +77,27 @@ if ($row = $result->fetch_assoc()) {
 				
 				
               			</form>
+
+        			</div>
+			</div>
+		</div>
+	</div>
+		
+		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" class="responsive-img" style="border-radius:20px;">
+			<p>Here's a photo of a similar project.</p>
+		</div>
+		
+	</div>
+</div>
 <script>
-function gotoStripe() {
-	amount = $('#donation_amount').val(); 
-	if (!amount) { 
-		amount = $('#donation_amount').attr('placeholder'); 
-	}
-	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
-}
-</script>
-				
-	<script type="text/javascript">
+    function gotoStripe() {
+        	amount = $('#donation_amount').val(); 
+        	if (!amount) { 
+        		amount = $('#donation_amount').attr('placeholder'); 
+        	}
+        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
+    }
 
 	$().ready(function() {
 		$("#donateForm").validate({
@@ -110,18 +121,6 @@ function gotoStripe() {
         }	
 		});
 	});
-	</script>
+</script>
              
-        			</div>
-			</div>
-		</div>
-	</div>
-		
-		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" class="responsive-img" style="border-radius:20px;">
-			<p>Here's a photo of a similar project.</p>
-		</div>
-		
-	</div>
-</div>
 <?php include('footer.inc'); ?>

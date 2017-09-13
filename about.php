@@ -37,7 +37,7 @@
     
     <div class="row">
     <div class="card">
-    <div class="card-image waves-effect waves-block waves-light">
+    <div class="card-image">
       <img style="padding: 5% 5% 5% 5%;" class="activator" src="images/extreme_poverty_by_world_region.jpg">
     </div>
     <div class="card-content">
@@ -126,7 +126,7 @@
 		<div class="row">
 			<div class="col s12 m6 l6">
 					<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" width="100%" height="100%" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
@@ -137,10 +137,10 @@
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
       					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
-      					<p>After returning from Peace Corps Malawi, Mike began searching for ways to improve development work in 
-      					sub-Saharan Africa. While practicing in a law firm, he volunteered his spare time as a board member and grants coordinator for Friends of Malawi (FOM), a 
-      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation pioneered at FOM, deploying grant money and using Facebook pages to post
-      					project updates.</p> 
+      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
+      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
+      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
+      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
       					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
       					received a MPP from Princeton.</p> 
       					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
@@ -151,7 +151,7 @@
 				
 			<div class="col s12 m6 l6">	
 				<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" width="100%" height="100%" src="images/jeff_profile.jpg">
     						</div>
     					<div class="card-content">
@@ -183,7 +183,7 @@
 			<div class="row">
 				<div class="col s12 m6 l6">
 					<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" src="images/myson_profile.jpg">
     						</div>
     					<div class="card-content">
@@ -211,7 +211,7 @@
 				<div class="col s12 m6 l6">
 					
     					<div class="card">
-        						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
           						<img class="activator" src="images/alfred_profile.jpg">
         						</div>
         					<div class="card-content">
@@ -237,7 +237,7 @@
 				<div class="col s12 m6 l6">
 					
     					<div class="card">
-        						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
           						<img class="activator" src="images/wedson_profile.jpg">
         						</div>
         					<div class="card-content">
@@ -261,7 +261,7 @@
 				<div class="col s12 m6 l6">
 					
     					<div class="card">
-        						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
           						<img class="activator" src="images/mmacford_profile.jpg">
         						</div>
         					<div class="card-content">
@@ -293,7 +293,7 @@
 			<div class="row">
 				<div class="col s12 m6 l6">
 					<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" src="images/katherine_profile.jpg">
     						</div>
     					<div class="card-content">
@@ -326,7 +326,7 @@
 			<div class="row">
 				<div class="col s12 m6 l6">
 					<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" src="temp/myson_profile.png">
     						</div>
     					<div class="card-content">
@@ -345,7 +345,7 @@
 				<div class="col s12 m6 l6">
 					
 				<div class="card">
-    						<div class="card-image waves-effect waves-block waves-light" style="padding: 5% 5% 5% 5%;">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator" src="temp/myson_profile.png">
     						</div>
     					<div class="card-content">
