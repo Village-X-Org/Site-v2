@@ -44,9 +44,9 @@ while ($row = $result->fetch_assoc()) {
 ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
-<meta property="og:title" content="<?php print $projectName; ?>"/>
+<meta property="og:title" content="Fund Projects Villages Choose: <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
 <meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
-<meta property="og:description" content="<?php print $summary; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
 <?php 
 $metaProvided = 1;
 include('header.inc'); 
@@ -137,10 +137,8 @@ $(document).ready(function(){
 
 		</div>
 	</div>
-	
-	<br>
 
-<div class="section">
+<!--  <div class="section">
 	<nav class="light blue" role="navigation">
     		<ul class="center-align row">
           <li class="waves-effect col s3">
@@ -167,9 +165,7 @@ $(document).ready(function(){
 	</script>
 	
 	</nav>
-</div>
-
-<br>
+</div>  -->
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
@@ -187,7 +183,7 @@ $(document).ready(function(){
 
 							<?php if (strlen($problem) > 1) { ?> <br>
 							<p>
-								<b>Community Problem:</b><?php print $problem; ?>
+								<b>Community Problem:</b> <?php print $problem; ?>
 							</p> 
 							<?php } ?>
 							
@@ -365,14 +361,14 @@ $(document).ready(function(){
 		?>
 		<div id="databreakdown" class="section scrollspy">
 			<h5 style="text-align: center">Data Trends</h5>
-				<p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
+				<!--  <p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
 					<b>We track the quantitative impact of your donation. In
 					particular, we collect data on several development indicators,
 					calculate an annual village development score, and observe how
 					that score changes over time. You can learn more about our
 					methodology <a href="impacts.php">here</a>.
 					</b>
-				</p>
+				</p>  -->
 					
 		<div class="row">
 			

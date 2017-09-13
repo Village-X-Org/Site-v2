@@ -212,7 +212,7 @@
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" src="images/alfred_profile.jpg">
+          						<img class="activator" src="images/alfred_profile_new.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Field Officer<i class="material-icons right">more_vert</i></span>

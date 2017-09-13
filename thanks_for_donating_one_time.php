@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
+<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
+<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
+
 <?php include('header.inc'); ?>
 <?php $result = doQuery("SELECT project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
         FROM projects JOIN villages ON project_id=$projectId AND project_village_id=village_id
@@ -33,6 +40,24 @@ if ($row = $result->fetch_assoc()) {
           	<p><?php print $donorFirstName; ?>,</p> 
 			<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $row['project_name']; ?> in <?php print $villageName; ?> Village! You have disrupted 
 			extreme poverty for <?php print $row['peopleCount']; ?> people and <?php print $row['householdCount']; ?> households in <?php print $row['country_label']; ?>.</p>
+			<p class="center-align"><b>Share the good news:</b> 
+						<a
+							href="https://www.facebook.com/dialog/feed?
+  									app_id=<?php print FACEBOOK_APP_ID; ?>
+  									&display=popup&caption=Disrupt extreme poverty by funding projects villages choose.
+  									&link=https://www.4and.me"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/facebook.png"
+							alt="Facebook" align="middle" height="30" width="30" />
+						</a>
+						&nbsp;&nbsp;&nbsp;
+						<a
+							href="https://twitter.com/share?url=https://www.4and.me;text=I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village&amp;hashtags=villagex"
+							target="_blank"> <img
+							src="https://simplesharebuttons.com/images/somacro/twitter.png"
+							alt="Twitter" align="middle" height="30" width="30" />
+						</a>
+			</p>
 			<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
 			 stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
         		<p>If you haven't done so already, please consider supporting The Village Fund, which allows you to donate automatically every month (as little as $5) and enjoy
