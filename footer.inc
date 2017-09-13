@@ -86,7 +86,7 @@
           <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
         </div> 
         <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
-        		<form id="cancelForm" method="get" action="" class="center-align">
+        		<form id="cancelForm" method="get" action="cancelStripe.php" class="center-align">
             		<div class="row center-align">
             			<div class="col s12 m12 l12 center-align"> 					
             				<div class="input-field col s12 center-align">
