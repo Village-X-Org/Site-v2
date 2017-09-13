@@ -248,7 +248,7 @@ require_once("utilities.php");
 
 	<ul class="collapsible" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><i class="material-icons">sentiment_very_satisfied</i>Learn more about local voices.</div>
+      <div class="collapsible-header"><i class="material-icons">sentiment_very_satisfied</i>more about local choice</div>
       <div class="collapsible-body"><span>In our work, clean water projects are foundational. Other popular projects include goat herds, nursery schools, teacher houses,
         		and agricultural inputs. What's interesting is not only what villages choose, but the order in which they choose it.</span></div>
     </li>
@@ -259,7 +259,7 @@ require_once("utilities.php");
     
     <ul class="collapsible" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><i class="material-icons">share</i>Learn more about predicting preferences.</div>
+      <div class="collapsible-header"><i class="material-icons">share</i>more about predictions</div>
       <div class="collapsible-body"><span>Discrete choice models and machine learning can illuminate how projects chosen by villages relate to their 
         		characteristics (e.g., demographics), in much the same way that car companies predict buying habits based on customer profiles. At this time we 
         		do not have enough data to perform such an analysis, although we hope that changes soon.</span></div>
@@ -271,12 +271,13 @@ require_once("utilities.php");
      
     <ul class="collapsible" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><i class="material-icons">timeline</i>Learn more about impact per dollar.</div>
+      <div class="collapsible-header"><i class="material-icons">timeline</i>more about impact per dollar</div>
       <div class="collapsible-body"><span>We measure 13 development indicators per village, in partner villages and villages that want to partner with Village X. We then apply a 
         		difference-in-difference model to detect impacts. Village X partner villages saw large and statistically significant 
         		increases in five indicators: nursery school attendance increased by 66% for boys and 60%; secondary school attendance for girls increased 
         		by 80%; non-agricultural businesses increased by 100%; and waterborne illnesses decreased by 70%. Projects cost about 50% of the average NGO
-        		price, and villages typically complete them within one month of funding. We expect to replicate or improve these findings as we expand to 
+        		price, and villages typically complete them within one month of funding. These findings are based on 21 projects and 14 villages, with an average investment of $5,400 per village
+        		 over 2 years. We expect to replicate or improve these findings as we expand to 
         		more villages inside and outside of Malawi. Find more on our impact <a href="impacts.php">here</a>.</span></div>
     </li>
     </ul>
