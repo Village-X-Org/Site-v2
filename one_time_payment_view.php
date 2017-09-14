@@ -22,6 +22,7 @@ require_once("utilities.php");
     transform: translateY(0%);
   }
   </style>
+  <?php
 $projectId = paramInt('id');
 $result = doQuery("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects 
         JOIN villages ON project_village_id=village_id 
