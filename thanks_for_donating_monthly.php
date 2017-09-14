@@ -18,10 +18,10 @@
     }
 }?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
-<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
+<meta property="og:image" content="images/village_family.jpg"/>
+<meta property="og:title" content="I signed up for the Village Fund!"/>
 <meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
-<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose."/>
 
 <?php 
 $metaProvided = 1; 
@@ -50,7 +50,7 @@ include('header.inc'); ?>
 			<p class="center-align"><b>Share the good news:</b> 
 						<?php printShareButtons($projectId, 
 						    "I disrupt extreme poverty every month by funding projects villages choose.", 
-						    "I donate monthly to projects chosen by extreme poverty villages in Africa."); ?>
+						    "I donate monthly to projects chosen by extreme poverty villages in Africa.", 30); ?>
 			</p>
 			<p>We deeply appreciate your commitment to Village X Org. With each montly donation, we'll send you a thank you email identifying the project you've supported.</p> 
 			<p>Please stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
