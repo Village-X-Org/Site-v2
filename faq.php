@@ -53,7 +53,7 @@ If villages or their representatives misuse donated money, they sever their rela
 
 <p><b>How are you different from GiveDirectly?</b></p>
 
-We're big fans of GiveDirectly, which transfers cash to low-income households in Kenya and Uganda. Village X takes a different approach, transfering cash to entire villages for public good projects. We take this approach because it's much cheaper than transfering cash to households and solves a collection action problem that persists when cash is transfered to households (when households have money, they don't necessarily pool some of that money for the provision of public goods).
+We're big fans of GiveDirectly, which transfers cash to low-income households in Kenya and Uganda. Village X takes a different approach, transfering cash to entire villages for public good projects. We take this approach because it's much cheaper than transfering cash to households and solves a collective action problem that persists when cash is transfered to households (in other words, households having money is a necessary but not sufficient condition for the provision of public goods).
 
 <p><b>Do you store my credit card info?</b></p>
 

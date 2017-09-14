@@ -23,23 +23,32 @@ require_once("utilities.php");
   }
   </style>
 
-<?php include('header.inc');
+<?php 
 $projectId = paramInt('id');
-$result = doQuery("SELECT project_name, project_budget, village_name, country_label, picture_filename FROM projects 
+$result = doQuery("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects 
         JOIN villages ON project_village_id=village_id 
         JOIN countries ON village_country=country_id
-        JOIN pictures ON project_similar_image_id=picture_id 
+        JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id 
+        JOIN pictures AS bannerPictures ON project_banner_image_id=bannerPictures.picture_id
         WHERE project_id=$projectId");
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $villageName = $row['village_name'];
     $projectBudget = $row['project_budget'];
-    $similarPicture = $row['picture_filename'];
+    $summary = $row['project_summary'];
+    $similarPicture = $row['similarPicture'];
+    $bannerPicture = $row['bannerPicture'];
     $countryName = $row['country_label'];
     $communityContribution = $projectBudget * .05;
-}
-?>
-
+}?>
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
+<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
+<meta property="og:url" content="https://4and.me/<?php print $projectId; ?>"/>
+<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
+<?php $metaProvided = 1;
+include('header.inc');
+?> 
 <div class="container">
 <br>
 
@@ -54,8 +63,8 @@ if ($row = $result->fetch_assoc()) {
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
-         							<i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" style="font-size:40px; color:blue;" id="donation_amount" type="tel">
+         							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
+          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
@@ -98,7 +107,7 @@ if ($row = $result->fetch_assoc()) {
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
     }
-
+    
 	$().ready(function() {
 		$("#donateForm").validate({
 			rules: {
