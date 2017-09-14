@@ -17,7 +17,7 @@ $token = param('stripeToken');
 $result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
-    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_stripe_token<>'$token'");
+    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>'$token'");
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
     }
@@ -56,11 +56,11 @@ if ($isSubscription) {
 
 $donationAmountDollars = $amount / 100;
 
-$result = doQuery("SELECT donation_id FROM donations WHERE donation_stripe_token='$token'");
+$result = doQuery("SELECT donation_id FROM donations WHERE donation_remote_id='$token'");
 if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
-    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_stripe_token) VALUES ($donorId, $amount / 100, $projectId, $subscriptionId, '$token')");
+    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES ($donorId, $amount / 100, $projectId, $subscriptionId, '$token')");
     if ($projectId) {
         doQuery("UPDATE projects SET project_funded=project_funded + ($amount / 100) WHERE project_id=$projectId");
     } else {

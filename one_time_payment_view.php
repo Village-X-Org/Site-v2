@@ -25,16 +25,19 @@ require_once("utilities.php");
 
 <?php 
 $projectId = paramInt('id');
-$result = doQuery("SELECT project_name, project_budget, village_name, country_label, picture_filename FROM projects 
+$result = doQuery("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects 
         JOIN villages ON project_village_id=village_id 
         JOIN countries ON village_country=country_id
-        JOIN pictures ON project_similar_image_id=picture_id 
+        JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id 
+        JOIN pictures AS bannerPictures ON project_banner_image_id=bannerPictures.picture_id
         WHERE project_id=$projectId");
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $villageName = $row['village_name'];
     $projectBudget = $row['project_budget'];
-    $similarPicture = $row['picture_filename'];
+    $summary = $row['project_summary'];
+    $similarPicture = $row['similarPicture'];
+    $bannerPicture = $row['bannerPicture'];
     $countryName = $row['country_label'];
     $communityContribution = $projectBudget * .05;
 }?>
