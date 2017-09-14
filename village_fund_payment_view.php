@@ -56,8 +56,8 @@ require_once("utilities.php");
             </div>
             
             <div class="input-field col s12">
-            <button id="donationButton" class="center-align light-blue btn-large submit" type="submit" style="width:100%;"  onclick="amount = $('#donation_amount').val(); if (!amount) { amount = $('#donation_amount').attr('placeholder'); } donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val()); return false;"
-            >Donate</button>
+            <button id="donationButton" class="center-align light-blue btn-large submit" type="submit" name="action" style="width:100%;">
+            Donate</button>
             </div>
             </form>
             
@@ -83,7 +83,7 @@ require_once("utilities.php");
           }
         },
           submitHandler: function(form) {
-		      form.submit();
+        	  	gotoStripe();
         }	
 		});
 	});
@@ -101,4 +101,15 @@ require_once("utilities.php");
                 
 	</div>
 </div>
+
+<script>
+    function gotoStripe() {
+        	amount = $('#donation_amount').val(); 
+        	if (!amount) { 
+        		amount = $('#donation_amount').attr('placeholder'); 
+        	}
+        	donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val()); return false;
+    }
+</script>
+
 <?php include('footer.inc'); ?>
