@@ -104,9 +104,7 @@ include('header.inc');
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
     }
-</script>
-
-<script>
+    
 	$().ready(function() {
 		$("#donateForm").validate({
 			rules: {

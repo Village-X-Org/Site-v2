@@ -49,7 +49,7 @@ include('header.inc'); ?>
 			<p class="center-align"><b>Share the good news:</b> 
 					<?php printShareButtons($projectId, 
 						    "Disrupt extreme poverty by funding projects villages choose.", 
-						    "I donated to $projectName in $villageName Village"); ?>
+						    "I donated to $projectName in $villageName Village", 30); ?>
 			</p>
 			<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
 			 stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>

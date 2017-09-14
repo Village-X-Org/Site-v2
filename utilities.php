@@ -306,7 +306,7 @@ function ordinal($number) {
             return $number. $ends[$number % 10];
 }
 
-function printShareButtons($projectId, $facebookMessage, $twitterMessage) {
+function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize) {
     include('share_buttons.inc');   
 }
 

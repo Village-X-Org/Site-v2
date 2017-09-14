@@ -270,7 +270,7 @@ $(document).ready(function(){
 						<b>Share <?php print $villageName; ?>'s Story</b>
 					</h6>
 					<br>
-					<?php printShareButtons($projectId, $projectName, $projectName); ?>
+					<?php printShareButtons($projectId, $projectName, $projectName, 60); ?>
 				</div>
 			</div>
 
