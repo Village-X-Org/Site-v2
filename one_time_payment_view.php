@@ -23,12 +23,6 @@ require_once("utilities.php");
   }
   </style>
 
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
-<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
-<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
-<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
-
 <?php include('header.inc');
 $projectId = paramInt('id');
 $result = doQuery("SELECT project_name, project_budget, village_name, country_label, picture_filename FROM projects 
@@ -73,40 +67,17 @@ if ($row = $result->fetch_assoc()) {
                                 </div>
                               </div>
                            </div>
-                           
+     
                     		   <div class="input-field col s12">
+                    		   		
                     				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" 
-                    						name="action" style="width:100%;" onclick="gotoStripe(); return false;">
-                    					Donate
+                    						name="action" style="width:100%;" onclick="gotoStripe(); return false;"> 
+                    					Donate 
                     				</button>
             				   </div>
-				
-				
               			</form>
-
-        			</div>
-			</div>
-		</div>
-	</div>
-		
-		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" class="responsive-img" style="border-radius:20px;">
-			<p>Here's a photo of a similar project.</p>
-		</div>
-		
-	</div>
-</div>
-<script>
-    function gotoStripe() {
-        	amount = $('#donation_amount').val(); 
-        	if (!amount) { 
-        		amount = $('#donation_amount').attr('placeholder'); 
-        	}
-        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
-    }
-</script>
-
-<script>
+              			
+              			<script>
 	$().ready(function() {
 		$("#donateForm").validate({
 			rules: {
@@ -126,9 +97,34 @@ if ($row = $result->fetch_assoc()) {
           } else {
             error.insertAfter(element);
           }
+        },
+          submitHandler: function(form) {
+		      form.submit();
         }	
 		});
 	});
+</script>
+
+        			</div>
+			</div>
+		</div>
+	</div>
+		
+		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" class="responsive-img" style="border-radius:20px;">
+			<p>Here's a photo of a similar project.</p>
+		</div>
+	</div>
+</div>
+
+<script>
+    function gotoStripe() {
+        	amount = $('#donation_amount').val(); 
+        	if (!amount) { 
+        		amount = $('#donation_amount').attr('placeholder'); 
+        	}
+        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val()); 
+    }
 </script>
              
 <?php include('footer.inc'); ?>
