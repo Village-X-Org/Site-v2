@@ -116,6 +116,7 @@ foreach ($sheet as $projRow) {
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         doQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_funded=$funded, project_status='$status', project_type='$type' WHERE project_id=$projectId");
+        invalidateCaches($projectId);
     } else {
         doQuery("INSERT INTO projects (project_id, project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type) VALUES ($projId, $villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded, '$status', '$type')");
         $projectId = $link->insert_id;

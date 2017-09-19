@@ -13,6 +13,8 @@ if (hasParam('id')) {
     return;
 }
 
+if (!file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
+    ob_start();
 $result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
@@ -601,4 +603,8 @@ $(document).ready(function(){
 	</div>
 	<?php } ?>
 </div></div></div>
-<?php include('footer.inc'); ?>
+<?php include('footer.inc'); 
+$contents = ob_get_contents();
+ob_end_clean();
+file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
+} include(CACHED_PROJECT_PREFIX.$projectId); ?>
