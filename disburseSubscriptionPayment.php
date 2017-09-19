@@ -25,8 +25,7 @@ while ($row = $result->fetch_assoc()) {
     $amount -= $donationAmount;
     doQuery("INSERT INTO subscription_disbursals (sd_amount, sd_project_id, sd_donor_id) VALUES ($donationAmount, $projectId, $donorId)");
     doQuery("UPDATE projects SET project_funded=project_funded + $donationAmount WHERE project_id=$projectId"); 
-    invalidateCaches($projectId);
-    
+
     $body .= "<TR><TD><B>$$donationAmount</B></TD><TD>$projectName in $villageName</TD><TR>";
     if ($amount < .01) {
         break;
@@ -37,5 +36,6 @@ if ($amount >= .01) {
     $body .= "<TR><TD><B>$amount</B></TD><TD>Leftover for manual distribution</TD></TR>";
 }
 $body .= "</TABLE>";
+invalidateCaches($projectId);
 
 sendMail(getAdminEmail(), "Monthly Distribution of $donorFirstName $donorLastName's Subscription", $body, getAdminEmail());
