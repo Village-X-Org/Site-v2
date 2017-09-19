@@ -12,7 +12,7 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     if ($row = $result->fetch_assoc()) {
         $donorId = $row['donation_donor_id'];
     }
-    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, $amount, '$subscriptionId')");
+    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, ".($amount / 100).", '$subscriptionId')");
     include("disburseSubscriptionPayment.php");
 }
 
