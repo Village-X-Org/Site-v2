@@ -312,7 +312,7 @@ $(document).ready(function(){
 		<?php } ?>
 		
     <?php 
-        $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
+        $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             if ($count == 0) {
