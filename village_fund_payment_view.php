@@ -95,7 +95,7 @@ require_once("utilities.php");
             </div>
             
             <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-            <img src="images/monthly_giving_donation_page.jpg" class="responsive-img">
+            <img src="images/monthly_giving_donation_page.jpg" width="800" height="800" class="responsive-img">
             <p>You'll receive rolling updates of your impact on the ground.</p>
 		</div>
                 
@@ -112,4 +112,6 @@ require_once("utilities.php");
     }
 </script>
 
-<?php include('footer.inc'); ?>
+</body>
+
+</html>
