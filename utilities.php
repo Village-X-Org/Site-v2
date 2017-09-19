@@ -2,11 +2,15 @@
 
 require_once('config.php');
 
-$link = getDBConn();
 session_start();
+$link = 0;
 
 define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
+
+define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
+define("CACHED_LISTING_FILENAME", "cached/project_listing");
+define("CACHED_PROJECT_PREFIX", "cached/project_");
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -66,7 +70,10 @@ function sendMail($receiver, $subject, $body, $from) {
 	    return 0;
 	}
 	
-	doQuery("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES ('".$link->real_escape_string($subject)."', '".$link->real_escape_string($body)."', '".$link->real_escape_string($fromName)."', '".$link->real_escape_string($to)."', '".$link->real_escape_string($fromEmail)."')");
+	if (!$link) {
+	   $link = getDBConn();
+	}
+	doQuery("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES ('".escStr($subject)."', '".escStr($body)."', '".escStr($fromName)."', '".escStr($to)."', '".escStr($fromEmail)."')");
 	
 	return 1;
 }
@@ -96,8 +103,9 @@ function doQuery($queryToBeExecuted) {
 	global $_SESSION;
 	global $link;
 	
-	$escaped = $link->real_escape_string($queryToBeExecuted);
-	//mysql_query("INSERT INTO log (log_record) VALUES ('$escaped')");
+	if (!$link) {
+	    $link = getDBConn();
+	}
 	print mysqli_error($link);
 	if (!($result = $link->query($queryToBeExecuted))) {
 		$email = '';
@@ -171,8 +179,15 @@ function getPost($key) {
 }
 
 function getFromReq($key, $req) {
-	global $link;
-	return mysqli_real_escape_string($link, stripslashes($req[$key]));
+	return stripslashes($req[$key]);
+}
+
+function escStr($str) {
+    global $link;
+    if (!$link) {
+        $link = getDBConn();
+    }
+    return mysqli_real_escape_string($link, $str); 
 }
 
 function param($key) {
@@ -308,6 +323,14 @@ function ordinal($number) {
 
 function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize) {
     include('share_buttons.inc');   
+}
+
+function invalidateCaches($projectId) {
+    @unlink(CACHED_PROJECT_PREFIX.$projectId);
+    @unlink(CACHED_HIGHLIGHTED_FILENAME);
+    @unlink(CACHED_LISTING_FILENAME);
+    include("getProjects.php");
+    include("getVillages.php");
 }
 
 ?>
