@@ -416,7 +416,7 @@ $(document).ready(function(){
 			</script>
 		</div>
 			
-			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=$villageId AND pe_project_id=project_id AND pe_type=4");
+			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=$villageId AND pe_project_id=project_id AND pe_type=4 ORDER BY yearPosted ASC");
 			$count = 0;
 			$labels = '';
 			$amounts = '';
