@@ -152,52 +152,58 @@ require_once("utilities.php");
 		<!--   project section   -->
 		<div class="row">
 <?php
-$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id ORDER BY (project_status = 'funding' AND project_funded<project_budget) DESC, ABS(project_budget-project_funded) LIMIT 3");
-
-while ($row = $result->fetch_assoc()) {
-    $projectId = $row['project_id'];
-    $projectName = $row['project_name'];
-    $funded = round($row['project_funded']);
-    $projectTotal = $row['project_budget'];
-    $fundedPercent = $funded / $projectTotal * 100;
-    $villageContribution = $projectTotal * .05;
-    print "<div class='col s12 m6 l4 ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
-			<div class='card sticky-action hoverable'>
-				<div class='card-image'>
-					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
-				</div>
-				<div class='card-content'>
-					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
-						<i class='material-icons right'>more_vert</i>
-					</span>
-					<h6 class='brown-text'>
-						<b>{$row['village_name']} Village</b>
-					</h6>
-					<br>
-					<h6>
-						<b>\$$funded out of \$$projectTotal</b>
-					</h6>
-					<div class='progress'>
-						<div class='determinate' style='width: $fundedPercent%'></div>
-					</div>
-					<p>Locals Contributed: \$$villageContribution</p>
-				</div>
-				<div class='card-action'>
-					<div class='row center'>
-						<div class='col s12'>";
-    if ($fundedPercent < 100) {
-        print "<a href='one_time_payment_view.php?id=$projectId'
-								id='donate_button'
-								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
-    } else {
-        print "<button href='' class='btn grey'>Fully Funded!</button>";
+if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
+    $result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id ORDER BY (project_status = 'funding' AND project_funded<project_budget) DESC, ABS(project_budget-project_funded) LIMIT 3");
+    $buffer = '';
+    while ($row = $result->fetch_assoc()) {
+        $projectId = $row['project_id'];
+        $projectName = $row['project_name'];
+        $funded = round($row['project_funded']);
+        $projectTotal = $row['project_budget'];
+        $fundedPercent = $funded / $projectTotal * 100;
+        $villageContribution = $projectTotal * .05;
+        $buffer .= "<div class='col s12 m6 l4 ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+    			<div class='card sticky-action hoverable'>
+    				<div class='card-image'>
+    					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
+    				</div>
+    				<div class='card-content'>
+    					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
+    						<i class='material-icons right'>more_vert</i>
+    					</span>
+    					<h6 class='brown-text'>
+    						<b>{$row['village_name']} Village</b>
+    					</h6>
+    					<br>
+    					<h6>
+    						<b>\$$funded out of \$$projectTotal</b>
+    					</h6>
+    					<div class='progress'>
+    						<div class='determinate' style='width: $fundedPercent%'></div>
+    					</div>
+    					<p>Locals Contributed: \$$villageContribution</p>
+    				</div>
+    				<div class='card-action'>
+    					<div class='row center'>
+    						<div class='col s12'>";
+        if ($fundedPercent < 100) {
+            $buffer .= "<a href='one_time_payment_view.php?id=$projectId'
+    								id='donate_button'
+    								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
+        } else {
+            $buffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
+        }
+        $buffer .= "</div>
+    					</div>
+    				</div>
+    			</div>
+    	      </div>";
     }
-    print "</div>
-					</div>
-				</div>
-			</div>
-	      </div>";
+    $handle = fopen(CACHED_HIGHLIGHTED_FILENAME, "w");
+    fwrite($handle, $buffer);
+    fclose($handle);
 }
+include(CACHED_HIGHLIGHTED_FILENAME);
 ?>			
 		</div>
 		<br>

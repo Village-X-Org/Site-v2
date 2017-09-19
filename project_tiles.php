@@ -45,8 +45,10 @@ require_once("utilities.php");
 	
 	<div class="section"><div class='row'>		
 			<?php 
+	if (!file_exists(CACHED_LISTING_FILENAME)) {
 		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status<>'cancelled' ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
 
+		$buffer = '';
 		$count = 0;
 		while ($row = $result->fetch_assoc()) {
 		    $projectId = $row['project_id'];
@@ -71,7 +73,7 @@ require_once("utilities.php");
 		          $fundedClass = 'funded';
 		      }
 		      
-		      print "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
 				<div class='card sticky-action hoverable'>
 					<div class='card-image'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
@@ -97,19 +99,24 @@ require_once("utilities.php");
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
-                print "<a href='one_time_payment_view.php?id=$projectId'
+               $buffer .= "<a href='one_time_payment_view.php?id=$projectId'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
             } else {
-                print "<button class='btn grey' >Fully Funded!</button>";
+                $buffer .= "<button class='btn grey' >Fully Funded!</button>";
             }
-			print "      </div>
+			$buffer .= "      </div>
                         </div>
 					</div>
 				</div>
 			 </div>";
 		      $count++;
 		}
+		$handle = fopen(CACHED_LISTING_FILENAME, 'w');
+		fwrite($handle, $buffer);
+		fclose($handle);
+	}
+	include(CACHED_LISTING_FILENAME);
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->
 
