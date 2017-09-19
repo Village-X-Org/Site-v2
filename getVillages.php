@@ -3,7 +3,7 @@ require_once("utilities.php");
 
 $file = fopen("cached/villages.json","w");
 $count = 0;
-$result = doQuery("SELECT village_id, village_name, village_lat, village_lng, picture_filename, SUM(IF(project_status='funding', 1, 0)) AS fundingCount, SUM(IF(project_status='completed', 1, 0)) AS completedCount, SUM(IF(project_status='construction', 1, 0)) AS constructionCount, village_summary, MIN(project_lat) AS swLat, MIN(project_lng) AS swLng, MAX(project_lat) AS neLat, MAX(project_lng) AS neLng FROM villages JOIN projects ON project_status<>'cancelled' AND village_pending=0 AND project_village_id=village_id LEFT JOIN pictures ON picture_id=village_thumbnail GROUP BY village_id");
+$result = doQuery("SELECT village_id, village_name, village_lat, village_lng, picture_filename, SUM(IF(project_status='funding', 1, 0)) AS fundingCount, SUM(IF(project_status='completed', 1, 0)) AS completedCount, SUM(IF(project_status='construction', 1, 0)) AS constructionCount, village_summary, MIN(project_lat) AS swLat, MIN(project_lng) AS swLng, MAX(project_lat) AS neLat, MAX(project_lng) AS neLng FROM villages JOIN projects ON project_status<>'cancelled' AND village_pending=0 AND project_village_id=village_id LEFT JOIN pictures ON picture_id=project_profile_image_id GROUP BY village_id");
 while ($row = $result->fetch_assoc()) {
     $funding = $row['fundingCount'];
     $completed = $row['completedCount'];
