@@ -83,7 +83,7 @@
     <div class="modal-content" id="jqueryvalidation">
      	<div class="container" style="width:100%">
          <h4 class="flow-text black-text center-align" style="padding:5% 10% 5% 10%"><b>Subscription Cancellation</b></h4>
-          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
+          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking the "Give Monthly" button on the previous screen.</p>
         </div> 
         <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
         		<form id="cancelForm" method="get" action="cancelStripe.php" class="center-align">
