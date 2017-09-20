@@ -221,7 +221,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.339496041, 1.884430348, 4.762639922, 1.440140331 ]
+										          data: [ 1.339496041, 1.884430348, 1.58, 1.440140331 ]
 										        },
 											{
 										          label: "2015",
@@ -231,7 +231,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.850773378, 2.057503179, 5.55781056, 1.693112104 ]
+										          data: [ 1.850773378, 2.057503179, 1.85, 1.693112104 ]
 										        },
 											{
 										          label: "2016",
@@ -241,7 +241,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 2.692370418, 3.014114816, 7.155051979, 2.126753307 ]
+										          data: [ 2.692370418, 3.014114816, 2.38, 2.126753307 ]
 										        }
 							
 									],
@@ -279,7 +279,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.834480394, 2.719112058, 6.182858772, 3.4373324951 ]
+										          data: [ 1.834480394, 2.719112058, 2.06, 3.4373324951 ]
 										        },
 											{
 										          label: "2015",
@@ -289,7 +289,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.899622477, 2.581994567, 6.418351396, 3.782552672 ]
+										          data: [ 1.899622477, 2.581994567, 2.14, 3.782552672 ]
 										        },
 											{
 										          label: "2016",
@@ -299,7 +299,7 @@
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.627114886, 2.51217026, 6.50, 3.334513563 ]
+										          data: [ 1.627114886, 2.51217026, 2.17, 3.334513563 ]
 										        }
 							
 									],

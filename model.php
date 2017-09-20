@@ -281,6 +281,7 @@ require_once("utilities.php");
         		more villages inside and outside of Malawi. Find more on our impact <a href="impacts.php">here</a>.</span></div>
     </li>
     </ul>
+    <br>
 
 </div>
 <?php include('footer.inc'); ?>
