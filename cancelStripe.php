@@ -11,9 +11,12 @@ $donorEmail = param('email');
 $result = doQuery("SELECT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email='$donorEmail'");
 $count = 0;
 while ($row = $result->fetch_assoc()) {
-    $subscription = \Stripe\Subscription::retrieve($row['donation_subscription_id']);
-    $subscription->cancel();
-    $count++;
+    try {
+        $subscription = \Stripe\Subscription::retrieve($row['donation_subscription_id']);
+        $subscription->cancel();
+        $count++;
+    } catch (Stripe\Error\InvalidRequest $e) {
+    }
 }
 
 if ($count == 0) {
