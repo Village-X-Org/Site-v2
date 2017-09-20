@@ -46,11 +46,11 @@
 	     $('.modal').modal();
 	});
   </script>	
-  <a class="modal-trigger" href="#modal1">(cancel a subscription)</a>
+  <a class="modal-trigger" href="#cancelModal">(cancel a subscription)</a>
   	</div>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal">
+  <div id="cancelModal" class="modal">
     <div class="modal-content" id="jqueryvalidation">
      	<div class="container" style="width:100%">
          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
@@ -108,6 +108,7 @@
 				$.get( "cancelStripe.php?email=" + $('#cancellation_email').val())
         			  .done(function(data) {
         				  Materialize.toast(data, 4000); 
+        				  $('#cancelModal').modal('close');
         			  });
         		    }
         		});
