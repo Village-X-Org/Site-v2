@@ -326,9 +326,15 @@ function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideS
 }
 
 function invalidateCaches($projectId) {
-    @unlink(CACHED_PROJECT_PREFIX.$projectId);
-    @unlink(CACHED_HIGHLIGHTED_FILENAME);
-    @unlink(CACHED_LISTING_FILENAME);
+    if (file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
+        @unlink(CACHED_PROJECT_PREFIX.$projectId);
+    }
+    if (file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
+        @unlink(CACHED_HIGHLIGHTED_FILENAME);
+    }
+    if (file_exists(CACHED_LISTING_FILENAME)) {
+        @unlink(CACHED_LISTING_FILENAME);
+    }
     include("getProjects.php");
     include("getVillages.php");
 }
