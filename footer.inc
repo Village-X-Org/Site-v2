@@ -14,35 +14,6 @@
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href='village_fund_payment_view.php' 
 					>Give Monthly</a>	
-
-				<!--   <div id="subscriptionModal" class="modal" style='color:black;'>
-					<div class="modal-content">
-						<h4>Give Monthly</h4>
-						<p>A bunch of text</p>
-					</div>
-					<div class="modal-footer">
-						<div class='row'>
-							<div class='col'>
-								$ <input type='text' id='footerAmountText' value='20' />
-							</div>
-							<div class='col'>
-                        			<button id="monthlySubscribeButton">Subscribe!</button>
-                        		</div>
-                        </div>
-                        <script>
-
-                        document.getElementById('monthlySubscribeButton').addEventListener('click', function(e) {
-                          // Open Checkout with further options:
-                          handler.open({
-                            name: 'Village X Org',
-                            description: 'Monthly Subscription',
-                            amount: $('#footerAmountText').val() * 100
-                          });
-                          e.preventDefault();
-                        });
-                        </script>
-					</div>
-				</div> --> 
 			</div>
 			<br>
 			<div class="row center">
@@ -79,11 +50,10 @@
   	</div>
 
   <!-- Modal Structure -->
-  <div id="modal1" class="modal modal-fixed-footer">
+  <div id="modal1" class="modal">
     <div class="modal-content" id="jqueryvalidation">
      	<div class="container" style="width:100%">
-         <h4 class="flow-text black-text center-align" style="padding:5% 10% 5% 10%"><b>Subscription Cancellation</b></h4>
-          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
+         <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking on the "Give Monthly" button on the previous screen.</p>
         </div> 
         <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
         		<form id="cancelForm" method="get" action="cancelStripe.php" class="center-align">
@@ -93,12 +63,12 @@
             					<input placeholder="jane@gmail.com" id="cancellation_email" name="email" required data-error=".errorTxt3" style="font-size:20px; color:black;" type="email">
             					<div class="errorTxt3" style="font-size:10px; color:red; padding:1% 0% 0% 0%"></div>
             				</div>
-                     	</div> 	
-                     </div>
+                    </div> 	
+                </div>
             
-                     <div class="row s12 m12 l12 center-align" style="padding:0% 0% 0% 0%;">
-                			<div class="input-field">
-                				<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Cancel My Subscription</button>
+                <div class="row s12 m12 l12 center-align" style="padding:0% 0% 0% 0%;">
+                		<div class="input-field">
+                			<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Cancel My Subscription</button>
             			</div>
             		</div>
         		</form>		
@@ -135,15 +105,14 @@
                   }
                 },	
         		submitHandler: function(form) {
-        		      form.submit();
+				$.get( "cancelStripe.php?email=" + $('#cancellation_email').val())
+        			  .done(function(data) {
+        				  Materialize.toast(data, 4000); 
+        			  });
         		    }
         		});
         	});
 	</script>
-	
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close black white-text waves-effect waves-blue btn-flat">close</a>
-    </div>
   </div>
   
 			</div>
