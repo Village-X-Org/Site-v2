@@ -86,7 +86,7 @@
           <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">We are sorry to see you go, but you can re-join the Village Fund at any time by clicking the "Give Monthly" button on the previous screen.</p>
         </div> 
         <div class="container center-align" id="jqueryvalidation" style="padding:0% 5% 0% 5%;">
-        		<form id="cancelForm" method="get"  class="center-align">
+        		<form id="cancelForm" method="get" action="cancelStripe.php" class="center-align">
             		<div class="row center-align">
             			<div class="col s12 m12 l12 center-align"> 					
             				<div class="input-field col s12 center-align">
@@ -100,13 +100,10 @@
                 			<div class="input-field">
                 				<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Cancel My Subscription</button>
             			</div>
-       
             		</div>
         		</form>		
     		</div>
 	</div>	
-
-	
 
 	<script>
         	$().ready(function() {
@@ -138,45 +135,11 @@
                   }
                 },	
         		submitHandler: function(form) {
-        			check_if_subscriber();
+        		      form.submit();
         		    }
         		});
         	});
 	</script>
-	
-	<script>
-        
-                        <?php
-                            require_once("utilities.php");
-                            require_once('lib/stripe/init.php');
-                            
-                            // Be sure to replace this with your actual test API key
-                            // (switch to the live key later)
-                            \Stripe\Stripe::setApiKey("sk_test_DGoi26vx76FlFn7sen3IDSC8");
-                            
-                            function check_if_subscriber() {
-                            
-                            $donorEmail = param('email');
-                            
-                            $result = doQuery("SELECT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email='$donorEmail'");
-                            $count = 0;
-                            while ($row = $result->fetch_assoc()) {
-                                $subscription = \Stripe\Subscription::retrieve($row['donation_subscription_id']);
-                                $subscription->cancel();
-                                $count++;
-                            }
-                            
-                            if ($count == 0) {
-                                print "We were not able to find any subscriptions associated with this email.";
-                            } else {
-                                print "We cancelled $count subscription(s) associated with this email.";
-                                $firstName = $row['donor_first_name'];
-                                $lastName = $row['donor_last_name'];
-                                sendMail($donorEmail, "Subscription Cancelled", "Hi $donorEmail,\n\nWe have cancelled your subscription.\n\nThe Village X Team", getAdminEmail());
-                            }
-                            }
-                            ?> 
-                   </script>
 	
     <div class="modal-footer">
       <a href="#!" class="modal-action modal-close black white-text waves-effect waves-blue btn-flat">close</a>
