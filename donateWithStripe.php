@@ -45,7 +45,7 @@ if ($isSubscription) {
              'source'  => param('stripeToken'),
              'plan' => $plan
          ));
-         $subscriptionId = "'$planName'";
+         $subscriptionId = "'".$customer->subscriptions->data[0]->id."'";
         sendMail($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>", getAdminEmail());
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());

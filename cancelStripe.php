@@ -8,7 +8,7 @@ require_once('lib/stripe/init.php');
 
 $donorEmail = param('email');
 
-$result = doQuery("SELECT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email='$donorEmail'");
+$result = doQuery("SELECT DISTINCT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email='$donorEmail' WHERE donation_subscription_id IS NOT NULL");
 $count = 0;
 while ($row = $result->fetch_assoc()) {
     try {
