@@ -11,9 +11,9 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     $result = doQuery("SELECT donation_donor_id FROM donations WHERE donation_subscription_id='$subscriptionId' LIMIT 1");
     if ($row = $result->fetch_assoc()) {
         $donorId = $row['donation_donor_id'];
+        doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, ".($amount / 100).", '$subscriptionId')");
+        include("disburseSubscriptionPayment.php");
     }
-    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, $amount, '$subscriptionId')");
-    include("disburseSubscriptionPayment.php");
 }
 
 doQuery("INSERT INTO webhook_events (we_content) VALUES ('".$link->escape_string($input)."')");

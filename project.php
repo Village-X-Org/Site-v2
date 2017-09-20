@@ -13,7 +13,9 @@ if (hasParam('id')) {
     return;
 }
 
-$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, project_funded, project_budget, project_type, project_staff_id, COUNT(pe_id) AS eventCount, COUNT(donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
+if (!file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
+    ob_start();
+$result = doQuery("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount FROM projects JOIN villages ON village_id=project_village_id LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id LEFT JOIN project_events ON pe_project_id=project_id LEFT JOIN donations ON donation_project_id=project_id WHERE project_id=$projectId GROUP BY project_id");
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $pictureFilename = $row['similar_picture'];
@@ -103,7 +105,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print ($total - $funded); ?> to go</font></b></div>
+		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go</font></b></div>
 				
 					<br>
 					
@@ -310,7 +312,7 @@ $(document).ready(function(){
 		<?php } ?>
 		
     <?php 
-        $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id");
+        $result = doQuery("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=$projectId AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             if ($count == 0) {
@@ -414,7 +416,7 @@ $(document).ready(function(){
 			</script>
 		</div>
 			
-			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=$villageId AND pe_project_id=project_id AND pe_type=4");
+			<?php $result = doQuery("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=$villageId AND pe_project_id=project_id AND pe_type=4 ORDER BY yearPosted ASC");
 			$count = 0;
 			$labels = '';
 			$amounts = '';
@@ -601,4 +603,8 @@ $(document).ready(function(){
 	</div>
 	<?php } ?>
 </div></div></div>
-<?php include('footer.inc'); ?>
+<?php include('footer.inc'); 
+$contents = ob_get_contents();
+ob_end_clean();
+file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
+} include(CACHED_PROJECT_PREFIX.$projectId); ?>
