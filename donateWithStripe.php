@@ -46,12 +46,22 @@ if ($isSubscription) {
              'plan' => $plan
          ));
          $subscriptionId = "'".$customer->subscriptions->data[0]->id."'";
-        sendMail($donorEmail, "Monthly Subscription for Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>", getAdminEmail());
+         
+         $type = EMAIL_TYPE_THANKS_FOR_DONATING;
+         ob_start();
+         include("email_content.php");
+         $output = ob_get_clean();
+         
+        sendMail($donorEmail, "Monthly Subscription for Village X", $output, getAdminEmail());
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
 } else {
-    sendMail($donorEmail, "Donation to Village X", "Thank you for your generous contribution!  Stay tuned for updates to the projects your funds support.<P>The Village X Team</P>", getAdminEmail());
+    $type = EMAIL_TYPE_THANKS_FOR_DONATING;
+    ob_start();
+    include("email_content.php");
+    $output = ob_get_clean();
+    sendMail($donorEmail, "Donation to Village X", $output, getAdminEmail());
 }
 
 $donationAmountDollars = $amount / 100;

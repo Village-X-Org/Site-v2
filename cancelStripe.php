@@ -27,7 +27,11 @@ if ($count == 0) {
     print "We cancelled $count subscription(s) associated with this email.";
     $firstName = $row['donor_first_name'];
     $lastName = $row['donor_last_name'];
-    sendMail($donorEmail, "Subscription Cancelled", "Hi $donorEmail,\n\nWe have cancelled your subscription.\n\nThe Village X Team", getAdminEmail());
+    $type = EMAIL_TYPE_SUBSCRIPTION_CANCELLATION;
+    ob_start();
+    include("email_content.php");
+    $output = ob_get_clean();
+    sendMail($donorEmail, "Subscription Cancelled", $output, getAdminEmail());
 }
 
 ?>
