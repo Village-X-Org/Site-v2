@@ -31,6 +31,10 @@ while ($row = $result->fetch_assoc()) {
     $emailBuffer .= "<TR><TD><img src='".PICTURES_DIR.$updatePicture."' style='width:400px;' /></TD><TD>$updateTime<BR>$updateText</TD>";
 }
 if (strlen($emailBuffer) > 5) {
-    sendMail($email, "Project Updates for this Past Week", $emailBuffer, "Village X <jdepree@gmail.com>");
+    $type = EMAIL_TYPE_PROJECT_UPDATE;
+    ob_start();
+    include("email_content.php");
+    $output = ob_get_clean();
+    sendMail($email, "Project Updates for this Past Week", $output, getAdminEmail());
 }
 ?>

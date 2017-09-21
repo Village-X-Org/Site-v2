@@ -11,6 +11,9 @@ define('MAX_MAIL_PER_HOUR', 600);
 define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
 define("CACHED_PROJECT_PREFIX", "cached/project_");
+define("EMAIL_TYPE_PROJECT_UPDATE", 0);
+define("EMAIL_TYPE_SUBSCRIPTION_CANCELLATION", 1);
+define("EMAIL_TYPE_THANKS_FOR_DONATING", 2);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -30,7 +33,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 set_error_handler("emailErrorHandler");
 
 function getAdminEmail() {
-	return "admin@adventureanywhere.org";
+    return "Michael Buckler at Village X <mike@villagex.org>";
 }
 
 function getBaseURL() {
