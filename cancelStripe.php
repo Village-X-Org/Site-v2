@@ -11,11 +11,13 @@ $donorEmail = param('email');
 $result = doQuery("SELECT DISTINCT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email='$donorEmail' WHERE donation_subscription_id IS NOT NULL");
 $count = 0;
 while ($row = $result->fetch_assoc()) {
+    $subscriptionId = $row['donation_subscription_id'];
     try {
-        $subscription = \Stripe\Subscription::retrieve($row['donation_subscription_id']);
+        $subscription = \Stripe\Subscription::retrieve($subscriptionId);
         $subscription->cancel();
+        doQuery("UPDATE donations SET donation_subscription_id=NULL WHERE donation_subscription_id='$subscriptionId'");
         $count++;
-    } catch (Stripe\Error\InvalidRequest $e) {
+    } catch (Exception $e) {
     }
 }
 
