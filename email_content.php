@@ -7,7 +7,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width" />
 <style type="text/css">
-<?php include ('email_styles.inc'); ?>
+<?php include ('email_styles.inc'); 
+$firstName;
+$email;
+$donationId;
+$donationAmount;
+$projectName;
+$villageName;
+$countryName;
+$transactionNumber;
+$hasActiveSubscriptions;
+?>
 </style>
 </head>
 <body style="width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;">
@@ -222,14 +232,14 @@
 																									<p
 																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
 																										align="left">
-																										<strong>Date</strong><br /> September 25, 2017<br />
+																										<strong>Date</strong><br /> <?php print date("F j, Y"); ?><br />
 																									</p>
 
 																									<p
 																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
 																										align="left">
 																										<strong>Email Address</strong><br />
-																										donor@donor.com
+																										<?php print $email; ?>
 																									</p>
 																									
 																									<?php switch ($type) {
@@ -240,7 +250,7 @@
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
             																										<strong>Donation ID</strong><br />
-            																										239235983749636
+            																										<?php print $donationId; ?>
             																									</p><?php
                                         																        break;
                                         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -270,21 +280,21 @@
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> $50
+            																										<strong>Donation Amount</strong><br /> <?php print $donationAmount; ?>
             																									</p>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
             																										<strong>Project</strong><br /> <a href=""
             																											target="_blank"
-            																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Start
-            																											a Goat Herd</a>
+            																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
+            																											<?php print $projectName; ?></a>
             																									</p>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Location</strong><br /> Chikumbu
-            																										Village, Malawi
+            																										<strong>Location</strong><br /> <?php print $villageName; ?>
+            																										Village, <?php print $countryName; ?>
             																									</p><?php
                                         																        break;
                                         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -300,7 +310,7 @@
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
             																										<strong>Transaction Number</strong><br />
-            																										239235983749636
+            																										<?php print $transactionNumber; ?>
             																									</p><?php
             																									break;
                                                                                                             default:
@@ -338,8 +348,8 @@
                     																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
                     																		align="left"></th>
                     																</tr>
-                    															</table> <br /> <i>[if statement here -- display the
-                    																challenge only if not already a monthly giver]</i> <br />
+                    															</table> 
+                    															<?php if (!$hasActiveSubscriptions) { ?>
                     															<h2
                     																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
                     																align="left">Our challenge for you</h2>
@@ -358,6 +368,7 @@
                     																	Fund</a>. Sit back, relax, and receive impact updates
                     																all year long.
                     															</p><?php
+                    												        }
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
                     												        
