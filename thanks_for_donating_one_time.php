@@ -26,9 +26,19 @@ include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
+		<div class="container">
 		<div class="row center">
-			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for the donation!</h2>	
-
+			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for your donation!</h2>
+		</div>
+			<br>
+			<div class="row center"><p class="white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><b>Share your generosity to inspire others</b></p>	
+			</div> 
+			<div class="row center">
+					<?php printShareButtons($projectId, 
+						    "Disrupt extreme poverty by funding projects villages choose.", 
+						    "I donated to $projectName in $villageName Village", 70); ?>
+			</div>
+	</div>
 			<div class="parallax" style="background-size: cover;">
 				<img src="<?php print PICTURES_DIR."/".$row['picture_filename']; ?>" />
 			</div>
@@ -46,11 +56,6 @@ include('header.inc'); ?>
           	<p><?php print $donorFirstName; ?>,</p> 
 			<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! You have disrupted 
 			extreme poverty for <?php print $row['peopleCount']; ?> people and <?php print $row['householdCount']; ?> households in <?php print $row['country_label']; ?>.</p>
-			<p class="center-align"><b>Share the good news:</b> 
-					<?php printShareButtons($projectId, 
-						    "Disrupt extreme poverty by funding projects villages choose.", 
-						    "I donated to $projectName in $villageName Village", 30); ?>
-			</p>
 			<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
 			 stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
         		<p>If you haven't done so already, please consider supporting The Village Fund, which allows you to donate automatically every month (as little as $5) and enjoy
