@@ -1,3 +1,4 @@
+<?php require_once("utilities.php"); ?>
 <!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -8,15 +9,39 @@
 <meta name="viewport" content="width=device-width" />
 <style type="text/css">
 <?php include ('email_styles.inc'); 
-$firstName;
-$email;
-$donationId;
-$donationAmount;
-$projectName;
-$villageName;
-$countryName;
-$transactionNumber;
-$hasActiveSubscriptions;
+switch ($type) {
+    case EMAIL_TYPE_PROJECT_UPDATE:
+        //$result = doQuery("");
+    case EMAIL_TYPE_THANKS_FOR_DONATING:
+        $result = doQuery("SELECT donation_id FROM donations WHERE donation_donor_id=$donorId AND donation_id<>$donationId AND donation_subscription_id IS NOT NULL");
+        if ($row = $result->fetch_assoc()) {
+            $hasActiveSubscriptions = true;
+        }
+    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+        $result = doQuery("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_name, village_name, country_label, picture_filename FROM donations
+                    JOIN donors ON donation_donor_id=donor_id
+                    JOIN projects ON donation_project_id=project_id
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures ON project_similar_image_id=picture_id
+                    WHERE donation_id=$donationId");
+        if ($row = $result->fetch_assoc()) {
+            $donorId = $row['donor_id'];
+            $firstName = $row['donor_first_name'];
+            $email = $row['donor_email'];
+            $donationAmount = $row['donation_amount'];
+            $projectName = $row['project_name'];
+            $villageName = $row['village_name'];
+            $countryName = $row['country_label'];
+            $projectExampleImage = $row['picture_filename'];
+        }
+        break;
+    default:
+        break;
+}
+
+$hasActiveSubscriptions = false;
+
 ?>
 </style>
 </head>
@@ -66,7 +91,7 @@ $hasActiveSubscriptions;
 																	align="left">
 																	<th
 																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
-																		align="left"><img src="images/logo_raster.jpg"
+																		align="left"><img src="images/logo.jpg"
 																		style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" /></th>
 																</tr>
 															</table>
@@ -135,10 +160,10 @@ $hasActiveSubscriptions;
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        print "Hi, Firstname!";
+																        print "Hi, $firstName!";
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-																        print "Firstname,";
+																        print "$firstName,";
 																        break;
 																    default:
 																        break;
@@ -151,10 +176,14 @@ $hasActiveSubscriptions;
 																align="left">
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
+																        $result = doQuery("SELECT pu_description, picture_filename FROM project_updates JOIN pictures ON pu_image_id=picture_id WHERE pu_id=$updateId");
+																        if ($row = $result->fetch_assoc()) {
+																            $updateDescription = $row['pu_description'];
+																            $updatePicture = $row['picture_filename'];
+																        }
 																        ?>
 																        The project you supported with a (monthly) donation
-            																posted an update. <b>The project is fully funded
-            																	(finished)!</b> It will get underway immediately.
+            																posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
             																(Click the link below to view photos of your impact.)
 																		<?php 
 																        break;
@@ -280,7 +309,7 @@ $hasActiveSubscriptions;
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> <?php print $donationAmount; ?>
+            																										<strong>Donation Amount</strong><br /> <?php print money_format('%n', $donationAmount); ?>
             																									</p>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
@@ -306,12 +335,7 @@ $hasActiveSubscriptions;
             																										monthly giving
             																									</p>
             
-            																									<p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Transaction Number</strong><br />
-            																										<?php print $transactionNumber; ?>
-            																									</p><?php
+            																									<?php
             																									break;
                                                                                                             default:
                                                                                                                 break;
@@ -328,7 +352,7 @@ $hasActiveSubscriptions;
 															<?php switch ($type) {
                     											        case EMAIL_TYPE_PROJECT_UPDATE:
                     												        ?>
-                    												        <img src="temp/kids_in_school.jpg" alt=""
+                    												        <img src="<?php print PICTURES_DIR."/".$updatePicture; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
@@ -349,33 +373,13 @@ $hasActiveSubscriptions;
                     																		align="left"></th>
                     																</tr>
                     															</table> 
-                    															<?php if (!$hasActiveSubscriptions) { ?>
-                    															<h2
-                    																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
-                    																align="left">Our challenge for you</h2>
-                    
-                    															<p class="lead"
-                    																style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.6; font-size: 20px; margin: 0 0 10px; padding: 0;"
-                    																align="left">
-                    																We share your passion to defeat extreme poverty in
-                    																Africa. It's a worthy fight that rages 24 hours a day, 7
-                    																days a week. To maximize your impact, please consider
-                    																making automatic monthly donations (as little as $5 per
-                    																month) to our <a
-                    																	href="http://localhost/Site-v2/village_fund_payment_view.php"
-                    																	target="_blank"
-                    																	style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Village
-                    																	Fund</a>. Sit back, relax, and receive impact updates
-                    																all year long.
-                    															</p><?php
-                    												        }
+                    															<?php
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-                    												        
                     												        break;
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
-                    												        <img src="temp/kids_in_school.jpg" alt=""
+                    												        <img src="<?php print PICTURES_DIR."/".$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
@@ -404,9 +408,8 @@ $hasActiveSubscriptions;
                     																one when the project is fully funded and another when
                     																it's complete. We'll post updates to the corresponding
                     																project page (linked above), including key timeline
-                    																dates, pictures, and data outcomes.</p> <br /> <i>[if
-                    																statement here -- display the challenge only if not
-                    																already a monthly giver]</i> <br />
+                    																dates, pictures, and data outcomes.</p> <br />
+                    															<?php if (!$hasActiveSubscriptions) { ?>
                     															<h2
                     																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
                     																align="left">Our challenge for you</h2>
@@ -425,6 +428,7 @@ $hasActiveSubscriptions;
                     																	Fund</a>. Sit back, relax, and receive impact updates
                     																all year long.
                     															</p><?php
+                    												            }
                     															break;
                                                                     default:
                                                                         break;
