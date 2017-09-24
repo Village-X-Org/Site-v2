@@ -76,7 +76,9 @@ function sendMail($receiver, $subject, $body, $from) {
 	if (!$link) {
 	   $link = getDBConn();
 	}
-	doQuery("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES ('".escStr($subject)."', '".escStr($body)."', '".escStr($fromName)."', '".escStr($to)."', '".escStr($fromEmail)."')");
+	$stmt = prepare("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES (?, ?, ?, ?, ?)");
+	$stmt->bindParam("sssss", $subject, $body, $fromName, $to, $fromEmail);
+	execute($stmt);
 	
 	return 1;
 }
@@ -101,8 +103,32 @@ function getDBConn() {
 	return $db_link;
 }
 
+function prepare($queryStre) {
+    global $link;
+    if (!$link) {
+        $link = getDBConn();
+    }
+    
+    print mysqli_error($link);
+    return $dbConnection->prepare($queryStr);
+}
 
-function doQuery($queryToBeExecuted) {
+
+function execute($stmt) {
+    if (!($result = $stmt->execute())) {
+        $trace = print_r(debug_backtrace(), true);
+        emailAdmin("Exception", "Exception in Village X\n\n".$queryToBeExecuted."\n\n".$trace);
+        print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
+        //if (isset($_SESSION['session_admin'])) {
+        print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
+        //}
+        die();
+    }
+    
+    return $result;
+}
+
+function doUnprotectedQuery($queryToBeExecuted) {
 	global $_SESSION;
 	global $link;
 	
@@ -129,21 +155,6 @@ function doQuery($queryToBeExecuted) {
 	return $result;
 }
 
-function doQueryAndReport($subject, $query) {
-	$result = doQuery($query);
-	emailAdmin($subject, $query);
-	return $result;
-}
-
-function doJsonQuery($query) {
-	$result = doQuery($query);
-	$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
-	mysqli_free_result($result);
-	closeDBConn();
-	$json = json_encode($rows);
-	return $json;
-}
-
 function closeDBConn() {
 	global $link;
 	mysqli_close($link);
@@ -151,12 +162,16 @@ function closeDBConn() {
 // End DB functions
 
 function doStatQuery($villageId, $statName) {
-    return doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    $stmt = prepare("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?)");
+    $stmt->bind_param("is", $villageId, $statName);
+    return execute($stmt);
 }
 
 function getStatYearAssociative($villageId, $statName) {
     $arr = array();
-    $result = doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    $stmt = prepare("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?)");
+    $stmt->bind_param("is", $villageId, $statName);
+    $result = execute($stmt);
     while ($row = $result->fetch_assoc()) {
         $arr[$row['stat_year']] = $row['stat_value'];
     }
@@ -164,7 +179,9 @@ function getStatYearAssociative($villageId, $statName) {
 }
 
 function getLatestValueForStat($villageId, $statName) {
-    $result = doQuery("SELECT stat_value FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName') ORDER BY stat_year DESC LIMIT 1");
+    $stmt = prepare("SELECT stat_value FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?) ORDER BY stat_year DESC LIMIT 1");
+    $stmt->bind_param("is", $villageId, $statName);
+    $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         return $row['stat_value'];
     } else {
