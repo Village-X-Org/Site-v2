@@ -39,11 +39,11 @@ foreach ($sheet as $projRow) {
     $dateProjectCompleted = $projRow[23];
     $projProfile = $projRow[24];
     $projExample = $projRow[25];
-    $summary = mysqli_real_escape_string($link, $projRow[27]);
-    $problem = mysqli_real_escape_string($link, $projRow[28]);
-    $solution = mysqli_real_escape_string($link, $projRow[29]);
-    $partners = mysqli_real_escape_string($link, $projRow[30]);
-    $impact = mysqli_real_escape_string($link, $projRow[31]);
+    $summary = escStr($projRow[27]);
+    $problem = escStr($projRow[28]);
+    $solution = escStr($projRow[29]);
+    $partners = escStr($projRow[30]);
+    $impact = escStr($projRow[31]);
     $funded = $projRow[32];
     $status = $projRow[33];
     $type = $projRow[34];
