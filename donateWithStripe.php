@@ -14,15 +14,22 @@ $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
 
-$result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
+$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
+$stmt->bind_param('s', $donorEmail);
+$result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
-    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>'$token'");
+    
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>?");
+    $stmt->bind_param('s', $token);
+    $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
     }
 } else {
-    doQuery("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES ('$donorEmail', '$donorFirstName', '$donorLastName')");
+    $stmt = prepare("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES (?, ?, ?)");
+    $stmt->bind_param('sss', $donorEmail, $donorFirstName, $donorLastName);
+    $result = execute($stmt);
     $donorId = $link->insert_id;
     $donationCount = 1;
 }
