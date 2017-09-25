@@ -37,32 +37,19 @@ function getClient() {
     $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
     
     // Store the credentials to disk.
-    if(!file_exists(dirname($credentialsPath))) {
-      mkdir(dirname($credentialsPath), 0700, true);
+    if(!file_exists(dirname(CREDENTIALS_PATH))) {
+        mkdir(dirname(CREDENTIALS_PATH), 0700, true);
     }
-    file_put_contents($credentialsPath, json_encode($accessToken));
-    printf("Credentials saved to %s\n", $credentialsPath);
+    file_put_contents(CREDENTIALS_PATH, json_encode($accessToken));
+    printf("Credentials saved to %s\n", CREDENTIALS_PATH);
   $client->setAccessToken($accessToken);
 
   // Refresh the token if it's expired.
   if ($client->isAccessTokenExpired()) {
     $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
-    file_put_contents($credentialsPath, json_encode($client->getAccessToken()));
+    file_put_contents(CREDENTIALS_PATH, json_encode($client->getAccessToken()));
   }
   return $client;
-}
-
-/**
- * Expands the home directory alias '~' to the full path.
- * @param string $path the path to expand.
- * @return string the expanded path.
- */
-function expandHomeDirectory($path) {
-  $homeDirectory = getenv('HOME');
-  if (empty($homeDirectory)) {
-    $homeDirectory = getenv('HOMEDRIVE') . getenv('HOMEPATH');
-  }
-  return str_replace('~', realpath($homeDirectory), $path);
 }
 
 // Get the API client and construct the service object.

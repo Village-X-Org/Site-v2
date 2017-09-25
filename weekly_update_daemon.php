@@ -35,6 +35,6 @@ if (strlen($emailBuffer) > 5) {
     ob_start();
     include("email_content.php");
     $output = ob_get_clean();
-    sendMail($email, "Project Updates for this Past Week", $output, getAdminEmail());
+    sendMail($email, "Project Updates for this Past Week", $output, getCustomerServiceEmail());
 }
 ?>

@@ -35,7 +35,7 @@ if ($count == 0) {
     ob_start();
     include("email_content.php");
     $output = ob_get_clean();
-    sendMail($donorEmail, "Subscription Cancelled", $output, getAdminEmail());
+    sendMail($donorEmail, "Subscription Cancelled", $output, getCustomerServiceEmail());
 }
 
 ?>

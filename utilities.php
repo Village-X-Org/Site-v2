@@ -32,8 +32,12 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 }
 set_error_handler("emailErrorHandler");
 
-function getAdminEmail() {
+function getCustomerServiceEmail() {
     return "Michael Buckler at Village X <mike@villagex.org>";
+}
+
+function getAdminEmail() {
+    return "Jeff DePree <jdepree@gmail.com>";
 }
 
 function getBaseURL() {
@@ -77,7 +81,7 @@ function sendMail($receiver, $subject, $body, $from) {
 	   $link = getDBConn();
 	}
 	$stmt = prepare("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES (?, ?, ?, ?, ?)");
-	$stmt->bindParam("sssss", $subject, $body, $fromName, $to, $fromEmail);
+	$stmt->bind_param("sssss", $subject, $body, $fromName, $to, $fromEmail);
 	execute($stmt);
 	$stmt->close();
 	
