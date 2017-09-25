@@ -70,6 +70,9 @@
                 		<div class="input-field">
                 			<button id="submitBtn" class="btn-large red submit" type="submit" name="action" style="width:100%;">Cancel My Subscription</button>
             			</div>
+            			<div class="progress" style='display:none;' id='cancelProgress'>
+                      <div class="indeterminate"></div>
+                  </div>
             		</div>
         		</form>		
     		</div>
@@ -105,10 +108,14 @@
                   }
                 },	
         		submitHandler: function(form) {
+            		$('#cancelProgress').show();
+            		$('#submitBtn').prop("disabled",true);
 				$.get( "cancelStripe.php?email=" + $('#cancellation_email').val())
         			  .done(function(data) {
-        				  Materialize.toast(data, 4000); 
-        				  $('#cancelModal').modal('close');
+                  		$('#cancelProgress').hide();
+                			$('#submitBtn').prop("disabled", false);
+        				  	Materialize.toast(data, 4000); 
+        				  	$('#cancelModal').modal('close');
         			  });
         		    }
         		});
