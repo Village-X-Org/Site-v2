@@ -9,7 +9,7 @@ require_once('lib/stripe/init.php');
 $donorEmail = param('email');
 
 $stmt = prepare("SELECT DISTINCT donation_subscription_id, donor_first_name, donor_last_name FROM donations JOIN donors ON donation_donor_id=donor_id AND donor_email=? WHERE donation_subscription_id IS NOT NULL");
-$stmt->bind_param('s', $email);
+$stmt->bind_param('s', $donorEmail);
 $result = execute($stmt);
 
 $count = 0;
