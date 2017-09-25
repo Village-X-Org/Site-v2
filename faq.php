@@ -33,7 +33,7 @@ Not by a long shot. Governance is a foundational problem in much of Africa. Over
 
 <p><b>Why should I donate to Village X Org?</b></p>
     
-Two reasons: (1) the cause is noble -- extreme poverty in Africa is one of the biggest injustices of our time; and (2) our model works (see our <a href="Impacts.php">Impacts</a> page).
+Two reasons: (1) the cause is noble -- extreme poverty in Africa is one of the biggest injustices of our time; and (2) our model works (see our <a href="impacts.php">Impacts</a> page).
     
 <p><b>Why should a village participate?</b></p>
 

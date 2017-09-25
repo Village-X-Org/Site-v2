@@ -1,3 +1,4 @@
+<?php require_once("utilities.php"); ?>
 <!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -7,7 +8,50 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width" />
 <style type="text/css">
-<?php include ('email_styles.inc'); ?>
+<?php include ('email_styles.inc');
+switch ($type) {
+    case EMAIL_TYPE_PROJECT_UPDATE:
+    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+    case EMAIL_TYPE_THANKS_FOR_DONATING:
+        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
+                    JOIN donors ON donation_donor_id=donor_id
+                    JOIN projects ON donation_project_id=project_id
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures ON project_similar_image_id=picture_id
+                    WHERE donation_id=?");
+        $stmt->bind_param("i", $donationId);
+        $result = execute($stmt);
+        if ($row = $result->fetch_assoc()) {
+            $donorId = $row['donor_id'];
+            $donorFirstName = $row['donor_first_name'];
+            $donorEmail = $row['donor_email'];
+            $donationAmountDollars = $row['donation_amount'];
+            $projectId = $row['project_id'];
+            $projectName = $row['project_name'];
+            $villageName = $row['village_name'];
+            $countryName = $row['country_label'];
+            $projectExampleImage = $row['picture_filename'];
+        }
+        $stmt->close();
+        break;
+    default:
+        break;
+}
+
+$hasActiveSubscriptions = false;
+if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
+    $stmt = prepare("SELECT donation_id FROM donations WHERE donation_donor_id=? AND donation_id<>? AND donation_subscription_id IS NOT NULL");
+    $stmt->bind_param("ii", $donorId, $donationId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        $hasActiveSubscriptions = true;
+    }
+    $stmt->close();
+}
+
+
+?>
 </style>
 </head>
 <body style="width: 100% !important; min-width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;">
@@ -56,7 +100,7 @@
 																	align="left">
 																	<th
 																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
-																		align="left"><img src="images/logo_raster.jpg"
+																		align="left"><img src="<?php print BASE_URL; ?>/images/logo.png"
 																		style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" /></th>
 																</tr>
 															</table>
@@ -125,10 +169,10 @@
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        print "Hi, Firstname!";
+																        print "Hi, $donorFirstName!";
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-																        print "Firstname,";
+																        print "$donorFirstName,";
 																        break;
 																    default:
 																        break;
@@ -141,10 +185,16 @@
 																align="left">
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
+																        $stmt = prepare("SELECT pu_description, picture_filename FROM project_updates JOIN pictures ON pu_image_id=picture_id WHERE pu_id=?");
+																        $stmt->bind_param("i", $updateId);
+																        $result = execute($stmt);
+																        if ($row = $result->fetch_assoc()) {
+																            $updateDescription = $row['pu_description'];
+																            $updatePicture = $row['picture_filename'];
+																        }
+																        $stmt->close();
 																        ?>
-																        The project you supported with a (monthly) donation
-            																posted an update. <b>The project is fully funded
-            																	(finished)!</b> It will get underway immediately.
+																        A project you supported posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
             																(Click the link below to view photos of your impact.)
 																		<?php 
 																        break;
@@ -153,7 +203,7 @@
 																        This email confirms your cancellation of monthly giving.
             																We are sorry to see you go, but you can re-join the
             																Village Fund at any time by clicking the <a
-            																	href="http://localhost/Site-v2/village_fund_payment_view.php"
+            																	href="<?php print BASE_URL; ?>/village_fund_payment_view.php"
             																	target="_blank"
             																	style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Give
             																	Monthly</a> button on our website.
@@ -222,14 +272,14 @@
 																									<p
 																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
 																										align="left">
-																										<strong>Date</strong><br /> September 25, 2017<br />
+																										<strong>Date</strong><br /> <?php print date("F j, Y"); ?><br />
 																									</p>
 
 																									<p
 																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
 																										align="left">
 																										<strong>Email Address</strong><br />
-																										donor@donor.com
+																										<?php print $donorEmail; ?>
 																									</p>
 																									
 																									<?php switch ($type) {
@@ -240,7 +290,7 @@
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
             																										<strong>Donation ID</strong><br />
-            																										239235983749636
+            																										<?php print $donationId; ?>
             																									</p><?php
                                         																        break;
                                         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -270,21 +320,23 @@
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> $50
+            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
             																									</p>
+            																									<?php if (isset($projectName)) { ?>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Project</strong><br /> <a href=""
+            																										<strong>Project</strong><br /> <a href="<?php print BASE_URL."/$projectId"; ?>"
             																											target="_blank"
-            																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Start
-            																											a Goat Herd</a>
+            																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
+            																											<?php print $projectName; ?></a>
             																									</p>
+            																									<?php } ?>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Location</strong><br /> Chikumbu
-            																										Village, Malawi
+            																										<strong>Location</strong><br /> <?php print $villageName; ?>
+            																										Village, <?php print $countryName; ?>
             																									</p><?php
                                         																        break;
                                         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -296,12 +348,7 @@
             																										monthly giving
             																									</p>
             
-            																									<p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Transaction Number</strong><br />
-            																										239235983749636
-            																									</p><?php
+            																									<?php
             																									break;
                                                                                                             default:
                                                                                                                 break;
@@ -318,54 +365,17 @@
 															<?php switch ($type) {
                     											        case EMAIL_TYPE_PROJECT_UPDATE:
                     												        ?>
-                    												        <img src="temp/kids_in_school.jpg" alt=""
-                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
-                    															<table class="callout"
-                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
-                    																<tr
-                    																	style="vertical-align: top; text-align: left; padding: 0;"
-                    																	align="left">
-                    																	<th class="callout-inner primary"
-                    																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
-                    																		align="left" bgcolor="#def0fc">
-                    																		<p
-                    																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-                    																			align="left"></p> <center
-                    																			style="width: 100%; min-width: 532px;">Here's a photo
-                    																		of a similar project.</center>
-                    																	</th>
-                    																	<th class="expander"
-                    																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
-                    																		align="left"></th>
-                    																</tr>
-                    															</table> <br /> <i>[if statement here -- display the
-                    																challenge only if not already a monthly giver]</i> <br />
-                    															<h2
-                    																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
-                    																align="left">Our challenge for you</h2>
-                    
-                    															<p class="lead"
-                    																style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.6; font-size: 20px; margin: 0 0 10px; padding: 0;"
-                    																align="left">
-                    																We share your passion to defeat extreme poverty in
-                    																Africa. It's a worthy fight that rages 24 hours a day, 7
-                    																days a week. To maximize your impact, please consider
-                    																making automatic monthly donations (as little as $5 per
-                    																month) to our <a
-                    																	href="http://localhost/Site-v2/village_fund_payment_view.php"
-                    																	target="_blank"
-                    																	style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Village
-                    																	Fund</a>. Sit back, relax, and receive impact updates
-                    																all year long.
-                    															</p><?php
+                    												        <img src="<?php print PICTURES_DIR."/".$updatePicture; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    														
+                    															<?php
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-                    												        
                     												        break;
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
-                    												        <img src="temp/kids_in_school.jpg" alt=""
-                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
+                    												        <img src="<?php print PICTURES_DIR."/".$projectExampleImage; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
                     																<tr
@@ -393,9 +403,8 @@
                     																one when the project is fully funded and another when
                     																it's complete. We'll post updates to the corresponding
                     																project page (linked above), including key timeline
-                    																dates, pictures, and data outcomes.</p> <br /> <i>[if
-                    																statement here -- display the challenge only if not
-                    																already a monthly giver]</i> <br />
+                    																dates, pictures, and data outcomes.</p> <br />
+                    															<?php if (!$hasActiveSubscriptions) { ?>
                     															<h2
                     																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
                     																align="left">Our challenge for you</h2>
@@ -408,12 +417,13 @@
                     																days a week. To maximize your impact, please consider
                     																making automatic monthly donations (as little as $5 per
                     																month) to our <a
-                    																	href="http://localhost/Site-v2/village_fund_payment_view.php"
+                    																	href="<?php print BASE_URL; ?>/village_fund_payment_view.php"
                     																	target="_blank"
                     																	style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Village
                     																	Fund</a>. Sit back, relax, and receive impact updates
                     																all year long.
                     															</p><?php
+                    												            }
                     															break;
                                                                     default:
                                                                         break;
@@ -583,7 +593,7 @@
 													<br />
 													<th class="menu-item float-center"
 														style="float: none; text-align: center; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; margin: 0 auto; padding: 10px;"
-														align="center"><a href="https://www.villagex.org"
+														align="center"><a href="<?php print BASE_URL; ?>"
 														target="_blank"
 														style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;"><center
 																style="width: 100%; min-width: 580px;">Village X Org</center></a></th>
