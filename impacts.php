@@ -466,7 +466,7 @@
 		<p>Each project profile on this website has graphs showing how development scores for a given village change
 		over time, including an overall village development score and scores for each of the categories above. These scores 
 		are not precision instruments. Instead, they capture village development trends over time.</p>
-		<p>Want to take a deeper dive? Checkout our dataset <a href="#">here</a>. It's part of our 100% tranparency guarantee.</p>
+		<p>Want to take a deeper dive? Checkout our dataset <a href="https://docs.google.com/spreadsheets/d/1Ye3pRy5nQ7vuPt9Q_kmRXPDwZSLNSlmWOtq9evClbpY/edit?usp=sharing" target='_blank'>here</a>. It's part of our 100% tranparency guarantee.</p>
 	</div>
 
 <hr>	

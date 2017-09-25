@@ -23,8 +23,8 @@ switch ($type) {
                     WHERE donation_id=$donationId");
         if ($row = $result->fetch_assoc()) {
             $donorId = $row['donor_id'];
-            $firstName = $row['donor_first_name'];
-            $email = $row['donor_email'];
+            $donorFirstName = $row['donor_first_name'];
+            $donorEmail = $row['donor_email'];
             $donationAmount = $row['donation_amount'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
@@ -164,10 +164,10 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        print "Hi, $firstName!";
+																        print "Hi, $donorFirstName!";
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-																        print "$firstName,";
+																        print "$donorFirstName,";
 																        break;
 																    default:
 																        break;
@@ -271,7 +271,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
 																										align="left">
 																										<strong>Email Address</strong><br />
-																										<?php print $email; ?>
+																										<?php print $donorEmail; ?>
 																									</p>
 																									
 																									<?php switch ($type) {

@@ -9,7 +9,7 @@ require_once('lib/stripe/init.php');
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
-$amount = param('stripeAmount');
+$donationAmount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
@@ -37,7 +37,7 @@ if ($isSubscription) {
              "id" => $planName,
              "interval" => "day",
              "currency" => "usd",
-             "amount" => $amount,
+             "amount" => $donationAmount,
          ));
              
          $customer = \Stripe\Customer::create(array(
@@ -52,7 +52,7 @@ if ($isSubscription) {
     }
 }
 
-$donationAmountDollars = $amount / 100;
+$donationAmountDollars = $donationAmount / 100;
 
 $result = doQuery("SELECT donation_id FROM donations WHERE donation_remote_id='$token'");
 if ($row = $result->fetch_assoc()) {
