@@ -114,7 +114,7 @@ foreach ($sheet as $projRow) {
     
     $result = doUnprotectedQuery("SELECT project_id FROM projects WHERE project_village_id=$villageId AND project_name='$projName'") ;
     if ($row = $result->fetch_assoc()) {
-        UnprotectedQ = $row['project_id'];
+        $projectId = $row['project_id'];
         doUnprotectedQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_funded=$funded, project_status='$status', project_type='$type' WHERE project_id=$projectId");
         invalidateCaches($projectId);
     } else {
