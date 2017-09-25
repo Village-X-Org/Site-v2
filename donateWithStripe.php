@@ -71,6 +71,7 @@ if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
     doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES ($donorId, ".($isSubscription ? 0 : $donationAmountDollars).", $projectId, $subscriptionId, '$token')");
+    $donationId = $link->insert_id;
     if ($projectId) {
         doQuery("UPDATE projects SET project_funded=project_funded + $donationAmountDollars WHERE project_id=$projectId");
         invalidateCaches($projectId);
