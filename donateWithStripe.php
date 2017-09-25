@@ -2,7 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
-\Stripe\Stripe::setApiKey(STRIPE_API_KEY);
+\Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY);
 
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
@@ -112,4 +112,4 @@ ob_start();
 include("email_content.php");
 $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
-    $output, getAdminEmail());
+    $output, getCustomerServiceEmail());

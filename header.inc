@@ -1,3 +1,4 @@
+<?php require_once("utilities.php"); ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php if (!isset($metaProvided) || !$metaProvided) { ?>
@@ -5,7 +6,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:image" content="temp/IMG_1707.jpg"/>
 <meta property="og:title" content="This website distrupts extreme poverty in Africa."/>
-<meta property="og:url" content="https://4and.me/"/>
+<meta property="og:url" content="<?php print BASE_URL; ?>"/>
 <meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
 <?php } ?>
 
@@ -183,7 +184,7 @@ arrowsOff = function()
 
 // Stripe
 var handler = StripeCheckout.configure({
-  key: 'pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ',
+  key: '<?php print STRIPE_API_KEY; ?>',
   image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
   locale: 'auto',
   token: function(token) {

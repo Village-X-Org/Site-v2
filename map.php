@@ -224,7 +224,7 @@ div.progressBar .ui-progressbar-value {
 								.append(
 										"<div id='projectDiv"
 												+ elem.properties.id
-												+ "' class='projectCell' style=\"position:relative;background-image:url('https://4and.me/uploads/"
+												+ "' class='projectCell' style=\"position:relative;background-image:url('<?php print ABS_PICTURES_DIR; ?>"
 												+ elem.properties.picture_filename
 												+ "');\">"
         											+ "<span style='position:absolute;bottom:25px;height:25px;left:0px;width:100%;background:linear-gradient(90deg, #8ABC5C "
@@ -282,7 +282,7 @@ div.progressBar .ui-progressbar-value {
 				.append(
 						"<div id='villageDiv"
 								+ elem.properties.id
-								+ "' class='projectCell' style=\"position:relative;background-image:url('https://4and.me/uploads/"
+								+ "' class='projectCell' style=\"position:relative;background-image:url('<?php print ABS_PICTURES_DIR; ?>"
 								+ elem.properties.picture_filename
 								+ "');"
 								+ (total == 0 ? "background-size:calc(30vh + 30px);"
