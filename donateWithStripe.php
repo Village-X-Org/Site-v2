@@ -9,7 +9,7 @@ require_once('lib/stripe/init.php');
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
-$amount = param('stripeAmount');
+$donationAmount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
@@ -26,10 +26,12 @@ if ($row = $result->fetch_assoc()) {
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
     }
+    $stmt->close();
 } else {
     $stmt = prepare("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES (?, ?, ?)");
     $stmt->bind_param('sss', $donorEmail, $donorFirstName, $donorLastName);
-    $result = execute($stmt);
+    execute($stmt);
+    $stmt->close();
     $donorId = $link->insert_id;
     $donationCount = 1;
 }
@@ -44,7 +46,7 @@ if ($isSubscription) {
              "id" => $planName,
              "interval" => "day",
              "currency" => "usd",
-             "amount" => $amount,
+             "amount" => $donationAmount,
          ));
              
          $customer = \Stripe\Customer::create(array(
@@ -54,38 +56,59 @@ if ($isSubscription) {
          ));
          $subscriptionId = "'".$customer->subscriptions->data[0]->id."'";
          
-         $type = EMAIL_TYPE_THANKS_FOR_DONATING;
-         ob_start();
-         include("email_content.php");
-         $output = ob_get_clean();
-         
-        sendMail($donorEmail, "Monthly Subscription for Village X", $output, getAdminEmail());
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
-} else {
-    $type = EMAIL_TYPE_THANKS_FOR_DONATING;
-    ob_start();
-    include("email_content.php");
-    $output = ob_get_clean();
-    sendMail($donorEmail, "Donation to Village X", $output, getAdminEmail());
 }
 
-$donationAmountDollars = $amount / 100;
+$donationAmountDollars = $donationAmount / 100;
 
-$result = doQuery("SELECT donation_id FROM donations WHERE donation_remote_id='$token'");
+$stmt = prepare("SELECT donation_id FROM donations WHERE donation_remote_id=?");
+$stmt->bind_param("s", $token);
+$result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
-    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES ($donorId, ".($isSubscription ? 0 : $donationAmountDollars).", $projectId, $subscriptionId, '$token')");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("idiss", $donorId, ($isSubscription ? 0 : $donationAmountDollars), $projectId, $subscriptionId, $token);
+    execute($stmt);
+    $donationId = $link->insert_id;
     if ($projectId) {
-        doQuery("UPDATE projects SET project_funded=project_funded + $donationAmountDollars WHERE project_id=$projectId");
+        $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
+        $stmt->bind_param("di", $donationAmountDollars, $projectId);
+        execute($stmt);
         invalidateCaches($projectId);
     }
 }
+$stmt->close();
 
 if ($isSubscription) {
+    // Instead of actually disbursing, just find a project.
+    $result = doUnprotectedQuery("SELECT project_id, project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+    FROM projects JOIN villages ON project_village_id=village_id
+    JOIN countries ON country_id=village_country
+    JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
+    JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
+    JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
+        project_budget - project_funded ASC, hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1");
+    if ($row = $result->fetch_assoc()) {
+        $projectId = $row['project_id'];
+        $projectName = $row['project_name'];
+        $projectExampleImage = $row['picture_filename'];
+        $villageName = $row['village_name'];
+        $countryName = $row['country_label'];
+        $numPeople = $row['peopleCount'];
+        $numHouseholds = $row['householdCount'];
+    }
+    
     include("thanks_for_donating_monthly.php");
 } else {
     include("thanks_for_donating_one_time.php");
 }
+
+$type = EMAIL_TYPE_THANKS_FOR_DONATING;
+ob_start();
+include("email_content.php");
+$output = ob_get_clean();
+sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
+    $output, getAdminEmail());
