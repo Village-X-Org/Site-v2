@@ -66,15 +66,32 @@ if ($row = $result->fetch_assoc()) {
     }
 }
 
+if ($isSubscription) {
+    // Instead of actually disbursing, just find a project.
+    $result = doQuery("SELECT project_id, project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+    FROM projects JOIN villages ON project_village_id=village_id
+    JOIN countries ON country_id=village_country
+    JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
+    JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
+    JOIN pictures ON picture_id=project_banner_image_id WHERE project_funded<project_budget ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
+        project_budget - project_funded ASC, hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1");
+    if ($row = $result->fetch_assoc()) {
+        $projectId = $row['project_id'];
+        $projectName = $row['project_name'];
+        $villageName = $row['village_name'];
+        $countryName = $row['country_label'];
+        $numPeople = $row['peopleCount'];
+        $numHouseholds = $row['householdCount'];
+    }
+    
+    include("thanks_for_donating_monthly.php");
+} else {
+    include("thanks_for_donating_one_time.php");
+}
+
 $type = EMAIL_TYPE_THANKS_FOR_DONATING;
 ob_start();
 include("email_content.php");
 $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getAdminEmail());
-
-if ($isSubscription) {
-    include("thanks_for_donating_monthly.php");
-} else {
-    include("thanks_for_donating_one_time.php");
-}
