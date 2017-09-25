@@ -422,11 +422,14 @@ $(document).ready(function(){
 			$amounts = '';
 			$ids = '';
 			$accum = 0;
+			$firstYear = 0;
 			while ($row = $result->fetch_assoc()) {
 			     if ($count > 0) {
 			         $labels .= ", ";
 			         $amounts .= ", ";
 			         $ids .= ", ";
+			     } else {
+			         $firstYear = $row['yearPosted'];
 			     }
 			     $ids .= $row['project_id'];
 			     $labels .= $row['yearPosted'];
@@ -435,7 +438,12 @@ $(document).ready(function(){
 			     $count++;
 			}
 			
-			if ($count > 1) {
+			if ($count > 0) {
+			    if ($count == 1) {
+			     $ids = "0, ".$ids;
+			     $labels = ($firstYear - 1).", ".$labels;
+			     $amounts = "0, ".$amounts;
+			    }
 			?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
@@ -480,7 +488,7 @@ $(document).ready(function(){
 						onClick: function(event, active) {
 							if (active && active.length > 0) {
 								id = active[0]._chart.data.ids[active[0]._index];
-								if (id != <?php print $projectId; ?>) {
+								if (id != <?php print $projectId; ?> && id > 0) {
 									window.location.href = "project.php?id=" + id;
 								}
 							}
