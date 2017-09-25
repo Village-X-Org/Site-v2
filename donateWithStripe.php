@@ -2,9 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
-// Be sure to replace this with your actual test API key
-// (switch to the live key later)
-\Stripe\Stripe::setApiKey("sk_test_DGoi26vx76FlFn7sen3IDSC8");
+\Stripe\Stripe::setApiKey(STRIPE_API_KEY);
 
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
@@ -54,7 +52,7 @@ if ($isSubscription) {
              'source'  => param('stripeToken'),
              'plan' => $plan
          ));
-         $subscriptionId = $customer->subscriptions->data[0]->id
+         $subscriptionId = $customer->subscriptions->data[0]->id;
          
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());

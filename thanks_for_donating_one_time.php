@@ -47,7 +47,7 @@ include('header.inc'); ?>
 			</div>
 	</div>
 			<div class="parallax" style="background-size: cover;">
-				<img src="<?php print PICTURES_DIR."/".$bannerPicture; ?>" />
+				<img src="<?php print PICTURES_DIR.$bannerPicture; ?>" />
 			</div>
 		</div>
 	</div>
