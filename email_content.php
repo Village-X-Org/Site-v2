@@ -91,7 +91,7 @@ $hasActiveSubscriptions = false;
 																	align="left">
 																	<th
 																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
-																		align="left"><img src="images/logo.jpg"
+																		align="left"><img src="images/logo.png"
 																		style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" /></th>
 																</tr>
 															</table>
@@ -182,8 +182,7 @@ $hasActiveSubscriptions = false;
 																            $updatePicture = $row['picture_filename'];
 																        }
 																        ?>
-																        The project you supported with a (monthly) donation
-            																posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
+																        A project you supported posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
             																(Click the link below to view photos of your impact.)
 																		<?php 
 																        break;
@@ -353,7 +352,7 @@ $hasActiveSubscriptions = false;
                     											        case EMAIL_TYPE_PROJECT_UPDATE:
                     												        ?>
                     												        <img src="<?php print PICTURES_DIR."/".$updatePicture; ?>" alt=""
-                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
                     																<tr
@@ -380,7 +379,7 @@ $hasActiveSubscriptions = false;
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
                     												        <img src="<?php print PICTURES_DIR."/".$projectExampleImage; ?>" alt=""
-                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: auto; max-width: 100%; clear: both; display: block;" />
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
                     																<tr
