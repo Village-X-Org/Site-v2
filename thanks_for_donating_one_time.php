@@ -24,7 +24,7 @@ if ($row = $result->fetch_assoc()) {
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
 <meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
-<meta property="og:url" content="https://4and.me/<?php print $projectId; ?>"/>
+<meta property="og:url" content="<?php print BASE_URL.$projectId; ?>"/>
 <meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
 
 <?php 

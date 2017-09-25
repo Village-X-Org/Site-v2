@@ -5,7 +5,7 @@
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="images/village_family.jpg"/>
 <meta property="og:title" content="I signed up for the Village Fund!"/>
-<meta property="og:url" content="https://4and.me/project.php?id=<?php print $projectId; ?>"/>
+<meta property="og:url" content="<?php print BASE_URL.$projectId; ?>"/>
 <meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose."/>
 
 <?php 

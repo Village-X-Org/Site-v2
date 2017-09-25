@@ -173,14 +173,14 @@
 							href="https://www.facebook.com/dialog/feed?
   									app_id=<?php print FACEBOOK_APP_ID; ?>
   									&display=popup&caption=This site disrupts extreme poverty in Africa
-  									&link=https://www.4and.me"
+  									&link=<?php print BASE_URL; ?>"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/facebook.png"
 							alt="Facebook" align="middle" height="30" width="30" />
 						</a>
 						&nbsp;&nbsp;&nbsp;
 						<a
-							href="https://twitter.com/share?url=https://www.4and.me;text=This site disrupts extreme Poverty in Africa&amp;hashtags=villagex"
+							href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=This site disrupts extreme Poverty in Africa&amp;hashtags=villagex"
 							target="_blank"> <img
 							src="https://simplesharebuttons.com/images/somacro/twitter.png"
 							alt="Twitter" align="middle" height="30" width="30" />
