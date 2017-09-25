@@ -365,7 +365,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<?php switch ($type) {
                     											        case EMAIL_TYPE_PROJECT_UPDATE:
                     												        ?>
-                    												        <img src="<?php print PICTURES_DIR."/".$updatePicture; ?>" alt=""
+                    												        <img src="<?php print ABS_PICTURES_DIR.$updatePicture; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														
                     															<?php
@@ -374,7 +374,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     												        break;
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
-                    												        <img src="<?php print PICTURES_DIR."/".$projectExampleImage; ?>" alt=""
+                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">

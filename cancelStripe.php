@@ -2,9 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
-// Be sure to replace this with your actual test API key
-// (switch to the live key later)
-\Stripe\Stripe::setApiKey("sk_test_DGoi26vx76FlFn7sen3IDSC8");
+\Stripe\Stripe::setApiKey(STRIPE_API_KEY);
 
 $donorEmail = param('email');
 
@@ -15,6 +13,8 @@ $result = execute($stmt);
 $count = 0;
 while ($row = $result->fetch_assoc()) {
     $subscriptionId = $row['donation_subscription_id'];
+    $donorFirstName = $row['donor_first_name'];
+    $donorLastName = $row['donor_last_name'];
     try {
         $subscription = \Stripe\Subscription::retrieve($subscriptionId);
         $subscription->cancel();
@@ -23,14 +23,12 @@ while ($row = $result->fetch_assoc()) {
     } catch (Exception $e) {
     }
 }
-$stmt->close();
 
+$stmt->close();
 if ($count == 0) {
     print "We were not able to find any subscriptions associated with this email.";
 } else {
     print "We cancelled $count subscription(s) associated with this email.";
-    $donorFirstName = $row['donor_first_name'];
-    $donorLastName = $row['donor_last_name'];
     $type = EMAIL_TYPE_SUBSCRIPTION_CANCELLATION;
     ob_start();
     include("email_content.php");
