@@ -69,18 +69,21 @@ $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
+    $stmt->close();
     $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("idiss", $donorId, ($isSubscription ? 0 : $donationAmountDollars), $projectId, $subscriptionId, $token);
+    $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
+    $stmt->bind_param("idiss", $donorId, $insertAmount, $projectId, $subscriptionId, $token);
     execute($stmt);
+    $stmt->close();
     $donationId = $link->insert_id;
     if ($projectId) {
         $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
         $stmt->bind_param("di", $donationAmountDollars, $projectId);
         execute($stmt);
         invalidateCaches($projectId);
+        $stmt->close();
     }
 }
-$stmt->close();
 
 if ($isSubscription) {
     // Instead of actually disbursing, just find a project.

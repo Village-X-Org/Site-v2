@@ -45,4 +45,4 @@ if ($donationAmount >= .01) {
 $body .= "</TABLE>";
 invalidateCaches($projectId);
 
-sendMail(getAdminEmail(), "Monthly Distribution of $donorFirstName $donorLastName's Subscription", $body, getAdminEmail());
+sendMail(getCustomerServiceEmail(), "Monthly Distribution of $donorFirstName $donorLastName's Subscription", $body, getCustomerServiceEmail());

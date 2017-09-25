@@ -14,10 +14,11 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     if ($row = $result->fetch_assoc()) {
         $donorId = $row['donation_donor_id'];
         $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES (?, ?, ?)");
-        $stmt->bindParam('ids', $donorId, $donationAmountDollars, $subscriptionId);
+        $stmt->bind_param('ids', $donorId, $donationAmountDollars, $subscriptionId);
         execute($stmt);
-        include("disburse
-    $stmt->close();
+        include("disburseSubscriptionPayment.php");
+    		$stmt->close();
+    }
 }
 
 $stmt = prepare("INSERT INTO webhook_events (we_content) VALUES (?)");

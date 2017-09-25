@@ -2,7 +2,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5276, -15.6437]
+			"coordinates": [35.5288, -15.6424]
 		},
 		"properties": {
 			"id": "70",
@@ -16,21 +16,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.8757, 10.7116]
-		},
-		"properties": {
-			"id": "71",
-			"name": "Build a Community Library",
-			"villageName": "Awaradonne",
-            "icon": "library",
-			"picture_filename": "thumb_990_default_buy_list.png",
-			"project_budget": "1800",
-			"project_funded": "1800"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3461, -15.4738]
+			"coordinates": [35.347, -15.4738]
 		},
 		"properties": {
 			"id": "74",
@@ -44,13 +30,13 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3292, -15.7403]
+			"coordinates": [35.3287, -15.7391]
 		},
 		"properties": {
 			"id": "75",
 			"name": "Build a Nursery School",
 			"villageName": "Kazembe",
-            "icon": "nursery",
+            "icon": "school",
 			"picture_filename": "kazembe_nursery_profile.jpg",
 			"project_budget": "1900",
 			"project_funded": "1900"}
@@ -58,13 +44,13 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1471, -15.8294]
+			"coordinates": [35.1474, -15.8297]
 		},
 		"properties": {
 			"id": "76",
 			"name": "Build a Nursery School",
 			"villageName": "Likoswe",
-            "icon": "nursery",
+            "icon": "school",
 			"picture_filename": "likoswe_nursery_profile.jpg",
 			"project_budget": "1900",
 			"project_funded": "1900"}
@@ -72,13 +58,13 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5222, -15.6565]
+			"coordinates": [35.5223, -15.657]
 		},
 		"properties": {
 			"id": "77",
 			"name": "Build a Nursery School",
 			"villageName": "Maluwa",
-            "icon": "nursery",
+            "icon": "school",
 			"picture_filename": "maluwa_nursery_profile.jpg",
 			"project_budget": "2000",
 			"project_funded": "2000"}
@@ -86,35 +72,35 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2143, -15.4809]
+			"coordinates": [35.2149, -15.4809]
 		},
 		"properties": {
 			"id": "78",
-			"name": "Build a School Office",
+			"name": "Start a Goat Herd",
 			"villageName": "Manyumba",
-            "icon": "office",
-			"picture_filename": "manyumba_school_office_profile.jpg",
-			"project_budget": "1900",
-			"project_funded": "1900"}
+            "icon": "livestock",
+			"picture_filename": "manyumba_goats_profile.jpg",
+			"project_budget": "2000",
+			"project_funded": "100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3404, -15.4753]
+			"coordinates": [35.3408, -15.4756]
 		},
 		"properties": {
 			"id": "79",
 			"name": "Start a Goat Herd",
 			"villageName": "Nakhwala",
             "icon": "livestock",
-			"picture_filename": "thumb_451_default_buy_list.jpeg",
+			"picture_filename": "nakhwala_goats_profile.jpg",
 			"project_budget": "2000",
-			"project_funded": "2006"}
+			"project_funded": "2000"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3523, -15.8047]
+			"coordinates": [35.3516, -15.804]
 		},
 		"properties": {
 			"id": "80",
@@ -128,35 +114,21 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3357, -15.4797]
+			"coordinates": [35.3354, -15.4804]
 		},
 		"properties": {
 			"id": "81",
-			"name": "Start a Goat Herd (G4G, AMS)",
+			"name": "Start a Goat Herd",
 			"villageName": "Saiti",
             "icon": "livestock",
-			"picture_filename": "thumb_452_default_buy_list.jpeg",
-			"project_budget": "2133",
-			"project_funded": "2133.5"}
+			"picture_filename": "saiti_goats_profile.jpg",
+			"project_budget": "2100",
+			"project_funded": "2100"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [-0.8289, 10.7006]
-		},
-		"properties": {
-			"id": "82",
-			"name": "Build Sanitary Toilets",
-			"villageName": "Gorzori",
-            "icon": "water",
-			"picture_filename": "water_example.jpg",
-			"project_budget": "1900",
-			"project_funded": "1060"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3518, -15.4867]
+			"coordinates": [35.3528, -15.4857]
 		},
 		"properties": {
 			"id": "83",
@@ -170,7 +142,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.1473, -15.8303]
+			"coordinates": [35.1474, -15.8304]
 		},
 		"properties": {
 			"id": "85",
@@ -184,7 +156,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.5275, -15.6434]
+			"coordinates": [35.5281, -15.643]
 		},
 		"properties": {
 			"id": "86",
@@ -198,7 +170,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.33, -15.7394]
+			"coordinates": [35.3303, -15.7398]
 		},
 		"properties": {
 			"id": "87",
@@ -212,7 +184,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3761, -15.7005]
+			"coordinates": [35.3755, -15.7012]
 		},
 		"properties": {
 			"id": "88",
@@ -226,7 +198,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.272, -15.4917]
+			"coordinates": [35.2705, -15.4924]
 		},
 		"properties": {
 			"id": "89",
@@ -240,7 +212,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2131, -15.3021]
+			"coordinates": [35.2136, -15.3009]
 		},
 		"properties": {
 			"id": "90",
@@ -254,7 +226,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2213, -15.2905]
+			"coordinates": [35.2207, -15.2908]
 		},
 		"properties": {
 			"id": "91",
@@ -268,7 +240,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3517, -15.8048]
+			"coordinates": [35.3523, -15.8057]
 		},
 		"properties": {
 			"id": "92",
@@ -282,35 +254,35 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3412, -15.4757]
+			"coordinates": [35.3414, -15.4768]
 		},
 		"properties": {
 			"id": "93",
 			"name": "Grow More Food",
 			"villageName": "Nakhwala",
             "icon": "farm",
-			"picture_filename": "thumb_1817_default_buy_list.png",
-			"project_budget": "1800",
-			"project_funded": "1873"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3367, -15.4793]
-		},
-		"properties": {
-			"id": "94",
-			"name": "Grow More Food",
-			"villageName": "Saiti",
-            "icon": "farm",
-			"picture_filename": "thumb_1816_default_buy_list.png",
+			"picture_filename": "nakhwala_agriculture_profile.jpg",
 			"project_budget": "1800",
 			"project_funded": "1800"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3464, -15.4753]
+			"coordinates": [35.3363, -15.4791]
+		},
+		"properties": {
+			"id": "94",
+			"name": "Grow More Food",
+			"villageName": "Saiti",
+            "icon": "farm",
+			"picture_filename": "saiti_agriculture_profile.jpg",
+			"project_budget": "1800",
+			"project_funded": "1800"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3458, -15.4753]
 		},
 		"properties": {
 			"id": "95",
@@ -324,13 +296,13 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.376, -15.7016]
+			"coordinates": [35.3761, -15.7012]
 		},
 		"properties": {
 			"id": "96",
 			"name": "Build a Nursery School",
 			"villageName": "Bakili",
-            "icon": "nursery",
+            "icon": "school",
 			"picture_filename": "bakili_nursery_profile.jpg",
 			"project_budget": "2000",
 			"project_funded": "2000"}
@@ -338,21 +310,35 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.2151, -15.4824]
+			"coordinates": [35.337, -15.4805]
 		},
 		"properties": {
-			"id": "98",
-			"name": "Start a Goat Herd",
-			"villageName": "Manyumba",
-            "icon": "livestock",
-			"picture_filename": "manyumba_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "100"}
+			"id": "97",
+			"name": "Provide Clean Water",
+			"villageName": "Saiti",
+            "icon": "water",
+			"picture_filename": "saiti_water_profile.jpg",
+			"project_budget": "6300",
+			"project_funded": "6300"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3305, -15.7401]
+			"coordinates": [35.2148, -15.4807]
+		},
+		"properties": {
+			"id": "98",
+			"name": "Build a School Office",
+			"villageName": "Manyumba",
+            "icon": "office",
+			"picture_filename": "manyumba_school_office_profile.jpg",
+			"project_budget": "1900",
+			"project_funded": "1900"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.3293, -15.7397]
 		},
 		"properties": {
 			"id": "99",
@@ -366,108 +352,10 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.3526, -15.486]
+			"coordinates": [35.1477, -15.8293]
 		},
 		"properties": {
-			"id": "101",
-			"name": "Start a Goat Herd",
-			"villageName": "Mlenga",
-            "icon": "livestock",
-			"picture_filename": "mlenga_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "1520"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3407, -15.4768]
-		},
-		"properties": {
-			"id": "109",
-			"name": "Start a Goat Herd",
-			"villageName": "Nakhwala",
-            "icon": "livestock",
-			"picture_filename": "nakhwala_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "2000"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3364, -15.48]
-		},
-		"properties": {
-			"id": "111",
-			"name": "Start a Goat Herd",
-			"villageName": "Saiti",
-            "icon": "livestock",
-			"picture_filename": "saiti_goats_profile.jpg",
-			"project_budget": "2100",
-			"project_funded": "2100"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3365, -15.4801]
-		},
-		"properties": {
-			"id": "119",
-			"name": "Grow More Food",
-			"villageName": "Saiti",
-            "icon": "farm",
-			"picture_filename": "saiti_agriculture_profile.jpg",
-			"project_budget": "1800",
-			"project_funded": "1800"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3421, -15.4763]
-		},
-		"properties": {
-			"id": "120",
-			"name": "Grow More Food",
-			"villageName": "Nakhwala",
-            "icon": "farm",
-			"picture_filename": "nakhwala_agriculture_profile.jpg",
-			"project_budget": "1800",
-			"project_funded": "1800"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.3356, -15.4791]
-		},
-		"properties": {
-			"id": "122",
-			"name": "Provide Clean Water",
-			"villageName": "Saiti",
-            "icon": "water",
-			"picture_filename": "saiti_water_profile.jpg",
-			"project_budget": "6300",
-			"project_funded": "6300"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.2135, -15.301]
-		},
-		"properties": {
-			"id": "124",
-			"name": "Build a Nursery School",
-			"villageName": "Siyabu",
-            "icon": "nursery",
-			"picture_filename": "siyabu_nursery_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "2000"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [35.147, -15.8303]
-		},
-		"properties": {
-			"id": "125",
+			"id": "100",
 			"name": "Start a Goat Herd",
 			"villageName": "Likoswe",
             "icon": "livestock",
@@ -478,7 +366,35 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.5309, -14.3064]
+			"coordinates": [35.352, -15.4849]
+		},
+		"properties": {
+			"id": "101",
+			"name": "Start a Goat Herd",
+			"villageName": "Mlenga",
+            "icon": "livestock",
+			"picture_filename": "mlenga_goats_profile.jpg",
+			"project_budget": "2000",
+			"project_funded": "1500"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [35.2125, -15.3018]
+		},
+		"properties": {
+			"id": "102",
+			"name": "Build a Nursery School",
+			"villageName": "Siyabu",
+            "icon": "school",
+			"picture_filename": "siyabu_nursery_profile.jpg",
+			"project_budget": "2000",
+			"project_funded": "2000"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [34.53, -14.306]
 		},
 		"properties": {
 			"id": "127",
@@ -487,40 +403,12 @@
             "icon": "water",
 			"picture_filename": "maloya_water_profile.jpg",
 			"project_budget": "6200",
-			"project_funded": "315"}
+			"project_funded": "310"}
 	},{
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.2218, -10.3562]
-		},
-		"properties": {
-			"id": "128",
-			"name": "Start a Goat Herd",
-			"villageName": "Matandala",
-            "icon": "livestock",
-			"picture_filename": "matandala_goats_profile.jpg",
-			"project_budget": "2000",
-			"project_funded": "100"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [34.4714, -14.2545]
-		},
-		"properties": {
-			"id": "129",
-			"name": "Build an Market Roof",
-			"villageName": "Sosola",
-            "icon": "farm",
-			"picture_filename": "agriculture_example.jpg",
-			"project_budget": "2000",
-			"project_funded": "0"}
-	},{
-		"type": "Feature",
-		"geometry": {
-			"type": "Point",
-			"coordinates": [34.5299, -14.3059]
+			"coordinates": [34.531, -14.3066]
 		},
 		"properties": {
 			"id": "130",
@@ -534,7 +422,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.8885, -14.4823]
+			"coordinates": [34.8888, -14.4807]
 		},
 		"properties": {
 			"id": "131",
@@ -548,7 +436,7 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [34.8946, -14.5491]
+			"coordinates": [34.8951, -14.5481]
 		},
 		"properties": {
 			"id": "132",
@@ -562,13 +450,13 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.4342, -15.5997]
+			"coordinates": [35.4354, -15.5995]
 		},
 		"properties": {
 			"id": "137",
 			"name": "Build a Nursery School",
 			"villageName": "Balakasi",
-            "icon": "",
+            "icon": "school",
 			"picture_filename": "balakasi_nursery_profile.jpg",
 			"project_budget": "2000",
 			"project_funded": "100"}
@@ -576,14 +464,28 @@
 		"type": "Feature",
 		"geometry": {
 			"type": "Point",
-			"coordinates": [35.4352, -15.598]
+			"coordinates": [35.4359, -15.5993]
 		},
 		"properties": {
 			"id": "138",
 			"name": "Provide Clean Water",
 			"villageName": "Balakasi",
-            "icon": "",
+            "icon": "water",
 			"picture_filename": "balakasi_water_profile.jpg",
 			"project_budget": "6200",
 			"project_funded": "310"}
+	},{
+		"type": "Feature",
+		"geometry": {
+			"type": "Point",
+			"coordinates": [34.221, -10.3561]
+		},
+		"properties": {
+			"id": "139",
+			"name": "Start a Goat Herd",
+			"villageName": "Matandala",
+            "icon": "livestock",
+			"picture_filename": "matandala_goats_profile.jpg",
+			"project_budget": "2000",
+			"project_funded": "100"}
 	}]}
