@@ -28,12 +28,14 @@ require_once("utilities.php");
       die();
   }
   $projectId = paramInt('id');
-  $result = doQuery("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
+  $stmt = prepare("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
         JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id
         JOIN pictures AS bannerPictures ON project_banner_image_id=bannerPictures.picture_id
-        WHERE project_id=$projectId");
+        WHERE project_id=?");
+  $stmt->bind_param('i', $projectId);
+  $result = execute($stmt);
   if ($row = $result->fetch_assoc()) {
       $projectName = $row['project_name'];
       $villageName = $row['village_name'];
@@ -46,7 +48,9 @@ require_once("utilities.php");
   } else {
       print "Project not found";
       die();
- }?>
+  }
+  $stmt->close();
+ ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
 <meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>

@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
 
-<?php $result = doQuery("SELECT project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
-        FROM projects JOIN villages ON project_id=$projectId AND project_village_id=village_id
+<?php 
+$stmt = prepare("SELECT project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+        FROM projects JOIN villages ON project_id=? AND project_village_id=village_id
         JOIN countries ON country_id=village_country
         JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
         JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
         JOIN pictures ON picture_id=project_banner_image_id ORDER BY hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1"); 
+$stmt->bind_param('i', $projectId);
+$result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
     $villageName = $row['village_name'];
     $bannerPicture = $row['picture_filename'];
     $summary = $row['project_summary'];
+    $peopleCount = $row['peopleCount'];
+    $householdCount = $row['householdCount'];
+    $countryLabel = $row['country_label'];
+    $stmt->close();
 ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
@@ -40,7 +47,7 @@ include('header.inc'); ?>
 			</div>
 	</div>
 			<div class="parallax" style="background-size: cover;">
-				<img src="<?php print PICTURES_DIR."/".$row['picture_filename']; ?>" />
+				<img src="<?php print PICTURES_DIR."/".$bannerPicture; ?>" />
 			</div>
 		</div>
 	</div>
@@ -55,7 +62,7 @@ include('header.inc'); ?>
           <div class="black-text flow-text"><p class="flow-text">
           	<p><?php print $donorFirstName; ?>,</p> 
 			<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! You have disrupted 
-			extreme poverty for <?php print $row['peopleCount']; ?> people and <?php print $row['householdCount']; ?> households in <?php print $row['country_label']; ?>.</p>
+			extreme poverty for <?php print $peopleCount; ?> people and <?php print $householdCount ?> households in <?php print $countryLabel; ?>.</p>
 			<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
 			 stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
         		<p>If you haven't done so already, please consider supporting The Village Fund, which allows you to donate automatically every month (as little as $5) and enjoy
@@ -67,5 +74,6 @@ include('header.inc'); ?>
     </div>
 	</div>
 </div>
-<?php } ?>
+<?php } 
+?>
 <?php include('footer.inc'); ?>

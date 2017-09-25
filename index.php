@@ -153,7 +153,7 @@ require_once("utilities.php");
 		<div class="row">
 <?php
 if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id ORDER BY (project_status = 'funding' AND project_funded<project_budget) DESC, ABS(project_budget-project_funded) LIMIT 3");
+    $result = doUnprotectedQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id ORDER BY (project_status = 'funding' AND project_funded<project_budget) DESC, ABS(project_budget-project_funded) LIMIT 3");
     $buffer = '';
     while ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
