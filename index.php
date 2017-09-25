@@ -162,7 +162,7 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $projectTotal = $row['project_budget'];
         $fundedPercent = $funded / $projectTotal * 100;
         $villageContribution = $projectTotal * .05;
-        $buffer .= "<div class='col s12 m6 l4 ' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+        $buffer .= "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
     			<div class='card sticky-action hoverable'>
     				<div class='card-image'>
     					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
