@@ -24,9 +24,9 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true);
-	//doQuery("INSERT INTO error_log (error_message, error_file, error_lineno, error_name) VALUES ('$errstr', '$errfile', '$errline', '$name')");
+	//doTODOQuery("INSERT INTO error_log (error_message, error_file, error_lineno, error_name) VALUES ('$errstr', '$errfile', '$errline', '$name')");
 	$serverInfo = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').' '.(isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '').' '.(isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '').' '.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').' '.(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '').' '.(isset($_SERVER['USER_AGENT']) ? $_SERVER['USER_AGENT'] : '').' '.(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : ''); 
-	sendMailSend(getAdminEmail(), "VillageX Diagnostic Error ($session_user_id): $errstr", "$serverInfo\n\n$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
+	sendMailSend(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$serverInfo\n\n$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail(), "");
 	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr</P>";
 	exit();
 }
@@ -76,7 +76,10 @@ function sendMail($receiver, $subject, $body, $from) {
 	if (!$link) {
 	   $link = getDBConn();
 	}
-	doQuery("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES ('".escStr($subject)."', '".escStr($body)."', '".escStr($fromName)."', '".escStr($to)."', '".escStr($fromEmail)."')");
+	$stmt = prepare("INSERT INTO mail (mail_subject, mail_body, mail_from, mail_to, mail_reply) VALUES (?, ?, ?, ?, ?)");
+	$stmt->bindParam("sssss", $subject, $body, $fromName, $to, $fromEmail);
+	execute($stmt);
+	$stmt->close();
 	
 	return 1;
 }
@@ -101,8 +104,32 @@ function getDBConn() {
 	return $db_link;
 }
 
+function prepare($queryStr) {
+    global $link;
+    if (!$link) {
+        $link = getDBConn();
+    }
+    
+    print mysqli_error($link);
+    return $link->prepare($queryStr);
+}
 
-function doQuery($queryToBeExecuted) {
+
+function execute($stmt) {
+    if (!$stmt->execute()) {
+        $trace = print_r(debug_backtrace(), true);
+        emailAdmin("Exception", "Exception in Village X\n\n".$queryToBeExecuted."\n\n".$trace);
+        print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
+        //if (isset($_SESSION['session_admin'])) {
+        print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
+        //}
+        die();
+    }
+    
+    return $stmt->get_result();
+}
+
+function doUnprotectedQuery($queryToBeExecuted) {
 	global $_SESSION;
 	global $link;
 	
@@ -129,21 +156,6 @@ function doQuery($queryToBeExecuted) {
 	return $result;
 }
 
-function doQueryAndReport($subject, $query) {
-	$result = doQuery($query);
-	emailAdmin($subject, $query);
-	return $result;
-}
-
-function doJsonQuery($query) {
-	$result = doQuery($query);
-	$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
-	mysqli_free_result($result);
-	closeDBConn();
-	$json = json_encode($rows);
-	return $json;
-}
-
 function closeDBConn() {
 	global $link;
 	mysqli_close($link);
@@ -151,25 +163,33 @@ function closeDBConn() {
 // End DB functions
 
 function doStatQuery($villageId, $statName) {
-    return doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    $stmt = prepare("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?)");
+    $stmt->bind_param("is", $villageId, $statName);
+    return execute($stmt);
 }
 
 function getStatYearAssociative($villageId, $statName) {
     $arr = array();
-    $result = doQuery("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName')");
+    $stmt = prepare("SELECT stat_value, stat_year FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?)");
+    $stmt->bind_param("is", $villageId, $statName);
+    $result = execute($stmt);
     while ($row = $result->fetch_assoc()) {
         $arr[$row['stat_year']] = $row['stat_value'];
     }
+    $stmt->close();
     return $arr;
 }
 
 function getLatestValueForStat($villageId, $statName) {
-    $result = doQuery("SELECT stat_value FROM village_stats WHERE stat_village_id=$villageId AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label='$statName') ORDER BY stat_year DESC LIMIT 1");
+    $stmt = prepare("SELECT stat_value FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?) ORDER BY stat_year DESC LIMIT 1");
+    $stmt->bind_param("is", $villageId, $statName);
+    $result = execute($stmt);
+    $value = -1;
     if ($row = $result->fetch_assoc()) {
-        return $row['stat_value'];
-    } else {
-        return -1;
+        $value = $row['stat_value'];
     }
+    $stmt->close();
+    return $value;
 }
 
 // Request processing

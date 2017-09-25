@@ -11,16 +11,17 @@
 <?php include ('email_styles.inc');
 switch ($type) {
     case EMAIL_TYPE_PROJECT_UPDATE:
-        //$result = doQuery("");
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $result = doQuery("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
+        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
                     JOIN donors ON donation_donor_id=donor_id
                     JOIN projects ON donation_project_id=project_id
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
                     JOIN pictures ON project_similar_image_id=picture_id
-                    WHERE donation_id=$donationId");
+                    WHERE donation_id=?");
+        $stmt->bind_param("i", $donationId);
+        $result = execute($stmt);
         if ($row = $result->fetch_assoc()) {
             $donorId = $row['donor_id'];
             $donorFirstName = $row['donor_first_name'];
@@ -32,6 +33,7 @@ switch ($type) {
             $countryName = $row['country_label'];
             $projectExampleImage = $row['picture_filename'];
         }
+        $stmt->close();
         break;
     default:
         break;
@@ -39,10 +41,13 @@ switch ($type) {
 
 $hasActiveSubscriptions = false;
 if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
-    $result = doQuery("SELECT donation_id FROM donations WHERE donation_donor_id=$donorId AND donation_id<>$donationId AND donation_subscription_id IS NOT NULL");
+    $stmt = prepare("SELECT donation_id FROM donations WHERE donation_donor_id=? AND donation_id<>? AND donation_subscription_id IS NOT NULL");
+    $stmt->bind_param("ii", $donorId, $donationId);
+    $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $hasActiveSubscriptions = true;
     }
+    $stmt->close();
 }
 
 
@@ -180,11 +185,14 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																align="left">
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
-																        $result = doQuery("SELECT pu_description, picture_filename FROM project_updates JOIN pictures ON pu_image_id=picture_id WHERE pu_id=$updateId");
+																        $stmt = prepare("SELECT pu_description, picture_filename FROM project_updates JOIN pictures ON pu_image_id=picture_id WHERE pu_id=?");
+																        $stmt->bind_param("i", $updateId);
+																        $result = execute($stmt);
 																        if ($row = $result->fetch_assoc()) {
 																            $updateDescription = $row['pu_description'];
 																            $updatePicture = $row['picture_filename'];
 																        }
+																        $stmt->close();
 																        ?>
 																        A project you supported posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
             																(Click the link below to view photos of your impact.)

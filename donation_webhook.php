@@ -6,17 +6,24 @@ $input = @file_get_contents("php://input");
 $event_json = json_decode($input);
 if ($event_json->type == 'invoice.payment_succeeded') {
     $subscriptionId = $event_json->data->object->lines->data[0]->plan->id;
-    $donationAmount = $event_json->data->object->total;
+    $donationAmountDollars = $event_json->data->object->total / 100;
     $donorId = -1;
-    $result = doQuery("SELECT donation_donor_id FROM donations WHERE donation_subscription_id='$subscriptionId' LIMIT 1");
+    $stmt = prepare("SELECT donation_donor_id FROM donations WHERE donation_subscription_id=? LIMIT 1");
+    $stmt->bind_param('s', $subscriptionId);
+    $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donorId = $row['donation_donor_id'];
-        doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES ($donorId, ".($donationAmount / 100).", '$subscriptionId')");
-        include("disburseSubscriptionPayment.php");
-    }
+        $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES (?, ?, ?)");
+        $stmt->bindParam('ids', $donorId, $donationAmountDollars, $subscriptionId);
+        execute($stmt);
+        include("disburse
+    $stmt->close();
 }
 
-doQuery("INSERT INTO webhook_events (we_content) VALUES ('".$link->escape_string($input)."')");
+$stmt = prepare("INSERT INTO webhook_events (we_content) VALUES (?)");
+$stmt->bind_param($input);
+execute($stmt);
+$stmt->close();
 
 http_response_code(200);
 

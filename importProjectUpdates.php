@@ -23,19 +23,19 @@ foreach ($sheet as $updateRow) {
 	   $description = addslashes($updateRow[4]);
 	}
     
-    $result = doQuery("SELECT picture_id FROM pictures WHERE picture_filename='$filename'");
+    $result = doUnprotectedQuery("SELECT picture_id FROM pictures WHERE picture_filename='$filename'");
     if ($row = $result->fetch_assoc()) {
     		$pictureId = $row['picture_id'];
     	} else {
-    	    doQuery("INSERT INTO pictures (picture_filename) VALUES ('$filename')");
+    	    doUnprotectedQuery("INSERT INTO pictures (picture_filename) VALUES ('$filename')");
     		print "Missing picture id for $filename\n";
     		$pictureId = $link->insert_id;
     	} 
     
     if ($updateId) {
-    		$result = doQuery("UPDATE project_updates SET pu_project_id=$projectId, pu_image_id=$pictureId, pu_timestamp=DATE('$date'), pu_description='$description' WHERE pu_id=$updateId");
+    		$result = doUnprotectedQuery("UPDATE project_updates SET pu_project_id=$projectId, pu_image_id=$pictureId, pu_timestamp=DATE('$date'), pu_description='$description' WHERE pu_id=$updateId");
     	} else {
-    		$result = doQuery("INSERT INTO project_updates (pu_project_id, pu_image_id, pu_timestamp, pu_description) VALUES ($projectId, $pictureId, DATE('$date'), '$description')");
+    		$result = doUnprotectedQuery("INSERT INTO project_updates (pu_project_id, pu_image_id, pu_timestamp, pu_description) VALUES ($projectId, $pictureId, DATE('$date'), '$description')");
     		$updateId = $link->insert_id;
     		print $updateId."\n";
     	}

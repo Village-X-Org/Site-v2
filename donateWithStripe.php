@@ -14,15 +14,24 @@ $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
 
-$result = doQuery("SELECT donor_id FROM donors WHERE donor_email='$donorEmail'");
+$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
+$stmt->bind_param('s', $donorEmail);
+$result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
-    $result = doQuery("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>'$token'");
+    
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>?");
+    $stmt->bind_param('s', $token);
+    $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
     }
+    $stmt->close();
 } else {
-    doQuery("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES ('$donorEmail', '$donorFirstName', '$donorLastName')");
+    $stmt = prepare("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES (?, ?, ?)");
+    $stmt->bind_param('sss', $donorEmail, $donorFirstName, $donorLastName);
+    execute($stmt);
+    $stmt->close();
     $donorId = $link->insert_id;
     $donationCount = 1;
 }
@@ -54,21 +63,28 @@ if ($isSubscription) {
 
 $donationAmountDollars = $donationAmount / 100;
 
-$result = doQuery("SELECT donation_id FROM donations WHERE donation_remote_id='$token'");
+$stmt = prepare("SELECT donation_id FROM donations WHERE donation_remote_id=?");
+$stmt->bind_param("s", $token);
+$result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
-    doQuery("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES ($donorId, ".($isSubscription ? 0 : $donationAmountDollars).", $projectId, $subscriptionId, '$token')");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("idiss", $donorId, ($isSubscription ? 0 : $donationAmountDollars), $projectId, $subscriptionId, $token);
+    execute($stmt);
     $donationId = $link->insert_id;
     if ($projectId) {
-        doQuery("UPDATE projects SET project_funded=project_funded + $donationAmountDollars WHERE project_id=$projectId");
+        $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
+        $stmt->bind_param("di", $donationAmountDollars, $projectId);
+        execute($stmt);
         invalidateCaches($projectId);
     }
 }
+$stmt->close();
 
 if ($isSubscription) {
     // Instead of actually disbursing, just find a project.
-    $result = doQuery("SELECT project_id, project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+    $result = doUnprotectedQuery("SELECT project_id, project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
     FROM projects JOIN villages ON project_village_id=village_id
     JOIN countries ON country_id=village_country
     JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id

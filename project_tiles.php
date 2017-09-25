@@ -46,7 +46,7 @@ require_once("utilities.php");
 	<div class="section"><div class='row'>		
 			<?php 
 	if (!file_exists(CACHED_LISTING_FILENAME)) {
-		$result = doQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status<>'cancelled' ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
+		$result = doUnprotectedQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status<>'cancelled' ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
 
 		$buffer = '';
 		$count = 0;
