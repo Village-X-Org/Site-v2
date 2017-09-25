@@ -25,7 +25,7 @@ switch ($type) {
             $donorId = $row['donor_id'];
             $donorFirstName = $row['donor_first_name'];
             $donorEmail = $row['donor_email'];
-            $donationAmount = $row['donation_amount'];
+            $donationAmountDollars = $row['donation_amount'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
@@ -312,8 +312,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmount); ?>
+            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
             																									</p>
+            																									<?php if (isset($projectName)) { ?>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
@@ -322,6 +323,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
             																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
             																											<?php print $projectName; ?></a>
             																									</p>
+            																									<?php } ?>
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
