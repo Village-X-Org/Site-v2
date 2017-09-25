@@ -73,7 +73,7 @@ require_once("utilities.php");
 		          $fundedClass = 'funded';
 		      }
 		      
-		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;' onclick=\"document.location='project.php?id=$projectId';\">
+		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
 				<div class='card sticky-action hoverable'>
 					<div class='card-image'>
 						<img class='activator' src='".PICTURES_DIR."/{$row['picture_filename']}'>
