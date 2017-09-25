@@ -47,21 +47,9 @@ if ($isSubscription) {
          ));
          $subscriptionId = "'".$customer->subscriptions->data[0]->id."'";
          
-         $type = EMAIL_TYPE_THANKS_FOR_DONATING;
-         ob_start();
-         include("email_content.php");
-         $output = ob_get_clean();
-         
-        sendMail($donorEmail, "Monthly Subscription for Village X", $output, getAdminEmail());
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
-} else {
-    $type = EMAIL_TYPE_THANKS_FOR_DONATING;
-    ob_start();
-    include("email_content.php");
-    $output = ob_get_clean();
-    sendMail($donorEmail, "Donation to Village X", $output, getAdminEmail());
 }
 
 $donationAmountDollars = $amount / 100;
@@ -77,6 +65,13 @@ if ($row = $result->fetch_assoc()) {
         invalidateCaches($projectId);
     }
 }
+
+$type = EMAIL_TYPE_THANKS_FOR_DONATING;
+ob_start();
+include("email_content.php");
+$output = ob_get_clean();
+sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
+    $output, getAdminEmail());
 
 if ($isSubscription) {
     include("thanks_for_donating_monthly.php");
