@@ -42,7 +42,7 @@ if ($isSubscription) {
          $plan = \Stripe\Plan::create(array(
              "name" => "Basic Plan",
              "id" => $planName,
-             "interval" => "day",
+             "interval" => "month",
              "currency" => "usd",
              "amount" => $donationAmount,
          ));
@@ -57,6 +57,13 @@ if ($isSubscription) {
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
+} else {
+    $charge = \Stripe\Charge::create(array(
+        "amount" => $donationAmount,
+        "currency" => "usd",
+        "description" => "Project Donation",
+        "source" => $token,
+    ));
 }
 
 $donationAmountDollars = $donationAmount / 100;
