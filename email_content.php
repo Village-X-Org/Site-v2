@@ -13,7 +13,7 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_UPDATE:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
+        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, (donation_subscription_id IS NOT NULL AND LENGTH(donation_subscription_id) > 0) AS isSubscription, project_id, project_name, village_name, country_label, picture_filename FROM donations
                     JOIN donors ON donation_donor_id=donor_id
                     JOIN projects ON donation_project_id=project_id
                     JOIN villages ON project_village_id=village_id
@@ -27,6 +27,7 @@ switch ($type) {
             $donorFirstName = $row['donor_first_name'];
             $donorEmail = $row['donor_email'];
             $donationAmountDollars = $row['donation_amount'];
+            $isSubscription = $row['isSubscription'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
@@ -211,7 +212,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        ?>We deeply appreciate your 100% tax
-            																deductible donation (monthly donation). You have
+            																deductible donation<?php print ($isSubscription ? " (monthly donation)" : ""); ?>. You have
             																disrupted extreme poverty in rural Africa!
 																		<?php 
 																		break;
@@ -326,7 +327,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
             																									<p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Project</strong><br /> <a href="<?php print BASE_URL."/$projectId"; ?>"
+            																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
             																											target="_blank"
             																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
             																											<?php print $projectName; ?></a>
