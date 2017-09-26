@@ -18,6 +18,11 @@ $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
     
+    $stmt = prepare("UPDATE donors SET donor_first_name=?, donor_last_name=? WHERE donor_id=?");
+    $stmt->bind_param('ssi', $donorFirstName, $donorLastName, $donorId);
+    execute($stmt);
+    $stmt->close();
+    
     $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>?");
     $stmt->bind_param('s', $token);
     $result = execute($stmt);
