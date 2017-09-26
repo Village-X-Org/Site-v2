@@ -13,7 +13,7 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_UPDATE:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, (donation_subscription_id IS NOT NULL AND LENGTH(donation_subscription_id) > 0) AS isSubscription, project_id, project_name, village_name, country_label, picture_filename FROM donations
+        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
                     JOIN donors ON donation_donor_id=donor_id
                     JOIN projects ON donation_project_id=project_id
                     JOIN villages ON project_village_id=village_id
@@ -27,7 +27,6 @@ switch ($type) {
             $donorFirstName = $row['donor_first_name'];
             $donorEmail = $row['donor_email'];
             $donationAmountDollars = $row['donation_amount'];
-            $isSubscription = $row['isSubscription'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];

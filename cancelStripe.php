@@ -31,6 +31,7 @@ if ($count == 0) {
     print "We cancelled $count subscription(s) associated with this email.";
     $type = EMAIL_TYPE_SUBSCRIPTION_CANCELLATION;
     ob_start();
+    $isSubscription = 1;
     include("email_content.php");
     $output = ob_get_clean();
     sendMail($donorEmail, "Subscription Cancelled", $output, getCustomerServiceEmail());
