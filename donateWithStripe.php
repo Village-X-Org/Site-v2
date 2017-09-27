@@ -87,11 +87,7 @@ if ($row = $result->fetch_assoc()) {
     $stmt->close();
     $donationId = $link->insert_id;
     if ($projectId) {
-        $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
-        $stmt->bind_param("di", $donationAmountDollars, $projectId);
-        execute($stmt);
-        invalidateCaches($projectId);
-        $stmt->close();
+        recordDonation($projectId, $donationAmountDollars);
     }
 }
 
