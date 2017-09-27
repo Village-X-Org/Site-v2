@@ -245,6 +245,39 @@ function checked($key) {
 }
 // End request processing
 
+function recordDonation($projectId, $donationAmountDollars) {
+    $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
+    $stmt->bind_param("di", $donationAmountDollars, $projectId);
+    execute($stmt);
+    invalidateCaches($projectId);
+    $stmt->close();
+    
+    $stmt = prepare("SELECT project_funded, project_budget FROM projects WHERE project_id=?");
+    $stmt->bind_param("i", $projectId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        $funded = $row['project_funded'];
+        $budget = $row['project_budget'];
+        $stmt->close();
+        
+        if ($funded > $budget && $funded - $donationAmountDollars < $budget) {
+            $stmt = prepare("INSERT INTO project_events");
+            $stmt->bind_param("i", $projectId);
+            $stmt = prepare("SELECT DISTINCT donor_email, donor_first_name, donor_last_name FROM donors JOIN donations ON donation_donor_id=donor_id WHERE donation_project_id=?");
+            $stmt->bind_param("i", $projectId);
+            $result = execute($stmt);
+            
+            while ($row = $result->fetch_assoc()) {
+                $donorEmail = $row['donor_email'];
+                $donorFirstName = $row['donor_first_name'];
+                $donorLastName = $row['donor_last_name'];
+                
+                
+            }
+            $stmt->close();
+        }
+    }   
+}
 
 function getDateRangeString($startTime, $endTime, $includeSpans=false) {
 		$startMonth = date("F", $startTime);
