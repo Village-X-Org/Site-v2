@@ -23,8 +23,8 @@ if ($row = $result->fetch_assoc()) {
     execute($stmt);
     $stmt->close();
     
-    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>?");
-    $stmt->bind_param('s', $token);
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_remote_id<>?");
+    $stmt->bind_param('is', $donorId, $token);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
