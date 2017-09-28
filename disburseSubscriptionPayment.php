@@ -28,7 +28,7 @@ while ($row = $result->fetch_assoc()) {
     $nextDonationAmount = round(min($donationAmountDollars, $remaining), 2);
     $donationAmountDollars -= $nextDonationAmount;
     doUnprotectedQuery("INSERT INTO subscription_disbursals (sd_amount, sd_project_id, sd_donor_id) VALUES ($nextDonationAmount, $projectId, $donorId)");
-    recordDonation($projectId, $nextDonationAmount);
+    recordDonation($projectId, $nextDonationAmount, $donationId);
     
     $body .= "<TR><TD><B>$$nextDonationAmount</B></TD><TD>$projectName in $villageName</TD><TR>";
     if ($donationAmountDollars < .01) {
