@@ -17,10 +17,11 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     ));
     
     $donorId = -1;
-    $stmt = prepare("SELECT donation_donor_id FROM donations WHERE donation_subscription_id=? LIMIT 1");
+    $stmt = prepare("SELECT donation_id, donation_donor_id FROM donations WHERE donation_subscription_id=? LIMIT 1");
     $stmt->bind_param('s', $subscriptionId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
+        $donationId = $row['donation_id'];
         $donorId = $row['donation_donor_id'];
         $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id) VALUES (?, ?, ?)");
         $stmt->bind_param('ids', $donorId, $donationAmountDollars, $subscriptionId);
