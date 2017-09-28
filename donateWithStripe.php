@@ -87,7 +87,7 @@ if ($row = $result->fetch_assoc()) {
     $stmt->close();
     $donationId = $link->insert_id;
     if ($projectId) {
-        recordDonation($projectId, $donationAmountDollars);
+        recordDonation($projectId, $donationAmountDollars, $donationId);
     }
 }
 

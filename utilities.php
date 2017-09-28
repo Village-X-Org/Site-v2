@@ -122,10 +122,10 @@ function prepare($queryStr) {
 function execute($stmt) {
     if (!$stmt->execute()) {
         $trace = print_r(debug_backtrace(), true);
-        emailAdmin("Exception", "Exception in Village X\n\n".$queryToBeExecuted."\n\n".$trace);
+        emailAdmin("Exception", "Exception in Village X\n\n".$stmt->error."\n\n".$trace);
         print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
         //if (isset($_SESSION['session_admin'])) {
-        print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
+        print "<P>details: ".mysqli_error($link)." <BR>QUERY: ".$stmt->error."</FONT><P>$trace</P>";
         //}
         die();
     }
@@ -245,14 +245,14 @@ function checked($key) {
 }
 // End request processing
 
-function recordDonation($projectId, $donationAmountDollars) {
+function recordDonation($projectId, $donationAmountDollars, $donationId) {
     $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
     $stmt->bind_param("di", $donationAmountDollars, $projectId);
     execute($stmt);
     invalidateCaches($projectId);
     $stmt->close();
     
-    $stmt = prepare("SELECT project_funded, project_budget FROM projects WHERE project_id=?");
+    $stmt = prepare("SELECT project_name, project_funded, project_budget FROM projects WHERE project_id=?");
     $stmt->bind_param("i", $projectId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
@@ -260,21 +260,30 @@ function recordDonation($projectId, $donationAmountDollars) {
         $budget = $row['project_budget'];
         $stmt->close();
         
-        if ($funded > $budget && $funded - $donationAmountDollars < $budget) {
-            $stmt = prepare("INSERT INTO project_events");
+        if ($funded >= $budget && $funded - $donationAmountDollars < $budget) {
+            $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (3, ?)"); // 3=Project Funded in project_event_types
             $stmt->bind_param("i", $projectId);
-            $stmt = prepare("SELECT DISTINCT donor_email, donor_first_name, donor_last_name FROM donors JOIN donations ON donation_donor_id=donor_id WHERE donation_project_id=?");
-            $stmt->bind_param("i", $projectId);
-            $result = execute($stmt);
+            execute($stmt);
+            $donorStmt = prepare("SELECT donor_email, donation_id, donor_first_name, donor_last_name FROM donors JOIN donations ON donation_donor_id=donor_id WHERE donation_project_id=? GROUP BY donor_id");
+            $donorStmt->bind_param("i", $projectId);
+            $donorResult = execute($donorStmt);
             
-            while ($row = $result->fetch_assoc()) {
-                $donorEmail = $row['donor_email'];
-                $donorFirstName = $row['donor_first_name'];
-                $donorLastName = $row['donor_last_name'];
+            while ($donorRow = $donorResult->fetch_assoc()) {
+                $donationId = $donorRow['donation_id'];
+                $donorEmail = $donorRow['donor_email'];
+                $donorFirstName = $donorRow['donor_first_name'];
+                $donorLastName = $donorRow['donor_last_name'];
                 
-                
+                $type = EMAIL_TYPE_PROJECT_UPDATE;
+                $puText = "The project is fully funded!  It will get underway immediately.";
+                //$puText = "The project is finished!  Click the link below to view photos of your impact.";
+                ob_start();
+                $isSubscription = 1;
+                include("email_content.php");
+                $output = ob_get_clean();
+                sendMail($donorEmail, "Project Fully Funded!", $output, getCustomerServiceEmail());
             }
-            $stmt->close();
+            $donorStmt->close();
         }
     }   
 }
