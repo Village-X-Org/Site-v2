@@ -192,7 +192,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        ?>We deeply appreciate your 100% tax
-            																deductible donation<?php print ($isSubscription ? " (monthly donation)" : ""); ?>. You have
+            																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation. You have
             																disrupted extreme poverty in rural Africa!
 																		<?php 
 																		break;
