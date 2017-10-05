@@ -17,19 +17,19 @@
 
 <div class="container">
 <br>
-<h4 class="card col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align" style="padding: 5% 5% 5% 5%; width:100%;">Village X is a data and direct giving platform for 390 million rural Africans fighting extreme poverty.</h4>
+<h4 class="card col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align" style="padding: 5% 5% 5% 5%; width:100%;">Village X Org is a 501(c)(3) nonprofit disrupting extreme poverty in rural Africa with democracy, direct giving, and data.</h4>
 	<br>
 	<div class="row">
 	<div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
           <div class="center-align flow-text"><b>Motto</b></div><br>
-          <div class="center-align flow-text">Fund projects that village choose.</div>
+          <div class="center-align flow-text">Fund projects that villages choose.</div>
         </div>
       </div>
       <div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
           <div class="center-align flow-text"><b>Mission</b></div><br>
-          <div class="center-align flow-text">Disrupt extreme poverty in rural Africa.</div>
+          <div class="center-align flow-text">Disrupt extreme poverty in rural Africa and prove it with data.</div>
         </div>
       </div>
     </div>
@@ -59,7 +59,7 @@
     <div class="card-panel" style="padding: 5% 5% 5% 5%;">
 		<div class="row">
           <div class="center-align flow-text"><b>Our Solution</b></div><br>
-          <div class="center-align flow-text">Build and deploy technology that disrupts extreme poverty at scale using data and direct giving.</div>
+          <div class="center-align flow-text">Build and deploy technology that disrupts extreme poverty at scale.</div>
       </div>
    
 	<div class="section">

@@ -43,6 +43,10 @@ require_once("utilities.php");
 		</div>
 	</div>
 	
+		<div class="icon-block" style="width:100%"><i class='material-icons left' style="font-size:20px;color:#03A9F4">timeline</i> = &nbsp;village data trends available
+	<br>
+	<i class='material-icons left' style="font-size:20px;color:#03A9F4">fiber_new</i> = &nbsp;data trends coming soon</div>
+	
 	<div class="section"><div class='row'>		
 			<?php 
 	if (!file_exists(CACHED_LISTING_FILENAME)) {
@@ -80,7 +84,7 @@ require_once("utilities.php");
 					</div>
 					<div class='card-content'>
 						<span class='card-title activator grey-text text-darken-4' style='font-size:18px;' onclick=\"document.location='project.php?id=$projectId';\">$projectName
-							<i class='material-icons right'>more_vert</i>
+							<i class='material-icons right'>timeline</i> <!-- or fiber_new depending on whether village is a new partner -->
 						</span>
 						<h6 class='brown-text'>
 							<b>{$row['village_name']} Village</b>
