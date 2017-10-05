@@ -10,8 +10,6 @@
 <meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
 <?php } ?>
 
-<title>Village X Org - Fund Projects Villages Choose</title>
-
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57585044-1"></script>
 <script>
