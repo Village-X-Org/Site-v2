@@ -18,8 +18,13 @@ $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
     
-    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=$donorId AND donation_remote_id<>?");
-    $stmt->bind_param('s', $token);
+    $stmt = prepare("UPDATE donors SET donor_first_name=?, donor_last_name=? WHERE donor_id=?");
+    $stmt->bind_param('ssi', $donorFirstName, $donorLastName, $donorId);
+    execute($stmt);
+    $stmt->close();
+    
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_remote_id<>?");
+    $stmt->bind_param('is', $donorId, $token);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donationCount = $row['donationCount'] + 1;
@@ -42,7 +47,7 @@ if ($isSubscription) {
          $plan = \Stripe\Plan::create(array(
              "name" => "Basic Plan",
              "id" => $planName,
-             "interval" => "day",
+             "interval" => "month",
              "currency" => "usd",
              "amount" => $donationAmount,
          ));
@@ -57,6 +62,13 @@ if ($isSubscription) {
     } catch (Exception $e) {
         sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
     }
+} else {
+    $charge = \Stripe\Charge::create(array(
+        "amount" => $donationAmount,
+        "currency" => "usd",
+        "description" => "Project Donation",
+        "source" => $token,
+    ));
 }
 
 $donationAmountDollars = $donationAmount / 100;
@@ -75,11 +87,7 @@ if ($row = $result->fetch_assoc()) {
     $stmt->close();
     $donationId = $link->insert_id;
     if ($projectId) {
-        $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
-        $stmt->bind_param("di", $donationAmountDollars, $projectId);
-        execute($stmt);
-        invalidateCaches($projectId);
-        $stmt->close();
+        recordDonation($projectId, $donationAmountDollars, $donationId);
     }
 }
 
