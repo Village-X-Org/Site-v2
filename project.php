@@ -185,7 +185,7 @@ $(document).ready(function(){
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
-		<h5>Project Info</h5>
+		<h5 class="light blue-text text-lighten-2">Project Info</h5>
 	</div>
 	
 	<div class="section">	
@@ -220,7 +220,7 @@ $(document).ready(function(){
 							<?php if (strlen($impact) > 1) { ?> <br>
 					
 							<p>
-								<b>Impact:</b> <?php print $impact; ?>
+								<b>Outcome:</b> <?php print $impact; ?>
 							</p>
 							<?php } ?>
 						
@@ -303,7 +303,7 @@ $(document).ready(function(){
 	    while ($row = $result->fetch_assoc()) {
 	    		if ($count == 0) { ?>
 			<div id="costbreakdown" class="section scrollspy">
-				<h5 style="text-align: center">Cost Breakdown</h5>
+				<h5 class="light blue-text text-lighten-2" style="text-align: center">Cost Breakdown</h5>
 			<br>
 			<div class="row">
 			<?php } 
@@ -339,7 +339,7 @@ $(document).ready(function(){
         while ($row = $result->fetch_assoc()) {
             if ($count == 0) {
                 print "<hr width='85%'><div id='pics' class='section scrollspy'>
-				           <h5 style='text-align: center;'>Field Updates</h5>
+				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
                                 <div class='carousel'>";
             }
             print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
@@ -372,7 +372,7 @@ $(document).ready(function(){
 		  if (count($years) > 1) {
 		?>
 		<div id="databreakdown" class="section scrollspy">
-			<h5 style="text-align: center">Data Trends</h5>
+			<h5 class="light blue-text text-lighten-2" style="text-align: center">Data Trends in <?php print $villageName; ?> Village</h5>
 				<!--  <p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
 					<b>We track the quantitative impact of your donation. In
 					particular, we collect data on several development indicators,
@@ -386,7 +386,7 @@ $(document).ready(function(){
 			
 			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Development Score Over Time Compared to Control Villages</b></h6>
+				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text"><?php print $villageName; ?> Village</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -474,7 +474,7 @@ $(document).ready(function(){
 			?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Dollars Invested Over Time (cumulative)</b></h6>
+						<h6 style="text-align: center"><b>Dollars Invested (cumulative)</b></h6>
 					 <div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
@@ -534,7 +534,7 @@ $(document).ready(function(){
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 				
-		<h6 style="text-align: center"><b>Waterborne Illness Over Time</b></h6>
+		<h6 style="text-align: center"><b>Cases of Waterborne Illness</b></h6>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -585,7 +585,7 @@ $(document).ready(function(){
 		</div>
 	
 		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Score Components Over Time</b></h6>
+						<h6 style="text-align: center"><b>Remaining Dimensions</b></h6>
 					<div>
 						<canvas id="chart4" width="250" height="250"></canvas>
 					</div>
