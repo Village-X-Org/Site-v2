@@ -4,7 +4,8 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<title>Village X Org | Fund Projects That Villages Choose</title>
+<meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <?php include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container"
@@ -238,7 +239,7 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     						<i class='material-icons right' style='color:#03A9F4;'>timeline</i>  <!-- or fiber_new depending on whether village is a new partner -->
     					</span>
     					<h6 class='brown-text'>
-    						<b>{$row['village_name']} Village</b> (since 2015)
+    						<b>{$row['village_name']} Village</b>
     					</h6>
     					<br>
     					<h6>
