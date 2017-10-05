@@ -4,6 +4,8 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Interactive Map</title>
+<meta name="description" content="Zoom in from a bird's-eye view to visit partner villages and their development projects."/>
 <?php include('header.inc');
 include('lightbox.inc'); ?>
 <style>
