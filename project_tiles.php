@@ -43,10 +43,14 @@ require_once("utilities.php");
 		</div>
 	</div>
 	
+		<div class="icon-block" style="width:100%"><i class='material-icons left' style="font-size:20px;color:#03A9F4">timeline</i> = &nbsp;village data trends available
+	<br>
+	<i class='material-icons left' style="font-size:20px;color:#03A9F4">fiber_new</i> = &nbsp;data trends coming soon</div>
+	
 	<div class="section"><div class='row'>		
 			<?php 
 	if (!file_exists(CACHED_LISTING_FILENAME)) {
-		$result = doUnprotectedQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget, project_type FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id WHERE project_status<>'cancelled' ORDER BY project_status = 'funding' DESC, project_funded < project_budget DESC, project_funded DESC");
+		$result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, p2.project_id AS previousId FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id JOIN pictures ON p1.project_profile_image_id=picture_id WHERE p1.project_status<>'cancelled' ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, p1.project_funded DESC");
 
 		$buffer = '';
 		$count = 0;
@@ -55,6 +59,7 @@ require_once("utilities.php");
 		    $projectName = $row['project_name'];
 		      $funded = round($row['project_funded']);
 		      $projectTotal = $row['project_budget'];
+		      $previousId = $row['previousId'];
 		      $fundedPercent = round($funded / $projectTotal * 100);
 		      $villageContribution = $projectTotal * .05;
 
@@ -80,7 +85,7 @@ require_once("utilities.php");
 					</div>
 					<div class='card-content'>
 						<span class='card-title activator grey-text text-darken-4' style='font-size:18px;' onclick=\"document.location='project.php?id=$projectId';\">$projectName
-							<i class='material-icons right'>more_vert</i>
+							<i class='material-icons right' style='color:#03A9F4;'>".($previousId != null ? 'timeline' : 'fiber_new')."</i>
 						</span>
 						<h6 class='brown-text'>
 							<b>{$row['village_name']} Village</b>

@@ -27,8 +27,7 @@
 			
 			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Development Scores Over Time</b></h5>
-				<h6 style="text-align: center"><b>Partner Villages (blue) v. Control Villages (gray)</b></h6>
+				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart1" width="350" height="350"></canvas>
 			</div>
@@ -86,7 +85,7 @@
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Waterborne Illness Over Time Compared to Control Villages</b></h6>
+				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -141,7 +140,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Agricultural Output Over Time Compared to Control Villages</b></h6>
+				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -197,7 +196,7 @@
 	
 	<div class="row">
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Score Components Over Time for Partner Villages</b></h6>
+						<h6 style="text-align: center"><b>Remaining Dimensions: <span class="blue-text">Partner Villages</span></b></h6>
 					<div>
 						<canvas id="chart3" width="250" height="250"></canvas>
 					</div>
@@ -249,13 +248,18 @@
 									options : {
 										responsive : true,
 										maintainAspectRatio : false,
+										layout: {
+									        padding: {
+									            bottom: 10
+									        }
+									    }
 									}
 								});
 					</script>
 			</div> 
 			
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Score Components Over Time for Control Villages</b></h6>
+						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 					<div>
 						<canvas id="chart4" width="250" height="250"></canvas>
 					</div>
@@ -307,6 +311,11 @@
 									options : {
 										responsive : true,
 										maintainAspectRatio : false,
+										layout: {
+									        padding: {
+									            bottom: 10
+									        }
+									    }
 									}
 								});
 					</script>

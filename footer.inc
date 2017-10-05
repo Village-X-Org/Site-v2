@@ -6,7 +6,7 @@
 			<div class="row center">
 				<h5
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;">
-					support the<br> <b>VILLAGE FUND</b>
+					support the<br><b>VILLAGE FUND</b>
 				</h5>
 			</div>
 			<div class="row center">
@@ -19,8 +19,7 @@
 			<div class="row center">
 				<h6
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;" style="padding:0% 5% 0% 5%;">
-					automatically donate to a project each<br> month, and enjoy impact
-					updates all year long
+					automatic donations, going<br>directly to village projects,<br>with monthly email updates 
 				</h6>
 			</div>
 			<div class="row center">
@@ -212,7 +211,7 @@
 					<p style="line-height:1.5;">©Village X Org, 2017 <br>501(c)(3) nonprofit <br>EIN: 47&#65279;-1845825&#65279;</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
-					<p style="line-height:1.5;"><b>Our technology disrupts extreme poverty with data and direct giving. Aiming to reach 390 million people in rural Africa.</b></p>
+					<p style="line-height:1.5;"><b>Our technology disrupts extreme poverty with democracy, direct giving, and data. Aiming to reach 390 million people in rural Africa.</b></p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height:1.5;">

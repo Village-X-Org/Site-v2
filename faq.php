@@ -11,6 +11,10 @@
 
 We are a democracy NGO. We fund projects village choose. We disrupt extreme poverty with data and direct giving.
 
+<p><b>What does the X in Village X Org stand for?</b></p>
+
+It stands for harnessing eXponential technology (i.e., the Internet) to disrupt eXtreme poverty in a specific village.
+
 <p><b>What is Village X's secret sauce?</b></p>
 
 A scalable, data-driven model that celebrates the capacity of local people to identify solutions that are not only technically feasible, but politically and culturally achievable. Locals also implement solutions faster and less expensively than outsiders.
