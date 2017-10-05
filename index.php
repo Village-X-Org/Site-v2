@@ -219,7 +219,7 @@ require_once("utilities.php");
 		<div class="row">
 <?php
 if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doUnprotectedQuery("SELECT project_id, project_name, picture_filename, project_summary, village_name, project_funded, project_budget FROM projects JOIN villages ON project_village_id=village_id JOIN pictures ON project_profile_image_id=picture_id ORDER BY (project_status = 'funding' AND project_funded<project_budget) DESC, ABS(project_budget-project_funded) LIMIT 3");
+    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, p2.project_id AS previousId FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id JOIN pictures ON p1.project_profile_image_id=picture_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded) LIMIT 3");
     $buffer = '';
     while ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
@@ -228,6 +228,7 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $projectTotal = $row['project_budget'];
         $fundedPercent = $funded / $projectTotal * 100;
         $villageContribution = $projectTotal * .05;
+        $previousId = $row['previousId'];
         $buffer .= "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
     			<div class='card sticky-action hoverable'>
     				<div class='card-image'>
@@ -235,7 +236,7 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     				</div>
     				<div class='card-content'>
     					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName
-    						<i class='material-icons right' style='color:#03A9F4;'>timeline</i>  <!-- or fiber_new depending on whether village is a new partner -->
+    						<i class='material-icons right' style='color:#03A9F4;'>".($previousId != null ? 'timeline' : 'fiber_new')."</i>
     					</span>
     					<h6 class='brown-text'>
     						<b>{$row['village_name']} Village</b> (since 2015)
