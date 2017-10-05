@@ -13,7 +13,7 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_UPDATE:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, (donation_subscription_id IS NOT NULL AND LENGTH(donation_subscription_id) > 0) AS isSubscription, project_id, project_name, village_name, country_label, picture_filename FROM donations
+        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
                     JOIN donors ON donation_donor_id=donor_id
                     JOIN projects ON donation_project_id=project_id
                     JOIN villages ON project_village_id=village_id
@@ -27,7 +27,6 @@ switch ($type) {
             $donorFirstName = $row['donor_first_name'];
             $donorEmail = $row['donor_email'];
             $donationAmountDollars = $row['donation_amount'];
-            $isSubscription = $row['isSubscription'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
@@ -137,17 +136,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 							<td
 								style="word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 								align="left" valign="top">
-								<table class="spacer"
-									style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;">
-									<tbody>
-										<tr style="vertical-align: top; text-align: left; padding: 0;"
-											align="left">
-											<td height="16px"
-												style="font-size: 16px; line-height: 16px; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; mso-line-height-rule: exactly; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; padding: 0;"
-												align="left" valign="top"> </td>
-										</tr>
-									</tbody>
-								</table>
+
 								<table class="row"
 									style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: table; padding: 0;">
 									<tbody>
@@ -165,7 +154,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 															align="left">
 															<h3
-																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 0 0 10px; padding: 0;"
+																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;"
 																align="left"><b>
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
@@ -186,17 +175,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																align="left">
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_UPDATE:
-																        $stmt = prepare("SELECT pu_description, picture_filename FROM project_updates JOIN pictures ON pu_image_id=picture_id WHERE pu_id=?");
-																        $stmt->bind_param("i", $updateId);
-																        $result = execute($stmt);
-																        if ($row = $result->fetch_assoc()) {
-																            $updateDescription = $row['pu_description'];
-																            $updatePicture = $row['picture_filename'];
-																        }
-																        $stmt->close();
 																        ?>
-																        A project you supported posted an update. <b><?php print $updateDescription; ?></b> It will get underway immediately.
-            																(Click the link below to view photos of your impact.)
+																        A project you supported posted an update. <b><?php print $puText; ?></b>
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -212,7 +192,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        ?>We deeply appreciate your 100% tax
-            																deductible donation<?php print ($isSubscription ? " (monthly donation)" : ""); ?>. You have
+            																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation. You have
             																disrupted extreme poverty in rural Africa!
 																		<?php 
 																		break;
@@ -234,18 +214,6 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        break;
 																}?>
 															</h2>
-															<table class="spacer"
-																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;">
-																<tbody>
-																	<tr
-																		style="vertical-align: top; text-align: left; padding: 0;"
-																		align="left">
-																		<td height="16px"
-																			style="font-size: 16px; line-height: 16px; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; mso-line-height-rule: exactly; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; padding: 0;"
-																			align="left" valign="top"> </td>
-																	</tr>
-																</tbody>
-															</table>
 															<table class="callout"
 																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
 																<tr
@@ -366,7 +334,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<?php switch ($type) {
                     											        case EMAIL_TYPE_PROJECT_UPDATE:
                     												        ?>
-                    												        <img src="<?php print ABS_PICTURES_DIR.$updatePicture; ?>" alt=""
+                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														
                     															<?php
@@ -467,18 +435,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 										<td class="wrapper-inner"
 											style="word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 											align="left" valign="top">
-											<table class="spacer"
-												style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;">
-												<tbody>
-													<tr
-														style="vertical-align: top; text-align: left; padding: 0;"
-														align="left">
-														<td height="16px"
-															style="font-size: 16px; line-height: 16px; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; border-collapse: collapse !important; vertical-align: top; text-align: left; mso-line-height-rule: exactly; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; margin: 0; padding: 0;"
-															align="left" valign="top"> </td>
-													</tr>
-												</tbody>
-											</table>
+										
 											<table class="row"
 												style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; position: relative; display: table; padding: 0;">
 												<tbody>
@@ -497,7 +454,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 																		align="left">
 																		<h5
-																			style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 20px; margin: 0 0 10px; padding: 0;"
+																			style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 20px; margin: 10px 0 10px; padding: 0;"
 																			align="left">Connect With Us:</h5>
 																		<table align="left" class="menu vertical"
 																			style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;">
