@@ -220,17 +220,22 @@ require_once("utilities.php");
 		<div class="row">
 <?php
 if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id JOIN pictures ON p1.project_profile_image_id=picture_id GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded) LIMIT 3");
+    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id JOIN pictures ON p1.project_profile_image_id=picture_id GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded)");
     $buffer = '';
+    $cells = array();
     while ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         $projectName = $row['project_name'];
+        $projectType = $row['project_type'];
         $funded = round($row['project_funded']);
         $projectTotal = $row['project_budget'];
         $previousYear = $row['previousYear'];
         $fundedPercent = $funded / $projectTotal * 100;
         $villageContribution = $projectTotal * .05;
-        $buffer .= "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
+        if (!isset($cells[$projectType])) {
+            $cells[$projectType] = array();
+        }
+        $nextBuffer = "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
     			<div class='card sticky-action hoverable'>
     				<div class='card-image'>
     					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
@@ -255,17 +260,32 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<div class='row center'>
     						<div class='col s12'>";
         if ($fundedPercent < 100) {
-            $buffer .= "<a href='one_time_payment_view.php?id=$projectId'
+            $nextBuffer .= "<a href='one_time_payment_view.php?id=$projectId'
     								id='donate_button'
     								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
         } else {
-            $buffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
+            $nextBuffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
         }
-        $buffer .= "</div>
+        $nextBuffer .= "</div>
     					</div>
     				</div>
     			</div>
     	      </div>";
+        $cells[$projectType][] = $nextBuffer;
+    }
+   
+    $count = $index = 0;
+    while ($count < 3) {
+        foreach ($cells as $cell) {
+            if (count($cell) > $index) {
+                $buffer .= $cell[$index];
+                $count++;
+            }
+            if ($count == 3) {
+                break;
+            }
+        }
+        $index++;
     }
     $handle = fopen(CACHED_HIGHLIGHTED_FILENAME, "w");
     fwrite($handle, $buffer);
