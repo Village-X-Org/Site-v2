@@ -6,7 +6,11 @@ require_once("utilities.php");
 <head>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
-<?php include('header.inc'); ?>
+<?php include('header.inc'); 
+if (hasParam('code')) {
+    $_SESSION['code'] = param('code');
+}
+?>
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
