@@ -73,6 +73,11 @@ if ($isSubscription) {
 
 $donationAmountDollars = $donationAmount / 100;
 
+$code = null;
+if (isset($_SESSION['code'])) {
+    $code = $_SESSION['code'];
+}
+
 $stmt = prepare("SELECT donation_id FROM donations WHERE donation_remote_id=?");
 $stmt->bind_param("s", $token);
 $result = execute($stmt);
@@ -80,9 +85,9 @@ if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
-    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id) VALUES (?, ?, ?, ?, ?)");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code) VALUES (?, ?, ?, ?, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
-    $stmt->bind_param("idiss", $donorId, $insertAmount, $projectId, $subscriptionId, $token);
+    $stmt->bind_param("idisss", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code);
     execute($stmt);
     $stmt->close();
     $donationId = $link->insert_id;
