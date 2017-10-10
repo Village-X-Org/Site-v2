@@ -126,3 +126,6 @@ include("email_content.php");
 $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getCustomerServiceEmail());
+
+sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail)": "Donation to Village X ($donorEmail)",
+    $output, getAdminEmail());
