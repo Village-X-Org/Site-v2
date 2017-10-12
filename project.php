@@ -153,6 +153,82 @@ $(document).ready(function(){
 
 		</div>
 	</div>
+	
+
+	<div class="row" style="width:100%;margin:auto 0;padding:0% 5% 2% 5%;">
+		<h4 class="light blue-text text-lighten-2 center" style="width:100%;font-weight: 300; opacity:0.7;">Thank You for Donating!</h4>
+		</div>	
+			<div class="row center" style="margin:auto 0;width:100%; height:100%;padding:0% 5% 0% 5%;">
+			
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_before</i>
+				</div>
+			</div>
+			
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff DePree!', 3000,'rounded')">JD</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
+			</div>
+			
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Mike Buckler!', 3000,'rounded')">MB</a></div>
+				</div>
+			</div>
+				<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Anonymous!', 3000,'rounded')">A</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="blue-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_next</i>
+				</div>
+			</div>
+					<div class="valign-wrapper" style="justify-content: center; width:100%; padding:3% 15% 0% 15%;"><i class="material-icons" style="font-size: 25px">star</i><h5 class="header center light text-shadow: 2px 2px 7px #111111">= monthly donor</h5></div> 
+		
+		</div>
+		
+
 
 <!--  <div class="section">
 	<nav class="light blue" role="navigation">
@@ -185,7 +261,7 @@ $(document).ready(function(){
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
-		<h5 class="light blue-text text-lighten-2">Project Info</h5>
+		<h5 class="light blue-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
 	</div>
 	
 	<div class="section">	
@@ -213,7 +289,7 @@ $(document).ready(function(){
 							<?php if (strlen($partners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $partners; ?>
+								<b>Partners:</b> <?php print $partners; ?> <img src="NPCA_logo.jpg" alt="" style="width:auto;height:30px;">
 							</p>
 							<?php } ?>
 							

@@ -67,15 +67,16 @@ include('header.inc');
 			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content blue-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>.</span>
-         				<div class="row" style="padding:5% 5% 5% 5%;">
-         				<h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
+         				<div class="row" style="padding:5% 5% 0% 5%;">
+         				<p class="center-align black-text">The project needs $____.</p>
          				<form class="col s12" style="width:100%" id="donateForm">
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
+         					
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
           							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
-          							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
+          							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
@@ -87,13 +88,18 @@ include('header.inc');
                               </div>
                            </div>
      
-                    		   <div class="input-field col s12">
+                    		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" 
-                    						name="action" style="width:100%;"> 
+                    						name="action" style="width:100%"> 
                     					Donate 
                     				</button>
             				   </div>
+            				 
+            				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
+      <input type="checkbox" class="filled-in" id="anonymous"/>
+      <label for="anonymous">Make my donation anonymous</label>
+    </div>
               			</form>
 <script>
 	$().ready(function() {

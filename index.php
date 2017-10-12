@@ -60,7 +60,7 @@ require_once("utilities.php");
 					</video>
 				</h2>
 					
-					<h5 class="center"><b>Villages choose projects</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
 					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
@@ -82,7 +82,7 @@ require_once("utilities.php");
 					</video>
 				</h2>
 					
-					<h5 class="center" style="padding:0% 10% 0% 10%"><b>You help fund them</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
 
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
@@ -103,7 +103,7 @@ require_once("utilities.php");
 					</video>
 					</h2>
 					
-					<h5 class="center"><b>We compute your impact</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600">We compute your impact</h5>
 
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
 					 of how your donations change development outcomes for rural Africans.</p>
@@ -115,11 +115,99 @@ require_once("utilities.php");
 
 	</div>
 	</div>
-<hr style="width:50%">
+
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
+	<div class="section no-pad-bot valign-wrapper"
+		style="height: 100%; width: 100%;">
+		<div class="container">
+		<div class="row center" style="width:100%;margin:auto 0;padding:0% 5% 5% 5%;">
+		<h2 class="light center text-shadow: 2px 2px 7px #111111" style="width:100%;font-weight: 300; opacity:0.7;">thank you for donating</h2>
+		</div>	
+			<div class="row" style="margin:auto 0;width:100%; height:100%;">
+		
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_before</i>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff DePree!', 3000,'rounded')">JD</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
+			</div>
+			
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Mike Buckler!', 3000,'rounded')">MB</a></div>
+				</div>
+			</div>
+				<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Anonymous!', 3000,'rounded')">A</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_next</i>
+				</div>
+			</div>
+			
+		</div>
+		
+		<div class="valign-wrapper" style="justify-content: center; width:100%; padding:5% 15% 0% 15%;"><i class="material-icons" style="font-size: 25px">star</i><h5 class="header center light text-shadow: 2px 2px 7px #111111">= monthly donor</h5></div> 
+			
+			</div>	
+			
+			
+
+			<div class="parallax">
+				<img src="images/borehole_donors.jpg">
+			</div>
+		
+	</div>
+</div>
+
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">How It Helps</h4>
-	
+	 <h4 class="header center light blue-text text-lighten-2">Donors Drive Impact</h4> 
 	
 	<div class="section">
 	
@@ -165,15 +253,21 @@ require_once("utilities.php");
 				</div>
 			</div>
 		</div>
+		
+		
 
-		<div>
-			<h6 class="light center-align" style="padding:0% 3% 0% 3%">
+		<!-- <div>
+			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
 				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years (more info <a
-					href='impacts.php'>here</a>)
+				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
 			</h6>
-		</div>
-		<br>
+		</div> -->
+		
+		<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
+				
+				<a href="impacts.php" id="download-button"
+					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
+			</div>
 	</div>
 
 </div>
@@ -277,7 +371,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 
 		<div class="row center">
 			<a href='project_tiles.php' id="download-button"
-				class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">more
+				class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">more
 				projects</a>
 		</div>
 	</div>
@@ -336,12 +430,13 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0% 0% 0%">Your Donations At Work</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:2% 0% 0% 0%">Data-Driven Development</h4>
 
 <div class="container">
-<div class="row">
+	
+	<div class="row">
 			
-			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
+			<div class="col s12 m12 l12 center-align" style="padding: 10px 30px 20px 30px">
 
 				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
@@ -397,7 +492,9 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		</div>
 		<h6 style="text-align: center; padding: 20px 30px 20px 30px">Scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more <a
 					href='impacts.php'>here</a>.</h6>
-	</div>
+	</div> 
+	 
+	
 	<div class="row">
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
@@ -640,4 +737,6 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		
 	</div>
 </div>
+
+
 <?php include('footer.inc'); ?>
