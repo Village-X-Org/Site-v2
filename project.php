@@ -84,7 +84,7 @@ $(document).ready(function(){
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>
@@ -234,7 +234,7 @@ $(document).ready(function(){
 	<nav class="light blue" role="navigation">
     		<ul class="center-align row">
           <li class="waves-effect col s3">
-              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
+              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
           </li>
           <li class="waves-effect col s3" style="display: inline">
               <a href="#pics"><i class="material-icons" style="font-size: 30px">collections</i></a>

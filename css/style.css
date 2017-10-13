@@ -21,6 +21,7 @@ p {
 
 .parallax-container {
   min-height: 380px;
+  height: 800px;
   line-height: 0;
   height: auto;
   color: rgba(255,255,255,.9);
@@ -163,6 +164,16 @@ footer.page-footer {
     display: table-cell; 
     padding: 20px;
     width:50%;
+}
+
+.carousel .carousel-item {
+    display: none;
+	width: 350px;
+	height: 350px;
+}
+
+a {
+	color: #d7ccc8;
 }
 
 @media screen and (max-width: 600px) {
