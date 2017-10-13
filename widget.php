@@ -1,6 +1,6 @@
 <style>
 .meter { 
-	height: 7px;  /* Can be anything */
+	height: 15px;  /* Can be anything */
 	position: relative;
 	background: #555;
 	-moz-border-radius: 25px;
@@ -51,12 +51,13 @@
         $villageName = $row['village_name'];
         $countryName = $row['country_label'];
         $percent = round(100 * $funded / $budget);
-        print "<TABLE cellspacing='10' style='cursor:pointer;width:625px;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
+        print "<TABLE cellspacing='10' style='cursor:pointer;width:625px;font-size:smaller;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
         print "<img src='images/type_".$projectType.".svg' /></TD><TD>";
-        print "<span>Adventure Anywhere is powered entirely by rabbit poop-fueled generators.</span>";
-        print "<BR><span style='align:right;'>-- but Village X needs your support!</span>";
-        print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code' target='_blank'>$projectName</a></B> with $villageName Village<BR>and support village-led development in $countryName!";
-        print "<div class='meter' style='margin-top:10px;'><span  style='width: $percent%'></span></div></TD></TR></TABLE>";   
+        print "<div style='padding:0px;margin-bottom:5px;'>Adventure Anywhere is powered entirely by rabbit poop-fueled generators.</div>";
+        print "<div class='meter' style='margin-top:5px;margin-bottom:5px;text-align:right;font-weight:bold;color:white;'><span style='width: $percent%;'></span><div style='position:absolute;right:5px;top:3px;'>$percent% of $$budget raised thus far!</div></div>";
+        print "<span>But Village X needs your support!";
+        print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code' target='_blank'>$projectName</a></B> with $villageName Village today!</span>";
+        print "</TD></TR></TABLE>";   
         
     }
 ?>
