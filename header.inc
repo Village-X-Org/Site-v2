@@ -191,7 +191,7 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName) {
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous) {
   donationIsSubscription = subscribe;
   donationFirstName = firstName;
   donationLastName = lastName;
