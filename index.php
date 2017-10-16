@@ -119,7 +119,9 @@ if (hasParam('code')) {
 
 	</div>
 	</div>
-
+	
+<hr width="85%"
+	
 <div class="container">
 	<br>
 	 <h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
