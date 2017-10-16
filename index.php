@@ -64,7 +64,7 @@ if (hasParam('code')) {
 					</video>
 				</h2>
 					
-					<h5 class="center"><b>Villages choose projects</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
 					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
@@ -86,7 +86,7 @@ if (hasParam('code')) {
 					</video>
 				</h2>
 					
-					<h5 class="center" style="padding:0% 10% 0% 10%"><b>You help fund them</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
 
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
@@ -107,7 +107,7 @@ if (hasParam('code')) {
 					</video>
 					</h2>
 					
-					<h5 class="center"><b>We compute your impact</b></h5>
+					<h5 class="center flow-text" style="font-weight: 600">We compute your impact</h5>
 
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
 					 of how your donations change development outcomes for rural Africans.</p>
@@ -122,7 +122,7 @@ if (hasParam('code')) {
 <hr style="width:50%">
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">How It Helps</h4>
+	<h4 class="header center light blue-text text-lighten-2">Donors Drive Impact</h4> 
 	
 	
 	<div class="section">
@@ -170,13 +170,19 @@ if (hasParam('code')) {
 			</div>
 		</div>
 
-		<div>
-			<h6 class="light center-align" style="padding:0% 3% 0% 3%">
-				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years (more info <a
-					href='impacts.php'>here</a>)
-			</h6>
-		</div>
+<!-- <div>
+			<h6 class="light center-align" style="padding:0% 3% 0% 3%">		 +			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
+  				*based on difference-in-differences analysis using data, from 2014		  				*based on difference-in-differences analysis using data, from 2014
+				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years (more info <a		 +				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
+					href='impacts.php'>here</a>)		
+  			</h6>		  			</h6>
+		</div>		 +		</div> -->
+		<br>		 +		
+		<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
+				
+				<a href="impacts.php" id="download-button"
+ 					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
+ 			</div>
 		<br>
 	</div>
 

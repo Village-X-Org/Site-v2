@@ -185,7 +185,7 @@ $(document).ready(function(){
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
-		<h5 class="light blue-text text-lighten-2">Project Info</h5>
+		<h5 class="light blue-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
 	</div>
 	
 	<div class="section">	
@@ -213,7 +213,7 @@ $(document).ready(function(){
 							<?php if (strlen($partners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $partners; ?>
+								<b>Partners:</b> <?php print $partners; ?> <img src="NPCA_logo.jpg" alt="" style="width:auto;height:30px;">
 							</p>
 							<?php } ?>
 							
