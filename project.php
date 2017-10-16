@@ -289,7 +289,7 @@ $(document).ready(function(){
 							<?php if (strlen($partners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $partners; ?> <img src="NPCA_logo.jpg" alt="" style="width:auto;height:30px;">
+								<b>Partners:</b> <?php print $partners; ?>
 							</p>
 							<?php } ?>
 							
