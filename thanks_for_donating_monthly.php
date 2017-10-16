@@ -40,7 +40,9 @@ include('header.inc'); ?>
       <div class="col s12 m12 l12">
         
           <div class="black-text flow-text"><p class="flow-text">
-          	<p><?php print $donorFirstName; ?>,</p> 
+          <?php if ($donorFirstName) { ?>
+          	<p><?php print $donorFirstName; ?>,</p>
+          <?php } ?> 
 			<p>We processed your first monthly donation of $<?php print $donationAmountDollars; ?>! 
 			
 			<?php if (isset($projectName)) { ?>
