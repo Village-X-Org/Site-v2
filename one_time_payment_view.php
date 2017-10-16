@@ -75,7 +75,8 @@ include('header.inc');
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
           							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
-          							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p><br>	
+          							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
+          					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
@@ -85,15 +86,21 @@ include('header.inc');
                                   <div class="errorTxt2"></div>
                                 </div>
                               </div>
+                              </div>
                            </div>
-     
-                    		   <div class="input-field col s12">
+                           
+                    		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" 
                     						name="action" style="width:100%;"> 
                     					Donate 
                     				</button>
             				   </div>
+            				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
+							<input type="checkbox" class="filled-in" id="anonymousCheckbox" 
+									onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
+							<label for="anonymousCheckbox">Make my donation anonymous</label>
+						 </div>
               			</form>
 <script>
 	$().ready(function() {
@@ -117,7 +124,7 @@ include('header.inc');
           }
         },
           submitHandler: function(form) {
-        	  gotoStripe();
+        	  gotoStripe(document.getElementById("anonymousCheckbox").checked);
         }	
 		});
 	});
@@ -136,12 +143,13 @@ include('header.inc');
 </div>
 
 <script>
-    function gotoStripe() {
+    function gotoStripe(anonymous) {
         	amount = $('#donation_amount').val(); 
         	if (!amount) { 
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
-        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val());
+        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
+                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous);
     }
 </script>
              
