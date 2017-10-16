@@ -60,7 +60,9 @@ include('header.inc'); ?>
       <div class="col s12 m12 l12">
         
           <div class="black-text flow-text"><p class="flow-text">
-          	<p><?php print $donorFirstName; ?>,</p> 
+          <?php if ($donorFirstName) { ?>
+          	<p><?php print $donorFirstName; ?>,</p>
+          <?php } ?> 
 			<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! You have disrupted 
 			extreme poverty for <?php print $peopleCount; ?> people and <?php print $householdCount ?> households in <?php print $countryLabel; ?>.</p>
 			<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please

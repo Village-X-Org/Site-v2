@@ -156,17 +156,20 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<h3
 																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;"
 																align="left"><b>
-																<?php switch ($type) {
-																    case EMAIL_TYPE_PROJECT_UPDATE:
-																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        print "Hi, $donorFirstName!";
-																        break;
-																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-																        print "$donorFirstName,";
-																        break;
-																    default:
-																        break;
-																}?>
+																<?php 
+																if ($donorFirstName) { 
+        																switch ($type) {
+        																    case EMAIL_TYPE_PROJECT_UPDATE:
+        																    case EMAIL_TYPE_THANKS_FOR_DONATING:
+        																        print "Hi, $donorFirstName!";
+        																        break;
+        																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+        																        print "$donorFirstName,";
+        																        break;
+        																    default:
+        																        break;
+        																}
+                                                                    }   ?>
 																</b>
 															</h3> <br />
 
