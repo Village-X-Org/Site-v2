@@ -28,7 +28,7 @@ require_once("utilities.php");
       die();
   }
   $projectId = paramInt('id');
-  $stmt = prepare("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
+  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
         JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id
@@ -39,12 +39,15 @@ require_once("utilities.php");
   if ($row = $result->fetch_assoc()) {
       $projectName = $row['project_name'];
       $villageName = $row['village_name'];
+      $projectFunded = $row['project_funded'];
       $projectBudget = $row['project_budget'];
       $summary = $row['project_summary'];
       $similarPicture = $row['similarPicture'];
       $bannerPicture = $row['bannerPicture'];
       $countryName = $row['country_label'];
       $communityContribution = $projectBudget * .05;
+      
+      $remaining = ceil($projectBudget - $projectFunded);
   } else {
       print "Project not found";
       die();
@@ -68,8 +71,9 @@ include('header.inc');
             		<div class="card-content blue-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
-         				<p class="center-align black-text">The project needs $____.</p>
+          				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm">
+
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          					
@@ -77,6 +81,7 @@ include('header.inc');
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
           							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
+
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
                                   <div class="errorTxt1"></div>
@@ -86,8 +91,8 @@ include('header.inc');
                                   <div class="errorTxt2"></div>
                                 </div>
                               </div>
+                              </div>
                            </div>
-     
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" 
@@ -95,11 +100,12 @@ include('header.inc');
                     					Donate 
                     				</button>
             				   </div>
-            				 
+
             				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
-      <input type="checkbox" class="filled-in" id="anonymous"/>
-      <label for="anonymous">Make my donation anonymous</label>
-    </div>
+							<input type="checkbox" class="filled-in" id="anonymousCheckbox" 
+									onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
+							<label for="anonymousCheckbox">Make my donation anonymous</label>
+						 </div>
               			</form>
 <script>
 	$().ready(function() {
@@ -123,7 +129,7 @@ include('header.inc');
           }
         },
           submitHandler: function(form) {
-        	  gotoStripe();
+        	  gotoStripe(document.getElementById("anonymousCheckbox").checked);
         }	
 		});
 	});
@@ -142,12 +148,13 @@ include('header.inc');
 </div>
 
 <script>
-    function gotoStripe() {
+    function gotoStripe(anonymous) {
         	amount = $('#donation_amount').val(); 
         	if (!amount) { 
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
-        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, $('#donationFirstName').val(), $('#donationLastName').val());
+        	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
+                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous);
     }
 </script>
              

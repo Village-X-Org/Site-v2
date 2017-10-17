@@ -124,7 +124,7 @@ if (hasParam('code')) {
 	
 <div class="container">
 	<br>
-	 <h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
+	<h4 class="header center light blue-text text-lighten-2">Donors Drive Impact</h4> 
 	
 	<div class="section">
 	
@@ -173,7 +173,7 @@ if (hasParam('code')) {
 		
 		
 
-		<!-- <div>
+        <!-- <div>
 			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years

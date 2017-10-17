@@ -36,7 +36,8 @@ require_once("utilities.php");
             <div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             <div class="card-content blue-text" style="height:100%;">
             <span class="card-title black-text">Give monthly and help many rural villages disrupt extreme poverty!</span>
-            <div class="row" style="padding:5% 5% 0% 5%;">
+
+			<div class="row" style="padding:5% 5% 0% 5%;">
             <h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
             <form class="col s12 donateForm" style="width:100%" id="donateForm" method="get" action="">
             <div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
@@ -44,25 +45,30 @@ require_once("utilities.php");
             <i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
             <input placeholder="10" style="font-size:40px; color:light-blue;" id="donation_amount" type="tel">
             <h5 class="center-align">/ month</h5>
-            <div class="input-field col s6">
-            <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
-            <div class="errorTxt1"></div>
-            </div>
-            <div class="input-field col s6">
-            <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2">
-            <div class="errorTxt2"></div>
-            </div>
-            </div>
+                <div id='donationNameDiv'>
+                    <div class="input-field col s6">
+                    <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
+                    <div class="errorTxt1"></div>
+                    </div>
+                    <div class="input-field col s6">
+                    <input id="donationLastName" name="lastname" placeholder="last name" type="text" required data-error=".errorTxt2">
+                    <div class="errorTxt2"></div>
+                    </div>
+                </div>
+        		</div>
             </div>
             
             <div class="input-field center-align">
             <button id="donationButton" class="center-align light-blue btn-large submit" type="submit" name="action" style="width:100%;">
             Donate</button>
             </div>
+
+
             <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
-      <input type="checkbox" class="filled-in" id="anonymous"/>
-      <label for="anonymous">Make my donation anonymous</label>
-    </div>
+ 				<input type="checkbox" class="filled-in" id="anonymousCheckbox" onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
+		 		<label for="anonymousCheckbox">Make my donation anonymous</label>
+
+			</div>
             </form>
             <script>
 	$().ready(function() {
@@ -86,7 +92,7 @@ require_once("utilities.php");
           }
         },
           submitHandler: function(form) {
-        	  	gotoStripe();
+        	  	gotoStripe(document.getElementById("anonymousCheckbox").checked);
         }	
 		});
 	});
