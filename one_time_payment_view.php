@@ -28,7 +28,7 @@ require_once("utilities.php");
       die();
   }
   $projectId = paramInt('id');
-  $stmt = prepare("SELECT project_name, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
+  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
         JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id
@@ -39,12 +39,15 @@ require_once("utilities.php");
   if ($row = $result->fetch_assoc()) {
       $projectName = $row['project_name'];
       $villageName = $row['village_name'];
+      $projectFunded = $row['project_funded'];
       $projectBudget = $row['project_budget'];
       $summary = $row['project_summary'];
       $similarPicture = $row['similarPicture'];
       $bannerPicture = $row['bannerPicture'];
       $countryName = $row['country_label'];
       $communityContribution = $projectBudget * .05;
+      
+      $remaining = ceil($projectBudget - $projectFunded);
   } else {
       print "Project not found";
       die();
@@ -67,9 +70,10 @@ include('header.inc');
 			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content blue-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>.</span>
-         				<div class="row" style="padding:5% 5% 5% 5%;">
-         				<h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
+         				<div class="row" style="padding:5% 5% 0% 5%;">
+          				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm">
+
          					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
