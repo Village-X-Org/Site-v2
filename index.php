@@ -171,18 +171,17 @@ if (hasParam('code')) {
 		</div>
 
 <!-- <div>
-			<h6 class="light center-align" style="padding:0% 3% 0% 3%">		 +			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
-  				*based on difference-in-differences analysis using data, from 2014		  				*based on difference-in-differences analysis using data, from 2014
-				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years (more info <a		 +				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
-					href='impacts.php'>here</a>)		
-  			</h6>		  			</h6>
-		</div>		 +		</div> -->
-		<br>		 +		
+			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
+				*based on difference-in-differences analysis using data, from 2014
+				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
+			</h6>
+		</div> -->
+		
 		<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
 				
 				<a href="impacts.php" id="download-button"
- 					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
- 			</div>
+					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
+			</div>
 		<br>
 	</div>
 
