@@ -190,93 +190,64 @@ if (hasParam('code')) {
 </div>
 
 <div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
+	style="background-color: rgba(0, 0, 0, 0.3); height: 450px;">
+	<div class="section no-pad-bot valign-wrapper center-align"
+		style="height: 100%; width: 100%">
 		<div class="container">
-		<div class="row center" style="width:100%;margin:auto 0;padding:0% 5% 5% 5%;">
-		<h2 class="light center text-shadow: 2px 2px 7px #111111" style="width:100%;font-weight: 300; opacity:0.7;">thank you for donating</h2>
-		<h6 class="light center text-shadow: 2px 2px 7px #111111" style="width:100%;font-weight: 300; opacity:0.7;">(A = anonymous)</h6>
-		</div>	
-			<div class="row" style="margin:auto 0;width:100%; height:100%;">
+        		<div class="row center" style="width:100%;margin:auto 0;padding:0% 5% 5% 5%;">
+        			<h2 class="light center" style="width:100%;font-weight: 300; opacity:0.7;">thank you for donating</h2>
+        		</div>	
+			<div class="row valign-wrapper center-align" style="margin:auto 0; width: 100%; height:100%;">
+    				<!-- <div class="valign-wrapper center-align" style="justify-content: center; height:75px;">
+        					<div class="icon block valign-wrapper">
+        						<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_before</i>
+        					</div>
+    				</div> -->
+    				
+    				<?php
+    				if (!file_exists(CACHED_DONORS)) {
+                        $result = doUnprotectedQuery("SELECT donation_amount, project_type, donation_subscription_id FROM donations JOIN projects ON donation_amount > 4 AND donation_project_id=project_id ORDER BY project_id DESC LIMIT 10");
+                        $buffer = '';
+                        while ($row = $result->fetch_assoc()) {
+                            $donationAmount = ceil($row['donation_amount']);
+                            $projectType = $row['project_type'];
+                            $subscriptionId = $row['donation_subscription_id'];
+                    
+                            $buffer .= "<div class='donationCircle flow-text valign-wrapper' 
+                                    style=\"position:relative;justify-content: center; background-image:url('images/type_$projectType.svg'); background-size:75px 75px;background-position:center;background-repeat:no-repeat; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:80px; width:80px;margin:10px;\"
+                                    ".//onmouseout=\"$('.donationCircle').animate({width: '75px'});$(this).addClass('donationCircle'); \"
+                                ">
+                                <span class='light'>$$donationAmount</span>"
+                                .($subscriptionId ? "<div style='position:absolute; top:-10px; right:-10px; opacity:0.8;'><i class='material-icons' style='font-size: 30px'>star</i></div>" : "")
+    						  ."</div>";
+                        }
+                    
+                        //$handle = fopen(CACHED_DONORS, "w");
+                        //fwrite($handle, $buffer);
+                        //fclose($handle);
+                    }
+                    print $buffer;
+                    //include(CACHED_DONORS);
+    				?>
+    				
+    				<!-- <div class="valign-wrapper center-align" style="justify-content: center; height:75px;">
+        					<div class="icon block valign-wrapper">
+        						<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_next</i>
+        					</div>
+    				</div> -->
+			</div>
 		
-			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
-				<div class="icon block valign-wrapper">
-				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_before</i>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align" style="position:static; justify-content: center; height:75px;">
-				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
-        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff DePree!', 3000,'rounded')">JD</a></div>
-        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
-				</div>
-			</div>
-			
-			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Mike Buckler!', 3000,'rounded')">MB</a></div>
-				</div>
-			</div>
-				<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="position:static; justify-content: center; height:75px;">
-				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
-        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Anonymous!', 3000,'rounded')">A</a></div>
-        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
-				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
-				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
-				</div>
-			</div>
-			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
-				<div class="icon block valign-wrapper">
-				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_next</i>
-				</div>
-			</div>
+        		<div class="row valign-wrapper center-align" style="justify-content: center; width:100%; padding:5% 15% 0% 15%;">
+        			<i class="material-icons" style="font-size: 25px">star</i>
+        			<h5 class="header center light text-shadow: 2px 2px 7px #111111">= monthly donor</h5>
+        		</div> 
 			
 		</div>
-		
-		<div class="valign-wrapper" style="justify-content: center; width:100%; padding:5% 15% 0% 15%;"><i class="material-icons" style="font-size: 25px">star</i><h5 class="header center light text-shadow: 2px 2px 7px #111111">= monthly donor</h5></div> 
-			
-			</div>	
-			
-			
-
-			<div class="parallax">
-				<img src="images/borehole_donors.jpg">
-			</div>
-		
+	</div>	
+	<div class="parallax">
+		<img src="images/borehole_donors.jpg">
 	</div>
+			
 </div>
 
 <div class="container">
