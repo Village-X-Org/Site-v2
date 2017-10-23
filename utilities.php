@@ -37,7 +37,7 @@ function getCustomerServiceEmail() {
 }
 
 function getAdminEmail() {
-    return "Jeff DePree <jdepree@gmail.com>";
+    return "Jeff DePree <jeff@villagex.org>";
 }
 
 function getBaseURL() {
