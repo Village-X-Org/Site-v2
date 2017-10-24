@@ -36,6 +36,7 @@ require_once("utilities.php");
             <div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             <div class="card-content blue-text" style="height:100%;">
             <span class="card-title black-text">Give monthly and help many rural villages disrupt extreme poverty!</span>
+
 			<div class="row" style="padding:5% 5% 0% 5%;">
             <h6 class="center-align" style="color:blue;">enter an amount and your name</h6>
             <form class="col s12 donateForm" style="width:100%" id="donateForm" method="get" action="">
@@ -62,13 +63,13 @@ require_once("utilities.php");
             Donate</button>
             </div>
 
+
             <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
  				<input type="checkbox" class="filled-in" id="anonymousCheckbox" onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
 		 		<label for="anonymousCheckbox">Make my donation anonymous</label>
 
 			</div>
             </form>
-            
             <script>
 	$().ready(function() {
 		$("#donateForm").validate({
@@ -103,6 +104,7 @@ require_once("utilities.php");
             </div>
             
             <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+            <div class="icon-block"><i class="material-icons center" style="font-size:50px">star</i></div>
             <img src="images/monthly_giving_donation_page.jpg" width="800" height="800" class="responsive-img">
             <div>Enjoy email updates with pictures and data from the field providing a vivid accounting of how your donations change development outcomes for rural Africans.</div>
 		</div>

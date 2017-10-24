@@ -1,3 +1,5 @@
+
+
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot valign-wrapper"
@@ -13,7 +15,7 @@
 				<a
 					id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" href='village_fund_payment_view.php' 
-					><i class="material-icons left">star</i>Give Monthly</a>
+					><i class="material-icons left">star</i>Give Monthly</a>	
 			</div>
 			<br>
 			<div class="row center">

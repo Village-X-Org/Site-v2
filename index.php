@@ -119,11 +119,12 @@ if (hasParam('code')) {
 
 	</div>
 	</div>
-<hr style="width:50%">
+	
+<hr width="85%"
+	
 <div class="container">
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Donors Drive Impact</h4> 
-	
 	
 	<div class="section">
 	
@@ -169,8 +170,10 @@ if (hasParam('code')) {
 				</div>
 			</div>
 		</div>
+		
+		
 
-<!-- <div>
+        <!-- <div>
 			  <h6 class="light center-align" style="padding:0% 3% 0% 3%">
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
@@ -182,37 +185,97 @@ if (hasParam('code')) {
 				<a href="impacts.php" id="download-button"
 					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
 			</div>
-		<br>
 	</div>
 
 </div>
 
 <div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
-		<div class="row" style="width:100%;">
-			
-			<div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
-        				<h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:5% 2% 0% 2%"><b>100%</b></h1>
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 0% 0%">transparent,</h5>
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 2% 2%">by design</h5>
-			</div>	
-			
-			
-			<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
-				
-				<a href="model.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
+		<div class="container">
+		<div class="row center" style="width:100%;margin:auto 0;padding:0% 5% 5% 5%;">
+		<h2 class="light center text-shadow: 2px 2px 7px #111111" style="width:100%;font-weight: 300; opacity:0.7;">thank you for donating</h2>
+		<h6 class="light center text-shadow: 2px 2px 7px #111111" style="width:100%;font-weight: 300; opacity:0.7;">(A = anonymous)</h6>
+		</div>	
+			<div class="row" style="margin:auto 0;width:100%; height:100%;">
+		
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_before</i>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff DePree!', 3000,'rounded')">JD</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
 			</div>
 			
-			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">local, fast, affordable</h6>
-
-			<div class="parallax">
-				<img src="images/woman_with_goat.jpg">
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Mike Buckler!', 3000,'rounded')">MB</a></div>
+				</div>
+			</div>
+				<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="position:static; justify-content: center; height:75px;">
+				<div class="valign-wrapper" style="position:relative; background-color: rgba(220,220,220,0.2);border-radius:50%; border-width:thin; border-style:solid;height:50px; width:50px;">
+        				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Anonymous!', 3000,'rounded')">A</a></div>
+        				<div style="position:absolute; top:-10px; right:-10px; opacity:0.8;"><i class="material-icons" style="font-size: 30px">star</i></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-small-only" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align hide-on-med-and-down" style="justify-content: center;height:75px;">
+				<div class="valign-wrapper" style="background-color: rgba(220,220,220,0.2); border-radius:50%;border-width:thin; border-style:solid;height:50px; width:50px;">
+				<div class="flow-text valign-wrapper" style="justify-content: center; height:50px; width:50px;opacity:1.0"><a class="white-text" onclick="Materialize.toast('Thank you, Jeff Brown!', 3000,'rounded')">JB</a></div>
+				</div>
+			</div>
+			<div class="col s3 m2 l1 valign-wrapper center-align" style="justify-content: center; height:75px;">
+				<div class="icon block valign-wrapper">
+				<i class="material-icons" style="font-size: 50px; opacity:1.0">navigate_next</i>
+				</div>
 			</div>
 			
 		</div>
+		
+		<div class="valign-wrapper" style="justify-content: center; width:100%; padding:5% 15% 0% 15%;"><i class="material-icons" style="font-size: 25px">star</i><h5 class="header center light text-shadow: 2px 2px 7px #111111">= monthly donor</h5></div> 
+			
+			</div>	
+			
+			
+
+			<div class="parallax">
+				<img src="images/borehole_donors.jpg">
+			</div>
+		
 	</div>
 </div>
 
@@ -307,7 +370,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 
 		<div class="row center">
 			<a href='project_tiles.php' id="download-button"
-				class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">more
+				class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">more
 				projects</a>
 		</div>
 	</div>
@@ -329,49 +392,38 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
-		
-		<div class="row center">
-        	<div class="valign-wrapper">
-          <div class="card white" style="opacity: 0.7; border-radius:20px;">
-            <div class="card-content black-text">
-              <span class="card-title"><b>want good stories from Africa?<br> try our quarterly newsletter</b></span>
-      		
-    		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
-      		<div class="row">
-        			<div class="input-field col s12" style="color:#03A9F4">
-         			<input value="" name="EMAIL" id="mce-EMAIL" placeholder="enter your email address" id="mcd-email" type="email" class="email validate">
-        			</div>
-      		</div>
-    		
+		<div class="row" style="width:100%;">
 			
-        		<div class="center-align" style="width:100%;">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
-  					</button>
-    			</div>
-    		
-    			<div style="position: absolute; left: -5000px;" aria-hidden="true">
-								<input type="text" name="b_0aa3c6538384ca95760dc6be6_2efaede0d4" tabindex="-1" value="">
-			</div>
-			
-			</form>
-			
+			<div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
+        				<h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:5% 2% 0% 2%"><b>100%</b></h1>
+        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 0% 0%">transparent,</h5>
+        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 2% 2%">by design</h5>
 			</div>	
-          </div>
-        </div>
-      
-			<div class="parallax">
-				<img src="images/newsletter_banner_2.jpg">
+			
+			
+			<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
+				
+				<a href="model.php" id="download-button"
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
 			</div>
+			
+			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">local, fast, affordable</h6>
+
+			<div class="parallax">
+				<img src="images/woman_with_goat.jpg">
+			</div>
+			
 		</div>
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0% 0% 0%">Your Donations At Work</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:2% 0% 0% 0%">Data-Driven Development</h4>
 
 <div class="container">
-<div class="row">
+	
+	<div class="row">
 			
-			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
+			<div class="col s12 m12 l12 center-align" style="padding: 10px 30px 20px 30px">
 
 				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
@@ -427,7 +479,9 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		</div>
 		<h6 style="text-align: center; padding: 20px 30px 20px 30px">Scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more <a
 					href='impacts.php'>here</a>.</h6>
-	</div>
+	</div> 
+	 
+	
 	<div class="row">
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
@@ -670,4 +724,6 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		
 	</div>
 </div>
+
+
 <?php include('footer.inc'); ?>
