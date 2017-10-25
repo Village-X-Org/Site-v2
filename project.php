@@ -153,6 +153,7 @@ $(document).ready(function(){
 
 		</div>
 	</div>
+	</div>
 
 <!--  <div class="section">
 	<nav class="light blue" role="navigation">
