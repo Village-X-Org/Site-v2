@@ -375,7 +375,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 			
 			<div class="col s12 m12 l12 center-align" style="padding: 20px 50px 20px 50px">
 
-				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h5>
+				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart1" width="350" height="350"></canvas>
 			</div>
@@ -402,8 +402,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
 							data : [ 13.72, 12.11, 9.5 ],
 							cubicInterpolationMode: 'monotone',
@@ -506,7 +506,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -533,8 +533,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
                              data : [ 9.267, 8.219, 8.299 ],
 							cubicInterpolationMode: 'monotone',
@@ -561,7 +561,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -588,8 +588,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
                              data : [ 9.211201343, 5.621902842, 3.832121553 ],
 							cubicInterpolationMode: 'monotone',
@@ -680,7 +680,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 			</div> 
 			
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:#9D8E7F">Control Villages</span></b></h6>
 					<div>
 						<canvas id="chart4" width="250" height="250"></canvas>
 					</div>
