@@ -37,26 +37,34 @@
     require_once("utilities.php");
     
     $projectId = paramInt('id');
+    $orgId = paramInt('org');
     $code = paramInt('code');
     
-    $stmt = prepare("SELECT project_name, project_funded, project_budget, village_name, project_type, country_label FROM projects JOIN villages ON project_village_id=village_id JOIN countries ON country_id=village_country WHERE project_id=?");
-    $stmt->bind_param('i', $projectId);
+    $stmt = prepare("SELECT ad_id, ad_message FROM ads WHERE ad_org=? ORDER BY RAND()");
+    $stmt->bind_param('i', $orgId);
     $result = execute($stmt);
-    $count = 0;
     if ($row = $result->fetch_assoc()) {
-        $projectName = $row['project_name'];
-        $projectType = $row['project_type'];
-        $funded = $row['project_funded'];
-        $budget = $row['project_budget'];
-        $villageName = $row['village_name'];
-        $countryName = $row['country_label'];
-        $percent = round(100 * $funded / $budget);
-        print "<TABLE cellspacing='10' style='cursor:pointer;width:625px;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
-        print "<img src='images/type_".$projectType.".svg' /></TD><TD>";
-        print "<span>Adventure Anywhere is powered entirely by rabbit poop-fueled generators.</span>";
-        print "<BR><span style='align:right;'>-- but Village X needs your support!</span>";
-        print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code' target='_blank'>$projectName</a></B> with $villageName Village<BR>and support village-led development in $countryName!";
-        print "<div class='meter' style='margin-top:10px;'><span  style='width: $percent%'></span></div></TD></TR></TABLE>";   
+        $adId = $row['ad_id'];
+        $adMessage = $row['ad_message'];
         
+        $stmt = prepare("SELECT project_name, project_funded, project_budget, village_name, project_type, country_label FROM projects JOIN villages ON project_village_id=village_id JOIN countries ON country_id=village_country WHERE project_id=?");
+        $stmt->bind_param('i', $projectId);
+        $result = execute($stmt);
+        $count = 0;
+        if ($row = $result->fetch_assoc()) {
+            $projectName = $row['project_name'];
+            $projectType = $row['project_type'];
+            $funded = $row['project_funded'];
+            $budget = $row['project_budget'];
+            $villageName = $row['village_name'];
+            $countryName = $row['country_label'];
+            $percent = round(100 * $funded / $budget);
+            print "<TABLE cellspacing='10' style='cursor:pointer;width:500px;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
+            print "<img src='images/type_".$projectType.".svg' /></TD><TD>";
+            print "<span>$adMessage</span>";
+            print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code&ad=$adId' target='_blank'>$projectName</a></B> with $villageName Village!";
+            print "<div class='meter' style='margin-top:10px;'><span  style='width: $percent%'></span></div></TD></TR></TABLE>";
+            
+        }       
     }
 ?>
