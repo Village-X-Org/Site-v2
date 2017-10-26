@@ -37,16 +37,19 @@ foreach ($sheet as $projRow) {
     $dateProjectPosted = $projRow[21];
     $dateProjectFunded = $projRow[22];
     $dateProjectCompleted = $projRow[23];
-    $projProfile = $projRow[24];
-    $projExample = $projRow[25];
-    $summary = escStr($projRow[27]);
-    $problem = escStr($projRow[28]);
-    $solution = escStr($projRow[29]);
-    $partners = escStr($projRow[30]);
-    $impact = escStr($projRow[31]);
-    $funded = $projRow[32];
-    $status = $projRow[33];
-    $type = $projRow[34];
+    $elapsedDays = $projRow[24];
+    $peopleReached = $projRow[25];
+    $projProfile = $projRow[26];
+    $projExample = $projRow[27];
+    $summary = escStr($projRow[28]);
+    $problem = escStr($projRow[29]);
+    $solution = escStr($projRow[30]);
+    $partners = escStr($projRow[31]);
+    $impact = escStr($projRow[32]);
+    $funded = $projRow[33];
+    $status = $projRow[34];
+    $type = $projRow[35];
+    $category = $projRow[36];
     
     $date = DateTime::createFromFormat("d/m/Y", $dateProjectPosted);
     $projYear = $date->format("Y");
@@ -81,7 +84,7 @@ foreach ($sheet as $projRow) {
     $result = doUnprotectedQuery("SELECT village_id FROM villages WHERE village_name='$village' AND village_district=$districtId");
     if ($row = $result->fetch_assoc()) {
         $villageId = $row['village_id'];
-        doUnprotectedQuery("UPDATE villages SET village_district=$districtId, village_pending=0 WHERE village_id=$villageId");
+        doUnprotectedQuery("UPDATE villages SET village_district=$districtId, village_pending=0, village_lat=$lat, village_lng=$lng WHERE village_id=$villageId");
     } else {
         doUnprotectedQuery("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending, village_country) VALUES ('$village', $districtId, $lat, $lng, 0, $countryId)");
         $villageId = $link->insert_id;;
