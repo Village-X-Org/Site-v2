@@ -427,9 +427,27 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 				});
 			</script>
 		</div>
-		<h6 style="text-align: center; padding: 20px 30px 20px 30px">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more <a
-					href='impacts.php'>here</a>.</h6>
+		<h6 style="text-align: center; padding: 20px 30px 20px 30px">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
+				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
 	</div>
+	
+	<?php 
+
+	if (!file_exists(CACHED_CHARTS_FILENAME)) {
+	    ob_start();
+	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
+                    SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
+                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
+            FROM projects WHERE project_funded>=project_budget-1"); 
+        if ($row = $result->fetch_assoc()) {
+            $numHelpedTotal = number_format($row['numHelpedTotal'], 0, '.', ',');
+            $elapsedDaysAverage = $row['elapsedAverage'];
+            $waterCount = $row['waterCount'];
+            $educationCount = $row['educationCount'];
+            $livestockCount = $row['livestockCount'];
+            $agricultureCount = $row['agricultureCount'];
+        }
+    ?>
 	
 	
 	<div class="row">
@@ -439,7 +457,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	<div>
 		<h5 style="text-align: center"><b>People Helped</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b>34,794</b></h3>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
 		
 		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
 	</div>
@@ -448,7 +466,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	
 	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 0px 30px">
 
-				<h5 style="text-align: center"><b>Types of Projects (by %)</b></h5>
+				<h5 style="text-align: center"><b>Types of Projects</b></h5>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -465,7 +483,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 
 						labels: ["water","livestock","education","agriculture"],
 						  datasets: [{
-						    data: [37, 29, 26, 8],
+						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
 						    backgroundColor: [
 						      "rgba(255, 0, 0, 0.5)",
 						      "rgba(100, 255, 0, 0.5)",
@@ -491,7 +509,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	<div>
 		<h5 style="text-align: center"><b>Elapsed Time Between Project Funding and Completion</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b>22 days</b></h3>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
 		
 		<h6 style="text-align: center;padding: 30px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
 	</div>
@@ -500,7 +518,13 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	</div>
 		
 	</div>
-	
+<?php 
+        $contents = ob_get_contents();
+        ob_end_clean();
+        file_put_contents(CACHED_CHARTS_FILENAME,$contents);
+    }
+    include(CACHED_CHARTS_FILENAME);
+    ?>
 	<!--  
 	<div class="row">
 	

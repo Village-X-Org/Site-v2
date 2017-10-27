@@ -120,10 +120,10 @@ foreach ($sheet as $projRow) {
     $result = doUnprotectedQuery("SELECT project_id FROM projects WHERE project_village_id=$villageId AND project_name='$projName'") ;
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
-        doUnprotectedQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_status='$status', project_type='$type' WHERE project_id=$projectId");
+        doUnprotectedQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_status='$status', project_type='$type', project_elapsed_days=$elapsedDays, project_people_reached=$peopleReached WHERE project_id=$projectId");
         invalidateCaches($projectId);
     } else {
-        doUnprotectedQuery("INSERT INTO projects (project_id, project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type) VALUES ($projId, $villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded, '$status', '$type')");
+        doUnprotectedQuery("INSERT INTO projects (project_id, project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type, project_elapsed_days, project_people_reached) VALUES ($projId, $villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded, '$status', '$type', $elapsedDays, $peopleReached)");
         $projectId = $link->insert_id;
     }
     
@@ -136,7 +136,7 @@ foreach ($sheet as $projRow) {
     doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'pics/data', $projDataPics, 6)");
     
     //doUnprotectedQuery("DELETE FROM project_events WHERE pe_project_id=$projectId");
-    $row = doQuery("SELECT pe_id FROM project_events WHERE pe_project_id=$projectId");
+    $row = doUnprotectedQuery("SELECT pe_id FROM project_events WHERE pe_project_id=$projectId");
     if ($row = $result->fetch_assoc()) {
     } else {
         doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Village Raises Cash Contribution' LIMIT 1), STR_TO_DATE('$dateCommunityContribution', '%m/%d/%Y'), $projectId)");
