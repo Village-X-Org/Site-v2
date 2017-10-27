@@ -405,6 +405,9 @@ function invalidateCaches($projectId) {
     if (file_exists(CACHED_LISTING_FILENAME)) {
         @unlink(CACHED_LISTING_FILENAME);
     }
+    if (file_exists(CACHED_CHARTS_FILENAME)) {
+        @unlink(CACHED_CHARTS_FILENAME);
+    }
     include("getProjects.php");
     include("getVillages.php");
 }
