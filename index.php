@@ -122,7 +122,7 @@ if (hasParam('code')) {
 <hr style="width:50%">
 <div class="container">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Donors Drive Impact</h4> 
+	<h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
 	
 	
 	<div class="section">
@@ -175,13 +175,13 @@ if (hasParam('code')) {
 				*based on difference-in-differences analysis using data, from 2014
 				to 2016, on 21 projects and 32 villages, with an average investment of $5,400 per village over 2 years
 			</h6>
-		</div> -->
+		</div> 
 		
 		<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
 				
 				<a href="impacts.php" id="download-button"
 					class="btn-large waves-effect waves-light white lighten-1 light-blue-text" style="border-color:rgba(220,220,220,1);border-radius:20px;">learn more</a>
-			</div>
+			</div> -->
 		<br>
 	</div>
 
@@ -219,7 +219,7 @@ if (hasParam('code')) {
 <div class="container">
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Featured Projects</h4>
-	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate, usually w/in 1 month of funding)</h6>
+	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate)</h6>
 	<div class="icon-block" style="width:100%"><i class='material-icons left' style="font-size:20px;color:#03A9F4">timeline</i> = &nbsp;village data trends available
 	<br>
 	<i class='material-icons left' style="font-size:20px;color:#03A9F4">fiber_new</i> = &nbsp;data trends coming soon</div>
@@ -366,14 +366,16 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0% 0% 0%">Your Donations At Work</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:3% 0% 0% 0%">Data Tracker</h4>
+	<h6 class="header center" style="padding:0% 0% 1% 0%">(as of October 25, 2017)</h6>
 
 <div class="container">
+  
 <div class="row">
 			
-			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
+			<div class="col s12 m12 l12 center-align" style="padding: 20px 50px 20px 50px">
 
-				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart1" width="350" height="350"></canvas>
 			</div>
@@ -400,8 +402,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
 							data : [ 13.72, 12.11, 9.5 ],
 							cubicInterpolationMode: 'monotone',
@@ -425,14 +427,110 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 				});
 			</script>
 		</div>
-		<h6 style="text-align: center; padding: 20px 30px 20px 30px">Scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more <a
-					href='impacts.php'>here</a>.</h6>
+		<h6 style="text-align: center; padding: 20px 30px 20px 30px">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
+				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
 	</div>
+	
+	<?php 
+
+	if (!file_exists(CACHED_CHARTS_FILENAME)) {
+	    ob_start();
+	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
+                    SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
+                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
+            FROM projects WHERE project_funded>=project_budget-1"); 
+        if ($row = $result->fetch_assoc()) {
+            $numHelpedTotal = number_format($row['numHelpedTotal'], 0, '.', ',');
+            $elapsedDaysAverage = $row['elapsedAverage'];
+            $waterCount = $row['waterCount'];
+            $educationCount = $row['educationCount'];
+            $livestockCount = $row['livestockCount'];
+            $agricultureCount = $row['agricultureCount'];
+        }
+    ?>
+	
+	
+	<div class="row">
+	
+	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 40px 30px">
+	<div class="center-align">
+	<div>
+		<h5 style="text-align: center"><b>People Helped</b></h5>
+	
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
+		
+		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
+	</div>
+	</div>
+	</div>
+	
+	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 0px 30px">
+
+				<h5 style="text-align: center"><b>Types of Projects</b></h5>
+			<div>
+				<canvas id="chart2" width="250" height="250"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart2").getContext('2d');
+
+				Chart.defaults.global.defaultFontFamily = "'Roboto', sans-serif";
+				Chart.defaults.global.defaultFontSize = 14;
+				
+				var chart2 = new Chart(ctx, {
+					type : 'polarArea',
+					data : {
+
+						labels: ["water","livestock","education","agriculture"],
+						  datasets: [{
+						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
+						    backgroundColor: [
+						      "rgba(255, 0, 0, 0.5)",
+						      "rgba(100, 255, 0, 0.5)",
+						      "rgba(200, 50, 255, 0.5)",
+						      "rgba(0, 100, 255, 0.5)"
+						    ]
+						  }]
+						},
+						options : {
+								  startAngle: -Math.PI / 3,
+								  legend: {
+								    position: 'left'
+								  },
+								}
+				});
+			</script>
+		</div>
+		
+	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 10px 30px">
+	
+		
+	<div class="center-align">
+	<div>
+		<h5 style="text-align: center"><b>Elapsed Time Between Project Funding and Completion</b></h5>
+	
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
+		
+		<h6 style="text-align: center;padding: 30px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
+	</div>
+	</div>
+	
+	</div>
+		
+	</div>
+<?php 
+        $contents = ob_get_contents();
+        ob_end_clean();
+        file_put_contents(CACHED_CHARTS_FILENAME,$contents);
+    }
+    include(CACHED_CHARTS_FILENAME);
+    ?>
+	<!--  
 	<div class="row">
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -459,8 +557,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
                              data : [ 9.267, 8.219, 8.299 ],
 							cubicInterpolationMode: 'monotone',
@@ -487,7 +585,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -514,8 +612,8 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
                              pointRadius: 10,
                              data : [ 9.211201343, 5.621902842, 3.832121553 ],
 							cubicInterpolationMode: 'monotone',
@@ -606,7 +704,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 			</div> 
 			
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:#9D8E7F">Control Villages</span></b></h6>
 					<div>
 						<canvas id="chart4" width="250" height="250"></canvas>
 					</div>
@@ -668,6 +766,6 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 					</script>
 			</div> 
 		
-	</div>
+	</div> -->
 </div>
 <?php include('footer.inc'); ?>
