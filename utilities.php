@@ -9,6 +9,7 @@ define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
 
 define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
+define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
 define("CACHED_PROJECT_PREFIX", "cached/project_");
 define("EMAIL_TYPE_PROJECT_UPDATE", 0);
