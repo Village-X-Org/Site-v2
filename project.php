@@ -139,20 +139,63 @@ $(document).ready(function(){
 		<?php if ($donationCount > 1) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donationCount; ?> people have donated!</b>
-		</div>
+		</div><br>
 		<?php } ?>
 		
+		<script>
+		$(document).ready(function(){
+   		 $('.tooltipped').tooltip({delay: 50});
+  		});
+		</script>
+		
+		<div style="width:100%;height:100%;padding:0% 20% 0% 20%">
+ 			
+ 				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+         				<div style="position:absolute; top:-8px; right:-8px;"><i class="material-icons" style="font-size: 25px">star</i></div>
+ 			</div>
+ 		
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+ 			</div>
+ 			
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+ 			</div>
+ 			
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+ 			</div>
+ 			
+         		<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+         				<div style="position:absolute; top:-8px; right:-8px;"><i class="material-icons" style="font-size: 25px">star</i></div>
+ 			</div>
+ 			
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+ 			</div>
+ 			
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+ 			</div>
+ 			
+ 			<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltipped" data-position="top" data-delay="50" data-tooltip="Thanks, Mike Buckler!"><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
+         				<div style="position:absolute; top:-8px; right:-8px;"><i class="material-icons" style="font-size: 25px">star</i></div>
+ 			</div>
+		
 			<br>
-	
-			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
-						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 5% 20% 0px 20%;">
-							<i>100% tax deductible and securely processed by Stripe</i>
-					</span>
-			</div>
-
+		</div>
 		</div>
 	</div>
+	
+		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
+						
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 0px 20%;">
+							100% tax deductible and securely processed by Stripe
+					</span>
+			</div>
 
 <!--  <div class="section">
 	<nav class="light blue" role="navigation">
@@ -213,7 +256,7 @@ $(document).ready(function(){
 							<?php if (strlen($partners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $partners; ?> <img src="NPCA_logo.jpg" alt="" style="width:auto;height:30px;">
+								<b>Partners:</b> <?php print $partners; ?>
 							</p>
 							<?php } ?>
 							
@@ -641,5 +684,5 @@ $(document).ready(function(){
 <?php include('footer.inc'); 
 $contents = ob_get_contents();
 ob_end_clean();
-file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
+//file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
 } include(CACHED_PROJECT_PREFIX.$projectId); ?>
