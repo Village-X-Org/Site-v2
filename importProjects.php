@@ -135,7 +135,7 @@ foreach ($sheet as $projRow) {
     doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'fees', $projFees, 5)");
     doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'pics/data', $projDataPics, 6)");
     
-    //doUnprotectedQuery("DELETE FROM project_events WHERE pe_project_id=$projectId");
+    doUnprotectedQuery("DELETE FROM project_events WHERE pe_project_id=$projectId");
     $row = doUnprotectedQuery("SELECT pe_id FROM project_events WHERE pe_project_id=$projectId");
     if ($row = $result->fetch_assoc()) {
     } else {
@@ -143,7 +143,9 @@ foreach ($sheet as $projRow) {
         doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Posted' LIMIT 1), STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), $projectId)");
         if (strlen($dateProjectFunded) > 3) {
             doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Funded' LIMIT 1), STR_TO_DATE('$dateProjectFunded', '%m/%d/%Y'), $projectId)");
-            doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Completed' LIMIT 1), STR_TO_DATE('$dateProjectCompleted', '%m/%d/%Y'), $projectId)");
+            if (strlen($dateProjectCompleted) > 3) {
+                doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Completed' LIMIT 1), STR_TO_DATE('$dateProjectCompleted', '%m/%d/%Y'), $projectId)");
+            }
         }
     }
     
