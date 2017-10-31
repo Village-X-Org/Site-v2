@@ -13,8 +13,8 @@ if (hasParam('id')) {
     return;
 }
 
-if (!file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
-    ob_start();
+//if (!file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
+//    ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount 
@@ -131,14 +131,14 @@ $(document).ready(function(){
 	});
   </script>	
  
-     <a class="modal-trigger" href="#honorsomeone"><input type="checkbox" class="filled-in" id="honor"></a>
-      <label for="honor">honor someone special</label>
+     <input type="checkbox" class="filled-in " id="honor" onclick="if (this.checked) { $('#honorSomeone').modal('open'); }" /><label for="honor">honor someone special</label>
+      
     </p>
     </form>
  </div>
    
      <!-- Modal Structure -->
-  <div id="honorsomeone" class="modal" style="z-index:100000000000;">
+  <div id="honorSomeone" class="modal" style="z-index:10;">
     <div class="modal-content" id="jqueryvalidation">
      	<div class="container" style="width:100%;">
          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">Please enter the <b>honoree's details</b>. If you provide an email address, we'll notify the honoree of your gift by email and include the honoree on project update emails.</p>
@@ -718,7 +718,7 @@ $(document).ready(function(){
 	<?php } ?>
 </div></div></div>
 <?php include('footer.inc'); 
-$contents = ob_get_contents();
-ob_end_clean();
+//$contents = ob_get_contents();
+//ob_end_clean();
 // file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
-} include(CACHED_PROJECT_PREFIX.$projectId); ?>
+//} include(CACHED_PROJECT_PREFIX.$projectId); ?>
