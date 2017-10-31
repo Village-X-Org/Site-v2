@@ -119,20 +119,13 @@ $(document).ready(function(){
 		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go</font></b></div>
 				
 					<br>
-					
+				
+				
+<?php if ($funded < $total) { ?>					
 <div>
 	<form action="#">
     <p class="center-align">
-      
-   <script>
-	
-  $(document).ready(function(){
-	     $('.modal').modal();
-	});
-  </script>	
- 
      <input type="checkbox" class="filled-in " id="honor" onclick="if (this.checked) { $('#honorSomeone').modal('open'); }" /><label for="honor">honor someone special</label>
-      
     </p>
     </form>
  </div>
@@ -176,34 +169,36 @@ $(document).ready(function(){
     		
     		
     		<script>
-        	$().ready(function() {
-        		// validate donatation form on keyup and submit
-        		$("#honoree_details").validate({
-        			rules: {
-        				firstname: "required",
-        			},
-        		messages: {
-        		      firstname: "this field is required",
-        		},
-        
-                errorElement : 'div',
-                errorPlacement: function(error, element) {
-                  var placement = $(element).data('error');
-                  if (placement) {
-                    $(placement).append(error)
-                  } else {
-                    error.insertAfter(element);
-                  }
-                },
-        		});
-        	});
-	</script>
+            	$(document).ready(function() {
+            		// validate donatation form on keyup and submit
+            		$("#honoree_details").validate({
+            			rules: {
+            				firstname: "required",
+            			},
+            		messages: {
+            		      firstname: "this field is required",
+            		},
+            
+                    errorElement : 'div',
+                    errorPlacement: function(error, element) {
+                      var placement = $(element).data('error');
+                      if (placement) {
+                        $(placement).append(error)
+                      } else {
+                        error.insertAfter(element);
+                      }
+                    },
+            		});
+    
+       	 	    $('.modal').modal();
+            	});
+		</script>
 	</div>
     		
-	</div>	
+</div>	
     
 <br>
-					
+<?php } ?>					
 		<div class="center-align">
 		
 				<?php if ($funded < $total) { ?>
