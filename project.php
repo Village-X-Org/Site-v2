@@ -120,6 +120,85 @@ $(document).ready(function(){
 				
 					<br>
 					
+<div>
+	<form action="#">
+    <p class="center-align">
+      
+   <script>
+	
+  $(document).ready(function(){
+	     $('.modal').modal();
+	});
+  </script>	
+ 
+     <a class="modal-trigger" href="#honorsomeone"><input type="checkbox" class="filled-in" id="honor"></a>
+      <label for="honor">honor someone special</label>
+    </p>
+    </form>
+ </div>
+   
+     <!-- Modal Structure -->
+  <div id="honorsomeone" class="modal" style="z-index:100000000000;">
+    <div class="modal-content" id="jqueryvalidation">
+     	<div class="container" style="width:100%;">
+         <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">Please enter the <b>honoree's details</b>. If you provide an email address, we'll notify the honoree of your gift by email and include the honoree on project update emails.</p>
+        </div> 
+        <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0% 10% 0% 10%;">
+        		<form id="honoree_details" method="get" action="one_time_payment_view.php?id=<?php print $projectId; ?>">
+            		<div class="row">
+            		
+                                <div class="input-field s12 m12 l12" style="padding:0% 10% 0% 10%;">  
+                                  <input id="donationFirstName" name="firstname" placeholder="first name" type="text" required data-error=".errorTxt1">
+                           	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
+                                </div>
+                                <div class="input-field s12 m12 l12" style="padding:0% 10% 0% 10%;">
+                                  <input id="donationLastName" name="lastname" placeholder="last name" type="text">
+                                </div>
+                             
+            								
+            				<div class="input-field s12 m12 l12" style="padding:0% 10% 0% 10%;">
+            					<input placeholder="jane@gmail.com" id="honoree_email" name="email" type="email">
+            				</div>
+
+                    </div>             
+                <div class="row s12 m12 l12 center-align" style="padding:0% 0% 0% 0%;">
+                		<div class="input-field">
+                			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
+            			</div>
+            		</div>
+        		</form>	
+        		</div>	
+    		
+    		
+    		<script>
+        	$().ready(function() {
+        		// validate donatation form on keyup and submit
+        		$("#honoree_details").validate({
+        			rules: {
+        				firstname: "required",
+        			},
+        		messages: {
+        		      firstname: "this field is required",
+        		},
+        
+                errorElement : 'div',
+                errorPlacement: function(error, element) {
+                  var placement = $(element).data('error');
+                  if (placement) {
+                    $(placement).append(error)
+                  } else {
+                    error.insertAfter(element);
+                  }
+                },
+        		});
+        	});
+	</script>
+	</div>
+    		
+	</div>	
+    
+<br>
+					
 		<div class="center-align">
 		
 				<?php if ($funded < $total) { ?>
@@ -641,5 +720,5 @@ $(document).ready(function(){
 <?php include('footer.inc'); 
 $contents = ob_get_contents();
 ob_end_clean();
-file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
+// file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
 } include(CACHED_PROJECT_PREFIX.$projectId); ?>
