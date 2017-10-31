@@ -178,8 +178,35 @@ a {
 
 @media screen and (max-width: 600px) {
     .col-project { 
-        display: block;
-        width:100%;
-        margin: 0 auto;
     }
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    opacity:0;
+    transition:opacity .5s linear;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+
+    width: 200px;
+    top: 100%;
+    left: 50%; 
+    margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    outline: 0;
+   border: 0; 
+}
+
+.tooltip:hover .tooltiptext {
+    opacity:1;
 }
