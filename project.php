@@ -159,6 +159,14 @@ $(document).ready(function(){
             					<label for="honoreeEmail">Email</label>
             				</div>
              	</div>
+			
+		<div class="row" style="padding:0;margin:0;">
+				<div class="input-field col s12" style="padding:0 0 10px 0;margin:0;">
+          				<textarea rows="5" cols="100%" id="honoree_msg"></textarea>
+          				<label for="honoree_msg">Message for Honoree</label>
+       	 			</div>
+		</div>
+				
                 <div class="row center-align" style="margin:0;">
                 		<div class="input-field col s12" style="padding:0;margin:0;">
                 			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
