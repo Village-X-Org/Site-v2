@@ -140,7 +140,7 @@ $(document).ready(function(){
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donationCount; ?> people have donated!</b>
 		</div><br>
-		<div style="width:100%;height:180px;padding:0% 20% 0% 20%;overflow-x:hidden;">
+		<div style="width:100%;height:<?php print (min(3, ceil($donationCount / 5)) * 60); ?>px;padding:0% 20% 0% 20%;overflow-x:hidden;">
 		<?php 
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
                         ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=?) 
