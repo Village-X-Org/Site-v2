@@ -16,6 +16,7 @@ define('GOOGLE_API_KEY', 'AIzaSyBI0lHSGrRmWKb7OoK-sD_x36i1XH9i1Bc');
 define('MAPBOX_API_KEY', 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ');
 define("FACEBOOK_APP_ID", "107425412747634");
 define("FACEBOOK_SECRET", "baf7876396ab74cab819d30bd806f0c0");
+define("CACHING_ENABLED", 0);
 
 function sendMailSend($to, $subject, $body, $fromName, $replyEmail) {
 	$host = "ssl://secure53.webhostinghub.com";
