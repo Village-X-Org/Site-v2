@@ -49,7 +49,7 @@ require_once("utilities.php");
 	
 	<div class="section"><div class='row'>		
 			<?php 
-	if (!file_exists(CACHED_LISTING_FILENAME)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME)) {
 		$result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget JOIN pictures ON p1.project_profile_image_id=picture_id WHERE p1.project_status<>'cancelled' GROUP BY p1.project_id ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, p1.project_funded DESC");
 
 		$buffer = '';
@@ -117,11 +117,17 @@ require_once("utilities.php");
 			 </div>";
 		      $count++;
 		}
-		$handle = fopen(CACHED_LISTING_FILENAME, 'w');
-		fwrite($handle, $buffer);
-		fclose($handle);
+		if (CACHING_ENABLED) {
+		  $handle = fopen(CACHED_LISTING_FILENAME, 'w');
+		  fwrite($handle, $buffer);
+		  fclose($handle);
+		} else {
+		    print $buffer;
+		}
 	}
-	include(CACHED_LISTING_FILENAME);
+	if (CACHING_ENABLED) {
+	   include(CACHED_LISTING_FILENAME);
+	}
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->
 
