@@ -142,7 +142,7 @@ $(document).ready(function(){
 		</div><br>
 		<?php } ?>
 		
-		<div style="width:100%;height:100%;padding:0% 20% 0% 20%">
+		<div style="width:100%;height:100%;padding:0% 20% 0% 20%;overflow: scroll;">
  			
  				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
          				<a class="tooltip" style='text-decoration:none;'><span class="tooltiptext">Thanks Mike Buckler!</span><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b>MB</b></span></a>
