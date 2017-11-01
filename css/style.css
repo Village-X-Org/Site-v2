@@ -191,7 +191,7 @@ a {
 
 .tooltip .tooltiptext {
     opacity:0;
-    transition:opacity .5s linear;
+    transition:opacity 1s linear;
     background-color: black;
     color: #fff;
     text-align: center;
