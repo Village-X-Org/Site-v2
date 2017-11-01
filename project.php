@@ -17,12 +17,12 @@ if (!file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
-                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount 
+                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events ON pe_project_id=project_id 
-                LEFT JOIN donations ON donation_project_id=project_id 
+                LEFT JOIN donations ON donation_project_id=project_id
                 WHERE project_id=? GROUP BY project_id");
 $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
@@ -218,20 +218,51 @@ $(document).ready(function(){
 		<?php if ($donationCount > 1) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donationCount; ?> people have donated!</b>
+		</div><br>
+		<div style="width:100%;height:180px;padding:0% 20% 0% 20%;overflow-x:hidden;">
+		<?php 
+		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
+                        ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=?) 
+                        UNION (SELECT sd_donor_id AS f_donor_id, 1 AS isSubscription FROM subscription_disbursals WHERE sd_project_id=?)) AS derived 
+                    JOIN donors ON f_donor_id=donor_id GROUP BY donor_id");
+		     $stmt->bind_param('ii', $projectId, $projectId);
+		     $result = execute($stmt);
+		     while ($row = $result->fetch_assoc()) {
+        	         $firstName = $row['donor_first_name'];
+        	         $lastName = $row['donor_last_name'];
+        	         $isSubscription = $row['isSubscription'];
+        	         if ($firstName != $lastName && strlen($firstName) > 0 && strlen($lastName) > 0 
+        	             && $firstName[0] >= 'A' && $firstName[0] <= 'Z' && $lastName[0] >= 'A' && $lastName[0] <= 'Z') {
+        	           $initials = $firstName[0].$lastName[0];
+        	           $fullName = $firstName.' '.$lastName[0];
+        	         } else {
+        	           $initials = 'A';
+        	           $fullName = 'Anonymous';
+        	         }
+                ?>
+ 				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+         				<a class="tooltip" style='text-decoration:none;'><span class="tooltiptext">Thanks <?php print $fullName; ?>!</span><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials; ?></b></span></a>
+         				<?php print ($isSubscription ? "<div style='position:absolute; top:-8px; right:-8px;'><i class='material-icons' style='font-size: 25px'>star</i></div>" : ""); ?>
+ 				</div>
+ 				<?php
+			}
+			
+			$stmt->close();
+			
+			?>
 		</div>
 		<?php } ?>
 		
-			<br>
-	
-			<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
-						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 5% 20% 0px 20%;">
-							<i>100% tax deductible and securely processed by Stripe</i>
-					</span>
-			</div>
-
+			
 		</div>
 	</div>
+	
+		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
+						
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 0px 20%;">
+							100% tax deductible and securely processed by Stripe
+					</span>
+			</div>
 
 <!--  <div class="section">
 	<nav class="light blue" role="navigation">
