@@ -506,13 +506,12 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	
 		
 	<div class="center-align">
-	<div>
 		<h5 style="text-align: center"><b>Elapsed Time</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b><br>between project funding and completion</h3>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3><span class="light blue-text text-lighten-2" style="font-size:24px;">between project funding and completion</span>
 		
-		<h6 style="text-align: center;padding: 30px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
-	</div>
+		<h6 style="text-align: center;padding: 10px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
+
 	</div>
 	
 	</div>
