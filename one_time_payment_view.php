@@ -150,7 +150,8 @@ include('header.inc');
           }
         },
           submitHandler: function(form) {
-        	  gotoStripe(document.getElementById("anonymousCheckbox").checked);
+        	  	gotoStripe(document.getElementById("anonymousCheckbox").checked);
+        	  	return false;
         }	
 		});
 	});
@@ -175,7 +176,7 @@ include('header.inc');
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
-                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>, "<?php print addslashes($honoreeMessage); ?>");
+                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>, <?php print json_encode($honoreeMessage); ?>);
     }
 </script>
              

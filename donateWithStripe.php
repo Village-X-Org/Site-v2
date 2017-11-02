@@ -142,13 +142,14 @@ if ($honoreeId > 0) {
         $honoreeLastName = $row['donor_last_name'];
         $honoreeEmail = $row['donor_email'];
         
+        $stmt->close();
+        
         ob_start();
         include("email_content.php");
         $output = ob_get_clean();
         
-        sendMail($honoreeEmail, "$donorFirstName $donorLastName has donated to Village X in your honor!",
+        sendMail($honoreeEmail, (strlen($donorFirstName > 0) ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
             $output, getCustomerServiceEmail());
     }
-    $stmt->close();
 }
 
