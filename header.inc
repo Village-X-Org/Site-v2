@@ -59,7 +59,7 @@
 </style>
 
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount;
+var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount, donationHonoreeId;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -182,7 +182,7 @@ var handler = StripeCheckout.configure({
   token: function(token) {
 	  document.location = "donateWithStripe.php?stripeToken=" + token.id + "&stripeEmail=" 
 	  		+ token.email + "&stripeAmount=" + donationAmount + "&isSubscription=" + donationIsSubscription 
-	  		+ "&firstName=" + donationFirstName + "&lastName=" + donationLastName + "&projectId=" + donationProjectId;
+	  		+ "&firstName=" + donationFirstName + "&lastName=" + donationLastName + "&projectId=" + donationProjectId + "&honoreeId=" + donationHonoreeId;
   }
 });
 
@@ -191,12 +191,13 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous) {
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous, honoreeId) {
   donationIsSubscription = subscribe;
   donationFirstName = firstName;
   donationLastName = lastName;
   donationProjectId = projectId;
   donationAmount = amount;
+  donationHonoreeId = honoreeId;
   handler.open({
     name: 'Village X Org',
     description: (subscribe ? 'Monthly Subscription' : title),

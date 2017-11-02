@@ -125,47 +125,46 @@ $(document).ready(function(){
 <div>
 	<form action="#">
     <p class="center-align">
-     <input type="checkbox" class="filled-in " id="honor" onclick="if (this.checked) { $('#honorSomeone').modal('open'); }" /><label for="honor">honor someone special</label>
+     <input type="checkbox" class="filled-in " id="honoreeCheckbox" onclick="if (this.checked) { $('#honoreeModal').modal('open'); }" /><label for="honoreeCheckbox">honor someone special</label>
     </p>
     </form>
  </div>
    
      <!-- Modal Structure -->
-  <div id="honorSomeone" class="modal" style="z-index:10;">
+  <div id="honoreeModal" class="modal" style="z-index:10;">
     <div class="modal-content" id="jqueryvalidation">
      	<div class="container" style="width:100%;">
          <p class="flow-text left-align black-text" style="padding:0% 10% 0% 10%">Please enter the <b>honoree's details</b>. We'll notify the honoree of your gift by email and include them on project update emails.</p>
         </div> 
         <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0% 10% 0% 10%">
-        		<form id="honoree_details" method="get" action="one_time_payment_view.php?id=<?php print $projectId; ?>">
+        		<form id="honoree_details" method="post" action="one_time_payment_view.php">
+            		<input type='hidden' name='id' value='<?php print $projectId; ?>' />
             		<div class="row">
             		
-                                <div class="input-field col s6">  
-                                  <input id="honoreeFirstName" type="text" required data-error=".errorTxt1" />
-                                  <label for="honoreeFirstName">First Name</label>
-                           	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
-                                </div>
-                                <div class="input-field col s6">
-                                  <input id="honoreeLastName" type="text" />
-                                  <label for="honoreeLastName">Last Name</label>
-                                </div>
+                            <div class="input-field col s6">  
+                              <input id="honoreeFirstName" name="honoreeFirstName" type="text" required data-error=".errorTxt1" />
+                              <label for="honoreeFirstName">First Name</label>
+                       	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
+                            </div>
+                            <div class="input-field col s6">
+                              <input id="honoreeLastName" name="honoreeLastName" type="text" />
+                              <label for="honoreeLastName">Last Name</label>
+                            </div>
+                </div>         	
                              
-   
-                    </div>         	
-                                 
-                <div class="row" style="padding:0;margin:0;">							
-            				<div class="input-field col s12" style="padding:0 0 10px 0;margin:0;" >
-            					<input id="honoreeEmail" name="email" type="email">
-            					<label for="honoreeEmail">Email</label>
-            				</div>
-             	</div>
+            		<div class="row" style="padding:0;margin:0;">							
+        				<div class="input-field col s12" style="padding:0 0 10px 0;margin:0;" >
+        					<input id="honoreeEmail" name="honoreeEmail" type="email">
+        					<label for="honoreeEmail">Email</label>
+        				</div>
+         		</div>
                 <div class="row center-align" style="margin:0;">
                 		<div class="input-field col s12" style="padding:0;margin:0;">
                 			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
             			</div>
             		</div>
-        		</form>	
-        		</div>	
+    			</form>	
+	</div>	
     		
     		
     		<script>
@@ -189,8 +188,7 @@ $(document).ready(function(){
                       }
                     },
             		});
-    
-       	 	    $('.modal').modal();
+
             	});
 		</script>
 	</div>
