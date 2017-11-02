@@ -69,7 +69,7 @@ if (hasParam('code')) {
 					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
 						
-					<h6 class="center">#democracy</h6>
+					<h5 class="center">#democracy</h5>
 
 				</div>
 			</div>
@@ -91,7 +91,7 @@ if (hasParam('code')) {
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
 					
-					<h6 class="center">#directgiving</h6>
+					<h5 class="center">#directgiving</h5>
 				</div>
 			</div>
 
@@ -112,7 +112,7 @@ if (hasParam('code')) {
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
 					 of how your donations change development outcomes for rural Africans.</p>
 					 
-					 <h6 class="center">#data</h6>
+					 <h5 class="center">#development</h5>
 				</div>
 			</div>
 		</div>
@@ -206,7 +206,7 @@ if (hasParam('code')) {
 					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
 			</div>
 			
-			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">local, fast, affordable</h6>
+			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6>
 
 			<div class="parallax">
 				<img src="images/woman_with_goat.jpg">
@@ -366,7 +366,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:3% 0% 0% 0%">Data Tracker</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:3% 0% 0% 0%">The Big Picture</h4>
 	<h6 class="header center" style="padding:0% 0% 1% 0%">(as of October 25, 2017)</h6>
 
 <div class="container">
@@ -427,7 +427,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 				});
 			</script>
 		</div>
-		<h6 style="text-align: center; padding: 20px 30px 20px 30px">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
+		<h6 style="text-align: center; padding: 20px 10% 20px 10%">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
 				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
 	</div>
 	
@@ -507,9 +507,9 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 		
 	<div class="center-align">
 	<div>
-		<h5 style="text-align: center"><b>Elapsed Time Between Project Funding and Completion</b></h5>
+		<h5 style="text-align: center"><b>Elapsed Time</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b><br>between project funding and completion</h3>
 		
 		<h6 style="text-align: center;padding: 30px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
 	</div>

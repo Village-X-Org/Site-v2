@@ -17,8 +17,8 @@
 
 <div class="container">
 <br>
-<h4 class="card col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align" style="padding: 5% 5% 5% 5%; width:100%;">Village X Org is a 501(c)(3) nonprofit disrupting extreme poverty in rural Africa with democracy, direct giving, and data.</h4>
-	<br>
+<h4 class="col s12 light blue-text text-lighten-2 text-shadow: 2px 2px 7px #111111 center-align" style="padding: 3% 5% 3% 5%; width:100%;">Village X Org is a 501(c)(3) nonprofit.</h4>
+
 	<div class="row">
 	<div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
@@ -69,24 +69,21 @@
 			<br>
 			<div class="col s12 m6 l6" style="padding: 0% 2.5% 0% 2.5%;">
 				<div class="icon-block">
-					<i class="material-icons" style="font-size: 100px">attach_money</i>
+					<i class="material-icons" style="font-size: 100px">loop</i>
 					<h5 class="center brown-test">Finance and evaluate village-led projects in remote places, with ruthless efficiency.</h5>
-					<p class="light center flow-text">Deploy financing and retrieve data from all 
-					the extreme poverty villages in a country or region within sub-Saharan Africa. This would cost 
-					approximately $10-$20 million per year in Malawi, depending on the types of projects chosen by villages.</p>
-					<br> <br>
+					<p class="light center flow-text">Deploy financing and retrieve data for development projects chosen and implemented by thousands 
+					of extreme poverty villages within a country or region in sub-Saharan Africa.</p>
+				
 				</div>
 			</div>
 
 			<div class="col s12 m6 l6" style="padding: 0% 2.5% 0% 2.5%;">
 				<div class="icon-block">
-					<i class="material-icons" style="font-size: 100px">data_usage</i>
+					<i class="material-icons" style="font-size: 100px">dashboard</i>
 					<h5 class="center brown-test">Harmonize development aspirations of villages 
-					with donor funding.</h5>
-					<p class="light center flow-text">Share field data to inform and coordinate the work of other development actors 
-					committed to disrupting extreme poverty. Improve the effectiveness of governmental programming and development assistance (the latter is $1 
-					billion per year in Malawi).</p>
-					<br>
+					with development funding.</h5>
+					<p class="light center flow-text">Share data to inform and coordinate the work of governments, international agencies, and NGOs committed to disrupting extreme poverty in sub-Saharan Africa. Work together to democratize development.</p>
+			
 				</div>
 			</div>
 		</div>
@@ -160,7 +157,7 @@
     					</div>
     					
     				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More about Jeff<i class="material-icons right">close</i></span>
+      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
       					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
       					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
