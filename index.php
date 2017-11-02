@@ -228,7 +228,7 @@ if (hasParam('code')) {
 		<!--   project section   -->
 		<div class="row">
 <?php
-if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
+if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget JOIN pictures ON p1.project_profile_image_id=picture_id GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded)");
     $buffer = '';
     $cells = array();
@@ -296,11 +296,18 @@ if (!file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         }
         $index++;
     }
-    $handle = fopen(CACHED_HIGHLIGHTED_FILENAME, "w");
-    fwrite($handle, $buffer);
-    fclose($handle);
+    if (CACHING_ENABLED) {
+        $handle = fopen(CACHED_HIGHLIGHTED_FILENAME, "w");
+        fwrite($handle, $buffer);
+        fclose($handle);
+    } else {
+        print $buffer;
+    }
 }
-include(CACHED_HIGHLIGHTED_FILENAME);
+
+if (CACHING_ENABLED) {
+    include(CACHED_HIGHLIGHTED_FILENAME);
+}
 ?>			
 		</div>
 		<br>
@@ -433,7 +440,7 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	
 	<?php 
 
-	if (!file_exists(CACHED_CHARTS_FILENAME)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
 	    ob_start();
 	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
                     SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
@@ -506,13 +513,12 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 	
 		
 	<div class="center-align">
-	<div>
 		<h5 style="text-align: center"><b>Elapsed Time</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b><br>between project funding and completion</h3>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3><span class="light blue-text text-lighten-2" style="font-size:24px;">between project funding and completion</span>
 		
-		<h6 style="text-align: center;padding: 30px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
-	</div>
+		<h6 style="text-align: center;padding: 10px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
+
 	</div>
 	
 	</div>
@@ -521,9 +527,16 @@ include(CACHED_HIGHLIGHTED_FILENAME);
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
-        file_put_contents(CACHED_CHARTS_FILENAME,$contents);
+        
+        if (CACHING_ENABLED) {
+            file_put_contents(CACHED_CHARTS_FILENAME, $contents);
+        } else {
+            print $contents;
+        }
     }
-    include(CACHED_CHARTS_FILENAME);
+    if (CACHING_ENABLED) {
+        include(CACHED_CHARTS_FILENAME);
+    }
     ?>
 	<!--  
 	<div class="row">
