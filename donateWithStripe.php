@@ -12,6 +12,7 @@ $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
 $honoreeId = paramInt('honoreeId');
+$honoreeMessage = param('honoreeMessage');
 
 $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
 $stmt->bind_param('s', $donorEmail);
@@ -127,17 +128,27 @@ include("email_content.php");
 $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getCustomerServiceEmail());
+sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
+    $output, getAdminEmail());
+sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
+    $output, getAdminEmail());
 
 if ($honoreeId > 0) {
     $stmt = prepare("SELECT donor_email, donor_first_name, donor_last_name FROM donors WHERE donor_id=?");
     $stmt->bind_param('i', $honoreeId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
-        sendMail($row['donor_email'], "$donorFirstName $donorLastName has donated to Village X in your honor!",
-                $output, getCustomerServiceEmail());
+        $honoreeFirstName = $row['donor_first_name'];
+        $honoreeLastName = $row['donor_last_name'];
+        $honoreeEmail = $row['donor_email'];
+        
+        ob_start();
+        include("email_content.php");
+        $output = ob_get_clean();
+        
+        sendMail($honoreeEmail, "$donorFirstName $donorLastName has donated to Village X in your honor!",
+            $output, getCustomerServiceEmail());
     }
     $stmt->close();
 }
 
-sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail)": "Donation to Village X ($donorEmail)",
-    $output, getAdminEmail());
