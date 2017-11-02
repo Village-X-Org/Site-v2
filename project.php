@@ -133,42 +133,43 @@ $(document).ready(function(){
       <!-- Modal Structure -->
    <div id="honoreeModal" class="modal" style="z-index:10;">
      <div class="modal-content" id="jqueryvalidation">
-      	<div class="container" style="width:100%; padding:2% 10% 8% 10%">
-          <p class="flow-text left-align black-text">Please enter the <b>honoree's details</b>. We'll notify the honoree of your gift by email and include them on project update emails.</p>
+      	<div class="container" style="width:100%; padding:0 10% 0 10%">
+          <p class="flow-text left-align black-text">Please enter the <b>honoree's details</b>. They'll be notified of your gift by email and included on project update emails.</p>
           
-         <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0% 5% 5% 5%">
+         <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0;margin:0;">
          		<form id="honoree_details" method="post" action="one_time_payment_view.php">
              		<input type='hidden' name='id' value='<?php print $projectId; ?>' />
-             		<div class="row">
+             		<div class="row" style="padding:0;margin:0;">
              		
-                             <div class="input-field col s6">  
+                             <div class="input-field col s6" style="padding:0;margin:0;">  
                                <input id="honoreeFirstName" name="honoreeFirstName" style="border-style:none;font-size:20px;" placeholder="first name" type="text" required data-error=".errorTxt1" />
                         	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
                              </div>
-                             <div class="input-field col s6">
+                             <div class="input-field col s6" style="padding:0;margin:0;">
                                <input id="honoreeLastName" name="honoreeLastName" style="border-style:none;font-size:20px;" placeholder="last name" type="text" />
                              </div>
                  </div>         	
              
              		<div class="row" style="padding:0;margin:0;">							
-         				<div class="input-field col s12" style="padding:0 0 10px 0;margin:0;" >
+         				<div class="input-field col s12" style="padding:0;margin:0;" >
          					<input id="honoreeEmail" name="honoreeEmail" style="border-style:none; font-size:20px;" placeholder="email address" type="email">
          				</div>
           		</div>
           		
- 		<div class="row" style="padding:0;margin:0;padding:0 0 5% 0">
- 				<div class="input-field col s12" style="height:50px; border-radius: 5px; padding:10px 0 10px 0;margin:0;">
-           				<textarea style="border-style:none;font-size:20px; height:80px; width:100%" id="honoreeMessage" placeholder="message for honoree" name="honoreeMessage"></textarea>
-        	 			</div>
- 		</div>
- 		</div>
+         		<div class="row" style="padding:0;margin:0;"">
+         				<div class="input-field col s12" style="border-radius: 5px;padding:0;margin-bottom:5px;">
+                   				<textarea style="border-style:none;font-size:20px; height:80px; width:100%" id="honoreeMessage" placeholder="message for honoree" name="honoreeMessage"></textarea>
+                	 		</div>
+         		</div>
  				
                  <div class="row center-align" style="margin:0;">
-                 		<div class="input-field col s12" style="padding:0;margin:0;">
-                 			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
-             			</div>
-             		</div>
+             		<div class="input-field col s12" style="padding:0;margin:0;">
+             			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
+         			</div>
+         		</div>
     			</form>
+    			
+ 		</div>
     			</div>
     			
     			
