@@ -116,7 +116,7 @@ require_once("utilities.php");
         	if (!amount) { 
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
-        	donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val(), 0, ""); return false;
+        	donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val(), 0, 0, ""); return false;
     }
 </script>
 
