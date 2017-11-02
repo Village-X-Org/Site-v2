@@ -161,7 +161,11 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_UPDATE:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-        																        print "Hi, $donorFirstName!";
+        																        if (isset($honoreeFirstName)) {
+        																            print "Hi, $honoreeFirstName!";
+        																        } else {
+        																            print "Hi, $donorFirstName!";
+        																        }
         																        break;
         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
         																        print "$donorFirstName,";
@@ -170,8 +174,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																        break;
         																}
                                                                     }   ?>
-																</b>
-															</h3> <br />
+                                                                    </b></h3>
+																<br />
 
 															<p class="lead"
 																style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.6; font-size: 20px; margin: 0 0 10px; padding: 0;"
@@ -194,10 +198,17 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        ?>We deeply appreciate your 100% tax
-            																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation. You have
-            																disrupted extreme poverty in rural Africa!
-																		<?php 
+																        if (isset($honoreeFirstName)) {
+																            print (strlen($donorFirstName > 0) ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
+																            if (strlen($honoreeMessage) > 1) {
+																                print "  They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
+																            }
+																        } else {
+    																            ?>We deeply appreciate your 100% tax
+                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation. You have
+                																disrupted extreme poverty in rural Africa!
+    																			<?php 
+																        }
 																		break;
                                                                      default:
                                                                         break;
