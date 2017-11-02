@@ -128,5 +128,16 @@ $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getCustomerServiceEmail());
 
+if ($honoreeId > 0) {
+    $stmt = prepare("SELECT donor_email, donor_first_name, donor_last_name FROM donors WHERE donor_id=?");
+    $stmt->bind_param('i', $honoreeId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        sendMail($row['donor_email'], "$donorFirstName $donorLastName has donated to Village X in your honor!",
+                $output, getCustomerServiceEmail());
+    }
+    $stmt->close();
+}
+
 sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail)": "Donation to Village X ($donorEmail)",
     $output, getAdminEmail());

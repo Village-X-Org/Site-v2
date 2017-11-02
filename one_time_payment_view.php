@@ -33,6 +33,7 @@ require_once("utilities.php");
       $honoreeEmail = param('honoreeEmail');
       $honoreeFirstName = param('honoreeFirstName');
       $honoreeLastName = param('honoreeLastName');
+      $honoreeMessage = param('honoreeMessage');
       
       $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
       $stmt->bind_param('s', $honoreeEmail);
@@ -89,7 +90,8 @@ include('header.inc');
 		<div class="col-project valign-wrapper" style="vertical-align: middle;">
 			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content blue-text" style="height:100%;">
-            		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>.</span>
+            		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>
+            				<?php print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" ); ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
           				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm">
