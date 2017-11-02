@@ -11,6 +11,7 @@ $donationAmount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
+$honoreeId = paramInt('honoreeId');
 
 $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
 $stmt->bind_param('s', $donorEmail);
@@ -85,9 +86,9 @@ if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
-    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
-    $stmt->bind_param("idisss", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code);
+    $stmt->bind_param("idisssi", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId);
     execute($stmt);
     $stmt->close();
     $donationId = $link->insert_id;

@@ -28,6 +28,26 @@ require_once("utilities.php");
       die();
   }
   $projectId = paramInt('id');
+  $honoreeId = 0;
+  if (hasParam('honoreeEmail')) {
+      $honoreeEmail = param('honoreeEmail');
+      $honoreeFirstName = param('honoreeFirstName');
+      $honoreeLastName = param('honoreeLastName');
+      
+      $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
+      $stmt->bind_param('s', $honoreeEmail);
+      $result = execute($stmt);
+      if ($row = $result->fetch_assoc()) {
+          $honoreeId = $row['donor_id'];
+      } else {
+          $stmt->close();
+          $stmt = prepare("INSERT INTO donors (donor_email, donor_first_name, donor_last_name) VALUES (?, ?, ?)");
+          $stmt->bind_param('sss', $honoreeEmail, $honoreeFirstName, $honoreeLastName);
+          execute($stmt);
+          $honoreeId = $link->insert_id;
+      }
+      $stmt->close();
+  }
   $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
@@ -153,7 +173,7 @@ include('header.inc');
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
-                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous);
+                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>);
     }
 </script>
              
