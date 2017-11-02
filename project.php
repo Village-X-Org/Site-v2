@@ -120,12 +120,94 @@ $(document).ready(function(){
 				
 					<br>
 					
+					<div>
+ 	<form action="#">
+     <p class="center-align">
+      <input type="checkbox" class="filled-in" id="honoreeCheckbox" onclick="if (this.checked) { $('#honoreeModal').modal('open'); }" /><label for="honoreeCheckbox">honor someone special</label>
+     </p>
+     </form>
+  </div>
+    
+      <!-- Modal Structure -->
+   <div id="honoreeModal" class="modal" style="z-index:10;">
+     <div class="modal-content" id="jqueryvalidation">
+      	<div class="container" style="width:100%; padding:2% 10% 8% 10%">
+          <p class="flow-text left-align black-text">Please enter the <b>honoree's details</b>. We'll notify the honoree of your gift by email and include them on project update emails.</p>
+          
+         <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0% 5% 5% 5%">
+         		<form id="honoree_details" method="post" action="one_time_payment_view.php">
+             		<input type='hidden' name='id' value='<?php print $projectId; ?>' />
+             		<div class="row">
+             		
+                             <div class="input-field col s6">  
+                               <input id="honoreeFirstName" name="honoreeFirstName" style="border-style:none;font-size:20px;" placeholder="first name" type="text" required data-error=".errorTxt1" />
+                        	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
+                             </div>
+                             <div class="input-field col s6">
+                               <input id="honoreeLastName" name="honoreeLastName" style="border-style:none;font-size:20px;" placeholder="last name" type="text" />
+                             </div>
+                 </div>         	
+             
+             		<div class="row" style="padding:0;margin:0;">							
+         				<div class="input-field col s12" style="padding:0 0 10px 0;margin:0;" >
+         					<input id="honoreeEmail" name="honoreeEmail" style="border-style:none; font-size:20px;" placeholder="email address" type="email">
+         				</div>
+          		</div>
+          		
+ 		<div class="row" style="padding:0;margin:0;padding:0 0 5% 0">
+ 				<div class="input-field col s12" style="height:50px; border-radius: 5px; padding:10px 0 10px 0;margin:0;">
+           				<textarea style="border-style:none;font-size:20px; height:80px; width:100%" id="honoreeMessage" placeholder="message for honoree" name="honoreeMessage"></textarea>
+        	 			</div>
+ 		</div>
+ 		</div>
+ 				
+                 <div class="row center-align" style="margin:0;">
+                 		<div class="input-field col s12" style="padding:0;margin:0;">
+                 			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
+             			</div>
+             		</div>
+    			</form>
+    			</div>
+    			
+    			
+    			
+    			
+ 		
+     		<script>
+             	$(document).ready(function() {
+             		// validate donatation form on keyup and submit
+             		$("#honoree_details").validate({
+             			rules: {
+             				firstname: "required",
+             			},
+             		messages: {
+             		      firstname: "this field is required",
+             		},
+             
+                     errorElement : 'div',
+                     errorPlacement: function(error, element) {
+                       var placement = $(element).data('error');
+                       if (placement) {
+                         $(placement).append(error)
+                       } else {
+                         error.insertAfter(element);
+                       }
+                     },
+            		});
+ 
+             	});
+ 		</script>
+ 	</div>
+     		
+ </div>	
+     <br>
+					
 		<div class="center-align">
 		
 				<?php if ($funded < $total) { ?>
 				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>'
 				id="donate-button"
-				class="waves-effect waves-light light blue lighten-1 btn-large">
+				class="waves-effect waves-light light blue lighten-1 btn-large" style="width:50%;">
 				<i class="material-icons left">favorite_border</i>Donate</a>
 				<?php } else { ?>
 				<button 
@@ -139,7 +221,11 @@ $(document).ready(function(){
 		<?php if ($donationCount > 1) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donationCount; ?> people have donated!</b>
-		</div><br>
+		</div>
+		
+		<br>
+		
+		<!--  
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donationCount / 5)) * 60 + 40); ?>px;">
 		<?php 
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
@@ -172,7 +258,7 @@ $(document).ready(function(){
 			
 			?>
 		</div>
-		<?php } ?>
+		<?php } ?> -->
 		
 			
 		</div>
@@ -680,4 +766,4 @@ $(document).ready(function(){
 } 
 if (CACHING_ENABLED) {
     include(CACHED_PROJECT_PREFIX.$projectId); 
-} ?>
+}  ?>
