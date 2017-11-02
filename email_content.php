@@ -161,7 +161,15 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_UPDATE:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-        																        print "Hi, $donorFirstName!";
+        																        if (isset($honoreeFirstName)) {
+        																            print "Hi, $honoreeFirstName!<p>$donorFirstName $donorLastName made a donation in your honor.";
+        																            if (strlen($honoreeMessage) > 1) {
+        																                  print "They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
+        																            }
+        																            print "</p>";
+        																        } else {
+        																            print "Hi, $donorFirstName!";
+        																        }
         																        break;
         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
         																        print "$donorFirstName,";

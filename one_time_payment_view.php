@@ -29,6 +29,7 @@ require_once("utilities.php");
   }
   $projectId = paramInt('id');
   $honoreeId = 0;
+  $honoreeMessage = "";
   if (hasParam('honoreeEmail')) {
       $honoreeEmail = param('honoreeEmail');
       $honoreeFirstName = param('honoreeFirstName');
@@ -48,6 +49,7 @@ require_once("utilities.php");
           $honoreeId = $link->insert_id;
       }
       $stmt->close();
+     
   }
   $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
@@ -95,8 +97,6 @@ include('header.inc');
          				<div class="row" style="padding:5% 5% 0% 5%;">
           				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm">
-
-         					
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
@@ -175,7 +175,7 @@ include('header.inc');
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
-                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>);
+                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>, "<?php print addslashes($honoreeMessage); ?>");
     }
 </script>
              
