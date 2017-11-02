@@ -125,7 +125,7 @@ $(document).ready(function(){
 <div>
 	<form action="#">
      <p class="center-align">
-      <input type="checkbox" class="filled-in" id="honoreeCheckbox" onclick="if (this.checked) { $('#honoreeModal').modal('open'); }" /><label for="honoreeCheckbox">honor someone special</label>
+      <input type="checkbox" class="filled-in" id="honoreeCheckbox" onclick="showHonoreeModal();" /><label for="honoreeCheckbox">honor someone special</label>
      </p>
      </form>
   </div>
@@ -177,6 +177,15 @@ $(document).ready(function(){
     			
  		
      		<script>
+				function showHonoreeModal() {
+					if (document.getElementById('honoreeCheckbox').checked) { 
+						setTimeout(function() { 
+							document.getElementById('honoreeCheckbox').checked = false; 
+							$('#honoreeModal').modal('open'); 
+						}, 500); 
+					}
+				}
+     		
              	$(document).ready(function() {
              		// validate donatation form on keyup and submit
              		$("#honoree_details").validate({
