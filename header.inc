@@ -180,20 +180,18 @@ var handler = StripeCheckout.configure({
   image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
   locale: 'auto',
   token: function(token) {
-	  $.post( "donateWithStripe.php", { 
-		  		stripeToken: token.id, 
-		  		stripeEmail: token.email, 
-	  			stripeAmount: donationAmount,
-	  			isSubscription: donationIsSubscription,
-	  			firstName: donationFirstName,
-	  			lastName: donationLastName,
-	  			projectId: donationProjectId,
-	  			honoreeId: donationHonoreeId,
-	  			honoreeMessage: donationHonoreeMessage
-	  		}, function(data) {
-	  			document.write(data);
-	  		}
-	  );	
+	  form = document.getElementById('donateForm');
+	  form.stripeToken.value = token.id;
+	  form.stripeEmail.value = token.email;
+	  form.stripeAmount.value = donationAmount;
+	  form.isSubscription.value = donationIsSubscription;
+	  form.firstName.value = donationFirstName;
+	  form.lastName.value = donationLastName;
+	  form.projectId.value = donationProjectId;
+	  form.honoreeId.value = donationHonoreeId;
+	  form.honoreeMessage.value = donationHonoreeMessage;
+	  
+	  form.submit();
   }
 });
 

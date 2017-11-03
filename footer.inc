@@ -1,4 +1,4 @@
-<div id="index-banner" class="parallax-container"
+<div class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
