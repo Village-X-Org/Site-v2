@@ -161,7 +161,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_UPDATE:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-        																        if (isset($honoreeFirstName)) {
+        																        if (isset($useHonoree)) {
         																            print "Hi, $honoreeFirstName!";
         																        } else {
         																            print "Hi, $donorFirstName!";
@@ -198,7 +198,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
-																        if (isset($honoreeFirstName)) {
+																        if (isset($useHonoree)) {
 																            print (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
 																            if (strlen($honoreeMessage) > 1) {
 																                print "  They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
