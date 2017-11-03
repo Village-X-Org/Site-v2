@@ -155,4 +155,4 @@ if (isset($honoreeFirstName)) {
     sendMail($honoreeEmail, (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
         $output, getCustomerServiceEmail());
 }
-
+?>
