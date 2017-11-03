@@ -163,7 +163,6 @@ require_once("utilities.php");
 	
 <hr>	
 
-
 <div class="row">
 	<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
 			Use of Donations
@@ -216,7 +215,7 @@ require_once("utilities.php");
 	</h4></div> 
 	
 	<div class="flow-text brown-text" style="width:100%; padding: 0% 3% 5% 3%">
-			To acheive <b>scalabilty</b>, we recruit and train local field officers, and pay them per completed project. These ambitious young men and women possess smartphones and a passion for community development. 
+			To achieve <b>scalabilty</b>, we recruit and train local field officers, and pay them per completed project. These ambitious young men and women possess smartphones and a passion for community development. 
                	A single field officer covers up to 30 villages a year, using local transportation and mobile technology to reach up to 40,000 people. 
                 This distributed network of oversight allows us rapidly to scale across districts, regions, or even countries.*
 			</div>

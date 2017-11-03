@@ -11,6 +11,8 @@ $donationAmount = param('stripeAmount');
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
+$honoreeId = paramInt('honoreeId');
+$honoreeMessage = param('honoreeMessage');
 
 $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
 $stmt->bind_param('s', $donorEmail);
@@ -85,14 +87,27 @@ if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
-    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code) VALUES (?, ?, ?, ?, ?, ?)");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
-    $stmt->bind_param("idisss", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code);
+    $stmt->bind_param("idisssi", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId);
     execute($stmt);
     $stmt->close();
     $donationId = $link->insert_id;
     if ($projectId) {
         recordDonation($projectId, $donationAmountDollars, $donationId);
+    }
+}
+
+if ($honoreeId > 0) {
+    $stmt = prepare("SELECT donor_email, donor_first_name, donor_last_name FROM donors WHERE donor_id=?");
+    $stmt->bind_param('i', $honoreeId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        $honoreeFirstName = $row['donor_first_name'];
+        $honoreeLastName = $row['donor_last_name'];
+        $honoreeEmail = $row['donor_email'];
+        
+        $stmt->close();
     }
 }
 
@@ -126,6 +141,17 @@ include("email_content.php");
 $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getCustomerServiceEmail());
-
-sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail)": "Donation to Village X ($donorEmail)",
+sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
     $output, getAdminEmail());
+sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
+    $output, getAdminEmail());
+
+if (isset($honoreeFirstName)) {
+    ob_start();
+    include("email_content.php");
+    $output = ob_get_clean();
+        
+    sendMail($honoreeEmail, (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
+        $output, getCustomerServiceEmail());
+}
+
