@@ -59,7 +59,7 @@
 </style>
 
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount;
+var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -180,9 +180,20 @@ var handler = StripeCheckout.configure({
   image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
   locale: 'auto',
   token: function(token) {
-	  document.location = "donateWithStripe.php?stripeToken=" + token.id + "&stripeEmail=" 
-	  		+ token.email + "&stripeAmount=" + donationAmount + "&isSubscription=" + donationIsSubscription 
-	  		+ "&firstName=" + donationFirstName + "&lastName=" + donationLastName + "&projectId=" + donationProjectId;
+	  $.post( "donateWithStripe.php", { 
+		  		stripeToken: token.id, 
+		  		stripeEmail: token.email, 
+	  			stripeAmount: donationAmount,
+	  			isSubscription: donationIsSubscription,
+	  			firstName: donationFirstName,
+	  			lastName: donationLastName,
+	  			projectId: donationProjectId,
+	  			honoreeId: donationHonoreeId,
+	  			honoreeMessage: donationHonoreeMessage
+	  		}, function(data) {
+	  			document.write(data);
+	  		}
+	  );	
   }
 });
 
@@ -191,12 +202,14 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous) {
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous, honoreeId, honoreeMessage) {
   donationIsSubscription = subscribe;
   donationFirstName = firstName;
   donationLastName = lastName;
   donationProjectId = projectId;
   donationAmount = amount;
+  donationHonoreeId = honoreeId;
+  donationHonoreeMessage = honoreeMessage;
   handler.open({
     name: 'Village X Org',
     description: (subscribe ? 'Monthly Subscription' : title),
