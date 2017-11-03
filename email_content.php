@@ -199,7 +199,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        break;
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        if (isset($honoreeFirstName)) {
-																            print (strlen($donorFirstName > 0) ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
+																            print (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
 																            if (strlen($honoreeMessage) > 1) {
 																                print "  They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
 																            }
