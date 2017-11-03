@@ -11,7 +11,7 @@ if (hasParam('code')) {
     $_SESSION['code'] = param('code');
 }
 if (hasParam('test')) {
-    $_SESSION['test'] = 1;
+    $_SESSION['test'] = param('test');
 }
 ?>
 

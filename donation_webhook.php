@@ -9,18 +9,21 @@ if ($event_json->type == 'invoice.payment_succeeded') {
     $donationAmountDollars = $event_json->data->object->total / 100;
     
     $donorId = -1;
-    $stmt = prepare("SELECT donation_id, donation_donor_id, donation_code FROM donations WHERE donation_subscription_id=? LIMIT 1");
+    $stmt = prepare("SELECT donation_id, donation_donor_id, donation_code, donation_is_test FROM donations WHERE donation_subscription_id=? LIMIT 1");
     $stmt->bind_param('s', $subscriptionId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $donationId = $row['donation_id'];
         $donorId = $row['donation_donor_id'];
         $donationCode = $row['donation_code'];
-        $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id, donation_code) VALUES (?, ?, ?, ?)");
+        $donationIsTest = $row['donation_is_test'];
+        $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_subscription_id, donation_code, donation_is_test) VALUES (?, ?, ?, ?, $donationIsTest)");
         $stmt->bind_param('idss', $donorId, $donationAmountDollars, $subscriptionId, $donationCode);
         execute($stmt);
         $stmt->close();
-        include("disburseSubscriptionPayment.php");
+        if (!$donationIsTest) {
+            include("disburseSubscriptionPayment.php");
+        }
     }
 }
 
