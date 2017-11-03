@@ -205,7 +205,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																            }
 																        } else {
     																            ?>We deeply appreciate your 100% tax
-                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation. You have
+                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?>. You have
                 																disrupted extreme poverty in rural Africa!
     																			<?php 
 																        }

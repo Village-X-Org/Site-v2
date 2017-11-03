@@ -98,6 +98,19 @@ if ($row = $result->fetch_assoc()) {
     }
 }
 
+if ($honoreeId > 0) {
+    $stmt = prepare("SELECT donor_email, donor_first_name, donor_last_name FROM donors WHERE donor_id=?");
+    $stmt->bind_param('i', $honoreeId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        $honoreeFirstName = $row['donor_first_name'];
+        $honoreeLastName = $row['donor_last_name'];
+        $honoreeEmail = $row['donor_email'];
+        
+        $stmt->close();
+    }
+}
+
 if ($isSubscription) {
     // Instead of actually disbursing, just find a project.
     $result = doUnprotectedQuery("SELECT project_id, project_name, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
@@ -133,23 +146,12 @@ sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for 
 sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
     $output, getAdminEmail());
 
-if ($honoreeId > 0) {
-    $stmt = prepare("SELECT donor_email, donor_first_name, donor_last_name FROM donors WHERE donor_id=?");
-    $stmt->bind_param('i', $honoreeId);
-    $result = execute($stmt);
-    if ($row = $result->fetch_assoc()) {
-        $honoreeFirstName = $row['donor_first_name'];
-        $honoreeLastName = $row['donor_last_name'];
-        $honoreeEmail = $row['donor_email'];
+if (isset($honoreeFirstName)) {
+    ob_start();
+    include("email_content.php");
+    $output = ob_get_clean();
         
-        $stmt->close();
-        
-        ob_start();
-        include("email_content.php");
-        $output = ob_get_clean();
-        
-        sendMail($honoreeEmail, (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
-            $output, getCustomerServiceEmail());
-    }
+    sendMail($honoreeEmail, (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
+        $output, getCustomerServiceEmail());
 }
 

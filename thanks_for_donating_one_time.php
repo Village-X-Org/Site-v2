@@ -35,7 +35,7 @@ include('header.inc'); ?>
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 		<div class="container">
 		<div class="row center">
-			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for your donation!</h2>
+			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for your donation!</h2><?php print (isset($honoreeFirstName) ? "in honor of $honoreeFirstName" : ""); ?> 
 		</div>
 			<br>
 			<div class="row center"><p class="white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><b>Share your generosity to inspire others</b></p>	
