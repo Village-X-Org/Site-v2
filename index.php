@@ -10,6 +10,9 @@ require_once("utilities.php");
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
 }
+if (hasParam('test')) {
+    $_SESSION['test'] = 1;
+}
 ?>
 
 <div id="index-banner" class="parallax-container"
