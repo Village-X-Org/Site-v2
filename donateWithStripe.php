@@ -2,7 +2,8 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
-\Stripe\Stripe::setApiKey(STRIPE_SECRET_KEY);
+$test = isset($_SESSION['test']);
+\Stripe\Stripe::setApiKey($test ? STRIPE_TEST_SECRET_KEY : STRIPE_SECRET_KEY);
 
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');

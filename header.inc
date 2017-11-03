@@ -176,7 +176,7 @@ arrowsOff = function()
 
 // Stripe
 var handler = StripeCheckout.configure({
-  key: '<?php print STRIPE_API_KEY; ?>',
+  key: '<?php print (isset($_SESSION['test']) ? STRIPE_TEST_API_KEY : STRIPE_API_KEY); ?>',
   image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
   locale: 'auto',
   token: function(token) {

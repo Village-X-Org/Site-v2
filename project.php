@@ -17,7 +17,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
-                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_id) AS donationCount
+                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
@@ -44,7 +44,7 @@ if ($row = $result->fetch_assoc()) {
     $projectType = $row['project_type'];
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
-    $donationCount = $row['donationCount'];
+    $donorCount = $row['donorCount'];
     
     $villageContribution = round($total * .05);
     $percentFunded = max(5, round($funded * 100 / $total));
@@ -231,11 +231,11 @@ $(document).ready(function(){
 
 					<br>
 				
-		<?php if ($donationCount > 1) { ?>	
+		<?php if ($donorCount > 1) { ?>	
 		<div style="margin:auto;" class="center-align">
-								<b><?php print $donationCount; ?> people have donated!</b>
+								<b><?php print $donorCount; ?> people have donated!</b>
 		</div><br>
-		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donationCount / 5)) * 60 + 40); ?>px;">
+		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
 		<?php 
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
                         ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=?) 
