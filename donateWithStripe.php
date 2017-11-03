@@ -2,7 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
-$test = isset($_SESSION['test']);
+$test = isset($_SESSION['test']) && $_SESSION['test'];
 \Stripe\Stripe::setApiKey($test ? STRIPE_TEST_SECRET_KEY : STRIPE_SECRET_KEY);
 
 $donorEmail = param('stripeEmail');
@@ -26,7 +26,7 @@ if ($row = $result->fetch_assoc()) {
     execute($stmt);
     $stmt->close();
     
-    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_remote_id<>?");
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_remote_id<>? AND donation_is_test=0");
     $stmt->bind_param('is', $donorId, $token);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
@@ -88,13 +88,13 @@ if ($row = $result->fetch_assoc()) {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
-    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test) VALUES (?, ?, ?, ?, ?, ?, ?, $test)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
     $stmt->bind_param("idisssi", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId);
     execute($stmt);
     $stmt->close();
     $donationId = $link->insert_id;
-    if ($projectId) {
+    if ($projectId && !$test) {
         recordDonation($projectId, $donationAmountDollars, $donationId);
     }
 }
