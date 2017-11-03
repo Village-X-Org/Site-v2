@@ -147,6 +147,7 @@ sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X 
     $output, getAdminEmail());
 
 if (isset($honoreeFirstName)) {
+    $useHonoree = 1;
     ob_start();
     include("email_content.php");
     $output = ob_get_clean();
