@@ -185,7 +185,9 @@
 </footer>
 
 <script>
-	$(document).ready(function(){ $('cancelModal').modal(); }); 
+	$(document).ready(function(){ 
+		$('#cancelModal').modal(); 
+	}); 
 
     	$().ready(function() {
     		// validate donatation form on keyup and submit
