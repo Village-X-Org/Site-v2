@@ -17,12 +17,14 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
-                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount
+                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events ON pe_project_id=project_id 
                 LEFT JOIN donations ON donation_project_id=project_id
+                LEFT JOIN donors ON project_matching_donor=donor_id 
                 WHERE project_id=? GROUP BY project_id");
 $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
@@ -45,6 +47,7 @@ if ($row = $result->fetch_assoc()) {
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
+    $matchingDonor = $row['matchingDonor'];
     
     $villageContribution = round($total * .05);
     $percentFunded = max(5, round($funded * 100 / $total));
@@ -231,9 +234,10 @@ $(document).ready(function(){
 
 					<br>
 				
-		<?php if ($donorCount > 1) { ?>	
+		<?php if ($donorCount > 0) { ?>	
 		<div style="margin:auto;" class="center-align">
-								<b><?php print $donorCount; ?> people have donated!</b>
+								<b><?php print $donorCount.($donorCount > 1 ? " people have" : " person has"); ?> donated!</b> 
+								
 		</div><br>
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
 		<?php 
@@ -265,11 +269,18 @@ $(document).ready(function(){
 			
 			$stmt->close();
 			
-			?>
-		</div>
-		<?php } ?>
-		
-			
+		    } 
+		       
+		    print ($matchingDonor ?
+		        "&nbsp;&nbsp;&nbsp;&nbsp;<a class='tooltip' style='text-decoration:none;text-transform:none;text-align:center;'>
+                                <span class='tooltiptext'>$matchingDonor will match all donations made to this project!</span>
+                                <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />
+                            </a>" : "");
+		      
+		    if ($donorCount > 0 || $matchingDonor) {
+		    ?>
+				</div>
+			<?php } ?>
 		</div>
 	</div>
 	
