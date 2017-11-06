@@ -269,6 +269,9 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<p>Locals Contributed: \$$villageContribution</p>
     				</div>
     				<div class='card-action'>
+                        <a class='tooltip' style='text-decoration:none;position:absolute;right:0px;bottom:15px;text-transform:none;'><span class='tooltiptext'>Water Charity will match all donations made to this project!</span>
+                            <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />
+                        </a>
     					<div class='row center'>
     						<div class='col s12'>";
         if ($fundedPercent < 100) {
@@ -278,7 +281,8 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         } else {
             $nextBuffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
         }
-        $nextBuffer .= "</div>
+        $nextBuffer .= "
+                        </div>
     					</div>
     				</div>
     			</div>
