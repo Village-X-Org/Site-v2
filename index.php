@@ -232,7 +232,13 @@ if (hasParam('test')) {
 		<div class="row">
 <?php
 if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear FROM projects AS p1 JOIN villages ON p1.project_village_id=village_id LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget JOIN pictures ON p1.project_profile_image_id=picture_id GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded)");
+    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
+                FROM projects AS p1 
+                JOIN villages ON p1.project_village_id=village_id 
+                LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
+                JOIN pictures ON p1.project_profile_image_id=picture_id 
+                LEFT JOIN donors ON p1.project_matching_donor=donor_id 
+                GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded)");
     $buffer = '';
     $cells = array();
     while ($row = $result->fetch_assoc()) {
@@ -242,6 +248,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $funded = round($row['project_funded']);
         $projectTotal = $row['project_budget'];
         $previousYear = $row['previousYear'];
+        $matchingDonor = $row['matchingDonor'];
         $fundedPercent = $funded / $projectTotal * 100;
         $villageContribution = $projectTotal * .05;
         if (!isset($cells[$projectType])) {
@@ -268,7 +275,10 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					</div>
     					<p>Locals Contributed: \$$villageContribution</p>
     				</div>
-    				<div class='card-action'>
+    				<div class='card-action'>".($matchingDonor ? "
+				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:5px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-175%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
+                            <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />
+                        </a>" : "")."
     					<div class='row center'>
     						<div class='col s12'>";
         if ($fundedPercent < 100) {
@@ -278,7 +288,8 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         } else {
             $nextBuffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
         }
-        $nextBuffer .= "</div>
+        $nextBuffer .= "
+                        </div>
     					</div>
     				</div>
     			</div>
