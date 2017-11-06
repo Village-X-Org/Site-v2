@@ -247,21 +247,30 @@ function checked($key) {
 // End request processing
 
 function recordDonation($projectId, $donationAmountDollars, $donationId) {
-    $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
-    $stmt->bind_param("di", $donationAmountDollars, $projectId);
-    execute($stmt);
-    invalidateCaches($projectId);
-    $stmt->close();
-    
-    $stmt = prepare("SELECT project_name, project_funded, project_budget FROM projects WHERE project_id=?");
+    $stmt = prepare("SELECT project_name, project_funded, project_budget, project_matching_donor FROM projects WHERE project_id=?");
     $stmt->bind_param("i", $projectId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
         $funded = $row['project_funded'];
         $budget = $row['project_budget'];
+        $matchingDonorId = $row['project_matching_donor'];
         $stmt->close();
         
-        if ($funded >= $budget && $funded - $donationAmountDollars < $budget) {
+        if ($matchingDonorId) {
+            $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id) VALUES (?, ?, ?)");
+            $stmt->bind_param("idi", $matchingDonorId, $donationAmountDollars, $projectId);
+            execute($stmt);
+            $stmt->close();
+        }
+        
+        $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
+        $matchedDonation = $donationAmountDollars * ($matchingDonorId ? 2 : 1);
+        $stmt->bind_param("di", $matchedDonation, $projectId);
+        execute($stmt);
+        invalidateCaches($projectId);
+        $stmt->close();
+        
+        if ($funded >= $budget && $funded - $matchedDonation < $budget) {
             $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (3, ?)"); // 3=Project Funded in project_event_types
             $stmt->bind_param("i", $projectId);
             execute($stmt);
