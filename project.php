@@ -272,7 +272,7 @@ $(document).ready(function(){
 		    } 
 		       
 		    print ($matchingDonor ?
-		        "&nbsp;&nbsp;&nbsp;&nbsp;<a class='tooltip' style='text-decoration:none;text-transform:none;text-align:center;'>
+		        "<a class='tooltip' style='text-decoration:none;text-transform:none;text-align:center;'>
                                 <span class='tooltiptext'>$matchingDonor will match all donations made to this project!</span>
                                 <span style='position:absolute;top:-35%;left:-10%;color:black;font-size:16px;'><b> &nbsp;100%<BR><BR>Match</b></span>
                                 <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />
