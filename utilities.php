@@ -12,9 +12,11 @@ define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
 define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
 define("CACHED_PROJECT_PREFIX", "cached/project_");
-define("EMAIL_TYPE_PROJECT_UPDATE", 0);
+define("EMAIL_TYPE_PROJECT_FULLY_FUNDED", 0);
 define("EMAIL_TYPE_SUBSCRIPTION_CANCELLATION", 1);
 define("EMAIL_TYPE_THANKS_FOR_DONATING", 2);
+define("EMAIL_TYPE_PROJECT_COMPLETED", 3);
+define("EMAIL_TYPE_PROJECT_UPDATE", 4);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -29,7 +31,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$serverInfo = (isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : '').' '.(isset($_SERVER['SERVER_ADDR']) ? $_SERVER['SERVER_ADDR'] : '').' '.(isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] : '').' '.(isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '').' '.(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '').' '.(isset($_SERVER['USER_AGENT']) ? $_SERVER['USER_AGENT'] : '').' '.(isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : ''); 
 	sendMailSend(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$serverInfo\n\n$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail(), "");
 	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr</P>";
-	exit();
+    exit();
 }
 set_error_handler("emailErrorHandler");
 
@@ -284,9 +286,7 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
                 $donorFirstName = $donorRow['donor_first_name'];
                 $donorLastName = $donorRow['donor_last_name'];
                 
-                $type = EMAIL_TYPE_PROJECT_UPDATE;
-                $puText = "The project is fully funded!  It will get underway immediately.";
-                //$puText = "The project is finished!  Click the link below to view photos of your impact.";
+                $type = EMAIL_TYPE_PROJECT_FULLY_FUNDED;
                 ob_start();
                 $isSubscription = 1;
                 include("email_content.php");

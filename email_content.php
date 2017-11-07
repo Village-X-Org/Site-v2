@@ -10,7 +10,8 @@
 <style type="text/css">
 <?php include ('email_styles.inc');
 switch ($type) {
-    case EMAIL_TYPE_PROJECT_UPDATE:
+    case EMAIL_TYPE_PROJECT_COMPLETED:
+    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
         $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
@@ -159,7 +160,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php 
 																if ($donorFirstName) { 
         																switch ($type) {
-        																    case EMAIL_TYPE_PROJECT_UPDATE:
+        																    case EMAIL_TYPE_PROJECT_COMPLETED:
+        																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
         																        if (isset($useHonoree)) {
         																            print "Hi, $honoreeFirstName!";
@@ -181,9 +183,15 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.6; font-size: 20px; margin: 0 0 10px; padding: 0;"
 																align="left">
 																<?php switch ($type) {
-																    case EMAIL_TYPE_PROJECT_UPDATE:
+																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																        ?>
-																        A project you supported posted an update. <b><?php print $puText; ?></b>
+																       	Below is a picture of the project you supported. 
+																       	<b>For more pictures, and a post-project report, click on the link below.</b>
+																		<?php 
+																        break;
+																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+																        ?>
+																       	<b>The project is fully funded!  It will get underway immediately.</b>
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -217,7 +225,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
 																align="left">
 															<?php switch ($type) {
-																    case EMAIL_TYPE_PROJECT_UPDATE:
+															        case EMAIL_TYPE_PROJECT_COMPLETED:
+															            break;
+															        case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        print "Donation details";
 																        break;
@@ -266,7 +276,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									</p>
 																									
 																									<?php switch ($type) {
-                                        																    case EMAIL_TYPE_PROJECT_UPDATE:
+																									    case EMAIL_TYPE_PROJECT_COMPLETED:
+																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                                         																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                                         																        ?>
                                         																        <p
@@ -297,7 +308,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									align="left">
 																									
 																									<?php switch ($type) {
-                                        																    case EMAIL_TYPE_PROJECT_UPDATE:
+																									    case EMAIL_TYPE_PROJECT_COMPLETED:
+																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                                         																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                                         																        ?>
                                         																        <p
@@ -346,11 +358,52 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																</tr>
 															</table>
 															<?php switch ($type) {
-                    											        case EMAIL_TYPE_PROJECT_UPDATE:
+    															    case EMAIL_TYPE_PROJECT_COMPLETED:
+    															        ?>
+                    												        <img src="<?php print ABS_PICTURES_DIR.$pictureFilename; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    														<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                																<tr
+                																	style="vertical-align: top; text-align: left; padding: 0;"
+                																	align="left">
+                																	<th class="callout-inner primary"
+                																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                																		align="left" bgcolor="#def0fc">
+                																		<p
+                																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                																			align="left"></p> <center
+                																			style="width: 100%; min-width: 532px;">Here's the project you supported.</center>
+                																	</th>
+                																	<th class="expander"
+                																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                																		align="left"></th>
+                																</tr>
+                															</table>
+                    															<?php
+                    													break;
+    															    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                     												        ?>
                     												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
-                    														
+                    														<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                																<tr
+                																	style="vertical-align: top; text-align: left; padding: 0;"
+                																	align="left">
+                																	<th class="callout-inner primary"
+                																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                																		align="left" bgcolor="#def0fc">
+                																		<p
+                																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                																			align="left"></p> <center
+                																			style="width: 100%; min-width: 532px;">Here's a similar project.</center>
+                																	</th>
+                																	<th class="expander"
+                																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                																		align="left"></th>
+                																</tr>
+                															</table>
                     															<?php
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -370,8 +423,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     																		<p
                     																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
                     																			align="left"></p> <center
-                    																			style="width: 100%; min-width: 532px;">Here's a photo
-                    																		of a similar project.</center>
+                    																			style="width: 100%; min-width: 532px;">Here's a similar project.</center>
                     																	</th>
                     																	<th class="expander"
                     																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
@@ -416,7 +468,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 0 0 10px; padding: 0;"
 																align="left">
 																<?php switch ($type) {
-                    											        case EMAIL_TYPE_PROJECT_UPDATE:
+																    case EMAIL_TYPE_PROJECT_COMPLETED:
+																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                     											        case EMAIL_TYPE_THANKS_FOR_DONATING:
                     												        print "With profound gratitude,";
                     												        break;
