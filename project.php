@@ -23,10 +23,11 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events ON pe_project_id=project_id 
-                LEFT JOIN donations ON donation_project_id=project_id
                 LEFT JOIN donors ON project_matching_donor=donor_id 
+                LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
+                        UNION (SELECT sd_donor_id AS donation_donor_id, sd_project_id AS donation_project_id FROM subscription_disbursals WHERE sd_project_id=?)) AS derived ON donation_project_id=project_id
                 WHERE project_id=? GROUP BY project_id");
-$stmt->bind_param('i', $projectId);
+$stmt->bind_param('iii', $projectId, $projectId, $projectId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
@@ -180,6 +181,9 @@ $(document).ready(function(){
     			
  		
      		<script>
+         		$(document).ready(function(){ 
+         			$('#honoreeModal').modal(); 
+         		}); 
 				function showHonoreeModal() {
 					if (document.getElementById('honoreeCheckbox').checked) { 
 						setTimeout(function() { 
