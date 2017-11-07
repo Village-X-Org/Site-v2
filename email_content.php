@@ -184,9 +184,14 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																align="left">
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
+																        ?>
+																       	Below is a picture of the project you supported. 
+																       	<b>For more pictures, and a post-project report, click on the link below.</b>
+																		<?php 
+																        break;
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
 																        ?>
-																        A project you supported posted an update. <b><?php print $puText; ?></b>
+																       	<b>The project is fully funded!  It will get underway immediately.</b>
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
@@ -354,6 +359,29 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															</table>
 															<?php switch ($type) {
     															    case EMAIL_TYPE_PROJECT_COMPLETED:
+    															        ?>
+                    												        <img src="<?php print ABS_PICTURES_DIR.$pictureFilename; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    														<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                																<tr
+                																	style="vertical-align: top; text-align: left; padding: 0;"
+                																	align="left">
+                																	<th class="callout-inner primary"
+                																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                																		align="left" bgcolor="#def0fc">
+                																		<p
+                																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                																			align="left"></p> <center
+                																			style="width: 100%; min-width: 532px;">Here's the project you supported.</center>
+                																	</th>
+                																	<th class="expander"
+                																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                																		align="left"></th>
+                																</tr>
+                															</table>
+                    															<?php
+                    													break;
     															    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                     												        ?>
                     												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
