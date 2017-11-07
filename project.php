@@ -18,7 +18,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
@@ -37,6 +37,7 @@ if ($row = $result->fetch_assoc()) {
     $problem = $row['project_community_problem'];
     $solution = $row['project_community_solution'];
     $partners = $row['project_community_partners'];
+    $completion = $row['project_completion'];
     $impact = $row['project_impact'];
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
@@ -482,6 +483,7 @@ $(document).ready(function(){
             if ($count == 0) {
                 print "<hr width='85%'><div id='pics' class='section scrollspy'>
 				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
+                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>$completion</span>" : "")."
                                 <div class='carousel'>";
             }
             print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
