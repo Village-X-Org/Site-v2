@@ -166,7 +166,7 @@ include('header.inc');
 		
 		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
 			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" width="800" height="800" class="responsive-img" style="border-radius:20px;">
-			<p>Here's a photo of a similar project.</p>
+			<p>Here's a similar project.</p>
 		</div>
 	</div>
 </div>

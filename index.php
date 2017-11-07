@@ -276,7 +276,8 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<p>Locals Contributed: \$$villageContribution</p>
     				</div>
     				<div class='card-action'>".($matchingDonor ? "
-				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:5px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-175%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
+				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-175%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
+                            <span style='position:absolute;top:-35%;left:-10%;color:black;font-size:16px;'><b> &nbsp;100%<BR><BR>Match</b></span>
                             <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />
                         </a>" : "")."
     					<div class='row center'>
