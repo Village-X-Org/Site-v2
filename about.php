@@ -313,52 +313,6 @@
 				</div>
 			</div>
 		</div>
-		<!--  <div class="center-align">
-		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-			Board Members
-		</h4>
-	</div>
-	
-		<div class="section">
-			<div class="row">
-				<div class="col s12 m6 l6">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" src="temp/myson_profile.png">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-      						<p><a href="#">This is a link</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      					<p>Here is some more information about this product that is only revealed once clicked on.</p>
-    					</div>
-  				</div>
-					
-				</div>
-				
-				<div class="col s12 m6 l6">
-					
-				<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" src="temp/myson_profile.png">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
-      						<p><a href="#">This is a link</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      					<p>Here is some more information about this product that is only revealed once clicked on.</p>
-    					</div>
-  				</div>
-				
-				</div>
-			</div>
-		</div> -->
 </div>
 
 <?php include('footer.inc'); ?>
