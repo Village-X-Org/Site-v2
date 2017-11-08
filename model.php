@@ -24,7 +24,7 @@ require_once("utilities.php");
 			Overview
 	</h4></div> 	
 	
-	<blockquote class="flow-text">"We disrupt extreme poverty, at scale in rural Africa, by deploying targeted financing and retrieving impact data for 100% village-led development projects, practicing radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
+	<blockquote class="flow-text">"We disrupt extreme poverty, at scale in rural Africa, by deploying targeted financing and retrieving impact data for 100% village-led development projects, while celebrating radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
 	<br>
 		<div class="video-container" style="border-style:solid"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
@@ -184,7 +184,7 @@ require_once("utilities.php");
 </div>
 
 		<div class="col s12 m4 l4">
-			<div class="icon-block center brown-text" style="padding:0% 0% 9% 0%;">
+			<div class="icon-block center brown-text" style="padding:0% 9% 9% 9%;">
 			<i class="material-icons" style="font-size: 30px">account_balance</i>
 			<h5>bank fees</h5>
 			<h6 class="light center">credit card and money transfer fees</h6>
@@ -217,7 +217,7 @@ require_once("utilities.php");
 	<div class="flow-text brown-text" style="width:100%; padding: 0% 3% 5% 3%">
 			To achieve <b>scalabilty</b>, we recruit and train local field officers, and pay them per completed project. These ambitious young men and women possess smartphones and a passion for community development. 
                	A single field officer covers up to 30 villages a year, using local transportation and mobile technology to reach up to 40,000 people. 
-                This distributed network of oversight allows us rapidly to scale across districts, regions, or even countries.*
+                This distributed network of oversight allows us rapidly to scale across regions or even countries.
 			</div>
 			
 	<div class="row">
@@ -243,9 +243,9 @@ require_once("utilities.php");
     					
 	
 	
-	<h6 class="brown-text center-align" style="padding: 0% 0% 3% 0%">*For example, reaching every extreme poverty village in Malawi would cost only 
+	<!--  <h6 class="brown-text center-align" style="padding: 0% 0% 3% 0%">*For example, reaching every extreme poverty village in Malawi would cost only 
                 tens of millions of dollars per year, depending on the mix of projects chosen by villages. That's a sliver of the $1 billion in overseas development assistance
-                received by Malawi annually.</h6>	
+                received by Malawi annually.</h6>	  -->
 
 
 <hr>	
@@ -258,7 +258,7 @@ require_once("utilities.php");
 	</h4>
 </div> 
 	
-	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;">What do villages want? Let's put extreme poverty villages on the map and reveal their project preferences.</div>
+	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;"><b>What do villages want?</b> Let's put extreme poverty villages on the map and reveal their project preferences.</div>
 
 	<ul class="collapsible" data-collapsible="accordion">
     <li>
@@ -268,7 +268,7 @@ require_once("utilities.php");
     </li>
     </ul>
         		  
-	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;">Why do villages choose certain projects over others? Let's build models that predict projects villages will chose and use
+	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;"><b>Why do villages choose certain projects over others?</b> Let's build models that predict projects villages will chose and use
         		that information to better match development resources with local preferences.</div>
     
     <ul class="collapsible" data-collapsible="accordion">
@@ -280,7 +280,7 @@ require_once("utilities.php");
     </li>
     </ul>
     	 
- 	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;">What's the quantitative impact per dollar of funding village-led projects? Let's figure out when village-led projects
+ 	<div class="brown-text left text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="width:100%; padding: 2% 2% 2% 2%;"><b>What's the quantitative impact per dollar of funding village-led projects?</b> Let's figure out when village-led projects
         		add the most development bang per buck and, conversely, where the cost of outside experise is justified.</div>
      
     <ul class="collapsible" data-collapsible="accordion">
