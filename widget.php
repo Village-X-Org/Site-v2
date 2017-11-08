@@ -1,3 +1,4 @@
+<html><body style='overflow:hidden;'>
 <style>
 .meter { 
 	height: 7px;  /* Can be anything */
@@ -32,13 +33,27 @@
    0% { width: 0; }
    100% { width: auto; }
 }
+
+a { color: #005500;
+	     text-decoration: none;
+	     
+}
+a.tag { color: #FFFFFF;
+	text-decoration:none;
+}
+a.tag:hover {
+	font-weight:bold;
+}
+a.tag:focus {
+	font-weight:bold;
+}
 </style>
 <?php
     require_once("utilities.php");
     
     $projectId = paramInt('id');
     $orgId = paramInt('org');
-    $code = paramInt('code');
+    $code = param('code');
     
     $stmt = prepare("SELECT ad_id, ad_message FROM ads WHERE ad_org=? ORDER BY RAND()");
     $stmt->bind_param('i', $orgId);
@@ -59,12 +74,14 @@
             $villageName = $row['village_name'];
             $countryName = $row['country_label'];
             $percent = round(100 * $funded / $budget);
-            print "<TABLE cellspacing='10' style='cursor:pointer;width:500px;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
-            print "<img src='images/type_".$projectType.".svg' /></TD><TD>";
-            print "<span>$adMessage</span>";
-            print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code&ad=$adId' target='_blank'>$projectName</a></B> with $villageName Village!";
+            print "<TABLE cellspacing='10' style='cursor:pointer;width:580px;border:1px solid;' onclick=\"document.getElementById('projectLink').click();\"><TR><TD>";
+            print "<img src='images/type_".$projectType.".svg' style='height:50px;' /></TD><TD>";
+            print "<span style='font-size:14px;'>$adMessage";
+            print "  Help <B><a id='projectLink' href='".BASE_URL."$projectId?code=$code&ad=$adId' target='_blank'>$projectName</a></B> with $villageName Village!</span>";
             print "<div class='meter' style='margin-top:10px;'><span  style='width: $percent%'></span></div></TD></TR></TABLE>";
             
         }       
     }
 ?>
+</body>
+</html>
