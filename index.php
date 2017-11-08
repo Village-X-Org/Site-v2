@@ -276,9 +276,11 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<p>Locals Contributed: \$$villageContribution</p>
     				</div>
     				<div class='card-action'>".($matchingDonor ? "
-				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-10px;bottom:15px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-300%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
-                            <span style='position:absolute;top:-45%;left:-10%;color:black;font-size:12px;line-height:1.7'><b> &nbsp;100%<BR><BR>Match</b></span>
-                            <img src='images/matching.png' style='width:28px;border-radius:25px;padding:2px;border:2px solid black;' />
+				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>Partner $matchingDonor will match all donations!</span>
+                            <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>100%<br>Match</b></span>
+                            <!-- <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />  -->
+                            <i class='material-icons center' style='opacity:0.6;font-size:50px; color:#03A9F4;'>flash_on</i>
+
                         </a>" : "")."
     					<div class='row center'>
     						<div class='col s12'>";
@@ -388,11 +390,13 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:3% 0% 0% 0%">The Big Picture</h4>
-	<h6 class="header center" style="padding:0% 0% 1% 0%">(as of October 25, 2017)</h6>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:6% 0% 0% 0%">By the Numbers</h4>
 
-<div class="container">
+
+
+<div class="container" style="padding:0 0% 5% 0">
   
+ <!--  
 <div class="row">
 			
 			<div class="col s12 m12 l12 center-align" style="padding: 20px 50px 20px 50px">
@@ -452,6 +456,8 @@ if (CACHING_ENABLED) {
 		<h6 style="text-align: center; padding: 20px 10% 20px 10%">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
 				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
 	</div>
+	-->
+	
 	
 	<?php 
 
@@ -474,10 +480,10 @@ if (CACHING_ENABLED) {
 	
 	<div class="row">
 	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 40px 30px">
+	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 20px 30px">
 	<div class="center-align">
 	<div>
-		<h5 style="text-align: center"><b>People Helped</b></h5>
+		<h5 style="text-align: center"><b>People Helped*</b></h5>
 	
 		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
 		
@@ -486,7 +492,7 @@ if (CACHING_ENABLED) {
 	</div>
 	</div>
 	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 0px 30px">
+	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 15% 30px;margin:0 0 -15% 0">
 
 				<h5 style="text-align: center"><b>Types of Projects</b></h5>
 			<div>
@@ -517,7 +523,8 @@ if (CACHING_ENABLED) {
 						options : {
 								  startAngle: -Math.PI / 3,
 								  legend: {
-								    position: 'left'
+								    display:true,
+					    				position: 'top'
 								  },
 								}
 				});
@@ -528,16 +535,17 @@ if (CACHING_ENABLED) {
 	
 		
 	<div class="center-align">
-		<h5 style="text-align: center"><b>Elapsed Time</b></h5>
+		<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3><span class="light blue-text text-lighten-2" style="font-size:24px;">between project funding and completion</span>
+		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
+		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
 		
-		<h6 style="text-align: center;padding: 10px 20% 0px 20%">*based on average (times vary depending on project type)</h6>
+		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
 
 	</div>
 	
 	</div>
-		
+
 	</div>
 <?php 
         $contents = ob_get_contents();
@@ -796,4 +804,6 @@ if (CACHING_ENABLED) {
 		
 	</div> -->
 </div>
+
+<br><br>
 <?php include('footer.inc'); ?>
