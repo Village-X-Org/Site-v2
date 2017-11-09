@@ -366,17 +366,43 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:6% 0% 0% 0%">By the Numbers</h4>
-
-
-
-<div class="container" style="padding:0 0% 5% 0">
-	
-	
 	<?php 
 
 	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
 	    ob_start();
+
+	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC");
+	?>    
+	<h4 class="header center light blue-text text-lighten-2">News from the Villages</h4>
+        	<div class="carousel carousel-slider">
+        		<?php while ($row = $result->fetch_assoc()) {
+        		    $projectId = $row['project_id'];
+        		  $projectName = $row['project_name'];
+        		  $villageName = $row['village_name'];
+        		  $date = (new DateTime($row['pu_timestamp']))->format("F j, Y");
+        		  $completion = $row['project_completion'];
+        		  $picture = $row['picture_filename'];
+        		  $description = $row['pu_description'];
+        		?><a class="carousel-item" href="#<?php print $projectId; ?>">
+                	<TABLE style='width:100%;'>
+                		<TR>
+                			<TD style="vertical-align:top;padding:20px;"><BR>
+                				<span style='color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
+                            	<p/><span class='flow-text align-center' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span>
+                             <TABLE><TR><TD>&lt;&lt;</TD><TD stlye='text-align:right'>&gt;&gt;</TD></TABLE>
+                        </TD><TD style="padding:40px;">
+            					<img src='<?php print (PICTURES_DIR . $picture); ?>' style='border:solid black 2px;width:300px' />
+            				</TD>
+                		</TR>
+                	</TABLE></a>
+                	<?php } ?>
+        	</div>
+    <script>$('.carousel.carousel-slider').carousel({fullWidth: true});</script>
+	
+	<h4 class="header center light blue-text text-lighten-2">By the Numbers</h4>
+
+	<div class="container">
+	<?php 
 	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
                     SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
                     SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
@@ -392,9 +418,11 @@ if (CACHING_ENABLED) {
     ?>
 	
 	
+	
+	
 	<div class="row">
 	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 20px 30px">
+	<div class="col s12 m4 l4 center-align">
 	<div class="center-align">
 	<div>
 		<h5 style="text-align: center"><b>People Helped*</b></h5>
