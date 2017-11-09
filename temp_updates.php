@@ -17,19 +17,28 @@ while ($row = $result->fetch_assoc()) {
     if ($count == 0) {
         $pictures = explode(',', $pictureStr);
         $descriptions = explode('~', $descriptionStr);
-        print "<div id='newsPics' class='section scrollspy' style='margin:20px;position:relative;'>
-    			           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;' id='newsTitleSpan'>$projectName in $villageName - $date</h5>
-                            <span class='flow-text align-center' style='font-size:16px;' id='newsCompletionSpan'>$completion</span>
-
-                    <a href='' onclick='jumpToProject(--index); return false;' style='display:none;font-weight:bold;color:#4FC3F7;position:absolute;left:10px;top:25px;' id='newsPreviousProjectLink'>&lt;&lt;</a>
-                    <a href='' onclick='jumpToProject(++index); return false;' style='display:none;font-weight:bold;color:#4FC3F7;position:absolute;right:10px;top:25px;' id='newsNextProjectLink'>&gt;&gt;</a>
-                                <div class='carousel' id='newsCarouselDiv'>";
+        print "<div id='newsPics' class='section scrollspy' style='margin:20px;'>
+    			           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;' id='newsTitleSpan'>News from the Villages</h5>
+                    <TABLE style='width:100%;'><TR><TD style='width:50%;position:relative;vertical-align:top;'><BR><span style='color:black;font-weight:bold;'>$projectName in $villageName - $date</span>
+                            <p/><span class='flow-text align-center' style='font-size:16px;' id='newsCompletionSpan'>$completion</span>
+                    <TABLE style='padding:20px;'><TR><TD>
+                    <a href='' onclick='jumpToProject(--index); return false;' style='display:none;font-weight:bold;color:#4FC3F7; id='newsPreviousProjectLink'>&lt;&lt;</a>
+                    </TD><TD style='text-align:right;'>
+                    <a href='' onclick='jumpToProject(++index); return false;' style='font-weight:bold;color:#4FC3F7;' id='newsNextProjectLink'>October 15th, 2017 &gt;&gt;</a>
+                    </TD></TR></TABLE>    
+                    </TD><TD style='width:50%;'>
+                         <div class='carousel' id='newsCarouselDiv'>"; 
+                               
+                   
+                               
         $index = 0;
         foreach ($pictures AS $picture) {
             print "<a class='carousel-item' href='' onclick=\"$('#newsPictureCaptionId').text('".addslashes($descriptions[$index])."'); return false;\"><img src='".PICTURES_DIR."{$picture}' /></a>";
             $index++;
         }
-        print "</div>";
+        print "</div>
+        </TD></TR>
+        </TABLE>";
     } 
     print "<script>pictureStrs.push(\"$pictureStr\"); descriptionStrs.push(\"".addslashes($descriptionStr)."\"); completions.push(\"".addslashes($completion)."\");
             titles.push(\"$projectName in $villageName\"); dates.push(\"$date\");</script>"; 
