@@ -4,6 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- SLICK -->
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <?php include('header.inc'); 
@@ -374,7 +375,7 @@ if (CACHING_ENABLED) {
 	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC");
 	?>    
 	<h4 class="header center light blue-text text-lighten-2">News from the Villages</h4>
-        	<div class="carousel carousel-slider">
+        <div class="slickContainer">
         		<?php while ($row = $result->fetch_assoc()) {
         		    $projectId = $row['project_id'];
         		  $projectName = $row['project_name'];
@@ -383,21 +384,25 @@ if (CACHING_ENABLED) {
         		  $completion = $row['project_completion'];
         		  $picture = $row['picture_filename'];
         		  $description = $row['pu_description'];
-        		?><a class="carousel-item" href="#<?php print $projectId; ?>">
-                	<TABLE style='width:100%;'>
-                		<TR>
-                			<TD style="vertical-align:top;padding:20px;"><BR>
-                				<span style='color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
-                            	<p/><span class='flow-text align-center' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span>
-                             <TABLE><TR><TD>&lt;&lt;</TD><TD stlye='text-align:right'>&gt;&gt;</TD></TABLE>
-                        </TD><TD style="padding:40px;">
-            					<img src='<?php print (PICTURES_DIR . $picture); ?>' style='border:solid black 2px;width:300px' />
-            				</TD>
-                		</TR>
-                	</TABLE></a>
+        		?>
+              <div class="slickSlide" style='border:0;'>
+                	<div class='row'>
+    					<div class='col m8 s12'>
+                			<span style='color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
+                        <p/><span class='flow-text' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span>
+                    </div>
+    					<div class='col m4 s12'>
+            					<img src='<?php print (PICTURES_DIR . $picture); ?>' class="align-center" style='border:solid black 2px;width:300px' />
+            			</div>
+                	</div>
+              </div>
                 	<?php } ?>
         	</div>
-    <script>$('.carousel.carousel-slider').carousel({fullWidth: true});</script>
+        <script>	$('.slickContainer').slick({
+          arrows: true,
+          focusOnSelect: false,
+        	  infinite: false 
+        	});</script>
 	
 	<h4 class="header center light blue-text text-lighten-2">By the Numbers</h4>
 
