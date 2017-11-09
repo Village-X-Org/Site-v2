@@ -47,10 +47,11 @@ if ($row = $result->fetch_assoc()) {
         
         $type = EMAIL_TYPE_PROJECT_COMPLETED;
         ob_start();
-        $isSubscription = 1;
         include("email_content.php");
         $output = ob_get_clean();
-        //print $output;
+        print "Sending Project Complete email to $donorFirstName $donorLastName ($donorEmail)";
         sendMail($donorEmail, "Project Complete!", $output, getCustomerServiceEmail());
     }
+} else {
+    print "You are not authorized to perform this action.";
 }
