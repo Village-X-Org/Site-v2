@@ -4,7 +4,6 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- SLICK -->
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <?php include('header.inc'); 
@@ -372,10 +371,13 @@ if (CACHING_ENABLED) {
 	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
 	    ob_start();
 
-	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC");
+	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
+                FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
+                JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC");
 	?>    
-	<h4 class="header center light blue-text text-lighten-2">News from the Villages</h4>
-        <div class="slickContainer">
+	<br>
+	<h4 class="header center light blue-text text-lighten-2">Village Stories</h4>
+        <div class="section"><div class="slickContainer" style='margin:auto;outline:none;max-width:1200px;'>
         		<?php while ($row = $result->fetch_assoc()) {
         		    $projectId = $row['project_id'];
         		  $projectName = $row['project_name'];
@@ -385,26 +387,22 @@ if (CACHING_ENABLED) {
         		  $picture = $row['picture_filename'];
         		  $description = $row['pu_description'];
         		?>
-              <div class="slickSlide" style='border:0;'>
+              <a href='project.php?id=<?php print $projectId; ?>' style='outline:0;'><div class="slickSlide" style='outline:0;margin-left:30px;margin-right:30px;'>
                 	<div class='row'>
-    					<div class='col m8 s12'>
-                			<span style='color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
-                        <p/><span class='flow-text' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span>
+    					<div class='col s12 m8' style='padding-right:40px;'>
+                			<span style='display:none;color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
+                        <span class='flow-text' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span><p/>
                     </div>
-    					<div class='col m4 s12'>
-            					<img src='<?php print (PICTURES_DIR . $picture); ?>' class="align-center" style='border:solid black 2px;width:300px' />
+    					<div class='col s12 m4 center-align' style="background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;height:200px;">
             			</div>
                 	</div>
-              </div>
+              </div></a>
                 	<?php } ?>
-        	</div>
+        	</div></div>
         <script>	$('.slickContainer').slick({
-          arrows: true,
           focusOnSelect: false,
         	  infinite: false 
         	});</script>
-	
-	<h4 class="header center light blue-text text-lighten-2">By the Numbers</h4>
 
 	<div class="container">
 	<?php 
@@ -428,18 +426,18 @@ if (CACHING_ENABLED) {
 	<div class="row">
 	
 	<div class="col s12 m4 l4 center-align">
-	<div class="center-align">
-	<div>
-		<h5 style="text-align: center"><b>People Helped*</b></h5>
+        	<div class="center-align">
+            	<div>
+            		<h5 style="text-align: center"><b>People Helped*</b></h5>
+            	
+            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
+            		
+            		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
+            	</div>
+		</div>
+	</div>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
-		
-		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
-	</div>
-	</div>
-	</div>
-	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 15% 30px;margin:0 0 -15% 0">
+	<div class="col s12 m4 l4 center-align" style="padding: 0px 30px 13% 30px;margin:0 0 -15% 0">
 
 				<h5 style="text-align: center"><b>Types of Projects</b></h5>
 			<div>
@@ -478,18 +476,17 @@ if (CACHING_ENABLED) {
 			</script>
 		</div>
 		
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 10px 30px">
-	
+	<div class="col s12 m4 l4 center-align" style="padding: 0px 30px 10px 30px">
 		
-	<div class="center-align">
-		<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
-	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
-		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
-		
-		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
-
-	</div>
+        	<div class="center-align">
+        		<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
+        	
+        		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
+        		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
+        		
+        		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
+        
+        	</div>
 	
 	</div>
 
