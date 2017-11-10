@@ -247,8 +247,8 @@ $(document).ready(function(){
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
 		<?php 
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
-                        ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
-                        UNION (SELECT sd_donor_id AS f_donor_id, 1 AS isSubscription FROM subscription_disbursals WHERE sd_project_id=?)) AS derived 
+                        ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0 ORDER BY donation_amount DESC) 
+                        UNION (SELECT sd_donor_id AS f_donor_id, 1 AS isSubscription FROM subscription_disbursals WHERE sd_project_id=? ORDER BY sd_amount DESC)) AS derived 
                     JOIN donors ON f_donor_id=donor_id GROUP BY donor_id ORDER BY (LENGTH(donor_first_name) > 0 AND donor_last_name <> donor_first_name) DESC LIMIT 20");
 		     $stmt->bind_param('ii', $projectId, $projectId);
 		     $result = execute($stmt);
