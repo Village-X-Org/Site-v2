@@ -110,7 +110,7 @@ if (hasParam('test')) {
 					</video>
 					</h2>
 					
-					<h5 class="center flow-text" style="font-weight: 600">We compute your impact</h5>
+					<h5 class="center flow-text" style="font-weight: 600;padding:0% 10% 0% 10%">We track your impact</h5>
 
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
 					 of how your donations change development outcomes for rural Africans.</p>
@@ -222,7 +222,7 @@ if (hasParam('test')) {
 <div class="container">
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Featured Projects</h4>
-	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate)</h6>
+	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate, usually within 30 days of funding)</h6>
 	<div class="icon-block" style="width:100%"><i class='material-icons left' style="font-size:20px;color:#03A9F4">timeline</i> = &nbsp;village data trends available
 	<br>
 	<i class='material-icons left' style="font-size:20px;color:#03A9F4">fiber_new</i> = &nbsp;data trends coming soon</div>
@@ -275,12 +275,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					</div>
     					<p>Locals Contributed: \$$villageContribution</p>
     				</div>
-    				<div class='card-action'>".($matchingDonor ? "
-				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>Partner $matchingDonor will match all donations!</span>
-                            <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>100%<br>Match</b></span>
-                            <!-- <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />  -->
-                            <i class='material-icons center' style='opacity:0.6;font-size:50px; color:#03A9F4;'>flash_on</i>
-                        </a>" : "")."
+    				<div class='card-action'>
     					<div class='row center'>
     						<div class='col s12'>";
         if ($fundedPercent < 100) {
@@ -336,128 +331,8 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-<!-- <hr width="85%">
-
-  <div class="container">
-	<br>
-	<h5 class="header center brown-text text-lighten-2">Map-Based
-		Reporting</h5>
-	<p style="text-align: center;">
-		<img src="images/map_screenshot.png"
-			style="opacity: 0.7; width: 100%; height: auto;">
-	</p>
-</div> -->
-
-<div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		
-		<div class="row center">
-        	<div class="valign-wrapper">
-          <div class="card white" style="opacity: 0.7; border-radius:20px;">
-            <div class="card-content black-text">
-              <span class="card-title"><b>want good stories from Africa?<br> try our quarterly newsletter</b></span>
-      		
-    		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
-      		<div class="row">
-        			<div class="input-field col s12" style="color:#03A9F4">
-         			<input value="" name="EMAIL" id="mce-EMAIL" placeholder="enter your email address" style="font-size:20px" id="mcd-email" type="email" class="email validate">
-        			</div>
-      		</div>
-    		
-			
-        		<div class="center-align" style="width:100%;">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
-  					</button>
-    			</div>
-    		
-    			<div style="position: absolute; left: -5000px;" aria-hidden="true">
-								<input type="text" name="b_0aa3c6538384ca95760dc6be6_2efaede0d4" tabindex="-1" value="">
-			</div>
-			
-			</form>
-			
-			</div>	
-          </div>
-        </div>
-      
-			<div class="parallax">
-				<img src="images/newsletter_banner_2.jpg">
-			</div>
-		</div>
-	</div>
-</div>
-
-	<h4 class="header center light blue-text text-lighten-2" style="padding:6% 0% 0% 0%">By the Numbers</h4>
 
 
-
-<div class="container" style="padding:0 0% 5% 0">
-  
- <!--  
-<div class="row">
-			
-			<div class="col s12 m12 l12 center-align" style="padding: 20px 50px 20px 50px">
-
-				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h5>
-			<div>
-				<canvas id="chart1" width="350" height="350"></canvas>
-			</div>
-
-			<script>
-				var ctx = document.getElementById("chart1").getContext('2d');
-
-				var chart1 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ 2014, 2015, 2016],
-						datasets : [ {
-							label: "Partner Villages Average",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "#6495ED",
-                             pointBackgroundColor: "#6495ED",
-                             pointRadius: 10,
-							data : [ 11.92, 12.42, 16.93 ],
-							cubicInterpolationMode: 'monotone',
-						}, 
-
-						{
-							label: "Control Villages Average",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "#9D8E7F",
-                             pointBackgroundColor: "#9D8E7F",
-                             pointRadius: 10,
-							data : [ 13.72, 12.11, 9.5 ],
-							cubicInterpolationMode: 'monotone',
-						}]
-						}, 
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : false,
-							}
-						} ]
-					},
-					}
-
-				});
-			</script>
-		</div>
-		<h6 style="text-align: center; padding: 20px 10% 20px 10%">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
-				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
-	</div>
-	-->
-	
-	
 	<?php 
 
 	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
@@ -476,7 +351,7 @@ if (CACHING_ENABLED) {
         }
     ?>
 	
-	
+	<!-- 
 	<div class="row">
 	
 	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 20px 30px">
@@ -560,6 +435,162 @@ if (CACHING_ENABLED) {
         include(CACHED_CHARTS_FILENAME);
     }
     ?>
+-->
+<!-- 
+  <div class="container">
+	<br>
+	<h5 class="header center brown-text text-lighten-2">Map-Based
+		Reporting</h5>
+	<p style="text-align: center;">
+		<img src="images/map_screenshot.png"
+			style="opacity: 0.7; width: 100%; height: auto;">
+	</p>
+</div> -->
+
+<div id="index-banner" class="parallax-container"
+	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper"
+		style="height: 100%; width: 100%;">
+		
+		<div class="row center">
+        	<div class="valign-wrapper">
+          <div class="card white" style="opacity: 0.7; border-radius:20px;">
+            <div class="card-content black-text">
+              <span class="card-title"><b>want good news from Africa?<br> try our quarterly newsletter</b></span>
+      		
+    		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
+      		<div class="row">
+        			<div class="input-field col s12" style="color:#03A9F4">
+         			<input value="" name="EMAIL" id="mce-EMAIL" placeholder="enter your email address" style="font-size:20px" id="mcd-email" type="email" class="email validate">
+        			</div>
+      		</div>
+    		
+			
+        		<div class="center-align" style="width:100%;">
+          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
+  					</button>
+    			</div>
+    		
+    			<div style="position: absolute; left: -5000px;" aria-hidden="true">
+								<input type="text" name="b_0aa3c6538384ca95760dc6be6_2efaede0d4" tabindex="-1" value="">
+			</div>
+			
+			</form>
+			
+			</div>	
+          </div>
+        </div>
+      
+			<div class="parallax">
+				<img src="images/newsletter_banner_2.jpg">
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container">
+
+<h4 class="header center light blue-text text-lighten-2" style="padding:3% 0 1% 0">Stories of Hope</h4>
+
+<div class="valign-wrapper" style="display:table; width:100%;">
+  	     <div class="valign-wrapper">
+  	     <div class="col-project" style="vertical-align: middle;width:25%;height:100%;white-space:nowrap">
+				<div class="valign-wrapper" style="opacity:0.7;vertical-align: middle;white-space:nowrap"><i class="material-icons left" style="font-size: 40px">fast_rewind</i><span class="hide-on-med-and-down">Nov 12, 2017</span></div>
+		</div>
+		<div class="flow-text blue-text col-project center-align" style="vertical-align: middle; width:50%;white-space:nowrap">
+				<b>Nov 1, 2017</b>
+		</div>
+		<div class="col-project" style="vertical-align: middle; width:25%;white-space:nowrap">
+				<div class="valign-wrapper pull-right" style="opacity:0.7;vertical-align: middle;white-space:nowrap"><span class="hide-on-med-and-down">Oct 12, 2017</span><i class="material-icons right" style="font-size: 40px">fast_forward</i></div>
+		</div>
+		</div>
+</div>
+
+
+
+<h4 class="center-align">Project Completed - Start a Goat Herd</h4>
+<div class="valign-wrapper; center-align" style="padding:1% 0 2% 0">POSTED BY: <a class="blue-text" href=""><b>Kazembe Village, Malawi</b></a></div>
+<div style="display:table; width:100%;padding:1% 0% 0% 0%">
+  	     <div class="col-project flow-text center-align" style="vertical-align: middle;height:100%; padding:2% 2% 0% 2%">
+				<div class="valign-wrapper" style="vertical-align: middle">On Monday, November 6, 2017, Kazembe Village received 40 female goats. Over time, 80 families will share the offspring. Moreen Lihaka, 
+				a mother of three whose husband left 5 years ago, said "I feel strong now because in the future I will be able to support my kids for education." She added that goats are assets that she can use 
+				to rent more land for cultivation during the rainy season, improving food production for her family.</div>
+		</div>
+		
+		<div class="col-project center-align" style="vertical-align: middle; width:330px;padding:2% 2% 0% 2%">
+				<div class="valign-wrapper" style="vertical-align: middle;border-style:solid">
+				<img src="temp/nakhwala_goats.jpg" class="responsive-img" style='width:100%;'>	
+			</div>
+		</div>
+</div>
+</div>
+
+
+
+<div class="container" style="padding:0 0% 5% 0">
+  
+ <!--  
+<div class="row">
+			
+			<div class="col s12 m12 l12 center-align" style="padding: 20px 50px 20px 50px">
+
+				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:#9D8E7F">Control Villages</span></b></h5>
+			<div>
+				<canvas id="chart1" width="350" height="350"></canvas>
+			</div>
+
+			<script>
+				var ctx = document.getElementById("chart1").getContext('2d');
+
+				var chart1 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ 2014, 2015, 2016],
+						datasets : [ {
+							label: "Partner Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "#6495ED",
+                             pointBackgroundColor: "#6495ED",
+                             pointRadius: 10,
+							data : [ 11.92, 12.42, 16.93 ],
+							cubicInterpolationMode: 'monotone',
+						}, 
+
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "#9D8E7F",
+                             pointBackgroundColor: "#9D8E7F",
+                             pointRadius: 10,
+							data : [ 13.72, 12.11, 9.5 ],
+							cubicInterpolationMode: 'monotone',
+						}]
+						}, 
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+					scales : {
+						yAxes : [ {
+							ticks : {
+								beginAtZero : false,
+							}
+						} ]
+					},
+					}
+
+				});
+			</script>
+		</div>
+		<h6 style="text-align: center; padding: 20px 10% 20px 10%">*Average scores calculated from 13 data points per village, along 6 dimensions: health, agriculture, business, livestock, lifestyle, and education. Learn more 
+				<a style='color:#696969;font-weight:bold;' href='impacts.php'>here</a>.</h6>
+	</div>
+	-->
+	
 	<!--  
 	<div class="row">
 	
