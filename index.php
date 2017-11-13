@@ -382,7 +382,7 @@ if (CACHING_ENABLED) {
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
         		    if ($row = $result->fetch_assoc()) {
-        		        $date = (new DateTime($row['pu_timestamp']))->format("F j, Y");
+        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS");
         		    } else {
         		        $date = 0;
         		    }

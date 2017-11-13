@@ -483,7 +483,7 @@ $(document).ready(function(){
             if ($count == 0) {
                 print "<hr width='85%'><div id='pics' class='section scrollspy'>
 				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
-                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>$completion</span>" : "")."
+                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>".strip_tags($completion)."</span>" : "")."
                                 <div class='carousel'>";
             }
             print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
