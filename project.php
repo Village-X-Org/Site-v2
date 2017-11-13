@@ -18,12 +18,13 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events ON pe_project_id=project_id 
                 LEFT JOIN donors ON project_matching_donor=donor_id 
+                LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
                 LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
                         UNION (SELECT sd_donor_id AS donation_donor_id, sd_project_id AS donation_project_id FROM subscription_disbursals WHERE sd_project_id=?)) AS derived ON donation_project_id=project_id
                 WHERE project_id=? GROUP BY project_id");
@@ -50,6 +51,8 @@ if ($row = $result->fetch_assoc()) {
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
     $matchingDonor = $row['matchingDonor'];
+    $exemplaryPicture = $row['exemplaryPicture'];
+    $exemplaryDescription = $row['pu_description'];
     
     $villageContribution = round($total * .05);
     $percentFunded = max(5, round($funded * 100 / $total));
@@ -105,9 +108,9 @@ $(document).ready(function(){
   	
   	<div style="display:table; width:100%">
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-				<img src="<?php print PICTURES_DIR.$pictureFilename; ?>" class="responsive-img" style='width:400px;'>
+				<img src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; border: black 2px solid; box-shadow: 10px 10px 5px #888888; border-radius:10px;'>
 				<p class="valign-wrapper; center-align">
-					<b>Here's a similar project.</b>
+					<b><?php print ($exemplaryPicture ? "Project complete!" : "Here's a similar project."); ?></b>
 				<br>
 		</div>
 				
