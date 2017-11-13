@@ -378,26 +378,49 @@ if (CACHING_ENABLED) {
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Village Stories</h4>
         <div class="section"><div class="slickContainer" style='margin:auto;outline:none;max-width:1200px;'>
-        		<?php while ($row = $result->fetch_assoc()) {
+        		<?php 
+        		$count = $lastDate = $previousDate = 0;
+        		while (true) {
+        		    if ($row = $result->fetch_assoc()) {
+        		        $date = (new DateTime($row['pu_timestamp']))->format("F j, Y");
+        		    } else {
+        		        $date = 0;
+        		    }
+        		    if ($count > 0) {
+        		        ?>
+            		    <div class="slickSlide" style='outline:0;margin-left:30px;margin-right:30px;'>
+            		    <div class='row'>
+            		    <div class='col s12 m8' style='padding-right:40px;position:relative;'>
+                            <span class='flow-text' style='color:black;font-size:16px;cursor:pointer;' id='newsCompletionSpan' 
+                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
+                     <table style='width:100%;'>
+                     		<tr><td style='width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:gray;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
+                     		<td style='text-align:right;width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:gray;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
+                    	
+                        </div>
+        					<div class='col s12 m4 center-align' style="cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;height:200px;" 
+        							onclick="document.location='project.php?id=<?php print $projectId; ?>';">
+                			</div>
+                		</div>
+                  </div></a>
+        		   	<?php }
+        		   	if (!$date) {
+        		   		break;
+        		   	}
         		    $projectId = $row['project_id'];
-        		  $projectName = $row['project_name'];
-        		  $villageName = $row['village_name'];
-        		  $date = (new DateTime($row['pu_timestamp']))->format("F j, Y");
-        		  $completion = $row['project_completion'];
-        		  $picture = $row['picture_filename'];
-        		  $description = $row['pu_description'];
-        		?>
-              <a href='project.php?id=<?php print $projectId; ?>' style='outline:0;'><div class="slickSlide" style='outline:0;margin-left:30px;margin-right:30px;'>
-                	<div class='row'>
-    					<div class='col s12 m8' style='padding-right:40px;'>
-                			<span style='display:none;color:black;font-weight:bold;'><?php print "$projectName in $villageName - $date" ?></span>
-                        <span class='flow-text' style='color:black;font-size:16px;' id='newsCompletionSpan'><?php print $completion; ?></span><p/>
-                    </div>
-    					<div class='col s12 m4 center-align' style="background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;height:200px;">
-            			</div>
-                	</div>
-              </div></a>
-                	<?php } ?>
+        		  	$projectName = $row['project_name'];
+        		  	$villageName = $row['village_name'];
+        		  	$completion = $row['project_completion'];
+        		  	$picture = $row['picture_filename'];
+        		  	$description = $row['pu_description'];
+        		  	if ($lastDate) {
+        		  	    $previousDate = $lastDate;
+        		  	}
+        		  	$lastDate = $date;
+        		  	$count++;
+            } ?>
         	</div></div>
         <script>	$('.slickContainer').slick({
           focusOnSelect: false,
