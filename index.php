@@ -366,17 +366,74 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<h4 class="header center light blue-text text-lighten-2" style="padding:6% 0% 0% 0%">By the Numbers</h4>
-
-
-
-<div class="container" style="padding:0 0% 5% 0">
-	
-	
 	<?php 
 
 	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
 	    ob_start();
+
+	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
+                FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
+                JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
+	?>    
+	<br>
+	<h4 class="header center light blue-text text-lighten-2">Village Stories</h4>
+        <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
+        		<?php 
+        		$count = $lastDate = $previousDate = 0;
+        		while (true) {
+        		    if ($row = $result->fetch_assoc()) {
+        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS");
+        		    } else {
+        		        $date = 0;
+        		    }
+        		    if ($count > 0) {
+        		        ?>
+            		    <div class="slickSlide" style='outline:0;'>
+            		    <div class='row'>
+            		    <div class='col s12 m12 l6' style='position:relative;'>
+                            <span class='flow-text' style='color:black;font-size:18px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
+                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
+                     <table style='width:100%;'>
+                     		<tr><td style='width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
+                     		<td style='text-align:right;width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
+                    	
+                        </div>
+        					<div class='col s12 m12 l6 center-align'>
+        					 	<div style="margin:auto;width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
+                			</div>
+                		</div>
+                  </div></a>
+        		   	<?php }
+        		   	if (!$date) {
+        		   		break;
+        		   	}
+        		    $projectId = $row['project_id'];
+        		  	$projectName = $row['project_name'];
+        		  	$villageName = $row['village_name'];
+        		  	$completion = $row['project_completion'];
+        		  	$picture = $row['picture_filename'];
+        		  	$description = $row['pu_description'];
+        		  	
+        		  	$indexOfPeriod = strpos($completion, '.');
+        		  	$firstSentence = substr($completion, 0, $indexOfPeriod);
+        		  	
+        		  	if ($lastDate) {
+        		  	    $previousDate = $lastDate;
+        		  	}
+        		  	$lastDate = $date;
+        		  	$count++;
+            } ?>
+        	</div></div>
+        <script>	$('.slickContainer').slick({
+          focusOnSelect: false,
+        	  infinite: false 
+        	});</script>
+
+	<div class="container">
+	<?php 
 	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
                     SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
                     SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
@@ -392,73 +449,64 @@ if (CACHING_ENABLED) {
     ?>
 	
 	
+	
+	
 	<div class="row">
 	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 20px 30px">
-	<div class="center-align">
-	<div>
-		<h5 style="text-align: center"><b>People Helped*</b></h5>
+        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
+            	<div>
+            		<h5 style="text-align: center;"><b>People Helped*</b></h5>
+            	
+            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
+            		
+            		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
+            	</div>
+        	</div>
 	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
-		
-		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
-	</div>
-	</div>
-	</div>
-	
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 15% 30px;margin:0 0 -15% 0">
-
-				<h5 style="text-align: center"><b>Types of Projects</b></h5>
-			<div>
-				<canvas id="chart2" width="250" height="250"></canvas>
-			</div>
-
-			<script>
-				var ctx = document.getElementById("chart2").getContext('2d');
-
-				Chart.defaults.global.defaultFontFamily = "'Roboto', sans-serif";
-				Chart.defaults.global.defaultFontSize = 14;
-				
-				var chart2 = new Chart(ctx, {
-					type : 'polarArea',
-					data : {
-
-						labels: ["water","livestock","education","agriculture"],
-						  datasets: [{
-						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
-						    backgroundColor: [
-						      "rgba(255, 0, 0, 0.5)",
-						      "rgba(100, 255, 0, 0.5)",
-						      "rgba(200, 50, 255, 0.5)",
-						      "rgba(0, 100, 255, 0.5)"
-						    ]
-						  }]
-						},
-						options : {
-								  startAngle: -Math.PI / 3,
-								  legend: {
-								    display:true,
-					    				position: 'top'
-								  },
-								}
-				});
-			</script>
-		</div>
-		
-	<div class="col s12 m4 l4 center-align" style="padding: 20px 30px 10px 30px">
-	
-		
-	<div class="center-align">
-		<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
-	
-		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
-		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
-		
-		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
-
-	</div>
-	
-	</div>
+        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
+        
+    			<h5><b>Types of Projects</b></h5>
+    			<center><canvas id="chart2" style="max-width:250px;min-width:250px;"></canvas></center>
+    
+    			<script>
+    				var ctx = document.getElementById("chart2").getContext('2d');
+    
+    				Chart.defaults.global.defaultFontFamily = "'Roboto', sans-serif";
+    				Chart.defaults.global.defaultFontSize = 14;
+    				
+    				var chart2 = new Chart(ctx, {
+    					type : 'polarArea',
+    					data : {
+    
+    						labels: ["water","livestock","education","agriculture"],
+    						  datasets: [{
+    						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
+    						    backgroundColor: [
+    						      "rgba(255, 0, 0, 0.5)",
+    						      "rgba(100, 255, 0, 0.5)",
+    						      "rgba(200, 50, 255, 0.5)",
+    						      "rgba(0, 100, 255, 0.5)"
+    						    ]
+    						  }]
+    						},
+    						options : {
+    								  startAngle: -Math.PI / 3,
+    								  legend: {
+    								    display:true,
+    					    				position: 'top'
+    								  },
+    								}
+    				});
+    			</script>
+        </div>
+        		
+        	<div class="col s12 m4 l4 center-align" style='margin:auto;'>
+            	<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
+        		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
+        		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
+        		
+        		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
+        	</div>
 
 	</div>
 <?php 

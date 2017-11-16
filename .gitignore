@@ -4,3 +4,4 @@ config.php
 /nbproject/private/
 /.settings/
 cached/*
+uploads/*
