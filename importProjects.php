@@ -3,7 +3,7 @@ require_once("utilities.php");
 require_once("utility_readSheets.php");
 
 $spreadsheetId = '1YdE_8GNlF1HAKSnDozYZm9cRt0uzD877mRPgEF4Ub2A';
-$range = 'Sheet1!A:AK';
+$range = 'Sheet1!A:AM';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $sheet = $response->getValues();
 
@@ -52,6 +52,8 @@ foreach ($sheet as $projRow) {
     $status = $projRow[34];
     $type = $projRow[35];
     $category = $projRow[36];
+    $bestPic = isset($projRow[37]) ? $projRow[37] : 0;
+    $projectReport = isset($projRow[38]) ? $projRow[38] : "";
     
     $date = DateTime::createFromFormat("d/m/Y", $dateProjectPosted);
     $projYear = $date->format("Y");
@@ -120,10 +122,10 @@ foreach ($sheet as $projRow) {
     $result = doUnprotectedQuery("SELECT project_id FROM projects WHERE project_village_id=$villageId AND project_name='$projName'") ;
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
-        doUnprotectedQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_status='$status', project_type='$type', project_elapsed_days=$elapsedDays, project_people_reached=$peopleReached WHERE project_id=$projectId");
+        doUnprotectedQuery("UPDATE projects SET project_budget=$projCost, project_staff_id=$foId, project_banner_image_id=$bannerId, project_profile_image_id=$profileId, project_similar_image_id=$exampleId, project_date_posted=STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), project_lat=$lat, project_lng=$lng, project_summary='$summary', project_community_problem='$problem', project_community_solution='$solution', project_community_partners='$partners', project_impact='$impact', project_status='$status', project_type='$type', project_elapsed_days=$elapsedDays, project_people_reached=$peopleReached, project_completion='".addslashes($projectReport)."' WHERE project_id=$projectId");
         invalidateCaches($projectId);
     } else {
-        doUnprotectedQuery("INSERT INTO projects (project_id, project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type, project_elapsed_days, project_people_reached) VALUES ($projId, $villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded, '$status', '$type', $elapsedDays, $peopleReached)");
+        doUnprotectedQuery("INSERT INTO projects (project_id, project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type, project_elapsed_days, project_people_reached, project_completion) VALUES ($projId, $villageId, '$projName', $lat, $lng, $projCost, $foId, $bannerId, $profileId, $exampleId, '$summary', '$problem', '$solution', '$partners', '$impact', $funded, '$status', '$type', $elapsedDays, $peopleReached, '".addslashes($projectReport)."')");
         $projectId = $link->insert_id;
     }
     
@@ -136,22 +138,25 @@ foreach ($sheet as $projRow) {
     doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'pics/data', $projDataPics, 6)");
     
     doUnprotectedQuery("DELETE FROM project_events WHERE pe_project_id=$projectId");
-    $row = doUnprotectedQuery("SELECT pe_id FROM project_events WHERE pe_project_id=$projectId");
-    if ($row = $result->fetch_assoc()) {
-    } else {
-        doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Village Raises Cash Contribution' LIMIT 1), STR_TO_DATE('$dateCommunityContribution', '%m/%d/%Y'), $projectId)");
-        doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Posted' LIMIT 1), STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), $projectId)");
-        if (strlen($dateProjectFunded) > 3) {
-            doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Funded' LIMIT 1), STR_TO_DATE('$dateProjectFunded', '%m/%d/%Y'), $projectId)");
-            if (strlen($dateProjectCompleted) > 3) {
-                doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Completed' LIMIT 1), STR_TO_DATE('$dateProjectCompleted', '%m/%d/%Y'), $projectId)");
-            }
+    doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Village Raises Cash Contribution' LIMIT 1), STR_TO_DATE('$dateCommunityContribution', '%m/%d/%Y'), $projectId)");
+    doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Posted' LIMIT 1), STR_TO_DATE('$dateProjectPosted', '%m/%d/%Y'), $projectId)");
+    if (strlen($dateProjectFunded) > 3) {
+        doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Funded' LIMIT 1), STR_TO_DATE('$dateProjectFunded', '%m/%d/%Y'), $projectId)");
+        if (strlen($dateProjectCompleted) > 3) {
+            doUnprotectedQuery("INSERT INTO project_events (pe_type, pe_date, pe_project_id) VALUES ((SELECT pet_id FROM project_event_types WHERE pet_label='Project Completed' LIMIT 1), STR_TO_DATE('$dateProjectCompleted', '%m/%d/%Y'), $projectId)");
         }
     }
     
     doUnprotectedQuery("DELETE FROM village_stats WHERE stat_village_id=$villageId AND (stat_type_id=18 OR stat_type_id=19) AND stat_year=$projYear");
     doUnprotectedQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, $population, $projYear)");
     doUnprotectedQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (19, $villageId, $households, $projYear)");
+
+    if ($bestPic) {
+        $result = doUnprotectedQuery("SELECT picture_id FROM pictures WHERE picture_filename='$bestPic'");
+        if ($row = $result->fetch_assoc()) {
+            doUnprotectedQuery("UPDATE project_updates SET pu_exemplary=1 WHERE pu_image_id={$row['picture_id']}");
+        }
+    }
 }
 
 include('getProjects.php');
