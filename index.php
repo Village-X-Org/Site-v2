@@ -391,17 +391,17 @@ if (CACHING_ENABLED) {
             		    <div class="slickSlide" style='outline:0;'>
             		    <div class='row'>
             		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:18px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
                      		<td style='text-align:right;width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
         							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
                 			</div>
                 		</div>
@@ -466,7 +466,7 @@ if (CACHING_ENABLED) {
         	<div class="col s12 m4 l4 center-align" style="margin:auto;">
         
     			<h5><b>Types of Projects</b></h5>
-    			<center><canvas id="chart2" style="max-width:250px;min-width:250px;"></canvas></center>
+    			<center><canvas id="chart2" style="max-width:250px;min-width:250px;margin:auto;"></canvas></center>
     
     			<script>
     				var ctx = document.getElementById("chart2").getContext('2d');
