@@ -209,3 +209,8 @@ a {
 .tooltip:hover .tooltiptext {
     opacity:1;
 }
+
+.project-title-text {
+	font-weight: 600;
+	font-size: 17px;
+}
