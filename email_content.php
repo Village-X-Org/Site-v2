@@ -14,9 +14,10 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT donor_id, donor_first_name, donor_email, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
-                    JOIN donors ON donation_donor_id=donor_id
+        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
+                    JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
+                    LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
                     JOIN pictures ON project_similar_image_id=picture_id
@@ -24,10 +25,11 @@ switch ($type) {
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
         if ($row = $result->fetch_assoc()) {
-            $donorId = $row['donor_id'];
-            $donorFirstName = $row['donor_first_name'];
-            $donorEmail = $row['donor_email'];
+            $donorId = $row['donorId'];
+            $donorFirstName = $row['donorFirstName'];
+            $donorEmail = $row['donorEmail'];
             $donationAmountDollars = $row['donation_amount'];
+            $matchingDonor = $row['matchingDonor'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
@@ -315,7 +317,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
+            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print ($matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
             																									</p>
             																									<?php if (isset($projectName)) { ?>
             																									<p

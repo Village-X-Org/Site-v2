@@ -110,19 +110,19 @@ require_once("utilities.php");
 						</div>
 						<p>Locals Contributed: \$$villageContribution</p>
 					</div>
-					<div class='card-action'>"
-					.($matchingDonor ? "
-					<a class='tooltip' style='text-decoration:none;position:absolute;right:-10px;bottom:15px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-300%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
-					<span style='position:absolute;top:-45%;left:-10%;color:black;font-size:12px;line-height:1.7'><b> &nbsp;100%<BR><BR>Match</b></span>
-					<img src='images/matching.png' style='width:28px;border-radius:25px;padding:2px;border:2px solid black;' />
-					</a>" : "").
-           	 	     "<div class='row center'>
+					<div class='card-action'>".($matchingDonor ? "
+				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>Partner $matchingDonor will match all donations made to this project!</span>
+                            <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>Gift<br>Match</b></span>
+                            <!-- <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />  -->
+                            <i class='material-icons center' style='opacity:0.6;font-size:50px; color:#03A9F4;'>flash_on</i>
+                        </a>" : "")."
+           	 	     <div class='row center'>
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
                $buffer .= "<a href='one_time_payment_view.php?id=$projectId'
 								id='donate_button'
-								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
+								class='btn waves-effect waves-light light blue lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
             } else {
                 $buffer .= "<button class='btn grey' >Fully Funded!</button>";
             }

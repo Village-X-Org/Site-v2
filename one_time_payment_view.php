@@ -51,7 +51,7 @@ require_once("utilities.php");
       $stmt->close();
      
   }
-  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
+  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, project_matching_donor, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
         JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id
@@ -62,6 +62,7 @@ require_once("utilities.php");
   if ($row = $result->fetch_assoc()) {
       $projectName = $row['project_name'];
       $villageName = $row['village_name'];
+      $matchingDonor = $row['project_matching_donor'];
       $projectFunded = $row['project_funded'];
       $projectBudget = $row['project_budget'];
       $summary = $row['project_summary'];
@@ -121,7 +122,7 @@ include('header.inc');
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" style="width:100%;"> 
-                    					Donate 
+                    					Donate <?php print ($matchingDonor ? " (2x)" : ""); ?>
                     				</button>
             				   </div>
             				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
