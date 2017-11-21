@@ -172,7 +172,7 @@ $(document).ready(function(){
  				
                  <div class="row center-align" style="margin:0;">
              		<div class="input-field col s12" style="padding:0;margin:0;">
-             			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate</button>
+             			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></button>
          			</div>
          		</div>
     			</form>
@@ -232,7 +232,7 @@ $(document).ready(function(){
 				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>'
 				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
-				<i class="material-icons left">favorite_border</i>Donate</a>
+				<i class="material-icons left">favorite_border</i>Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></a>
 				<?php } else { ?>
 				<button 
 				class="btn-large grey">
