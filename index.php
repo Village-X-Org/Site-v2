@@ -22,14 +22,14 @@ if (hasParam('test')) {
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund Projects That Villages Choose</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Defeat Extreme Poverty in Africa</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
 				<br>
 				<br>
 				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					to disrupt extreme poverty in rural Africa</h5>
+					by funding projects that villages choose</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">
@@ -48,6 +48,8 @@ if (hasParam('test')) {
 </div>
 
 <div class="container">
+	<br>
+	<blockquote class="flow-text">Extreme poverty is not only a condition of unsatisfied material needs. It is often accompanied by a degrading state of powerlessness. -- Prof. Peter Singer, Princeton</blockquote>
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
@@ -110,7 +112,7 @@ if (hasParam('test')) {
 					</video>
 					</h2>
 					
-					<h5 class="center flow-text" style="font-weight: 600">We compute your impact</h5>
+					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
 
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
 					 of how your donations change development outcomes for rural Africans.</p>
@@ -135,7 +137,7 @@ if (hasParam('test')) {
 			<div class="col s12 m3 l3">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">trending_down</i>
-					<h5 class="center brown-test">waterborne illness</h5>
+					<h5 class="center brown-test" style="padding: 0% 5% 0% 5%">waterborne illness</h5>
 					<h4 class="light center">-70%</h4>
 					<h6 class="light center">p-value&lt;=0.01</h6>
 					<br> 
@@ -275,7 +277,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         if ($fundedPercent < 100) {
             $nextBuffer .= "<a href='one_time_payment_view.php?id=$projectId'
     								id='donate_button'
-    								class='btn waves-effect waves-light light blue lighten-1'>Donate</a>";
+    								class='btn waves-effect waves-light light blue lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
         } else {
             $nextBuffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
         }
