@@ -14,7 +14,8 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename FROM donations
+        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename,
+                        CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
                     LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
