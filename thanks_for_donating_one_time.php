@@ -3,9 +3,11 @@
 <head>
 
 <?php 
-$stmt = prepare("SELECT project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount
+$stmt = prepare("SELECT project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount, 
+            CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
         FROM projects JOIN villages ON project_id=? AND project_village_id=village_id
         JOIN countries ON country_id=village_country
+        LEFT JOIN donors ON donor_id=project_matching_donor
         JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
         JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
         JOIN pictures ON picture_id=project_banner_image_id ORDER BY hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1"); 
@@ -13,6 +15,7 @@ $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
+    $matchingDonor = $row['matchingDonor'];
     $villageName = $row['village_name'];
     $bannerPicture = $row['picture_filename'];
     $summary = $row['project_summary'];
@@ -64,7 +67,8 @@ include('header.inc'); ?>
               <?php if ($donorFirstName) { ?>
               	<p><?php print $donorFirstName; ?>,</p>
               <?php } ?> 
-    				<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! You have disrupted 
+    				<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! 
+    				<?php print ($matchingDonor ? "With the match from $matchingDonor, this is worth $".($donationAmountDollars * 2)."! " : ""); ?>You have disrupted 
     				extreme poverty for <?php print $peopleCount; ?> people and <?php print $householdCount ?> households in <?php print $countryLabel; ?>.</p>
     				<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
     				stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
