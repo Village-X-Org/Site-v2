@@ -44,34 +44,36 @@ if ($row = $result->fetch_assoc()) {
 
 $subscriptionId = "NULL";
 
-if ($isSubscription) {
-    $planName = "basic-monthly-$donorId-".time();
-     try {
-         $plan = \Stripe\Plan::create(array(
-             "name" => "Basic Plan",
-             "id" => $planName,
-             "interval" => "month",
-             "currency" => "usd",
-             "amount" => $donationAmount,
-         ));
+if ($token !== 'offline') {
+    if ($isSubscription) {
+        $planName = "basic-monthly-$donorId-".time();
+         try {
+             $plan = \Stripe\Plan::create(array(
+                 "name" => "Basic Plan",
+                 "id" => $planName,
+                 "interval" => "month",
+                 "currency" => "usd",
+                 "amount" => $donationAmount,
+             ));
+                 
+             $customer = \Stripe\Customer::create(array(
+                 'email' => $donorEmail,
+                 'source'  => $token,
+                 'plan' => $plan
+             ));
+             $subscriptionId = $customer->subscriptions->data[0]->id;
              
-         $customer = \Stripe\Customer::create(array(
-             'email' => $donorEmail,
-             'source'  => param('stripeToken'),
-             'plan' => $plan
-         ));
-         $subscriptionId = $customer->subscriptions->data[0]->id;
-         
-    } catch (Exception $e) {
-        sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
+        } catch (Exception $e) {
+            sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
+        }
+    } else {
+        $charge = \Stripe\Charge::create(array(
+            "amount" => $donationAmount,
+            "currency" => "usd",
+            "description" => "Project Donation",
+            "source" => $token,
+        ));
     }
-} else {
-    $charge = \Stripe\Charge::create(array(
-        "amount" => $donationAmount,
-        "currency" => "usd",
-        "description" => "Project Donation",
-        "source" => $token,
-    ));
 }
 
 $donationAmountDollars = $donationAmount / 100;
@@ -84,7 +86,7 @@ if (isset($_SESSION['code'])) {
 $stmt = prepare("SELECT donation_id FROM donations WHERE donation_remote_id=?");
 $stmt->bind_param("s", $token);
 $result = execute($stmt);
-if ($row = $result->fetch_assoc()) {
+if ($row = $result->fetch_assoc() && $token !== 'offline') {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
