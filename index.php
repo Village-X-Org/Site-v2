@@ -13,6 +13,9 @@ if (hasParam('code')) {
 if (hasParam('test')) {
     $_SESSION['test'] = param('test');
 }
+if (hasParam('offline')) {
+    $_SESSION['offline'] = param('offline');
+}
 ?>
 
 <div id="index-banner" class="parallax-container"
