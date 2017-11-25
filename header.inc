@@ -209,16 +209,17 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
  <?php if (isset($_SESSION['offline']) && $_SESSION['offline'] == 1) { ?>
  	  form = document.getElementById('donateForm');
 	  form.stripeToken.value = 'offline';
-	  form.stripeEmail.value = prompt('Enter an email for this donation');
-	  form.stripeAmount.value = amount;
-	  form.isSubscription.value = subscribe;
-	  form.firstName.value = firstName;
-	  form.lastName.value = lastName;
-	  form.projectId.value = projectId;
-	  form.honoreeId.value = honoreeId;
-	  form.honoreeMessage.value = honoreeMessage;
-	  
-	  form.submit();
+	  if (form.stripeEmail.value = prompt('Enter an email for this donation')) {
+        	  form.stripeAmount.value = amount;
+        	  form.isSubscription.value = subscribe;
+        	  form.firstName.value = firstName;
+        	  form.lastName.value = lastName;
+        	  form.projectId.value = projectId;
+        	  form.honoreeId.value = honoreeId;
+        	  form.honoreeMessage.value = honoreeMessage;
+        	  
+        	  form.submit();
+	  }
  <?php } else { ?>
 	  donationIsSubscription = subscribe;
 	  donationFirstName = firstName;
