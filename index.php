@@ -59,9 +59,15 @@ if (hasParam('test')) {
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text">
+					<h2 class="center brown-text hide-on-large-only">
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 					</h2> 
+					
+					<h2 class="center brown-text hide-on-med-and-down">		
+ 						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
+ 							<source src="images/nachuma_water_480.mp4" type="video/mp4">		
+ 						</video>		
+ 					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
@@ -75,11 +81,15 @@ if (hasParam('test')) {
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85); inset 0px 0px 40px 40px #DBA632" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+					<h2 class="center brown-text hide-on-large-only">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
 					</h2>
 				
-					
+					<h2 class="center brown-text hide-on-med-and-down">		
+ 						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
+ 							<source src="images/geyser_spray_480.mp4" type="video/mp4">		
+ 						</video>		
+ 					</h2>
 					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
 
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
@@ -91,9 +101,15 @@ if (hasParam('test')) {
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center black-text">
+					<h2 class="center black-text hide-on-large-only">
 						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
+					
+					<h2 class="center brown-text hide-on-med-and-down">		
+     					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
+     						<source src="images/kids_borehole_low.mp4" type="video/mp4">		
+     					</video>		
+  					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
 
