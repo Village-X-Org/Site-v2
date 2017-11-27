@@ -4,7 +4,7 @@
 <?php if (!isset($metaProvided) || !$metaProvided) { ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
-<meta property="og:image" content="temp/IMG_1707.jpg"/>
+<meta property="og:image" content="images/header1.jpg"/>
 <meta property="og:title" content="This website disrupts extreme poverty in Africa."/>
 <meta property="og:url" content="<?php print BASE_URL; ?>"/>
 <meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
