@@ -108,7 +108,7 @@ require_once("utilities.php");
             </div>
             
             <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
-            <img src="images/monthly_giving_donation_page.png" width="800" height="800" class="responsive-img">
+            <img src="images/monthly_giving_donation_page.jpg" width="800" height="800" class="responsive-img">
             <div>Enjoy email updates with pictures and data from the field providing a vivid accounting of how your donations change development outcomes for rural Africans.</div>
 		</div>
                 
