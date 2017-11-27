@@ -60,7 +60,7 @@ if (hasParam('test')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="temp/Bakili.jpg">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 					</h2> 
 					
 					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
@@ -76,7 +76,7 @@ if (hasParam('test')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85); inset 0px 0px 40px 40px #DBA632" class="circle responsive-img" src="temp/building_school.jpg">
+						<img style="border:5px solid rgba(0, 0, 0, .85); inset 0px 0px 40px 40px #DBA632" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
 					</h2>
 				
 					
@@ -92,7 +92,7 @@ if (hasParam('test')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center black-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="temp/kids_on_school_floor.jpg">
+						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
