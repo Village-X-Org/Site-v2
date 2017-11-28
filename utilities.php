@@ -147,16 +147,10 @@ function doUnprotectedQuery($queryToBeExecuted) {
 	if (!($result = $link->query($queryToBeExecuted))) {
 		$email = '';
 		$trace = print_r(debug_backtrace(), true);
-		$name = 'Unlogged User';
-		if (isset($_SESSION['session_first_name'])) {
-			$name = $_SESSION['session_first_name'].' '.$_SESSION['session_last_name'];
-		}
-		
-		emailAdmin("Exception", "Exception caused by: $name\n\n".mysqli_error($link)."\n\n".$queryToBeExecuted."\n\n".$trace);
+
+		emailAdmin("Exception", "Exception caused by: ".mysqli_error($link)."\n\n".$queryToBeExecuted."\n\n".$trace);
 		print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
-		//if (isset($_SESSION['session_admin'])) {
-			print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
-		//}
+		print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
 		die();
 	}
 	
@@ -272,7 +266,7 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
         invalidateCaches($projectId);
         $stmt->close();
         
-        if ($funded >= $budget && $funded - $matchedDonation < $budget) {
+        if ($funded < $budget && $funded + $matchedDonation >= $budget) {
             $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (3, ?)"); // 3=Project Funded in project_event_types
             $stmt->bind_param("i", $projectId);
             execute($stmt);
