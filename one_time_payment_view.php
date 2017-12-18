@@ -49,7 +49,6 @@ require_once("utilities.php");
           $honoreeId = $link->insert_id;
       }
       $stmt->close();
-     
   }
   $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, project_matching_donor, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
@@ -77,6 +76,15 @@ require_once("utilities.php");
       die();
   }
   $stmt->close();
+  
+  $gcValue = 0;
+  if (isset($_SESSION['gc'])) {
+      $gcId = $_SESSION['gc'];
+      $result = doUnprotectedQuery("SELECT gc_value FROM gift_certificates WHERE gc_id=$gcId");
+      if ($row = $result->fetch_assoc()) {
+          $gcValue = $row['gc_value'];
+      }
+  }
  ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
@@ -104,7 +112,7 @@ include('header.inc');
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount">
+          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> >
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
           					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
@@ -116,6 +124,10 @@ include('header.inc');
                                   <div class="errorTxt2"></div>
                                 </div>
                               </div>
+                                <div class="input-field col s12" style='margin-top:0px;'>
+                                  <input id="donationEmail" placeholder="email" type="text" required data-error=".errorTxt3">
+                                  <div class="errorTxt3"></div>
+                                </div>
                               </div>
                            </div>
                            
@@ -125,11 +137,15 @@ include('header.inc');
                     					Donate <?php print ($matchingDonor ? " (2x)" : ""); ?>
                     				</button>
             				   </div>
+            				   <?php if ($gcValue) { ?>
+            				   	<div class='center-align' style='margin-top:15px;'><i class='material-icons' style='width:20px;'>checkmark</i> Your $<?php print $gcValue; ?> credit has been applied!</div>
+            				   <?php } else { ?>
             				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
 							<input type="checkbox" class="filled-in" id="anonymousCheckbox" 
 									onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
 							<label for="anonymousCheckbox">Make my donation anonymous</label>
-						 </div>
+						 	</div>
+						 	<?php } ?>
               			</form>
 <script>
 	$().ready(function() {
@@ -153,7 +169,9 @@ include('header.inc');
           }
         },
           submitHandler: function(form) {
-        	  	gotoStripe(document.getElementById("anonymousCheckbox").checked);
+            if (document.getElementById('donationAmount').value > <?php print $gcValue; ?>) {
+        	  		gotoStripe(document.getElementById("anonymousCheckbox").checked);
+            }
         	  	return false;
         }	
 		});

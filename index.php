@@ -16,10 +16,30 @@ if (hasParam('test')) {
 if (hasParam('offline')) {
     $_SESSION['offline'] = param('offline');
 }
+
+$alertText = 0;
+if (hasParam('gc')) {
+    $gcCode = param('gc');
+    
+    $stmt = prepare("SELECT gc_id, gc_alert FROM gift_certificates WHERE gc_code=?");
+    $stmt->bind_param('s', $gcCode);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+        $_SESSION['gc'] = $row['gc_id'];
+        $alertText = $row['gc_alert'];
+    }
+    $stmt->close();
+}
 ?>
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+			
+<?php if ($alertText) { ?>
+<div id="alert">
+    <a class="alert" href="project_tiles.php"><?php print $alertText; ?></a>
+</div>
+<?php } ?>
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
 		<div class="row center">
@@ -529,6 +549,5 @@ if (CACHING_ENABLED) {
     ?>
 
 </div>
-
 <br><br>
 <?php include('footer.inc'); ?>
