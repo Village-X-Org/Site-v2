@@ -67,12 +67,18 @@ if ($token !== 'offline') {
             sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
         }
     } else {
-        $charge = \Stripe\Charge::create(array(
-            "amount" => $donationAmount,
-            "currency" => "usd",
-            "description" => "Project Donation",
-            "source" => $token,
-        ));
+        try {
+            $charge = \Stripe\Charge::create(array(
+                "amount" => $donationAmount,
+                "currency" => "usd",
+                "description" => "Project Donation",
+                "source" => $token
+            ));
+        } catch (\Stripe\Error\Card $e) {
+            print "Stripe declined your card for this donation.  We are sorry for the inconvenience.  Our staff will send you an email to figure out appropriate next steps.  <p><a href='https://villagex.org'>Return to Home Page</a></p>";
+            sendMail(getAdminEmail(), "Failed payment for Village X ($donorEmail)", "A donation of $$donationAmount from $donorFirstName $donorLastName ($donorEmail) has just failed.", getAdminEmail());
+            die();
+        }
     }
 }
 
