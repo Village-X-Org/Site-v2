@@ -147,7 +147,7 @@ $(document).ready(function(){
              		<div class="row" style="padding:0;margin:0;">
              		
                              <div class="input-field col s6" style="padding:0;margin:0;">  
-                               <input id="honoreeFirstName" name="honoreeFirstName" style="border-style:none;font-size:20px;" placeholder="first name" type="text" required data-error=".errorTxt1" />
+                               <input id="honoreeFirstName" name="honoreeFirstName" style="border-style:none;font-size:20px;" placeholder="first name" type="text" required data-error=".errorTxt1"/>
                         	     <div class="errorTxt1" style="font-size:10px; color:red;"></div>
                              </div>
                              <div class="input-field col s6" style="padding:0;margin:0;">
