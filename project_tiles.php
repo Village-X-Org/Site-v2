@@ -99,7 +99,7 @@ require_once("utilities.php");
 							<i class='material-icons right' style='color:#03A9F4;'>".($previousYear != null ? 'timeline' : 'fiber_new')."</i>
 						</span>
 						<h6 class='brown-text'>
-							<b>{$row['village_name']} Village</b>".($previousYear ?  " (since $previousYear) " : "")."
+							<b>{$row['village_name']} Village, Malawi</b>
 						</h6>
 						<br>
 						<h6>

@@ -303,6 +303,20 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </head>
 
 <body>
+
+<ul id="About" class="dropdown-content hide-on-med-and-down">
+  <li><a href="about.php">About</a></li>
+  <li><a href="model.php">Model</a></li>
+  <li><a href="impacts.php">Impacts</a></li>
+ </ul>
+  
+<ul id="About_mobile" class="dropdown-content hide-on-large-only">
+  <li><a href="about.php"><i class="material-icons">info</i>About</a></li>
+  <li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
+  <li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
+ 
+</ul>
+
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.php" class="brand-logo"><img
@@ -310,17 +324,24 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			<ul class="right hide-on-med-and-down">
 				<li><a href="project_tiles.php">Projects</a></li>
 				<li><a href="map.php">Map</a></li>
-				<li><a href="model.php">Model</a></li>
-				<li><a href="impacts.php">Impacts</a></li>
-				<li><a href="about.php">About</a></li>
+				<li><a href="travel.php">Travel</a></li>
+				<li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
 			</ul>
 
 			<ul id="nav-mobile" class="side-nav">
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
-				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
+				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
+				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
+				<li><a class="dropdown-button" href="#!" data-activates="About_mobile">About<i class="material-icons right">arrow_drop_down</i></a></li>
+				
+				<!--  
+			    <li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
-				<li><a href="about.php"><i class="material-icons">info</i>About</a></li>
+				<li><a href="about.php"><i class="material-icons">info</i>About</a></li> 
+				-->
+				
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 				class="material-icons">menu</i></a>
