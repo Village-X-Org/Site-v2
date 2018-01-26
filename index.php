@@ -20,15 +20,19 @@ if (hasParam('offline')) {
 $alertText = 0;
 if (hasParam('gc')) {
     $gcCode = param('gc');
-    
-    $stmt = prepare("SELECT gc_id, gc_alert FROM gift_certificates WHERE gc_code=?");
-    $stmt->bind_param('s', $gcCode);
-    $result = execute($stmt);
-    if ($row = $result->fetch_assoc()) {
-        $_SESSION['gc'] = $row['gc_id'];
-        $alertText = $row['gc_alert'];
-    }
-    $stmt->close();
+
+    if ($gcCode == 0) {
+    	unset($_SESSION['gc']);
+    } else {
+	    $stmt = prepare("SELECT gc_id, gc_alert FROM gift_certificates WHERE gc_code=?");
+	    $stmt->bind_param('s', $gcCode);
+	    $result = execute($stmt);
+	    if ($row = $result->fetch_assoc()) {
+	        $_SESSION['gc'] = $row['gc_id'];
+	        $alertText = $row['gc_alert'];
+	    }
+	    $stmt->close();
+	}
 }
 ?>
 
