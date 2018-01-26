@@ -188,28 +188,22 @@ if (hasParam('test')) {
   </div>
 
 
-	<div class="carousel carousel-slider" data-indicators="true">
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/hippos.jpg"></a>
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/blantyre.jpg"></a>
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/culture.jpg"></a>
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/kuchawe.jpg"></a>
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/mulanje.jpg"></a>
-	    <a class="carousel-item" href="" onclick="return false;"><img src="images/capemac.jpg"></a>
-		<a class="carousel-item">
-			<div class="video-container">
-        		<iframe src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media"></iframe>
+	<div class="carousel carousel-slider" data-indicators="true" dist="0">
+	    <div class="carousel-item" style="background-image:url('images/hippos.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    <div class="carousel-item video-container">
+        		<iframe src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media" style='height: 500px;'></iframe>
+      	</div>
+	    <div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    <div class="carousel-item video-container">
+        		<iframe src="https://www.youtube.com/embed/tfs06IjbN60?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media" style='height: 500px;'></iframe>
+      	</div>	
+      	<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    <div class="carousel-item video-container">
+        		<iframe src="https://www.youtube.com/embed/ibMeGyIHZIY?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media" style='height: 500px;'></iframe>
       		</div>
-      	</a>
-      	<a class="carousel-item">
-      		<div class="video-container">
-        		<iframe src="https://www.youtube.com/embed/tfs06IjbN60?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media"></iframe>
-      		</div>
-      	</a>
-      	<a class="carousel-item">
-			<div class="video-container">
-        		<iframe src="https://www.youtube.com/embed/ibMeGyIHZIY?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media"></iframe>
-      		</div>
-      	</a>
+      	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
   </div>
   <script>  $(document).ready(function(){
       $('.carousel').carousel({fullWidth: true, duration: 200});
