@@ -189,12 +189,12 @@ if (hasParam('test')) {
 
 
 	<div class="carousel carousel-slider" data-indicators="true">
-	    <a class="carousel-item" href="#two!"><img src="images/hippos.jpg"></a>
-	    <a class="carousel-item" href="#two!"><img src="images/blantyre.jpg"></a>
-	    <a class="carousel-item" href="#three!"><img src="images/culture.jpg"></a>
-	    <a class="carousel-item" href="#four!"><img src="images/kuchawe.jpg"></a>
-	    <a class="carousel-item" href="#three!"><img src="images/mulanje.jpg"></a>
-	    <a class="carousel-item" href="#four!"><img src="images/capemac.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/hippos.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/blantyre.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/culture.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/kuchawe.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/mulanje.jpg"></a>
+	    <a class="carousel-item" href="" onclick="return false;"><img src="images/capemac.jpg"></a>
 		<a class="carousel-item">
 			<div class="video-container">
         		<iframe src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0" frameborder="0" allow="encrypted-media"></iframe>
@@ -220,7 +220,7 @@ if (hasParam('test')) {
 
 <div class="container">
 <br>
-<div class="valign-wrapper">
+	<div class="valign-wrapper" id='travelInfoRequestDiv'>
           <div class="card scrollspy" id=get_started style="opacity:1; border-radius:20px;border:black 1px solid;">
             <div class="card-content black-text">
               <span class="card-title center-align" style="padding: 1% 5% 0% 5%;"><b>Interested in travel advice that fights extreme poverty?</b></span> 
@@ -232,8 +232,7 @@ if (hasParam('test')) {
 
     		<div class="container" id="jqueryvalidation" style="width:100%; margin:0;">
     			<span style='font-size:20px;font-style:bold;'>Contact Info</span>
-         		<form id="travel_details" method="post" action="">
-             	<input type='hidden' name='id' value=''/>
+         		<form id='travelInfoRequestForm' method='post'>
          		
          		<div class="row" style="padding:0;margin:0;">
          		
@@ -258,23 +257,23 @@ if (hasParam('test')) {
           		
 	          	<div class="row" style="padding:0 5% 0 5%;margin:0; font-size:20px;">
 	          		<div class="input-field col s6" style="padding:0 2% 0 0;margin:0;">
-	                        <select>
-	                          <option value="" disabled selected>Type of group?</option>
-	                          <option value="1">school group</option>
-	                          <option value="2">faith group</option>
-	                          <option value="3">business group</option>
-	                          <option value="3">other group</option>
-	                          <option value="4">no group -- individual</option>
+	                        <select name='travelGroupType'>
+	                          <option value="">Type of group?</option>
+	                          <option value="school">school group</option>
+	                          <option value="faith">faith group</option>
+	                          <option value="business">business group</option>
+	                          <option value="other">other group</option>
+	                          <option value="individual">no group -- individual</option>
 	                        </select>
 	                 </div>
 	                 
 	                 <div class="input-field col s6" style="padding:0 0 0 2%;margin:0;">
-	                        <select>
-	                          <option value="" disabled selected>Number of people?</option>
-	                          <option value="1">1-3</option>
-	                          <option value="2">4-10</option>
-	                          <option value="3">11-20</option>
-	                          <option value="4">20+</option>
+	                        <select name='travelGroupSize'>
+	                          <option value="">Number of people?</option>
+	                          <option value="1-3">1-3</option>
+	                          <option value="4-10">4-10</option>
+	                          <option value="11-20">11-20</option>
+	                          <option value="20+">20+</option>
 	                        </select>
 	                 </div>
 	                 
@@ -284,16 +283,16 @@ if (hasParam('test')) {
 	          			});
 	            	    </script>
 	                 
-	          		</div>
+	          	</div>
 	          		
-	          		<div class="row" style="padding:0 5% 0 5%;margin:0;">
-		          		<div class="input-field col s6" style="padding:0 2% 0 0;margin:0;">
-		          		<input type="text" style="font-size:20px;" class="datepicker" placeholder="departure date">
-		          		</div>
-		          		<div class="input-field col s6" style="padding:0 0 0 2%;margin:0;">
-		          		<input type="text" style="font-size:20px;" class="datepicker" placeholder="return date">
+	          	<div class="row" style="padding:0 5% 0 5%;margin:0;">
+	          		<div class="input-field col s6" style="padding:0 2% 0 0;margin:0;">
+	          		<input type="text" style="font-size:20px;" class="datepicker" placeholder="departure date" name="travelDepartureDate">
 	          		</div>
-	          		
+	          		<div class="input-field col s6" style="padding:0 0 0 2%;margin:0;">
+	          		<input type="text" style="font-size:20px;" class="datepicker" placeholder="return date" name="travelReturnDate">
+          			</div>
+          		
 	          		<script>$('.datepicker').pickadate({
 	          		    selectMonths: true, // Creates a dropdown to control month
 	          		    selectYears: 15, // Creates a dropdown of 15 years to control year,
@@ -315,8 +314,7 @@ if (hasParam('test')) {
          		</div>
  				
                  <div class="center-align" style="width:100%;">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 1% 0%;" type="submit" name="action">submit
-  					</button>
+          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 1% 0%;" type="submit">submit</button>
     		</form>
     			
  		</div>
@@ -324,32 +322,37 @@ if (hasParam('test')) {
 		
 				<script>
      		
-             	$(document).ready(function() {
-             		// validate donatation form on keyup and submit
-             		$("#travel_details").validate({
+				$(document).ready(function() {
+             		$("#travelInfoRequestForm").validate({
              			rules: {
              				firstname: "required",
              				lastname: "required",
              				email: "required",
              			},
-             		messages: {
-             		      firstname: "this field is required",
-             		      lastname: "this field is required",
-                 		  email: "this field is required",
-             		},
+	             		messages: {
+	             		      firstname: "this field is required",
+	             		      lastname: "this field is required",
+	                 		  email: "this field is required",
+	             		},
              
-                     errorElement : 'div',
-                     errorPlacement: function(error, element) {
-                       var placement = $(element).data('error');
-                       if (placement) {
-                         $(placement).append(error)
-                       } else {
-                         error.insertAfter(element);
-                       }
-                     },
+                     	errorElement : 'div',
+                     	errorPlacement: function(error, element) {
+                       		var placement = $(element).data('error');
+                       		if (placement) {
+                         		$(placement).append(error)
+                       		} else {
+                         		error.insertAfter(element);
+                       		}
+                     	},
+				        submitHandler: function(form) {
+				        	$.post( "travel_request_info.php", $( "#travelInfoRequestForm" ).serialize())
+				        			.done(function( data ) {
+  								$( "#travelInfoRequestDiv" ).html( data );
+  								document.getElementById("travelInfoRequestDiv").scrollIntoView();
+							});
+				        }	
             		});
- 
-             	});
+				});
  		</script>
 				
 		</div>	
