@@ -376,7 +376,7 @@ $(document).ready(function(){
 			</div>
 			<?php 
 		
-			$stmt = prepare("SELECT pe_date, pet_label FROM project_events JOIN project_event_types ON pe_type=pet_id WHERE pe_project_id=?");
+			$stmt = prepare("SELECT pe_date, pet_label FROM project_events JOIN project_event_types ON pe_type=pet_id WHERE pe_project_id=? ORDER BY pe_date");
 			$stmt->bind_param('i', $projectId);
         		$result = execute($stmt);
         	    $count = 0;

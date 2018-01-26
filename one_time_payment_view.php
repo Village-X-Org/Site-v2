@@ -105,14 +105,14 @@ include('header.inc');
             				<?php print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" ); ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
           				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
-         				<form class="col s12" style="width:100%" id="donateForm" method='post' action='donateWithStripe.php'>
+         				<form class="col s12" style="width:100%" id="donateForm" method='post' action="donateWithStripe.php">
                             <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
                             <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
                             	<input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
          					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> >
+          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> />
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
           					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
@@ -169,10 +169,8 @@ include('header.inc');
           }
         },
           submitHandler: function(form) {
-            if (document.getElementById('donationAmount').value > <?php print $gcValue; ?>) {
-        	  		gotoStripe(document.getElementById("anonymousCheckbox").checked);
-            }
-        	  	return false;
+            gotoStripe(document.getElementById("anonymousCheckbox") && document.getElementById("anonymousCheckbox").checked);
+            return false;
         }	
 		});
 	});
@@ -197,7 +195,7 @@ include('header.inc');
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
-                	$('#donationFirstName').val(), $('#donationLastName').val(), anonymous, <?php print $honoreeId; ?>, <?php print json_encode($honoreeMessage); ?>);
+                	$('#donationFirstName').val(), $('#donationLastName').val(), $('#donationEmail').val(), anonymous, <?php print $honoreeId; ?>, <?php print json_encode($honoreeMessage); ?>, <?php print $gcValue; ?>);
     }
 </script>
              

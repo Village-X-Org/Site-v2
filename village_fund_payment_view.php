@@ -55,8 +55,12 @@ require_once("utilities.php");
                         <div class="errorTxt1"></div>
                         </div>
                         <div class="input-field col s6">
-                        <input id="donationLastName" placeholder="last name" type="text" required data-error=".errorTxt2">
-                        <div class="errorTxt2"></div>
+                            <input id="donationLastName" placeholder="last name" type="text" required data-error=".errorTxt2">
+                            <div class="errorTxt2"></div>
+                        </div>
+                        <div class="input-field col s12" style='margin-top:0px;'>
+                            <input id="donationEmail" placeholder="email" type="text" required data-error=".errorTxt3">
+                            <div class="errorTxt3"></div>
                         </div>
                     </div>
             		</div>
@@ -96,7 +100,8 @@ require_once("utilities.php");
           }
         },
           submitHandler: function(form) {
-        	  	gotoStripe(document.getElementById("anonymousCheckbox").checked);
+        	  	gotoStripe(document.getElementById("anonymousCheckbox") && document.getElementById("anonymousCheckbox").checked);
+                return false;
         }	
 		});
 	});
@@ -121,7 +126,7 @@ require_once("utilities.php");
         	if (!amount) { 
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
-        	donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val(), 0, 0, ""); return false;
+        	donateWithStripe(1, amount * 100, '', 0, $('#donationFirstName').val(), $('#donationLastName').val(), $('#donationEmail').val(), 0, 0, "", 0); return false;
     }
 </script>
 
