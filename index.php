@@ -21,15 +21,20 @@ $alertText = 0;
 if (hasParam('gc')) {
     $gcCode = param('gc');
 
-    if ($gcCode == 0) {
+    if ($gcCode === '0') {
     	unset($_SESSION['gc']);
     } else {
-	    $stmt = prepare("SELECT gc_id, gc_alert FROM gift_certificates WHERE gc_code=?");
+	    $stmt = prepare("SELECT gc_id, gc_alert, gc_quantity FROM gift_certificates WHERE gc_code=?");
 	    $stmt->bind_param('s', $gcCode);
 	    $result = execute($stmt);
 	    if ($row = $result->fetch_assoc()) {
-	        $_SESSION['gc'] = $row['gc_id'];
-	        $alertText = $row['gc_alert'];
+	    	if ($row['gc_quantity'] > 0) {	        
+	    		$_SESSION['gc'] = $row['gc_id'];
+	        	$alertText = $row['gc_alert'];
+	        } else {  
+	    		unset($_SESSION['gc']);
+	        	$alertText = "This gift certificate code has already been used up!  Keep an eye out for future promotions.";
+	        }
 	    }
 	    $stmt->close();
 	}
