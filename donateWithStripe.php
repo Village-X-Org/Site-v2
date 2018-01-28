@@ -44,7 +44,7 @@ if ($row = $result->fetch_assoc()) {
 
 $subscriptionId = "NULL";
 
-if ($token !== 'offline') {
+if ($token !== 'offline' && $token !== 'gcOnly') {
     if ($isSubscription) {
         $planName = "basic-monthly-$donorId-".time();
          try {
@@ -74,6 +74,11 @@ if ($token !== 'offline') {
             "source" => $token,
         ));
     }
+} 
+
+if (isset($_SESSION['gc'])) {
+    doUnprotectedQuery("UPDATE gift_certificates SET gc_quantity = gc_quantity - 1 WHERE gc_id={$_SESSION['gc']}");
+    unset($_SESSION['gc']);
 }
 
 $donationAmountDollars = $donationAmount / 100;
@@ -86,7 +91,7 @@ if (isset($_SESSION['code'])) {
 $stmt = prepare("SELECT donation_id FROM donations WHERE donation_remote_id=?");
 $stmt->bind_param("s", $token);
 $result = execute($stmt);
-if ($row = $result->fetch_assoc() && $token !== 'offline') {
+if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly') {
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();

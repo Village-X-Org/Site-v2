@@ -64,7 +64,7 @@
 </style>
 
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage;
+var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -187,11 +187,11 @@ var handler = StripeCheckout.configure({
   token: function(token) {
 	  form = document.getElementById('donateForm');
 	  form.stripeToken.value = token.id;
-	  form.stripeEmail.value = token.email;
 	  form.stripeAmount.value = donationAmount;
 	  form.isSubscription.value = donationIsSubscription;
 	  form.firstName.value = donationFirstName;
 	  form.lastName.value = donationLastName;
+	  form.stripeEmail.value = donationEmail;
 	  form.projectId.value = donationProjectId;
 	  form.honoreeId.value = donationHonoreeId;
 	  form.honoreeMessage.value = donationHonoreeMessage;
@@ -205,25 +205,26 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, anonymous, honoreeId, honoreeMessage) {
- <?php if (isset($_SESSION['offline']) && $_SESSION['offline'] == 1) { ?>
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, email, anonymous, honoreeId, honoreeMessage, gcAmount) {
+ 	if (<?php print ((isset($_SESSION['offline']) && $_SESSION['offline'] == 1) ? "true" : "false"); ?>
+ 		|| gcAmount * 100 >= amount) {
  	  form = document.getElementById('donateForm');
-	  form.stripeToken.value = 'offline';
-	  if (form.stripeEmail.value = prompt('Enter an email for this donation')) {
-        	  form.stripeAmount.value = amount;
-        	  form.isSubscription.value = subscribe;
-        	  form.firstName.value = firstName;
-        	  form.lastName.value = lastName;
-        	  form.projectId.value = projectId;
-        	  form.honoreeId.value = honoreeId;
-        	  form.honoreeMessage.value = honoreeMessage;
-        	  
-        	  form.submit();
-	  }
- <?php } else { ?>
+	  form.stripeToken.value = gcAmount * 100 >= amount ? 'gcOnly' : 'offline';
+	  form.stripeEmail.value = email;
+	  form.stripeAmount.value = amount;
+	  form.isSubscription.value = subscribe;
+	  form.firstName.value = firstName;
+	  form.lastName.value = lastName;
+	  form.projectId.value = projectId;
+	  form.honoreeId.value = honoreeId;
+  	  form.honoreeMessage.value = honoreeMessage;
+    	  
+      form.submit();		
+ 	} else {
 	  donationIsSubscription = subscribe;
 	  donationFirstName = firstName;
 	  donationLastName = lastName;
+	  donationEmail = email;
 	  donationProjectId = projectId;
 	  donationAmount = amount;
 	  donationHonoreeId = honoreeId;
@@ -231,9 +232,10 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  handler.open({
 	    name: 'Village X Org',
 	    description: (subscribe ? 'Monthly Subscription' : title),
-	    amount: donationAmount
+	    amount: amount - (gcAmount * 100),
+	    email: email
 	  });
-<?php } ?>
+	}
 }
 // End Stripe
 
