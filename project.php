@@ -87,6 +87,13 @@ $(document).ready(function(){
 	<div class="parallax">
 		<img style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
 	</div>
+      <?php
+      if ($funded < $total && isset($_SESSION['gc'])) {
+        print "<div id='alert'>
+          <a class='alert'>You have a gift certificate!  It will be applied on the donation screen.</a>
+        </div>";
+      }
+    ?>
 </div>
 
 <div class="container">

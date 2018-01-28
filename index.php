@@ -46,7 +46,7 @@ if (hasParam('gc')) {
 			
 <?php if ($alertText) { ?>
 <div id="alert">
-    <a class="alert" href="project_tiles.php"><?php print $alertText; ?></a>
+    <a class="alert"><?php print $alertText; ?></a>
 </div>
 <?php } ?>
 	<div class="section no-pad-bot valign-wrapper"

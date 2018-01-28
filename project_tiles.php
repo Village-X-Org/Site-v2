@@ -5,10 +5,17 @@ require_once("utilities.php");
 <html lang="en">
 <head>
 <?php include('header.inc'); ?>
-
-<div class="container">
-
+	
+<div class="container">    
+	<?php
+      if (isset($_SESSION['gc'])) {
+        print "<div id='alert' style='z-index:-1;'>
+          <a class='alert'>You have a gift certificate!  Click a Donate button or visit a project page to apply it.</a>
+        </div>";
+      }
+    ?>
 	<div class="row" style="padding:2% 1% 1% 1%;">
+
 		<div class="col s12 m4 l4; valign-wrapper" style="vertical-align: middle; height:50px;">
 			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 				Choose a project
