@@ -76,8 +76,10 @@ if ($token !== 'offline' && $token !== 'gcOnly') {
     }
 } 
 
+$gcId = 0;
 if (isset($_SESSION['gc'])) {
-    doUnprotectedQuery("UPDATE gift_certificates SET gc_quantity = gc_quantity - 1 WHERE gc_id={$_SESSION['gc']}");
+    $gcId = $_SESSION['gc'];
+    doUnprotectedQuery("UPDATE gift_certificates SET gc_quantity = gc_quantity - 1 WHERE gc_id=$gcId");
     unset($_SESSION['gc']);
 }
 
@@ -95,7 +97,7 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
-    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test) VALUES (?, ?, ?, ?, ?, ?, ?, $test)");
+    $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test, donation_gc_id) VALUES (?, ?, ?, ?, ?, ?, ?, $test, $gcId)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
     $stmt->bind_param("idisssi", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId);
     execute($stmt);
