@@ -104,7 +104,7 @@ include('header.inc');
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>
             				<?php print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" ); ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
-          				<p class="center-align black-text">The project needs $<?php print $remaining; ?>.</p>
+          				<p class="center-align black-text">The project needs <?php print ($matchingDonor ? "$".ceil($remaining / 2).", matched to " : ""); ?>$<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm" method='post' action="donateWithStripe.php">
                             <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
                             <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
