@@ -318,7 +318,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                         																        <p
             																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
             																										align="left">
-            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print ($matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
+            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
             																									</p>
             																									<?php if (isset($projectName)) { ?>
             																									<p
