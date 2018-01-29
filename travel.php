@@ -288,13 +288,15 @@ if (hasParam('test')) {
           			</div>
           		
 	          		<script>$('.datepicker').pickadate({
-	          		    selectMonths: true, // Creates a dropdown to control month
-	          		    selectYears: 15, // Creates a dropdown of 15 years to control year,
-	          		    today: 'Today',
+	          		    selectMonths: true,
+	          		    selectYears: 2,
 	          		    clear: 'Clear',
-	          		    close: 'Ok',
-	          		    closeOnSelect: false // Close upon selecting a date,
-	          		  });</script>
+	          		    close: 'Select',
+	          		    today: '',
+                        min: new Date(),
+	          		    closeOnSelect: true
+	          		  });
+	          		</script>
 	          		
 	        	</div>
 	          		<br>
