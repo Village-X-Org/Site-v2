@@ -97,10 +97,12 @@
 				<ul>
 					<li><a class="white-text" href="project_tiles.php">Projects</a></li>
 					<li><a class="white-text" href="map.php">Map</a></li>
+					<li><a class="white-text" href="travel.php">Travel</a></li>
+					<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+					<li><a class="white-text" href="about.php">About</a></li>
 					<li><a class="white-text" href="model.php">Model</a></li>
 					<li><a class="white-text" href="impacts.php">Impacts</a></li>
 					<li><a class="white-text" href="faq.php">FAQ</a></li>
-					<li><a class="white-text" href="about.php">About</a></li>
 				</ul>
 			</div>
 
@@ -119,6 +121,7 @@
 						target="_blank"><i style="font-size: 15px" class="fa">&#xf081;</i>
 							Twitter</a></li>
 				</ul>
+				<br>
 
 				<h6 class="white-text">
 					<b>Share Our Mission</b>
@@ -168,7 +171,7 @@
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
-						<b>Our technology disrupts extreme poverty with democracy, direct
+						<b>We disrupt extreme poverty with democracy, direct
 							giving, and data. Aiming to reach 390 million people in rural
 							Africa.</b>
 					</p>
