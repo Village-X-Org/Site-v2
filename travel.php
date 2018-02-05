@@ -187,23 +187,17 @@ if (hasParam('test')) {
   
   </div>
 
-
+      <!--<div class="video-container valign-wrapper" style='height:500px;' >
+       <iframe style='width:100%;' src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&autoplay=1&fs=0" frameborder="0" gesture="media" allow="encrypted-media"></iframe>
+      </div>-->
 	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
       	<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/hippos.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <!--<div class="carousel-item" style="background-image:url('https://img.youtube.com/vi/Ycbl5TOK5x8/maxresdefault.jpg');background-size:cover;height:500px;background-position:center;" id='video1'>
-	    	<a href='' onclick="showVideo('Ycbl5TOK5x8', 'video1', this);return false;" style="position:absolute;top:60%;left:50%;"><img src='images/youtube_play.png' /></a>
-	    </div>-->	
+	    </div>-->
 	    <div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>
-	    <!--<div class="carousel-item" style="background-image:url('https://img.youtube.com/vi/tfs06IjbN60/maxresdefault.jpg');background-size:cover;height:500px;background-position:center;" id='video2'>
-	    	<a href='' onclick="showVideo('tfs06IjbN60', 'video2', this);return false;" ontouch="showVideo('tfs06IjbN60', 'video2', this);return false;" style="position:absolute;top:60%;left:50%;"><img src='images/youtube_play.png' /></a>
-
-	    </div>-->	
-      	<!--<div class="carousel-item" style="background-image:url('https://img.youtube.com/vi/ibMeGyIHZIY/maxresdefault.jpg');background-size:cover;height:500px;background-position:center;" id='video3'>
-      		<a href='' onclick="showVideo('ibMeGyIHZIY', 'video3', this);return false;" ontouch="showVideo('ibMeGyIHZIY', 'video3', this);return false;" style="position:absolute;top:60%;left:50%;"><img src='images/youtube_play.png' /></a>
-      	</div>-->	
       	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
   </div>
   <script>  $(document).ready(function(){

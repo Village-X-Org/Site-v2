@@ -26,7 +26,7 @@ require_once("utilities.php");
 	
 	<blockquote class="flow-text">"We disrupt extreme poverty, at scale in rural Africa, by deploying targeted financing and retrieving impact data for 100% village-led development projects, while celebrating radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
 	<br>
-		<div class="video-container" style="border-style:solid"><br>
+		<div class="video-container" style="border-style:solid;background-image:url('images/model_video_preview.webp');background-size:cover;background-position:center;"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
       	</div>
       	<br>
