@@ -307,7 +307,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 <body>
 
 <ul id="About" class="dropdown-content hide-on-med-and-down">
-  <li><a href="about.php">About</a></li>
+  <li><a href="about.php">Mission &amp; Team</a></li>
   <li><a href="model.php">Model</a></li>
   <li><a href="impacts.php">Impacts</a></li>
  </ul>
