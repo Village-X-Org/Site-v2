@@ -90,7 +90,7 @@
 	</div>
 	</div>
 
-<div>
+<div class='center-align'>
     <img class="responsive-img" style="padding: 2% 2% 2% 2%;" src="images/chitenje.jpg">
     </div>
 	
