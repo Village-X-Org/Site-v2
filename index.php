@@ -54,7 +54,7 @@ if (hasParam('gc')) {
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Defeat Extreme Poverty in Africa</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Rural Africa</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
