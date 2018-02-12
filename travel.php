@@ -184,19 +184,18 @@ if (hasParam('test')) {
 		buffalo without the pesky 4WD scrum so common in Africa’s best-known parks. Then perhaps it’s off to Lake Malawi for a spot of high-visibility snorkelling, or Mt Mulanje for a hike over hazy peaks in an 
 		otherworldly moonscape." <div style="width:100%;text-align:right;">-- Lonely Planet</div></blockquote>
 		<br>
-  
+ 
+      <div class="video-container" style="border-style:solid;background-image:url('images/travel_video_preview.jpg');background-size:cover;background-position:center;">
+       	<iframe src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0" frameborder="0" gesture="media" allow="encrypted-media" width="480" height="270"></iframe>
+      </div>
   </div>
-
-      <!--<div class="video-container valign-wrapper" style='height:500px;' >
-       <iframe style='width:100%;' src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&autoplay=1&fs=0" frameborder="0" gesture="media" allow="encrypted-media"></iframe>
-      </div>-->
-	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
+	<!--<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
       	<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/hippos.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <!--<div class="carousel-item" style="background-image:url('https://img.youtube.com/vi/Ycbl5TOK5x8/maxresdefault.jpg');background-size:cover;height:500px;background-position:center;" id='video1'>
-	    </div>-->
+	    </div>
 	    <div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>
       	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
   </div>
@@ -204,7 +203,7 @@ if (hasParam('test')) {
       $('.carousel').carousel({fullWidth: true, duration: 200});
     });
 	</script>
-  
+  	-->
   <br>
 
 <div class="container">
