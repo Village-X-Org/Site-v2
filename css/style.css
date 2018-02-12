@@ -266,3 +266,10 @@ a {
     50% { opacity: 1; }
     100% { top: 0; }
 }
+
+.carousel .indicators .indicator-item {
+  height: 24px;
+  width: 24px;
+  margin: 8px 32px;
+  background-color: lightblue;
+}
