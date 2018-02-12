@@ -188,22 +188,82 @@ if (hasParam('test')) {
       <div class="video-container" style="border-style:solid;background-image:url('images/travel_video_preview.jpg');background-size:cover;background-position:center;">
        	<iframe src="https://www.youtube.com/embed/Ycbl5TOK5x8?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0" frameborder="0" gesture="media" allow="encrypted-media" width="480" height="270"></iframe>
       </div>
-  </div>
-	<!--<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
+  
+  
+  <div class="col s12 m12 l12">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper center-align">
+            <div class="col s4" style="padding: 7% 7% 7% 7%">
+              <a href="http://www.ssrentacar.com/" target="_blank"><img src="images/ssrentacar.jpg" alt="" class="circle responsive-img"></a> <!-- notice the "circle" class -->
+              <h5>Featured Partner</h5>
+            </div>
+            <div class="col s8">
+              <span class="black-text flow-text">
+                <b>Click to enter our travelers' lounge.</b>
+              </span>
+            </div>
+            <div class="col s4">
+              <a href="#" data-activates="slide-out" class="btn btn-floating btn-large pulse light-blue button-collapse"><i class="material-icons">airplanemode_active</i></a>
+              
+   <ul id="slide-out" class="side-nav">
+    <li><div class="user-view">
+      <div class="background">
+        <img src="images/airplane.jpg" class="responsive-img">
+      </div>
+      	<br>
+        <br>
+        
+    </div>
+    </li>
+    <li><a href="#!"><i class="material-icons light-blue-text">favorite_border</i><b><span class="left-align light-blue-text">Preferred Partners</span></b></a></li>
+    <li><a style="padding:0 0 0 10%" href="http://www.ssrentacar.com/" target="_blank">SS Rent a Car</a></li>
+    <li><a style="padding:0 0 0 10%" href="http://www.natbank.co.mw/" target="_blank">National Bank</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.ethiopianairlines.com/AA/EN" target="_blank">Ethiopian Airlines</a></li>
+    <br>
+    <li><a href="#!"><i class="material-icons light-blue-text">beach_access</i><b><span class="left-align light-blue-text">Buzz About Malawi</span></b></a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.vogue.com/article/top-places-to-travel-expert-recommendations" target="_blank">Vogue</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.cnn.com/travel/article/five-things-malawi/index.html" target="_blank">CNN Travel</a></li>
+    <li><a style="padding:0 0 0 10%" href="http://www.nytimes.com/2009/05/10/travel/10explorer.html" target="_blank">The New York Times</a></li>
+    <br>
+    <li><a href="#!"><i class="material-icons light-blue-text">lightbulb_outline</i><b><span class="left-align light-blue-text">Stuff to Know</span></b></a></li>
+    <li><a style="padding:0 0 0 10%" href="http://files.peacecorps.gov/multimedia/audio/languagelessons/malawi/MW_Chichewa_Language_Lessons.pdf" target="_blank">Chichewa Language Guide</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.voanews.com/a/malawi-prison-band-loses-grammy-maintains-hope/3193827.html" target="_blank">Malawi Prison Band</a></li>
+    <li><a style="padding:0 0 0 10%" href="http://lakeofstars.org/" target="_blank">Lake of Stars Festival</a></li>
+    <br>
+    <li><a href="#!"><i class="material-icons light-blue-text">library_books</i><b><span class="left-align light-blue-text">Books</span></b></a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.amazon.com/Microsoft-Malawi-Learning-Front-Volunteer/dp/0761854010/ref=sr_1_5?s=books&ie=UTF8&qid=1518398269&sr=1-5&keywords=malawi" target="_blank">From Microsoft to Malawi</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.amazon.com/Boy-Who-Harnessed-Wind-Electricity/dp/0061730335/ref=pd_bxgy_14_img_3?_encoding=UTF8&pd_rd_i=0061730335&pd_rd_r=V297BD4DEASZ2J234GER&pd_rd_w=Ip4Ti&pd_rd_wg=sywSF&psc=1&refRID=V297BD4DEASZ2J234GER" target="_blank">The Boy Who Harnessed the Wind</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://www.amazon.com/Malawi-Travel-Guides-Philip-Briggs/dp/1784770140/ref=sr_1_1?s=books&ie=UTF8&qid=1518384242&sr=1-1&keywords=malawi" target="_blank">Bradt Travel Guide</a></li>
+    <br>
+    <li><a href="#!"><i class="material-icons light-blue-text">playlist_add_check</i><b><span class="left-align light-blue-text">Practical</span></b></a></li>
+    <li><a style="padding:0 0 0 10%" href="http://www.malawiembassy-dc.org/index.php?page=application-requirements" target="_blank">Malawi Visas</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://wwwnc.cdc.gov/travel/destinations/traveler/none/malawi" target="_blank">Medical Advice</a></li>
+    <li><a style="padding:0 0 0 10%" href="https://weather.com/weather/today/l/Lilongwe+Malawi+MIXX0002" target="_blank">Weather</a></li>
+  </ul>
+  
+              
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
+      	<div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>
+      	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
       	<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/hippos.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <!--<div class="carousel-item" style="background-image:url('https://img.youtube.com/vi/Ycbl5TOK5x8/maxresdefault.jpg');background-size:cover;height:500px;background-position:center;" id='video1'>
 	    </div>
-	    <div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>
-      	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
+	    -->
   </div>
   <script>  $(document).ready(function(){
       $('.carousel').carousel({fullWidth: true, duration: 200});
     });
 	</script>
-  	-->
+  	
   <br>
 
 <div class="container">
