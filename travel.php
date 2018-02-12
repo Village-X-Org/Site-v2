@@ -193,22 +193,21 @@ if (hasParam('test')) {
   
   <div class="row" style='margin-bottom:80px;'>
   	<div class="col s4 center">
-  		<img src='images/travelServiceAirplane.jpg' width=300 height=200 />
+  		<img src='images/travelServiceAirplane.jpg' width=300 height=200 style='border: solid 1px;' />
   		<BR /><span class='flow-text'>We know the best flights</span>
   	</div>
   	
   	<div class="col s4 center">
-  		<img src='images/travelServiceCar.jpg' width=300 height=200 />
+  		<img src='images/travelServiceCar.jpg' width=300 height=200 style='border: solid 1px;'  />
   		<br /><span class='flow-text'>We've got the travel partners</span>
   	</div>
 
   	<div class="col s4 center">
-  		<img src='images/travelServiceVillage.jpg' width=300 height=200 />
+  		<img src='images/travelServiceVillage.jpg' width=300 height=200  style='border: solid 1px;' />
   		<br /><span class='flow-text'>We can get you in the village</span>
   	</div>
  </div>
  
-<div class="container"> 
 	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
@@ -223,7 +222,6 @@ if (hasParam('test')) {
 	</script>
   	
   <br>
-</div>
 <div class="container">
 <br>
 	<div class="valign-wrapper" id='travelInfoRequestDiv'>
