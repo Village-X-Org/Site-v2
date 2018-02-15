@@ -194,33 +194,31 @@ if (hasParam('test')) {
 	 <h4 class="header center light text-lighten-2" style='margin-top:80px;margin-bottom:15px;font-weight:400;'>From Airport to Nsima</h4>
 	<br>  
   
-  <div class="row" style='margin-bottom:80px;'>
-  	<div class="col s12 m4 l4 center">
-  		<img src='images/travelServiceAirplane.jpg' width=300 height=200 style='border: solid 1px;' />
-  		<BR /><span class='flow-text'>We know the best flights</span>
-  		<br><br>
-  	</div>
-  	
-  	<div class="col s12 m4 l4 center">
-  		<img src='images/travelServiceCar.jpg' width=300 height=200 style='border: solid 1px;'  />
-  		<br /><span class='flow-text'>We've got the travel partners</span>
-  		<br><br>
-  	</div>
+	  <div class="row" style='margin-bottom:80px;'>
+	  	<div class="col s12 m4 l4 center">
+	  		<img src='images/travelServiceAirplane.jpg' class="responsive-img" />
+	  		<BR /><span class='flow-text'>We know the best flights</span>
+	  		<br><br>
+	  	</div>
+	  	
+	  	<div class="col s12 m4 l4 center"
+>	  		<img src='images/travelServiceCar.jpg' class="responsive-img"  />
+	  		<br /><span class='flow-text'>We've got the travel partners</span>
+	  		<br><br>
+	  	</div>
 
-  	<div class="col s12 m4 l4 center ">
-  		<img src='images/travelServiceVillage.jpg' width=300 height=200  style='border: solid 1px;' />
-  		<br /><span class='flow-text'>We can get you to the village</span>
-  	</div>
- </div>
+	  	<div class="col s12 m4 l4 center ">
+	  		<img src='images/travelServiceVillage.jpg'  class="responsive-img" />
+	  		<br /><span class='flow-text'>We can get you to the village</span>
+	  	</div>
+	 </div>
  </div>
  
 	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
 	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
 		<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
-      	<!-- <div class="carousel-item" style="background-image:url('images/blantyre.jpg');background-size:cover;height:500px;background-position:center;"></div>  -->
       	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
-	   <!--   <div class="carousel-item" style="background-image:url('images/hippos.jpg');background-size:cover;height:500px;background-position:center;"></div>  -->
   </div>
   <script>  $(document).ready(function(){
       $('.carousel').carousel({fullWidth: true, duration: 200});
