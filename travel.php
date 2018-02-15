@@ -190,29 +190,29 @@ if (hasParam('test')) {
       </div>
   </div>
   
-  <div class="container">
-	 <h4 class="header center light text-lighten-2" style='margin-top:80px;margin-bottom:15px;font-weight:400;'>From Airport to Nsima</h4>
+  	<div class='container' style='margin-top:80px;margin-bottom:40px;'>
+	 <h4 class="header center light text-lighten-2" style='margin-bottom:15px;font-weight:400;'>From Airport to Nsima</h4>
 	<br>  
   
-	  <div class="row" style='margin-bottom:80px;'>
+	  <div class="row">
 	  	<div class="col s12 m4 l4 center">
 	  		<img src='images/travelServiceAirplane.jpg' class="responsive-img" />
-	  		<BR /><span class='flow-text'>We know the best flights</span>
+	  		<BR /><span class='flow-text'>We know all the best flights</span>
 	  		<br><br>
 	  	</div>
 	  	
-	  	<div class="col s12 m4 l4 center"
->	  		<img src='images/travelServiceCar.jpg' class="responsive-img"  />
+	  	<div class="col s12 m4 l4 center">	  		
+	  		<img src='images/travelServiceCar.jpg' class="responsive-img"  />
 	  		<br /><span class='flow-text'>We've got the travel partners</span>
 	  		<br><br>
 	  	</div>
 
 	  	<div class="col s12 m4 l4 center ">
-	  		<img src='images/travelServiceVillage.jpg'  class="responsive-img" />
+	  		<img src='images/travelServiceVillage.jpg'  class="responsive-img"  />
 	  		<br /><span class='flow-text'>We can get you to the village</span>
 	  	</div>
 	 </div>
- </div>
+	</div>
  
 	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
 	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
