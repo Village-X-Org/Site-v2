@@ -49,8 +49,8 @@ require_once("utilities.php");
 	
 	<div class="section"><div class='row'>		
 			<?php 
-	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME)) {
-		$result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
+	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
+		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, 
                 YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
                 FROM projects AS p1 
@@ -58,9 +58,10 @@ require_once("utilities.php");
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors ON p1.project_matching_donor=donor_id 
-                WHERE p1.project_status<>'cancelled' 
-                GROUP BY p1.project_id 
-                ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, p1.project_funded DESC");
+                WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
+                ."GROUP BY p1.project_id 
+                ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, p1.project_funded DESC";
+        $result = doUnprotectedQuery($query);
 
 		$buffer = '';
 		$count = 0;
@@ -89,13 +90,13 @@ require_once("utilities.php");
 		          $fundedClass = 'funded';
 		      }
 		      
-		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
+		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
 				<div class='card sticky-action hoverable'>
 					<div class='card-image'>
 						<img class='activator' src='".PICTURES_DIR."{$row['picture_filename']}'>
 					</div>
 					<div class='card-content'>
-						<span class='card-title activator grey-text text-darken-4' style='font-size:18px;' onclick=\"document.location='project.php?id=$projectId';\">$projectName
+						<span class='card-title activator grey-text text-darken-4' style='font-size:18px;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">$projectName
 							<i class='material-icons right' style='color:#03A9F4;'>".($previousYear != null ? 'timeline' : 'fiber_new')."</i>
 						</span>
 						<h6 class='brown-text'>
@@ -134,7 +135,7 @@ require_once("utilities.php");
 		      $count++;
 		}
 		if (CACHING_ENABLED) {
-		  $handle = fopen(CACHED_LISTING_FILENAME, 'w');
+		  $handle = fopen(CACHED_LISTING_FILENAME.$donorId, 'w');
 		  fwrite($handle, $buffer);
 		  fclose($handle);
 		} else {
@@ -142,7 +143,7 @@ require_once("utilities.php");
 		}
 	}
 	if (CACHING_ENABLED) {
-	   include(CACHED_LISTING_FILENAME);
+	   include(CACHED_LISTING_FILENAME.$donorId);
 	}
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->
@@ -156,4 +157,6 @@ require_once("utilities.php");
 
 </div>
 
-<?php include('footer.inc'); ?>
+<?php 
+include('footer.inc'); 
+?>

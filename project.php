@@ -5,7 +5,6 @@ require_once("utilities.php");
 <html lang="en">
 <head>
 <?php
-
 if (hasParam('id')) {
     $projectId = paramInt('id');
 } else {
@@ -13,7 +12,12 @@ if (hasParam('id')) {
     return;
 }
 
-if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
+$donorId = 0;
+if (hasParam('d')) {
+  $donorId = paramInt('d');
+}
+
+if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
@@ -73,7 +77,7 @@ $stmt->close();
 <meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
 <?php 
 $metaProvided = 1;
-include('header.inc'); 
+ include('header.inc'); 
 ?>
 <script>
 $(document).ready(function(){
@@ -785,15 +789,16 @@ $(document).ready(function(){
 	</div>
 	<?php } ?>
 </div></div></div>
-<?php include('footer.inc'); 
+<?php 
+    include('footer.inc');
     $contents = ob_get_contents();
     ob_end_clean();
     if (CACHING_ENABLED) {
-        file_put_contents(CACHED_PROJECT_PREFIX.$projectId,$contents);
+        file_put_contents(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId,$contents);
     } else {
         print $contents;
     }
 } 
 if (CACHING_ENABLED) {
-    include(CACHED_PROJECT_PREFIX.$projectId); 
+    include(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId); 
 } ?>
