@@ -1,4 +1,9 @@
-<?php require_once("utilities.php"); ?>
+<?php require_once("utilities.php"); 
+$donorId = 0;
+if (hasParam('d')) {
+	$donorId = paramInt('d');
+}
+?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <?php if (!isset($metaProvided) || !$metaProvided) { ?>
@@ -305,7 +310,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </head>
 
 <body>
-
+<?php if (!$donorId) { ?>
 <ul id="About" class="dropdown-content hide-on-med-and-down">
   <li><a href="about.php">Mission &amp; Team</a></li>
   <li><a href="model.php">Model</a></li>
@@ -384,3 +389,4 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					</div>
 				</div>
 		</div>
+<?php } // Not donorId end. ?>

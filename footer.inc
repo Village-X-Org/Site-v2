@@ -1,3 +1,4 @@
+<?php if (!$donorId) { ?>
 <div class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 800px">
 	<div class="section no-pad-bot valign-wrapper"
@@ -186,7 +187,7 @@
 		</div>
 	</div>
 </footer>
-
+<?php } // not donorId end. ?>
 <script>
 	$(document).ready(function(){ 
 		$('#cancelModal').modal(); 
