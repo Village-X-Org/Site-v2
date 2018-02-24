@@ -121,7 +121,7 @@ require_once("utilities.php");
 							<div class='col s12'>";
 		      
 		    if ($fundedPercent < 100) {
-               $buffer .= "<a href='one_time_payment_view.php?id=$projectId'
+               $buffer .= "<a href='one_time_payment_view.php?id=$projectId&d=$donorId'
 								id='donate_button'
 								class='btn waves-effect waves-light light blue lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
             } else {

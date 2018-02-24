@@ -151,6 +151,7 @@ $(document).ready(function(){
          <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0;margin:0;">
          		<form id="honoree_details" method="post" action="one_time_payment_view.php">
              		<input type='hidden' name='id' value='<?php print $projectId; ?>' />
+                <input type='hidden' name='d' value='<?php print $donorId; ?>' />
              		<div class="row" style="padding:0;margin:0;">
              		
                              <div class="input-field col s6" style="padding:0;margin:0;">  
@@ -233,7 +234,7 @@ $(document).ready(function(){
 		<div class="center-align">
 		
 				<?php if ($funded < $total) { ?>
-				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>'
+				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>&d=<?php print $donorId; ?>'
 				id="donate-button"
 				class="waves-effect waves-light light blue lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></a>
