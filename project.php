@@ -84,7 +84,6 @@ $(document).ready(function(){
     $('.scrollspy').scrollSpy();
   });
 </script>
-
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 
@@ -112,8 +111,11 @@ $(document).ready(function(){
   	
   	<div style="display:table; width:100%">
   	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+      <?php if ($donorId) { ?>
+        <span class='flow-text'>A cooperation between<BR><b class='donor-text'><?php print $donorName; ?></b> and <b class='donor-text'>Village X</b></span>
+      <?php } ?>
 				<img src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; border: black 2px solid; box-shadow: 10px 10px 5px #888888; border-radius:10px;'>
-				<p class="valign-wrapper; center-align">
+				<p class="center-align">
 					<b><?php print ($exemplaryPicture ? "Project complete!" : "Here's a similar project."); ?></b>
 				<br>
 		</div>
@@ -128,7 +130,7 @@ $(document).ready(function(){
 				
 				<br>
 				
-		<div class="center-align"><b><font color="#4FC1E9">$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go</font></b></div>
+		<div class="center-align donor-text"><b><font>$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go</font></b></div>
 				
 					<br>
 				
@@ -177,7 +179,7 @@ $(document).ready(function(){
  				
                  <div class="row center-align" style="margin:0;">
              		<div class="input-field col s12" style="padding:0;margin:0;">
-             			<button id="submitBtn" class="btn-large blue submit" type="submit" name="action" style="width:100%;">Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></button>
+             			<button id="submitBtn" class="btn-large donor-background" type="submit" name="action" style="width:100%;">Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></button>
          			</div>
          		</div>
     			</form>
@@ -232,11 +234,10 @@ $(document).ready(function(){
 <br>
 <?php } ?>					
 		<div class="center-align">
-		
 				<?php if ($funded < $total) { ?>
 				<a href='one_time_payment_view.php?id=<?php print $projectId; ?>&d=<?php print $donorId; ?>'
 				id="donate-button"
-				class="waves-effect waves-light light blue lighten-1 btn-large">
+				class="waves-effect waves-light donor-background lighten-1 btn-large">
 				<i class="material-icons left">favorite_border</i>Donate<?php print ($matchingDonor ? " (2x)" : ""); ?></a>
 				<?php } else { ?>
 				<button 
@@ -274,7 +275,7 @@ $(document).ready(function(){
         	         }
                 ?>
  				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
-         				<a class="tooltip" style='text-decoration:none;'><span class="tooltiptext">Thanks <?php print $fullName; ?>!</span><span class="blue-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials; ?></b></span></a>
+         				<a class="tooltip" style='text-decoration:none;'><span class="tooltiptext">Thanks <?php print $fullName; ?>!</span><span class="donor-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials; ?></b></span></a>
          				<?php print ($isSubscription ? "<div style='position:absolute; top:-8px; right:-8px;'><i class='material-icons' style='font-size: 25px'>star</i></div>" : ""); ?>
  				</div>
  				<?php
@@ -306,7 +307,7 @@ $(document).ready(function(){
 			</div>
 
 <!--  <div class="section">
-	<nav class="light blue" role="navigation">
+	<nav class="donor-background" role="navigation">
     		<ul class="center-align row">
           <li class="waves-effect col s3">
               <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
@@ -336,7 +337,7 @@ $(document).ready(function(){
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
-		<h5 class="light blue-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
+		<h5 class="donor-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
 	</div>
 	
 	<div class="section">	
@@ -395,7 +396,7 @@ $(document).ready(function(){
         	        } 
 			     ?>
     	        			<div class="timeline-block timeline-block-right">
-						<div class="marker"></div>
+						<div class="marker donor-background"></div>
 						<div class="timeline-content">
 							<h6><?php print date("M Y", strtotime($row['pe_date'])); ?></h6>
 							<span><?php print $row['pet_label']; ?></span>
@@ -454,7 +455,7 @@ $(document).ready(function(){
 	    while ($row = $result->fetch_assoc()) {
 	    		if ($count == 0) { ?>
 			<div id="costbreakdown" class="section scrollspy">
-				<h5 class="light blue-text text-lighten-2" style="text-align: center">Cost Breakdown</h5>
+				<h5 class="donor-text text-lighten-2" style="text-align: center">Cost Breakdown</h5>
 			<br>
 			<div class="row">
 			<?php } 
@@ -524,7 +525,7 @@ $(document).ready(function(){
 		  if (count($years) > 1) {
 		?>
 		<div id="databreakdown" class="section scrollspy">
-			<h5 class="light blue-text text-lighten-2" style="text-align: center">Data Trends in <?php print $villageName; ?> Village</h5>
+			<h5 class="donor-text text-lighten-2" style="text-align: center">Data Trends in <?php print $villageName; ?> Village</h5>
 				<!--  <p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
 					<b>We track the quantitative impact of your donation. In
 					particular, we collect data on several development indicators,
@@ -538,7 +539,7 @@ $(document).ready(function(){
 			
 			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text"><?php print $villageName; ?> Village</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h6 style="text-align: center"><b>Development Scores: <span class="donor-text"><?php print $villageName; ?> Village</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>

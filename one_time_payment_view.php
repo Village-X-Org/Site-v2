@@ -99,20 +99,21 @@ include('header.inc');
 
 	<div class="section" id="jqueryvalidation" style="display:table; width:100%">
 		<div class="col-project valign-wrapper" style="vertical-align: middle;">
-			<div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
-            		<div class="card-content blue-text" style="height:100%;">
+			<div class="card donor-border" style="border-style:solid; border-width:1px; border-radius:20px; margin: 0px 0px 0px 0px;">
+            		<div class="card-content donor-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>
             				<?php print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" ); ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
           				<p class="center-align black-text">The project needs <?php print ($matchingDonor ? "$".ceil($remaining / 2).", matched to " : ""); ?>$<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm" method='post' action="donateWithStripe.php">
-                            <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
+                            <input type='hidden' name='d' value='<?php print $donorId; ?>' />
+                             <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
                             <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
                             	<input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
-         					<div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
+         					<div class="row donor-border" style="border-style:solid; border-width:2px; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
-         							<i class="material-icons prefix" style="font-size:40px; color:light-blue">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" style="font-size:40px; color:light-blue;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> />
+         							<i class="material-icons prefix donor-text" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
+          							<input placeholder="50" class='donor-text' style="font-size:40px;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> />
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
           					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
@@ -133,7 +134,7 @@ include('header.inc');
                            
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
-                    				<button id="donationButton" class="btn-large center-align light-blue submit" type="submit" style="width:100%;"> 
+                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;"> 
                     					Donate <?php print ($matchingDonor ? " (2x)" : ""); ?>
                     				</button>
             				   </div>

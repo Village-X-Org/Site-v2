@@ -1,7 +1,13 @@
 <?php require_once("utilities.php"); 
-$donorId = 0;
+$donorId = $donorName = $donorColor = $donorLogo = 0;
 if (hasParam('d')) {
 	$donorId = paramInt('d');
+	$result = doUnprotectedQuery("SELECT donor_first_name, donor_last_name, donor_primary_color, donor_logo FROM donors WHERE donor_id=$donorId");
+	if ($row = $result->fetch_assoc()) {
+		$donorName = $row['donor_first_name'].' '.$row['donor_last_name'];
+		$donorColor = $row['donor_primary_color'];
+		$donorLogo = $row['donor_logo'];
+	}
 }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -65,6 +71,16 @@ if (hasParam('d')) {
 	 
 	-ms-touch-action: none;
 	touch-action: none;
+}
+
+.donor-background { 
+	background-color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
+}
+.donor-text {
+	color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
+}
+.donor-border {
+	border-color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
 }
 </style>
 
