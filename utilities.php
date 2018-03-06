@@ -155,6 +155,24 @@ function doUnprotectedQuery($queryToBeExecuted) {
 	return $result;
 }
 
+function doJsonQuery($query) {
+	$result = doUnprotectedQuery($query);
+	$rows = mysqli_fetch_all($result,MYSQLI_ASSOC);
+	mysqli_free_result($result);
+	closeDBConn();
+	$json = json_encode($rows);
+	return $json;
+}
+
+function cached($filename, $str) {
+	if (!file_exists($filename)) {
+		$handle = fopen($filename, 'w');
+		fwrite($handle, $str);
+		fclose($handle);
+	}
+	return file_get_contents($filename);
+}
+
 function closeDBConn() {
 	global $link;
 	mysqli_close($link);
