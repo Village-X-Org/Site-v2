@@ -427,6 +427,12 @@ function invalidateCaches($projectId) {
     if (file_exists(CACHED_CHARTS_FILENAME)) {
         @unlink(CACHED_CHARTS_FILENAME);
     }
+    if (file_exists("api/projects.json")) {
+    	@unlink("api/projects.json");
+    }
+    if (file_exists("api/villages.json")) {
+    	@unlink("api/villages.json");
+    }
     include("getProjects.php");
     include("getVillages.php");
 }
