@@ -415,14 +415,16 @@ function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideS
 }
 
 function invalidateCaches($projectId) {
-    if (file_exists(CACHED_PROJECT_PREFIX.$projectId)) {
-        @unlink(CACHED_PROJECT_PREFIX.$projectId);
+    $files = glob(CACHED_PROJECT_PREFIX.$projectId.'*');
+    foreach ($files as $file) {
+            @unlink($file);
     }
     if (file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         @unlink(CACHED_HIGHLIGHTED_FILENAME);
     }
-    if (file_exists(CACHED_LISTING_FILENAME)) {
-        @unlink(CACHED_LISTING_FILENAME);
+    $files = glob(CACHED_LISTING_FILENAME.'*');
+    foreach ($files as $file) {
+        @unlink($file);
     }
     if (file_exists(CACHED_CHARTS_FILENAME)) {
         @unlink(CACHED_CHARTS_FILENAME);
