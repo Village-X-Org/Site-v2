@@ -22,7 +22,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donor
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
@@ -43,6 +43,7 @@ if ($row = $result->fetch_assoc()) {
     $solution = $row['project_community_solution'];
     $partners = $row['project_community_partners'];
     $completion = $row['project_completion'];
+    $videoId = $row['project_youtube_id'];
     $impact = $row['project_impact'];
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
@@ -509,8 +510,15 @@ $(document).ready(function(){
                   </div>
                   
                 <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
-                <hr width="85%">
             <?php 
+        }
+
+        if ($videoId) {
+            print "<br/><br/><div class='video-container' style='border-style:solid;background-size:cover;background-position:center;''>
+                  <iframe src='https://www.youtube.com/embed/".$videoId."?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0' frameborder='0' gesture='media' allow='encrypted-media' width='480' height='270'></iframe>
+                </div><br/>";
+        } else {
+          print "<hr width='85%'>";
         }
     ?>
    
