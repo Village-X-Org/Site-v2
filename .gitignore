@@ -5,3 +5,5 @@ config.php
 /.settings/
 cached/*
 uploads/*
+api/*.json
+.htaccess
