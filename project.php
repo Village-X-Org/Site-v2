@@ -93,17 +93,28 @@ $(document).ready(function(){
 	</div>
 
 <?php
-  $stmt = prepare("SELECT project_id, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=? AND project_id<>? AND pe_project_id=project_id AND pe_type=1 ORDER BY yearPosted DESC");
+  $stmt = prepare("SELECT project_id, YEAR(pe_date) AS yearPosted, exemplary_pictures.picture_filename AS exemplaryPicture, 
+      similar_pictures.picture_filename AS similar_picture
+      FROM projects JOIN project_events ON project_village_id=? AND project_id<>? 
+      AND pe_project_id=project_id AND pe_type=1
+      LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
+      LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1
+      LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
+      ORDER BY yearPosted DESC");
   $stmt->bind_param('ii', $villageId, $projectId);
   $result = execute($stmt);
   $count = 0;
   while ($row = $result->fetch_assoc()) {
     $otherYearProjectId = $row['project_id'];
     $otherYearPosted = $row['yearPosted'];
+    $otherYearPictureFilename = $row['similar_picture'];
+    $otherYearExemplaryPicture = $row['exemplaryPicture'];
 ?>
 
-  <div onclick="document.location='<?php print $otherYearProjectId; ?>';" style='position:absolute; border: 8px solid #55C4F5; border-radius:75px; width:80px;height:80px;right:<?php print ($count * 100 + 10); ?>px;bottom:10px;cursor:pointer;box-shadow: 10px 10px 60px -10px #55C4F5;'>
-    <span style='position:absolute;font-weight:bolder;font-size:24px;top:33px;left:5px;color:#55C4F5'><?php print $otherYearPosted; ?></span>  
+  <div onclick="document.location='<?php print $otherYearProjectId; ?>';" style="position:absolute; border: 2px solid #55C4F5; border-radius:75px; width:80px;height:80px;right:<?php print ($count * 100 + 10); ?>px;
+        bottom:10px;cursor:pointer;box-shadow: 10px 10px 60px -10px #55C4F5;
+        background:url('<?php print PICTURES_DIR.($otherYearExemplaryPicture ? $otherYearExemplaryPicture : $otherYearPictureFilename); ?>');background-size:80px 80px;">
+    <span style='position:absolute;font-weight:bolder;font-size:24px;top:40px;left:10px;color:#DDDDDD'><?php print $otherYearPosted; ?></span>  
   </div>
 <?php 
   $count++;
