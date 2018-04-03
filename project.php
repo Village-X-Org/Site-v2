@@ -91,6 +91,24 @@ $(document).ready(function(){
 	<div class="parallax">
 		<img style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
 	</div>
+
+<?php
+  $stmt = prepare("SELECT project_id, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=? AND project_id<>? AND pe_project_id=project_id AND pe_type=1 ORDER BY yearPosted DESC");
+  $stmt->bind_param('ii', $villageId, $projectId);
+  $result = execute($stmt);
+  $count = 0;
+  while ($row = $result->fetch_assoc()) {
+    $otherYearProjectId = $row['project_id'];
+    $otherYearPosted = $row['yearPosted'];
+?>
+
+  <div onclick="document.location='<?php print $otherYearProjectId; ?>';" style='position:absolute; border: 8px solid #55C4F5; border-radius:75px; width:80px;height:80px;right:<?php print ($count * 100 + 10); ?>px;bottom:10px;cursor:pointer;box-shadow: 10px 10px 60px -10px #55C4F5;'>
+    <span style='position:absolute;font-weight:bolder;font-size:24px;top:33px;left:5px;color:#55C4F5'><?php print $otherYearPosted; ?></span>  
+  </div>
+<?php 
+  $count++;
+} 
+$stmt->close(); ?>
 </div>
 
 <div class="container">
@@ -517,7 +535,7 @@ $(document).ready(function(){
             print "<br/><br/><div class='video-container' style='border-style:solid;background-size:cover;background-position:center;''>
                   <iframe src='https://www.youtube.com/embed/".$videoId."?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0' frameborder='0' gesture='media' allow='encrypted-media' width='480' height='270'></iframe>
                 </div><br/>";
-        } else {
+        } elseif ($count > 0) {
           print "<hr width='85%'>";
         }
     ?>

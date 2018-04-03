@@ -229,7 +229,7 @@ if (hasParam('test')) {
 <div class="container">
 <br>
 	<div class="valign-wrapper" id='travelInfoRequestDiv'>
-          <div class="card scrollspy" id=get_started style="opacity:1; border-radius:20px;border:black 1px solid;">
+          <div class="card scrollspy" id="get_started" style="opacity:1; border-radius:20px;border:black 1px solid;">
             <div class="card-content black-text">
               <span class="card-title center-align" style="padding: 1% 5% 0% 5%;"><b>Interested in travel advice that fights extreme poverty?</b></span> 
 
