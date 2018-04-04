@@ -164,11 +164,20 @@ function doJsonQuery($query) {
 	return $json;
 }
 
-function cached($filename, $str) {
+function cached($type, $str) {
+	$filename = $type.'.json';
 	if (!file_exists($filename)) {
 		$handle = fopen($filename, 'w');
 		fwrite($handle, $str);
 		fclose($handle);
+
+		$versions = json_decode(file_get_contents('versions.json'));
+		$index = $type.'_version';
+		$versions->{$index}++;
+
+		$versionsFile = fopen('versions.json', 'w');
+		fwrite($versionsFile, json_encode($versions));
+		fclose($versionsFile);
 	}
 	return file_get_contents($filename);
 }
