@@ -288,9 +288,10 @@ $stmt->close(); ?>
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
                         ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0 ORDER BY donation_amount DESC) 
                         UNION (SELECT sd_donor_id AS f_donor_id, 1 AS isSubscription FROM subscription_disbursals WHERE sd_project_id=? ORDER BY sd_amount DESC)) AS derived 
-                    JOIN donors ON f_donor_id=donor_id GROUP BY donor_id ORDER BY (LENGTH(donor_first_name) > 0 AND donor_last_name <> donor_first_name) DESC LIMIT 20");
+                    JOIN donors ON f_donor_id=donor_id GROUP BY donor_id ORDER BY (LENGTH(donor_first_name) > 0 AND donor_last_name <> donor_first_name) DESC");
 		     $stmt->bind_param('ii', $projectId, $projectId);
 		     $result = execute($stmt);
+         $col = $bubbleRow = 1;
 		     while ($row = $result->fetch_assoc()) {
         	         $firstName = $row['donor_first_name'];
         	         $lastName = $row['donor_last_name'];
@@ -300,18 +301,30 @@ $stmt->close(); ?>
         	           $initials = $firstName[0].$lastName[0];
         	           $fullName = $firstName.' '.$lastName[0];
         	         } else {
+                    if ($bubbleRow > 3 && $col == 1) {
+                      break;
+                    }
         	           $initials = 'A';
         	           $fullName = 'Anonymous';
         	         }
                 ?>
- 				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px;margin:2% 2% 2% 2%">
+ 				<div style="display:inline-block;position:relative; background-color: rgba(220,220,220,0.8);border-radius:50%; border-color:rgba(100,149,237,1.0);border-width:thin; height:40px; width:40px; margin-top:-12px;">
          				<a class="tooltip" style='text-decoration:none;'><span class="tooltiptext">Thanks <?php print $fullName; ?>!</span><span class="donor-text" style="height:40px; margin: auto; text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials; ?></b></span></a>
          				<?php print ($isSubscription ? "<div style='position:absolute; top:-8px; right:-8px;'><i class='material-icons' style='font-size: 25px'>star</i></div>" : ""); ?>
  				</div>
  				<?php
+            if (($col == 6 && $bubbleRow % 2 == 1) || ($col == 5 && $bubbleRow % 2 == 0)) {
+              $col = 0;
+              $bubbleRow++;
+              print "<br/>";
+            }
+            $col++;
 			}
 			
 			$stmt->close();
+      if ($bubbleRow > 1 && $col > 1) {
+          print "<div style='width:".((($bubbleRow % 2 == 0 ? 6 : 7) - $col) * 44)."px;display:inline-block;position:relative;'></div>";
+      }
 			
 		    } 
 		       
