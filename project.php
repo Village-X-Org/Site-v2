@@ -21,12 +21,14 @@ if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donor
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
-                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
+                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
+                MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
                 CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
-                LEFT JOIN project_events ON pe_project_id=project_id 
+                LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
+                LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
                 LEFT JOIN donors ON project_matching_donor=donor_id 
                 LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
                 LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
@@ -58,6 +60,8 @@ if ($row = $result->fetch_assoc()) {
     $matchingDonor = $row['matchingDonor'];
     $exemplaryPicture = $row['exemplaryPicture'];
     $exemplaryDescription = $row['pu_description'];
+    $monthCompleted = $row['monthCompleted'];
+    $yearCompleted = $row['yearCompleted'];
     
     $villageContribution = round($total * .05);
     $percentFunded = max(5, round($funded * 100 / $total));
@@ -93,10 +97,12 @@ $(document).ready(function(){
 	</div>
 
 <?php
-  $stmt = prepare("SELECT project_id, YEAR(pe_date) AS yearPosted, exemplary_pictures.picture_filename AS exemplaryPicture, 
+  $stmt = prepare("SELECT project_id, YEAR(peStart.pe_date) AS yearPosted, YEAR(peEnd.pe_date) AS yearCompleted,
+      exemplary_pictures.picture_filename AS exemplaryPicture, 
       similar_pictures.picture_filename AS similar_picture
-      FROM projects JOIN project_events ON project_village_id=? AND project_id<>? 
-      AND pe_project_id=project_id AND pe_type=1
+      FROM projects JOIN project_events AS peStart ON project_village_id=? AND project_id<>? 
+      AND peStart.pe_project_id=project_id AND peStart.pe_type=1
+      LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
       LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
       LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1
       LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
@@ -106,7 +112,7 @@ $(document).ready(function(){
   $count = 0;
   while ($row = $result->fetch_assoc()) {
     $otherYearProjectId = $row['project_id'];
-    $otherYearPosted = $row['yearPosted'];
+    $otherYearPosted = max($row['yearCompleted'], $row['yearPosted']);
     $otherYearPictureFilename = $row['similar_picture'];
     $otherYearExemplaryPicture = $row['exemplaryPicture'];
 ?>
@@ -125,7 +131,7 @@ $stmt->close(); ?>
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> needs $<?php print $total; ?> to <?php print strtolower($projectName); ?>. This project will help <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> has contributed $<?php print $villageContribution; ?>, materials, and labor.
+					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>
