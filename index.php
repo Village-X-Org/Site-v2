@@ -320,20 +320,66 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     	      </div>";
         $cells[$projectType][] = $nextBuffer;
     }
-   
+
     $count = $index = 0;
-    while ($count < 3) {
+    while ($count < 2) {
         foreach ($cells as $cell) {
             if (count($cell) > $index) {
                 $buffer .= $cell[$index];
                 $count++;
             }
-            if ($count == 3) {
+            if ($count == 2) {
                 break;
             }
         }
         $index++;
     }
+
+    $result = doUnprotectedQuery("SELECT campaign_id, campaign_title, campaign_location, campaign_price, campaign_ad, campaign_type, campaign_picture FROM campaigns LIMIT 1");
+
+    if ($row = $result->fetch_assoc()) {
+        $campaignId = $row['campaign_id'];
+        $campaignTitle = $row['campaign_title'];
+        $campaignType = $row['campaign_type'];
+        $campaignPrice = $row['campaign_price'];
+        $campaignLocation = $row['campaign_location'];
+        $campaignAd = $row['campaign_ad'];
+        $campaignPicture = $row['campaign_picture'];
+        $nextBuffer = "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='campaign.php?id=$campaignId';\">
+    			<div class='card sticky-action hoverable'>
+    				<div class='card-image'>
+    					<img class='activator' src='$campaignPicture'>
+    				</div>
+    				<div class='card-content'>
+    					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='campaign.php?id=$campaignId';\">$campaignTitle
+    						<i class='material-icons right' style='color:#03A9F4;'>fiber_new</i>
+    					</span>
+    					<h6 class='brown-text'>
+    						<b>$campaignLocation</b>
+    					</h6>
+    					<br>
+    					<h6>
+    						<b>Help us raise $$campaignPrice!</b>
+    					</h6>
+    					<div class='progress'>
+    						<div class='determinate' style='width: 5%'></div>
+    					</div>
+    					<p style='font-size:14px;'>$campaignAd</p>
+    				</div>
+    				<div class='card-action'>
+    					<div class='row center'>
+    						<div class='col s12'>";
+        $nextBuffer .= "<button href='' class='btn waves-effect waves-light light blue lighten-1'>Start a Campaign!</button>";
+
+        $nextBuffer .= "</div>
+    					</div>
+    				</div>
+    			</div>
+    	      </div>";
+    	$buffer .= $nextBuffer;
+    }
+   
+
     if (CACHING_ENABLED) {
         $handle = fopen(CACHED_HIGHLIGHTED_FILENAME, "w");
         fwrite($handle, $buffer);
