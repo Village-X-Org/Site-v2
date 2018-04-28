@@ -54,14 +54,14 @@ if (hasParam('gc')) {
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Rural Africa</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund Projects That Villages Choose</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
 				<br>
 				<br>
 				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					by funding projects that villages choose</h5>
+					to disrupt extreme poverty in rural Africa</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">
@@ -81,7 +81,7 @@ if (hasParam('gc')) {
 
 <div class="container">
 	<br>
-	<blockquote class="flow-text">Extreme poverty is not only a condition of unsatisfied material needs. It is often accompanied by a degrading state of powerlessness. -- Prof. Peter Singer, Princeton</blockquote>
+	<blockquote class="flow-text"><b>Extreme poverty is growing ONLY in rural sub-Saharan Africa</b>, harming nearly 400 million people. Our simple yet radical solution is the <span class="blue-text">cash-to-village model</span>: <b>village democracy + direct funding = last-mile development</b>.</blockquote>
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
@@ -91,11 +91,11 @@ if (hasParam('gc')) {
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text hide-on-large-only">
+					<h2 class="center brown-text">
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 					</h2> 
 					
-					<h2 class="center brown-text hide-on-med-and-down">		
+					<h2 class="center brown-text hide">		
  						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
  							<source src="images/nachuma_water_480.mp4" type="video/mp4">		
  						</video>		
@@ -113,11 +113,11 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center brown-text hide-on-large-only">
+					<h2 class="center brown-text">
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
 					</h2>
 				
-					<h2 class="center brown-text hide-on-med-and-down">		
+					<h2 class="center brown-text hide">		
  						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
  							<source src="images/geyser_spray_480.mp4" type="video/mp4">		
  						</video>		
@@ -127,17 +127,17 @@ if (hasParam('gc')) {
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
 					
-					<h5 class="center">#directgiving</h5>
+					<h5 class="center">#directfunding</h5>
 				</div>
 			</div>
 
 			<div class="col s12 m4">
 				<div class="icon-block">
-					<h2 class="center black-text hide-on-large-only">
+					<h2 class="center brown-text">
 						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
 					
-					<h2 class="center brown-text hide-on-med-and-down">		
+					<h2 class="center brown-text hide">		
      					<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
      						<source src="images/kids_borehole_low.mp4" type="video/mp4">		
      					</video>		
