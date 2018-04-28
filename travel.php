@@ -292,7 +292,7 @@ if (hasParam('test')) {
 	            	    </script>
 	                 
 	          	</div>
-	          		
+	      
 	          	<div class="row" style="padding:0 5% 0 5%;margin:0;">
 	          		<div class="input-field col s6" style="padding:0 2% 0 0;margin:0;">
 	          		<input type="text" style="font-size:20px;" class="datepicker" placeholder="departure date" name="travelDepartureDate">
@@ -317,7 +317,7 @@ if (hasParam('test')) {
           	
           		<span style='font-size:20px;font-style:bold;'>Tell Us More</span>
           		
-         		<div class="row" style="padding:0 5% 0 5%;margin:0;"">
+         		<div class="row" style="padding:0 5% 0 5%;margin:0;">
          				<div class="input-field col s12" style="border-radius: 5px;padding:0;margin-bottom:5px;">
                    				<textarea style="font-size:20px;height:80px;width:100%;padding:5px;" id="travelMessage" placeholder="message (optional)" name="travelMessage"></textarea>
                 	 		</div>
