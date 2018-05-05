@@ -13,7 +13,7 @@ require_once("utilities.php");
 	<div class="container no-pad-bot" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
 		<div class="row">
 		  <div class="col s6 m6 l2 right-align" style="padding: 9% 0% 0% 3%;">
-			<div style="opacity:0.7; width:175px; height:175px; border-radius:20%; border-style:solid; background:teal">
+			<div style="width:175px; height:175px; border-radius:20%; border-style:solid; background-color:#008080BB;">
         				<h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b>B</b></h1>
 			</div>
 		</div> 
@@ -33,18 +33,18 @@ require_once("utilities.php");
 	
 			
 		<div class="col l4" style="padding: 5% 3% 1% 1%;">
-      <div class="card teal z-depth-1" style="padding: 1% 1% 1% 1%; opacity:0.6">
+      <div class="card z-depth-1" style="padding: 1% 1% 1% 1%; background-color:#008080BB">
         <!-- <div class="card-image">
           <img src="images/woman_with_goat">
           <span class="card-title">Card Title</span>
         </div> -->
         <div class="card-content">
-        <div><h5 class="header white-text text-lighten-2: 2px 2px 7px #111111 center-align" style="opacity:0.7">Bryan's Stats</h5></div>
+        <div><h5 class="header white-text center-align" style="padding: 2px 2px 7px;">Bryan's Stats</h5></div>
           <div style="padding: 0% 0% 0% 10%">
-          <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;<span style="font-size: smaller; font-weight: lighter">Projects: &nbsp;</span><b>2</b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;<span style="font-size: smaller; font-weight: lighter">People Helped: &nbsp;</span><b>200</b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;<span style="font-size: smaller; font-weight: lighter">Families Helped: &nbsp;</span><b>35</b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;<span style="font-size: smaller; font-weight: lighter">Fundraisers Led: &nbsp;</span><b>0</b></h5>
+          <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b>2</b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b>200</b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b>35</b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
         	  </div>
         </div>
         
