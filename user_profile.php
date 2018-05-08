@@ -1,38 +1,39 @@
 <?php
-require_once("utilities.php");
+require_once ("utilities.php");
+$userId = param('x');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
-<?php include('header.inc'); ?>
+<?php include ('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container hide-on-med-and-down" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
     
-	<div class="container no-pad-bot" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
-		<div class="row">
-		  <div class="col s6 m6 l2 right-align" style="padding: 9% 0% 0% 3%;">
-			<div style="width:175px; height:175px; border-radius:20%; border-style:solid; background-color:#008080BB;">
-        				<h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b>B</b></h1>
-			</div>
-		</div> 
-	
-		<div class="col s6 m6 l6 left-align" style="padding: 7% 1% 1% 2%;">
-			<div style="padding: 5% 5% 5% 5%">
-				<h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
-			</div>
+  <div class="container no-pad-bot" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
+    <div class="row">
+      <div class="col s6 m6 l2 right-align" style="padding: 9% 0% 0% 3%;">
+      <div style="width:175px; height:175px; border-radius:20%; border-style:solid; background-color:#008080BB;">
+                <h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b>B</b></h1>
+      </div>
+    </div> 
+  
+    <div class="col s6 m6 l6 left-align" style="padding: 7% 1% 1% 2%;">
+      <div style="padding: 5% 5% 5% 5%">
+        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
+      </div>
 
-			<div style="padding: 5% 5% 0% 5%;">
-				<h5 class="header light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 2%">
-					bryan_nelson@yahoo.com</h5>
-			</div>
-			
-			</div>
-	
-	
-			
-		<div class="col l4" style="padding: 5% 3% 1% 1%;">
+      <div style="padding: 5% 5% 0% 5%;">
+        <h5 class="header light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 2%">
+          bryan_nelson@yahoo.com</h5>
+      </div>
+      
+      </div>
+  
+  
+      
+    <div class="col l4" style="padding: 5% 3% 1% 1%;">
       <div class="card z-depth-1" style="padding: 1% 1% 1% 1%; background-color:#008080BB;">
         <!-- <div class="card-image">
           <img src="images/woman_with_goat">
@@ -45,7 +46,7 @@ require_once("utilities.php");
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b>200</b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b>35</b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
-        	  </div>
+            </div>
         </div>
         
         <!--  <div class="card-action center-align">
@@ -56,204 +57,185 @@ require_once("utilities.php");
   </div>
   </div>
 </div>
-			<div class="parallax">
-				<img src="images/header1.jpg">
-			</div>
-		
-	</div>
+      <div class="parallax">
+        <img src="images/header1.jpg">
+      </div>
+    
+  </div>
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
     
-	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
-		<div class="row center">
-		  
-			<div class="col s12 m12 l6 center-align" style="padding: 6% 1% 6% 1%;">
-			
-			<div style="padding: 5% 0% 5% 0%">
-				<h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
-			</div>
+  <div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
+    <div class="row center">
+      
+      <div class="col s12 m12 l6 center-align" style="padding: 6% 1% 6% 1%;">
+      
+      <div style="padding: 5% 0% 5% 0%">
+        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
+      </div>
 
-			<div style="padding: 5% 5% 1% 5%;">
-				<h6 class="header light text-shadow: 2px 2px 7px #111111" style="padding: 0% 3% 0% 3%">bryan_nelson@yahoo.com</h6>
-			</div>
-			
-
-			<!--   <div style="padding: 0% 5% 0% 5%;">
-				<br>
-				<br>
-				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;">donate</a>
-			</div>
-			
-			-->
-			
-			<!--  <div style="padding: 5% 20% 5% 20%;">
-				<h6 class="header light text-shadow: 2px 2px 7px #111111" style="font-weight:thin">fundriasing to <span style="font-size: large; font-weight: bold"><a>Provide Clean Water</a></span></h6>
-				<h6>in Saiti Village, Malawi</h6>
-			</div> -->
-			
-			</div>
-	</div>
+      <div style="padding: 5% 5% 1% 5%;">
+        <h6 class="header light text-shadow: 2px 2px 7px #111111" style="padding: 0% 3% 0% 3%">bryan_nelson@yahoo.com</h6>
+      </div>
+      
+      </div>
+  </div>
   </div>
 
-			<div class="parallax">
-				<img src="images/header1.jpg">
-			</div>
-		</div>
+      <div class="parallax">
+        <img src="images/header1.jpg">
+      </div>
+    </div>
 
 <div class="container">
-  	<div class="row" style="width:100%; padding: 2% 0% 2% 0%">
-  	     
-		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 2% 2%">
-		<div>			
-					<h6>
-							<span style="font-size: x-large; font-weight: 500">Last Donation: 12/28/17</span>
-						</h6>
-						<div class='progress'>
-							<div class='determinate' style='width: 50%'></div>
-						</div>
-						<div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="">Provide Clean Water in Saiti</a>&nbsp;is <b>&nbsp;COMPLETE</b></div>
+    <div class="row" style="width:100%; padding: 2% 0% 2% 0%">
+         
+    <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 2% 2%">
+    <div>     
+          <h6>
+              <span style="font-size: x-large; font-weight: 500">Last Donation: 12/28/17</span>
+            </h6>
+            <div class='progress'>
+              <div class='determinate' style='width: 50%'></div>
+            </div>
+            <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="">Provide Clean Water in Saiti</a>&nbsp;is <b>&nbsp;COMPLETE</b></div>
 <br>
-					
-		<div class="left-align">
-				
-				<a href='project_tiles.php'
-				id="donate-button"
-				class="waves-effect waves-light donor-background lighten-1 btn-large" style="width:100%; border-radius:10px;font-size: large">Find Projects</a>
-			
-		</div>		
-		</div>
+          
+    <div class="left-align">
+        
+        <a href='project_tiles.php'
+        id="donate-button"
+        class="waves-effect waves-light donor-background lighten-1 btn-large" style="width:100%; border-radius:10px;font-size: large">Find Projects</a>
+      
+    </div>    
+    </div>
 
- 		<div class="flow-text" style="padding: 5% 0% 0% 0%">
- 		Bryan has supported 2 projects, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  Bryan has led 0 fundraisers and is currently not a monthly donor.
+    <div class="flow-text" style="padding: 5% 0% 0% 0%">
+    Bryan has supported 2 projects, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  Bryan has led 0 fundraisers and is currently not a monthly donor.
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b>2</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">cake</i>&nbsp;Fundraisers Led: &nbsp;<b>0</b></h5>
- 		</div>
-		
-		<h5 class="left-align" style="padding: 2% 0% 4% 0%"><b>Bryan's Portfolio</b></h5>
-			<div style="padding:0% 10% 2% 10%;">
-			
-			<div>
-				<canvas id="chart2" width="250 " height="250" style="padding:5% 5% 5% 5%"></canvas>
-			</div>
+    </div>
+    
+    <h5 class="left-align" style="padding: 2% 0% 4% 0%"><b>Bryan's Portfolio</b></h5>
+      <div style="padding:0% 10% 2% 10%;">
+      
+      <div>
+        <canvas id="chart2" width="250 " height="250" style="padding:5% 5% 5% 5%"></canvas>
+      </div>
 
-			<script>
-				var ctx = document.getElementById("chart2").getContext('2d');
+      <script>
+        var ctx = document.getElementById("chart2").getContext('2d');
 
-				var chart2 = new Chart(ctx, {
-					    type: 'doughnut',
-					    data: {
-					      labels: ["Livestock", "Water", "Education"],
-					      datasets: [
-					        {
-					          label: "Population (millions)",
-					          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-					          data: [1,3,2]
-					        }
-					      ]
-					    },
-					    
-					});
-			</script>
-				
-		</div>
-		</div>
-		
-		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
-	
+        var chart2 = new Chart(ctx, {
+              type: 'doughnut',
+              data: {
+                labels: ["Livestock", "Water", "Education"],
+                datasets: [
+                  {
+                    label: "Population (millions)",
+                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+                    data: [1,3,2]
+                  }
+                ]
+              },
+              
+          });
+      </script>
+        
+    </div>
+    </div>
+    
+    <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
+  
             <h5 class="valign-wrapper" style="padding: 4% 0% 4% 0%"><b>Bryan's Donations</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$100)</span></h5>
         
             <div style="overflow: scroll; height:250px;">
-            	<div class="row valign-wrapper">
-		            <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
-		                 				<a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; font-color: #ffffff; 
-		                                    text-align: center;display: table-cell;vertical-align:middle;"><b>BN</b></span></a>
-		                 			
-		 			</div>
-		 			<div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Bryan donated $15</b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on Dec 15, 2017 to</span>
-		 				<div style="font-weight: 200; font-size:16px;"><a href="">Provide Clean Water</a> in Saiti Village</div>
-		 			</div>
-				</div>
-			</div>
+              <div class="row valign-wrapper">
+                <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
+                            <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; font-color: #ffffff; 
+                                        text-align: center;display: table-cell;vertical-align:middle;"><b>BN</b></span></a>
+                          
+          </div>
+          <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Bryan donated $15</b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on Dec 15, 2017 to</span>
+            <div style="font-weight: 200; font-size:16px;"><a href="">Provide Clean Water</a> in Saiti Village</div>
+          </div>
+        </div>
+      </div>
             
-				
-					
-		<div style="padding:3% 2% 2% 2%;">
+        
+          
+    <div style="padding:3% 2% 2% 2%;">
 
-				<h5 class="left-align" style="padding: 4% 0% 4% 0%"><b>Bryan's Impact</b></h5> 
-				<h5 class="center-align"><b><span class="blue-text">Bryan's Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
-		<div>
-				<canvas id="chart3" width="250" height="250"></canvas>
-			</div>
+        <h5 class="left-align" style="padding: 4% 0% 4% 0%"><b>Bryan's Impact</b></h5> 
+        <h5 class="center-align"><b><span class="blue-text">Bryan's Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
+    <div>
+        <canvas id="chart3" width="250" height="250"></canvas>
+      </div>
 
-			<script>
-				var ctx = document.getElementById("chart3").getContext('2d');
+      <script>
+        var ctx = document.getElementById("chart3").getContext('2d');
 
-				var chart3 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ 2014, 2015, 2016],
-						datasets : [ {
-							label: "Partner Villages Average",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "#6495ED",
+        var chart3 = new Chart(ctx, {
+          type : 'line',
+          data : {
+            labels : [ 2014, 2015, 2016],
+            datasets : [ {
+              label: "Partner Villages Average",
+              fill : false,
+              backgroundColor : "#ffce56",
+              borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 5,
-							data : [ 11.92, 12.42, 16.93 ],
-							cubicInterpolationMode: 'monotone',
-						}, 
+              data : [ 11.92, 12.42, 16.93 ],
+              cubicInterpolationMode: 'monotone',
+            }, 
 
-						{
-							label: "Control Villages Average",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "rgba(150,75,75,.7)",
+            {
+              label: "Control Villages Average",
+              fill : false,
+              backgroundColor : "#ffce56",
+              borderColor: "rgba(150,75,75,.7)",
                              pointBackgroundColor: "rgba(150,75,75,.7)",
                              pointRadius: 5,
-							data : [ 13.72, 12.11, 9.5 ],
-							cubicInterpolationMode: 'monotone',
-						}]
-						}, 
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : false,
-							}
-						} ]
-					},
-					}
+              data : [ 13.72, 12.11, 9.5 ],
+              cubicInterpolationMode: 'monotone',
+            }]
+            }, 
+          options : {
+            responsive : true,
+            maintainAspectRatio : false,
+            legend : {
+              display : false,
+            },
+          scales : {
+            yAxes : [ {
+              ticks : {
+                beginAtZero : false,
+              }
+            } ]
+          },
+          }
 
-				});
-			</script>
-				<div class="center-align" style="padding: 2% 0 0 0; font-weight:thin; font-size:medium">dev scores based on 17 indicators collected from each village for health, education, business, lifestyle, agriculture, and livestock</div>
-			
-		</div>
-		</div>
-	</div>
-</div>
+        });
+      </script>
+        <div class="center-align" style="padding: 2% 0 0 0; font-weight:thin; font-size:medium">dev scores based on 17 indicators collected from each village for health, education, business, lifestyle, agriculture, and livestock</div>
+      
+    </div>
+    </div>
+  </div>
 
     <?php
-        $stmt = prepare("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=? AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
-        $stmt->bind_param('i', $projectId);
+        $stmt = prepare("SELECT picture_filename FROM projects JOIN donations ON donation_donor_id=? AND donation_project_id=project_id JOIN project_updates ON pu_project_id=project_id JOIN pictures ON pu_image_id=picture_id ORDER BY RAND() DESC LIMIT 20");
+        $stmt->bind_param('i', $userId);
         $result = execute($stmt);
         $count = 0;
         while ($row = $result->fetch_assoc()) {
             if ($count == 0) {
-                print "<hr width='85%'><div id='pics' class='section scrollspy'>
-				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
-                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>".strip_tags($completion)."</span>" : "")."
-                                <div class='carousel'>";
+                print "<div class='carousel'>";
             }
-            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
+            print "<a class='carousel-item'><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
             $count++;
         }
         $stmt->close();
@@ -265,13 +247,13 @@ require_once("utilities.php");
                     });
                   </script>
                   </div>
-                  
-                <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
             <?php 
         }
     ?>
-        
+
+</div>
+
 </div>
 </div>
 
-<?php include('footer.inc'); ?>
+<?php include ('footer.inc'); ?>
