@@ -2,15 +2,40 @@
 require_once ("utilities.php");
 $userId = param('x');
 
-$stmt = prepare("SELECT UNIX_TIMESTAMP(MAX(donation_date)) AS latestDonationDate, SUM(donation_amount) AS totalDonationAmount, 
-      COUNT(DISTINCT donation_project_id) AS totalProjectCount FROM donations 
-      JOIN projects ON donation_project_id=project_id WHERE donation_donor_id=?");
+$stmt = prepare("SELECT donor_first_name, donor_last_name, UNIX_TIMESTAMP(MAX(donation_date)) AS latestDonationDate, SUM(donation_amount) AS totalDonationAmount, SUM(IF(project_type='livestock',1,0)) AS livestockCount, 
+  SUM(IF(project_type='water',1,0)) AS waterCount, SUM(IF(project_type='school' OR project_type='house' OR project_type='nursery',1,0)) AS educationCount, 
+  SUM(IF(project_type='farm',1,0)) AS agCount, SUM(IF(project_type='business',1,0)) AS bizCount,
+      COUNT(DISTINCT donation_project_id) AS totalProjectCount FROM donors JOIN donations ON donor_id=? AND donation_donor_id=donor_id 
+      JOIN projects ON donation_project_id=project_id");
 $stmt->bind_param('i', $userId);
 $result = execute($stmt);
-while ($row = $result->fetch_assoc()) {
+if ($row = $result->fetch_assoc()) {
+  $userFirstName = $row['donor_first_name'];
+  $userLastName = $row['donor_last_name'];
+  $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
   $latestDonationDate = $row['latestDonationDate'];
   $totalDonationAmount = $row['totalDonationAmount'];
   $totalProjectCount = $row['totalProjectCount'];  
+  $livestockCount = $row['livestockCount'];
+  $waterCount = $row['waterCount'];
+  $educationCount = $row['educationCount'];
+  $agCount = $row['agCount'];
+  $bizCount = $row['bizCount'];
+
+  $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
+  $counts = [$livestockCount, $waterCount, $educationCount, $agCount, $bizCount];
+  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#2288CC'];
+
+  for ($i = count($labels) - 1; $i >= 0; $i--) {
+    if ($counts[$i] == 0) {
+      unset($counts[$i]);
+      unset($labels[$i]);
+      unset($colors[$i]);
+    }
+  }
+} else {
+  print "No user found";
+  return;
 }
 $stmt->close();
 ?>
@@ -27,32 +52,25 @@ $stmt->close();
     <div class="row">
       <div class="col s6 m6 l2 right-align" style="padding: 9% 0% 0% 3%;">
       <div style="width:175px; height:175px; border-radius:20%; border-style:solid; background-color:#008080BB;">
-                <h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b>B</b></h1>
+                <h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b><?php print $initials[0]; ?></b></h1>
       </div>
     </div> 
   
     <div class="col s6 m6 l6 left-align" style="padding: 7% 1% 1% 2%;">
       <div style="padding: 5% 5% 5% 5%">
-        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
-      </div>
+        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><?php print "$userFirstName $userLastName"; ?></h3>
+      </div>  
 
       <div style="padding: 5% 5% 0% 5%;">
-        <h5 class="header light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 2%">
-          bryan_nelson@yahoo.com</h5>
+        <h5 class="header light" style="margin:0% 1% 0% 2%;font-size:32px;">
+          Denver, CO</h5>
       </div>
-      
-      </div>
-  
-  
+    </div>
       
     <div class="col l4" style="padding: 5% 3% 1% 1%;">
       <div class="card z-depth-1" style="padding: 1% 1% 1% 1%; background-color:#008080BB;">
-        <!-- <div class="card-image">
-          <img src="images/woman_with_goat">
-          <span class="card-title">Card Title</span>
-        </div> -->
         <div class="card-content header white-text light">
-        <div><h5 class="header center-align" style="padding: 2px 2px 7px;">Bryan's Stats</h5></div>
+        <div><h5 class="header center-align" style="padding: 2px 2px 7px;"><?php print $userFirstName; ?>'s Stats</h5></div>
           <div style="padding: 0% 0% 0% 10%">
           <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b>200</b></h5>
@@ -60,10 +78,6 @@ $stmt->close();
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
             </div>
         </div>
-        
-        <!--  <div class="card-action center-align">
-          <a href="#">meet the village</a>
-        </div> -->
       </div>
     
   </div>
@@ -81,15 +95,9 @@ $stmt->close();
     <div class="row center">
       
       <div class="col s12 m12 l6 center-align" style="padding: 6% 1% 6% 1%;">
-      
-      <div style="padding: 5% 0% 5% 0%">
-        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Bryan Nelson</h3>
-      </div>
-
-      <div style="padding: 5% 5% 1% 5%;">
-        <h6 class="header light text-shadow: 2px 2px 7px #111111" style="padding: 0% 3% 0% 3%">bryan_nelson@yahoo.com</h6>
-      </div>
-      
+        <div style="padding: 5% 0% 5% 0%">
+          <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><?php print "$userFirstName $userLastName"; ?></h3>
+        </div>
       </div>
   </div>
   </div>
@@ -123,18 +131,16 @@ $stmt->close();
     </div>
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
-    Bryan has supported <?php print $totalProjectCount; ?> projects, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  Bryan has led 0 fundraisers and is currently not a monthly donor.
-          <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b>2</b></h5>
+    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
+          <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">cake</i>&nbsp;Fundraisers Led: &nbsp;<b>0</b></h5>
     </div>
-    
-    <h5 class="left-align" style="padding: 2% 0% 4% 0%"><b>Bryan's Portfolio</b></h5>
-      <div style="padding:0% 10% 2% 10%;">
+      <div style="padding:0% 10% 0% 10%;">
       
       <div>
-        <canvas id="chart2" width="250 " height="250" style="padding:5% 5% 5% 5%"></canvas>
+        <canvas id="chart2" width="250 " height="250" style="padding:5% 5% 0% 5%"></canvas>
       </div>
 
       <script>
@@ -143,12 +149,36 @@ $stmt->close();
         var chart2 = new Chart(ctx, {
               type: 'doughnut',
               data: {
-                labels: ["Livestock", "Water", "Education"],
+                labels: [<?php
+                    $count = 0;
+                    foreach ($labels as $label) {
+                      if ($count++ > 0) {
+                        print ", ";
+                      }
+                      print "\"$label\"";
+                    }
+                  ?>],
                 datasets: [
                   {
                     label: "Population (millions)",
-                    backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
-                    data: [1,3,2]
+                    backgroundColor: [<?php
+                    $count = 0;
+                    foreach ($colors as $color) {
+                      if ($count++ > 0) {
+                        print ", ";
+                      }
+                      print "\"$color\"";
+                    }
+                  ?>],
+                    data: [<?php
+                    $count = 0;
+                    foreach ($counts as $datum) {
+                      if ($count++ > 0) {
+                        print ", ";
+                      }
+                      print "$datum";
+                    }
+                  ?>]
                   }
                 ]
               },
@@ -161,27 +191,40 @@ $stmt->close();
     
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
-            <h5 class="valign-wrapper" style="padding: 4% 0% 4% 0%"><b>Bryan's Donations</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$<?php print $totalDonationAmount; ?>)</span></h5>
-        
-            <div style="overflow: scroll; height:250px;">
-              <div class="row valign-wrapper">
+            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$<?php print $totalDonationAmount; ?>)</span></h5>
+                    <div style="overflow: scroll; height:250px;">
+          <?php 
+          $stmt = prepare("SELECT donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_name, village_name FROM donations JOIN projects 
+              ON donation_donor_id=? AND donation_project_id=project_id JOIN villages ON project_village_id=village_id ORDER BY donation_date DESC");
+          $stmt->bind_param('i', $userId);
+          $result = execute($stmt);
+          while ($row = $result->fetch_assoc()) {
+              $donationAmount = $row['donation_amount'];
+              $donationDate = $row['donation_date'];
+              $projectName = $row['project_name'];
+              $villageName = $row['village_name'];
+              ?>
+                            <div class="row valign-wrapper">
                 <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
                             <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; font-color: #ffffff; 
-                                        text-align: center;display: table-cell;vertical-align:middle;"><b>BN</b></span></a>
-                          
-          </div>
-          <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Bryan donated $15</b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on Dec 15, 2017 to</span>
-            <div style="font-weight: 200; font-size:16px;"><a href="">Provide Clean Water</a> in Saiti Village</div>
-          </div>
-        </div>
+                                        text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials;?></b></span></a>
+                        
+                  </div>
+                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Donated $<?php print $donationAmount; ?></b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDate); ?> to</span>
+                    <div style="font-weight: 200; font-size:16px;"><a href=""><?php print $projectName; ?></a> in <?php print $villageName; ?> Village</div>
+                  </div>
+                </div>
+            <?php
+          }
+          ?>
+
       </div>
             
         
           
-    <div style="padding:3% 2% 2% 2%;">
-
-        <h5 class="left-align" style="padding: 4% 0% 4% 0%"><b>Bryan's Impact</b></h5> 
-        <h5 class="center-align"><b><span class="blue-text">Bryan's Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
+    <div style="padding:3% 2% 0% 2%;">
+ 
+        <h5 class="center-align"><b><span class="blue-text"><?php print $userFirstName; ?>'s Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
     <div>
         <canvas id="chart3" width="250" height="250"></canvas>
       </div>
