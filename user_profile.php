@@ -1,6 +1,18 @@
 <?php
 require_once ("utilities.php");
 $userId = param('x');
+
+$stmt = prepare("SELECT UNIX_TIMESTAMP(MAX(donation_date)) AS latestDonationDate, SUM(donation_amount) AS totalDonationAmount, 
+      COUNT(DISTINCT donation_project_id) AS totalProjectCount FROM donations 
+      JOIN projects ON donation_project_id=project_id WHERE donation_donor_id=?");
+$stmt->bind_param('i', $userId);
+$result = execute($stmt);
+while ($row = $result->fetch_assoc()) {
+  $latestDonationDate = $row['latestDonationDate'];
+  $totalDonationAmount = $row['totalDonationAmount'];
+  $totalProjectCount = $row['totalProjectCount'];  
+}
+$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,7 +54,7 @@ $userId = param('x');
         <div class="card-content header white-text light">
         <div><h5 class="header center-align" style="padding: 2px 2px 7px;">Bryan's Stats</h5></div>
           <div style="padding: 0% 0% 0% 10%">
-          <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b>2</b></h5>
+          <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b>200</b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b>35</b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
@@ -93,7 +105,7 @@ $userId = param('x');
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 2% 2%">
     <div>     
           <h6>
-              <span style="font-size: x-large; font-weight: 500">Last Donation: 12/28/17</span>
+              <span style="font-size: x-large; font-weight: 500">Last Donation: <?php print date('M j, Y', $latestDonationDate); ?></span>
             </h6>
             <div class='progress'>
               <div class='determinate' style='width: 50%'></div>
@@ -111,7 +123,7 @@ $userId = param('x');
     </div>
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
-    Bryan has supported 2 projects, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  Bryan has led 0 fundraisers and is currently not a monthly donor.
+    Bryan has supported <?php print $totalProjectCount; ?> projects, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  Bryan has led 0 fundraisers and is currently not a monthly donor.
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b>2</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
@@ -149,7 +161,7 @@ $userId = param('x');
     
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
-            <h5 class="valign-wrapper" style="padding: 4% 0% 4% 0%"><b>Bryan's Donations</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$100)</span></h5>
+            <h5 class="valign-wrapper" style="padding: 4% 0% 4% 0%"><b>Bryan's Donations</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$<?php print $totalDonationAmount; ?>)</span></h5>
         
             <div style="overflow: scroll; height:250px;">
               <div class="row valign-wrapper">
