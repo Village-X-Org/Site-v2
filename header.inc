@@ -228,9 +228,9 @@ window.addEventListener('popstate', function() {
 
 function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, email, anonymous, honoreeId, honoreeMessage, gcAmount) {
  	if (<?php print ((isset($_SESSION['offline']) && $_SESSION['offline'] == 1) ? "true" : "false"); ?>
- 		|| gcAmount * 100 >= amount) {
+ 		|| amount == 0) {
  	  form = document.getElementById('donateForm');
-	  form.stripeToken.value = gcAmount * 100 >= amount ? 'gcOnly' : 'offline';
+	  form.stripeToken.value = amount == 0 ? 'gcOnly' : 'offline';
 	  form.stripeEmail.value = email;
 	  form.stripeAmount.value = amount;
 	  form.isSubscription.value = subscribe;
@@ -247,13 +247,13 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  donationLastName = lastName;
 	  donationEmail = email;
 	  donationProjectId = projectId;
-	  donationAmount = amount;
+	  donationAmount = amount + gcAmount;
 	  donationHonoreeId = honoreeId;
 	  donationHonoreeMessage = honoreeMessage;
 	  handler.open({
 	    name: 'Village X Org',
 	    description: (subscribe ? 'Monthly Subscription' : title),
-	    amount: amount - (gcAmount * 100),
+	    amount: amount,
 	    email: email
 	  });
 	}
