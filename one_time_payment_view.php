@@ -113,7 +113,13 @@ include('header.inc');
          					<div class="row donor-border" style="border-style:solid; border-width:2px; border-radius:20px; padding:3% 3% 3% 3%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix donor-text" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
-          							<input placeholder="50" class='donor-text' style="font-size:40px;" id="donation_amount" <?php print ($gcValue ? "value='$gcValue'" : "");?> />
+                      <?php if (!$gcValue) { ?>
+          							<input placeholder="50" class='donor-text' style="font-size:40px;" id="donation_amount" />
+                      <?php } else { ?>
+                        <input placeholder="<?php print $gcValue; ?>" class='donor-text' style='font-size:40px;width:90px;display:inline;' 
+                            id='donation_amount' /><span style='font-size:30px;font-color:#48a7f2;display:inline;text-decoration;:underline;'>
+                        <?php print "+ $gcValue"; ?></span>
+                      <?php } ?>
           							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
           					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
