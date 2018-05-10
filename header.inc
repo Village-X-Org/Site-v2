@@ -85,7 +85,7 @@ if (hasParam('d')) {
 </style>
 
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage;
+var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage, donationGCAmount = 0;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -209,6 +209,7 @@ var handler = StripeCheckout.configure({
 	  form = document.getElementById('donateForm');
 	  form.stripeToken.value = token.id;
 	  form.stripeAmount.value = donationAmount;
+	  form.gcAmount.value = donationGCAmount;
 	  form.isSubscription.value = donationIsSubscription;
 	  form.firstName.value = donationFirstName;
 	  form.lastName.value = donationLastName;
@@ -233,6 +234,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  form.stripeToken.value = amount == 0 ? 'gcOnly' : 'offline';
 	  form.stripeEmail.value = email;
 	  form.stripeAmount.value = amount;
+	  form.gcAmount.value = gcAmount * 100;
 	  form.isSubscription.value = subscribe;
 	  form.firstName.value = firstName;
 	  form.lastName.value = lastName;
@@ -247,7 +249,8 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  donationLastName = lastName;
 	  donationEmail = email;
 	  donationProjectId = projectId;
-	  donationAmount = amount + gcAmount;
+	  donationAmount = amount;
+	  donationGCAmount = gcAmount * 100;
 	  donationHonoreeId = honoreeId;
 	  donationHonoreeMessage = honoreeMessage;
 	  handler.open({

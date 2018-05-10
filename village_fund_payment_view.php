@@ -43,7 +43,7 @@ require_once("utilities.php");
                 <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
                 <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
                 	<input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
-                
+                <input type='hidden' name='gcAmount' value='' />
                 <div class="row" style="border-style:solid; border-width:2px; border-color:blue; border-radius:20px; padding:3% 3% 3% 3%;">
                 <div class="input-field col s12 center-align">
                 <i class="material-icons prefix" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
