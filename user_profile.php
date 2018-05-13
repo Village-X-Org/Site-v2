@@ -6,17 +6,20 @@ if (!hasParam('id')) {
 }
 $userId = param('id');
 
-$totalProjectCount = $livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = 0;
+$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = 0;
+$amounts = array();
 $populations = array();
 $households = array();
 $donationAmounts = array();
 $donationDates = array();
 $projectNames = array();
 $villageNames = array();
-
+$funded = array();
+$budget = array();
+$statuses = array();
 $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_name, project_type, village_name,
-              vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status
-              FROM donations JOIN projects ON donation_donor_id=? AND donation_project_id=project_id 
+              vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
+              FROM donations JOIN donors ON donation_donor_id=? AND donation_donor_id=donor_id JOIN projects ON donation_project_id=project_id 
               JOIN villages ON project_village_id=village_id 
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
@@ -30,14 +33,17 @@ while ($row = $result->fetch_assoc()) {
     $userLastName = $row['donor_last_name'];
     $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
   }
-  $amount = $row['totalDonationAmount'];
+  $amount = $row['donation_amount'];
   $totalDonationAmount += $amount;
   array_push($amounts, $amount);
   array_push($projectNames, $row['project_name']);
   array_push($villageNames, $row['village_name']);
   array_push($donationDates, $row['donation_date']);
-  array_push($populations, $row['people']);
-  array_push($households, $row['households']);
+  array_push($populations, $row['peopleCount']);
+  array_push($households, $row['houseCount']);
+  array_push($budget, $row['project_budget']);
+  array_push($funded, $row['project_funded']);
+  array_push($statuses, $row['project_status']);
 
   $projectType = $row['project_type'];
   $livestockCount += ($projectType == 'livestock' ? 1 : 0);
@@ -54,6 +60,14 @@ if ($count == 0) {
   return;
 }
 
+$latestDonationDate = $donationDates[0];
+$latestBudget = $budget[0];
+$latestFunded = $funded[0];
+$latestStatus = $statuses[0];
+$latestVillage = $villageNames[0];
+$latestProject = $projectNames[0];
+$totalProjectCount = $livestockCount + $waterCount + $educationCount + $agCount + $bizCount;
+
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
   $counts = [$livestockCount, $waterCount, $educationCount, $agCount, $bizCount];
   $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#2288CC'];
@@ -65,6 +79,20 @@ if ($count == 0) {
       unset($colors[$i]);
     }
   }
+
+$typeStr = join(' and ', array_filter(array_merge(array(join(', ', array_slice($labels, 0, -1))), array_slice($labels, -1)), 'strlen'));
+
+$peopleCount = 0;
+$houseCount = 0;
+$temp = array();
+for ($i = 0; $i < $count; $i++) {
+  if (!in_array($villageNames[$i], $temp)) {
+    $peopleCount += $populations[$i];
+    $houseCount += $households[$i];
+  }
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,8 +128,8 @@ if ($count == 0) {
         <div><h5 class="header center-align" style="padding: 2px 2px 7px;"><?php print $userFirstName; ?>'s Stats</h5></div>
           <div style="padding: 0% 0% 0% 10%">
           <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b><?php print $totalProjectCount; ?></b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b>200</b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b>35</b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b><?php print $peopleCount; ?></b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b><?php print $houseCount; ?></b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
             </div>
         </div>
@@ -143,9 +171,9 @@ if ($count == 0) {
               <span style="font-size: x-large; font-weight: 500">Last Donation: <?php print date('M j, Y', $latestDonationDate); ?></span>
             </h6>
             <div class='progress'>
-              <div class='determinate' style='width: 50%'></div>
+              <div class='determinate' style='width: <?php print round(100 * $latestFunded / $latestBudget); ?>%'></div>
             </div>
-            <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="">Provide Clean Water in Saiti</a>&nbsp;is <b>&nbsp;COMPLETE</b></div>
+            <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href=""><?php print "$latestProject in $latestVillage" ?></a>&nbsp;is <b>&nbsp;<?php print $latestStatus; ?></b></div>
 <br>
           
     <div class="left-align">
@@ -158,7 +186,7 @@ if ($count == 0) {
     </div>
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
-    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>, helping 200 people and 35 households in rural Malawi.  He has donated to water and livestock projects.  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
+    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>, helping 200 people and 35 households in rural Malawi.  He has donated to <?php print strtolower($typeStr); ?> projects.  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
