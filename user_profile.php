@@ -1,26 +1,58 @@
 <?php
 require_once ("utilities.php");
-$userId = param('x');
+if (!hasParam('id')) {
+  print "No user parameter found";
+  return;
+}
+$userId = param('id');
 
-$stmt = prepare("SELECT donor_first_name, donor_last_name, UNIX_TIMESTAMP(MAX(donation_date)) AS latestDonationDate, SUM(donation_amount) AS totalDonationAmount, SUM(IF(project_type='livestock',1,0)) AS livestockCount, 
-  SUM(IF(project_type='water',1,0)) AS waterCount, SUM(IF(project_type='school' OR project_type='house' OR project_type='nursery',1,0)) AS educationCount, 
-  SUM(IF(project_type='farm',1,0)) AS agCount, SUM(IF(project_type='business',1,0)) AS bizCount,
-      COUNT(DISTINCT donation_project_id) AS totalProjectCount FROM donors JOIN donations ON donor_id=? AND donation_donor_id=donor_id 
-      JOIN projects ON donation_project_id=project_id");
+$totalProjectCount = $livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = 0;
+$populations = array();
+$households = array();
+$donationAmounts = array();
+$donationDates = array();
+$projectNames = array();
+$villageNames = array();
+
+$stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_name, project_type, village_name,
+              vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status
+              FROM donations JOIN projects ON donation_donor_id=? AND donation_project_id=project_id 
+              JOIN villages ON project_village_id=village_id 
+              LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
+              LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
+              ORDER BY donation_date DESC");
 $stmt->bind_param('i', $userId);
 $result = execute($stmt);
-if ($row = $result->fetch_assoc()) {
-  $userFirstName = $row['donor_first_name'];
-  $userLastName = $row['donor_last_name'];
-  $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
-  $latestDonationDate = $row['latestDonationDate'];
-  $totalDonationAmount = $row['totalDonationAmount'];
-  $totalProjectCount = $row['totalProjectCount'];  
-  $livestockCount = $row['livestockCount'];
-  $waterCount = $row['waterCount'];
-  $educationCount = $row['educationCount'];
-  $agCount = $row['agCount'];
-  $bizCount = $row['bizCount'];
+$count = 0;
+while ($row = $result->fetch_assoc()) {
+  if ($count == 0) {
+    $userFirstName = $row['donor_first_name'];
+    $userLastName = $row['donor_last_name'];
+    $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
+  }
+  $amount = $row['totalDonationAmount'];
+  $totalDonationAmount += $amount;
+  array_push($amounts, $amount);
+  array_push($projectNames, $row['project_name']);
+  array_push($villageNames, $row['village_name']);
+  array_push($donationDates, $row['donation_date']);
+  array_push($populations, $row['people']);
+  array_push($households, $row['households']);
+
+  $projectType = $row['project_type'];
+  $livestockCount += ($projectType == 'livestock' ? 1 : 0);
+  $waterCount += ($projectType == 'water' ? 1 : 0);
+  $educationCount += ($projectType == 'school' || $projectType == 'house' || $projectType == 'nursery' ? 1 : 0);
+  $agCount += ($projectType == 'farm' ? 1 : 0);
+  $bizCount += ($projectType == 'business' ? 1 : 0);
+  $count++;
+} 
+$stmt->close();
+
+if ($count == 0) {
+  print "No user found";
+  return;
+}
 
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
   $counts = [$livestockCount, $waterCount, $educationCount, $agCount, $bizCount];
@@ -33,11 +65,6 @@ if ($row = $result->fetch_assoc()) {
       unset($colors[$i]);
     }
   }
-} else {
-  print "No user found";
-  return;
-}
-$stmt->close();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -192,18 +219,32 @@ $stmt->close();
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
             <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;">(Total:&nbsp;$<?php print $totalDonationAmount; ?>)</span></h5>
-        
-            <div style="overflow: scroll; height:250px;">
-              <div class="row valign-wrapper">
+
+                    <div style="overflow: scroll; height:250px;">
+          <?php 
+          $stmt = prepare("");
+          $stmt->bind_param('i', $userId);
+          $result = execute($stmt);
+          while ($row = $result->fetch_assoc()) {
+              $donationAmount = $row['donation_amount'];
+              $donationDate = $row['donation_date'];
+              $projectName = $row['project_name'];
+              $villageName = $row['village_name'];
+              ?>
+                            <div class="row valign-wrapper">
                 <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
                             <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; font-color: #ffffff; 
                                         text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials;?></b></span></a>
-                          
-          </div>
-          <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Donated $15</b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on Dec 15, 2017 to</span>
-            <div style="font-weight: 200; font-size:16px;"><a href="">Provide Clean Water</a> in Saiti Village</div>
-          </div>
-        </div>
+                        
+                  </div>
+                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b>Donated $<?php print $donationAmount; ?></b><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDate); ?> to</span>
+                    <div style="font-weight: 200; font-size:16px;"><a href=""><?php print $projectName; ?></a> in <?php print $villageName; ?> Village</div>
+                  </div>
+                </div>
+            <?php
+          }
+          ?>
+
       </div>
             
         
