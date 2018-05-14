@@ -1,7 +1,7 @@
 RewriteEngine on
 
-RewriteCond %{HTTPS} !=on
-RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
-RewriteCond %{HTTP_HOST} ^4and\.me$ [OR]
-RewriteCond %{HTTP_HOST} ^www\.4and\.me$
+RewriteRule ^promo\/(.*)$	?gc=$1	[NC,L]
+RewriteRule ^map$ map.php	[NC,L]
+RewriteRule ^list$	project_tiles.php	[NC,L]
+RewriteRule ^user\/([^\#\.]+)$	user_profile.php?id=$1	[NC,L]
 RewriteRule    ^([^\#\.]+)$    project.php?id=$1    [NC,L]
