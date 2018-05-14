@@ -54,14 +54,14 @@ if (hasParam('gc')) {
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Rural Africa</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund Projects That Villages Choose</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
 				<br>
 				<br>
 				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					by funding projects that villages choose</h5>
+					to disrupt extreme poverty in rural Africa</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">
@@ -81,7 +81,8 @@ if (hasParam('gc')) {
 
 <div class="container">
 	<br>
-	<blockquote class="flow-text">Extreme poverty is not only a condition of unsatisfied material needs. It is often accompanied by a degrading state of powerlessness. -- Prof. Peter Singer, Princeton</blockquote>
+	<blockquote><span class="flow-text" style='font-weight:500;'>Extreme poverty is growing <span style='text-decoration:underline'>only</span> in rural sub-Saharan Africa</span><span class="flow-text">, harming nearly 400 million people. Our simple yet radical solution is the </span><span class="flow-text" style="font-weight:500;">cash-to-village model.</span>
+	 <div style="text-align:right;"><span style='font-weight:400;font-size:24px;vertical-align:top;text-decoration:underline blue;'>village democracy</span> <i class='material-icons' style='font-size:32px;font-weight:800px;'>add</i> <span style='font-weight:400;font-size:24px;vertical-align:top;text-decoration:underline blue;'>direct funding</span> <i class='material-icons' style='font-size:32px;font-weight:400;'>arrow_forward</i> <span style='font-weight:400;font-size:24px;vertical-align:top;text-decoration:underline blue;'>last-mile development</span></div></blockquote>
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
