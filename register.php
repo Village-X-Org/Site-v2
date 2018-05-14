@@ -14,16 +14,16 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("images/sunflowers.jpg");
-
-    /* Full height */
-    height: 100%; 
+    background-image: url("images/footer1.jpg");
 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     
+    z-index: -1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 </style>
 <?php include('header.inc'); ?>
@@ -31,14 +31,16 @@ body, html {
 <div class="bg valign-wrapper">
 
 <div class="container" style="padding:0 15% 0 15%">
-<div class="black-text container center-align" style="font-weight:800;font-size:xx-large">SIGN UP TODAY</div>
-<div class="black-text container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>  <!-- make this conditional on a user coming from the fundraiser page -->
-	<div class="section" id="jqueryvalidation" style="width:100%">
+
+  <div class="section" id="jqueryvalidation" style="width:100%">
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
             		
-        
+                        
+                                <div class="black-text center-align" style="font-weight:800;font-size:xx-large;">Sign Up Today!</div>
+                <div class="black-text center-align" style="font-weight:800;font-size:large; font-stretch:condensed;padding:0 0 2% 0"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>
+  
          				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
           				
          				<form class="col s12" style="width:100%" id="signup_form" method='post' action="">
@@ -91,7 +93,9 @@ body, html {
             				   </div>
             				   </div>
             				  
-              			</form>
+              			</form>      
+      <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;padding-bottom:10px;">Already have an account? <a href=""><span class="blue-text">Sign in</span></a></div>
+              
 <script>
 	$().ready(function() {
 		$("#signup_form").validate({
@@ -125,11 +129,9 @@ body, html {
 		});
 	});
 </script>
-
-        			</div>
+</div>
 			</div>
 			
-			<div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;">Already have an account? <a href=""><span class="blue-text">Sign in</span></a></div>
 			
 		</div>
 	

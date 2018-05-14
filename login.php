@@ -14,15 +14,15 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("images/sunflowers.jpg");
-
-    /* Full height */
-    height: 100%; 
+    background-image: url("images/footer1.jpg");
 
     /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    z-index: -1;
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
     
 }
 </style>
@@ -31,14 +31,14 @@ body, html {
 <div class="bg valign-wrapper">
 
 <div class="container" style="padding:0 15% 0 15%">
-<div class="black-text center-align" style="font-weight:800;font-size:xx-large;">WELCOME BACK</div>
-<div class="black-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.2em;padding:0 0 2% 0"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>
-	
 		
-			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
-            		<div class="card-content donor-text" style="height:100%;">
+			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
+                <div class="card-content donor-text" style="height:100%;">
             		<div class="section" id="jqueryvalidation" style="width:100%">
             		
+                                <div class="black-text center-align" style="font-weight:800;font-size:xx-large;">Welcome Back</div>
+                <div class="black-text center-align" style="font-weight:800;font-size:large; font-stretch:condensed;padding:0 0 2% 0"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>
+  
         					<form class="col s12" style="width:100%" id="signin_form" method='post' action="">
          				<div class="row donor-text" style="padding:0% 0% 0% 0%;">
           				
@@ -116,9 +116,7 @@ body, html {
             				  
             				   </div>
             			
-              			
-              			<div class="black-text center-align modal-trigger" style="padding:7% 0 1% 0; width:100%;font-weight:600;font-size:x-large;"><a href="#passwordModal"><span class="blue-text">Forgot password?</span></a></div>
-              			
+
               			<div id="passwordModal" class="modal">
 	<div class="modal-content" id="jqueryvalidation">
 		<div class="container" style="width: 100%">
@@ -188,13 +186,14 @@ body, html {
 			</form>
 		</div>
 	</div>
-</div>
-              			
+</div>      
+      <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">Don't have an account? <a href="signup.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a></div>
+      	                   
+                    <div class="black-text center-align modal-trigger" style="padding:1% 0 1% 0; width:100%;font-weight:400;font-size:x-large;">Forgot your password? <a href="#passwordModal"><span class="blue-text" style='font-weight:bold;'>Reset it</span></a></div>
+                    
         			</div>
 			</div>
-			
-			<div class="black-text container center-align" style="font-weight:600;font-size:x-large;padding:2% 0 0% 0">Don't have an account? <a href="signup.php"><span class="blue-text">Sign up</span></a></div>
-			
+
 		</div>
 	
 	</div>
