@@ -74,7 +74,9 @@ if (count($donationDates) > 0) {
 }
 
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
-  $counts = [$livestockCount, $waterCount, $educationCount, $agCount, $bizCount];
+  $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
+    round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 
+    round($bizCount * 100 / $totalDonationAmount)];
   $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#2288CC'];
 
   for ($i = count($labels) - 1; $i >= 0; $i--) {
