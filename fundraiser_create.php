@@ -23,6 +23,9 @@ body, html {
     background-repeat: no-repeat;
     background-size: cover;
     
+    z-index: -1;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
 }
 
 
@@ -32,11 +35,11 @@ body, html {
 <div class="bg valign-wrapper">
 
 <div class="container" style="padding:0 15% 0 15%">
-<div class="white-text container flow-text center-align"><b>READY.  SET.  FUNDRAISE.</b></div>
 	<div class="section" id="jqueryvalidation" style="width:100%">
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
+<div class="black-text container flow-text center-align"><b>Ready.  Set.  Fundraise.</b></div>
             		
          				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
           				

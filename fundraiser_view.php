@@ -121,11 +121,11 @@ require_once("utilities.php");
 		
 		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
 						
-      <div class="flow-text" style="padding: 3% 0% 0% 0%; font-size:18px;">Many of us have no idea what it's like to be thirsty. We have plenty of water to drink -- even the water in our toilets is clean! But many people around the 
+      <div class="flow-text" style="padding: 3% 0% 0% 0%; font-size:22px;">Many of us have no idea what it's like to be thirsty. We have plenty of water to drink -- even the water in our toilets is clean! But many people around the 
       world don’t have that luxury. Every day, about 1,400 children die from diseases caused by unsafe water and poor sanitation. But it doesn’t have to be that way. There are simple solutions like drilled wells, spring 
       protections and BioSand filters that help provide clean water to communities around the world.</div>
             	
-            <h5 style="padding: 2% 0% 0% 0%; font-size:20px;">Fundraising Timeline</h5>
+            <h5 style="padding: 2% 0% 0% 0%; font-size:20px; font-weight:400;">Fundraising Timeline</h5>
             <div style="overflow-x:scroll; height:200px;width:100%;">
             <div class="row valign-wrapper">
             <div style="padding 0 0 0 0%;margin: 3% 3% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
