@@ -60,16 +60,25 @@ body, html {
                              <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>2. CHOOSE A PROJECT</b></div>
                                 <div class="input-field col s12 donor-text" style="padding:0% 8% 1% 8%; font-size:20px;">
             	                        <select name='projectSelect' id="project_choice" required data-error=".errorTxt1">
-            	                        	  
-            	                          <option data-icon="images/borehole_donors.jpg" class="left circle truncate">Start a Goat Herd in Saiti (20% funded)</option>
-            	                          <option data-icon="images/building_school.jpg" class="left circle">Provide Clean Water in Mlenga (30% funded)</option>
-            	                          <option data-icon="images/building_school.jpg" class="left circle">Build a Nursery School in Likoswe (10% funded)</option>
-            	                          <option data-icon="images/building_school.jpg" class="left circle">Grow More Food in Kazembe (60% funded)</option>
-            	                        </select>
+            	                        	  <?php $result = doUnprotectedQuery("SELECT picture_filename, project_name, project_budget, project_funded, village_name 
+                                            FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
+                                            WHERE project_funded < project_budget ORDER BY (project_funded / project_budget) ASC");
+                                          while ($row = $result->fetch_assoc()) {
+                                            $pictureFilename = $row['picture_filename'];
+                                            $projectName = $row['project_name'];
+                                            $projectBudget = $row['project_budget'];
+                                            $projectFunded = $row['project_funded'];
+                                            $villageName = $row['village_name'];
+                                            $percent = round(100 * $projectFunded / $projectBudget);
+                                            $remaining = $projectBudget - $projectFunded;
+
+                                            print "<option data-icon='uploads/$pictureFilename' class='left circle'>$projectName in $villageName ($percent% funded, $$remaining needed)</option>";
+                                          }
+                                          ?>
+                                      </select>
             	                     
 	                 			</div>
-	                 			
-	                 			<div class="center-align black-text" style="font-size: small;">This project needs $____.</div>
+	                 		
 	                 			
 	                 			</div>
 	                 			
