@@ -43,12 +43,13 @@ body, html {
             		
          				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
           				
-         				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="">
+         				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
                          
          						<div class="row" style="padding:0% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>1. FUNDRAISER NAME</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 1% 1% 1%; font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="campaign_name" required data-error=".errorTxt1"/>
+          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 1% 1% 1%; font-size:20px; border-style:solid; border-width:thin;border-radius:5px" 
+                        name="fundraiser_title" required data-error=".errorTxt1"/>
           							<div class="errorTxt1 center-align" style="padding:0 0 3% 0; font-size:10px; color:red;"></div>
           						</div>
           						
@@ -59,11 +60,12 @@ body, html {
                              <div class="row" style="padding:2% 3% 0 3%;margin:0;">
                              <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>2. CHOOSE A PROJECT</b></div>
                                 <div class="input-field col s12 donor-text" style="padding:0% 8% 1% 8%; font-size:20px;">
-            	                        <select name='projectSelect' id="project_choice" required data-error=".errorTxt1">
-            	                        	  <?php $result = doUnprotectedQuery("SELECT picture_filename, project_name, project_budget, project_funded, village_name 
+            	                        <select name="fundraiser_project_id" required data-error=".errorTxt1">
+            	                        	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                                             FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
                                             WHERE project_funded < project_budget ORDER BY (project_funded / project_budget) ASC");
                                           while ($row = $result->fetch_assoc()) {
+                                            $projectId = $row['project_id'];
                                             $pictureFilename = $row['picture_filename'];
                                             $projectName = $row['project_name'];
                                             $projectBudget = $row['project_budget'];
@@ -72,7 +74,7 @@ body, html {
                                             $percent = round(100 * $projectFunded / $projectBudget);
                                             $remaining = $projectBudget - $projectFunded;
 
-                                            print "<option data-icon='uploads/$pictureFilename' class='left circle'>$projectName in $villageName ($percent% funded, $$remaining needed)</option>";
+                                            print "<option data-icon='uploads/$pictureFilename' class='left circle' value='$projectId'>$projectName in $villageName ($percent% funded, $$remaining needed)</option>";
                                           }
                                           ?>
                                       </select>
@@ -97,7 +99,7 @@ body, html {
                             <div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>3. FUNDING GOAL</b></div>
          						<div class="input-field col s12 donor-text">	
          							<i class="material-icons prefix left-align" style="font-size:30px">attach_money</i>
-          							<input placeholder="350" class='donor-text' style="font-size:35px;" id="campaign_goal"/>
+          							<input placeholder="350" class='donor-text' style="font-size:35px;" name="fundraiser_amount"/>
           						</div>
           					
           					</div>
@@ -106,34 +108,12 @@ body, html {
           					<div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>4. ENDING WHEN?</b></div>
           						<div class="input-field col s12">	
           							<i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
-	          						<input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiserEndDate" id="end_date" required data-error=".errorTxt3">
+	          						<input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3">
           						</div>
           						<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
           					</div>
           					</div>
-          					
-          					
-          					<div class="row valign-wrapper hide-on-large-only" style="padding:7% 3% 0 3%;">
-                            <div class="col s12">
-                            <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>3. FUNDING GOAL</b></div>
-         						<div class="input-field col s12 donor-text">	
-         							<i class="material-icons prefix left-align" style="font-size:30px">attach_money</i>
-          							<input placeholder="350" class='donor-text' style="font-size:35px;" id="campaign_goal"/>
-          						</div>
-          					
-          					</div>
-          					</div>
-          					
-          					<div class="row valign-wrapper hide-on-large-only" style="padding:7% 3% 0 3%;">
-          					<div class="col s12">
-          					<div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>4. ENDING WHEN?</b></div>
-          						<div class="input-field col s12">	
-          							<i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
-	          						<input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiserEndDate" id="end_date" required data-error=".errorTxt3">
-          						</div>
-          						<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
-          					</div>
-          					</div>
+          				
           		
           		
 	          		<script>$('.datepicker').pickadate({
@@ -151,19 +131,9 @@ body, html {
 	          		<div class="black-text center-align hide-on-med-and-down" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
 	          		<div class="black-text left-align hide-on-large-only" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
         							<div class="input-field col s12 donor-text hide-on-med-and-down" style="padding:0% 1% 0% 1%;">
-         						 	<textarea id="describe_fundraiser" class="materialize-textarea" data-length="300" style="font-size:20px;" placeholder="OPTIONAL: Add a few sentences about what inspired you and why people should give."></textarea>
+         						 	<textarea name="fundraiser_description" class="materialize-textarea" data-length="300" style="font-size:20px;" placeholder="OPTIONAL: Add a few sentences about what inspired you and why people should give."></textarea>
         							</div>
-        							<div class="input-field col s12 donor-text hide-on-large-only" style="padding:0% 1% 0% 1%;">
-         						 	<textarea id="describe_fundraiser" class="materialize-textarea" data-length="300" style="font-size:16px;" placeholder="OPTIONAL: Share what inspired you to fundraise."></textarea>
-        							</div>
-        							
-        							<script>$(document).ready(function(){
-
-        								  //This does set the label to the active position.
-        								  setTimeout(function(){ $('.input-field label').addClass('active'); }, 1);
-        								  
-        								});</script>
-        							
+       
       				</div>   
 	          		
           			
@@ -180,7 +150,7 @@ body, html {
                     			
                     		<div class="center-align valign-wrapper hide-on-large-only" style="width:100%; padding:0 3% 0% 3%;">		
                     		   <div class="input-field center-align" style="width:100%;">	
-                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
+                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px;"> 
                     					Create 
                     				</button>
             				   </div>
@@ -212,11 +182,7 @@ body, html {
        		}
      	},
         submitHandler: function(form) {
-        	$.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
-        			.done(function( data ) {
-					$( "#travelInfoRequestDiv" ).html( data );
-					document.getElementById("travelInfoRequestDiv").scrollIntoView();
-			});
+          form.submit();
         }	
 		});
 	});
