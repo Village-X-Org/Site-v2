@@ -2,10 +2,13 @@
 require_once("utilities.php");
 
 if (!hasParam('id')) {
-	print "No fundraiser id specified";
-	return;
+	if (!isset($id)) {
+		print "No fundraiser id specified";
+		return;
+	}
+} else {
+	$id = param('id');
 }
-$id = param('id');
 
 $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, 
 		UNIX_TIMESTAMP(fundraiser_deadline) AS fundraiser_deadline, project_name, village_name, country_label,
@@ -14,7 +17,7 @@ $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fun
 		JOIN villages ON project_village_id=village_id 
 		JOIN countries ON village_country=country_id
 		JOIN pictures ON project_similar_image_id=picture_id
-		JOIN donors ON fundraiser_subject=donor_id
+		LEFT JOIN donors ON fundraiser_subject=donor_id
 		LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(project_date_posted)=vs1.stat_year
         LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(project_date_posted)=vs2.stat_year
 		WHERE fundraiser_id=?");
@@ -25,7 +28,12 @@ if ($row = $result->fetch_assoc()) {
 	$title = $row['fundraiser_title'];
 	$amount = $row['fundraiser_amount'];
 	$description = $row['fundraiser_description'];
-	$subject = $row['donor_first_name'].' '.$row['donor_last_name'];
+	$donorFirstName = $row['donor_first_name'];
+	if ($donorFirstName) {
+		$subject = "$donorFirstName ".$row['donor_last_name'];
+	} else {
+		$subject = '';
+	}
 	$deadline = $row['fundraiser_deadline'];
 	$projectName = $row['project_name'];
 	$villageName = $row['village_name'];
@@ -77,7 +85,9 @@ if ($row = $result->fetch_assoc()) {
 		<div class="row">
 		  <div class="col s6 m6 l2 right-align hide-on-med-and-down" style="padding: 9% 0% 0% 3%;">
 			<div style="width:200px; height:200px; border-radius:20%; border-style:solid; background:#008080CC;">
-        				<h1 class="header center-align light" style="padding:9% 0 0 0;font-size:96px;"><b><?php print $subject[0]; ?></b></h1>
+        					<?php print (strlen($subject) > 0 ? 
+								"<h1 class=\"header center-align light\" style=\"padding:9% 0 0 0;font-size:96px;\"><b>{$subject[0]}</b></h1>"
+        					: "<i class='material-icons' style=\"padding:25px 30px 0 0;font-size:128px;\">person</i>"); ?>
 			</div>
 		</div> 
 	
