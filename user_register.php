@@ -43,12 +43,12 @@ body, html {
   
          				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
           				
-         				<form class="col s12" style="width:100%" id="signup_form" method='post' action="">
+         				<form class="col s12" style="width:100%" id="signup_form" method='post' action="user_save.php">
                          
          						<div class="row" style="padding:0% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FIRST NAME</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your first name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signup_first_name" required data-error=".errorTxt1"/>
+          							<input placeholder="enter your first name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_first_name" required data-error=".errorTxt1"/>
           							<div class="errorTxt1 center-align" style="font-size:10px; color:red;"></div>
           						</div>
           						</div>
@@ -56,7 +56,7 @@ body, html {
                              <div class="row" style="padding:2% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>LAST NAME</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your last name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signup_last_name" required data-error=".errorTxt2"/>
+          							<input placeholder="enter your last name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_last_name" required data-error=".errorTxt2"/>
           							<div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
           						</div>
           						</div>
@@ -64,7 +64,7 @@ body, html {
           						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your email address" class='text' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signup_email" required data-error=".errorTxt3"/>
+          							<input placeholder="enter your email address" class='text' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_email" required data-error=".errorTxt3"/>
           							<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
           						</div>
           						</div>
@@ -72,7 +72,7 @@ body, html {
           						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="create a password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signup_password" required data-error=".errorTxt4"/>
+          							<input placeholder="create a password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="registser_password" required data-error=".errorTxt4"/>
           							<div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
           						</div>
           						</div>
@@ -94,7 +94,7 @@ body, html {
             				   </div>
             				  
               			</form>      
-      <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;padding-bottom:10px;">Already have an account? <a href=""><span class="blue-text">Sign in</span></a></div>
+      <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;padding-bottom:10px;">Already have an account? <a href="user_login.php"><span class="blue-text">Sign in</span></a></div>
               
 <script>
 	$().ready(function() {
@@ -107,7 +107,7 @@ body, html {
 		messages: {
 		      firstname: "this field is required",
 		      lastname: "this field is required",
-		      end_date: "this field is required",
+		      email: "this field is required",
 		},
 
 		errorElement : 'div',
@@ -120,11 +120,7 @@ body, html {
        		}
      	},
         submitHandler: function(form) {
-        	$.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
-        			.done(function( data ) {
-					$( "#travelInfoRequestDiv" ).html( data );
-					document.getElementById("travelInfoRequestDiv").scrollIntoView();
-			});
+        	form.submit();
         }	
 		});
 	});
