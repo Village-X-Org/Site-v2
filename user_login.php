@@ -187,7 +187,7 @@ body, html {
 		</div>
 	</div>
 </div>      
-      <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">Don't have an account? <a href="signup.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a></div>
+      <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a></div>
       	                   
                     <div class="black-text center-align modal-trigger" style="padding:1% 0 1% 0; width:100%;font-weight:400;font-size:x-large;">Forgot your password? <a href="#passwordModal"><span class="blue-text" style='font-weight:bold;'>Reset it</span></a></div>
                     
