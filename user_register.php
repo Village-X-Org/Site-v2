@@ -72,7 +72,7 @@ body, html {
           						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="create a password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="registser_password" required data-error=".errorTxt4"/>
+          							<input placeholder="create a password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_password" required data-error=".errorTxt4"/>
           							<div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
           						</div>
           						</div>

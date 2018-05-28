@@ -20,8 +20,10 @@ $budget = array();
 $statuses = array();
 $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name,
               vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
-              FROM donations JOIN donors ON donation_donor_id=? AND donation_donor_id=donor_id JOIN projects ON donation_project_id=project_id 
-              JOIN villages ON project_village_id=village_id 
+              FROM donors 
+              LEFT JOIN donations ON donation_donor_id=? AND donation_donor_id=donor_id 
+              LEFT JOIN projects ON donation_project_id=project_id 
+              LEFT JOIN villages ON project_village_id=village_id 
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
               ORDER BY donation_date DESC");
@@ -36,6 +38,9 @@ while ($row = $result->fetch_assoc()) {
     $donorLocation = $row['donor_location'];
   }
   $amount = $row['donation_amount'];
+  if (!$amount) {
+    break;
+  }
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
   array_push($projectIds, $row['project_id']);
@@ -58,7 +63,7 @@ while ($row = $result->fetch_assoc()) {
 } 
 $stmt->close();
 
-if ($count == 0) {
+if (!isset($userFirstName)) {
   print "No user found";
   return;
 }
