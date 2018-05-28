@@ -41,27 +41,22 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+<div style="border-style:solid; background: url(images/header1.jpg); background-color: rgba(0, 0, 0, 0.65); background-position: center; background-repeat: no-repeat; background-size: cover; min-height: 100%">
 			
-<?php if ($alertText) { ?>
-<div id="alert">
-    <a class="alert" href="project_tiles.php"><?php print $alertText; ?></a>
-</div>
-<?php } ?>
+
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
 		<div class="row center">
 			<div style="padding: 5% 5% 5% 5%;">
 				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Rural Africa</h2>
+					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund Projects That Villages Choose</h2>
 			</div>
 
 			<div style="padding: 5% 5% 5% 5%;">
 				<br>
 				<br>
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					by funding projects that villages choose</h5>
+				<h5 class="header white-text center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
+					because everyone deserves democracy</h5>
 			</div>
 
 			<div style="padding: 0% 5% 5% 5%;">
@@ -70,10 +65,6 @@ if (hasParam('gc')) {
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">meet
 					the villages</a>
-			</div>
-
-			<div class="parallax">
-				<img src="images/header1.jpg">
 			</div>
 		</div>
 	</div>
