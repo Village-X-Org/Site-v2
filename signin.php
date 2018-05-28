@@ -14,8 +14,9 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("images/sunflowers.jpg");
-
+    background-image: url("images/khwalala_market.jpg");
+    opacity:0.8;
+    
     /* Full height */
     height: 100%; 
 
@@ -25,14 +26,16 @@ body, html {
     background-size: cover;
     
 }
+
+
 </style>
 <?php include('header.inc'); ?>
 
 <div class="bg valign-wrapper">
 
-<div class="container" style="padding:0 15% 0 15%">
-<div class="black-text center-align" style="font-weight:800;font-size:xx-large;">WELCOME BACK</div>
-<div class="black-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.2em;padding:0 0 2% 0"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>
+<div class="container" id="form_style" style="padding:0 15% 0 15%;">
+<div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK</div>
+<div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
 	
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">

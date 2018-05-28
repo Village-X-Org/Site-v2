@@ -14,7 +14,8 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("images/sunflowers.jpg");
+    background-image: url("images/khwalala_market.jpg");
+    opacity:0.8;
 
     /* Full height */
     height: 100%; 
@@ -31,15 +32,15 @@ body, html {
 <div class="bg valign-wrapper">
 
 <div class="container" style="padding:0 15% 0 15%">
-<div class="black-text container center-align" style="font-weight:800;font-size:xx-large">SIGN UP TODAY</div>
-<div class="black-text container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>  <!-- make this conditional on a user coming from the fundraiser page -->
+<div class="white-text container center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
+<div class="black-text container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="white-text">your profile. your impact. your fundraisers.</span></div>  <!-- make this conditional on a user coming from the fundraiser page -->
 	<div class="section" id="jqueryvalidation" style="width:100%">
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
             		
         
-         				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
+         				<div class="row donor-text" style="padding:3% 0% 0% 0%;">
           				
          				<form class="col s12" style="width:100%" id="signup_form" method='post' action="">
                          
@@ -81,7 +82,7 @@ body, html {
                               
                               </div>
                         
-                           <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
+                           <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 4% 3%;">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
@@ -129,7 +130,7 @@ body, html {
         			</div>
 			</div>
 			
-			<div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;">Already have an account? <a href=""><span class="blue-text">Sign in</span></a></div>
+			<div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;">Already have an account? <a href=""><span class="blue-text" style="text-shadow: black 0.2em 0.2em 0.4em">Sign in</span></a></div>
 			
 		</div>
 	
