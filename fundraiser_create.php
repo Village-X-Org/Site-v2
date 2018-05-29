@@ -9,6 +9,7 @@ require_once("utilities.php");
 <style>
 body, html {
     height: 100%;
+    width: 100%;
     margin: 0;
 }
 
@@ -32,7 +33,7 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg valign-wrapper">
+<div class="bg" style='height:100%;'>
 
 <div class="container" style="padding:0 15% 0 15%">
 	<div class="section" id="jqueryvalidation" style="width:100%">
@@ -41,25 +42,25 @@ body, html {
             		<div class="card-content donor-text" style="height:100%;">
 <div class="black-text container flow-text center-align"><b>Ready.  Set.  Fundraise.</b></div>
             		
-         				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
+         				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
           				
          				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
                          
          						<div class="row" style="padding:0% 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>1. FUNDRAISER NAME</b></div>
          						<div class="input-field col s12 donor-text">
-          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 1% 1% 1%; font-size:20px; border-style:solid; border-width:thin;border-radius:5px" 
+          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 1% 0% 1%; font-size:20px; border-style:solid; border-width:thin;border-radius:5px" 
                         name="fundraiser_title" required data-error=".errorTxt1"/>
-          							<div class="errorTxt1 center-align" style="padding:0 0 3% 0; font-size:10px; color:red;"></div>
+          							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           						</div>
           						
           						</div>
           						
           						
                              
-                             <div class="row" style="padding:2% 3% 0 3%;margin:0;">
+                             <div class="row" style="padding:0% 3% 0 3%;margin:0;">
                              <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>2. CHOOSE A PROJECT</b></div>
-                                <div class="input-field col s12 donor-text" style="padding:0% 8% 1% 8%; font-size:20px;">
+                                <div class="input-field col s12 donor-text" style="padding:0% 3% 1% 3%; font-size:20px;">
             	                        <select name="fundraiser_project_id" required data-error=".errorTxt1">
             	                        	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                                             FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
@@ -94,7 +95,7 @@ body, html {
 	                 			
 	                 		
               
-                            <div class="row valign-wrapper hide-on-med-and-down" style="padding:7% 3% 0 3%;">
+                            <div class="row valign-wrapper hide-on-med-and-down" style="padding:0% 3% 0 3%;">
                             <div class="col s6">
                             <div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>3. FUNDING GOAL</b></div>
          						<div class="input-field col s12 donor-text">	
@@ -108,6 +109,7 @@ body, html {
           					<div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>4. ENDING WHEN?</b></div>
           						<div class="input-field col s12">	
           							<i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
+          					
 	          						<input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3">
           						</div>
           						<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
