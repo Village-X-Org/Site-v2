@@ -110,6 +110,30 @@ body, html {
           						<div class="input-field col s12">	
           							<i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
           					
+                        <input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiserEndDate" id="end_date" required data-error=".errorTxt3">
+                      </div>
+                      <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
+                    </div>
+                    </div>
+                    
+                    
+                    <div class="row valign-wrapper hide-on-large-only" style="padding:0% 3% 0 0%;">
+                            <div class="col s12">
+                            <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>3. FUNDING GOAL</b></div>
+                    <div class="input-field col s12 donor-text">  
+                      <i class="material-icons prefix left-align" style="font-size:30px">attach_money</i>
+                        <input placeholder="350" class='donor-text' style="font-size:35px;" id="campaign_goal"/>
+                      </div>
+                    
+                    </div>
+                    </div>
+                    
+                    <div class="row valign-wrapper hide-on-large-only" style="padding:0% 3% 0 0%;">
+                    <div class="col s12">
+                    <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>4. ENDING WHEN?</b></div>
+                      <div class="input-field col s12"> 
+                        <i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
+
 	          						<input type="text" style="font-size:20px;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3">
           						</div>
           						<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
@@ -130,10 +154,13 @@ body, html {
 	          		</script>
 	          		
 	          		<div class="row" style="padding:0 5% 0 5%;margin:0;">
-	          		<div class="black-text center-align hide-on-med-and-down" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
-	          		<div class="black-text left-align hide-on-large-only" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
+	          		<div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
+                                      
+                      <div class="input-field col s12 donor-text hide-on-large-only" style="padding:0% 1% 0% 1%;height:50px;">
+                        <textarea name="fundraiser_description" class="materialize-textarea" data-length="300" style="font-size:16px;" placeholder="OPTIONAL: Share what inspired you to fundraise."></textarea>
+                      </div>
         							<div class="input-field col s12 donor-text hide-on-med-and-down" style="padding:0% 1% 0% 1%;">
-         						 	<textarea name="fundraiser_description" class="materialize-textarea" data-length="300" style="font-size:20px;" placeholder="OPTIONAL: Add a few sentences about what inspired you and why people should give."></textarea>
+         						 	  <textarea name="fundraiser_description" class="materialize-textarea" data-length="300" style="font-size:20px;" placeholder="OPTIONAL: Add a few sentences about what inspired you and why people should give."></textarea>
         							</div>
        
       				</div>   
@@ -150,7 +177,7 @@ body, html {
                     			</div>
                     			</div>
                     			
-                    		<div class="center-align valign-wrapper hide-on-large-only" style="width:100%; padding:0 3% 0% 3%;">		
+                    		<div class="center-align valign-wrapper hide-on-large-only" style="width:100%; padding:0 2% 0% 3%;">		
                     		   <div class="input-field center-align" style="width:100%;">	
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px;"> 
                     					Create 
