@@ -211,7 +211,7 @@ if ($row = $result->fetch_assoc()) {
             for ($i = 0; $i < $donationCount; $i++) { ?>
             <div class="row valign-wrapper">
             <div style="padding 0 0 0 0%;margin: 3% 3% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
-                 				<span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; text-color: #ffffff; 
+                 				<span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; color: #ffffff; 
                                         text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $donationInitials[$i];?></b></span>
                  			
  			</div>
