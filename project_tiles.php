@@ -39,6 +39,7 @@ require_once("utilities.php");
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
            	 	<li><a href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Business</a></li>
           	</ul>
 		</div>
 	</div>
@@ -73,7 +74,7 @@ require_once("utilities.php");
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
 		      $fundedPercent = round($funded / $projectTotal * 100);
-		      $villageContribution = $projectTotal * .05;
+		      $villageContribution = round($projectTotal * .05);
 
 		      $projectType = $row['project_type'];
 		      $projectTypeClass = 'education';
@@ -83,6 +84,8 @@ require_once("utilities.php");
 		          $projectTypeClass = 'livestock';
 		      } elseif ($projectType == 'water') {
 		          $projectTypeClass = 'water';
+		      } elseif ($projectType == 'business') {
+		      	  $projectTypeClass = 'business';
 		      }
 		      
 		      $fundedClass = 'funding';
