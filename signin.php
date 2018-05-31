@@ -14,8 +14,7 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: url("images/khwalala_market.jpg");
-    opacity:0.8;
+    background-image: linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/khwalala_market.jpg");
     
     /* Full height */
     height: 100%; 
