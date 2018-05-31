@@ -6,6 +6,31 @@ require_once("utilities.php");
 <head>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("images/woman_with_goat.jpg");
+    opacity:1;
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.carousel-slider {
+    height: 800px !important;
+}
+</style>
 <?php include('header.inc'); 
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
@@ -41,43 +66,92 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div style="border-style:solid; background: url(images/header1.jpg); background-color: rgba(0, 0, 0, 0.65); background-position: center; background-repeat: no-repeat; background-size: cover; min-height: 100%">
-			
-
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		<div class="row center">
-			<div style="padding: 5% 5% 5% 5%;">
-				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Fund Projects That Villages Choose</h2>
+<div class="bg valign-wrapper" style="border-style:solid;">
+<div class="center-align" style="height:100%; width:100%">	
+	<div class="section no-pad-bot"
+		style="opacity:1">
+		<div class="row center" style="opacity:1">
+			<div style="padding: 5% 5% 1% 5%;text-transform:uppercase;font-size:xx-large;" class="col s12 white-text text-lighten-2 text-shadow: 0px 2px 3px rgba(255,255,255,0.3);">
+					<h1 style="font-weight:700">Believe in Democracy</h1>
 			</div>
 
-			<div style="padding: 5% 5% 5% 5%;">
-				<br>
-				<br>
-				<h5 class="header white-text center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					because everyone deserves democracy</h5>
+			<div style="padding: 0% 8% 5% 8%;font-size:xx-large;font-weight:200;opacity:0.4" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
+				
+				by funding projects that villages choose
+					
 			</div>
 
-			<div style="padding: 0% 5% 5% 5%;">
+			<div style="padding: 0% 5% 0% 5%;height:120px;">
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">meet
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:xx-large">meet
 					the villages</a>
 			</div>
 		</div>
-	</div>
-</div>
+		</div>
+		
+			<div class="container" style="padding: 6% 5% 0 5%">
+	
+		<!--   Icon Section   -->
+		 <div class="row center-align" style="opacity:0.7">
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px">people</i>
+					<h5 style="padding: 0% 5% 0% 5%">people helped</h5>
+					<h4 class="light center">42,145</h4>
+					<h6 class="light center">in Malawi, Africa</h6>
+					<br> 
+				</div>
+			</div>
 
-<div class="container">
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px">trending_up</i>
+					<h5 style="padding: 0% 5% 0% 5%">dev score impact</h5>
+					<h4 class="light center">+138%</h4>
+					<h6 class="light center">from 2014 to 2017</h6>
+					<br> 
+				</div>
+			</div>
+
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px">attach_money</i>
+					<h5 style="padding: 0% 5% 0% 5%">cost per person</h5>
+					<h4 class="light center">$1.08</h4>
+					<h6 class="light center">per year</h6>
+					<br> 
+				</div>
+			</div>
+
+		</div>
+		<div class="row center-align" style="padding:5%">
+			<div class="icon-block white-text">
+					<i class="material-icons pulse" style="font-size: 80px">keyboard_arrow_down</i>
+			</div>
+		</div>
+		
+	</div>
+	</div>
+	</div>
+
+
+
 	<br>
-	<blockquote class="flow-text">Extreme poverty is not only a condition of unsatisfied material needs. It is often accompanied by a degrading state of powerlessness. -- Prof. Peter Singer, Princeton</blockquote>
-	<br>
+	<!--  <blockquote class="flow-text"><b>Why?</b> Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting 4.5 million in Malawi. Debates about the primary cause — bad governance — often miss a key insight: while 
+	autocracy festers in many African capitols, democracy thrives in rural villages.  We've proven that these villages have the capacity to overcome many of their own development challenges with direct funding and light 
+	oversight, at a fraction of the cost of prevailing top-down models.  Our supporters believe in smart charity that helps underserved people get what they want.</blockquote>-->
+	<br> 
+
+<div class="container valign-wrapper" style="padding: 0 0 3% 0">
+<div class="carousel carousel-slider center hide-on-med-and-down">	
+
+<div class="carousel-item white" href="#one!">
 	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
 	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
-	<div class="section">
+	
 		<!--   Icon Section   -->
 		<div class="row">
 			<div class="col s12 m4">
@@ -126,19 +200,15 @@ if (hasParam('gc')) {
 				</div>
 			</div>
 		</div>
+</div>
+	
 
-	</div>
-	</div>
-<hr style="width:50%">
-<div class="container">
+<div class="carousel-item white" href="#two!">
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
-	
-	
-	<div class="section">
+	<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 6% 0">How It Helps</h4> 
 	
 		<!--   Icon Section   -->
-		<div class="row center">
+		<!--  <div class="row center">
 			<div class="col s12 m3 l3">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">trending_down</i>
@@ -178,12 +248,126 @@ if (hasParam('gc')) {
 					<br>
 				</div>
 			</div>
-		</div>
+		</div> -->
+		
+		<div class="flow-text">
+		<table class="highlight centered responsive-table">
+        <thead>
+          <tr>
+              <th>Metric</th>
+              <th>Boys in nursery</th>
+              <th>Girls in nursery</th>
+              <th>Girls in secondary</th>
+              <th>Goats</th>
+              <th>Waterborne illness</th>
+              <th>Non-ag businesses</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>% change</td>
+            <td>+93%</td>
+            <td>+109%</td>
+            <td>+63%</td>
+            <td>+77%</td>
+            <td>-68%</td>
+            <td>+123%</td>
+          </tr>
+          <tr>
+            <td>actual change</td>
+            <td>+11 boys</td>
+            <td>+14 girls</td>
+            <td>+4 girls</td>
+            <td>+23 goats</td>
+            <td>-133 cases</td>
+            <td>+11 businesses</td>
+          </tr>
+          <tr>
+            <td>p-value</td>
+            <td>p<0.01</td>
+            <td>p<0.01</td>
+            <td>p<0.05</td>
+            <td>p<0.05</td>
+            <td>p<0.01</td>
+            <td>p<0.01</td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6></div>
+      </div>
 
 		<br>
+	
 	</div>
+	<br>
+
+<script> 
+	$('.carousel.carousel-slider').carousel({
+	    fullWidth: true,
+	    indicators: true,
+	    duration: 200
+	  });
+</script>
 
 </div>
+
+<div class="hide-on-large-only">
+<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
+
+	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
+	
+		<!--   Icon Section   -->
+		<div class="row">
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center brown-text">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+					</h2> 
+					
+					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
+
+					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
+						Africa. Find a village-led development project that speaks to you.</p>
+						
+					<h5 class="center">#democracy</h5>
+
+				</div>
+			</div>
+
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center brown-text">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+					</h2>
+
+					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
+
+					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
+					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
+					
+					<h5 class="center">#directgiving</h5>
+				</div>
+			</div>
+
+			<div class="col s12 m4">
+				<div class="icon-block">
+					<h2 class="center black-text">
+						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+					</h2>
+					
+					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
+
+					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
+					 of how your donations change development outcomes for rural Africans.</p>
+					 
+					 <h5 class="center">#development</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>	
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
@@ -207,7 +391,7 @@ if (hasParam('gc')) {
 			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6>
 
 			<div class="parallax">
-				<img src="images/woman_with_goat.jpg">
+				<img src="images/header1.jpg">
 			</div>
 			
 		</div>
@@ -383,7 +567,7 @@ if (CACHING_ENABLED) {
                 JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Village Stories</h4>
+	<h4 class="header center light blue-text text-lighten-2">Project Updates</h4>
         <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
@@ -458,7 +642,7 @@ if (CACHING_ENABLED) {
 	
 	
 	
-	<div class="row">
+	<!--  <div class="row">
 	
         	<div class="col s12 m4 l4 center-align" style="margin:auto;">
             	<div>
@@ -515,7 +699,7 @@ if (CACHING_ENABLED) {
         		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
         	</div>
 
-	</div>
+	</div>  -->
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
