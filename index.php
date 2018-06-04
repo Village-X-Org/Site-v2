@@ -14,7 +14,7 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ), url("images/woman_with_goat.jpg");
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("images/villagemtg.jpg");
     opacity:1;
 
     /* Full height */
@@ -72,12 +72,12 @@ if (hasParam('gc')) {
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
 			<div style="padding: 5% 5% 1% 5%;text-transform:uppercase;font-size:xx-large;" class="col s12 white-text text-lighten-2 text-shadow: 0px 2px 3px rgba(255,255,255,0.3);">
-					<h1 style="font-weight:700">Believe in Democracy</h1>
+					<h1 style="font-weight:600">Fund Projects That Villages Choose</h1>
 			</div>
 
-			<div style="padding: 0% 8% 5% 8%;font-size:xx-large;font-weight:200;opacity:0.4" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
+			<div style="padding: 0% 8% 5% 8%;font-size:xx-large;font-weight:200;opacity:0.7" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
 				
-				by funding projects that villages choose
+				because everyone deserves democracy and development
 					
 			</div>
 
@@ -85,7 +85,7 @@ if (hasParam('gc')) {
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:xx-large">meet
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large">meet
 					the villages</a>
 			</div>
 		</div>
@@ -94,7 +94,7 @@ if (hasParam('gc')) {
 			<div class="container" style="padding: 6% 5% 0 5%">
 	
 		<!--   Icon Section   -->
-		 <div class="row center-align" style="opacity:0.7">
+		 <div class="row center-align" style="opacity:0.85">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
 					<i class="material-icons" style="font-size: 50px">people</i>
@@ -139,12 +139,12 @@ if (hasParam('gc')) {
 
 
 	<br>
-	<!--  <blockquote class="flow-text"><b>Why?</b> Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting 4.5 million in Malawi. Debates about the primary cause — bad governance — often miss a key insight: while 
-	autocracy festers in many African capitols, democracy thrives in rural villages.  We've proven that these villages have the capacity to overcome many of their own development challenges with direct funding and light 
-	oversight, at a fraction of the cost of prevailing top-down models.  Our supporters believe in smart charity that helps underserved people get what they want.</blockquote>-->
+	<div class="container">
+	<blockquote class="flow-text">Nearly 400 million people (and growing) live in extreme poverty in rural Africa. We're changing that with a model that celebrates village democracy, direct giving, and data analysis.</blockquote>
 	<br> 
+	</div>
 
-<div class="container valign-wrapper" style="padding: 0 0 3% 0">
+<div class="container valign-wrapper" style="padding: 0 0 0% 0">
 <div class="carousel carousel-slider center hide-on-med-and-down">	
 
 <div class="carousel-item white" href="#one!">
@@ -297,17 +297,21 @@ if (hasParam('gc')) {
       <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6></div>
       </div>
 
-		<br>
+		
 	
 	</div>
-	<br>
+	
 
 <script> 
-	$('.carousel.carousel-slider').carousel({
-	    fullWidth: true,
-	    indicators: true,
-	    duration: 200
-	  });
+	
+	$('.carousel').carousel({
+	    padding: 0    
+	});
+	autoplay()   
+	function autoplay() {
+	    $('.carousel').carousel('next');
+	    setTimeout(autoplay, 5500);
+	}
 </script>
 
 </div>
@@ -391,7 +395,7 @@ if (hasParam('gc')) {
 			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6>
 
 			<div class="parallax">
-				<img src="images/header1.jpg">
+				<img src="images/woman_with_goat.jpg">
 			</div>
 			
 		</div>
