@@ -169,7 +169,8 @@ footer.page-footer {
 }
 
 a {
-	color: #d7ccc8;
+	color: #075408;
+  font-weight:400;
 }
 
 @media screen and (max-width: 400px) {
@@ -273,6 +274,7 @@ a {
   margin: 8px 32px;
   background-color: #42A5F5;
 }
+<<<<<<< HEAD
 
 .morecontent span {
     display: none;
@@ -280,3 +282,5 @@ a {
 .morelink {
     display: block;
 }
+=======
+>>>>>>> 8b750da19f285a387ecc6aa85331db884e20da17

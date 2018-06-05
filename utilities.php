@@ -4,6 +4,7 @@ require_once('config.php');
 
 session_start();
 $link = 0;
+$session_user_id = 0;
 
 define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
@@ -417,6 +418,57 @@ function ordinal($number) {
         return $number. 'th';
         else
             return $number. $ends[$number % 10];
+}
+
+function breakLongWords($content, $length, $showMoreAt=0) {
+	$inTag = 0;
+	$inLink = 0;
+	$contentLength = strlen($content);
+	$count = 0;
+	$totalCount = 0;
+	$breakIndex = 0;
+	for ($i = 0; $i < $contentLength; $i++) {
+		if ($content[$i] == '<') {
+			$inTag = 1;
+			$firstLetter = strtolower($i + 1 < $contentLength ? $content[$i + 1] : '');
+			$secondLetter = strtolower($i + 2 < $contentLength ? $content[$i + 2] : '');
+			$thirdLetter = $i + 3 < $contentLength ? $content[$i + 3] : '';
+			if ($firstLetter == '/') {
+				$inLink = 0;
+			} elseif (($firstLetter === 'a' && $secondLetter === ' ') 
+					|| ($secondLetter === 'a' && $thirdLetter === ' ')) {
+				$inLink = 1;
+			}
+		} elseif ($content[$i] == '>') {	
+			$inTag = 0;
+			$count = 0;
+		} elseif (!$inTag) {
+			if ($content[$i] == ' ') {
+				$count = 0;
+			} else {
+				$count++;
+			}
+			if (!$inLink) {
+				$totalCount++;
+			}
+			if ($count > $length) {
+				$content = substr($content, 0, $i).' '.substr($content, $i);
+				$count = 0;
+				$contentLength++;
+				$i++;
+			}
+			if (!$breakIndex && $totalCount == $showMoreAt) {
+				$breakIndex = $i;
+			}
+		}		
+	}
+	if ($breakIndex) {
+		return array(substr($content, 0, $breakIndex), substr($content, $breakIndex));
+	} elseif ($showMoreAt) {
+		return array($content, 0);
+	}
+	
+	return $content;
 }
 
 function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize) {

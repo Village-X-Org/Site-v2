@@ -625,7 +625,7 @@ $stmt->close(); ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 13.72, 12.11, 9.5 ],
+                             data : [ 13.72, 12.11, 9.5, 8.77 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -657,27 +657,40 @@ $stmt->close(); ?>
 			$amounts = '';
 			$ids = '';
 			$accum = 0;
-			$firstYear = 0;
+			$currentYear = 2014;
 			while ($row = $result->fetch_assoc()) {
 			     if ($count > 0) {
 			         $labels .= ", ";
 			         $amounts .= ", ";
 			         $ids .= ", ";
-			     } else {
-			         $firstYear = $row['yearPosted'];
 			     }
+           $nextYear = $row['yearPosted'];
+           while ($currentYear < $nextYear) {
+              $ids .= "0, ";
+              $amounts .= "$accum, ";
+              $labels .= "$currentYear, ";
+              $currentYear++;
+           }
 			     $ids .= $row['project_id'];
 			     $labels .= $row['yearPosted'];
 			     $accum += $row['project_budget'];
 			     $amounts .= $accum;
 			     $count++;
+           $currentYear++;
 			}
 			$stmt->close();
-			
+
+      while ($currentYear <= 2017) {
+        $ids .= ", 0";
+        $amounts .= ", $accum";
+        $labels .= ", $currentYear";
+        $currentYear++;
+      }
+
 			if ($count > 0) {
 			    if ($count == 1) {
 			     $ids = "0, ".$ids;
-			     $labels = ($firstYear - 1).", ".$labels;
+			     $labels = ($currentYear - 1).", ".$labels;
 			     $amounts = "0, ".$amounts;
 			    }
 			?>

@@ -9,8 +9,10 @@ define('DB_DATABASE', 'villagex');
 define('PICTURES_DIR', 'https://villagex.org/uploads/');
 define('ABS_PICTURES_DIR', 'https://villagex.org/uploads/');
 define('BASE_URL', 'http://localhost/Site-v2/');
+define('STRIPE_TEST_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_SECRET_KEY', "sk_test_DGoi26vx76FlFn7sen3IDSC8");
+define('STRIPE_TEST_SECRET_KEY', "sk_test_DGoi26vx76FlFn7sen3IDSC8");
 
 // The following are probably optional
 define('GOOGLE_API_KEY', 'AIzaSyBI0lHSGrRmWKb7OoK-sD_x36i1XH9i1Bc');

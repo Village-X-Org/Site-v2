@@ -95,12 +95,15 @@ if (hasParam('gc')) {
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 					</h2> 
 					
+<<<<<<< HEAD
 					<h2 class="center brown-text hide">		
  						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
  							<source src="images/nachuma_water_480.mp4" type="video/mp4">		
  						</video>		
  					</h2>
 					
+=======
+>>>>>>> 8b750da19f285a387ecc6aa85331db884e20da17
 					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
 					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
@@ -116,12 +119,16 @@ if (hasParam('gc')) {
 					<h2 class="center brown-text">
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
 					</h2>
+<<<<<<< HEAD
 				
 					<h2 class="center brown-text hide">		
  						<video autoplay loop muted height="250px" width="250px" class="circle" style="border:5px solid black; object-fit:cover;">		
  							<source src="images/geyser_spray_480.mp4" type="video/mp4">		
  						</video>		
  					</h2>
+=======
+
+>>>>>>> 8b750da19f285a387ecc6aa85331db884e20da17
 					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
 
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
@@ -133,6 +140,7 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4">
 				<div class="icon-block">
+<<<<<<< HEAD
 					<h2 class="center brown-text">
 						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
@@ -143,6 +151,12 @@ if (hasParam('gc')) {
      					</video>		
   					</h2>
 					
+=======
+					<h2 class="center black-text">
+						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+					</h2>
+					
+>>>>>>> 8b750da19f285a387ecc6aa85331db884e20da17
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
 
 					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
@@ -271,7 +285,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $previousYear = $row['previousYear'];
         $matchingDonor = $row['matchingDonor'];
         $fundedPercent = $funded / $projectTotal * 100;
-        $villageContribution = $projectTotal * .05;
+        $villageContribution = round($projectTotal * .05);
         if (!isset($cells[$projectType])) {
             $cells[$projectType] = array();
         }
