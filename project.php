@@ -625,7 +625,7 @@ $stmt->close(); ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 13.72, 12.11, 9.5 ],
+                             data : [ 13.72, 12.11, 9.5, 8.77 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
