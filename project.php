@@ -657,23 +657,36 @@ $stmt->close(); ?>
 			$amounts = '';
 			$ids = '';
 			$accum = 0;
-			$firstYear = 0;
+			$currentYear = 2014;
 			while ($row = $result->fetch_assoc()) {
 			     if ($count > 0) {
 			         $labels .= ", ";
 			         $amounts .= ", ";
 			         $ids .= ", ";
-			     } else {
-			         $firstYear = $row['yearPosted'];
 			     }
+           $nextYear = $row['yearPosted'];
+           while ($currentYear < $nextYear) {
+              $ids .= "0, ";
+              $amounts .= "$accum, ";
+              $labels .= "$currentYear, ";
+              $currentYear++;
+           }
 			     $ids .= $row['project_id'];
 			     $labels .= $row['yearPosted'];
 			     $accum += $row['project_budget'];
 			     $amounts .= $accum;
 			     $count++;
+           $currentYear++;
 			}
 			$stmt->close();
-			
+
+      while ($currentYear <= 2017) {
+        $ids .= ", 0";
+        $amounts .= ", $accum";
+        $labels .= ", $currentYear";
+        $currentYear++;
+      }
+
 			if ($count > 0) {
 			    if ($count == 1) {
 			     $ids = "0, ".$ids;
