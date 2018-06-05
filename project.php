@@ -670,6 +670,7 @@ $stmt->close(); ?>
               $amounts .= "$accum, ";
               $labels .= "$currentYear, ";
               $currentYear++;
+              $count++;
            }
 			     $ids .= $row['project_id'];
 			     $labels .= $row['yearPosted'];
@@ -681,23 +682,24 @@ $stmt->close(); ?>
 			$stmt->close();
 
       while ($currentYear <= 2017) {
-        $ids .= ", 0";
-        $amounts .= ", $accum";
-        $labels .= ", $currentYear";
+        if ($count > 0) {
+          $labels .= ", ";
+          $amounts .= ", ";
+          $ids .= ", ";
+        }
+        $ids .= '0';
+        $amounts .= "$accum";
+        $labels .= "$currentYear";
+
         $currentYear++;
+        $count++;
       }
 
-			if ($count > 0) {
-			    if ($count == 1) {
-			     $ids = "0, ".$ids;
-			     $labels = ($firstYear - 1).", ".$labels;
-			     $amounts = "0, ".$amounts;
-			    }
+			if ($accum > 0) {
 			?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 						<h6 style="text-align: center"><b>Dollars Invested (cumulative)</b></h6>
-					 <div>
 						<canvas id="chart1" width="250" height="250"></canvas>
 					</div>
 					
