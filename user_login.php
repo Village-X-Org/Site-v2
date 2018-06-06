@@ -31,7 +31,7 @@ body, html {
 
 <div class="bg" style='height:100%;'>
 
-<div class="container" style="padding:0 15% 0 15%">
+<div class="container" style="padding:2% 15% 0 15%">
 
 <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK</div>
 <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
