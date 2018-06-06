@@ -71,11 +71,11 @@ if (hasParam('gc')) {
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
-			<div style="padding: 5% 5% 1% 5%;text-transform:uppercase;font-size:xx-large;" class="col s12 white-text text-lighten-2 text-shadow: 0px 2px 3px rgba(255,255,255,0.3);">
-					<h1 style="font-weight:600">Fund Projects That Villages Choose</h1>
+			<div style="padding: 5% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2" ">
+				Fund Projects That Villages Choose
 			</div>
 
-			<div style="padding: 0% 8% 5% 8%;font-size:xx-large;font-weight:200;opacity:0.7" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
+			<div style="padding: 0% 8% 0% 8%;font-size:xx-large;font-weight:250;opacity:0.75" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
 				
 				because everyone deserves democracy and development
 					
@@ -91,10 +91,10 @@ if (hasParam('gc')) {
 		</div>
 		</div>
 		
-			<div class="container" style="padding: 6% 5% 0 5%">
+			<div class="container" style="padding: 0% 5% 0 5%">
 	
 		<!--   Icon Section   -->
-		 <div class="row center-align" style="opacity:0.85">
+		 <div class="row center-align" >
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
 					<i class="material-icons" style="font-size: 50px">people</i>
