@@ -125,16 +125,14 @@ if (hasParam('gc')) {
 				</div>
 			</div>
 
-			<div class="row center-align">
-				<div class="icon-block white-text">
-						<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
-						<script>$("#arrowButton").click(function() { 
-							$('html, body').animate({
-								scrollTop: $('#slideshow').offset().top
-							}, 1000);
-						});
-						</script>
-				</div>
+			<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
+					<script>$("#arrowButton").click(function() { 
+						$('html, body').animate({
+							scrollTop: $('#slideshow').offset().top
+						}, 1000);
+					});
+					</script>
 			</div>
 		</div>
 		
