@@ -66,12 +66,12 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg valign-wrapper hide-on-med-and-down" style="border-style:solid;">
-<div class="center-align" style="height:100%; width:100%">	
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
+<div class="center-align" style="width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
-			<div style="padding: 4% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
+			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
 
@@ -279,17 +279,22 @@ if (hasParam('gc')) {
 
 	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
 	    ob_start();
-	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
+	   $result = doUnprotectedQuery("SELECT COUNT(project_id) AS totalProjectCount, COUNT(DISTINCT project_village_id) AS totalVillageCount,
+	   				CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
                     SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
-                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
+                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount,
+                    SUM(case when project_type='business' then 1 else 0 end) as businessCount
             FROM projects WHERE project_funded>=project_budget-1"); 
         if ($row = $result->fetch_assoc()) {
             $numHelpedTotal = number_format($row['numHelpedTotal'], 0, '.', ',');
             $elapsedDaysAverage = $row['elapsedAverage'];
+            $totalProjectCount = $row['totalProjectCount'];
+            $totalVillageCount = $row['totalVillageCount'];
             $waterCount = $row['waterCount'];
             $educationCount = $row['educationCount'];
             $livestockCount = $row['livestockCount'];
             $agricultureCount = $row['agricultureCount'];
+            $businessCount = $row['businessCount'];
         }
     ?>
 	
@@ -298,11 +303,11 @@ if (hasParam('gc')) {
 	
         	<div class="col s12 m4 l4 center-align" style="margin:auto;">
             	<div>
-            		<h5 style="text-align: center;"><b>People Helped*</b></h5>
+            		<h5 style="text-align: center;"><b>Our Reach</b></h5>
             	
-            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
+            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $totalProjectCount; ?> funded</b></h3>
             		
-            		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
+        		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">across <?php print $totalVillageCount; ?> villages</span></p>
             	</div>
         	</div>
 	
@@ -321,14 +326,15 @@ if (hasParam('gc')) {
     					type : 'doughnut',
     					data : {
     
-    						labels: ["water","livestock","education","agriculture"],
+    						labels: ["water","livestock","education","agriculture", "business"],
     						  datasets: [{
-    						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
+    						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount, $businessCount"; ?>],
     						    backgroundColor: [
     						      "rgba(255, 0, 0, 0.5)",
     						      "rgba(100, 255, 0, 0.5)",
     						      "rgba(200, 50, 255, 0.5)",
-    						      "rgba(0, 100, 255, 0.5)"
+    						      "rgba(0, 100, 255, 0.5)",
+    						      "rgba(100, 100, 255, 0.5)"
     						    ]
     						  }]
     						},
@@ -380,7 +386,7 @@ if (hasParam('gc')) {
 		});
 
 		timer = setInterval(function() { $('.carousel').carousel('next'); }, 5500);
-		$('.carousel').click(function() { clearTimeout(timer); });
+		$('.carousel').mousedown(function() { clearTimeout(timer); });
 	</script>
 
 </div>
@@ -637,7 +643,7 @@ if (CACHING_ENABLED) {
                 JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Project Updates</h4>
+	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
         <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
