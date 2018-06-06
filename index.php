@@ -66,7 +66,7 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg valign-wrapper" style="border-style:solid;">
+<div class="bg valign-wrapper hide-on-med-and-down" style="border-style:solid;">
 <div class="center-align" style="height:100%; width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
@@ -136,7 +136,30 @@ if (hasParam('gc')) {
 	</div>
 	</div>
 
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
+		<div class="section" style="width:100%;">
+			<div>
+        				<h2 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:4% 2% 5% 2%"><b>Fund Projects That Villages Choose</b></h2>
+        		</div>
+        		
+        		<div style="padding:0% 8% 0% 8%">
+        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.7;">because everyone deserves democracy and development</h5>
+			</div>
+			
+			<div class="center-align" style="padding:4% 2% 4% 0%">	
+				<a href="model.php" id="download-button"
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size: large">MEET THE VILLAGES</a>
+			</div>
+			</div>
 
+			<div class="parallax">
+				<img src="images/villagemtg.jpg">
+			</div>
+			
+		</div>
+	</div>
+</div>
 
 	<br>
 	<div class="container">
@@ -144,7 +167,7 @@ if (hasParam('gc')) {
 	<br> 
 	</div>
 
-<div class="container valign-wrapper" style="padding: 0 0 0% 0">
+<div class="container valign-wrapper">
 <div class="carousel carousel-slider center hide-on-med-and-down">	
 
 <div class="carousel-item white" href="#one!">
@@ -162,7 +185,7 @@ if (hasParam('gc')) {
 					
 					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
-					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
+					<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
 						
 					<h5 class="center">#democracy</h5>
@@ -300,7 +323,6 @@ if (hasParam('gc')) {
 		
 	
 	</div>
-	
 
 <script> 
 	
@@ -316,6 +338,16 @@ if (hasParam('gc')) {
 
 </div>
 
+</div>
+
+<div class="icon-block center-align black-text hide-on-med-and-down" style="padding: 0 0 2% 0">
+			<i class="material-icons" style="font-size: 50px">pause_circle_outline</i>
+	</div>
+	<div class="icon-block center-align black-text hide-on-med-and-down" style="padding: 0 0 2% 0">
+			<i class="material-icons" style="font-size: 50px">play_circle_outline</i>
+	</div>
+
+<div class="container valign-wrapper">
 <div class="hide-on-large-only">
 <h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
