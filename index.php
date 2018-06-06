@@ -71,7 +71,7 @@ if (hasParam('gc')) {
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
-			<div style="padding: 5% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2" ">
+			<div style="padding: 4% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
 
@@ -91,13 +91,13 @@ if (hasParam('gc')) {
 		</div>
 		</div>
 		
-			<div class="container" style="padding: 0% 5% 0 5%">
+		<div class="container" style="padding: 0% 5% 0 5%">
 	
 		<!--   Icon Section   -->
 		 <div class="row center-align" >
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px">people</i>
+					<i class="material-icons" style="font-size: 50px"><b>people</b></i>
 					<h5 style="padding: 0% 5% 0% 5%">people helped</h5>
 					<h4 class="light center">42,145</h4>
 					<h6 class="light center">in Malawi, Africa</h6>
@@ -107,7 +107,7 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
+					<i class="material-icons" style="font-size: 50px"><b>trending_up</b></i>
 					<h5 style="padding: 0% 5% 0% 5%">dev score impact</h5>
 					<h4 class="light center">+138%</h4>
 					<h6 class="light center">from 2014 to 2017</h6>
@@ -117,7 +117,7 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px">attach_money</i>
+					<i class="material-icons" style="font-size: 50px"><b>attach_money</b></i>
 					<h5 style="padding: 0% 5% 0% 5%">cost per person</h5>
 					<h4 class="light center">$1.08</h4>
 					<h6 class="light center">per year</h6>
@@ -125,10 +125,16 @@ if (hasParam('gc')) {
 				</div>
 			</div>
 
-		</div>
-		<div class="row center-align" style="padding:5%">
-			<div class="icon-block white-text">
-					<i class="material-icons pulse" style="font-size: 80px">keyboard_arrow_down</i>
+			<div class="row center-align">
+				<div class="icon-block white-text">
+						<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
+						<script>$("#arrowButton").click(function() { 
+							$('html, body').animate({
+								scrollTop: $('#slideshow').offset().top
+							}, 1000);
+						});
+						</script>
+				</div>
 			</div>
 		</div>
 		
@@ -168,192 +174,128 @@ if (hasParam('gc')) {
 	</div>
 
 <div class="container valign-wrapper">
-<div class="carousel carousel-slider center hide-on-med-and-down">	
+	<div class="carousel carousel-slider center hide-on-med-and-down" id='slideshow' style='cursor:pointer;'>	
 
-<div class="carousel-item white" href="#one!">
-	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
+		<div class="carousel-item white" href="#one!">
+			<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
-	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
-	
-		<!--   Icon Section   -->
-		<div class="row">
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
-					</h2> 
-					
-					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
+				<div class="row">
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+							</h2> 
+							
+							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
 
-					<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
-						Africa. Find a village-led development project that speaks to you.</p>
-						
-					<h5 class="center">#democracy</h5>
+							<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
+								Africa. Find a village-led development project that speaks to you.</p>
+								
+							<h5 class="center">#democracy</h5>
 
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+							</h2>
+
+							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
+
+							<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
+							biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
+							
+							<h5 class="center">#directgiving</h5>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center black-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+							</h2>
+							
+							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
+
+							<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
+							 of how your donations change development outcomes for rural Africans.</p>
+							 
+							 <h5 class="center">#development</h5>
+						</div>
+					</div>
 				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
-					</h2>
-
-					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
-
-					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
-					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
-					
-					<h5 class="center">#directgiving</h5>
-				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center black-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
-					</h2>
-					
-					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
-
-					<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
-					 of how your donations change development outcomes for rural Africans.</p>
-					 
-					 <h5 class="center">#development</h5>
-				</div>
-			</div>
 		</div>
-</div>
-	
 
-<div class="carousel-item white" href="#two!">
-	<br>
-	<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 6% 0">How It Helps</h4> 
-	
-		<!--   Icon Section   -->
-		<!--  <div class="row center">
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_down</i>
-					<h5 class="center brown-test" style="padding: 0% 5% 0% 5%">waterborne illness</h5>
-					<h4 class="light center">-70%</h4>
-					<h6 class="light center">p-value&lt;=0.01</h6>
-					<br> 
-				</div>
-			</div>
+		<div class="carousel-item white" href="#two!">
+			<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 6% 0">How It Helps</h4> 
 
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">boys/girls in nursery school</h5>
-					<h4 class="light center">+66% / 60%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> 
-				</div>
-			</div>
+				<table class="highlight centered responsive-table">
+		        <thead>
+		          <tr>
+		              <th>Metric</th>
+		              <th>Boys in nursery</th>
+		              <th>Girls in nursery</th>
+		              <th>Girls in secondary</th>
+		              <th>Goats</th>
+		              <th>Waterborne illness</th>
+		              <th>Non-ag businesses</th>
+		          </tr>
+		        </thead>
 
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">non-agricultural businesses</h5>
-					<h4 class="light center">+100%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> 
-				</div>
-			</div>
+		        <tbody>
+		          <tr>
+		            <td>% change</td>
+		            <td>+93%</td>
+		            <td>+109%</td>
+		            <td>+63%</td>
+		            <td>+77%</td>
+		            <td>-68%</td>
+		            <td>+123%</td>
+		          </tr>
+		          <tr>
+		            <td>actual change</td>
+		            <td>+11 boys</td>
+		            <td>+14 girls</td>
+		            <td>+4 girls</td>
+		            <td>+23 goats</td>
+		            <td>-133 cases</td>
+		            <td>+11 businesses</td>
+		          </tr>
+		          <tr>
+		            <td>p-value</td>
+		            <td>p<0.01</td>
+		            <td>p<0.01</td>
+		            <td>p<0.05</td>
+		            <td>p<0.05</td>
+		            <td>p<0.01</td>
+		            <td>p<0.01</td>
+		          </tr>
+		        </tbody>
+		      </table>
+		      <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6>
+		      </div>
+		</div>
 
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">girls in high school</h5>
-					<h4 class="light center">+80%</h4>
-					<h6 class="light center">p-value~0.1</h6>
-					<br>
-				</div>
-			</div>
-		</div> -->
+	</div>
+
+	<script> 
 		
-		<div class="flow-text">
-		<table class="highlight centered responsive-table">
-        <thead>
-          <tr>
-              <th>Metric</th>
-              <th>Boys in nursery</th>
-              <th>Girls in nursery</th>
-              <th>Girls in secondary</th>
-              <th>Goats</th>
-              <th>Waterborne illness</th>
-              <th>Non-ag businesses</th>
-          </tr>
-        </thead>
+		$('.carousel').carousel({
+		    padding: 0    
+		});
 
-        <tbody>
-          <tr>
-            <td>% change</td>
-            <td>+93%</td>
-            <td>+109%</td>
-            <td>+63%</td>
-            <td>+77%</td>
-            <td>-68%</td>
-            <td>+123%</td>
-          </tr>
-          <tr>
-            <td>actual change</td>
-            <td>+11 boys</td>
-            <td>+14 girls</td>
-            <td>+4 girls</td>
-            <td>+23 goats</td>
-            <td>-133 cases</td>
-            <td>+11 businesses</td>
-          </tr>
-          <tr>
-            <td>p-value</td>
-            <td>p<0.01</td>
-            <td>p<0.01</td>
-            <td>p<0.05</td>
-            <td>p<0.05</td>
-            <td>p<0.01</td>
-            <td>p<0.01</td>
-          </tr>
-        </tbody>
-      </table>
-      <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6></div>
-      </div>
-
-		
-	
-	</div>
-
-<script> 
-	
-	$('.carousel').carousel({
-	    padding: 0    
-	});
-	autoplay()   
-	function autoplay() {
-	    $('.carousel').carousel('next');
-	    setTimeout(autoplay, 5500);
-	}
-</script>
+		timer = setInterval(function() { $('.carousel').carousel('next'); }, 5500);
+		$('.carousel').click(function() { clearTimeout(timer); });
+	</script>
 
 </div>
-
-</div>
-
-<div class="icon-block center-align black-text hide-on-med-and-down" style="padding: 0 0 2% 0">
-			<i class="material-icons" style="font-size: 50px">pause_circle_outline</i>
-	</div>
-	<div class="icon-block center-align black-text hide-on-med-and-down" style="padding: 0 0 2% 0">
-			<i class="material-icons" style="font-size: 50px">play_circle_outline</i>
-	</div>
 
 <div class="container valign-wrapper">
 <div class="hide-on-large-only">
 <h4 class="header center light blue-text text-lighten-2">How It Works</h4>
 
-	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
-	
-		<!--   Icon Section   -->
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
@@ -389,7 +331,7 @@ if (hasParam('gc')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center black-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
