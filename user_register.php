@@ -9,12 +9,13 @@ require_once("utilities.php");
 <style>
 body, html {
     height: 100%;
+    width: 100%;
     margin: 0;
 }
 
 .bg {
     /* The image used */
-    background-image: url("images/footer1.jpg");
+    background-image: url("images/khwalala_market.jpg");
 
     /* Center and scale the image nicely */
     background-position: center;
@@ -28,60 +29,49 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg valign-wrapper">
+<div class="bg" style='height:100%;'>
 
 <div class="container" style="padding:0 15% 0 15%">
+  <div class="white-text container center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
+  <div class="black-text container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
 
   <div class="section" id="jqueryvalidation" style="width:100%">
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
-            		
-                        
-                                <div class="black-text center-align" style="font-weight:800;font-size:xx-large;">Sign Up Today!</div>
-                <div class="black-text center-align" style="font-weight:800;font-size:large; font-stretch:condensed;padding:0 0 2% 0"><span class="blue-text">your profile. your impact. your fundraisers.</span></div>
-  
-         				<div class="row donor-text" style="padding:5% 0% 0% 0%;">
+            	
+         				<div class="row donor-text">
           				
          				<form class="col s12" style="width:100%" id="signup_form" method='post' action="user_save.php">
                          
          						<div class="row" style="padding:0% 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FIRST NAME</b></div>
-         						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your first name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_first_name" required data-error=".errorTxt1"/>
-          							<div class="errorTxt1 center-align" style="font-size:10px; color:red;"></div>
-          						</div>
-          						</div>
-                             
-                             <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>LAST NAME</b></div>
-         						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your last name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_last_name" required data-error=".errorTxt2"/>
-          							<div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
-          						</div>
-          						</div>
-          						
-          						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b></div>
-         						<div class="input-field col s12 donor-text">
-          							<input placeholder="enter your email address" class='text' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_email" required data-error=".errorTxt3"/>
-          							<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
-          						</div>
-          						</div>
-          						
-          						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b></div>
-         						<div class="input-field col s12 donor-text">
-          							<input placeholder="create a password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_password" required data-error=".errorTxt4"/>
-          							<div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
-          						</div>
-          						</div>
-       
-       
-          				
-                             
-                              
-                              </div>
+           						<div class="input-field col s12 donor-text">
+            							<input placeholder="First Name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_first_name" required data-error=".errorTxt1"/>
+            							<div class="errorTxt1 center-align" style="font-size:10px; color:red;"></div>
+            						</div>
+            						</div>
+                               
+                               <div class="row" style="padding:2% 3% 0 3%;margin:0;">
+           						<div class="input-field col s12 donor-text">
+            							<input placeholder="Last Name" class='text' type="text" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_last_name" required data-error=".errorTxt2"/>
+            							<div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
+            						</div>
+            						</div>
+            						
+            						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
+           						<div class="input-field col s12 donor-text">
+            							<input placeholder="Email" class='text' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_email" required data-error=".errorTxt3"/>
+            							<div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
+            						</div>
+            						</div>
+            						
+            						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
+           						<div class="input-field col s12 donor-text">
+            							<input placeholder="Password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" name="register_password" required data-error=".errorTxt4"/>
+            							<div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
+            						</div>
+            						</div>
+                    </div>
                         
                            <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
                     		   <div class="input-field center-align" style="width:100%;">
