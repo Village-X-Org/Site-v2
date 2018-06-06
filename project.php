@@ -638,7 +638,7 @@ $stmt->close(); ?>
 					scales : {
 						yAxes : [ {
 							ticks : {
-								beginAtZero : true,
+								beginAtZero : true
 							}
 						} ]
 					},
@@ -733,6 +733,7 @@ $stmt->close(); ?>
 								ticks : {
 									beginAtZero : true,
 									stacked:true,
+                  max: <?php print (round($accum, -3) + 1000); ?>
 								}
 							} ]
 						},
