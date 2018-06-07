@@ -152,7 +152,7 @@ if (hasParam('gc')) {
 			</div>
 			
 			<div class="center-align" style="padding:4% 2% 4% 0%">	
-				<a href="model.php" id="download-button"
+				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size: large">MEET THE VILLAGES</a>
 			</div>
 			</div>
