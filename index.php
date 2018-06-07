@@ -66,12 +66,12 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg valign-wrapper hide-on-med-and-down" style="border-style:solid;">
-<div class="center-align" style="height:100%; width:100%">	
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
+<div class="center-align" style="width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
-			<div style="padding: 4% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
+			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
 
@@ -125,16 +125,14 @@ if (hasParam('gc')) {
 				</div>
 			</div>
 
-			<div class="row center-align">
-				<div class="icon-block white-text">
-						<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
-						<script>$("#arrowButton").click(function() { 
-							$('html, body').animate({
-								scrollTop: $('#slideshow').offset().top
-							}, 1000);
-						});
-						</script>
-				</div>
+			<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
+					<script>$("#arrowButton").click(function() { 
+						$('html, body').animate({
+							scrollTop: $('#slideshow').offset().top
+						}, 1000);
+					});
+					</script>
 			</div>
 		</div>
 		
@@ -229,9 +227,9 @@ if (hasParam('gc')) {
 		</div>
 
 		<div class="carousel-item white" href="#two!">
-			<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 6% 0">How It Helps</h4> 
+			<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 3% 0">How It Helps</h4> 
 
-				<table class="highlight centered responsive-table">
+<table class="highlight centered responsive-table flow-text">
 		        <thead>
 		          <tr>
 		              <th>Metric</th>
@@ -274,9 +272,12 @@ if (hasParam('gc')) {
 		          </tr>
 		        </tbody>
 		      </table>
-		      <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6>
+		      <div class="flow-text" style="padding:5% 5% 0 5%;font-size:20px;">*Based on 17 development metrics collected in each treatment and control village from 2014 (baseline) to 2017, with statistics calculated 
+				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles, TVs, and men and women in college.  Check out this <a href="impacts.php">page</a> for more info.  
 		      </div>
+
 		</div>
+				
 
 	</div>
 
@@ -287,7 +288,7 @@ if (hasParam('gc')) {
 		});
 
 		timer = setInterval(function() { $('.carousel').carousel('next'); }, 5500);
-		$('.carousel').click(function() { clearTimeout(timer); });
+		$('.carousel').mousedown(function() { clearTimeout(timer); });
 	</script>
 
 </div>
@@ -535,9 +536,8 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<?php 
-
-	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
+<?php
+	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
 	    ob_start();
 
 	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
@@ -545,8 +545,8 @@ if (CACHING_ENABLED) {
                 JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Project Updates</h4>
-        <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
+	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
+        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
@@ -560,7 +560,7 @@ if (CACHING_ENABLED) {
             		    <div class="slickSlide" style='outline:0;'>
             		    <div class='row'>
             		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
@@ -570,7 +570,7 @@ if (CACHING_ENABLED) {
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:100%;max-width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
         							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
                 			</div>
                 		</div>
@@ -601,98 +601,19 @@ if (CACHING_ENABLED) {
         	  infinite: false 
         	});</script>
 
-	<div class="container">
-	<?php 
-	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
-                    SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
-                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
-            FROM projects WHERE project_funded>=project_budget-1"); 
-        if ($row = $result->fetch_assoc()) {
-            $numHelpedTotal = number_format($row['numHelpedTotal'], 0, '.', ',');
-            $elapsedDaysAverage = $row['elapsedAverage'];
-            $waterCount = $row['waterCount'];
-            $educationCount = $row['educationCount'];
-            $livestockCount = $row['livestockCount'];
-            $agricultureCount = $row['agricultureCount'];
-        }
-    ?>
-	
-	
-	
-	
-	<!--  <div class="row">
-	
-        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
-            	<div>
-            		<h5 style="text-align: center;"><b>People Helped*</b></h5>
-            	
-            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
-            		
-            		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
-            	</div>
-        	</div>
-	
-        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
-        
-    			<h5><b>Types of Projects</b></h5>
-    			<center><canvas id="chart2" style="max-width:250px;min-width:250px;margin:auto;"></canvas></center>
-    
-    			<script>
-    				var ctx = document.getElementById("chart2").getContext('2d');
-    
-    				Chart.defaults.global.defaultFontFamily = "'Roboto', sans-serif";
-    				Chart.defaults.global.defaultFontSize = 14;
-    				
-    				var chart2 = new Chart(ctx, {
-    					type : 'polarArea',
-    					data : {
-    
-    						labels: ["water","livestock","education","agriculture"],
-    						  datasets: [{
-    						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
-    						    backgroundColor: [
-    						      "rgba(255, 0, 0, 0.5)",
-    						      "rgba(100, 255, 0, 0.5)",
-    						      "rgba(200, 50, 255, 0.5)",
-    						      "rgba(0, 100, 255, 0.5)"
-    						    ]
-    						  }]
-    						},
-    						options : {
-    								  startAngle: -Math.PI / 3,
-    								  legend: {
-    								    display:true,
-    					    				position: 'top'
-    								  },
-    								}
-    				});
-    			</script>
-        </div>
-        		
-        	<div class="col s12 m4 l4 center-align" style='margin:auto;'>
-            	<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
-        		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
-        		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
-        		
-        		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
-        	</div>
-
-	</div>  -->
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
         
         if (CACHING_ENABLED) {
-            file_put_contents(CACHED_CHARTS_FILENAME, $contents);
+            file_put_contents(CACHED_STORIES_FILENAME, $contents);
         } else {
             print $contents;
         }
     }
     if (CACHING_ENABLED) {
-        include(CACHED_CHARTS_FILENAME);
+        include(CACHED_STORIES_FILENAME);
     }
     ?>
-
-</div>
-<br><br>
+<br/><br/>
 <?php include('footer.inc'); ?>
