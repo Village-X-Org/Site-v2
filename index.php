@@ -229,7 +229,7 @@ if (hasParam('gc')) {
 		<div class="carousel-item white" href="#two!">
 			<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 3% 0">How It Helps</h4> 
 
-<table class="highlight centered responsive-table">
+<table class="highlight centered responsive-table flow-text">
 		        <thead>
 		          <tr>
 		              <th>Metric</th>
@@ -272,10 +272,11 @@ if (hasParam('gc')) {
 		          </tr>
 		        </tbody>
 		      </table>
-		      <div style="padding:3% 0 0 0"><h6>*based on data collected from 2014 (baseline) to 2017 across treatment and control villages, with statistics calculated using a difference-in-differences model</h6>
+		      <div class="flow-text" style="padding:5% 5% 0 5%">*Based on 17 development metrics collected in each treatment and control village from 2014 (baseline) to 2017, with statistics calculated 
+				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles, TVs, and men and women in college.  Check out this <a href="impacts.php">page</a> for more info.  
 		      </div>
 
-	<?php 
+	<!--  <?php 
 
 	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
 	    ob_start();
@@ -372,7 +373,7 @@ if (hasParam('gc')) {
     }
     ?>
 
-</div>
+</div> --> 
 
 		</div>
 				
