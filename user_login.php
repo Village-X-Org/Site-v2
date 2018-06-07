@@ -33,94 +33,101 @@ include('header.inc');
 
 <div class="bg" style='height:100%;'>
 
-<div class="container" style="padding:2% 15% 0 15%">
+  <div class="container" style="padding:2% 15% 0 15%">
 
-<div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK</div>
-<div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
+    <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
+    </div>
+    <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0">
+      <span class="white-text">your profile. your impact. your fundraisers.</span>
+    </div>
   
         
-            <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
-                <div class="card-content donor-text" style="height:100%;">
-                    <div class="section" style="width:100%">
-
-                            <form class="col s12" style="width:100%" id="signin_form" method='post' action="">
-                         <div class="row donor-text" style="padding:0% 0% 0% 0%;">
-                          
+      <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
+          <div class="card-content donor-text" style="height:100%;">
+              <form class="col s12" style="width:100%" id="signin_form" method='post' action="user_save.php">
+                <div class="section" style="width:100%">
+                  <input type='hidden' name='d' value=""/>
+                  <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
+                  <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
+                  <input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
+                  
+                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
+                    <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b>
+                    </div>
+                    <div class="input-field col s12 donor-text">
+                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_email" required data-error=".errorTxt3"/>
+                        <div class="errorTxt3 center-align" style="font-size:10px; color:red;">
+                        </div>
+                      </div>
+                    </div>
+                  </row>
+                            
+                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
+                    <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b>
+                    </div>
+                    <div class="input-field col s12 donor-text">
+                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_password" required data-error=".errorTxt4"/>
+                      <div class="errorTxt4 center-align" style="font-size:10px; color:red;">
+                      </div>
+                    </div>
+                  </div>
+ 
+              </div>
+                  
+              <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
+                 <div class="input-field center-align" style="width:100%;">
                          
-                            <input type='hidden' name='d' value=""/>
-                             <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
-                            <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
-                                <input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
-                         
-                                  
-                                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-                                 <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b></div>
-                                 <div class="input-field col s12 donor-text">
-                                      <input placeholder="enter your email address" class='email' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_email" required data-error=".errorTxt3"/>
-                                      <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
-                                  </div>
-                                  </div>
-                                  
-                                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-                                 <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b></div>
-                                 <div class="input-field col s12 donor-text">
-                                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_password" required data-error=".errorTxt4"/>
-                                      <div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
-                                  </div>
-                                  </div>
-       
-                              </div>
+                    <button id="signButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
+                          SIGN IN 
+                    </button>
+                 </div>    
+             </div>
+          </div>
+        </form>
+        <script>
+            $().ready(function() {
+                $("#signin_form").validate({
+                    rules: {
+                        email: "required",
+                        password: "required",
                         
-                           <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
-                               <div class="input-field center-align" style="width:100%;">
-                                       
-                                    <button id="signButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
-                                        SIGN IN 
-                                    </button>
-                               </div>
-                               
-                               </div>
-                               
-                                                              <script>
-    $().ready(function() {
-        $("#signin_form").validate({
-            rules: {
-                email: "required",
-                password: "required",
-                
-            },
-        messages: {
-              email: "a valid email address is required",
-              password: "a valid password is required",
-        },
+                    },
+                messages: {
+                      email: "a valid email address is required",
+                      password: "a valid password is required",
+                },
 
-        errorElement : 'div',
-         errorPlacement: function(error, element) {
-               var placement = $(element).data('error');
-               if (placement) {
-                 $(placement).append(error)
-               } else {
-                 error.insertAfter(element);
-               }
-         },
-        submitHandler: function(form) {
-            $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
-                    .done(function( data ) {
-                    $( "#travelInfoRequestDiv" ).html( data );
-                    document.getElementById("travelInfoRequestDiv").scrollIntoView();
+                errorElement : 'div',
+                 errorPlacement: function(error, element) {
+                       var placement = $(element).data('error');
+                       if (placement) {
+                         $(placement).append(error)
+                       } else {
+                         error.insertAfter(element);
+                       }
+                 },
+                submitHandler: function(form) {
+                    $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
+                            .done(function( data ) {
+                            $( "#travelInfoRequestDiv" ).html( data );
+                            document.getElementById("travelInfoRequestDiv").scrollIntoView();
+                    });
+                }    
+                });
             });
-        }    
-        });
-    });
-</script>
+        </script>
+             
+        <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">
+          Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
+        </div>
                                
-                               </form>
-                               
-
-                              
-                               </div>
-
-                        
+        <div class="black-text center-align" style="padding:1% 0 1% 0; width:100%;font-weight:400;font-size:x-large;">
+          Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a>
+        </div>              
+      </div> 
+    </div>
+  </div>               
+</div>      
 
   <div id="passwordModal" class="modal">
     <div class="modal-content">
@@ -139,7 +146,8 @@ include('header.inc');
                                 name="email" required data-error=".errorTxt3"
                                 style="font-size: 20px; color: black;" type="email">
                             <div class="errorTxt3"
-                                style="font-size: 10px; color: red; padding: 1% 0% 0% 0%"></div>
+                                style="font-size: 10px; color: red; padding: 1% 0% 0% 0%">
+                              </div>
                         </div>
                     </div>
                 </div>
@@ -155,51 +163,43 @@ include('header.inc');
                     </div>
                 </div>
 
-              </form>
-          </div>     
-      </div>
+            </form>
+        </div>     
+    </div>
   </div>      
      <script>
-    $(document).ready(function(){
-      $('#passwordModal').modal();
+      $(document).ready(function(){
+        $('#passwordModal').modal();
 
-        $("#resetPW_form").validate({
-            rules: {
-                email: "required",
-                password: "required",
-                
-            },
-        messages: {
-              email: "a valid email address is required",
-              password: "a valid password is required",
-        },
+          $("#resetPW_form").validate({
+              rules: {
+                  email: "required",
+                  password: "required",
+                  
+              },
+          messages: {
+                email: "a valid email address is required",
+                password: "a valid password is required",
+          },
 
-        errorElement : 'div',
-         errorPlacement: function(error, element) {
-               var placement = $(element).data('error');
-               if (placement) {
-                 $(placement).append(error)
-               } else {
-                 error.insertAfter(element);
-               }
-         },
-        submitHandler: function(form) {
-            $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
-                    .done(function( data ) {
-                      $( "#travelInfoRequestDiv" ).html( data );
-                      document.getElementById("travelInfoRequestDiv").scrollIntoView();
-                });
-        }    
-        });
-    });
-</script>
-      <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a></div>
-                             
-                    <div class="black-text center-align" style="padding:1% 0 1% 0; width:100%;font-weight:400;font-size:x-large;">Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a></div>
+          errorElement : 'div',
+           errorPlacement: function(error, element) {
+                 var placement = $(element).data('error');
+                 if (placement) {
+                   $(placement).append(error)
+                 } else {
+                   error.insertAfter(element);
+                 }
+           },
+          submitHandler: function(form) {
+              $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
+                      .done(function( data ) {
+                        $( "#travelInfoRequestDiv" ).html( data );
+                        document.getElementById("travelInfoRequestDiv").scrollIntoView();
+                  });
+          }    
+          });
+      });
+    </script>
                     
-                    </div>
-            </div>
-
-        </div>
-    
-    </div>
+</body>
