@@ -644,7 +644,7 @@ if (CACHING_ENABLED) {
 	?>    
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
-        <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
+        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
@@ -658,7 +658,7 @@ if (CACHING_ENABLED) {
             		    <div class="slickSlide" style='outline:0;'>
             		    <div class='row'>
             		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
@@ -668,7 +668,7 @@ if (CACHING_ENABLED) {
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:100%;max-width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
         							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
                 			</div>
                 		</div>
