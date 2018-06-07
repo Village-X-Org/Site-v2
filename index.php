@@ -272,7 +272,7 @@ if (hasParam('gc')) {
 		          </tr>
 		        </tbody>
 		      </table>
-		      <div class="flow-text" style="padding:5% 5% 0 5%">*Based on 17 development metrics collected in each treatment and control village from 2014 (baseline) to 2017, with statistics calculated 
+		      <div class="flow-text" style="padding:5% 5% 0 5%;font-size:20px;">*Based on 17 development metrics collected in each treatment and control village from 2014 (baseline) to 2017, with statistics calculated 
 				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles, TVs, and men and women in college.  Check out this <a href="impacts.php">page</a> for more info.  
 		      </div>
 
