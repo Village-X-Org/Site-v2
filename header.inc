@@ -62,7 +62,7 @@ if (hasParam('d')) {
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="js/slick.min.js"></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
   
 <style>
 #imagelightbox {

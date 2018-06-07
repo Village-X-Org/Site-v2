@@ -4,6 +4,14 @@ $firstName = param('register_first_name');
 $lastName = param('register_last_name');
 $email = param('register_email');
 $password = md5(param('register_password'));
+$captcha = param('g-recaptcha-response');
+
+if (!verifyRecaptcha($captcha)) {
+	print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator.";
+    emailAdmin("Robot detected in login", "Someone tried to login with these parameters: FirstName: $firstName\n LastName: $lastName\n
+    		Email: $email");
+    die(1);
+}
 
 $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
 $stmt->bind_param('s', $email);
