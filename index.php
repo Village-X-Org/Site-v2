@@ -277,7 +277,7 @@ if (hasParam('gc')) {
 
 	<?php 
 
-	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
 	    ob_start();
 	   $result = doUnprotectedQuery("SELECT COUNT(project_id) AS totalProjectCount, COUNT(DISTINCT project_village_id) AS totalVillageCount,
 	   				CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
