@@ -107,7 +107,7 @@ include('header.inc');
                        }
                  },
                 submitHandler: function(form) {
-                    $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
+                    $.post( "user_check.php", $( "#fundraiser_form" ).serialize())
                             .done(function( data ) {
                             $( "#travelInfoRequestDiv" ).html( data );
                             document.getElementById("travelInfoRequestDiv").scrollIntoView();
@@ -137,8 +137,7 @@ include('header.inc');
         </div>
         <div class="container center-align"
             style="padding: 0% 5% 0% 5%;">
-            <form id="resetPW_form" method="get" action=""
-                class="center-align">
+            <form id="resetPW_form" method="get" class="center-align">
                 <div class="row center-align">
                     <div class="col s12 m12 l12 center-align">
                         <div class="input-field col s12 center-align">
@@ -162,44 +161,9 @@ include('header.inc');
                         <div class="indeterminate"></div>
                     </div>
                 </div>
-
             </form>
         </div>     
     </div>
   </div>      
-     <script>
-      $(document).ready(function(){
-        $('#passwordModal').modal();
-
-          $("#resetPW_form").validate({
-              rules: {
-                  email: "required",
-                  password: "required",
-                  
-              },
-          messages: {
-                email: "a valid email address is required",
-                password: "a valid password is required",
-          },
-
-          errorElement : 'div',
-           errorPlacement: function(error, element) {
-                 var placement = $(element).data('error');
-                 if (placement) {
-                   $(placement).append(error)
-                 } else {
-                   error.insertAfter(element);
-                 }
-           },
-          submitHandler: function(form) {
-              $.post( "travel_request_info.php", $( "#fundraiser_form" ).serialize())
-                      .done(function( data ) {
-                        $( "#travelInfoRequestDiv" ).html( data );
-                        document.getElementById("travelInfoRequestDiv").scrollIntoView();
-                  });
-          }    
-          });
-      });
-    </script>
                     
 </body>
