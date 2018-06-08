@@ -48,13 +48,13 @@ body, html {
         	<div class="card-content donor-text" style="height:100%;">
         		<div class="section" id="jqueryvalidation" style="width:100%">
         			<form class="col s12" style="width:100%" id="forgot_password_form" method='post' action="user_changePassword.php">
-        				<input type='hidden' name='id' value='' />
-        				<input type='hidden' name='code' value='' />
+        				<input type='hidden' name='id' value='<?php print $id; ?>' />
+        				<input type='hidden' name='code' value='<?php print $code; ?>' />
      					<div class="row donor-text" style="padding:0% 0% 0% 0%;">
       						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
      							<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>NEW PASSWORD</b></div>
      							<div class="input-field col s12 donor-text">
-      								<input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="new_password" name="new_password" required data-error=".errorTxt4"/>
+      								<input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="newPassword" name="newPassword" required data-error=".errorTxt4"/>
       								<div class="errorTxt4 center-align" style="font-size:10px; color:red;"></div>
       							</div>
       						</div>
