@@ -45,11 +45,6 @@ include('header.inc');
           <div class="card-content donor-text" style="height:100%;">
               <form class="col s12" style="width:100%" id="login_form" method='post'>
                 <div class="section" style="width:100%">
-                  <input type='hidden' name='d' value=""/>
-                  <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
-                  <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
-                  <input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
-                  
                   <div class="row" style="padding:2% 3% 0 3%;margin:0;">
                     <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b>
                     </div>

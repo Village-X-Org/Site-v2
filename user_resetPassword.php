@@ -10,7 +10,7 @@
 
 		sendMail($email, "Password Reset Requested", "A password reset has been requested for your account.  
 			If you did not ask for a reset, please ignore this.\n\nClick the link below to reset your password.\n\n
-			https://villagex.org/user_setNewPassword.php?email=$email&code=$code\n\nThe Village X Team", getCustomerServiceEmail());
+			https://villagex.org/user_forgot_password.php?id=$id&code=$code\n\nThe Village X Team", getCustomerServiceEmail());
 		print "success";
 	} else {
 		print "failure";
