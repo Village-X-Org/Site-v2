@@ -27,6 +27,6 @@ $stmt->close();
 
 $id = $link->insert_id;
 
-header("Location: user_profile.php?id=".$id);
+print 'success';
 
 ?>
