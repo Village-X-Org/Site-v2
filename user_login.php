@@ -123,7 +123,7 @@ include('header.inc');
                 submitHandler: function(form) {
                     $.post( "user_check.php", $( "#login_form" ).serialize())
                             .done(function( data ) {
-                              if (data == 'success') {
+                              if (data === 'success') {
                                 document.location = 'user_profile.php';
                               } else {
                                 $( "#loginErrorText" ).html( data );
