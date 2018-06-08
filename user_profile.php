@@ -77,7 +77,7 @@ if (count($donationDates) > 0) {
   $latestProject = $projectNames[0];
   $latestProjectId = $projectIds[0];
 }
-
+$totalDonationAmount = max(1, $totalDonationAmount);
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
   $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
     round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 

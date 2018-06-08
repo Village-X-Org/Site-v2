@@ -33,7 +33,7 @@ include('header.inc');
 
 <div class="bg" style='height:100%;'>
 
-  <div class="container" style="padding:2% 15% 0 15%">
+  <div class="container" style="padding:2% 10% 0 10%">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
     </div>
@@ -44,7 +44,7 @@ include('header.inc');
         
       <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
           <div class="card-content donor-text" style="height:100%;">
-              <form class="col s12" style="width:100%" id="signin_form" method='post' action="user_save.php">
+              <form class="col s12" style="width:100%" id="login_form" method='post'>
                 <div class="section" style="width:100%">
                   <input type='hidden' name='d' value=""/>
                   <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
@@ -55,7 +55,7 @@ include('header.inc');
                     <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_email" required data-error=".errorTxt3"/>
+                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="login_email" name="login_email" required data-error=".errorTxt3"/>
                         <div class="errorTxt3 center-align" style="font-size:10px; color:red;">
                         </div>
                       </div>
@@ -66,7 +66,7 @@ include('header.inc');
                     <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="signin_password" required data-error=".errorTxt4"/>
+                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="login_password" required data-error=".errorTxt4" name="login_password" />
                       <div class="errorTxt4 center-align" style="font-size:10px; color:red;">
                       </div>
                     </div>
@@ -77,16 +77,24 @@ include('header.inc');
               <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
                  <div class="input-field center-align" style="width:100%;">
                          
-                    <button id="signButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
+                      <button id="loginButton" style="width:100%;height:70px;font-size:25px"
+                          class="g-recaptcha btn-large donor-background center-align submit"
+                          data-sitekey="<?php print CAPTCHA_SITEKEY; ?>"
+                          data-callback="onSubmit">
                           SIGN IN 
-                    </button>
+                      </button>
+                    <div id='loginErrorText' style='margin-top:10px;color:red;'></div>
                  </div>    
              </div>
           </div>
         </form>
         <script>
+            function onSubmit(token) {
+                $('#login_form').submit();
+            }
+
             $().ready(function() {
-                $("#signin_form").validate({
+                $("#login_form").validate({
                     rules: {
                         email: "required",
                         password: "required",
@@ -105,16 +113,21 @@ include('header.inc');
                        } else {
                          error.insertAfter(element);
                        }
+                      grecaptcha.reset();
                  },
                 submitHandler: function(form) {
-                    $.post( "user_check.php", $( "#fundraiser_form" ).serialize())
+                    $.post( "user_check.php", $( "#login_form" ).serialize())
                             .done(function( data ) {
-                            $( "#travelInfoRequestDiv" ).html( data );
-                            document.getElementById("travelInfoRequestDiv").scrollIntoView();
+                              if (data == 'success') {
+                                document.location = 'user_profile.php';
+                              } else {
+                                $( "#loginErrorText" ).html( data );
+                                grecaptcha.reset();
+                              }
+                            });
+                      }    
                     });
-                }    
-                });
-            });
+              });
         </script>
              
         <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:2% 0 0% 0">
@@ -137,7 +150,7 @@ include('header.inc');
         </div>
         <div class="container center-align"
             style="padding: 0% 5% 0% 5%;">
-            <form id="resetPW_form" method="get" class="center-align">
+            <form id="resetPassword_form" method="get" class="center-align">
                 <div class="row center-align">
                     <div class="col s12 m12 l12 center-align">
                         <div class="input-field col s12 center-align">
