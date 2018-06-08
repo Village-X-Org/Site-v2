@@ -40,7 +40,7 @@ body, html {
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
       		<div class="card-content donor-text" style="height:100%;">
       				
-     				   <form class="col s12" style="width:100%" id="signup_form" method='post'>
+     				   <form class="col s12" style="width:100%" id="register_form" method='post'>
                      
      					    <div class="row" style="padding:0% 3% 0 3%;margin:0;">
        						   <div class="input-field col s12 donor-text">
@@ -96,11 +96,11 @@ body, html {
 
             <script>
               function onSubmit(token) {
-                $('#signup_form').submit();
+                $('#register_form').submit();
               }
 
               $().ready(function() {
-                $("#signup_form").validate({
+                $("#register_form").validate({
                   rules: {
                     firstname: "required",
                     lastname: "required",
@@ -116,25 +116,23 @@ body, html {
                   errorPlacement: function(error, element) {
                       var placement = $(element).data('error');
                       if (placement) {
-                        $(placement).append(error)
+                        $(placement).append(error);
                       } else {
                         error.insertAfter(element);
                       }
                       grecaptcha.reset();
                   },
                     submitHandler: function(form) {
-                      $.post( "user_save.php", $( "#login_form" ).serialize())
-                            .done(function( data ) {
-                              if (data == 'success') {
-                                document.location = 'user_profile.php';
-                              } else {
-                                $( "#loginErrorText" ).html( data );
-                                grecaptcha.reset();
-                              }
-                            });
+                      $.post( "user_save.php", $( "#register_form" ).serialize())
+                        .done(function( data ) {
+                          if (data == 'success') {
+                            document.location = 'user_profile.php';
+                          } else {
+                            $( "#loginErrorText" ).html( data );
+                            grecaptcha.reset();
+                          }
+                        });
                       }    
-                    });
-                    } 
                 });
               });
             </script>  
