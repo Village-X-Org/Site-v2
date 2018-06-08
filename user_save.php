@@ -25,7 +25,10 @@ $stmt->bind_param('ssss', $firstName, $lastName, $email, $password);
 execute($stmt);
 $stmt->close();
 
-$id = $link->insert_id;
+$_SESSION['donor_id'] = $session_donor_id = $id = $link->insert_id;
+$session_first_name = $_SESSION['first_name'] = $firstName;
+$session_last_name = $_SESSION['last_name'] = $lastName;
+$session_email = $_SESSION['email'] = $email;
 
 print 'success';
 

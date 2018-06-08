@@ -11,7 +11,7 @@ if (!hasParam('id')) {
   $userId = param('id');
 }
 
-$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = 0;
+$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
 $donorLocation = "";
 $populations = array();
 $households = array();
@@ -26,17 +26,18 @@ $statuses = array();
 $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name,
               vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
               FROM donors 
-              LEFT JOIN donations ON donation_donor_id=? AND donation_donor_id=donor_id 
-              JOIN projects ON donation_project_id=project_id 
-              JOIN villages ON project_village_id=village_id 
+              LEFT JOIN donations ON donation_donor_id=donor_id 
+              LEFT JOIN projects ON donation_project_id=project_id 
+              LEFT JOIN villages ON project_village_id=village_id 
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
+              WHERE donor_id=?
               ORDER BY donation_date DESC");
 $stmt->bind_param('i', $userId);
 $result = execute($stmt);
 $count = 0;
 while ($row = $result->fetch_assoc()) {
-  if ($count == 0) {
+  if (!$userFirstName) {
     $userFirstName = $row['donor_first_name'];
     $userLastName = $row['donor_last_name'];
     $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
@@ -44,7 +45,7 @@ while ($row = $result->fetch_assoc()) {
   }
   $amount = $row['donation_amount'];
   if (!$amount) {
-    break;
+    continue;
   }
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
@@ -68,9 +69,9 @@ while ($row = $result->fetch_assoc()) {
 } 
 $stmt->close();
 
-if (!isset($userFirstName)) {
+if (!$userFirstName) {
   print "No user found";
-  return;
+  die(1);
 }
 
 if (count($donationDates) > 0) {
@@ -82,7 +83,7 @@ if (count($donationDates) > 0) {
   $latestProject = $projectNames[0];
   $latestProjectId = $projectIds[0];
 }
-$totalDonationAmount = max(1, $totalDonationAmount);
+$totalDonationAmount = max(.001, $totalDonationAmount);
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
   $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
     round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 
@@ -275,7 +276,7 @@ $totalProjectCount = count($uniqueProjects);
   
             <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
 
-                    <div style="overflow: scroll; height:250px;">
+                    <div style="overflow: scroll; height:600px;">
           <?php
           $numDonations = count($donationAmounts);
           for ($i = 0; $i < $numDonations; $i++) {
@@ -298,7 +299,7 @@ $totalProjectCount = count($uniqueProjects);
             
         
           
-    <div style="padding:3% 2% 0% 2%;">
+    <!--<div style="padding:3% 2% 0% 2%;">
  
         <h5 class="center-align"><b><span class="blue-text"><?php print $userFirstName; ?>'s Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
     <div>
@@ -353,7 +354,7 @@ $totalProjectCount = count($uniqueProjects);
       </script>
         <div class="center-align" style="padding: 2% 0 0 0; font-weight:thin; font-size:medium">dev scores based on 17 indicators collected from each village for health, education, business, lifestyle, agriculture, and livestock</div>
       
-    </div>
+    </div>-->
     </div>
   </div>
 
