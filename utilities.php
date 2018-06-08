@@ -4,7 +4,14 @@ require_once('config.php');
 
 session_start();
 $link = 0;
-$session_user_id = 0;
+if (isset($_SESSION['donor_id'])) {
+	$session_donor_id = $_SESSION['donor_id'];
+	$session_first_name = $_SESSION['first_name'];
+	$session_last_name = $_SESSION['last_name'];
+	$session_email = $_SESSION['email'];
+} else {
+	$session_donor_id = $session_first_name = $session_last_name = $session_email = 0;
+}
 
 define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
@@ -499,6 +506,22 @@ function invalidateCaches($projectId) {
     }
     include("getProjects.php");
     include("getVillages.php");
+}
+
+function verifyRecaptcha($responseCode) {
+	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET."&response=".$responseCode;
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+	$response = curl_exec( $ch );
+	$json = json_decode($response);
+
+	if (isset($json->{'success'}) && $json->{'success'}) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 ?>

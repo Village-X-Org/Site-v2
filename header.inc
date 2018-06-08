@@ -62,7 +62,7 @@ if (hasParam('d')) {
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="js/slick.min.js"></script>
-
+<script src='https://www.google.com/recaptcha/api.js'></script>
   
 <style>
 #imagelightbox {
@@ -353,6 +353,12 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a href="travel.php">Travel</a></li>
 				<li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
+				<?php if ($session_donor_id) {
+					print "<li><a href='user_logout.php'>logout</a></li>";
+				} else {
+					print "<li><a href='user_login.php'>login</a></li>";
+				} ?>
+				
 			</ul>
 
 			<ul id="nav-mobile" class="side-nav">
@@ -362,12 +368,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="About_mobile">About<i class="material-icons right">arrow_drop_down</i></a></li>
 				
-				<!--  
-			    <li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
-				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
-				<li><a href="about.php"><i class="material-icons">info</i>About</a></li> 
-				-->
-				
+				<?php if ($session_donor_id) {
+					print "<li><a href='user_logout.php'>logout</a></li>";
+				} else {
+					print "<li><a href='user_login.php'>login</a></li>";
+				} ?>
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
 				class="material-icons">menu</i></a>
