@@ -1,12 +1,17 @@
 <?php
 require_once ("utilities.php");
 if (!hasParam('id')) {
-  print "No user parameter found";
-  return;
+  if ($session_donor_id) {
+    $userId = $session_donor_id;
+  } else {
+    print "No user parameter found";
+    return;
+  }
+} else {
+  $userId = param('id');
 }
-$userId = param('id');
 
-$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = 0;
+$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
 $donorLocation = "";
 $populations = array();
 $households = array();
@@ -20,22 +25,28 @@ $budget = array();
 $statuses = array();
 $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name,
               vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
-              FROM donations JOIN donors ON donation_donor_id=? AND donation_donor_id=donor_id JOIN projects ON donation_project_id=project_id 
-              JOIN villages ON project_village_id=village_id 
+              FROM donors 
+              LEFT JOIN donations ON donation_donor_id=donor_id 
+              LEFT JOIN projects ON donation_project_id=project_id 
+              LEFT JOIN villages ON project_village_id=village_id 
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
+              WHERE donor_id=?
               ORDER BY donation_date DESC");
 $stmt->bind_param('i', $userId);
 $result = execute($stmt);
 $count = 0;
 while ($row = $result->fetch_assoc()) {
-  if ($count == 0) {
+  if (!$userFirstName) {
     $userFirstName = $row['donor_first_name'];
     $userLastName = $row['donor_last_name'];
     $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
     $donorLocation = $row['donor_location'];
   }
   $amount = $row['donation_amount'];
+  if (!$amount) {
+    continue;
+  }
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
   array_push($projectIds, $row['project_id']);
@@ -58,9 +69,9 @@ while ($row = $result->fetch_assoc()) {
 } 
 $stmt->close();
 
-if ($count == 0) {
+if (!$userFirstName) {
   print "No user found";
-  return;
+  die(1);
 }
 
 if (count($donationDates) > 0) {
@@ -72,7 +83,7 @@ if (count($donationDates) > 0) {
   $latestProject = $projectNames[0];
   $latestProjectId = $projectIds[0];
 }
-
+$totalDonationAmount = max(.001, $totalDonationAmount);
   $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
   $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
     round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 
@@ -184,7 +195,7 @@ $totalProjectCount = count($uniqueProjects);
               <span style="font-size: x-large; font-weight: 500">Last Donation: <?php print date('M j, Y', $latestDonationDate); ?></span>
             </h6>
             <div class='progress'>
-              <div class='determinate' style='width: <?php print round(100 * $latestFunded / $latestBudget); ?>%'></div>
+              <div class='determinate' style='width: <?php print round(100 * $latestFunded / max(1, $latestBudget)); ?>%'></div>
             </div>
             <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="project.php?id=<?php print $latestProjectId;?>" target='_blank'><?php print "$latestProject in $latestVillage" ?></a>&nbsp;is <b>&nbsp;<?php print $latestStatus; ?></b></div>
 
@@ -201,7 +212,9 @@ $totalProjectCount = count($uniqueProjects);
     </div>
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
-    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>, helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi.  He has donated to <?php print strtolower($typeStr); ?> projects.  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
+    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>
+    <?php print ($peopleCount > 0 ? ", helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi" : ""); ?>.  
+    <?php print ($typeStr ? "He has donated to ".strtolower($typeStr)." projects." : "");?>  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
@@ -261,9 +274,9 @@ $totalProjectCount = count($uniqueProjects);
     
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
-            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_user_id == $userId ? "(Total: $totalDonationAmount)" : ""); ?></span></h5>
+            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
 
-                    <div style="overflow: scroll; height:250px;">
+                    <div style="overflow: scroll; height:600px;">
           <?php
           $numDonations = count($donationAmounts);
           for ($i = 0; $i < $numDonations; $i++) {
@@ -274,7 +287,7 @@ $totalProjectCount = count($uniqueProjects);
                                         text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials;?></b></span></a>
                         
                   </div>
-                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_user_id == $userId ? "<b>Donated $".$donationAmounts[$i]."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
+                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_donor_id == $userId ? "<b>Donated $".money_format('%.2n', $donationAmounts[$i])."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
                     <div style="font-weight: 200; font-size:16px;"><a href="project.php?id=<?php print $projectIds[$i];?>" target='_blank'><?php print $projectNames[$i]; ?></a> in <?php print $villageNames[$i]; ?> Village</div>
                   </div>
                 </div>
@@ -286,7 +299,7 @@ $totalProjectCount = count($uniqueProjects);
             
         
           
-    <div style="padding:3% 2% 0% 2%;">
+    <!--<div style="padding:3% 2% 0% 2%;">
  
         <h5 class="center-align"><b><span class="blue-text"><?php print $userFirstName; ?>'s Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
     <div>
@@ -341,7 +354,7 @@ $totalProjectCount = count($uniqueProjects);
       </script>
         <div class="center-align" style="padding: 2% 0 0 0; font-weight:thin; font-size:medium">dev scores based on 17 indicators collected from each village for health, education, business, lifestyle, agriculture, and livestock</div>
       
-    </div>
+    </div>-->
     </div>
   </div>
 
