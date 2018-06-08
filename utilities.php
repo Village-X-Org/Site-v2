@@ -4,7 +4,11 @@ require_once('config.php');
 
 session_start();
 $link = 0;
-$session_user_id = 0;
+if (isset($_SESSION['donor_id'])) {
+	$session_donor_id = $_SESSION['donor_id'];
+} else {
+	$session_donor_id = 0;
+}
 
 define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
