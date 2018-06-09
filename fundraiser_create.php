@@ -115,7 +115,7 @@ body, html {
           		
           		
 	          		<script>$('.datepicker').pickadate({
-                    format: 'mm/dd/yyyy',
+                    format: 'yyyy-mm-dd',
 	          		    selectMonths: true,
 	          		    selectYears: 2,
 	          		    clear: 'Clear',
