@@ -23,11 +23,26 @@ require_once("utilities.php");
   }
   </style>
   <?php
-  if (!hasParam('id')) {
+  $fundraiserId = 0;
+  if (hasParam('fundraiserId')) {
+    $fundraiserId = param('fundraiserId');
+    $stmt = prepare("SELECT fundraiser_id, fundraiser_title, fundraiser_project_id FROM fundraisers WHERE fundraiser_id=?");
+    $stmt->bind_param('i', $fundraiserId);
+    $result = execute($stmt);
+    if ($row = $result->fetch_assoc()) {
+      $fundraiserId = $row['fundraiser_id'];
+      $fundraiserTitle = $row['fundraiser_title'];
+      $projectId = $row['fundraiser_project_id'];
+    }
+  }
+  if (!$projectId) {
+    if (!hasParam('id')) {
       print "Project id required.";
       die();
+    } else {
+      $projectId = paramInt('id');
+    }
   }
-  $projectId = paramInt('id');
   $honoreeId = 0;
   $honoreeMessage = "";
   if (hasParam('honoreeEmail')) {
@@ -101,8 +116,14 @@ include('header.inc');
 		<div class="col-project valign-wrapper" style="vertical-align: middle;">
 			<div class="card donor-border" style="border-style:solid; border-width:1px; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
-            		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in <?php print $villageName; ?> Village, <?php print $countryName; ?>
-            				<?php print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" ); ?>.</span>
+            		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in   
+                  <?php if ($fundraiserId) {
+                    print "support of <span style='font-weight:400;'>$fundraiserTitle</span>";
+                  } else { 
+                    print "$villageName Village, $countryName"; 
+                  } 
+                  print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" );
+                  ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
           				<p class="center-align black-text">The project needs <?php print ($matchingDonor ? "$".ceil($remaining / 2).", matched to " : ""); ?>$<?php print $remaining; ?>.</p>
          				<form class="col s12" style="width:100%" id="donateForm" method='post' action="donateWithStripe.php">
