@@ -400,12 +400,12 @@
 		          </tr>
 		          <tr>
 		            <td>p-value</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
-		            <td>p<0.05</td>
-		            <td>p<0.05</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
 		          </tr>
 		        </tbody>
 		      </table>
