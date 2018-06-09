@@ -333,14 +333,13 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 <ul id="About" class="dropdown-content hide-on-med-and-down">
   <li><a href="about.php">Mission &amp; Team</a></li>
   <li><a href="model.php">Model</a></li>
-  <li><a href="impacts.php">Impacts</a></li>
+  <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
  </ul>
   
 <ul id="About_mobile" class="dropdown-content hide-on-large-only">
   <li><a href="about.php"><i class="material-icons">info</i>About</a></li>
   <li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
-  <li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
- 
+  <li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 </ul>
 
 	<nav class="white" role="navigation">
@@ -349,9 +348,9 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				src="images/logo.png"></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a href="project_tiles.php">Projects</a></li>
+				<li><a href="impacts.php">Impacts</a></li>
 				<li><a href="map.php">Map</a></li>
 				<li><a href="travel.php">Travel</a></li>
-				<li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
 				<?php if ($session_donor_id) {
 					print "<li><a href='user_logout.php'>logout</a></li>";
@@ -363,9 +362,9 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 			<ul id="nav-mobile" class="side-nav">
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
+				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
 				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
-				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="About_mobile">About<i class="material-icons right">arrow_drop_down</i></a></li>
 				
 				<?php if ($session_donor_id) {

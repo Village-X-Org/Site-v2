@@ -25,9 +25,9 @@
 
 <div class="row">
 			
-			<div class="col s12 m12 l12 center-align" style="padding: 20px 30px 20px 30px">
+			<div class="col s12 m12 l12 center-align" style="padding: 10px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h5 style="text-align: center"><b>Development Scores: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart1" width="350" height="350"></canvas>
 			</div>
@@ -38,7 +38,7 @@
 				var chart1 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016],
+						labels : [ 2014, 2015, 2016, 2017],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -46,7 +46,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 11.92, 12.42, 16.93 ],
+							data : [ 9.92, 10.3, 15, 22.7 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -54,10 +54,10 @@
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "rgba(192,192,192,1)",
+                             pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-							data : [ 13.72, 12.11, 9.5 ],
+							data : [ 17.3, 13.8, 11.5, 8.77 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -85,7 +85,7 @@
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h5 style="text-align: center"><b>Waterborne Illness: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -96,7 +96,7 @@
 				var chart2 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016 ],
+						labels : [ 2014, 2015, 2016, 2017 ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -104,7 +104,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 7.835, 5.287, 2.378 ],
+							data : [ 8.1, 5.5, 2.4, 1.3 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -112,10 +112,10 @@
 							label: "Control Villages Average",
 							fill : false,
 							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
+							borderColor: "rgba(192,192,192,1)",
+                             pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-                             data : [ 9.267, 8.219, 8.299 ],
+                             data : [ 10, 9.3, 9.4, 11 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -140,7 +140,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h6 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+				<h5 style="text-align: center"><b>Agricultural Output: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -151,7 +151,7 @@
 				var chart5 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016 ],
+						labels : [ 2014, 2015, 2016, 2017 ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -159,7 +159,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 10.30671882, 6.612934498, 4.313312337 ],
+							data : [ 9.7, 5.9, 3.9, 7.1 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -170,7 +170,7 @@
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 9.211201343, 5.621902842, 3.832121553 ],
+                             data : [ 10.7, 6, 4.2, 4.3 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -196,7 +196,7 @@
 	
 	<div class="row">
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Dimensions: <span class="blue-text">Partner Villages</span></b></h6>
+						<h5 style="text-align: center"><b>Remaining Dimensions: <span class="blue-text">Partner Villages</span></b></h5>
 					<div>
 						<canvas id="chart3" width="250" height="250"></canvas>
 					</div>
@@ -215,33 +215,44 @@
 											{
 										          label: "2014",
 										          fill: true,
-										          backgroundColor: "rgba(255,99,132,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          backgroundColor: "rgba(255,99,132,0.1)",
+										          borderColor: "rgba(255,99,132,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.339496041, 1.884430348, 1.58, 1.440140331 ]
+										          data: [ 1.3, 1.5, 1.3, 1.5 ]
 										        },
 											{
 										          label: "2015",
 										          fill: true,
 										          backgroundColor: "rgba(54,162,235,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          borderColor: "rgba(54,162,235,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.850773378, 2.057503179, 1.85, 1.693112104 ]
+										          data: [ 1.9, 1.8, 1.5, 1.7 ]
 										        },
 											{
 										          label: "2016",
 										          fill: true,
 										          backgroundColor: "rgba(255,206,86,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          borderColor: "rgba(255,206,86,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 2.692370418, 3.014114816, 2.38, 2.126753307 ]
-										        }
+										          data: [ 2.7, 2.8, 1.9, 2.2 ]
+										        },
+
+										        {
+											          label: "2017",
+											          fill: true,
+											          backgroundColor: "rgba(102,255,102,0.4)",
+											          borderColor: "rgba(102,255,102,1)",
+											          pointBorderColor: "#fff",
+											          pointBackgroundColor: "rgba(179,181,198,1)",
+											          pointRadius: 2,
+											          data: [ 3.3, 3.6, 2.2, 3.3 ]
+											        }
 							
 									],
 									},
@@ -259,7 +270,7 @@
 			</div> 
 			
 	<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Dimensions: <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
+						<h5 style="text-align: center"><b>Remaining Dimensions: <span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 					<div>
 						<canvas id="chart4" width="250" height="250"></canvas>
 					</div>
@@ -278,33 +289,43 @@
 											{
 										          label: "2014",
 										          fill: true,
-										          backgroundColor: "rgba(255,99,132,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          backgroundColor: "rgba(255,99,132,0.1)",
+										          borderColor: "rgba(255,99,132,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.834480394, 2.719112058, 2.06, 3.4373324951 ]
+										          data: [ 2, 3.1, 2.7, 3.8 ]
 										        },
 											{
 										          label: "2015",
 										          fill: true,
 										          backgroundColor: "rgba(54,162,235,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          borderColor: "rgba(54,162,235,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.899622477, 2.581994567, 2.14, 3.782552672 ]
+										          data: [ 2.2, 3.2, 2.6, 3.9 ]
 										        },
 											{
 										          label: "2016",
 										          fill: true,
 										          backgroundColor: "rgba(255,206,86,0.4)",
-										          borderColor: "rgba(179,181,198,1)",
+										          borderColor: "rgba(255,206,86,1)",
 										          pointBorderColor: "#fff",
 										          pointBackgroundColor: "rgba(179,181,198,1)",
 										          pointRadius: 2,
-										          data: [ 1.627114886, 2.51217026, 2.17, 3.334513563 ]
-										        }
+										          data: [ 2, 3.1, 2.8, 3.2 ]
+											},
+										        {
+											          label: "2017",
+											          fill: true,
+											          backgroundColor: "rgba(102,255,102,0.4)",
+											          borderColor: "rgba(102,255,102,1)",
+											          pointBorderColor: "#fff",
+											          pointBackgroundColor: "rgba(179,181,198,1)",
+											          pointRadius: 2,
+											          data: [ 1.7, 3, 2.8, 2.3 ]
+											        }
 							
 									],
 									},
@@ -324,9 +345,9 @@
 	</div>
 	
 	<div class="section flow-text" style="width:100%;"> 
-		<p>The data show villages on divergent development paths. Both partner and control villages performed poorly during two bad agricultural years (2015 and 2016) and
-		posted similar livestock scores over time. Yet, starting in 2015, partner villages outperformed control villages in terms of waterborne illness, education, lifestyle,
-		and business. Do these descriptive statistics contain statistically significant impacts? Find out below.</p>
+		<p>We calculate these dimensional scores from 17 development indicators collected per village (more on that below).  The data show partner and control villages on divergent development paths. Both partner and control villages performed poorly during two bad agricultural years (2015 and 2016). Yet, starting in 2015, partner villages 
+		outperformed control villages in terms of waterborne illness, education, lifestyle, livestock, and business.  In 2017, partner villages started outperforming control villages in terms of agricultural output. 
+		Do these descriptive statistics contain statistically significant impacts? Find out below.</p>
 	</div>
 	
 	<hr>
@@ -336,7 +357,7 @@
 	</h4></div><br>
 	
 	<div class="section flow-text" style="width:100%;"> 
-		<p>In 2016, after two years of funding projects, we evaluated our impact. Our approach wasn't fancy or expensive (more on that
+		<p>Our most recent impact evaluation occurred in early 2018. Our approach wasn't fancy or expensive (more on that
 		below). Instead, it tested a foundational assumption that financing village-led projects without any sort of preconceived 
 		development agenda would allow local communities to illuminate development pathways obscured from the outside. In other words, 
 		we funded a bunch of projects, collected a bunch of development indicators, and tested whether anything had changed. 
@@ -345,48 +366,51 @@
 	
 <div class="section">
 		<!--   Icon Section   -->
-		<div class="row center">
-			<br>
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_down</i>
-					<h5 class="center brown-test">waterborne illness</h5>
-					<h4 class="light center">-70%</h4>
-					<h6 class="light center">p-value&lt;=0.01</h6>
-					<br> <br> <br>
-				</div>
-			</div>
+		<table class="highlight centered responsive-table flow-text">
+		        <thead>
+		          <tr>
+		              <th>Metric</th>
+		              <th>Boys in nursery</th>
+		              <th>Girls in nursery</th>
+		              <th>Girls in secondary</th>
+		              <th>Goats</th>
+		              <th>Waterborne illness</th>
+		              <th>Non-ag businesses</th>
+		          </tr>
+		        </thead>
 
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">boys/girls in nursery school</h5>
-					<h4 class="light center">+66%/60%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> <br> <br>
-				</div>
-			</div>
-
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">non-agricultural businesses</h5>
-					<h4 class="light center">+100%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> <br> <br>
-				</div>
-			</div>
-
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">girls in high school</h5>
-					<h4 class="light center">+80%</h4>
-					<h6 class="light center">p-value~0.1</h6>
-					<br> 
-				</div>
-			</div>
-		</div>
+		        <tbody>
+		          <tr>
+		            <td>% change</td>
+		            <td>+93%</td>
+		            <td>+109%</td>
+		            <td>+63%</td>
+		            <td>+77%</td>
+		            <td>-68%</td>
+		            <td>+123%</td>
+		          </tr>
+		          <tr>
+		            <td>actual change</td>
+		            <td>+11 boys</td>
+		            <td>+14 girls</td>
+		            <td>+4 girls</td>
+		            <td>+23 goats</td>
+		            <td>-133 cases</td>
+		            <td>+11 businesses</td>
+		          </tr>
+		          <tr>
+		            <td>p-value</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		          </tr>
+		        </tbody>
+		      </table>
+		      <div class="flow-text center-align" style="padding:3% 5% 0 5%;font-size:20px;">*Not shown are small but statistically significant increases in motorcycles, TVs, and men and women in college.  
+		      </div>
 	</div>
 
 <hr>
@@ -398,9 +422,9 @@
 <br>
 
 	<div class="section flow-text"> 
-		<p>Using community surveys spanning 2014 to 2016, across 21 projects and 32 villages, we tracked the following 13 development 
+		<p>Using community surveys spanning 2014 (baseline) to 2017, across 27 projects and 39 villages, we tracked the following 17 development 
 		indicators pertaining to health, education, business, lifestyle, agriculture, and livestock, both in partner villages and 
-		villages that want to partner with Village X. We chose these indicators because they are easy to collect and indicative of
+		control villages that want to partner with Village X. We chose these indicators because they are easy to collect and indicative of
 		 village development trends. We then applied a difference-in-differences analysis to detect our model’s impacts, 
 		controlling for village population and number of households.</p>
 	</div>
@@ -472,10 +496,10 @@
 	</div>
 	
 	<div class="section flow-text"> 
-		<p>Each project profile on this website has graphs showing how development scores for a given village change
-		over time, including an overall village development score and scores for each of the categories above. These scores 
+		<p>Project profiles on this website for repeat village parters (those that have completed at least one project) have graphs showing how development scores for a given village change
+		over time, including an overall village development score and scores for each of the dimensions set forth above. These scores 
 		are not precision instruments. Instead, they capture village development trends over time.</p>
-		<p>Want to take a deeper dive? Checkout our dataset <a href="https://docs.google.com/spreadsheets/d/1Ye3pRy5nQ7vuPt9Q_kmRXPDwZSLNSlmWOtq9evClbpY/edit?usp=sharing" target='_blank'>here</a>. It's part of our 100% tranparency guarantee.</p>
+		<p>Want to take a deeper dive? Checkout our dataset <a href="https://docs.google.com/spreadsheets/d/1ND8Szlfg9tVfFNSAajiK6enKRlfZoXIayFCbB-WGYj4/edit?usp=sharing" target='_blank'>here</a>. It's part of our 100% tranparency guarantee.</p>
 	</div>
 
 <hr>	
