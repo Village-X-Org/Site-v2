@@ -20,6 +20,7 @@ $donationDates = array();
 $projectIds = array();
 $projectNames = array();
 $villageNames = array();
+$projectTypes = array();
 $funded = array();
 $budget = array();
 $statuses = array();
@@ -44,13 +45,16 @@ while ($row = $result->fetch_assoc()) {
     $donorLocation = $row['donor_location'];
   }
   $amount = $row['donation_amount'];
-  if (!$amount) {
+  $projectName = $row['project_name'];
+  $projectType = $row['project_type'];
+  if (!$amount || !$projectName) {
     continue;
   }
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
   array_push($projectIds, $row['project_id']);
-  array_push($projectNames, $row['project_name']);
+  array_push($projectNames, $projectName);
+  array_push($projectTypes, $projectType);
   array_push($villageNames, $row['village_name']);
   array_push($donationDates, $row['donation_date']);
   array_push($populations, $row['peopleCount']);
@@ -59,7 +63,6 @@ while ($row = $result->fetch_assoc()) {
   array_push($funded, $row['project_funded']);
   array_push($statuses, $row['project_status']);
 
-  $projectType = $row['project_type'];
   $livestockCount += ($projectType == 'livestock' ? $amount : 0);
   $waterCount += ($projectType == 'water' ? $amount : 0);
   $educationCount += ($projectType == 'school' || $projectType == 'house' || $projectType == 'nursery' ? $amount : 0);
@@ -212,8 +215,8 @@ $totalProjectCount = count($uniqueProjects);
     </div>
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
-    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> project<?php print ($totalProjectCount != 1 ? 's' : ''); ?>
-    <?php print ($peopleCount > 0 ? ", helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi" : ""); ?>.  
+    <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> 
+    project<?php print ($totalProjectCount != 1 ? 's' : ''); ?><?php print ($peopleCount > 0 ? ", helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi" : ""); ?>.  
     <?php print ($typeStr ? "He has donated to ".strtolower($typeStr)." projects." : "");?>  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
@@ -283,8 +286,8 @@ $totalProjectCount = count($uniqueProjects);
               ?>
                             <div class="row valign-wrapper">
                 <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
-                            <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; font-color: #ffffff; 
-                                        text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $initials;?></b></span></a>
+                            <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 10% 0% 0 0%; font-size: x-large; font-color: #ffffff; 
+                                        text-align: center;display: table-cell;vertical-align:middle;"><img style='filter: brightness(0) invert(.97);width:50px;' src='images/type_<?php print $projectTypes[$i]; ?>.svg' /></span></a>
                         
                   </div>
                   <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_donor_id == $userId ? "<b>Donated $".money_format('%.2n', $donationAmounts[$i])."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
@@ -297,64 +300,7 @@ $totalProjectCount = count($uniqueProjects);
 
       </div>
             
-        
-          
-    <!--<div style="padding:3% 2% 0% 2%;">
- 
-        <h5 class="center-align"><b><span class="blue-text"><?php print $userFirstName; ?>'s Villages</span> v. <span style="color:rgba(150,75,75,.7);">Control Villages</span></b></h5>
-    <div>
-        <canvas id="chart3" width="250" height="250"></canvas>
-      </div>
-
-      <script>
-        var ctx = document.getElementById("chart3").getContext('2d');
-
-        var chart3 = new Chart(ctx, {
-          type : 'line',
-          data : {
-            labels : [ 2014, 2015, 2016],
-            datasets : [ {
-              label: "Partner Villages Average",
-              fill : false,
-              backgroundColor : "#ffce56",
-              borderColor: "#6495ED",
-                             pointBackgroundColor: "#6495ED",
-                             pointRadius: 5,
-              data : [ 11.92, 12.42, 16.93 ],
-              cubicInterpolationMode: 'monotone',
-            }, 
-
-            {
-              label: "Control Villages Average",
-              fill : false,
-              backgroundColor : "#ffce56",
-              borderColor: "rgba(150,75,75,.7)",
-                             pointBackgroundColor: "rgba(150,75,75,.7)",
-                             pointRadius: 5,
-              data : [ 13.72, 12.11, 9.5 ],
-              cubicInterpolationMode: 'monotone',
-            }]
-            }, 
-          options : {
-            responsive : true,
-            maintainAspectRatio : false,
-            legend : {
-              display : false,
-            },
-          scales : {
-            yAxes : [ {
-              ticks : {
-                beginAtZero : false,
-              }
-            } ]
-          },
-          }
-
-        });
-      </script>
-        <div class="center-align" style="padding: 2% 0 0 0; font-weight:thin; font-size:medium">dev scores based on 17 indicators collected from each village for health, education, business, lifestyle, agriculture, and livestock</div>
       
-    </div>-->
     </div>
   </div>
 

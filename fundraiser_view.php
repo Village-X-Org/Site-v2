@@ -205,19 +205,22 @@ if ($row = $result->fetch_assoc()) {
       <div class="flow-text" style="padding: 3% 0% 0% 0%; font-size:22px;"><?php print $description;?></div>
             	
             <h5 style="padding: 2% 0% 0% 0%; font-size:20px; font-weight:400;">Fundraising Timeline</h5>
-            <div style="overflow-x:scroll; height:200px;width:100%;">
+            <div style="overflow-y:scroll; height:300px;width:100%;">
             <?php 
             $donationCount = count($donationAmounts);
             for ($i = 0; $i < $donationCount; $i++) { ?>
-            <div class="row valign-wrapper">
-            <div style="padding 0 0 0 0%;margin: 3% 3% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
-                 				<span style="height:80px; width:80px; padding: 0 0% 0 0%; font-size: x-large; color: #ffffff; 
-                                        text-align: center;display: table-cell;vertical-align:middle;"><b><?php print $donationInitials[$i];?></b></span>
-                 			
- 			</div>
- 			<div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><b><?php print $donationNames[$i]; ?></b></span><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> donated $<?php print $donationAmounts[$i]; ?></span><br/><span style='text-align:right;'>on <?php print date('M j, Y', $donationDates[$i]); ?></span>
- 			
- 			<div style="font-weigh: 200; font-size:16px;"><?php print $donationMessages[$i]; ?></div>
+            <div style='width:500px;'>
+	            <div style="padding 0 0 0 0%;margin: 3% 3% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
+	                 				<span style="height:80px; width:80px; padding: 22px 0% 0 0%; font-size: x-large; color: #ffffff; 
+	                                        text-align: center;display:inline-block;"><b><?php print $donationInitials[$i];?></b></span>
+	                 			
+	 			</div>
+	 			<div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;width:350px;">
+	 				<span style="font-size: 16px; font-weight: 300"><b><?php print $donationNames[$i]; ?></b></span>
+	 				<span style="font-size: medium; font-weight: 300; text-color:#efebe9"> donated $<?php print $donationAmounts[$i]; ?></span>
+	 				<br/><span style='text-align:right;'>on <?php print date('M j, Y', $donationDates[$i]); ?></span>
+	 			
+	 			<div style="font-weight: 200; font-size:16px;"><?php print $donationMessages[$i]; ?></div>
  			</div>
  			<?php } 
  			if ($i == 0) {

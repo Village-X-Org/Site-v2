@@ -85,7 +85,8 @@ if (hasParam('d')) {
 </style>
 
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, donationAmount, donationHonoreeId, donationHonoreeMessage, donationGCAmount = 0;
+var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, 
+		donationAmount, donationHonoreeId, donationHonoreeMessage, donationFundraiserId, donationFundraiserMessage, donationGCAmount = 0;
 //Lightbox Begin
 var activityIndicatorOn = function()
 {
@@ -217,6 +218,8 @@ var handler = StripeCheckout.configure({
 	  form.projectId.value = donationProjectId;
 	  form.honoreeId.value = donationHonoreeId;
 	  form.honoreeMessage.value = donationHonoreeMessage;
+	  form.fundraiserId.value = donationFundraiserId;
+	  form.fundraiserMessage.value = donationFundraiserMessage;
 	  
 	  form.submit();
   }
@@ -227,7 +230,7 @@ window.addEventListener('popstate', function() {
   handler.close();
 });
 
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, email, anonymous, honoreeId, honoreeMessage, gcAmount) {
+function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, email, anonymous, honoreeId, honoreeMessage, gcAmount, fundraiserId, fundraiserMessage) {
  	if (<?php print ((isset($_SESSION['offline']) && $_SESSION['offline'] == 1) ? "true" : "false"); ?>
  		|| amount == 0) {
  	  form = document.getElementById('donateForm');
@@ -241,6 +244,8 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  form.projectId.value = projectId;
 	  form.honoreeId.value = honoreeId;
   	  form.honoreeMessage.value = honoreeMessage;
+  	  form.fundraiserId.value = fundraiserId;
+  	  form.fundraiserMessage.value = fundraiserMessage;
     	  
       form.submit();		
  	} else {
@@ -253,6 +258,8 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  donationGCAmount = gcAmount * 100;
 	  donationHonoreeId = honoreeId;
 	  donationHonoreeMessage = honoreeMessage;
+	  donationFundraiserId = fundraiserId;
+	  donationFundraiserMessage = fundraiserMessage;
 	  handler.open({
 	    name: 'Village X Org',
 	    description: (subscribe ? 'Monthly Subscription' : title),
