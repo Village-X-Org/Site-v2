@@ -219,7 +219,11 @@ if ($row = $result->fetch_assoc()) {
  			
  			<div style="font-weigh: 200; font-size:16px;"><?php print $donationMessages[$i]; ?></div>
  			</div>
- 			<?php } ?>
+ 			<?php } 
+ 			if ($i == 0) {
+ 				print "<div class='row valign-wrapper'><div style='padding:15px;'>No one has donated to this fundraiser yet.</div></div>";
+ 			}
+ 			?>
 					
 		</div>
 		
