@@ -6,6 +6,31 @@ require_once("utilities.php");
 <head>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<style>
+body, html {
+    height: 100%;
+    margin: 0;
+}
+
+.bg {
+    /* The image used */
+    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("images/villagemtg.jpg");
+    opacity:1;
+
+    /* Full height */
+    height: 100%; 
+
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.carousel-slider {
+    height: 800px !important;
+}
+</style>
 <?php include('header.inc'); 
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
@@ -41,53 +66,237 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div id="index-banner" class="parallax-container"
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
-			
-<?php if ($alertText) { ?>
-<div id="alert">
-    <a class="alert" href="project_tiles.php"><?php print $alertText; ?></a>
-</div>
-<?php } ?>
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		<div class="row center">
-			<div style="padding: 5% 5% 5% 5%;">
-				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Disrupt Extreme Poverty in Rural Africa</h2>
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
+<div class="center-align" style="width:100%">	
+	<div class="section no-pad-bot"
+		style="opacity:1">
+		<div class="row center" style="opacity:1">
+			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
+				Fund Projects That Villages Choose
 			</div>
 
-			<div style="padding: 5% 5% 5% 5%;">
-				<br>
-				<br>
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					by funding projects that villages choose</h5>
+			<div style="padding: 0% 8% 0% 8%;font-size:xx-large;font-weight:250;opacity:0.75" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
+				
+				because everyone deserves democracy and development
+					
 			</div>
 
-			<div style="padding: 0% 5% 5% 5%;">
+			<div style="padding: 0% 5% 0% 5%;height:120px;">
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">meet
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large">meet
 					the villages</a>
+			</div>
+		</div>
+		</div>
+		
+		<div class="container" style="padding: 0% 5% 0 5%">
+	
+		<!--   Icon Section   -->
+		 <div class="row center-align" >
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px"><b>people</b></i>
+					<h5 style="padding: 0% 5% 0% 5%">people helped</h5>
+					<h4 class="light center">42,145</h4>
+					<h6 class="light center">in Malawi, Africa</h6>
+					<br> 
+				</div>
+			</div>
+
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px"><b>trending_up</b></i>
+					<h5 style="padding: 0% 5% 0% 5%">dev score impact</h5>
+					<h4 class="light center">+138%</h4>
+					<h6 class="light center">from 2014 to 2017</h6>
+					<br> 
+				</div>
+			</div>
+
+			<div class="col s12 m4 l4 center-align">
+				<div class="icon-block white-text">
+					<i class="material-icons" style="font-size: 50px"><b>attach_money</b></i>
+					<h5 style="padding: 0% 5% 0% 5%">cost per person</h5>
+					<h4 class="light center">$1.08</h4>
+					<h6 class="light center">per year</h6>
+					<br> 
+				</div>
+			</div>
+
+			<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
+					<script>$("#arrowButton").click(function() { 
+						$('html, body').animate({
+							scrollTop: $('#slideshow').offset().top
+						}, 1000);
+					});
+					</script>
+			</div>
+		</div>
+		
+	</div>
+	</div>
+	</div>
+
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
+		<div class="section" style="width:100%;">
+			<div>
+        				<h2 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:4% 2% 5% 2%"><b>Fund Projects That Villages Choose</b></h2>
+        		</div>
+        		
+        		<div style="padding:0% 8% 0% 8%">
+        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.7;">because everyone deserves democracy and development</h5>
+			</div>
+			
+			<div class="center-align" style="padding:4% 2% 4% 0%">	
+				<a href="project_tiles.php" id="download-button"
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size: large">MEET THE VILLAGES</a>
+			</div>
 			</div>
 
 			<div class="parallax">
-				<img src="images/header1.jpg">
+				<img src="images/villagemtg.jpg">
 			</div>
+			
 		</div>
 	</div>
 </div>
 
-<div class="container">
 	<br>
-	<blockquote class="flow-text">Extreme poverty is not only a condition of unsatisfied material needs. It is often accompanied by a degrading state of powerlessness. -- Prof. Peter Singer, Princeton</blockquote>
-	<br>
-	<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
+	<div class="container">
+	<blockquote class="flow-text">Nearly 400 million people (and growing) live in extreme poverty in rural Africa. We're changing that with a model that celebrates village democracy, direct giving, and data analysis.</blockquote>
+	<br> 
+	</div>
 
-	<!--   <h5 class="header center brown-text text-lighten-2">How It Works</h5> -->
-	<div class="section">
-		<!--   Icon Section   -->
+<div class="container valign-wrapper">
+	<div class="carousel carousel-slider center hide-on-med-and-down" id='slideshow' style='cursor:pointer;'>	
+
+		<div class="carousel-item white" href="#one!">
+			<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
+
+				<div class="row">
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+							</h2> 
+							
+							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
+
+							<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
+								Africa. Find a village-led development project that speaks to you.</p>
+								
+							<h5 class="center">#democracy</h5>
+
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+							</h2>
+
+							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
+
+							<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
+							biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
+							
+							<h5 class="center">#directgiving</h5>
+						</div>
+					</div>
+
+					<div class="col s12 m4">
+						<div class="icon-block">
+							<h2 class="center black-text">
+								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+							</h2>
+							
+							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
+
+							<p class="light center">Enjoy email updates with pictures and data from the field providing a vivid accounting
+							 of how your donations change development outcomes for rural Africans.</p>
+							 
+							 <h5 class="center">#development</h5>
+						</div>
+					</div>
+				</div>
+		</div>
+
+		<div class="carousel-item white" href="#two!">
+			<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 3% 0">How It Helps</h4> 
+
+<table class="highlight centered responsive-table flow-text">
+		        <thead>
+		          <tr>
+		              <th>Metric</th>
+		              <th>Boys in nursery</th>
+		              <th>Girls in nursery</th>
+		              <th>Girls in secondary</th>
+		              <th>Goats</th>
+		              <th>Waterborne illness</th>
+		              <th>Non-ag businesses</th>
+		          </tr>
+		        </thead>
+
+		        <tbody>
+		          <tr>
+		            <td>% change</td>
+		            <td>+93%</td>
+		            <td>+109%</td>
+		            <td>+63%</td>
+		            <td>+77%</td>
+		            <td>-68%</td>
+		            <td>+123%</td>
+		          </tr>
+		          <tr>
+		            <td>actual change</td>
+		            <td>+11 boys</td>
+		            <td>+14 girls</td>
+		            <td>+4 girls</td>
+		            <td>+23 goats</td>
+		            <td>-133 cases</td>
+		            <td>+11 businesses</td>
+		          </tr>
+		          <tr>
+		            <td>p-value</td>
+		            <td>p<0.01</td>
+		            <td>p<0.01</td>
+		            <td>p<0.05</td>
+		            <td>p<0.05</td>
+		            <td>p<0.01</td>
+		            <td>p<0.01</td>
+		          </tr>
+		        </tbody>
+		      </table>
+		      <div class="flow-text" style="padding:5% 5% 0 5%;font-size:20px;">*Based on 17 development metrics collected in each treatment and control village from 2014 (baseline) to 2017, with statistics calculated 
+				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles, TVs, and men and women in college.  Check out this <a href="impacts.php">page</a> for more info.  
+		      </div>
+
+		</div>
+				
+
+	</div>
+
+	<script> 
+		
+		$('.carousel').carousel({
+		    padding: 0    
+		});
+
+		timer = setInterval(function() { $('.carousel').carousel('next'); }, 5500);
+		$('.carousel').mousedown(function() { clearTimeout(timer); });
+	</script>
+
+</div>
+
+<div class="container valign-wrapper">
+<div class="hide-on-large-only">
+<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
+
 		<div class="row">
 			<div class="col s12 m4">
 				<div class="icon-block">
@@ -123,7 +332,7 @@ if (hasParam('gc')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center black-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
@@ -135,64 +344,9 @@ if (hasParam('gc')) {
 				</div>
 			</div>
 		</div>
-
 	</div>
-	</div>
-<hr style="width:50%">
-<div class="container">
-	<br>
-	<h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
 	
-	
-	<div class="section">
-	
-		<!--   Icon Section   -->
-		<div class="row center">
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_down</i>
-					<h5 class="center brown-test" style="padding: 0% 5% 0% 5%">waterborne illness</h5>
-					<h4 class="light center">-70%</h4>
-					<h6 class="light center">p-value&lt;=0.01</h6>
-					<br> 
-				</div>
-			</div>
-
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">boys/girls in nursery school</h5>
-					<h4 class="light center">+66% / 60%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> 
-				</div>
-			</div>
-
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">non-agricultural businesses</h5>
-					<h4 class="light center">+100%</h4>
-					<h6 class="light center">p-value&lt;=0.05</h6>
-					<br> 
-				</div>
-			</div>
-
-			<div class="col s12 m3 l3">
-				<div class="icon-block">
-					<i class="material-icons" style="font-size: 50px">trending_up</i>
-					<h5 class="center brown-test">girls in high school</h5>
-					<h4 class="light center">+80%</h4>
-					<h6 class="light center">p-value~0.1</h6>
-					<br>
-				</div>
-			</div>
-		</div>
-
-		<br>
-	</div>
-
-</div>
+</div>	
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
@@ -382,9 +536,8 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<?php 
-
-	if (!CACHING_ENABLED || !file_exists(CACHED_CHARTS_FILENAME)) {
+<?php
+	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
 	    ob_start();
 
 	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
@@ -392,8 +545,8 @@ if (CACHING_ENABLED) {
                 JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Village Stories</h4>
-        <div class="section"><div class="slickContainer" style='outline:none;max-width:900px;margin: auto;'>
+	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
+        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
@@ -407,7 +560,7 @@ if (CACHING_ENABLED) {
             		    <div class="slickSlide" style='outline:0;'>
             		    <div class='row'>
             		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:400px;margin:auto;' id='newsCompletionSpan' 
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
@@ -417,7 +570,7 @@ if (CACHING_ENABLED) {
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:100%;max-width:400px;height:400px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
         							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
                 			</div>
                 		</div>
@@ -448,98 +601,19 @@ if (CACHING_ENABLED) {
         	  infinite: false 
         	});</script>
 
-	<div class="container">
-	<?php 
-	   $result = doUnprotectedQuery("SELECT CEIL(AVG(NULLIF(project_elapsed_days, 0))) AS elapsedAverage, SUM(project_people_reached) AS numHelpedTotal, 
-                    SUM(case when project_type='water' then 1 else 0 end) as waterCount, SUM(case when project_type='livestock' then 1 else 0 end) as livestockCount,
-                    SUM(case when project_type='farm' then 1 else 0 end) as agricultureCount, SUM(case when project_type='school' then 1 else 0 end) as educationCount
-            FROM projects WHERE project_funded>=project_budget-1"); 
-        if ($row = $result->fetch_assoc()) {
-            $numHelpedTotal = number_format($row['numHelpedTotal'], 0, '.', ',');
-            $elapsedDaysAverage = $row['elapsedAverage'];
-            $waterCount = $row['waterCount'];
-            $educationCount = $row['educationCount'];
-            $livestockCount = $row['livestockCount'];
-            $agricultureCount = $row['agricultureCount'];
-        }
-    ?>
-	
-	
-	
-	
-	<div class="row">
-	
-        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
-            	<div>
-            		<h5 style="text-align: center;"><b>People Helped*</b></h5>
-            	
-            		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $numHelpedTotal; ?></b></h3>
-            		
-            		<h6 style="text-align: center; padding: 30px 20% 0px 20%">*each project benefits an entire village community</h6>
-            	</div>
-        	</div>
-	
-        	<div class="col s12 m4 l4 center-align" style="margin:auto;">
-        
-    			<h5><b>Types of Projects</b></h5>
-    			<center><canvas id="chart2" style="max-width:250px;min-width:250px;margin:auto;"></canvas></center>
-    
-    			<script>
-    				var ctx = document.getElementById("chart2").getContext('2d');
-    
-    				Chart.defaults.global.defaultFontFamily = "'Roboto', sans-serif";
-    				Chart.defaults.global.defaultFontSize = 14;
-    				
-    				var chart2 = new Chart(ctx, {
-    					type : 'polarArea',
-    					data : {
-    
-    						labels: ["water","livestock","education","agriculture"],
-    						  datasets: [{
-    						    data: [<?php print "$waterCount, $livestockCount, $educationCount, $agricultureCount"; ?>],
-    						    backgroundColor: [
-    						      "rgba(255, 0, 0, 0.5)",
-    						      "rgba(100, 255, 0, 0.5)",
-    						      "rgba(200, 50, 255, 0.5)",
-    						      "rgba(0, 100, 255, 0.5)"
-    						    ]
-    						  }]
-    						},
-    						options : {
-    								  startAngle: -Math.PI / 3,
-    								  legend: {
-    								    display:true,
-    					    				position: 'top'
-    								  },
-    								}
-    				});
-    			</script>
-        </div>
-        		
-        	<div class="col s12 m4 l4 center-align" style='margin:auto;'>
-            	<h5 style="text-align: center"><b>Elapsed Time*</b></h5>
-        		<h3 style="text-align: center" class="light blue-text text-lighten-2"><b><?php print $elapsedDaysAverage; ?> days</b></h3>
-        		<p style="margin:-5%"><span class="light blue-text text-lighten-2" style="font-size:16px;padding: 0px 0% 0px 0%">project funding to completion</span></p>
-        		
-        		<h6 style="text-align: center;padding: 7% 20% 0px 20%">*based on average, times vary depending on project type</h6>
-        	</div>
-
-	</div>
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
         
         if (CACHING_ENABLED) {
-            file_put_contents(CACHED_CHARTS_FILENAME, $contents);
+            file_put_contents(CACHED_STORIES_FILENAME, $contents);
         } else {
             print $contents;
         }
     }
     if (CACHING_ENABLED) {
-        include(CACHED_CHARTS_FILENAME);
+        include(CACHED_STORIES_FILENAME);
     }
     ?>
-
-</div>
-<br><br>
+<br/><br/>
 <?php include('footer.inc'); ?>
