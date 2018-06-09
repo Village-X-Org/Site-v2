@@ -564,9 +564,9 @@ if (CACHING_ENABLED) {
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
                      		<td style='text-align:right;width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
