@@ -4,7 +4,7 @@ require_once("utilities.php");
 $title = param('fundraiser_title');
 $donorId = $session_donor_id;
 $projectId = paramInt('fundraiser_project_id');
-$deadline = strtotime(param('fundraiser_deadline'));
+$deadline = strtotime(param('fundraiser_deadline')) + (24 * 3600);
 $amount = paramInt('fundraiser_amount');
 $description = param('fundraiser_description');
 
@@ -17,5 +17,7 @@ if ($donorId) {
 
 	$id = $link->insert_id;
 	header("Location: fundraiser_view.php?id=$id");
+} else {
+	print "You must be logged in to create a fundraiser.";
 }
 ?>
