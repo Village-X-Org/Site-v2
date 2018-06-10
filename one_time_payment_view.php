@@ -24,18 +24,21 @@ require_once("utilities.php");
   </style>
   <?php
   $fundraiserId = 0;
+
   if (hasParam('fundraiserId')) {
     $fundraiserId = param('fundraiserId');
-    $stmt = prepare("SELECT fundraiser_id, fundraiser_title, fundraiser_project_id FROM fundraisers WHERE fundraiser_id=?");
+    $stmt = prepare("SELECT fundraiser_id, fundraiser_title, fundraiser_project_id, fundraiser_amount, SUM(donation_amount) AS raised FROM fundraisers LEFT JOIN donations ON donation_fundraiser_id=fundraiser_id WHERE fundraiser_id=? GROUP BY fundraiser_id");
     $stmt->bind_param('i', $fundraiserId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
       $fundraiserId = $row['fundraiser_id'];
       $fundraiserTitle = $row['fundraiser_title'];
       $projectId = $row['fundraiser_project_id'];
+      $fundraiserTarget = $row['fundraiser_amount'];
+      $fundraiserRaised = $row['raised'];
     }
   }
-  if (!$projectId) {
+  if (!isset($projectId)) {
     if (!hasParam('id')) {
       print "Project id required.";
       die();
@@ -43,6 +46,7 @@ require_once("utilities.php");
       $projectId = paramInt('id');
     }
   }
+
   $honoreeId = 0;
   $honoreeMessage = "";
   if (hasParam('honoreeEmail')) {
@@ -125,14 +129,18 @@ include('header.inc');
                   print ($honoreeId > 0 ? " in honor of $honoreeFirstName $honoreeLastName" : "" );
                   ?>.</span>
          				<div class="row" style="padding:5% 5% 0% 5%;">
-          				<p class="center-align black-text">The project needs <?php print ($matchingDonor ? "$".ceil($remaining / 2).", matched to " : ""); ?>$<?php print $remaining; ?>.</p>
+                  <?php if ($fundraiserId) { ?>
+                  <p class="center-align black-text">The fundraiser needs $<?php print ($fundraiserTarget - $fundraiserRaised); ?>.</p>
+          				<?php } else { ?>
+                    <p class="center-align black-text">The project needs <?php print ($matchingDonor ? "$".ceil($remaining / 2).", matched to " : ""); ?>$<?php print $remaining; ?>.</p>
+                  <?php } ?>
          				<form class="col s12" style="width:100%" id="donateForm" method='post' action="donateWithStripe.php">
                             <input type='hidden' name='d' value='<?php print $donorId; ?>' />
                              <input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='' />
                             <input type='hidden' name='isSubscription' value='' /><input type='hidden' name='firstName' value='' /><input type='hidden' name='lastName' value='' />
                             	<input type='hidden' name='projectId' value='' /><input type='hidden' name='honoreeId' value='' /><input type='hidden' name='honoreeMessage' value='' />
-                              <input type='hidden' name='gcAmount' value='' />
-         					<div class="row donor-border" style="border-style:solid; border-width:2px; border-radius:20px; padding:3% 3% 3% 3%;">
+                              <input type='hidden' name='gcAmount' value='' /><input type='hidden' name='fundraiserId' value='' /><input type='hidden' name='fundraiserMessage' value='' />
+         					<div class="row donor-border" style="border-style:solid; border-width:2px; border-radius:20px; padding:3% 3% 3% 1%;">
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix donor-text" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
                       <?php if (!$gcValue) { ?>
@@ -141,8 +149,16 @@ include('header.inc');
                         <input placeholder="<?php print $gcValue; ?>" class='donor-text' style='font-size:40px;width:90px;display:inline;' 
                             id='donation_amount' /><span style='font-size:30px;font-color:#48a7f2;display:inline;text-decoration;:underline;'>
                         <?php print "+ $gcValue"; ?></span>
+                    </div>
+                  </div>
                       <?php } ?>
-          							<p class="center-align">The community gave $<?php print $communityContribution; ?>.</p>
+                      <div><div class="input-field col s12 center-align">
+                      <?php if ($fundraiserId) { ?>
+                        <textarea style="border-radius:15px;padding:10px;outline-width: 0;font-size:20px; height:80px; width:100%" id="fundraiserMessage" placeholder="leave a comment" name="fundraiserMessage"></textarea>
+                      <?php } else { ?>
+          							The community gave $<?php print $communityContribution; ?>.<input type='hidden' name='fundraiserComment' id='fundraiserMessage' value='' />
+                      <?php } ?>
+                    </div></div>
           					<div id='donationNameDiv'>
                                 <div class="input-field col s6">  
                                   <input id="donationFirstName" placeholder="first name" type="text" required data-error=".errorTxt1">
@@ -224,7 +240,7 @@ include('header.inc');
         		amount = $('#donation_amount').attr('placeholder'); 
         	}
         	donateWithStripe(0, amount * 100, '<?php print $projectName; ?>', <?php print $projectId; ?>, 
-                	$('#donationFirstName').val(), $('#donationLastName').val(), $('#donationEmail').val(), anonymous, <?php print $honoreeId; ?>, <?php print json_encode($honoreeMessage); ?>, <?php print $gcValue; ?>);
+                	$('#donationFirstName').val(), $('#donationLastName').val(), $('#donationEmail').val(), anonymous, <?php print $honoreeId; ?>, <?php print json_encode($honoreeMessage); ?>, <?php print $gcValue; ?>, <?php print $fundraiserId; ?>, $('#fundraiserMessage').val());
     }
 </script>
              
