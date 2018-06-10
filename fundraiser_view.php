@@ -75,9 +75,15 @@ if ($row = $result->fetch_assoc()) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X Org | Fund Projects That Villages Choose</title>
-<meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
-<?php include('header.inc'); ?>
+<title>Support <?php print $title; ?></title>
+<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$similarPicture; ?>"/>
+<meta property="og:title" content="Support <?php print $title; ?>"/>
+<meta property="og:url" content="<?php print BASE_URL."fundraiser/$id"; ?>"/>
+<meta property="og:description" content="<?php print $description; ?>" />
+<?php 
+$metaProvided = 1;
+include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
     
@@ -87,7 +93,7 @@ if ($row = $result->fetch_assoc()) {
 			<div style="width:200px; height:200px; border-radius:20%; border-style:solid; background:#008080CC;">
         					<?php print (strlen($subject) > 0 ? 
 								"<h1 class=\"header center-align light\" style=\"padding:9% 0 0 0;font-size:96px;\"><b>{$subject[0]}</b></h1>"
-        					: "<i class='material-icons' style=\"padding:25px 30px 0 0;font-size:128px;\">person</i>"); ?>
+        					: "<img src='images/gift.svg' style=\"padding:35px 40px 0 0;width:150px;filter: brightness(0) invert(.97);\" />"); ?>
 			</div>
 		</div> 
 	
