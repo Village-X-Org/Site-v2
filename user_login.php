@@ -170,50 +170,69 @@ include('header.inc');
                     </div>
                 </div>
             </form>
-            <script>
-            function onReset(token) {
-              $("#reset_password_form").submit();
-            }
-            $().ready(function() {
-              $('.modal').modal();
+          </div>
+        </div>
+      </div>
+      <div id='passwordResetConfirmation' class='modal'>
+        <div class="modal-content"> 
+            <h4>Account Found!</h4>
+            <p>An email with instructions has been mailed to the address you provided.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat donor-background white-text" style='text-transform:none;'>Sounds good!</a>
+        </div>
+      </div>
 
-              $("#reset_password_form").validate({
-                rules: {
-                  email: "required",
-                  password: "required",
-                  
-                },
-              messages: {
-                    email: "a valid email address is required",
-                    password: "a valid password is required",
-              },
-              errorElement : 'div',
-                errorPlacement: function(error, element) {
-                    var placement = $(element).data('error');
-                    if (placement) {
-                      $(placement).append(error)
-                    } else {
-                      error.insertAfter(element);
-                    }
-                    grecaptcha.reset();
-                },
-                  submitHandler: function(form) {
-                    $.post( "user_resetPassword.php", $( "#reset_password_form" ).serialize())
-                        .done(function( data ) {
-                          if (data == 'success') {
-                            $('#passwordModal').modal('close');
-                            alert("An email with instructions has been mailed to the address you provided!");
-                          } else {
-                            alert("We could not find the supplied email in our system.");
-                          }
-                          grecaptcha.reset();
-                    });
-                  } 
-              });
+      <div id='passwordResetFailed' class='modal'>
+        <div class="modal-content"> 
+            <h4>There was a problem...</h4>
+            <p>We could not find the supplied email in our system.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-green btn-flat donor-background">Ok</a>
+        </div>
+      </div>
+
+    <script>
+    function onReset(token) {
+      $("#reset_password_form").submit();
+    }
+    $().ready(function() {
+      $('.modal').modal();
+
+      $("#reset_password_form").validate({
+        rules: {
+          email: "required",
+          
+        },
+      messages: {
+            email: "a valid email address is required"
+      },
+      errorElement : 'div',
+        errorPlacement: function(error, element) {
+            var placement = $(element).data('error');
+            if (placement) {
+              $(placement).append(error)
+            } else {
+              error.insertAfter(element);
+            }
+            grecaptcha.reset();
+        },
+          submitHandler: function(form) {
+            $.post( "user_resetPassword.php", $( "#reset_password_form" ).serialize())
+                .done(function( data ) {
+                  if (data == 'success') {
+                    $('#passwordModal').modal('close');
+                    $("#passwordResetConfirmation").modal('open');
+                  } else {
+                    
+                    $('#passwordModal').modal('close');
+                    $("#passwordResetFailed").modal('open');
+                  }
             });
-          </script>
-        </div>     
-    </div>
-  </div>      
+          } 
+      });
+    });
+  </script>
                     
 </body>
