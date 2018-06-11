@@ -67,7 +67,7 @@ if (hasParam('gc')) {
 ?>
 
 <div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
-<div class="center-align" style="width:100%">	
+<div class="container center-align" style="width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
@@ -91,10 +91,10 @@ if (hasParam('gc')) {
 		</div>
 		</div>
 		
-		<div class="container" style="padding: 0% 5% 0 5%">
+		<div class="container" style="padding: 0% 5% 0 5%; width:100%">
 	
 		<!--   Icon Section   -->
-		 <div class="row center-align" >
+		 <div class="row center-align" style="width:100%">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
 					<i class="material-icons" style="font-size: 50px"><b>people</b></i>
@@ -124,8 +124,10 @@ if (hasParam('gc')) {
 					<br> 
 				</div>
 			</div>
-
-			<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+			
+		</div>
+		
+		<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
 					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
 					<script>$("#arrowButton").click(function() { 
 						$('html, body').animate({
@@ -134,11 +136,12 @@ if (hasParam('gc')) {
 					});
 					</script>
 			</div>
+		
 		</div>
 		
 	</div>
 	</div>
-	</div>
+	
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
@@ -564,9 +567,9 @@ if (CACHING_ENABLED) {
                             		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
                      <table style='width:100%;'>
                      		<tr><td style='width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< $previousDate" : ""); ?></a></td>
                      		<td style='text-align:right;width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "$date >>" : ""); ?></a></td></tr></table>
                     	
                         </div>
         					<div class='col s12 m12 l6 center-align'>
