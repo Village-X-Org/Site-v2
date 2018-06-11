@@ -203,12 +203,10 @@ include('header.inc');
       $("#reset_password_form").validate({
         rules: {
           email: "required",
-          password: "required",
           
         },
       messages: {
-            email: "a valid email address is required",
-            password: "a valid password is required",
+            email: "a valid email address is required"
       },
       errorElement : 'div',
         errorPlacement: function(error, element) {
