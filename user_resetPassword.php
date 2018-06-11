@@ -9,8 +9,8 @@
 		$code = md5($row['donor_email'].$row['donor_password']);
 
 		sendMail($email, "Password Reset Requested", "A password reset has been requested for your account.  
-			If you did not ask for a reset, please ignore this.<br/>Click the link below to reset your password.<br/>
-			https://villagex.org/user_forgotPassword.php?id=$id&code=$code<br/><br/>The Village X Team", getCustomerServiceEmail());
+			If you did not ask for a reset, please ignore this.<br/><a href='https://villagex.org/reset/$id/$code'>Reset my password</a><br/><br/>The Village X Team", 
+			getCustomerServiceEmail());
 		print "success";
 	} else {
 		print "failure";
