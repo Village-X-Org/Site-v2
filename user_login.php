@@ -30,7 +30,7 @@ body, html {
 include('header.inc');
 ?>
 
-<div class="bg" style='height:100%;'>
+<div class="bg valign-wrapper" style='height:100%;'>
 
   <div class="container" style="padding:2% 10% 0 10%">
 
