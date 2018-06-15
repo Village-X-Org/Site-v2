@@ -66,7 +66,7 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
 <div class="container center-align" style="width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
@@ -141,6 +141,7 @@ if (hasParam('gc')) {
 		
 	</div>
 	</div>
+	</div>
 	
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
@@ -166,7 +167,7 @@ if (hasParam('gc')) {
 			
 		</div>
 	</div>
-</div>
+
 
 	<br>
 	<div class="container">
@@ -242,6 +243,7 @@ if (hasParam('gc')) {
 		              <th>Goats</th>
 		              <th>Waterborne illness</th>
 		              <th>Non-ag businesses</th>
+		              <th>Homes w/metal roofs</th>
 		          </tr>
 		        </thead>
 
@@ -254,6 +256,7 @@ if (hasParam('gc')) {
 		            <td>+77%</td>
 		            <td>-68%</td>
 		            <td>+123%</td>
+		            <td>+62%</td>
 		          </tr>
 		          <tr>
 		            <td>actual change</td>
@@ -263,15 +266,17 @@ if (hasParam('gc')) {
 		            <td>+23 goats</td>
 		            <td>-133 cases</td>
 		            <td>+11 businesses</td>
+		            <td>+17 homes</td>
 		          </tr>
 		          <tr>
 		            <td>p-value</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
-		            <td>p<0.05</td>
-		            <td>p<0.05</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
 		          </tr>
 		        </tbody>
 		      </table>
