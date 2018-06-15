@@ -43,7 +43,7 @@ body, html {
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
-<div class="black-text container flow-text center-align" style="padding:2% 0% 7% 0%;"><b>Ready.  Set.  Fundraise.</b></div>
+<div class="black-text container flow-text center-align" style="padding:2% 0% 2% 0%;"><b>Ready.  Set.  Fundraise.</b></div>
             		
          				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
           				
