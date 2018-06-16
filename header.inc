@@ -348,6 +348,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
           <li><a href="travel.php">Travel</a></li>
    </ul>
 
+   	<ul id="MyAccount" class="dropdown-content">
+   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
+        <li><a href="user_logout.php">Logout</a></li>
+   </ul>
+
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.php" class="brand-logo" style="padding 2% 0 0 0"><img
@@ -362,7 +367,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
         			
 				<?php if ($session_donor_id) {
-					print "<li><a class='waves-effect waves-light btn-small' href='user_logout.php'>Logout <i class='material-icons right'>person</i></a></li>";
+					print "<li><a class='dropdown-button' href='#!' data-activates='MyAccount'>My Account<i class='material-icons right'>arrow_drop_down</i></a></li>";
 				} else {
 					print "<li><a class='waves-effect waves-light btn-small' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?>
@@ -384,7 +389,9 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				
 			
 				<?php if ($session_donor_id) {
-					print "<li><a class='waves-effect waves-light btn' href='user_logout.php'>Logout <i class='material-icons right'>person</i></a></li>";
+					print "
+					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>
+					<li><a class='waves-effect waves-light' href='user_logout.php'><i class='material-icons'>exit_to_app</i>Logout</a></li>";
 				} else {
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?> 
