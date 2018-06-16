@@ -30,16 +30,15 @@ body, html {
 include('header.inc');
 ?>
 
-<div class="bg" style='height:100%;'>
+<div class="bg valign-wrapper" style='height:100%;width:100%'>
 
-  <div class="container" style="padding:2% 10% 0 10%">
+  <div class="container" style="width:100%;padding:10% 10% 0 10%">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
     </div>
     <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0">
       <span class="white-text">your profile. your impact. your fundraisers.</span>
     </div>
-  
         
       <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
           <div class="card-content donor-text" style="height:100%;">
@@ -80,11 +79,11 @@ include('header.inc');
                 </div>
             </form>
           </div>
-          <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:0% 0 0% 0">
+          <div class="black-text container center-align flow-text" style="font-weight:400;padding:0% 0 0% 0">
             Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
           </div>
                                
-          <div class="black-text center-align" style="padding:1% 0 3% 0; width:100%;font-weight:400;font-size:x-large;">
+          <div class="black-text center-align flow-text" style="padding:1% 0 3% 0; width:100%;font-weight:400;">
             Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a>
           </div>              
         </div> 

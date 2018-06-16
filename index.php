@@ -66,8 +66,8 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;">
-<div class="center-align" style="width:100%">	
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
+<div class="container center-align" style="width:100%">	
 	<div class="section no-pad-bot"
 		style="opacity:1">
 		<div class="row center" style="opacity:1">
@@ -91,10 +91,10 @@ if (hasParam('gc')) {
 		</div>
 		</div>
 		
-		<div class="container" style="padding: 0% 5% 0 5%">
+		<div class="container" style="padding: 0% 5% 0 5%; width:100%">
 	
 		<!--   Icon Section   -->
-		 <div class="row center-align" >
+		 <div class="row center-align" style="width:100%">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
 					<i class="material-icons" style="font-size: 50px"><b>people</b></i>
@@ -124,8 +124,10 @@ if (hasParam('gc')) {
 					<br> 
 				</div>
 			</div>
-
-			<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+			
+		</div>
+		
+		<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
 					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
 					<script>$("#arrowButton").click(function() { 
 						$('html, body').animate({
@@ -134,11 +136,13 @@ if (hasParam('gc')) {
 					});
 					</script>
 			</div>
+		
 		</div>
 		
 	</div>
 	</div>
 	</div>
+	
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
@@ -163,7 +167,7 @@ if (hasParam('gc')) {
 			
 		</div>
 	</div>
-</div>
+
 
 	<br>
 	<div class="container">
@@ -239,6 +243,7 @@ if (hasParam('gc')) {
 		              <th>Goats</th>
 		              <th>Waterborne illness</th>
 		              <th>Non-ag businesses</th>
+		              <th>Homes w/metal roofs</th>
 		          </tr>
 		        </thead>
 
@@ -251,6 +256,7 @@ if (hasParam('gc')) {
 		            <td>+77%</td>
 		            <td>-68%</td>
 		            <td>+123%</td>
+		            <td>+62%</td>
 		          </tr>
 		          <tr>
 		            <td>actual change</td>
@@ -260,15 +266,17 @@ if (hasParam('gc')) {
 		            <td>+23 goats</td>
 		            <td>-133 cases</td>
 		            <td>+11 businesses</td>
+		            <td>+17 homes</td>
 		          </tr>
 		          <tr>
 		            <td>p-value</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
-		            <td>p<0.05</td>
-		            <td>p<0.05</td>
-		            <td>p<0.01</td>
-		            <td>p<0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.05</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
 		          </tr>
 		        </tbody>
 		      </table>
@@ -436,7 +444,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     				<div class='card-action'>".($matchingDonor ? "
 				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>Partner $matchingDonor will match all donations!</span>
                             <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>100%<br>Match</b></span>
-                            <!-- <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />  -->
+                            
                             <i class='material-icons center' style='opacity:0.6;font-size:50px; color:#03A9F4;'>flash_on</i>
 
                         </a>" : "")."
