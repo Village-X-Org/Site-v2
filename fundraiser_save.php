@@ -16,6 +16,9 @@ if ($donorId) {
 	$stmt->close();
 
 	$id = $link->insert_id;
+
+sendMail(getAdminEmail(), "Fundraiser Created: $title", "Visit the new fundraiser here: https://villagex.org/fundraiser/$id", getAdminEmail());
+
 	header("Location: fundraiser_view.php?id=$id");
 } else {
 	print "You must be logged in to create a fundraiser.";
