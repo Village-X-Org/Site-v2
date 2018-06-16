@@ -89,7 +89,7 @@ body, html {
 
             </div>
 
-            <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;padding-bottom:10px;">
+            <div class="black-text container center-align flow-text" style="width:70%;border-radius:10px; font-weight:600;padding-bottom:10px;">
                 Already have an account? <a href="user_login.php"><span class="blue-text">Sign in</span></a>
             </div>
 
