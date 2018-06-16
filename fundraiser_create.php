@@ -35,10 +35,10 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px">
-<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
+<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px; width:100%">
+<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 
-<div class="container" style="padding:0 2% 0 2%">
+<div class="container" style="padding:0 2% 0 2%; width:100%;">
 	<div class="section" id="jqueryvalidation" style="width:100%">
 		
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
