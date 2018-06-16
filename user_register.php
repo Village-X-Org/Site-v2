@@ -28,9 +28,9 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style='height:100%;'>
+<div class="bg valign-wrapper" style='height:100%;width:100%'>
 
-<div class="container" style="padding:2% 10% 0 10%">
+<div class="container" style="padding:10% 10% 0 10%; width:100%">
   <div class="white-text container center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
   <div class="container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
 
@@ -89,7 +89,7 @@ body, html {
 
             </div>
 
-            <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;font-size:x-large;padding-bottom:10px;">
+            <div class="black-text container center-align flow-text" style="width:70%;border-radius:10px; font-weight:600;padding-bottom:10px;">
                 Already have an account? <a href="user_login.php"><span class="blue-text">Sign in</span></a>
             </div>
 

@@ -376,6 +376,7 @@
 		              <th>Goats</th>
 		              <th>Waterborne illness</th>
 		              <th>Non-ag businesses</th>
+		              <th>Homes w/metal roofs</th>
 		          </tr>
 		        </thead>
 
@@ -388,6 +389,7 @@
 		            <td>+77%</td>
 		            <td>-68%</td>
 		            <td>+123%</td>
+		            <td>+62%</td>
 		          </tr>
 		          <tr>
 		            <td>actual change</td>
@@ -397,6 +399,7 @@
 		            <td>+23 goats</td>
 		            <td>-133 cases</td>
 		            <td>+11 businesses</td>
+		            <td>+17 homes</td>
 		          </tr>
 		          <tr>
 		            <td>p-value</td>
@@ -406,6 +409,7 @@
 		            <td>p&lt;0.05</td>
 		            <td>p&lt;0.01</td>
 		            <td>p&lt;0.01</td>
+		            <td>p&lt;0.05</td>
 		          </tr>
 		        </tbody>
 		      </table>

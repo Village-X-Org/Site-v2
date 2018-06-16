@@ -14,6 +14,7 @@ body, html {
 }
 
 .bg {
+
     /* The image used */
     background-image: url("images/newsletter_banner_2.jpg");
 
@@ -23,32 +24,34 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: scroll; 
     
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    
 }
 
 
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style='height:100%;'>
+<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px; width:100%">
 
-<div class="container" style="padding:0 10% 0 10%">
+<div class="container" style="padding:0 2% 0 2%; width:100%;">
 	<div class="section" id="jqueryvalidation" style="width:100%">
-		
+		    <div class="white-text center-align" style="font-weight:800;padding:2% 0 2% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
+    </div>
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
-<div class="black-text container flow-text center-align"><b>Ready.  Set.  Fundraise.</b></div>
             		
          				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
           				
-         				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
+         				<form class="col s12" style="width:90%" id="fundraiser_form" method='post' action="fundraiser_save.php">
                          
-         						<div class="row" style="padding:0% 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>1. FUNDRAISER NAME</b></div>
-         						<div class="input-field col s12 donor-text">
-          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 1% 0% 1%; font-size:20px; border-style:solid; border-width:thin;border-radius:5px" 
+         						<div class="row" style="padding:0 3% 0 3%;margin:0;">
+         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
+         						<div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
+          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
                         name="fundraiser_title" required data-error=".errorTxt1"/>
           							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           						</div>
@@ -57,9 +60,9 @@ body, html {
           						
           						
                              
-                             <div class="row" style="padding:0% 3% 0 3%;margin:0;">
-                             <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>2. CHOOSE A PROJECT</b></div>
-                                <div class="input-field col s12 donor-text" style="padding:0% 3% 1% 3%; font-size:20px;">
+                             <div class="row" style="padding:2% 3% 0 3%;margin:0;">
+                             <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>CHOOSE A PROJECT</b></div>
+                                <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
             	                        <select name="fundraiser_project_id" required data-error=".errorTxt1">
             	                        	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                                             FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
@@ -94,20 +97,24 @@ body, html {
 	                 			
 	                 		
               
-                <div class="row valign-wrapper" style="padding:0% 3% 0 3%;">
-                    <div class="col m6 s12">
-                      <div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>3. FUNDING GOAL</b>
+                <div class="row" style="padding:2% 3% 0 4%">
+                    <div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0% 3% 3%"><b>FUNDING GOAL?</b>
                       </div>
-         							<i class="material-icons prefix left-align" style="font-size:30px">attach_money</i>
-          						<input placeholder="350" class='donor-text' style="font-size:35px;width:80%;" name="fundraiser_amount"/>
+                      	<div style="padding:2% 0% 0 0%">
+         							<i class="material-icons prefix left-align" style="font-size:30px;">attach_money</i>
+          						<input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount"/>
+          						</div>
           					</div>
 
           					
-              			<div class="col m6 s12">
-              				<div class="black-text center-align" style="font-size:large; padding:0 0 0 3%"><b>4. ENDING WHEN?</b>
-                      </div>
-              				<i class="material-icons prefix left-align" style="font-size:30px">date_range</i>
+              			<div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
+              				<div class="black-text left-align" style="font-size:large; padding:0% 0 3% 3%"><b>ENDING WHEN?</b>
+                      		</div>
+                      		<div style="padding:2% 0% 0 0%">
+              				<i class="material-icons prefix left-align" style="font-size:30px;">date_range</i>
               				<input type="text" style="font-size:20px;width:80%;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3">
+                    			</div>
                     </div>
                     
                     <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
@@ -126,19 +133,19 @@ body, html {
 	          		  });
 	          		</script>
 	          		
-	          		<div class="row" style="padding:0 5% 0 5%;margin:0;">
-	          		<div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>5. TELL YOUR STORY</b></div>
-                                      
-                      <div class="input-field col s12 donor-text" style="padding:0% 1% 0% 1%;height:50px;">
-                        <textarea name="fundraiser_description" class="materialize-textarea" data-length="300" style="font-size:16px;" placeholder="OPTIONAL: Share what inspired you to fundraise."></textarea>
+	          		<div class="row" style="padding:1% 3% 0% 5%;">
+	          		<div class="black-text" style="font-size:large; padding:0 0 0% 3%"><b>TELL YOUR STORY</b></div>
+                                   
+                      <div class="input-field col s12" style="padding:1% 1% 0% 3%;">
+                        <textarea name="fundraiser_description" class="materialize-textarea donor-text" data-length="300" style="font-size:20px;" placeholder="optional: what inspired you?"></textarea>
                       </div>
-       
+              
       				</div>   
 	          		
           			
                               </div>
                         
-                           <div class="center-align valign-wrapper hide-on-med-and-down" style="width:100%; padding:0 3% 0% 3%;">
+                           <div class="center-align hide-on-med-and-down valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
@@ -147,9 +154,9 @@ body, html {
                     			</div>
                     			</div>
                     			
-                    		<div class="center-align valign-wrapper hide-on-large-only" style="width:100%; padding:0 2% 0% 3%;">		
+                    		<div class="center-align hide-on-large-only valign-wrapper" style="width:100%; padding:7% 3% 1% 3%;">		
                     		   <div class="input-field center-align" style="width:100%;">	
-                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px;"> 
+                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:70%;height:70px;font-size:25px;"> 
                     					Create 
                     				</button>
             				   </div>
@@ -191,6 +198,9 @@ body, html {
 			</div>
 		</div>
 	
+	
+	
+	</div>
 	</div>
 </div>
 
