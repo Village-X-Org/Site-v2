@@ -338,12 +338,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
   <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
   <li><a href="travel.php">Travel</a></li>
  </ul>
-  
-<!--  <ul id="About_mobile" class="dropdown-content hide-on-large-only">
-  <li><a href="about.php"><i class="material-icons">info</i>About</a></li>
-  <li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
-  <li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
-</ul> -->
 
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
@@ -353,13 +347,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
 				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
-        			<li><a class="waves-effect waves-light btn-small" href="user_login.php">SIGN IN <i class="material-icons right">person</i></a></li>
-				
-				<!--  
+        			
 				<?php if ($session_donor_id) {
-					print "<li><a href='user_logout.php'>logout</a></li>";
+					print "<li><a class='waves-effect waves-light btn-small' href='user_logout.php'>Logout <i class='material-icons right'>person</i></a></li>";
 				} else {
-					print "<li><a href='user_login.php'>login</a></li>";
+					print "<li><a class='waves-effect waves-light btn-small' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?>
 				-->
 				
@@ -372,21 +364,17 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
 				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
-				<!--<li><a class="dropdown-button" href="#!" data-activates="About_mobile">About<i class="material-icons right">arrow_drop_down</i></a></li>-->
 				<li><a href="about.php"><i class="material-icons">info</i>About</a></li>
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
-				<li><a class="waves-effect waves-light btn" href="user_login.php">SIGN IN <i class="material-icons right">person</i></a></li>
 				
-				
-				<!--   
+			
 				<?php if ($session_donor_id) {
-					print "<li><a href='user_logout.php'>logout</a></li>";
+					print "<li><a class='waves-effect waves-light btn' href='user_logout.php'>Logout <i class='material-icons right'>person</i></a></li>";
 				} else {
-					print "<li><a href='user_login.php'>login</a></li>";
+					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?> 
 
-                -->
 
 			</ul>
 			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
