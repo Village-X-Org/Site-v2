@@ -36,20 +36,19 @@ body, html {
 <?php include('header.inc'); ?>
 
 <div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px; width:100%">
-<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 
 <div class="container" style="padding:0 2% 0 2%; width:100%;">
 	<div class="section" id="jqueryvalidation" style="width:100%">
-		
+		    <div class="white-text center-align" style="font-weight:800;padding:2% 0 2% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
+    </div>
 			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
-<div class="black-text container flow-text center-align" style="padding:2% 0% 2% 0%;"><b>Ready.  Set.  Fundraise.</b></div>
             		
          				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
           				
          				<form class="col s12" style="width:90%" id="fundraiser_form" method='post' action="fundraiser_save.php">
                          
-         						<div class="row" style="padding:2% 3% 0 3%;margin:0;">
+         						<div class="row" style="padding:0 3% 0 3%;margin:0;">
          						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
          						<div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
           							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
@@ -146,7 +145,7 @@ body, html {
           			
                               </div>
                         
-                           <div class="center-align hide-on-med-and-down valign-wrapper" style="width:100%; padding:1% 3% 1% 3%">
+                           <div class="center-align hide-on-med-and-down valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 

@@ -32,7 +32,7 @@ include('header.inc');
 
 <div class="bg valign-wrapper" style='height:100%;width:100%'>
 
-  <div class="container" style="width:100%;padding:2% 10% 0 10%">
+  <div class="container" style="width:100%;padding:10% 10% 0 10%">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
     </div>
