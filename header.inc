@@ -330,19 +330,23 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 <body>
 <?php if (!$donorId) { ?>
-<ul id="About" class="dropdown-content hide-on-med-and-down">
-  <li><a href="about.php">Mission &amp; Team</a></li>
-  <li><a href="model.php">Model</a></li>
-  <li><a href="impacts.php">Impacts</a></li>
-  <li><a href="map.php">Map</a></li>
-  <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-  <li><a href="travel.php">Travel</a></li>
- </ul>
+
+
+	<ul id="About" class="dropdown-content">
+          <li><a href="about.php">Mission &amp; Team</a></li>
+          <li><a href="model.php">Model</a></li>
+          <li><a href="impacts.php">Impacts</a></li>
+          <li><a href="map.php">Map</a></li>
+          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+          <li><a href="travel.php">Travel</a></li>
+   </ul>
 
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.php" class="brand-logo" style="padding 1% 0 0 0"><img
+			<a id="logo-container" href="index.php" class="brand-logo" style="padding 2% 0 0 0"><img
 				src="images/villagex_short_logo.png"></a>
+				<a href="#" data-activates="nav-mobile" class="button-collapse"><i
+				class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
@@ -353,11 +357,10 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				} else {
 					print "<li><a class='waves-effect waves-light btn-small' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?>
-				-->
-				
+		
 			</ul>
-
-			<ul id="nav-mobile" class="side-nav hide-on-large-only">
+		
+			<ul id="nav-mobile" class="side-nav">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
@@ -377,10 +380,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 
 			</ul>
-			<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-				class="material-icons">menu</i></a>
 		</div>
 	</nav>
+<div style="width:100;border-style:solid; border-width:1px">
+</div>
+	
 		<div id="donationModal" class="modal">
         		<div class="modal-content" style='color:black;'>
         			<h4>Make a Donation</h4>
@@ -415,5 +419,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
                         </script>
 					</div>
 				</div>
-		</div>
+		</div>  
+		
 <?php } // Not donorId end. ?>

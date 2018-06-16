@@ -79,11 +79,11 @@ include('header.inc');
                 </div>
             </form>
           </div>
-          <div class="black-text container center-align" style="font-weight:400;font-size:x-large;padding:0% 0 0% 0">
+          <div class="black-text container center-align flow-text" style="font-weight:400;padding:0% 0 0% 0">
             Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
           </div>
                                
-          <div class="black-text center-align" style="padding:1% 0 3% 0; width:100%;font-weight:400;font-size:x-large;">
+          <div class="black-text center-align flow-text" style="padding:1% 0 3% 0; width:100%;font-weight:400;">
             Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a>
           </div>              
         </div> 
