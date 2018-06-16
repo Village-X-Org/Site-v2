@@ -39,7 +39,6 @@ include('header.inc');
     <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0">
       <span class="white-text">your profile. your impact. your fundraisers.</span>
     </div>
-  
         
       <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
           <div class="card-content donor-text" style="height:100%;">

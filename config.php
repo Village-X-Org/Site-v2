@@ -13,8 +13,9 @@ define('STRIPE_TEST_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_SECRET_KEY', "sk_test_DGoi26vx76FlFn7sen3IDSC8");
 define('STRIPE_TEST_SECRET_KEY', "sk_test_DGoi26vx76FlFn7sen3IDSC8");
+define("CAPTCHA_SITEKEY", "6LdvN18UAAAAAPTdLxpEtuy3d4oLKSciQG1DobMM");
+define("CAPTCHA_SECRET", "6LdvN18UAAAAAI14x3FqYiveUb6-bPKG4Sdb1_CE");
 
-// The following are probably optional
 define('GOOGLE_API_KEY', 'AIzaSyBI0lHSGrRmWKb7OoK-sD_x36i1XH9i1Bc');
 define('MAPBOX_API_KEY', 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJNWVlaSFBBIn0.IxSUmobvVT64zDgEY9GllQ');
 define("FACEBOOK_APP_ID", "107425412747634");
