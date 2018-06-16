@@ -127,28 +127,39 @@ $totalProjectCount = count($uniqueProjects);
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <?php include ('header.inc'); ?>
 
-<div id="index-banner" class="parallax-container hide-on-med-and-down" style="background-color: rgba(0, 0, 0, 0.3); height: 500px; width: 100%">
+<div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.3); height: 500px; width: 100%;">
     
-  <div class="container no-pad-bot" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
+  <div class="container" style="width: 100%;">
     <div class="row">
-      <div class="col s6 m6 l2 right-align" style="padding: 9% 0% 0% 3%;">
-      <div style="width:175px; height:175px; border-radius:20%; border-style:solid; background-color:#008080BB;">
-                <h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:12% 5% 5% 5%"><b><?php print $initials[0]; ?></b></h1>
-      </div>
-    </div> 
+      <div class="col s12 m12 l3 center-align" style='padding-top:25px;'>
+        <div style="width:175px; height:175px; display:inline-block;
+          border-radius:20%; border-style:solid; background-color:#008080BB;padding-top:25px;">
+                <h1 class="header light"><b><?php print $initials[0]; ?></b></h1>
+        </div>
+      </div> 
   
-    <div class="col s6 m6 l6 left-align" style="padding: 7% 1% 1% 2%;">
-      <div style="padding: 5% 5% 5% 5%">
-        <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><?php print "$userFirstName $userLastName"; ?></h3>
-      </div>  
+      <div class="col s12 m12 l2 center-align" style='padding-top:25px;'>
+        <div>
+          <h3 class="header white-text text-lighten-2"><?php print "$userFirstName $userLastName"; ?></h3>
+        </div> 
 
-      <div style="padding: 5% 5% 0% 5%;">
-        <h5 class="header light" style="margin:0% 1% 0% 2%;font-size:32px;">
-          <?php print ($donorLocation ? $donorLocation : ""); ?></h5>
+        <div>
+          <h5 class="header light" style="margin:0% 0% 0% 0%;font-size:32px;">
+            <?php print ($donorLocation ? $donorLocation : ""); ?></h5>
+        </div>
       </div>
-    </div>
       
-    <div class="col l4" style="padding: 5% 3% 1% 1%;">
+<?php
+$stmt = prepare("SELECT COUNT(fundraiser_id) AS fundraiserCount FROM fundraisers WHERE fundraiser_donor_id=?");
+$stmt->bind_param('i', $userId);
+$result = execute($stmt);
+$fundraiserCount = 0;
+if ($row = $result->fetch_assoc()) {
+  $fundraiserCount = $row['fundraiserCount'];
+}
+$stmt->close();
+?>
+    <div class="col l5 hide-on-med-and-down offset-l2" style="padding: 0% 3% 0% 1%;">
       <div class="card z-depth-1" style="padding: 1% 1% 1% 1%; background-color:#008080BB;">
         <div class="card-content header white-text light">
         <div><h5 class="header center-align" style="padding: 2px 2px 7px;"><?php print $userFirstName; ?>'s Stats</h5></div>
@@ -156,7 +167,7 @@ $totalProjectCount = count($uniqueProjects);
           <h5 class="valign-wrapper" style="padding: 3% 3% 1% 0%"><i class="material-icons small">home</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Projects: &nbsp;</span><b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">person</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">People Helped: &nbsp;</span><b><?php print $peopleCount; ?></b></h5>
           <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">people</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Families Helped: &nbsp;</span><b><?php print $houseCount; ?></b></h5>
-          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b>0</b></h5>
+          <h5 class="valign-wrapper" style="padding: 1% 3% 1% 0%"><i class="material-icons small">cake</i>&nbsp;&nbsp;&nbsp;<span style="font-size: smaller;">Fundraisers Led: &nbsp;</span><b><?php print $fundraiserCount; ?></b></h5>
             </div>
         </div>
       </div>
@@ -169,24 +180,6 @@ $totalProjectCount = count($uniqueProjects);
       </div>
     
   </div>
-
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
-    
-  <div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
-    <div class="row center">
-      
-      <div class="col s12 m12 l6 center-align" style="padding: 6% 1% 6% 1%;">
-        <div style="padding: 5% 0% 5% 0%">
-          <h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><?php print "$userFirstName $userLastName"; ?></h3>
-        </div>
-      </div>
-  </div>
-  </div>
-
-      <div class="parallax">
-        <img src="images/header1.jpg">
-      </div>
-    </div>
 
 <div class="container">
     <div class="row" style="width:100%; padding: 2% 0% 2% 0%">
@@ -219,9 +212,10 @@ $totalProjectCount = count($uniqueProjects);
     project<?php print ($totalProjectCount != 1 ? 's' : ''); ?><?php print ($peopleCount > 0 ? ", helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi" : ""); ?>.  
     <?php print ($typeStr ? "He has donated to ".strtolower($typeStr)." projects." : "");?>  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
-          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b>200</b></h5>
-          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b>35</b></h5>
-          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">cake</i>&nbsp;Fundraisers Led: &nbsp;<b>0</b></h5>
+          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b><?php print $peopleCount; ?></b></h5>
+          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b><?php print $houseCount; ?></b></h5>
+
+          <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">cake</i>&nbsp;Fundraisers Led: &nbsp;<b><?php print $fundraiserCount; ?></b></h5>
     </div>
       <div style="padding:0% 10% 0% 10%;">
       
