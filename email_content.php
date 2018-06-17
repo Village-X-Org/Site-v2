@@ -14,7 +14,6 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-    case EMAIL_TYPE_FUNDRAISER:
         $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
@@ -32,6 +31,28 @@ switch ($type) {
             $donorEmail = $row['donorEmail'];
             $donationAmountDollars = $row['donation_amount'];
             $matchingDonor = $row['matchingDonor'];
+            $projectId = $row['project_id'];
+            $projectName = $row['project_name'];
+            $villageName = $row['village_name'];
+            $countryName = $row['country_label'];
+            $projectExampleImage = $row['picture_filename'];
+        }
+        $stmt->close();
+        break;
+    case EMAIL_TYPE_FUNDRAISER:
+       	$stmt = prepare("SELECT donor_id AS donorId, donor_first_name AS donorFirstName, donor_email AS donorEmail, 
+       				project_id, project_name, village_name, country_label, picture_filename
+                    FROM donors JOIN projects ON project_id=?
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures ON project_similar_image_id=picture_id
+                    WHERE donor_id=?");
+        $stmt->bind_param("ii", $projectId, $donorId);
+        $result = execute($stmt);
+        if ($row = $result->fetch_assoc()) {
+            $donorId = $row['donorId'];
+            $donorFirstName = $row['donorFirstName'];
+            $donorEmail = $row['donorEmail'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
@@ -243,7 +264,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																        print "Cancellation details";
 																        break;
 															        case EMAIL_TYPE_FUNDRAISER:
-															        	print "Fundraiser details"
+															        	print "Fundraiser details";
     																	break;
 																    default:
 																        break;
@@ -482,7 +503,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 	        															  you're so passionate about ending extreme poverty in rural Africa.  Encourage more donations by thanking donors 
 	        															  publicly on social media.  Build urgency by organizing your fundraiser around a particular date or event in your 
 	        															  life (e.g., a birthday).  Need more advice?  Shoot us an email at chat@villagex.org.  We're here to help.
-	        															  <P>https://villagex.org/fundraiser/$id";
+	        															  <P><a href='https://villagex.org/fundraiser/$id'>https://villagex.org/fundraiser/$id</a>
 																		<?php
 																			break;
 	                                                                    default:
