@@ -28,7 +28,7 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg valign-wrapper" style='height:100%;width:100%'>
+<div class="bg valign-wrapper" style='height:100%;width:100%;min-height:800px;'>
 
 <div class="container" style="padding:0% 10% 0 10%; width:100%">
   <div class="white-text container center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
