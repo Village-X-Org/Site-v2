@@ -23,7 +23,7 @@ if ($donorId) {
 	$output = ob_get_clean();
 	sendMail($donorEmail, "Your fundraiser has been created!", 
 	    $output, getCustomerServiceEmail());
-	sendMail(getCustomerServiceEmail(), "Your fundraiser has been created! ($donorId)",,
+	sendMail(getCustomerServiceEmail(), "Your fundraiser has been created! ($donorId)",
 	    $output, getAdminEmail());
 	sendMail(getAdminEmail(), "Your fundraiser has been created! ($donorId)",
 	    $output, getAdminEmail());
