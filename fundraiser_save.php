@@ -17,7 +17,18 @@ if ($donorId) {
 
 	$id = $link->insert_id;
 
-sendMail(getAdminEmail(), "Fundraiser Created: $title", "Visit the new fundraiser here: https://villagex.org/fundraiser/$id", getAdminEmail());
+	$type = EMAIL_TYPE_FUNDRAISER;
+	ob_start();
+	include("email_content.php");
+	$output = ob_get_clean();
+	sendMail($donorEmail, "Your fundraiser has been created!", 
+	    $output, getCustomerServiceEmail());
+	sendMail(getCustomerServiceEmail(), "Your fundraiser has been created! ($donorId)",,
+	    $output, getAdminEmail());
+	sendMail(getAdminEmail(), "Your fundraiser has been created! ($donorId)",
+	    $output, getAdminEmail());
+
+	sendMail(getAdminEmail(), "Fundraiser Created: $title", "Visit the new fundraiser here: https://villagex.org/fundraiser/$id", getAdminEmail());
 
 	header("Location: fundraiser_view.php?id=$id");
 } else {
