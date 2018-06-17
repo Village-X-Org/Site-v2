@@ -273,7 +273,7 @@ $stmt->close();
   
             <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
 
-                    <div style="overflow: scroll; height:600px;">
+                    <div style="overflow-y: auto; height:600px;">
           <?php
           $numDonations = count($donationAmounts);
           for ($i = 0; $i < $numDonations; $i++) {
