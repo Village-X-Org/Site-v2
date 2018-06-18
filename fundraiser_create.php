@@ -47,23 +47,23 @@ body, html {
          				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
           				
          				<form class="col s12" style="width:90%" id="fundraiser_form" method='post' action="fundraiser_save.php">
-                         
+
          						<div class="row" style="padding:0 3% 0 3%;margin:0;">
-         						<div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
-         						<div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
+         						 <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
+         						 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
           							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
                         name="fundraiser_title" required data-error=".errorTxt1"/>
           							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          						</div>
+          					 </div>
           						
-          						</div>
+          					</div>
           						
           						
                              
                              <div class="row" style="padding:2% 3% 0 3%;margin:0;">
                              <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>CHOOSE A PROJECT</b></div>
                                 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
-            	                        <select name="fundraiser_project_id" required data-error=".errorTxt1">
+            	                        <select name="fundraiser_project_id">
             	                        	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                                             FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
                                             WHERE project_funded < project_budget ORDER BY (project_funded / project_budget) ASC");
@@ -103,21 +103,22 @@ body, html {
                       </div>
                       	<div style="padding:2% 0% 0 0%">
          							<i class="material-icons prefix left-align" style="font-size:30px;">attach_money</i>
-          						<input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount"/>
+          						<input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount" required data-error=".errorTxt2" />
           						</div>
+                    <div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
           					</div>
 
           					
               			<div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
               				<div class="black-text left-align" style="font-size:large; padding:0% 0 3% 3%"><b>ENDING WHEN?</b>
-                      		</div>
-                      		<div style="padding:2% 0% 0 0%">
-              				<i class="material-icons prefix left-align" style="font-size:30px;">date_range</i>
-              				<input type="text" style="font-size:20px;width:80%;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3">
-                    			</div>
+                      </div>
+                      <div style="padding:2% 0% 0 0%">
+              				  <i class="material-icons prefix left-align" style="font-size:30px;">date_range</i>
+              				  <input type="text" style="font-size:20px;width:80%;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3" />
+                    	</div>
+                      <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
                     </div>
                     
-                    <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
                 </div>
           		
           		
@@ -134,13 +135,26 @@ body, html {
 	          		</script>
 	          		
 	          		<div class="row" style="padding:1% 3% 0% 5%;">
-	          		<div class="black-text" style="font-size:large; padding:0 0 0% 3%"><b>TELL YOUR STORY</b></div>
+	          		   <div class="black-text" style="font-size:large; padding:0 0 0% 2%"><b>TELL YOUR STORY</b>
+                   </div>
                                    
-                      <div class="input-field col s12" style="padding:1% 1% 0% 3%;">
+                      <div class="input-field col s12" style="padding:1% 1% 0% 2%;">
                         <textarea name="fundraiser_description" class="materialize-textarea donor-text" data-length="300" style="font-size:20px;" placeholder="optional: what inspired you?"></textarea>
                       </div>
               
-      				</div>   
+      				  </div>
+
+                    <?php if (!$session_donor_id) { ?>
+                      <div class="row" style="padding:1% 3% 0% 5%;">
+                        <div class="black-text" style="font-size:large; padding:0 0 0 2%" >Contact Email:
+                        </div> 
+                        <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 2%; font-size:20px;">
+                          <input class='text' name="fundraiser_email" placeholder="How can we reach you?" style="padding:0% 0% 0% 0%;" required data-error=".errorTxt4" />
+                          <div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;">
+                          </div>
+                        </div>
+                      </div>
+                    <?php } ?>   
 	          		
           			
                               </div>
@@ -168,14 +182,14 @@ body, html {
 	$().ready(function() {
 		$("#fundraiser_form").validate({
 			rules: {
-				firstname: "required",
-				lastname: "required",
-				end_date: "required",
+				fundraiser_title: "required",
+        fundraiser_amount: "required",
+				fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>
 			},
 		messages: {
-		      firstname: "this field is required",
-		      lastname: "this field is required",
-		      end_date: "this field is required",
+		      fundraiser_title: "this field is required",
+		      fundraiser_amount: "this field is required",
+		      fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>
 		},
 
 		errorElement : 'div',
