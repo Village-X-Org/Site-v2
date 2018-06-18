@@ -50,6 +50,7 @@ while ($row = $result->fetch_assoc()) {
   if (!$amount || !$projectName) {
     continue;
   }
+  $projectBudget = $row['project_budget'];
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
   array_push($projectIds, $row['project_id']);
@@ -57,9 +58,9 @@ while ($row = $result->fetch_assoc()) {
   array_push($projectTypes, $projectType);
   array_push($villageNames, $row['village_name']);
   array_push($donationDates, $row['donation_date']);
-  array_push($populations, $row['peopleCount']);
-  array_push($households, $row['houseCount']);
-  array_push($budget, $row['project_budget']);
+  array_push($populations, round($row['peopleCount'] * $amount / $projectBudget));
+  array_push($households, round($row['houseCount'] * $amount / $projectBudget));
+  array_push($budget, $projectBudget);
   array_push($funded, $row['project_funded']);
   array_push($statuses, $row['project_status']);
 
