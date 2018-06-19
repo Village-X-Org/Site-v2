@@ -1,4 +1,5 @@
-<?php require_once("utilities.php"); ?>
+<?php require_once("utilities.php");
+?>
 <!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -61,6 +62,19 @@ switch ($type) {
         }
         $stmt->close();
         break;
+    case EMAIL_TYPE_PROFILE_ACTIVATION:
+		$donorFirstName = $donorLastName = "Anonymous";
+    	$stmt = prepare("SELECT donor_id, donor_email, donor_password FROM donors WHERE donor_id=?");
+		$stmt->bind_param('i', $donorId);
+		$result = execute($stmt);
+		if ($row = $result->fetch_assoc()) {
+			$donorId = $row['donor_id'];
+			$donorEmail = $row['donor_email'];
+			$code = substr(md5($donorEmail.$row['donor_password']), 0, 8);
+			$profileActivationLink = "https://villagex.org/reset/$donorId/$code";
+		}
+		$stmt->close();
+    	break;
     default:
         break;
 }
@@ -195,6 +209,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																            print "Hi, $donorFirstName!";
         																        }
         																        break;
+        																    case EMAIL_TYPE_PROFILE_ACTIVATION:
+        																    	print "Thank you for donating to Village X!";
+    																			break;
         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
         																        print "$donorFirstName,";
         																        break;
@@ -247,6 +264,10 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																	case EMAIL_TYPE_FUNDRAISER:
 																		print "We deeply appreciate you launching a fundraiser to help an extreme poverty village in rural Africa.";
 																		break;
+																	case EMAIL_TYPE_PROFILE_ACTIVATION:
+																		print "<p>Click on this link to activate your impact profile: <a href='$profileActivationLink'>$profileActivationLink</a></p>
+																		<p>We created VillageX to take direct giving to a whole new level.  We deploy your donations straight to problems on the ground.  We then send you data, pics, and videos providing a vivid accounting of exactly how your money improves development outcomes for rural Africans fighting extreme poverty.</p><p>Today we are happy to announce the next step in our efforts to put you on the front lines:  impact profiles.  Click on the link above to activate your profile.  Each profile includes the status of the last project you helped and a listing of your donations.  Your profile also features the number of people you have directly helped and a carousel of pictures from your projects.</p><p>Thanks again for your support.  To provide feedback or just connect, shoot us an email at chat@villagex.org.  We're here to help.</p>";
+    																	break;
                                                                     default:
                                                                         break;
 																}?>
@@ -266,10 +287,13 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															        case EMAIL_TYPE_FUNDRAISER:
 															        	print "Fundraiser details";
     																	break;
+    																case EMAIL_TYPE_PROFILE_ACTIVATION:
+    																	break;
 																    default:
 																        break;
 																}?>
 															</h2>
+															<?php if ($type != EMAIL_TYPE_PROFILE_ACTIVATION) { ?>
 															<table class="callout"
 																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
 																<tr
@@ -393,6 +417,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		</table></th>
 																</tr>
 															</table>
+														<?php } ?>
 															<?php switch ($type) {
     															    case EMAIL_TYPE_PROJECT_COMPLETED:
     															        ?>
@@ -506,6 +531,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 	        															  <P><a href='https://villagex.org/fundraiser/$id'>https://villagex.org/fundraiser/$id</a>
 																		<?php
 																			break;
+																		case EMAIL_TYPE_PROFILE_ACTIVATION:
+																			print "<img src='images/woman_with_goat_small.jpg' />";
+																			print "<br/>Thank you from Chikumbu Village, Malawi!<p/>";
 	                                                                    default:
 	                                                                        break;
                     												}?>
@@ -518,6 +546,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                 											        case EMAIL_TYPE_THANKS_FOR_DONATING:
             											            case EMAIL_TYPE_FUNDRAISER:
+            											            case EMAIL_TYPE_PROFILE_ACTIVATION:
                 												        print "With profound gratitude,";
                 												        break;
                 											        case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
