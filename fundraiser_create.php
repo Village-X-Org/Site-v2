@@ -101,9 +101,9 @@ body, html {
                     <div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
                       <div class="black-text left-align" style="font-size:large; padding:0 0% 3% 3%"><b>FUNDING GOAL?</b>
                       </div>
-                      	<div style="padding:2% 0% 0 0%">
-         							<i class="material-icons prefix left-align" style="font-size:30px;">attach_money</i>
-          						<input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount" required data-error=".errorTxt2" />
+                      <div style="padding:2% 0% 0 0%">
+         							  <i class="material-icons prefix left-align" style="font-size:30px;">attach_money</i>
+          						  <input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount" required data-error=".errorTxt2" />
           						</div>
                     <div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
           					</div>
