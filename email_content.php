@@ -265,8 +265,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		print "We deeply appreciate you launching a fundraiser to help an extreme poverty village in rural Africa.";
 																		break;
 																	case EMAIL_TYPE_PROFILE_ACTIVATION:
-																		print "<p>Click on this link to activate your impact profile: <a href='$profileActivationLink'>$profileActivationLink</a></p>
-																		<p>We created VillageX to take direct giving to a whole new level.  We deploy your donations straight to problems on the ground.  We then send you data, pics, and videos providing a vivid accounting of exactly how your money improves development outcomes for rural Africans fighting extreme poverty.</p><p>Today we are happy to announce the next step in our efforts to put you on the front lines:  impact profiles.  Click on the link above to activate your profile.  Each profile includes the status of the last project you helped and a listing of your donations.  Your profile also features the number of people you have directly helped and a carousel of pictures from your projects.</p><p>Thanks again for your support.  To provide feedback or just connect, shoot us an email at chat@villagex.org.  We're here to help.</p>";
+																		print "Click on this link to activate your impact profile:<br/><a href='$profileActivationLink'>$profileActivationLink</a></p>
+																		<p>We created Village X to take direct giving to a whole new level.  We deploy your donations straight to problems on the ground.  We then send you data, pics, and videos providing a vivid accounting of exactly how your money improves development outcomes for rural Africans fighting extreme poverty.</p><p>Today we are happy to announce the next step in our efforts to put you on the front lines:  impact profiles.  Click on the link above to activate your profile.  Each profile includes the status of the last project you helped and a listing of your donations.  Your profile also features the number of people you have directly helped and a carousel of pictures from your projects.</p><p>Thanks again for your support.  To provide feedback or just connect, shoot us an email at chat@villagex.org.  We're here to help.</p>";
     																	break;
                                                                     default:
                                                                         break;
@@ -532,7 +532,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		<?php
 																			break;
 																		case EMAIL_TYPE_PROFILE_ACTIVATION:
-																			print "<img src='images/woman_with_goat_small.jpg' />";
+																			print "<img src='https://villagex.org/images/woman_with_goat_small.jpg' />";
 																			print "<br/>Thank you from Chikumbu Village, Malawi!<p/>";
 	                                                                    default:
 	                                                                        break;
