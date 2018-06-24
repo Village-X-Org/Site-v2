@@ -194,8 +194,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 															align="left">
 															<h3
-																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;"
-																align="left"><b>
+																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;" align="left"><b>
 																<?php 
 																if ($donorFirstName) { 
         																switch ($type) {
@@ -404,6 +403,21 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																									<?php
         																									break;
         																								case EMAIL_TYPE_FUNDRAISER:
+        																								?>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
+        																											target="_blank"
+        																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
+        																											<?php print $projectName; ?></a>
+        																									</p>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Location</strong><br /> <?php print $villageName; ?>
+        																										Village, <?php print $countryName; ?>
+        																									</p><?php
         																									break;
                                                                                                         default:
                                                                                                             break;
@@ -523,10 +537,28 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     															break;
 	        															case EMAIL_TYPE_FUNDRAISER:
 	        															?>
-	        															<img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
+	        															 <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
-                    													<h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; 
-	        																line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;" align="left">What's coming</h2>
+                    															<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                    																<tr
+                    																	style="vertical-align: top; text-align: left; padding: 0;"
+                    																	align="left">
+                    																	<th class="callout-inner primary"
+                    																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                    																		align="left" bgcolor="#def0fc">
+                    																		<p
+                    																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                    																			align="left"></p> <center
+                    																			style="width: 100%; min-width: 532px;">Here's a similar project.</center>
+                    																	</th>
+                    																	<th class="expander"
+                    																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                    																		align="left"></th>
+                    																</tr>
+                    															</table><h2
+                    																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
+                    																align="left">What's coming</h2>
 	        															  Fundraising is easy with email and social media.  Share your fundraiser with friends and family and tell them why 
 	        															  you're so passionate about ending extreme poverty in rural Africa.  Encourage more donations by thanking donors 
 	        															  publicly on social media.  Build urgency by organizing your fundraiser around a particular date or event in your 
