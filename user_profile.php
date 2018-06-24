@@ -109,9 +109,9 @@ $houseCount = 0;
 $uniqueVillages = array();
 $uniqueProjects = array();
 for ($i = 0; $i < $count; $i++) {
+  $peopleCount += $populations[$i];
+  $houseCount += $households[$i];
   if (!in_array($villageNames[$i], $uniqueVillages)) {
-    $peopleCount += $populations[$i];
-    $houseCount += $households[$i];
     $uniqueVillages[] = $villageNames[$i];
   }
   if (!in_array($projectIds[$i], $uniqueProjects)) {
