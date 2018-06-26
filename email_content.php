@@ -15,14 +15,16 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename,
+        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
                     LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
-                    JOIN pictures ON project_similar_image_id=picture_id
+                    JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
+                    LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
+                    LEFT JOIN pictures AS exemplaryPictures ON pu_image_id=exemplaryPictures.picture_id 
                     WHERE donation_id=?");
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
@@ -36,7 +38,11 @@ switch ($type) {
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
             $countryName = $row['country_label'];
-            $projectExampleImage = $row['picture_filename'];
+            $exemplaryPicture = $row['exemplaryPicture'];
+            $projectExampleImage = $row['similarPicture'];
+            if ($exemplaryPicture) {
+            	$projectExampleImage = $exemplaryPicture;
+            }
         }
         $stmt->close();
         break;
@@ -227,8 +233,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																        ?>
-																       	Below is a picture of the project you supported. 
-																       	<b>For more pictures, and a post-project report, click on the link below.</b>
+																       	We are happy to announce that a project you helped fund has recently been completed!
+																       	<b>For pictures, and a post-project report, click on the link below.</b>
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
@@ -435,7 +441,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<?php switch ($type) {
     															    case EMAIL_TYPE_PROJECT_COMPLETED:
     															        ?>
-                    												        <img src="<?php print ABS_PICTURES_DIR.$pictureFilename; ?>" alt=""
+                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
