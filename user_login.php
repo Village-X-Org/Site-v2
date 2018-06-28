@@ -30,9 +30,9 @@ body, html {
 include('header.inc');
 ?>
 
-<div class="bg" style='height:100%;width:100%;min-height:800px;'>
+<div class="bg valign-wrapper" style='height:1000px;width:100%;min-height:800px;'>
 
-  <div class="container" style="width:100%;padding:3% 10% 0 10%">
+  <div class="container" style="width:100%;padding:0% 10% 5% 10%; opacity:0.85">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
     </div>
@@ -161,7 +161,7 @@ include('header.inc');
                           class="g-recaptcha btn-large red center-align submit"
                           data-sitekey="<?php print CAPTCHA_SITEKEY; ?>"
                           data-callback="onReset">
-                          Reset My Password
+                          Reset
                       </button>
                     </div>
                     <div class="progress" style='display: none;' id='cancelProgress'>

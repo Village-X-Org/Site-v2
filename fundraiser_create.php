@@ -35,9 +35,9 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px; width:100%">
+<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1200px; width:100%">
 
-<div class="container" style="padding:0 2% 0 2%; width:100%;">
+<div class="container" style="padding:0 2% 5% 2%; width:100%;opacity:0.85">
 	<div class="section" id="jqueryvalidation" style="width:100%">
 		    <div class="white-text center-align" style="font-weight:800;padding:2% 0 2% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
     </div>

@@ -189,7 +189,7 @@ $stmt->close();
     <div>     
           <h6>
             <?php if (isset($latestDonationDate)) { ?>
-              <span style="font-size: x-large; font-weight: 500">Last Donation: <?php print date('M j, Y', $latestDonationDate); ?></span>
+              <span class="flow-text" style="font-weight: 500">Last Donation: <?php print date('M j, Y', $latestDonationDate); ?></span>
             </h6>
             <div class='progress'>
               <div class='determinate' style='width: <?php print round(100 * $latestFunded / max(1, $latestBudget)); ?>%'></div>
@@ -281,8 +281,8 @@ $stmt->close();
               ?>
                             <div class="row valign-wrapper">
                 <div style="padding 0 0 0 0%;margin: 3% 0% 3% 3%; display:inline-block;background-color: teal;border-radius:50%; border-color:black;border-width:thin; height:80px; width:80px;">
-                            <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 10% 0% 0 0%; font-size: x-large; font-color: #ffffff; 
-                                        text-align: center;display: table-cell;vertical-align:middle;"><img style='filter: brightness(0) invert(.97);width:50px;' src='images/type_<?php print $projectTypes[$i]; ?>.svg' /></span></a>
+                            <a class="tooltip" style='text-decoration:none;color:#EEEEEE;'><span style="height:80px; width:80px; padding: 15% 0% 0 0%; font-size: x-large; font-color: #ffffff; 
+                                        text-align: center;display: inline-block;vertical-align:middle;"><img style='filter: brightness(0) invert(.97);width:50px;' src='images/type_<?php print $projectTypes[$i]; ?>.svg' /></span></a>
                         
                   </div>
                   <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_donor_id == $userId ? "<b>Donated $".money_format('%.2n', $donationAmounts[$i])."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
