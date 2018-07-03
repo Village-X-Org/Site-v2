@@ -345,11 +345,15 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                                         																case EMAIL_TYPE_THANKS_FOR_DONATING: 
+        																								case EMAIL_TYPE_FUNDRAISER:
                                     																        ?>
                                     																        <p
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
-        																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
+        																										<?php if (isset($donationAmount)) { ?>
+        																											<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
+        																										<?php } ?>
+        																										<?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
         																									</p>
         																									<?php if (isset($projectName)) { ?>
         																									<p
@@ -378,8 +382,6 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																									</p>
         
         																									<?php
-        																									break;
-        																								case EMAIL_TYPE_FUNDRAISER:
         																									break;
                                                                                                         default:
                                                                                                             break;
@@ -497,13 +499,33 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     												            }
                     															break;
 	        															case EMAIL_TYPE_FUNDRAISER:
-	        															?><h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; 
+	        															?><img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    															<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                    																<tr
+                    																	style="vertical-align: top; text-align: left; padding: 0;"
+                    																	align="left">
+                    																	<th class="callout-inner primary"
+                    																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                    																		align="left" bgcolor="#def0fc">
+                    																		<p
+                    																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                    																			align="left"></p> <center
+                    																			style="width: 100%; min-width: 532px;">Here's a similar project.</center>
+                    																	</th>
+                    																	<th class="expander"
+                    																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                    																		align="left"></th>
+                    																</tr>
+                    															</table>
+                    															<h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; 
 	        																line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;" align="left">What's coming</h2>
 	        															  Fundraising is easy with email and social media.  Share your fundraiser with friends and family and tell them why 
 	        															  you're so passionate about ending extreme poverty in rural Africa.  Encourage more donations by thanking donors 
 	        															  publicly on social media.  Build urgency by organizing your fundraiser around a particular date or event in your 
 	        															  life (e.g., a birthday).  Need more advice?  Shoot us an email at chat@villagex.org.  We're here to help.
-	        															  <P><a href='https://villagex.org/fundraiser/$id'>https://villagex.org/fundraiser/$id</a>
+	        															  <P><a href='https://villagex.org/fundraiser/<?php print $id; ?>'>https://villagex.org/fundraiser/<?php print $id; ?></a>
 																		<?php
 																			break;
 	                                                                    default:
