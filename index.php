@@ -91,7 +91,7 @@ if (hasParam('gc')) {
 		</div>
 		</div>
 		
-		<div class="container" style="padding: 0% 5% 0 5%; width:100%">
+		<div class="container" style="padding: 2% 5% 0 5%; width:100%">
 	
 		<!--   Icon Section   -->
 		 <div class="row center-align" style="width:100%">
@@ -127,7 +127,8 @@ if (hasParam('gc')) {
 			
 		</div>
 		
-		<div class="icon-block white-text" style='position:absolute;left:48%;bottom:10px;'>
+		<div class='row'>
+		<div class="icon-block white-text center-align">
 					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
 					<script>$("#arrowButton").click(function() { 
 						$('html, body').animate({
@@ -136,8 +137,9 @@ if (hasParam('gc')) {
 					});
 					</script>
 			</div>
-		
 		</div>
+		</div>
+		
 		
 	</div>
 	</div>
