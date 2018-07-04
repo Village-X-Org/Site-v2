@@ -412,8 +412,6 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         
         																									<?php
         																									break;
-<<<<<<< HEAD
-=======
         																								case EMAIL_TYPE_FUNDRAISER:
         																								?>
         																									<p
@@ -431,7 +429,6 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																										Village, <?php print $countryName; ?>
         																									</p><?php
         																									break;
->>>>>>> f4cc910dfde9f110ca6b794499c89fa67b1756dd
                                                                                                         default:
                                                                                                             break;
                                         																}?>
@@ -549,12 +546,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     												            }
                     															break;
 	        															case EMAIL_TYPE_FUNDRAISER:
-<<<<<<< HEAD
 	        															?><img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
-=======
-	        															?>
-	        															 <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
->>>>>>> f4cc910dfde9f110ca6b794499c89fa67b1756dd
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     															<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
@@ -573,24 +565,14 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
                     																		align="left"></th>
                     																</tr>
-<<<<<<< HEAD
                     															</table>
                     															<h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; 
 	        																line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;" align="left">What's coming</h2>
-=======
-                    															</table><h2
-                    																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
-                    																align="left">What's coming</h2>
->>>>>>> f4cc910dfde9f110ca6b794499c89fa67b1756dd
 	        															  Fundraising is easy with email and social media.  Share your fundraiser with friends and family and tell them why 
 	        															  you're so passionate about ending extreme poverty in rural Africa.  Encourage more donations by thanking donors 
 	        															  publicly on social media.  Build urgency by organizing your fundraiser around a particular date or event in your 
 	        															  life (e.g., a birthday).  Need more advice?  Shoot us an email at chat@villagex.org.  We're here to help.
-<<<<<<< HEAD
 	        															  <P><a href='https://villagex.org/fundraiser/<?php print $id; ?>'>https://villagex.org/fundraiser/<?php print $id; ?></a>
-=======
-	        															  <P><?php print "<a href='https://villagex.org/fundraiser/$id'>https://villagex.org/fundraiser/$id</a>" ?>
->>>>>>> f4cc910dfde9f110ca6b794499c89fa67b1756dd
 																		<?php
 																			break;
 																		case EMAIL_TYPE_PROFILE_ACTIVATION:
