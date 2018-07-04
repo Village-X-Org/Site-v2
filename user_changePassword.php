@@ -5,7 +5,11 @@ $id = param('id');
 $code = param('code');
 $newPassword = md5(param('newPassword'));
 
-$stmt = prepare("UPDATE donors SET donor_password=? WHERE donor_id=? AND md5(concat(donor_email, donor_password))=?");
+if (strlen($code) < 8) {
+	print "Code is too short";
+	die(0);
+}
+$stmt = prepare("UPDATE donors SET donor_password=? WHERE donor_id=? AND substr(md5(concat(donor_email, donor_password)), 0, 8)=substr(?, 0, 8)");
 $stmt->bind_param('sis', $newPassword, $id, $code);
 execute($stmt);
 if ($link->affected_rows > 0) {
