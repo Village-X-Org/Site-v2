@@ -482,7 +482,7 @@ function breakLongWords($content, $length, $showMoreAt=0) {
 	return $content;
 }
 
-function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize) {
+function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize, $fundraiserId=0) {
     include('share_buttons.inc');   
 }
 
