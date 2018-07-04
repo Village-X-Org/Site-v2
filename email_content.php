@@ -1,4 +1,5 @@
-<?php require_once("utilities.php"); ?>
+<?php require_once("utilities.php");
+?>
 <!-- Inliner Build Version 4380b7741bb759d6cb997545f3add21ad48f010b -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -14,14 +15,16 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, picture_filename,
+        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
                     LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
-                    JOIN pictures ON project_similar_image_id=picture_id
+                    JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
+                    LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
+                    LEFT JOIN pictures AS exemplaryPictures ON pu_image_id=exemplaryPictures.picture_id 
                     WHERE donation_id=?");
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
@@ -35,10 +38,49 @@ switch ($type) {
             $projectName = $row['project_name'];
             $villageName = $row['village_name'];
             $countryName = $row['country_label'];
+            $exemplaryPicture = $row['exemplaryPicture'];
+            $projectExampleImage = $row['similarPicture'];
+            if ($exemplaryPicture) {
+            	$projectExampleImage = $exemplaryPicture;
+            }
+        }
+        $stmt->close();
+        break;
+    case EMAIL_TYPE_FUNDRAISER:
+       	$stmt = prepare("SELECT donor_id AS donorId, donor_first_name AS donorFirstName, donor_email AS donorEmail, 
+       				project_id, project_name, village_name, country_label, picture_filename
+                    FROM donors JOIN projects ON project_id=?
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures ON project_similar_image_id=picture_id
+                    WHERE donor_id=?");
+        $stmt->bind_param("ii", $projectId, $donorId);
+        $result = execute($stmt);
+        if ($row = $result->fetch_assoc()) {
+            $donorId = $row['donorId'];
+            $donorFirstName = $row['donorFirstName'];
+            $donorEmail = $row['donorEmail'];
+            $projectId = $row['project_id'];
+            $projectName = $row['project_name'];
+            $villageName = $row['village_name'];
+            $countryName = $row['country_label'];
             $projectExampleImage = $row['picture_filename'];
         }
         $stmt->close();
         break;
+    case EMAIL_TYPE_PROFILE_ACTIVATION:
+		$donorFirstName = $donorLastName = "Anonymous";
+    	$stmt = prepare("SELECT donor_id, donor_email, donor_password FROM donors WHERE donor_id=?");
+		$stmt->bind_param('i', $donorId);
+		$result = execute($stmt);
+		if ($row = $result->fetch_assoc()) {
+			$donorId = $row['donor_id'];
+			$donorEmail = $row['donor_email'];
+			$code = substr(md5($donorEmail.$row['donor_password']), 0, 8);
+			$profileActivationLink = "https://villagex.org/reset/$donorId/$code";
+		}
+		$stmt->close();
+    	break;
     default:
         break;
 }
@@ -158,20 +200,23 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
 															align="left">
 															<h3
-																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;"
-																align="left"><b>
+																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 28px; margin: 10px 0 10px; padding: 0;" align="left"><b>
 																<?php 
 																if ($donorFirstName) { 
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_COMPLETED:
         																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
+    																        case EMAIL_TYPE_FUNDRAISER:
         																        if (isset($useHonoree)) {
         																            print "Hi, $honoreeFirstName!";
         																        } else {
         																            print "Hi, $donorFirstName!";
         																        }
         																        break;
+        																    case EMAIL_TYPE_PROFILE_ACTIVATION:
+        																    	print "Thank you for donating to Village X!";
+    																			break;
         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
         																        print "$donorFirstName,";
         																        break;
@@ -188,8 +233,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																        ?>
-																       	Below is a picture of the project you supported. 
-																       	<b>For more pictures, and a post-project report, click on the link below.</b>
+																       	We are happy to announce that a project you helped fund has recently been completed!
+																       	<b>For pictures, and a post-project report, click on the link below.</b>
 																		<?php 
 																        break;
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
@@ -221,7 +266,14 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
     																			<?php 
 																        }
 																		break;
-                                                                     default:
+																	case EMAIL_TYPE_FUNDRAISER:
+																		print "We deeply appreciate you launching a fundraiser to help an extreme poverty village in rural Africa.";
+																		break;
+																	case EMAIL_TYPE_PROFILE_ACTIVATION:
+																		print "Click on this link to activate your impact profile:<br/><a href='$profileActivationLink'>$profileActivationLink</a></p>
+																		<p>We created Village X to take direct giving to a whole new level.  We deploy your donations straight to problems on the ground.  We then send you data, pics, and videos providing a vivid accounting of exactly how your money improves development outcomes for rural Africans fighting extreme poverty.</p><p>Today we are happy to announce the next step in our efforts to put you on the front lines:  impact profiles.  Click on the link above to activate your profile.  Each profile includes the status of the last project you helped and a listing of your donations.  Your profile also features the number of people you have directly helped and a carousel of pictures from your projects.</p><p>Thanks again for your support.  To provide feedback or just connect, shoot us an email at chat@villagex.org.  We're here to help.</p>";
+    																	break;
+                                                                    default:
                                                                         break;
 																}?>
 															</p>
@@ -237,10 +289,16 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
 																        print "Cancellation details";
 																        break;
+															        case EMAIL_TYPE_FUNDRAISER:
+															        	print "Fundraiser details";
+    																	break;
+    																case EMAIL_TYPE_PROFILE_ACTIVATION:
+    																	break;
 																    default:
 																        break;
 																}?>
 															</h2>
+															<?php if ($type != EMAIL_TYPE_PROFILE_ACTIVATION) { ?>
 															<table class="callout"
 																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
 																<tr
@@ -292,6 +350,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                         																        break;
                                         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
                                         																        break;
+                                    																        case EMAIL_TYPE_FUNDRAISER:
+        																										break;
                                         																    default:
                                         																        break;
                                         																}?>
@@ -313,43 +373,60 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									<?php switch ($type) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
-                                        																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
-                                        																        ?>
-                                        																        <p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
-            																									</p>
-            																									<?php if (isset($projectName)) { ?>
-            																									<p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
-            																											target="_blank"
-            																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
-            																											<?php print $projectName; ?></a>
-            																									</p>
-            																									<?php } ?>
-            																									<p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Location</strong><br /> <?php print $villageName; ?>
-            																										Village, <?php print $countryName; ?>
-            																									</p><?php
-                                        																        break;
-                                        																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-                                        																        ?>
-                                        																        <p
-            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
-            																										align="left">
-            																										<strong>Action</strong><br /> cancellation of
-            																										monthly giving
-            																									</p>
-            
-            																									<?php
-            																									break;
-                                                                                                            default:
-                                                                                                                break;
+                                        																case EMAIL_TYPE_THANKS_FOR_DONATING: 
+                                    																        ?>
+                                    																        <p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?><?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
+        																									</p>
+        																									<?php if (isset($projectName)) { ?>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
+        																											target="_blank"
+        																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
+        																											<?php print $projectName; ?></a>
+        																									</p>
+        																									<?php } ?>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Location</strong><br /> <?php print $villageName; ?>
+        																										Village, <?php print $countryName; ?>
+        																									</p><?php
+                                    																        break;
+                                    																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+                                    																        ?>
+                                    																        <p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Action</strong><br /> cancellation of
+        																										monthly giving
+        																									</p>
+        
+        																									<?php
+        																									break;
+        																								case EMAIL_TYPE_FUNDRAISER:
+        																								?>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
+        																											target="_blank"
+        																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
+        																											<?php print $projectName; ?></a>
+        																									</p>
+        																									<p
+        																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+        																										align="left">
+        																										<strong>Location</strong><br /> <?php print $villageName; ?>
+        																										Village, <?php print $countryName; ?>
+        																									</p><?php
+        																									break;
+                                                                                                        default:
+                                                                                                            break;
                                         																}?>
 																									
 																								</th>
@@ -360,10 +437,11 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		</table></th>
 																</tr>
 															</table>
+														<?php } ?>
 															<?php switch ($type) {
     															    case EMAIL_TYPE_PROJECT_COMPLETED:
     															        ?>
-                    												        <img src="<?php print ABS_PICTURES_DIR.$pictureFilename; ?>" alt=""
+                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
@@ -463,8 +541,42 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     															</p><?php
                     												            }
                     															break;
-                                                                    default:
-                                                                        break;
+	        															case EMAIL_TYPE_FUNDRAISER:
+	        															?>
+	        															 <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    															<table class="callout"
+                    																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
+                    																<tr
+                    																	style="vertical-align: top; text-align: left; padding: 0;"
+                    																	align="left">
+                    																	<th class="callout-inner primary"
+                    																		style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; width: 100%; background: #def0fc; margin: 0; padding: 10px; border: 1px solid #444444;"
+                    																		align="left" bgcolor="#def0fc">
+                    																		<p
+                    																			style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+                    																			align="left"></p> <center
+                    																			style="width: 100%; min-width: 532px;">Here's a similar project.</center>
+                    																	</th>
+                    																	<th class="expander"
+                    																		style="visibility: hidden; width: 0; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0; padding: 0;"
+                    																		align="left"></th>
+                    																</tr>
+                    															</table><h2
+                    																style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;"
+                    																align="left">What's coming</h2>
+	        															  Fundraising is easy with email and social media.  Share your fundraiser with friends and family and tell them why 
+	        															  you're so passionate about ending extreme poverty in rural Africa.  Encourage more donations by thanking donors 
+	        															  publicly on social media.  Build urgency by organizing your fundraiser around a particular date or event in your 
+	        															  life (e.g., a birthday).  Need more advice?  Shoot us an email at chat@villagex.org.  We're here to help.
+	        															  <P><?php print "<a href='https://villagex.org/fundraiser/$id'>https://villagex.org/fundraiser/$id</a>" ?>
+																		<?php
+																			break;
+																		case EMAIL_TYPE_PROFILE_ACTIVATION:
+																			print "<img src='https://villagex.org/images/woman_with_goat_small.jpg' />";
+																			print "<br/>Thank you from Chikumbu Village, Malawi!<p/>";
+	                                                                    default:
+	                                                                        break;
                     												}?>
 															  <br />
 															<h3
@@ -473,13 +585,16 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
-                    											        case EMAIL_TYPE_THANKS_FOR_DONATING:
-                    												        print "With profound gratitude,";
-                    												        break;
-                    											        case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
-                    											            print "Best wishes,";
-                    											        default:
-                    											            break;
+                											        case EMAIL_TYPE_THANKS_FOR_DONATING:
+            											            case EMAIL_TYPE_FUNDRAISER:
+            											            case EMAIL_TYPE_PROFILE_ACTIVATION:
+                												        print "With profound gratitude,";
+                												        break;
+                											        case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+                											            print "Best wishes,";
+																		break;
+                											        default:
+                											            break;
                                                                 } ?>
 																</h3>
 															<h3

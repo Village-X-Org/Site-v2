@@ -50,6 +50,7 @@ while ($row = $result->fetch_assoc()) {
   if (!$amount || !$projectName) {
     continue;
   }
+  $projectBudget = $row['project_budget'];
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
   array_push($projectIds, $row['project_id']);
@@ -57,9 +58,9 @@ while ($row = $result->fetch_assoc()) {
   array_push($projectTypes, $projectType);
   array_push($villageNames, $row['village_name']);
   array_push($donationDates, $row['donation_date']);
-  array_push($populations, $row['peopleCount']);
-  array_push($households, $row['houseCount']);
-  array_push($budget, $row['project_budget']);
+  array_push($populations, round($row['peopleCount'] * $amount / $projectBudget));
+  array_push($households, round($row['houseCount'] * $amount / $projectBudget));
+  array_push($budget, $projectBudget);
   array_push($funded, $row['project_funded']);
   array_push($statuses, $row['project_status']);
 
@@ -91,7 +92,7 @@ $totalDonationAmount = max(.001, $totalDonationAmount);
   $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
     round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 
     round($bizCount * 100 / $totalDonationAmount)];
-  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#2288CC'];
+  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#D2691E'];
 
   for ($i = count($labels) - 1; $i >= 0; $i--) {
     if ($counts[$i] == 0) {
@@ -108,9 +109,9 @@ $houseCount = 0;
 $uniqueVillages = array();
 $uniqueProjects = array();
 for ($i = 0; $i < $count; $i++) {
+  $peopleCount += $populations[$i];
+  $houseCount += $households[$i];
   if (!in_array($villageNames[$i], $uniqueVillages)) {
-    $peopleCount += $populations[$i];
-    $houseCount += $households[$i];
     $uniqueVillages[] = $villageNames[$i];
   }
   if (!in_array($projectIds[$i], $uniqueProjects)) {
@@ -209,8 +210,7 @@ $stmt->close();
 
     <div class="flow-text" style="padding: 5% 0% 0% 0%">
     <?php print $userFirstName; ?> has supported <?php print $totalProjectCount; ?> 
-    project<?php print ($totalProjectCount != 1 ? 's' : ''); ?><?php print ($peopleCount > 0 ? ", helping <?php print $peopleCount; ?> people and <?php print $houseCount; ?> households in rural Malawi" : ""); ?>.  
-    <?php print ($typeStr ? "He has donated to ".strtolower($typeStr)." projects." : "");?>  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
+    project<?php print ($totalProjectCount != 1 ? 's' : ''); ?><?php print ($peopleCount > 0 ? ", helping $peopleCount people and $houseCount households in rural Malawi" : "").($typeStr ? ", donating to ".strtolower($typeStr)." projects." : ".");?>  <?php if (0) { print "$userFirstName has been a monthly donor since "; } ?>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 3% 0% 1% 0%"><i class="material-icons small">home</i>&nbsp;Projects Supported: &nbsp;<b><?php print $totalProjectCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">person</i>&nbsp;People Helped: &nbsp;<b><?php print $peopleCount; ?></b></h5>
           <h5 class="valign-wrapper hide-on-large-only" style="padding: 1% 0% 1% 0%"><i class="material-icons small">people</i>&nbsp;Families Helped: &nbsp;<b><?php print $houseCount; ?></b></h5>
@@ -240,7 +240,7 @@ $stmt->close();
                   ?>],
                 datasets: [
                   {
-                    label: "Population (millions)",
+                    label: "Percentage of donations",
                     backgroundColor: [<?php
                     $count = 0;
                     foreach ($colors as $color) {

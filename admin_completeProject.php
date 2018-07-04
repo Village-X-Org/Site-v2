@@ -50,7 +50,7 @@ if ($row = $result->fetch_assoc()) {
         $isSubscription = 1;
         include("email_content.php");
         $output = ob_get_clean();
-        //print $output;
         sendMail($donorEmail, "Project Complete!", $output, getCustomerServiceEmail());
     }
+    print $output;
 }

@@ -12,11 +12,13 @@ if (!hasParam('id')) {
 
 $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, 
 		UNIX_TIMESTAMP(fundraiser_deadline) AS fundraiser_deadline, project_name, village_name, country_label,
-		project_id, project_budget, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, picture_filename
+		project_id, project_budget, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
+		pictureSimilar.picture_filename AS similarPicture, pictureBanner.picture_filename AS bannerPicture
 		FROM fundraisers JOIN projects ON fundraiser_project_id=project_id 
 		JOIN villages ON project_village_id=village_id 
 		JOIN countries ON village_country=country_id
-		JOIN pictures ON project_similar_image_id=picture_id
+		JOIN pictures AS pictureSimilar ON project_similar_image_id=pictureSimilar.picture_id
+		JOIN pictures AS pictureBanner ON project_banner_image_id=pictureBanner.picture_id
 		LEFT JOIN donors ON fundraiser_subject=donor_id
 		LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(project_date_posted)=vs1.stat_year
         LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(project_date_posted)=vs2.stat_year
@@ -40,7 +42,8 @@ if ($row = $result->fetch_assoc()) {
 	$countryName = $row['country_label'];
 	$peopleCount = $row['peopleCount'];
 	$houseCount = $row['houseCount'];
-	$similarPicture = $row['picture_filename'];
+	$similarPicture = $row['similarPicture'];
+	$bannerPicture = $row['bannerPicture'];
 	$villageContribution = round($row['project_budget'] * .05);
 
 	$stmt->close();
@@ -77,7 +80,7 @@ if ($row = $result->fetch_assoc()) {
 <head>
 <title>Support <?php print $title; ?></title>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:image" content="<?php print PICTURES_DIR.$similarPicture; ?>"/>
+<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
 <meta property="og:title" content="Support <?php print $title; ?>"/>
 <meta property="og:url" content="<?php print BASE_URL."fundraiser/$id"; ?>"/>
 <meta property="og:description" content="<?php print $description; ?>" />
@@ -161,7 +164,7 @@ include('header.inc'); ?>
   		</div>
 
 			<div class="parallax">
-				<img src="images/header1.jpg">
+				<img src="uploads/<?php print $bannerPicture; ?>">
 			</div>
 		</div>
 	</div>
@@ -215,7 +218,7 @@ include('header.inc'); ?>
       <div class="flow-text" style="padding: 3% 0% 0% 0%; font-size:22px;"><?php print $description;?></div>
             	
             <h5 style="padding: 2% 0% 0% 0%; font-size:20px; font-weight:400;">Fundraising Timeline</h5>
-            <div style="overflow-y:scroll; height:300px;width:100%;">
+            <div style="overflow-y:scroll; height:250px;width:100%;">
             <?php 
             $donationCount = count($donationAmounts);
             for ($i = 0; $i < $donationCount; $i++) { ?>
@@ -230,7 +233,8 @@ include('header.inc'); ?>
 	 				<span style="font-size: medium; font-weight: 300; text-color:#efebe9"> donated $<?php print $donationAmounts[$i]; ?></span>
 	 				<br/><span style='text-align:right;'>on <?php print date('M j, Y', $donationDates[$i]); ?></span>
 	 			
-	 			<div style="font-weight: 200; font-size:16px;"><?php print $donationMessages[$i]; ?></div>
+	 				<div style="font-weight: 200; font-size:16px;"><?php print $donationMessages[$i]; ?></div>
+ 				</div>
  			</div>
  			<?php } 
  			if ($i == 0) {
@@ -241,7 +245,6 @@ include('header.inc'); ?>
 		</div>
 		
 		</div>
-		
 	</div>
 </div>
 	

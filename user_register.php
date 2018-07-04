@@ -103,12 +103,14 @@ body, html {
                   rules: {
                     firstname: "required",
                     lastname: "required",
-                    email: "required",
+                    email: {required: true,
+                      email: true
+                    }
                   },
                 messages: {
                       firstname: "this field is required",
                       lastname: "this field is required",
-                      email: "this field is required",
+                      email: "A valid email is required"
                 },
 
                 errorElement : 'div',
