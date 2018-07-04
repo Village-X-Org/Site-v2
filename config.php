@@ -8,7 +8,7 @@ define('DB_PASSWORD', 'mulanje');
 define('DB_DATABASE', 'villagex');
 define('PICTURES_DIR', 'https://villagex.org/uploads/');
 define('ABS_PICTURES_DIR', 'https://villagex.org/uploads/');
-define('BASE_URL', 'http://localhost/Site-v2/');
+define('BASE_URL', 'http://localhost/villagex/');
 define('STRIPE_TEST_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_API_KEY', "pk_test_AXxdOsB0Xz9tOVdCVq8jpkAQ");
 define('STRIPE_SECRET_KEY', "sk_test_DGoi26vx76FlFn7sen3IDSC8");

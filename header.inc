@@ -361,9 +361,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				class="material-icons">menu</i></a>
 			<ul class="right hide-on-med-and-down">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<?php if ($session_donor_id) { ?>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<?php } ?>
 				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
         			
 				<?php if ($session_donor_id) {
@@ -376,9 +374,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 		
 			<ul id="nav-mobile" class="side-nav">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<?php if ($session_donor_id) { ?>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<?php } ?>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
