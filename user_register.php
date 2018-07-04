@@ -28,9 +28,9 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg valign-wrapper" style='height:100%;width:100%'>
+<div class="bg valign-wrapper" style='height:100%;width:100%;min-height:800px;'>
 
-<div class="container" style="padding:10% 10% 0 10%; width:100%">
+<div class="container" style="padding:0% 10% 0 10%; width:100%">
   <div class="white-text container center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
   <div class="container center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
 
