@@ -6,11 +6,12 @@ session_start();
 $link = 0;
 if (isset($_SESSION['donor_id'])) {
 	$session_donor_id = $_SESSION['donor_id'];
+	$session_is_admin = $_SESSION['is_admin'];
 	$session_first_name = $_SESSION['first_name'];
 	$session_last_name = $_SESSION['last_name'];
 	$session_email = $_SESSION['email'];
 } else {
-	$session_donor_id = $session_first_name = $session_last_name = $session_email = 0;
+	$session_donor_id = $session_first_name = $session_last_name = $session_email = $session_is_admin = 0;
 }
 
 define('MAX_MAIL_PER_REQUEST', 10);
@@ -481,7 +482,7 @@ function breakLongWords($content, $length, $showMoreAt=0) {
 	return $content;
 }
 
-function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize) {
+function printShareButtons($projectId, $facebookMessage, $twitterMessage, $sideSize, $fundraiserId=0) {
     include('share_buttons.inc');   
 }
 

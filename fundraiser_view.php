@@ -90,9 +90,9 @@ include('header.inc'); ?>
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); width: 100%; height: 500px">
     
-	<div class="container no-pad-bot valign-wrapper" style="height: 100%; width: 100%; padding: 2% 0% 0% 0%">
+	<div class="container no-pad-bot valign-wrapper" style="height: 100%; width: 100%;>
 		<div class="row">
-		  <div class="col s6 m6 l2 right-align hide-on-med-and-down" style="padding: 9% 0% 0% 3%;">
+		  <div class="col s6 m6 l2 right-align hide-on-med-and-down" style="padding: 0% 0% 0% 3%;">
 			<div style="width:200px; height:200px; border-radius:20%; border-style:solid; background:#008080CC;">
         					<?php print (strlen($subject) > 0 ? 
 								"<h1 class=\"header center-align light\" style=\"padding:9% 0 0 0;font-size:96px;\"><b>{$subject[0]}</b></h1>"
@@ -100,7 +100,7 @@ include('header.inc'); ?>
 			</div>
 		</div> 
 	
-		<div class="col s6 m6 l6 left-align hide-on-med-and-down" style="padding: 5% 1% 1% 2%;">
+		<div class="col s6 m6 l6 left-align hide-on-med-and-down" style="padding: 0% 1% 1% 2%;">
 			<div style="padding: 5% 5% 5% 5%">
 				<h3 class="header col s12 white-text text-lighten-2"><?php print $title; ?></h3>
 			</div>
@@ -117,12 +117,12 @@ include('header.inc'); ?>
 					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;">donate</a>
 			</div>
 			<div style="padding: 0% 5% 5% 7%;">
-			<?php printShareButtons($projectId, $projectName, $projectName, 60); ?>
+				<?php printShareButtons($projectId, $projectName, $projectName, 60, $id); ?>
 			</div>
 			</div>
 		
 		
-			<div class="col s12 m12 l6 center-align hide-on-large-only" style="padding: 12% 1% 1% 1%;">
+			<div class="col s12 m12 l6 center-align hide-on-large-only" style="padding: 0% 1% 1% 1%;">
 			<div style="padding: 5% 5% 5% 5%">
 				<h3 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><?php print $title; ?></h3>
 			</div>
@@ -143,9 +143,7 @@ include('header.inc'); ?>
 				<h6 class="header light text-shadow: 2px 2px 7px #111111" style="font-weight:thin">fundraising to <span style="font-size: large; font-weight: bold"><?php print $projectName; ?></span></h6>
 				<h6>in <?php print $villageName; ?> Village, <?php print $countryName; ?></h6>
 			</div>
-			
-			<?php printShareButtons($projectId, $projectName, $projectName, 60); ?>
-			
+			<?php printShareButtons($projectId, $projectName, $projectName, 60, $id); ?>
 			</div>
 	
 			
