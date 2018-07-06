@@ -13,6 +13,11 @@ if (isset($_SESSION['donor_id'])) {
 } else {
 	$session_donor_id = $session_first_name = $session_last_name = $session_email = $session_is_admin = 0;
 }
+if (isset($_SESSION['fundraiser_id'])) {
+	$session_fundraiser_id = $_SESSION['fundraiser_id'];
+} else {
+	$session_fundraiser_id = 0;
+}
 
 define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);

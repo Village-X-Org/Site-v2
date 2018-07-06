@@ -25,8 +25,13 @@ require_once("utilities.php");
   <?php
   $fundraiserId = 0;
 
-  if (hasParam('fundraiserId')) {
-    $fundraiserId = param('fundraiserId');
+  if (hasParam('fundraiserId') || $session_fundraiser_id) {
+    if (hasParam('fundraiserId')) {    
+      $fundraiserId = param('fundraiserId');
+    } else {
+      $fundraiserId = $session_fundraiser_id;
+      $_SESSION['fundraiser_id'] = 0;
+    }
     $stmt = prepare("SELECT fundraiser_id, fundraiser_title, fundraiser_project_id, fundraiser_amount, SUM(donation_amount) AS raised FROM fundraisers LEFT JOIN donations ON donation_fundraiser_id=fundraiser_id WHERE fundraiser_id=? GROUP BY fundraiser_id");
     $stmt->bind_param('i', $fundraiserId);
     $result = execute($stmt);
@@ -36,6 +41,9 @@ require_once("utilities.php");
       $projectId = $row['fundraiser_project_id'];
       $fundraiserTarget = $row['fundraiser_amount'];
       $fundraiserRaised = $row['raised'];
+      if (hasParam('id')) {
+        $projectId = paramInt('id');
+      }
     }
   }
   if (!isset($projectId)) {

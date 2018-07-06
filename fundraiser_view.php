@@ -7,7 +7,7 @@ if (!hasParam('id')) {
 		return;
 	}
 } else {
-	$id = param('id');
+	$session_fundraiser_id = $_SESSION['fundraiser_id'] = $id = param('id');
 }
 
 $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, 
@@ -105,7 +105,7 @@ include('header.inc'); ?>
 				<h3 class="header col s12 white-text text-lighten-2"><?php print $title; ?></h3>
 			</div>
 
-			<div style="padding: 5% 5% 5% 5%;">
+			<div style="padding: 5% 5% 0% 5%;">
 				<h5 class="header light" style="padding:0% 3% 0% 2%">
 					<?php print $subject; ?></h5>
 			</div>
@@ -172,7 +172,7 @@ include('header.inc'); ?>
   	<div class="row" style="width:100%; padding: 2% 0% 2% 0%">
   	     
 				
-		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 2% 2%">
+		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 0% 2%">
 							
 					<h6>
 							<b><span style="font-size: xx-large; font-weight: bold">$<?php print $totalDonationAmount; ?></span> &nbsp;<span style="font-size: x-large; font-weight: 300">funded out of $<?php print $amount; ?></span></b>
