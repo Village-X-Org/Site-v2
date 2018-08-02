@@ -12,7 +12,7 @@ if (!hasParam('id')) {
 
 $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, 
 		UNIX_TIMESTAMP(fundraiser_deadline) AS fundraiser_deadline, project_name, village_name, country_label,
-		project_id, project_budget, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
+		project_id, project_budget, project_summary, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
 		pictureSimilar.picture_filename AS similarPicture, pictureBanner.picture_filename AS bannerPicture
 		FROM fundraisers JOIN projects ON fundraiser_project_id=project_id 
 		JOIN villages ON project_village_id=village_id 
@@ -30,6 +30,9 @@ if ($row = $result->fetch_assoc()) {
 	$title = $row['fundraiser_title'];
 	$amount = $row['fundraiser_amount'];
 	$description = $row['fundraiser_description'];
+	if (!$description) {
+		$description = $row['project_summary'];
+	}
 	$donorFirstName = $row['donor_first_name'];
 	if ($donorFirstName) {
 		$subject = "$donorFirstName ".$row['donor_last_name'];
