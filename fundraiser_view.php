@@ -172,7 +172,7 @@ include('header.inc'); ?>
 </div>
 	
 <div class="container">
-  	<div class="row" style="width:100%; padding: 2% 0% 2% 0%">
+  	<div class="row" style="width:100%; padding: 2% 0% 0% 0%">
   	     
 				
 		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 2% 3% 0% 2%">
@@ -214,12 +214,12 @@ include('header.inc'); ?>
 		</div>
 		</div>
 		
-		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
+		<div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 1% 0% 3%;height:650px;overflow-x:hidden;overflow-y:auto;">
 						
       <div class="flow-text" style="padding: 3% 0% 0% 0%; font-size:22px;"><?php print $description;?></div>
             	
             <h5 style="padding: 2% 0% 0% 0%; font-size:20px; font-weight:400;">Fundraising Timeline</h5>
-            <div style="overflow-y:scroll; height:250px;width:100%;">
+            <div style="width:100%;">
             <?php 
             $donationCount = count($donationAmounts);
             for ($i = 0; $i < $donationCount; $i++) { ?>
