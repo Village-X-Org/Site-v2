@@ -10,9 +10,9 @@ if (!hasParam('id')) {
 	$session_fundraiser_id = $_SESSION['fundraiser_id'] = $id = param('id');
 }
 
-$stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, 
+$stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, fundraiser_funded,
 		UNIX_TIMESTAMP(fundraiser_deadline) AS fundraiser_deadline, project_name, village_name, country_label,
-		project_id, project_budget, project_summary, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
+		project_id, project_budget, project_summary, project_funded, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
 		pictureSimilar.picture_filename AS similarPicture, pictureBanner.picture_filename AS bannerPicture
 		FROM fundraisers JOIN projects ON fundraiser_project_id=project_id 
 		JOIN villages ON project_village_id=village_id 
@@ -47,7 +47,12 @@ if ($row = $result->fetch_assoc()) {
 	$houseCount = $row['houseCount'];
 	$similarPicture = $row['similarPicture'];
 	$bannerPicture = $row['bannerPicture'];
-	$villageContribution = round($row['project_budget'] * .05);
+	$projectBudget = $row['project_budget'];
+	$villageContribution = round($projectBudget * .05);
+	$difference = $projectBudget - $row['project_funded'] + $row['fundraiser_funded'];
+	if ($difference < $amount) {
+		$amount = $difference;
+	}
 
 	$stmt->close();
 
