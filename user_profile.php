@@ -41,7 +41,7 @@ while ($row = $result->fetch_assoc()) {
   if (!$userFirstName) {
     $userFirstName = $row['donor_first_name'];
     $userLastName = $row['donor_last_name'];
-    $initials = $userFirstName[0].(strlen($userLastName) > 0 ? $userLastName[0] : "");
+    $initials = (strlen($userFirstName) > 0 ? $userFirstName[0] : "A").(strlen($userLastName) > 0 ? $userLastName[0] : "");
     $donorLocation = $row['donor_location'];
   }
   $amount = $row['donation_amount'];
