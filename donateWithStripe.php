@@ -104,6 +104,7 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     $stmt->bind_param("idisssiis", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId, $fundraiserId, $donationMessage);
     execute($stmt);
     $stmt->close();
+    $donationId = $link->insert_id;
 
     if ($fundraiserId) {
         $stmt = prepare("UPDATE fundraisers SET fundraiser_funded=fundraiser_funded+? WHERE fundraiser_id=?");
@@ -111,7 +112,7 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
         execute($stmt);
         $stmt->close();
     }
-    $donationId = $link->insert_id;
+    
     if ($projectId && !$test) {
         recordDonation($projectId, $donationAmountDollars, $donationId);
     }
