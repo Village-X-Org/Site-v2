@@ -138,13 +138,14 @@ function prepare($queryStr) {
 
 
 function execute($stmt) {
+    global $link;
     if (!$stmt->execute()) {
         $trace = print_r(debug_backtrace(), true);
-        emailAdmin("Exception", "Exception in Village X\n\n".$stmt->error."\n\n".$trace);
+       	emailAdmin("Exception", "Exception in Village X\n\n".$stmt->error."\n\n".$trace);
         print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
-        //if (isset($_SESSION['session_admin'])) {
+        if (isset($_SESSION['session_admin'])) {
         print "<P>details: ".mysqli_error($link)." <BR>QUERY: ".$stmt->error."</FONT><P>$trace</P>";
-        //}
+        }
         die();
     }
     
