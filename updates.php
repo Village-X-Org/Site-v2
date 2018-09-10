@@ -1,7 +1,7 @@
 <?php
 require_once("utilities.php");
 $result = doUnprotectedQuery("SELECT ru_date, ru_description, ru_picture_ids, project_name, project_id FROM raw_updates 
-	JOIN projects ON ru_project_id=project_id ORDER BY ru_project_id");
+	JOIN projects ON ru_project_id=project_id ORDER BY ru_project_id, ru_date DESC");
 $lastProjectId = 0;
 while ($row = $result->fetch_assoc()) {
 	$projectId = $row['project_id'];
