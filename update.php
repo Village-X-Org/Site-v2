@@ -13,7 +13,7 @@ if (isset($_POST['upload_file'])) {
 	$orientation = $_POST['orientation'];
 	if ($orientation == 3 || $orientation == 6 || $orientation == 8) {
     	$image = imagecreatefromjpeg('uploads/'.$filename);
-		switch($orienation) {
+		switch($orientation) {
 			case 3: // 180 rotate left
 	            $image->imagerotate($image, 180, -1);
 	            break;
