@@ -9,22 +9,25 @@ if (isset($_POST['upload_file'])) {
     $data = explode(',', $img);
 	fwrite($ifp, base64_decode($data[1]));
 	fclose( $ifp ); 
+	chmod('uploads/'.$filename, 0777);
 
 	$orientation = $_POST['orientation'];
 	if ($orientation == 3 || $orientation == 6 || $orientation == 8) {
     	$image = imagecreatefromjpeg('uploads/'.$filename);
 		switch($orientation) {
 			case 3: // 180 rotate left
-	            $image->imagerotate($image, 180, -1);
+	            $newImage = imagerotate($image, 180, 0);
 	            break;
 			case 6: // 90 rotate right
-	            $image->imagerotate($image, -90, -1);
+	            $newImage = imagerotate($image, -90, 0);
 	            break;
 			case 8:    // 90 rotate left
-	            $image->imagerotate($image, 90, -1);
+	            $newImage = imagerotate($image, 90, 0);
 	            break;
 	    }
-	    imagejpeg($image, 'uploads'.$filename, 100);
+	    imagejpeg($newImage, 'uploads/'.$filename, 100);
+	    imagedestroy($image);
+	    imagedestroy($newImage);
 	}
 
 	$stmt = prepare("INSERT INTO pictures (picture_filename) VALUES (?)");
