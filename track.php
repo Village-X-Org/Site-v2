@@ -25,11 +25,11 @@ if (hasParam('foId')) {
 <TABLE style="width:100%;height:100%;margin-left:30px;position:fixed;" cellpadding='0'>
 <TR >
 <?php 
-    $result = doUnprotectedQuery("SELECT picture_id, picture_filename, ru_id, ru_description, ru_project_id, UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, project_lat, project_lng, project_name, village_name, project_staff_id, fo_first_name, fo_last_name, fo_color FROM pictures JOIN raw_updates ON ru_picture_ids LIKE CONCAT('%,', picture_id,',%') JOIN projects ON ru_project_id=project_id JOIN villages ON village_id=project_village_id JOIN field_officers ON project_staff_id=fo_id ".($projectId ? "WHERE project_id=$projectId" : ($foId ? "WHERE project_staff_id=$foId" : ""))." ORDER BY fo_id, ru_date DESC");
+    $result = doUnprotectedQuery("SELECT project_id, picture_id, picture_filename, ru_id, ru_description, ru_project_id, UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, project_lat, project_lng, project_name, village_name, project_staff_id, fo_first_name, fo_last_name, fo_color FROM pictures JOIN raw_updates ON ru_picture_ids LIKE CONCAT('%,', picture_id,',%') JOIN projects ON ru_project_id=project_id JOIN villages ON village_id=project_village_id JOIN field_officers ON project_staff_id=fo_id ".($projectId ? "WHERE project_id=$projectId" : ($foId ? "WHERE project_staff_id=$foId" : ""))." ORDER BY fo_id, ru_date DESC");
 
     $coordsCode = "var coords = [ ";
     $pathsCode = "";
-    $lastPictureId = $lastLat = $lastLng = $lastFoId = $lastUpdateId = $earliestDate = $latestDate = 0;
+    $lastProjectId = $lastPictureId = $lastLat = $lastLng = $lastFoId = $lastUpdateId = $earliestDate = $latestDate = 0;
     $pictures = array();
     $avgLat = 0;
     $avgLng = 0;
@@ -40,10 +40,15 @@ if (hasParam('foId')) {
         $lat = $row['ru_lat'];
         $lng = $row['ru_lng'];
         if ($lat == 0) {
-            $lat = $row['ru_lat'];
-            $lng = $row['ru_lng'];
+            $lat = $row['project_lat'];
+            $lng = $row['project_lng'];
         }
+        $description = $row['ru_description'];
         $foId = $row['project_staff_id'];
+        $foName = $row['fo_first_name'].' '.$row['fo_last_name'];
+        $projectId = $row['project_id'];
+        $projectName = $row['project_name'];
+        $villageName = $row['village_name'];
         $color = $row['fo_color'];
         $updateId = $row['ru_id'];
 
@@ -55,7 +60,12 @@ if (hasParam('foId')) {
             $earliestDate = $timestamp;
         }
 
-        array_push($pictures, array($pictureId, $timestamp, $filename, $lat, $lng, $timestamp, $foId));
+        if ($updateId == $lastUpdateId) {
+            $description = '';
+        }
+        $title = "$projectName in $villageName ($foName)";
+        $lastProjectId = $projectId;
+        array_push($pictures, array($pictureId, $timestamp, $filename, $lat, $lng, $timestamp, $foId, $description, $projectId, $title));
 
         if ($lat == 0) {
             if ($lastLat == 0) {
@@ -121,9 +131,6 @@ if (hasParam('foId')) {
             return ($a[1] < $b[1]) ? -1 : 1;
         }
         usort($pictures,"cmpDates");
-        print "<script>/*";
-        print_r($pictures);
-        print "*/</script>";
         ?>
 
 <TD style="height:100%;vertical-align:top;text-align:center;">
@@ -137,25 +144,46 @@ if (hasParam('foId')) {
         $pictureIndex = 0;
         $pictureCount = count($pictures);
         $dayNav = '';
-        for ($i = 0; $i < $numDays; $i++) {
+        for ($i = 0; ; $i++) {
             $day = $i + 1;
             $beginningOfDay = $day * 24 * 60 * 60;
             if ($pictures[$pictureIndex][1] > $beginningOfDay) {
                 continue;
             }
             $dayNav .= "<TR><TD class='day' style='vertical-align:middle;border-bottom:.01em solid grey;'><a href='' onclick=\"smoothScroll('day$day');return false;\">".date("M j", $pictures[$pictureIndex][5])."</a></TD></TR>";
-            print "<div id='dayDisplay".$i."'><h4 id='day$day'>".date("M j, Y", $pictures[$pictureIndex][5]);
-            print "</h4>\n<p class='blog'></p></div>";
+            print "<div id='dayDisplay".$i."'><h4 id='day$day'>";
+            if ($pictures[$pictureIndex][5] > 0) {
+                print date("M j, Y", $pictures[$pictureIndex][5]);
+            }
+            if ($pictures[$pictureIndex][9]) {
+                print " - ".$pictures[$pictureIndex][9];
+            }
+            $lastProjectId = $pictures[$pictureIndex][8];
+            print "</h4>\n</div>";
             while ($pictureIndex < $pictureCount) {
                 if ($pictures[$pictureIndex][1] > $beginningOfDay) {
                     break;
                 }
+                
+                $projectId = $pictures[$pictureIndex][8];
+                if ($projectId != $lastProjectId) {
+                    print "<h4>".$pictures[$pictureIndex][9]."</h4>";
+                }
+                $lastProjectId = $projectId;
+                
                 $pictureId = $pictures[$pictureIndex][0];
+                if ($pictures[$pictureIndex][7]) {
+                    print "<p class='blog' style='text-align:center;margin-left:20px;margin-right:20px;'>".$pictures[$pictureIndex][7]."</p>";
+                }
                 print "<img src=\"".getBaseURL()."/".PICTURES_DIR.$pictures[$pictureIndex][2]."\" id=\"img".$pictures[$pictureIndex][0]."\" 
                         onclick=\"if (".$pictures[$pictureIndex][3]." != 0) { zoomTo(this, ".$pictures[$pictureIndex][3].", ".$pictures[$pictureIndex][4]."); }\" />\n";
                 $pictureIndex++;
+            }
+            if ($pictureIndex >= $pictureCount) {
+                break;
             } 
-        } ?>
+        } 
+        ?>
     </div>
 </TD>
 <TD style="width:50%" rowspan=2>
@@ -278,6 +306,7 @@ function smoothScroll(elemId) {
                 }
             });
             if (closestId) {
+                console.log("Scrolling to " + closestId);
                 zoomTo(document.getElementById(closestId), closestLat, closestLng);
             }
           });

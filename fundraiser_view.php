@@ -92,9 +92,9 @@ if ($row = $result->fetch_assoc()) {
 <title>Support <?php print $title; ?></title>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
-<meta property="og:title" content="Support <?php print $title; ?>"/>
+<meta property="og:title" content="Support <?php print htmlspecialchars($title); ?>"/>
 <meta property="og:url" content="<?php print BASE_URL."fundraiser/$id"; ?>"/>
-<meta property="og:description" content="<?php print $description; ?>" />
+<meta property="og:description" content="<?php print htmlspecialchars($description); ?>" />
 <?php 
 $metaProvided = 1;
 include('header.inc'); ?>
