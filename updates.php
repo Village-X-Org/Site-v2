@@ -18,7 +18,7 @@ while ($row = $result->fetch_assoc()) {
 	$projectName = $row['project_name'];
 	$pictureIds = $row['ru_picture_ids'];
 	if (strlen($pictureIds) > 0) {
-		$pictureIds = substr($pictureIds, 0, strlen($pictureIds) - 1);
+		$pictureIds = substr($pictureIds, 1, strlen($pictureIds) - 2);
 	}
 	$description = $row['ru_description'];
 	$date = $row['ru_date'];
