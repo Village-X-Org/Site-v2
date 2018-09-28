@@ -57,13 +57,19 @@ if (isset($_POST['upload_file'])) {
 	<HEAD>
 		<script src="js/exif.js"></script>
 		<script>
-		function uploadFile(file, lat, lng, orientation, dateTime){
+		var uploading = 0;
+		function uploadFile(file, lat, lng, orientation, dateTime, image){
 		    var xhr = new XMLHttpRequest();
 		    var fd = new FormData();
 		    xhr.open("POST", 'update.php', true);
 		    xhr.onreadystatechange = function() {
 		        if (xhr.readyState == 4 && xhr.status == 200) {
 		        	document.getElementById('pictureIds').value += xhr.responseText + ',';
+		        	image.style.opacity = 1;
+		        	uploading--;
+		        	if (uploading == 0) {
+		        		document.getElementById('postUpdateButton').disabled = false;
+		        	}
 		        }
 		    };
 		    fd.append("upload_file", file);
@@ -131,8 +137,11 @@ if (isset($_POST['upload_file'])) {
 					canvas.height = height;
 					var context = canvas.getContext("2d");
 					context.drawImage(this, 0, 0, width, height);
-					uploadFile(canvas.toDataURL('image/jpeg'), latDec, lngDec, orientation, dateTime);
+					uploadFile(canvas.toDataURL('image/jpeg'), latDec, lngDec, orientation, dateTime, image);
 					image.style.width='300px';
+					image.style.opacity=.5;
+					uploading++;
+		        	document.getElementById('postUpdateButton').disabled = true;
         			document.getElementById('imageContainer').appendChild(image);
 				};
         		image.src = e.target.result;
@@ -178,7 +187,7 @@ if (isset($_POST['upload_file'])) {
 
 			<p><TEXTAREA style='width:300px;height:100px;' placeholder="Notes on uploaded pictures or general updates on project." 
 				id='notes' name='notes'></TEXTAREA></p>
-			<p><input type='submit' value='Post Update' /></p>
+			<p><input type='submit' value='Post Update' id='postUpdateButton' /></p>
 		</form>
 		<?php } else { ?>
 			<script>document.location='user_login.php';</script>
