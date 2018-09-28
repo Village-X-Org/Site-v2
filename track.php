@@ -68,7 +68,7 @@ if (hasParam('foId')) {
         array_push($pictures, array($pictureId, $timestamp, $filename, $lat, $lng, $timestamp, $foId, $description, $projectId, $title));
 
         if ($lat == 0) {
-            if ($lastLat == 0) {
+            if ($lastLat == 0 && $foId != $lastFoId) {
                 continue;
             }
             $lat = $lastLat;
@@ -176,7 +176,7 @@ if (hasParam('foId')) {
                     print "<p class='blog' style='text-align:center;margin-left:20px;margin-right:20px;'>".$pictures[$pictureIndex][7]."</p>";
                 }
                 print "<img src=\"".getBaseURL()."/".PICTURES_DIR.$pictures[$pictureIndex][2]."\" id=\"img".$pictures[$pictureIndex][0]."\" 
-                        onclick=\"if (".$pictures[$pictureIndex][3]." != 0) { zoomTo(this, ".$pictures[$pictureIndex][3].", ".$pictures[$pictureIndex][4]."); }\" />\n";
+                        ".($pictures[$pictureIndex][3] != 0 ? "onclick=\"zoomTo(this, ".$pictures[$pictureIndex][3].", ".$pictures[$pictureIndex][4].");\"" : "")." />\n";
                 $pictureIndex++;
             }
             if ($pictureIndex >= $pictureCount) {
