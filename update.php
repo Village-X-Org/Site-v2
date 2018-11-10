@@ -172,7 +172,7 @@ if (isset($_POST['upload_file'])) {
 			<div id='imageContainer'>
 			</div>
 			<input type='hidden' id='updateDate' name='updateDate' value='' />
-			<input type='hidden' id='pictureIds' name='pictureIds' value='' />
+			<input type='hidden' id='pictureIds' name='pictureIds' value=',' />
 			<input type='hidden' id='lat' name='lat' value='' />
 			<input type='hidden' id='lng' name='lng' value='' />
 			<script>

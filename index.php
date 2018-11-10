@@ -4,7 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X Org | Fund Projects That Villages Choose</title>
+<title>Village X | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <style>
 body, html {

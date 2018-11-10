@@ -46,7 +46,7 @@ if (hasParam('foId')) {
         $description = $row['ru_description'];
         $foId = $row['project_staff_id'];
         $foName = $row['fo_first_name'].' '.$row['fo_last_name'];
-        $projectId = $row['project_id'];
+        $nextProjectId = $row['project_id'];
         $projectName = $row['project_name'];
         $villageName = $row['village_name'];
         $color = $row['fo_color'];
@@ -64,8 +64,8 @@ if (hasParam('foId')) {
             $description = '';
         }
         $title = "$projectName in $villageName ($foName)";
-        $lastProjectId = $projectId;
-        array_push($pictures, array($pictureId, $timestamp, $filename, $lat, $lng, $timestamp, $foId, $description, $projectId, $title));
+        $lastProjectId = $nextProjectId;
+        array_push($pictures, array($pictureId, $timestamp, $filename, $lat, $lng, $timestamp, $foId, $description, $nextProjectId, $title));
 
         if ($lat == 0) {
             if ($lastLat == 0 && $foId != $lastFoId) {
@@ -165,11 +165,11 @@ if (hasParam('foId')) {
                     break;
                 }
                 
-                $projectId = $pictures[$pictureIndex][8];
-                if ($projectId != $lastProjectId) {
+                $nextProjectId = $pictures[$pictureIndex][8];
+                if ($nextProjectId != $lastProjectId) {
                     print "<h4>".$pictures[$pictureIndex][9]."</h4>";
                 }
-                $lastProjectId = $projectId;
+                $lastProjectId = $nextProjectId;
                 
                 $pictureId = $pictures[$pictureIndex][0];
                 if ($pictures[$pictureIndex][7]) {
@@ -187,7 +187,7 @@ if (hasParam('foId')) {
     </div>
 </TD>
 <TD style="width:50%" rowspan=2>
-<div class='map' id='map' style='width: 100%; height: 100%;'></div>
+<div class='map' id='map' style='width: 95%; height: 100%;'></div>
 <script><?php print $coordsCode; ?>
 mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJjajdjMndlbG4xMDk5MndwbGZyc3I3YnN5In0.uCkT-Femn4KqxRbrlr-CIA';
 var map = new mapboxgl.Map({
@@ -196,12 +196,15 @@ var map = new mapboxgl.Map({
     center: [<?php print "$avgLat, $avgLng"; ?>],
     zoom: 3
 });
-      function zoomTo(elem, lat, lng) {
-        map.flyTo({center: [lng, lat], zoom: 16});
-          elem.scrollIntoView({
-            behavior: 'smooth'
-          });
-      }
+
+map.addControl(new mapboxgl.NavigationControl(), 'top-right');
+
+function zoomTo(elem, lat, lng) {
+    map.flyTo({center: [lng, lat], zoom: 16});
+        elem.scrollIntoView({
+        behavior: 'smooth'
+    });
+}
 
 function smoothScroll(elemId) {
     document.getElementById(elemId).scrollIntoView({ 
@@ -279,9 +282,15 @@ function smoothScroll(elemId) {
           newMarker.addTo(map);
           bounds.extend([point[2], point[1]]);
         });
+        <?php if (!$projectId) { ?>
         map.fitBounds(bounds, {
             padding: {top: 10, bottom:25, left: 25, right: 25}
         });
+        <?php } else { ?>
+            if (coords.length > 0) {
+                map.flyTo({center: [coords[0][2], coords[0][1]], zoom: 12}); 
+            }
+        <?php } ?>
 
         map.on('load', function() {
             <?php print $pathsCode; ?>
