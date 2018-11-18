@@ -56,7 +56,8 @@ if (hasParam('d')) {
   <script src="js/jquery-plugin-progressbar.js"></script>
   
 <link rel='stylesheet' href='css/lightbox.css' type='text/css' />
-<script src="js/imagelightbox.min.js"></script>  
+<script src="js/imagelightbox.min.js"></script>
+
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>

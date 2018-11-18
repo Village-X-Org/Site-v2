@@ -591,13 +591,13 @@ if (CACHING_ENABLED) {
         		        	: "border-top-right-radius:15px;border-bottom-right-radius:15px;"); ?>margin:20px;width:95%;height:200px;text-align:left;">
         		        	<?php if ($count % 2 == 0) { ?>
         		        		<div class="card-image" style='position:relative;'>
-					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-left-radius:15px;border-bottom-left-radius:15px;" />
+					        		<a href='<?php print (PICTURES_DIR . $picture); ?>' data-imagelightbox='project'><img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-left-radius:15px;border-bottom-left-radius:15px;" /></a>
 					        		<div style='position:absolute;bottom:0px;right:5px;font-size:36px;font-weight:bold;opacity:.8;color:white;'>+17</div>
 					      		</div>
         		        	<?php } ?>
 					      <div class="card-stacked">
 					        <div class="card-action" style='margin-left:20px;padding-left:0px;border-top:0px;border-bottom:1px solid rgba(160,160,160,0.2);'>
-					          <a style='color:black;font-weight:bold;text-transform:none;' href="#"><?php print "$date $villageName completes $projectName"; ?></a>
+					          <a style='color:black;font-weight:bold;text-transform:none;' href="project.php?id=<?php print $projectId; ?>"><?php print "$date $villageName completes $projectName"; ?></a>
 					        </div>
 					        <div class="card-content" style='overflow:hidden;padding-top:10px;'>
 					          <?php print $completion; ?>
@@ -605,7 +605,7 @@ if (CACHING_ENABLED) {
 					      </div>
 					      <?php if ($count % 2 == 1) { ?>
         		        		<div class="card-image" style='position:relative;'>
-					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-right-radius:15px;border-bottom-right-radius:15px;" />
+					        		<a href='<?php print (PICTURES_DIR . $picture); ?>' data-imagelightbox='project'><img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-right-radius:15px;border-bottom-right-radius:15px;" /></a>
 					        		<div style='position:absolute;bottom:0px;right:5px;font-size:36px;font-weight:bold;opacity:.8;color:white;'>+14</div>
 					      		</div>
         		        	<?php } ?>
@@ -653,7 +653,9 @@ if (CACHING_ENABLED) {
 	        	</div>
         	</div>
         	</div></div>
-
+        	<script>
+        		var instanceLightbox = $( 'a[data-imagelightbox="project"]' ).imageLightbox();
+        	</script>
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
