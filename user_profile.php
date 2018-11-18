@@ -24,12 +24,13 @@ $projectTypes = array();
 $funded = array();
 $budget = array();
 $statuses = array();
-$stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name,
+$stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name, fundraiser_id, fundraiser_title,
               vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
               FROM donors 
               LEFT JOIN donations ON donation_donor_id=donor_id 
               LEFT JOIN projects ON donation_project_id=project_id 
-              LEFT JOIN villages ON project_village_id=village_id 
+              LEFT JOIN villages ON project_village_id=village_id
+              LEFT JOIN fundraisers ON fundraiser_donor_id=donor_id
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
               WHERE donor_id=?
@@ -50,6 +51,8 @@ while ($row = $result->fetch_assoc()) {
   if (!$amount || !$projectName) {
     continue;
   }
+  $fundraiserId = $row['fundraiser_id'];
+  $fundraiserTitle = $row['fundraiser_title'];
   $projectBudget = $row['project_budget'];
   $totalDonationAmount += $amount;
   array_push($donationAmounts, $amount);
@@ -271,7 +274,7 @@ $stmt->close();
     
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
-            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
+            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation/Fundraiser History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
 
                     <div style="overflow: scroll; height:600px;">
           <?php

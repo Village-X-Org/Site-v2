@@ -15,11 +15,12 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture,
+        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
                     LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
+                    LEFT JOIN fundraisers ON donation_fundraiser_id=fundraiser_id
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
                     JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
@@ -43,6 +44,8 @@ switch ($type) {
             if ($exemplaryPicture) {
             	$projectExampleImage = $exemplaryPicture;
             }
+            $fundraiserId = $row['fundraiser_id'];
+            $fundraiserTitle = $row['fundraiser_title'];
         }
         $stmt->close();
         break;
@@ -261,7 +264,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																            }
 																        } else {
     																            ?>We deeply appreciate your 100% tax
-                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?>. You have
+                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId ? " to $fundraiserTitle" : ""); ?>. You have
                 																disrupted extreme poverty in rural Africa!
     																			<?php 
 																        }
