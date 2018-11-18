@@ -555,18 +555,9 @@ if (CACHING_ENABLED) {
                 JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
-        <div class="section" >
-        	<div class="row center" style='padding:0px;margin-left:20px;margin-right:20px;width:100%;height:45px;overflow:hidden;'>
-        		<div style='overflow-x:scroll;width:95%;height:50px;white-space: nowrap;direction:rtl;
-        				box-sizing:content-box;padding-bottom:17px;'>
-	        	<?php for ($i = 0; $i < 36; $i++) {
-	        		$dateStr = date('M Y', strtotime("-$i months"));
-	        		print "<a href='' style='padding:10px;border:1px solid;display:inline-block;font-weight:bold;'>$dateStr</a>";
-	        	} ?>
-	        	</div>
-        	</div>
-			<div class="row center" style='width:95%;overflow-y:scroll;height:600px;'>
+	<h4 class="header center light blue-text text-lighten-2" style='margin-bottom:0px;'>Field Updates</h4>
+        <div class="section" style='margin-bottom:0px;margin-top:0px;'>
+			<div class="row center" style='width:95%;overflow-y:scroll;height:600px;margin-bottom:0px;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
@@ -599,21 +590,23 @@ if (CACHING_ENABLED) {
         		        	style="<?php print ($count % 2 == 0 ? "border-top-left-radius:15px;border-bottom-left-radius:15px;" 
         		        	: "border-top-right-radius:15px;border-bottom-right-radius:15px;"); ?>margin:20px;width:95%;height:200px;text-align:left;">
         		        	<?php if ($count % 2 == 0) { ?>
-        		        		<div class="card-image">
-					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-left-radius:15px;border-bottom-left-radius:15px;">
+        		        		<div class="card-image" style='position:relative;'>
+					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-left-radius:15px;border-bottom-left-radius:15px;" />
+					        		<div style='position:absolute;bottom:0px;right:5px;font-size:36px;font-weight:bold;opacity:.8;color:white;'>+17</div>
 					      		</div>
         		        	<?php } ?>
 					      <div class="card-stacked">
 					        <div class="card-action" style='margin-left:20px;padding-left:0px;border-top:0px;border-bottom:1px solid rgba(160,160,160,0.2);'>
 					          <a style='color:black;font-weight:bold;text-transform:none;' href="#"><?php print "$date $villageName completes $projectName"; ?></a>
 					        </div>
-					        <div class="card-content" style='overflow-y:hidden;'>
-					          <p><?php print $completion; ?></p>
+					        <div class="card-content" style='overflow:hidden;padding-top:10px;'>
+					          <?php print $completion; ?>
 					        </div>
 					      </div>
 					      <?php if ($count % 2 == 1) { ?>
-        		        		<div class="card-image">
-					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-right-radius:15px;border-bottom-right-radius:15px;">
+        		        		<div class="card-image" style='position:relative;'>
+					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-right-radius:15px;border-bottom-right-radius:15px;" />
+					        		<div style='position:absolute;bottom:0px;right:5px;font-size:36px;font-weight:bold;opacity:.8;color:white;'>+14</div>
 					      		</div>
         		        	<?php } ?>
 						</div>
@@ -650,6 +643,15 @@ if (CACHING_ENABLED) {
         		   	<?php }
         		  	$count++;
             } ?>
+                    	<div class="row center" style='padding:0px;margin-left:20px;margin-right:20px;width:100%;height:45px;overflow:hidden;'>
+        		<div style='overflow-x:scroll;width:95%;height:50px;white-space: nowrap;direction:rtl;
+        				box-sizing:content-box;padding-bottom:17px;'>
+	        	<?php for ($i = 0; $i < 36; $i++) {
+	        		$dateStr = date('M Y', strtotime("-$i months"));
+	        		print "<a href='' style='padding:10px;border:1px solid;display:inline-block;font-weight:bold;'>$dateStr</a>";
+	        	} ?>
+	        	</div>
+        	</div>
         	</div></div>
 
 <?php 
