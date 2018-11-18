@@ -557,6 +557,15 @@ if (CACHING_ENABLED) {
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
         <div class="section" >
+        	<div class="row center" style='padding:0px;margin-left:20px;margin-right:20px;width:100%;height:45px;overflow:hidden;'>
+        		<div style='overflow-x:scroll;width:95%;height:50px;white-space: nowrap;direction:rtl;
+        				box-sizing:content-box;padding-bottom:17px;'>
+	        	<?php for ($i = 0; $i < 36; $i++) {
+	        		$dateStr = date('M Y', strtotime("-$i months"));
+	        		print "<a href='' style='padding:10px;border:1px solid;display:inline-block;font-weight:bold;'>$dateStr</a>";
+	        	} ?>
+	        	</div>
+        	</div>
 			<div class="row center" style='width:95%;overflow-y:scroll;height:600px;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
@@ -586,18 +595,40 @@ if (CACHING_ENABLED) {
 
         		    if ($count > 0) {
         		        ?>
-        		        <TABLE>
+        		        <div class="card horizontal <?php print ($count % 2 == 1 ? "right" : ""); ?>" 
+        		        	style="<?php print ($count % 2 == 0 ? "border-top-left-radius:15px;border-bottom-left-radius:15px;" 
+        		        	: "border-top-right-radius:15px;border-bottom-right-radius:15px;"); ?>margin:20px;width:95%;height:200px;text-align:left;">
+        		        	<?php if ($count % 2 == 0) { ?>
+        		        		<div class="card-image">
+					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-left-radius:15px;border-bottom-left-radius:15px;">
+					      		</div>
+        		        	<?php } ?>
+					      <div class="card-stacked">
+					        <div class="card-action" style='margin-left:20px;padding-left:0px;border-top:0px;border-bottom:1px solid rgba(160,160,160,0.2);'>
+					          <a style='color:black;font-weight:bold;text-transform:none;' href="#"><?php print "$date $villageName completes $projectName"; ?></a>
+					        </div>
+					        <div class="card-content" style='overflow-y:hidden;'>
+					          <p><?php print $completion; ?></p>
+					        </div>
+					      </div>
+					      <?php if ($count % 2 == 1) { ?>
+        		        		<div class="card-image">
+					        		<img src="<?php print (PICTURES_DIR . $picture); ?>" style="width:200px;height:200px;border-top-right-radius:15px;border-bottom-right-radius:15px;">
+					      		</div>
+        		        	<?php } ?>
+						</div>
+        		        <!--<TABLE>
         		        	<TR>
         		        	<?php if ($count % 2 == 1) {
         		        		print "<TD style='padding-left:20px;font-size:16px;vertical-align:top;'>$date <b>$projectName</b> completed in $villageName</b><br/><br/>$completion</TD>";
         		        	} ?>
         		        	<TD style='padding-right:20px;padding-left:20px;'>
-        		        		<img src='<?php print (PICTURES_DIR . $picture); ?>' style="width:200px;height:200px;border-radius:15px;" />
+        		        		<img src='' style="width:200px;height:200px;border-radius:15px;" />
         		        	</TD>
         		        	<?php if ($count % 2 == 0) {
         		        		print "<TD style='font-size:16px;padding-right:20px;vertical-align:top;'>$date <b>$projectName</b> completed in $villageName</b><br/><br/>$completion</TD>";
         		        	} ?></TR>
-        		        </TABLE>
+        		        </TABLE>-->
             		    <!--<div class="slickSlide" style='outline:0;'>
             		    <div class='row'>
             		    <div class='col s12 m12 l6' style='position:relative;'>
