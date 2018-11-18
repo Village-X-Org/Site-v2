@@ -556,37 +556,17 @@ if (CACHING_ENABLED) {
 	?>    
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
-        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
+        <div class="section" >
+			<div class="row center" style='width:95%;overflow-y:scroll;height:600px;'>
         		<?php 
         		$count = $lastDate = $previousDate = 0;
         		while (true) {
         		    if ($row = $result->fetch_assoc()) {
-        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS");
+        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS, Y");
         		    } else {
         		        $date = 0;
         		    }
-        		    if ($count > 0) {
-        		        ?>
-            		    <div class="slickSlide" style='outline:0;'>
-            		    <div class='row'>
-            		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
-                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
-                     <table style='width:100%;'>
-                     		<tr><td style='width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
-                     		<td style='text-align:right;width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
-                    	
-                        </div>
-        					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
-        							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
-                			</div>
-                		</div>
-                  </div></a>
-        		   	<?php }
-        		   	if (!$date) {
+        		    if (!$date) {
         		   		break;
         		   	}
         		    $projectId = $row['project_id'];
@@ -603,13 +583,43 @@ if (CACHING_ENABLED) {
         		  	    $previousDate = $lastDate;
         		  	}
         		  	$lastDate = $date;
+
+        		    if ($count > 0) {
+        		        ?>
+        		        <TABLE>
+        		        	<TR>
+        		        	<?php if ($count % 2 == 1) {
+        		        		print "<TD style='padding-left:20px;font-size:16px;vertical-align:top;'>$date <b>$projectName</b> completed in $villageName</b><br/><br/>$completion</TD>";
+        		        	} ?>
+        		        	<TD style='padding-right:20px;padding-left:20px;'>
+        		        		<img src='<?php print (PICTURES_DIR . $picture); ?>' style="width:200px;height:200px;border-radius:15px;" />
+        		        	</TD>
+        		        	<?php if ($count % 2 == 0) {
+        		        		print "<TD style='font-size:16px;padding-right:20px;vertical-align:top;'>$date <b>$projectName</b> completed in $villageName</b><br/><br/>$completion</TD>";
+        		        	} ?></TR>
+        		        </TABLE>
+            		    <!--<div class="slickSlide" style='outline:0;'>
+            		    <div class='row'>
+            		    <div class='col s12 m12 l6' style='position:relative;'>
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
+                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"></span>
+                     <table style='width:100%;'>
+                     		<tr><td style='width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
+                     		<td style='text-align:right;width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
+                    	
+                        </div>
+        					<div class='col s12 m12 l6 center-align'>
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
+                			</div>
+                		</div>
+                  </div></a>-->
+        		   	<?php }
         		  	$count++;
             } ?>
         	</div></div>
-        <script>	$('.slickContainer').slick({
-          focusOnSelect: false,
-        	  infinite: false 
-        	});</script>
 
 <?php 
         $contents = ob_get_contents();
