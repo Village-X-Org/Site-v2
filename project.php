@@ -135,6 +135,7 @@ $stmt->close(); ?>
 					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
+<script src="js/imagelightbox2.js"></script>
 <script>
 			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
 			{

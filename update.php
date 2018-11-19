@@ -33,8 +33,12 @@ if (isset($_POST['upload_file'])) {
 	$stmt = prepare("INSERT INTO pictures (picture_filename) VALUES (?)");
 	$stmt->bind_param('s', $filename);
 	execute($stmt);
-	print $link->insert_id;
+	$picId = $link->insert_id;
+	print $picId;
 	$stmt->close();
+
+	rename("uploads/$filename", "uploads/$picId.jpg");
+	doUnprotectedQuery("UPDATE pictures SET picture_filename='$picId.jpg' WHERE picture_id=$picId");
 
 	return;
 } elseif (isset($_POST['projectId'])) {
