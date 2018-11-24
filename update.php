@@ -1,9 +1,11 @@
 <?php
 require_once("utilities.php");
 
-if (isset($_POST['upload_file'])) {
-	$img = $_POST['upload_file'];
+if (hasParam('upload_file')) {
+	$img = param('upload_file');
+	$smallFile = param("upload_file_small");
 	$filename = uniqid() . '.jpg';
+	$smallFilename = uniqId() . '.jpg';
 
 	$ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
@@ -11,9 +13,16 @@ if (isset($_POST['upload_file'])) {
 	fclose( $ifp ); 
 	chmod('uploads/'.$filename, 0777);
 
+	$ifp = fopen('uploads/'.$smallFilename, 'wb');
+    $data = explode(',', $smallFile);
+	fwrite($ifp, base64_decode($data[1]));
+	fclose($ifp); 
+	chmod('uploads/'.$smallFilename, 0777);
+
 	$orientation = $_POST['orientation'];
 	if ($orientation == 3 || $orientation == 6 || $orientation == 8) {
     	$image = imagecreatefromjpeg('uploads/'.$filename);
+    	$smallImage = imagecreatefromjpeg('uploads/'.$smallFilename);
 		switch($orientation) {
 			case 3: // 180 rotate left
 	            $newImage = imagerotate($image, 180, 0);
@@ -38,6 +47,7 @@ if (isset($_POST['upload_file'])) {
 	$stmt->close();
 
 	rename("uploads/$filename", "uploads/$picId.jpg");
+	rename("uploads/$smallFilename", "uploads/s$picId.jpg");
 	doUnprotectedQuery("UPDATE pictures SET picture_filename='$picId.jpg' WHERE picture_id=$picId");
 
 	return;
@@ -62,7 +72,7 @@ if (isset($_POST['upload_file'])) {
 		<script src="js/exif.js"></script>
 		<script>
 		var uploading = 0;
-		function uploadFile(file, lat, lng, orientation, dateTime, image){
+		function uploadFile(file, smallFile, lat, lng, orientation, dateTime, image){
 		    var xhr = new XMLHttpRequest();
 		    var fd = new FormData();
 		    xhr.open("POST", 'update.php', true);
@@ -77,6 +87,7 @@ if (isset($_POST['upload_file'])) {
 		        }
 		    };
 		    fd.append("upload_file", file);
+		    fd.append("upload_file_small", smallFile);
 		    if (lat) {
 		    	document.getElementById('lat').value = lat;
 		    	document.getElementById('lng').value = lng;
@@ -141,7 +152,24 @@ if (isset($_POST['upload_file'])) {
 					canvas.height = height;
 					var context = canvas.getContext("2d");
 					context.drawImage(this, 0, 0, width, height);
-					uploadFile(canvas.toDataURL('image/jpeg'), latDec, lngDec, orientation, dateTime, image);
+					dataUrlLarge = canvas.toDataURL('image/jpeg');
+
+					var MIN_SIDE_LENGTH = 400;
+					if (width > height) {
+					  smallWidth = (width / height) * MIN_SIDE_LENGTH;
+					  smallHeight = MIN_SIDE_LENGTH;
+					} else {
+					  smallHeight = (height / width) * MIN_SIDE_LENGTH;
+					  smallWidth = MIN_SIDE_LENGTH;
+					}
+					canvas.width = smallWidth;
+					canvas.height = smallHeight;
+					context = canvas.getContext("2d");
+					context.drawImage(this, 0, 0, smallWidth, smallHeight);
+					dataUrlSmall = canvas.toDataURL('image/jpeg');
+
+					uploadFile(dataUrlLarge, dataUrlSmall, latDec, lngDec, orientation, dateTime, image);
+
 					image.style.width='300px';
 					image.style.opacity=.5;
 					uploading++;
