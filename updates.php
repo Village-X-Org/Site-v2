@@ -37,7 +37,7 @@ while ($row = $result->fetch_assoc()) {
 		while ($rowPics = $resultPics->fetch_assoc()) {
 			$picFilename = $rowPics['picture_filename'];
 			print "<a href='uploads/$picFilename' data-lightbox='update$updateCount'>
-					<img style='width:300px;' src='uploads/$picFilename' /></a>";
+					<img style='width:300px;' src='uploads/s$picFilename' /></a>";
 		}
 		$resultPics->close();
 	}
