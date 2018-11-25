@@ -1,10 +1,10 @@
 <?php
 require_once("utilities.php");
 
-define('RECS_PER_PAGE', 20);
+define('RECS_PER_PAGE', 5);
 
 if (!isset($start)) {
-	$projectId = $foId = $villageId = $start = 0; 
+	$projectId = $foId = $villageId = $start = $small = 0; 
 	if (hasParam('projectId')) {
 		$projectId = paramInt('projectId');
 	}
@@ -17,6 +17,9 @@ if (!isset($start)) {
 	if (hasParam('start')) {
 		$start = paramInt('start');
 	}
+    if (hasParam('small')) {
+        $small = paramInt('small');
+    }
 	$putInVar = 0;
 } else {
 	$putInVar = 1;
@@ -59,7 +62,49 @@ if (!isset($start)) {
         array_push($updates, array("update_id"=>$updateId, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "staff"=>$foName, 
         	"picture_ids"=>$pictureIds, "timestamp"=>$timestamp, "lat"=>$lat, "lng"=>$lng, "timestamp"=>$timestamp, "description"=>$description));
     }
-    if (!$putInVar) {
+    /*if (!$putInVar) {
     	print json_encode(array("has_more_records"=>$hasMore, "updates"=>$updates));
+    }*/
+    $count = 0;
+    print "<script>hasMoreRecords = $hasMore;newStart = ".(RECS_PER_PAGE + $start)."</script>";
+    foreach ($updates as $update) {
+        if (strlen($update['picture_ids']) < 2) {
+            continue;
+        }
+        $updateId = $update['update_id'];
+        if (date('Y', $update["timestamp"]) < 2000) {
+            $dateStr = 0; 
+        } else {
+            $dateStr = date("F j, Y", $update["timestamp"]);
+        }
+        $title = (!$projectId ? "<a style='color:white;font-weight:600;' href='project.php?id=".$update['project_id']."' target='_blank'>".$update['project_name']
+            ."</a> in ".$update['village_name']."<br/>" : "").($dateStr ? $dateStr : "");
+        print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
+        if ($session_is_admin) { ?>
+           <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
+                onclick="document.getElementById('updateDisplay<?php print $updateId; ?>').style.display='none';
+                        document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
+                        this.style.display='none';return false;">
+                <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
+            </a>
+        <?php }
+        print "\n</div><div class='update updateText' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
+        print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'><form id='updateEditForm$updateId'>
+                <input type='hidden' name='updateId' value='$updateId' />
+                <div class='updateText flow-text'>
+                <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit$updateId' style='padding:5px; background:none;border:0;height:250px;width:100%;' placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'>"
+                    .($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : "").
+            "</TEXTAREA></div><div style='width:90%;text-align:right;'><input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate($updateId);' /></div></form></div>";
+        $pictures = explode(',', $update["picture_ids"]);
+        for ($pictureIndex = ($count > 0 ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
+            $pictureId = $pictures[$pictureIndex];
+            if (!$pictureId) {
+                continue;
+            }
+            print "<img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    onclick=\"\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />\n";
+            $pictureIndex++;
+        }
+        $count++;  
     }
    ?>

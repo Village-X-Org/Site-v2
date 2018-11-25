@@ -29,7 +29,10 @@ if (hasParam('small')) {
     $small = paramInt('small');
 }
 
+ob_start();
 include("track_updates.php");
+$updateHTML = ob_get_contents();
+ob_end_clean();
 
 if (count($updates) == 0) {
     print "No records found";
@@ -70,7 +73,7 @@ $picture = $pictureIds[0].".jpg";
     }
 
     .topTitle {
-        text-transform:uppercase;
+        font-family: 'Montserrat', sans-serif;
         font-size:36px;
         text-align:right;
         color:white;
@@ -85,7 +88,7 @@ $picture = $pictureIds[0].".jpg";
     }
     
     .updateHeader {
-        text-transform:uppercase;
+        font-family: 'Montserrat', sans-serif;
         color:white;
         text-align:left;
         font-size:24px;
@@ -99,7 +102,7 @@ $picture = $pictureIds[0].".jpg";
 
     .updateText {
         text-align:left;
-        font-size:22px;
+        font-size:18px;
         color:#303030;
         padding-left:30px;
         padding-right:10px;
@@ -164,82 +167,46 @@ $metaProvided = 1;
                             <?php print $pageDescription; ?>
                         </span><br/><br/><span class='topDescription'><i>Last Update: <?php print $latestDate; ?></i></span>
                     </div>
-                
-                    <?php if ($session_is_admin) { ?>
-                        <div id='titleEdit' style='display:none;text-align:left;width:75%;height:350px;'>
-                            <form id='titleEditForm'>
-                                <input type='hidden' name='projectId' value='<?php print $projectId; ?>' />
-                                <input class='topTitle' id='titleInput' type='text' name='title' style='border:0;background:none;height:75px;
-                                        line-height:75px;width:100%;' 
-                                value='<?php print str_replace("<br/>", " | ", $pageTitle); ?>' /><br/><br/>
-                                <TEXTAREA type='text' id='descriptionInput' class='topDescription' name='description' style='background:none;border:0;height:200px;width:100%;margin-bottom:5px;'><?php print stripslashes($pageDescription); ?></TEXTAREA>
-                                <br/>
-                                <input type='button' value='save new title and description' style='text-align:right;' onclick='saveTitle();' />
-                            </form>
-                        </div>
-                        <div style='text-align:right;'>
-                            <span style='font-size:16px;'>
-                                <a href='' id='titleEditLink' style='font-size:smaller;vertical-align:bottom;' 
-                                        onclick="document.getElementById('titleDisplay').style.display='none';this.style.display='none';
-                                        document.getElementById('titleEdit').style.display='inline-block';return false;"> edit title and description</a>
-                            </span>
-                        </div>
-                    <?php } ?>
                 </div> 
         </div>
+            <div id='updatesDiv'>
             <?php
-            $count = 0;
-            foreach ($updates as $update) {
-                if (strlen($update['picture_ids']) < 2) {
-                    continue;
-                }
-                $updateId = $update['update_id'];
-                if (date('Y', $update["timestamp"]) < 2000) {
-                    $dateStr = 0; 
-                } else {
-                    $dateStr = date("F j, Y", $update["timestamp"]);
-                }
-                $title = (!$projectId ? $update['project_name']." in ".$update['village_name']."<br/>" : "").($dateStr ? $dateStr : "");
-                print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
-                if ($session_is_admin) { ?>
-                   <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
-                        onclick="document.getElementById('updateDisplay<?php print $updateId; ?>').style.display='none';
-                                document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
-                                this.style.display='none';return false;">
-                        <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
-                    </a>
-                <?php }
-                print "\n</div><div class='update updateText flow-text' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
-                print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'><form id='updateEditForm$updateId'>
-                        <input type='hidden' name='updateId' value='$updateId' />
-                        <div class='updateText flow-text'>
-                        <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit$updateId' style='padding:5px; background:none;border:0;height:250px;width:100%;' placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'>"
-                            .($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : "").
-                    "</TEXTAREA></div><div style='width:90%;text-align:right;'><input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate($updateId);' /></div></form></div>";
-                $pictures = explode(',', $update["picture_ids"]);
-                for ($pictureIndex = ($count > 0 ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
-                    $pictureId = $pictures[$pictureIndex];
-                    if (!$pictureId) {
-                        continue;
-                    }
-                    print "<img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
-                            onclick=\"\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />\n";
-                    $pictureIndex++;
-                }
-                $count++;  
-            }
+            print $updateHTML;
             ?>
+            <img id='loadingImage' style='text-align:center;width:32px;visibility:hidden;' src='images/loading.gif' />
+            </div>
 </div>
 </div>
 <div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
 <script>
+    projectId = <?php print $projectId; ?>;
     lastScrollTop = 0;
+    refreshing = 0;
+    small = <?php print $small; ?>;
     $(window).on("scroll", function(e) {
         scrollTop = document.body.scrollTop;
         if (scrollTop > lastScrollTop && scrollTop > 67) {
             $('#map').css({position: 'fixed', top:'0'});
         } else if (scrollTop < lastScrollTop && scrollTop <= 67) {
             $('#map').css({position: 'absolute', top:'67'});
+        }
+
+        if (!refreshing && hasMoreRecords && scrollTop > $('body').height() - 2000) {
+            refreshing = 1;
+            url = "track_updates.php?start=" + newStart;
+            if (projectId > 0) {
+                url += "&projectId=" + projectId;
+            }
+            if (small > 0) {
+                url += '&small=' + small;
+            }
+
+            $('#loadingImage').css({visibility: 'visible'});
+            $.get(url, function(data) {
+                $('#loadingImage').css({visibility: 'hidden'});
+                $("#updatesDiv").append( data );
+                refreshing = 0;
+            });
         }
         lastScrollTop = scrollTop;
     });
