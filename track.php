@@ -223,10 +223,12 @@ $metaProvided = 1;
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     function zoomTo(elem, lat, lng) {
-        map.flyTo({center: [lng, lat], zoom: 12});
+        map.flyTo({center: [lng, lat], zoom: 15});
+        if (elem) {
             elem.scrollIntoView({
-            behavior: 'smooth'
-        });
+                behavior: 'smooth'
+            });
+        }
     }
 
     function smoothScroll(elemId) {
@@ -257,6 +259,15 @@ $metaProvided = 1;
                 right : 20
             }
         });
+    }
+
+    function saveUpdate(updateId) {
+        document.getElementById('updateText' + updateId).innerHTML = document.getElementById('updateTextEdit' + updateId).value;
+
+        document.getElementById('updateDisplay' + updateId).style.display = 'block';
+        document.getElementById('updateEdit' + updateId).style.display = 'none';
+        document.getElementById('updateEditLink' + updateId).style.display = 'inline';
+        $.post('<?php print getBaseURL(); ?>/track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
     }
 
     map.on('click', 'villages', function(e) {
