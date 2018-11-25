@@ -258,7 +258,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			</ul>
 		</div>
 	</nav>
-<div style="width:100;border-style:solid; border-width:1px">
+<div style="width:100%;border-style:solid; border-width:1px">
 </div>
 	
 		<div id="donationModal" class="modal">

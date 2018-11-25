@@ -3,7 +3,7 @@ require_once("utilities.php");
 
 $projectId = $start = $userId = $foId = $villageId = 0; 
 $pageTitle = "Village X<br/>Latest Updates";
-$pageDescription = 'Get the latest news on our in-progress and completed projects."';
+$pageDescription = 'Get the latest news on our in-progress and completed projects.';
 $pagePicture = 'images/khwalala_market.jpg';
 
 if (hasParam('projectId')) {
@@ -31,7 +31,7 @@ if (count($updates) == 0) {
     print "No records found";
     die(1);
 }
-$latestDate = date("F n, Y", $updates[0]["timestamp"]);
+$latestDate = date("F j, Y", $updates[0]["timestamp"]);
 
 $pictureStr = $updates[0]["picture_ids"];
 if (strpos($pictureStr, ',') > 0) {
@@ -45,7 +45,13 @@ $picture = $pictureIds[0].".jpg";
 <HTML>
 <HEAD><TITLE><?php print str_replace("<br/>", " | ", $pageTitle); ?></TITLE>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<style>
+<style>    
+    body {
+        margin:0px;
+        padding:0px;
+        background:url('<?php print getBaseURL(); ?>/images/text_noise.png');"
+    }
+
     table td {
        padding:0; margin:0;
     }
@@ -119,6 +125,7 @@ $picture = $pictureIds[0].".jpg";
     .trackEntries {
         width:50%;
     }
+
     @media only screen and (max-width : 920px) {
         .trackEntries {
             width:100%;
@@ -138,16 +145,18 @@ $picture = $pictureIds[0].".jpg";
 <meta property="og:title" content="<?php print str_replace("<br/>", " | ", $pageTitle); ?>"/>
 <meta property="og:url" content="<?php print getBaseURL().($projectId ? "track.php?projectId=$projectId" : "/track.php"); ?>" />
 <meta property="og:description" content="<?php print $pageDescription; ?>" />
-</HEAD>
-<BODY style="margin:0px;padding:0px;background:url('<?php print getBaseURL(); ?>/images/text_noise.png');">
+<?php 
+$metaProvided = 1;
+ include('header.inc'); 
+?>
 <TABLE style="width:100%;height:100%;">
 <TR >
 
 <TD style="height:100%;vertical-align:top;text-align:center;overflow:hidden;right:-17px;">
-    <div class='trackEntries' style='overflow-y:scroll;position:fixed;height:100%;padding-right:17px;'>
+    <div class='trackEntries' style='overflow-y:scroll;width:100%;height:100%;padding-right:0px;'>
         <div style="width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
             <div style='background-color:black;width:100%;height:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
-                <div style="position:absolute;right:0px;bottom:60px;padding:10px;width:75%;background-color:#00000088;">
+                <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
                     <div style='text-align:right;' id='titleDisplay'>
                         <span class='topTitle' id='topTitle'><?php print $pageTitle; ?></span>
                         <br/>
@@ -186,11 +195,11 @@ $picture = $pictureIds[0].".jpg";
                 }
                 $updateId = $update['update_id'];
                 if (date('Y', $update["timestamp"]) < 2000) {
-                    $dateStr = "Date unspecified"; 
+                    $dateStr = 0; 
                 } else {
-                    $dateStr = date("F n, Y", $update["timestamp"]);
+                    $dateStr = date("F j, Y", $update["timestamp"]);
                 }
-                $title = (!$projectId ? $update['project_name']." in ".$update['village_name']." | " : "").$dateStr;
+                $title = (!$projectId ? $update['project_name']." in ".$update['village_name']."<br/>" : "").($dateStr ? $dateStr : "");
                 print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
                 if ($session_is_admin) { ?>
                    <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
