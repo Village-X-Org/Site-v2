@@ -200,7 +200,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 <body>
 <?php if (!$donorId) { ?>
 
-
 	<ul id="About" class="dropdown-content">
           <li><a href="about.php">Mission &amp; Team</a></li>
           <li><a href="model.php">Model</a></li>
@@ -258,7 +257,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			</ul>
 		</div>
 	</nav>
-<div style="width:100%;border-style:solid; border-width:1px">
+<div style="width:100%;border-style:solid; border-width:1px;">
 </div>
 	
 		<div id="donationModal" class="modal">
@@ -296,5 +295,4 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					</div>
 				</div>
 		</div>  
-		
 <?php } // Not donorId end. ?>

@@ -1,7 +1,7 @@
 <?php
 require_once("utilities.php");
 
-$projectId = $start = $userId = $foId = $villageId = 0; 
+$projectId = $start = $userId = $foId = $villageId = $small = 0; 
 $pageTitle = "Village X<br/>Latest Updates";
 $pageDescription = 'Get the latest news on our in-progress and completed projects.';
 $pagePicture = 'images/khwalala_market.jpg';
@@ -23,6 +23,10 @@ if (hasParam('projectId')) {
         $pageDescription = "Updates from Village X field officer, $foName";
     }
     $stmt->close();
+}
+
+if (hasParam('small')) {
+    $small = paramInt('small');
 }
 
 include("track_updates.php");
@@ -66,8 +70,8 @@ $picture = $pictureIds[0].".jpg";
     }
 
     .topTitle {
-        font-family: flicker;
-        font-size:48px;
+        text-transform:uppercase;
+        font-size:36px;
         text-align:right;
         color:white;
     }
@@ -81,10 +85,10 @@ $picture = $pictureIds[0].".jpg";
     }
     
     .updateHeader {
-        font-family: flicker;
+        text-transform:uppercase;
         color:white;
         text-align:left;
-        font-size:32px;
+        font-size:24px;
         padding-left:20px;
         padding-top:10px;
         padding-bottom:10px;
@@ -130,7 +134,6 @@ $picture = $pictureIds[0].".jpg";
         .trackEntries {
             width:100%;
         }
-        
         .map {
           display: none;
         }
@@ -149,13 +152,10 @@ $picture = $pictureIds[0].".jpg";
 $metaProvided = 1;
  include('header.inc'); 
 ?>
-<TABLE style="width:100%;height:100%;">
-<TR >
-
-<TD style="height:100%;vertical-align:top;text-align:center;overflow:hidden;right:-17px;">
-    <div class='trackEntries' style='overflow-y:scroll;width:100%;height:100%;padding-right:0px;'>
-        <div style="width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
-            <div style='background-color:black;width:100%;height:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
+<div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
+    <div style='width:100%;padding-right:0px;'>
+        <div style="width:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
+            <div style='background-color:black;width:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
                 <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
                     <div style='text-align:right;' id='titleDisplay'>
                         <span class='topTitle' id='topTitle'><?php print $pageTitle; ?></span>
@@ -222,17 +222,28 @@ $metaProvided = 1;
                     if (!$pictureId) {
                         continue;
                     }
-                    print "<img src=\"".ABS_PICTURES_DIR.$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    print "<img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
                             onclick=\"\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />\n";
                     $pictureIndex++;
                 }
                 $count++;  
             }
             ?>
-</TD>
-<TD style="width:50%" rowspan=2>
-<div class='map' id='map' style='width: 100%; height: 100%;'></div>
+</div>
+</div>
+<div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
 <script>
+    lastScrollTop = 0;
+    $(window).on("scroll", function(e) {
+        scrollTop = document.body.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 67) {
+            $('#map').css({position: 'fixed', top:'0'});
+        } else if (scrollTop < lastScrollTop && scrollTop <= 67) {
+            $('#map').css({position: 'absolute', top:'67'});
+        }
+        lastScrollTop = scrollTop;
+    });
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJjajdjMndlbG4xMDk5MndwbGZyc3I3YnN5In0.uCkT-Femn4KqxRbrlr-CIA';
     var map = new mapboxgl.Map({
         container : 'map',
@@ -241,7 +252,7 @@ $metaProvided = 1;
         zoom : 6, 
         padding: {top: 20, bottom:150, left: 20, right: 20}
     });
-
+    map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     function zoomTo(elem, lat, lng) {
@@ -318,8 +329,6 @@ $metaProvided = 1;
         });
     <?php } ?> 
     </script>
-</TD>
-</TR>
-</TABLE>
+</div>
 </BODY>
 </HTML>
