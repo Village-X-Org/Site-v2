@@ -9,8 +9,9 @@ $projectId = 0;
 if (hasParam('projectId')) {
 	$projectId = paramInt('projectId');
 }
-$result = doUnprotectedQuery("SELECT ru_date, ru_description, ru_picture_ids, project_name, project_id FROM raw_updates 
-	JOIN projects ON ru_project_id=project_id ".($projectId ? "AND project_id=$projectId " : "")."ORDER BY ru_project_id, ru_date DESC");
+$result = doUnprotectedQuery("SELECT ru_id, ru_date, ru_description, ru_picture_ids, project_name, project_id, village_name FROM raw_updates 
+	JOIN projects ON ru_project_id=project_id ".($projectId ? "AND project_id=$projectId " : "")." 
+	JOIN villages ON project_village_id=village_id ORDER BY ru_date DESC");
 $lastProjectId = 0;
 $updateCount = 0;
 while ($row = $result->fetch_assoc()) {
@@ -22,9 +23,10 @@ while ($row = $result->fetch_assoc()) {
 	}
 	$description = $row['ru_description'];
 	$date = $row['ru_date'];
+	$villageName = $row['village_name'];
 
 	if ($projectId != $lastProjectId) {
-		print "<H3>$projectName</H3>";
+		print "<H3>$projectName in $villageName</H3>";
 	}
 	$lastProjectId = $projectId;
 
@@ -35,7 +37,7 @@ while ($row = $result->fetch_assoc()) {
 		while ($rowPics = $resultPics->fetch_assoc()) {
 			$picFilename = $rowPics['picture_filename'];
 			print "<a href='uploads/$picFilename' data-lightbox='update$updateCount'>
-					<img style='width:300px;' src='uploads/$picFilename' /></a>";
+					<img style='width:300px;' src='uploads/s$picFilename' /></a>";
 		}
 		$resultPics->close();
 	}

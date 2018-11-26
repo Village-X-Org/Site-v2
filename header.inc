@@ -55,152 +55,14 @@ if (hasParam('d')) {
 <link rel="stylesheet" href="css/jquery-plugin-progressbar.css">
   <script src="js/jquery-plugin-progressbar.js"></script>
   
-<link rel='stylesheet' href='css/lightbox.css' type='text/css' />
-<script src="js/imagelightbox.min.js"></script>  
+<link rel='stylesheet' href='css/lightbox2.css' type='text/css' />
 <script src="https://checkout.stripe.com/checkout.js"></script>
 
 <link rel="stylesheet" type="text/css" href="css/slick.css"/>
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-  
-<style>
-#imagelightbox {
-	position: fixed;
-	z-index: 9999;
-	 
-	-ms-touch-action: none;
-	touch-action: none;
-}
-
-.donor-background { 
-	background-color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
-}
-.donor-text {
-	color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
-}
-.donor-border {
-	border-color: <?php print ($donorColor ? $donorColor : '#48A7F2'); ?>;
-}
-</style>
-
 <script>
-var donationIsSubscription, donationFirstName, donationLastName, donationEmail, donationProjectId, 
-		donationAmount, donationHonoreeId, donationHonoreeMessage, donationFundraiserId, donationFundraiserMessage, donationGCAmount = 0;
-//Lightbox Begin
-var activityIndicatorOn = function()
-{
-	$( '<div id="imagelightbox-loading"><div></div></div>' ).appendTo( 'body' );
-},
-activityIndicatorOff = function()
-{
-	$( '#imagelightbox-loading' ).remove();
-},
-
-overlayOn = function()
-{
-	$( '<div id="imagelightbox-overlay"></div>' ).appendTo( 'body' );
-},
-overlayOff = function()
-{
-	$( '#imagelightbox-overlay' ).remove();
-},
-
-closeButtonOn = function( instance )
-{
-	$( '<button type="button" id="imagelightbox-close" title="Close"></button>' ).appendTo( 'body' ).on( 'click touchend', function(){ $( this ).remove(); instance.quitImageLightbox(); return false; });
-},
-closeButtonOff = function()
-{
-	$( '#imagelightbox-close' ).remove();
-},
-
-captionOn = function()
-{
-	var description = $( 'a[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"] img' ).attr( 'alt' );
-	if( description.length > 0 )
-		$( '<div id="imagelightbox-caption">' + description + '</div>' ).appendTo( 'body' );
-},
-captionOff = function()
-{
-	$( '#imagelightbox-caption' ).remove();
-},
-
-navigationOn = function( instance, selector )
-{
-	var images = $( selector );
-	if( images.length )
-	{
-		var nav = $( '<div id="imagelightbox-nav"></div>' );
-		for( var i = 0; i < images.length; i++ )
-			nav.append( '<button type="button"></button>' );
-
-		nav.appendTo( 'body' );
-		nav.on( 'click touchend', function(){ return false; });
-
-		var navItems = nav.find( 'button' );
-		navItems.on( 'click touchend', function()
-		{
-			var $this = $( this );
-			if( images.eq( $this.index() ).attr( 'href' ) != $( '#imagelightbox' ).attr( 'src' ) )
-				instance.switchImageLightbox( $this.index() );
-
-			navItems.removeClass( 'active' );
-			navItems.eq( $this.index() ).addClass( 'active' );
-
-			return false;
-		})
-		.on( 'touchend', function(){ return false; });
-	}
-},
-navigationUpdate = function( selector )
-{
-	var items = $( '#imagelightbox-nav button' );
-	items.removeClass( 'active' );
-	items.eq( $( selector ).filter( '[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"]' ).index( selector ) ).addClass( 'active' );
-},
-navigationOff = function()
-{
-	$( '#imagelightbox-nav' ).remove();
-},
-
-arrowsOn = function( instance, selector )
-{
-	var $arrows = $( '<button type="button" class="imagelightbox-arrow imagelightbox-arrow-left"></button><button type="button" class="imagelightbox-arrow imagelightbox-arrow-right"></button>' );
-
-	$arrows.appendTo( 'body' );
-
-	$arrows.on( 'click touchend', function( e )
-	{
-		e.preventDefault();
-
-		var $this	= $( this ),
-			$target	= $( selector + '[href="' + $( '#imagelightbox' ).attr( 'src' ) + '"]' ),
-			index	= $target.index( selector );
-
-		if( $this.hasClass( 'imagelightbox-arrow-left' ) )
-		{
-			index = index - 1;
-			if( !$( selector ).eq( index ).length )
-				index = $( selector ).length;
-		}
-		else
-		{
-			index = index + 1;
-			if( !$( selector ).eq( index ).length )
-				index = 0;
-		}
-
-		instance.switchImageLightbox( index );
-		return false;
-	});
-},
-arrowsOff = function()
-{
-	$( '.imagelightbox-arrow' ).remove();
-};
-// Lightbox End
-
 // Stripe
 var handler = StripeCheckout.configure({
   key: '<?php print (isset($_SESSION['test']) && $_SESSION['test'] ? STRIPE_TEST_API_KEY : STRIPE_API_KEY); ?>',
@@ -338,7 +200,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 <body>
 <?php if (!$donorId) { ?>
 
-
 	<ul id="About" class="dropdown-content">
           <li><a href="about.php">Mission &amp; Team</a></li>
           <li><a href="model.php">Model</a></li>
@@ -396,7 +257,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			</ul>
 		</div>
 	</nav>
-<div style="width:100;border-style:solid; border-width:1px">
+<div style="width:100%;border-style:solid; border-width:1px;">
 </div>
 	
 		<div id="donationModal" class="modal">
@@ -434,5 +295,4 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					</div>
 				</div>
 		</div>  
-		
 <?php } // Not donorId end. ?>

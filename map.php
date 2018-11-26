@@ -6,8 +6,7 @@ require_once("utilities.php");
 <head>
 <title>Interactive Map</title>
 <meta name="description" content="Zoom in from a bird's-eye view to visit partner villages and their development projects."/>
-<?php include('header.inc');
-include('lightbox.inc'); ?>
+<?php include('header.inc'); ?>
 <style>
 .mapboxgl-ctrl-geocoder {
 	font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
