@@ -126,24 +126,42 @@ $(document).ready(function(){
 <?php 
   $count++;
 } 
-$stmt->close(); ?>
+$stmt->close(); 
+
+$mapFilename = "uploads/map$projectId.jpg";
+if (!file_exists($mapFilename)) {
+  $url = "https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/$villageLng,$villageLat,15,0,60.00/800x600?access_token=".MAPBOX_API_KEY;
+  file_put_contents($mapFilename, file_get_contents($url));
+}
+?>
 </div>
 
+<script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
+					<a href='<?php print $mapFilename; ?>' 
+            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> 
+            <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
+            to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
+            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
-<script src="js/imagelightbox2.js"></script>
 <script>
-			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
-			{
-				onLoadStart: function() { activityIndicatorOn(); },
-				onLoadEnd:	 function() { activityIndicatorOff(); },
-				onEnd:		 function() { activityIndicatorOff(); }
-			});
-</script>	
+      var attrs = {};
+      var classes = $("a[data-imagelightbox]").map(function(index, element) {
+        var key = $(element).attr("data-imagelightbox");
+        attrs[key] = true;
+        return attrs;
+      });
+      var attrsName = Object.keys(attrs);
+
+      attrsName.forEach(function(entry) {
+          $( "[data-imagelightbox='" + entry + "']" ).imageLightbox({
+              overlay: true
+          });
+      });
+  </script>
 		</div>
 	
   	
@@ -356,35 +374,6 @@ $stmt->close(); ?>
 							100% tax deductible and securely processed by Stripe
 					</span>
 			</div>
-
-<!--  <div class="section">
-	<nav class="donor-background" role="navigation">
-    		<ul class="center-align row">
-          <li class="waves-effect col s3">
-              <a href='https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/<?php print "$villageLng,$villageLat"; ?>,17,0,60.00/800x600?access_token=<?php print MAPBOX_API_KEY; ?>' data-imagelightbox="map"><i class="material-icons" style="font-size: 30px">place</i></a>           
-          </li>
-          <li class="waves-effect col s3" style="display: inline">
-              <a href="#pics"><i class="material-icons" style="font-size: 30px">collections</i></a>
-          </li>
-          <li class="waves-effect col s3">
-              <a href="#costbreakdown"><i class="material-icons" style="font-size: 30px">monetization_on</i></a>
-          </li>
-          <li class="waves-effect col s3">
-              <a href="#databreakdown"><i class="material-icons" style="font-size: 30px">insert_chart</i></a>
-          </li>
-      	</ul>
-  
-  	<script>
-			var instanceMap = $( 'a[data-imagelightbox="map"]' ).imageLightbox(
-			{
-				onLoadStart: function() { activityIndicatorOn(); },
-				onLoadEnd:	 function() { activityIndicatorOff(); },
-				onEnd:		 function() { activityIndicatorOff(); }
-			});
-	</script>
-	
-	</nav>
-</div>  -->
 
 	<?php if (strlen($summary) > 2) { ?>
 	<div class="section" style="text-align:center">
