@@ -1,9 +1,9 @@
 <?php
 require_once("utilities.php");
 
-$projectId = $start = $userId = $foId = $villageId = 0; 
+$projectId = $start = $userId = $foId = $villageId = $small = 0; 
 $pageTitle = "Village X<br/>Latest Updates";
-$pageDescription = 'Get the latest news on our in-progress and completed projects."';
+$pageDescription = 'Get the latest news on our in-progress and completed projects.';
 $pagePicture = 'images/khwalala_market.jpg';
 
 if (hasParam('projectId')) {
@@ -25,13 +25,20 @@ if (hasParam('projectId')) {
     $stmt->close();
 }
 
+if (hasParam('small')) {
+    $small = paramInt('small');
+}
+
+ob_start();
 include("track_updates.php");
+$updateHTML = ob_get_contents();
+ob_end_clean();
 
 if (count($updates) == 0) {
     print "No records found";
     die(1);
 }
-$latestDate = date("F n, Y", $updates[0]["timestamp"]);
+$latestDate = date("F j, Y", $updates[0]["timestamp"]);
 
 $pictureStr = $updates[0]["picture_ids"];
 if (strpos($pictureStr, ',') > 0) {
@@ -45,7 +52,13 @@ $picture = $pictureIds[0].".jpg";
 <HTML>
 <HEAD><TITLE><?php print str_replace("<br/>", " | ", $pageTitle); ?></TITLE>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-<style>
+<style>    
+    body {
+        margin:0px;
+        padding:0px;
+        background:url('<?php print getBaseURL(); ?>/images/text_noise.png');"
+    }
+
     table td {
        padding:0; margin:0;
     }
@@ -60,8 +73,8 @@ $picture = $pictureIds[0].".jpg";
     }
 
     .topTitle {
-        font-family: flicker;
-        font-size:48px;
+        font-family: 'Montserrat', sans-serif;
+        font-size:36px;
         text-align:right;
         color:white;
     }
@@ -75,10 +88,10 @@ $picture = $pictureIds[0].".jpg";
     }
     
     .updateHeader {
-        font-family: flicker;
+        font-family: 'Montserrat', sans-serif;
         color:white;
         text-align:left;
-        font-size:32px;
+        font-size:24px;
         padding-left:20px;
         padding-top:10px;
         padding-bottom:10px;
@@ -89,7 +102,7 @@ $picture = $pictureIds[0].".jpg";
 
     .updateText {
         text-align:left;
-        font-size:22px;
+        font-size:18px;
         color:#303030;
         padding-left:30px;
         padding-right:10px;
@@ -119,11 +132,11 @@ $picture = $pictureIds[0].".jpg";
     .trackEntries {
         width:50%;
     }
+
     @media only screen and (max-width : 920px) {
         .trackEntries {
             width:100%;
         }
-        
         .map {
           display: none;
         }
@@ -138,16 +151,15 @@ $picture = $pictureIds[0].".jpg";
 <meta property="og:title" content="<?php print str_replace("<br/>", " | ", $pageTitle); ?>"/>
 <meta property="og:url" content="<?php print getBaseURL().($projectId ? "track.php?projectId=$projectId" : "/track.php"); ?>" />
 <meta property="og:description" content="<?php print $pageDescription; ?>" />
-</HEAD>
-<BODY style="margin:0px;padding:0px;background:url('<?php print getBaseURL(); ?>/images/text_noise.png');">
-<TABLE style="width:100%;height:100%;">
-<TR >
-
-<TD style="height:100%;vertical-align:top;text-align:center;overflow:hidden;right:-17px;">
-    <div class='trackEntries' style='overflow-y:scroll;position:fixed;height:100%;padding-right:17px;'>
-        <div style="width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
-            <div style='background-color:black;width:100%;height:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
-                <div style="position:absolute;right:0px;bottom:60px;padding:10px;width:75%;background-color:#00000088;">
+<?php 
+$metaProvided = 1;
+ include('header.inc'); 
+?>
+<div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
+    <div style='width:100%;padding-right:0px;'>
+        <div style="width:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
+            <div style='background-color:black;width:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
+                <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
                     <div style='text-align:right;' id='titleDisplay'>
                         <span class='topTitle' id='topTitle'><?php print $pageTitle; ?></span>
                         <br/>
@@ -155,75 +167,50 @@ $picture = $pictureIds[0].".jpg";
                             <?php print $pageDescription; ?>
                         </span><br/><br/><span class='topDescription'><i>Last Update: <?php print $latestDate; ?></i></span>
                     </div>
-                
-                    <?php if ($session_is_admin) { ?>
-                        <div id='titleEdit' style='display:none;text-align:left;width:75%;height:350px;'>
-                            <form id='titleEditForm'>
-                                <input type='hidden' name='projectId' value='<?php print $projectId; ?>' />
-                                <input class='topTitle' id='titleInput' type='text' name='title' style='border:0;background:none;height:75px;
-                                        line-height:75px;width:100%;' 
-                                value='<?php print str_replace("<br/>", " | ", $pageTitle); ?>' /><br/><br/>
-                                <TEXTAREA type='text' id='descriptionInput' class='topDescription' name='description' style='background:none;border:0;height:200px;width:100%;margin-bottom:5px;'><?php print stripslashes($pageDescription); ?></TEXTAREA>
-                                <br/>
-                                <input type='button' value='save new title and description' style='text-align:right;' onclick='saveTitle();' />
-                            </form>
-                        </div>
-                        <div style='text-align:right;'>
-                            <span style='font-size:16px;'>
-                                <a href='' id='titleEditLink' style='font-size:smaller;vertical-align:bottom;' 
-                                        onclick="document.getElementById('titleDisplay').style.display='none';this.style.display='none';
-                                        document.getElementById('titleEdit').style.display='inline-block';return false;"> edit title and description</a>
-                            </span>
-                        </div>
-                    <?php } ?>
                 </div> 
         </div>
+            <div id='updatesDiv'>
             <?php
-            $count = 0;
-            foreach ($updates as $update) {
-                if (strlen($update['picture_ids']) < 2) {
-                    continue;
-                }
-                $updateId = $update['update_id'];
-                if (date('Y', $update["timestamp"]) < 2000) {
-                    $dateStr = "Date unspecified"; 
-                } else {
-                    $dateStr = date("F n, Y", $update["timestamp"]);
-                }
-                $title = (!$projectId ? $update['project_name']." in ".$update['village_name']." | " : "").$dateStr;
-                print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
-                if ($session_is_admin) { ?>
-                   <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
-                        onclick="document.getElementById('updateDisplay<?php print $updateId; ?>').style.display='none';
-                                document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
-                                this.style.display='none';return false;">
-                        <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
-                    </a>
-                <?php }
-                print "\n</div><div class='update updateText flow-text' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
-                print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'><form id='updateEditForm$updateId'>
-                        <input type='hidden' name='updateId' value='$updateId' />
-                        <div class='updateText flow-text'>
-                        <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit$updateId' style='padding:5px; background:none;border:0;height:250px;width:100%;' placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'>"
-                            .($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : "").
-                    "</TEXTAREA></div><div style='width:90%;text-align:right;'><input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate($updateId);' /></div></form></div>";
-                $pictures = explode(',', $update["picture_ids"]);
-                for ($pictureIndex = ($count > 0 ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
-                    $pictureId = $pictures[$pictureIndex];
-                    if (!$pictureId) {
-                        continue;
-                    }
-                    print "<img src=\"".ABS_PICTURES_DIR.$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
-                            onclick=\"\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />\n";
-                    $pictureIndex++;
-                }
-                $count++;  
-            }
+            print $updateHTML;
             ?>
-</TD>
-<TD style="width:50%" rowspan=2>
-<div class='map' id='map' style='width: 100%; height: 100%;'></div>
+            <img id='loadingImage' style='text-align:center;width:32px;visibility:hidden;' src='images/loading.gif' />
+            </div>
+</div>
+</div>
+<div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
 <script>
+    projectId = <?php print $projectId; ?>;
+    lastScrollTop = 0;
+    refreshing = 0;
+    small = <?php print $small; ?>;
+    $(window).on("scroll", function(e) {
+        scrollTop = document.body.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 67) {
+            $('#map').css({position: 'fixed', top:'0'});
+        } else if (scrollTop < lastScrollTop && scrollTop <= 67) {
+            $('#map').css({position: 'absolute', top:'67'});
+        }
+
+        if (!refreshing && hasMoreRecords && scrollTop > $('body').height() - 2000) {
+            refreshing = 1;
+            url = "track_updates.php?start=" + newStart;
+            if (projectId > 0) {
+                url += "&projectId=" + projectId;
+            }
+            if (small > 0) {
+                url += '&small=' + small;
+            }
+
+            $('#loadingImage').css({visibility: 'visible'});
+            $.get(url, function(data) {
+                $('#loadingImage').css({visibility: 'hidden'});
+                $("#updatesDiv").append( data );
+                refreshing = 0;
+            });
+        }
+        lastScrollTop = scrollTop;
+    });
+
     mapboxgl.accessToken = 'pk.eyJ1IjoiamRlcHJlZSIsImEiOiJjajdjMndlbG4xMDk5MndwbGZyc3I3YnN5In0.uCkT-Femn4KqxRbrlr-CIA';
     var map = new mapboxgl.Map({
         container : 'map',
@@ -232,14 +219,16 @@ $picture = $pictureIds[0].".jpg";
         zoom : 6, 
         padding: {top: 20, bottom:150, left: 20, right: 20}
     });
-
+    map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
     function zoomTo(elem, lat, lng) {
-        map.flyTo({center: [lng, lat], zoom: 12});
+        map.flyTo({center: [lng, lat], zoom: 15});
+        if (elem) {
             elem.scrollIntoView({
-            behavior: 'smooth'
-        });
+                behavior: 'smooth'
+            });
+        }
     }
 
     function smoothScroll(elemId) {
@@ -270,6 +259,15 @@ $picture = $pictureIds[0].".jpg";
                 right : 20
             }
         });
+    }
+
+    function saveUpdate(updateId) {
+        document.getElementById('updateText' + updateId).innerHTML = document.getElementById('updateTextEdit' + updateId).value;
+
+        document.getElementById('updateDisplay' + updateId).style.display = 'block';
+        document.getElementById('updateEdit' + updateId).style.display = 'none';
+        document.getElementById('updateEditLink' + updateId).style.display = 'inline';
+        $.post('<?php print getBaseURL(); ?>/track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
     }
 
     map.on('click', 'villages', function(e) {
@@ -309,8 +307,6 @@ $picture = $pictureIds[0].".jpg";
         });
     <?php } ?> 
     </script>
-</TD>
-</TR>
-</TABLE>
+</div>
 </BODY>
 </HTML>
