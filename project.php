@@ -298,7 +298,7 @@ if (!file_exists($mapFilename)) {
 				<?php } else { ?>
 				<button 
 				class="btn-large grey">
-				Fully Funded!</button>
+				<?php print ($monthCompleted ? "Completed!" : "Fully Funded!"); ?></button>
 				<?php } ?>
 		</div>
 

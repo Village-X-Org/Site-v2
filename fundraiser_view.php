@@ -13,12 +13,13 @@ if (!hasParam('id')) {
 $stmt = prepare("SELECT fundraiser_title, donor_first_name, donor_last_name, fundraiser_amount, fundraiser_description, fundraiser_funded,
 		UNIX_TIMESTAMP(fundraiser_deadline) AS fundraiser_deadline, project_name, village_name, country_label,
 		project_id, project_budget, project_summary, project_funded, vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, 
-		pictureSimilar.picture_filename AS similarPicture, pictureBanner.picture_filename AS bannerPicture
+		pictureSimilar.picture_filename AS similarPicture, pictureBanner.picture_filename AS bannerPicture, pe_date
 		FROM fundraisers JOIN projects ON fundraiser_project_id=project_id 
 		JOIN villages ON project_village_id=village_id 
 		JOIN countries ON village_country=country_id
 		JOIN pictures AS pictureSimilar ON project_similar_image_id=pictureSimilar.picture_id
 		JOIN pictures AS pictureBanner ON project_banner_image_id=pictureBanner.picture_id
+		LEFT JOIN project_events ON pe_type=4 AND pe_project_id=project_id
 		LEFT JOIN donors ON fundraiser_subject=donor_id
 		LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(project_date_posted)=vs1.stat_year
         LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(project_date_posted)=vs2.stat_year
@@ -48,12 +49,14 @@ if ($row = $result->fetch_assoc()) {
 	$similarPicture = $row['similarPicture'];
 	$bannerPicture = $row['bannerPicture'];
 	$projectBudget = $row['project_budget'];
+	$isCompleted = !is_null($row['pe_date']);
 	$villageContribution = round($projectBudget * .05);
 	$fundraiserFunding = $row['fundraiser_funded'];
 	$difference = $projectBudget - $row['project_funded'] + $fundraiserFunding;
 	if ($difference < $amount) {
 		$amount = $difference;
 	}
+	$isCompleted = !is_null($row['pe_date']);
 
 	$stmt->close();
 
@@ -125,7 +128,7 @@ include('header.inc'); ?>
 				<br>
 				<br>
 				<a href="one_time_payment_view.php?fundraiserId=<?php print $id; ?>" id="download-button"
-					class="<?php print ($fullyFunded ? " disabled " : ""); ?> btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;"><?php print ($fullyFunded ? "fully funded!" : "donate"); ?></a>
+					class="<?php print ($fullyFunded ? " disabled " : ""); ?> btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;"><?php print ($fullyFunded ? ($isCompleted ? "completed!" : "fully funded!") : "donate"); ?></a>
 			</div>
 			<div style="padding: 0% 5% 5% 7%;">
 				<?php printShareButtons($projectId, $projectName, $projectName, 60, $id); ?>
@@ -147,7 +150,7 @@ include('header.inc'); ?>
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="<?php print ($fullyFunded ? " disabled " : ""); ?> btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;"><?php print ($fullyFunded ? "fully funded!" : "donate"); ?></a>
+					class="<?php print ($fullyFunded ? " disabled " : ""); ?> btn-large waves-effect waves-light light blue lighten-1" style="border-radius:10px;"><?php print ($fullyFunded ? ($isCompleted ? "completed!" : "fully funded!") : "donate"); ?></a>
 			</div>
 			
 			<div style="padding: 5% 20% 5% 20%;">
@@ -211,7 +214,7 @@ include('header.inc'); ?>
 				<a href='one_time_payment_view.php?fundraiserId=<?php print $id; ?>'
 				id="donate-button"
 				class="<?php print ($fullyFunded ? " disabled " : ""); ?>  waves-effect waves-light donor-background lighten-1 btn-large"
-				style="width:100%; border-radius:10px;font-size: large"><?php print ($fullyFunded ? "Fully Funded!" : "Donate"); ?></a>
+				style="width:100%; border-radius:10px;font-size: large"><?php print ($fullyFunded ?  ($isCompleted ? "Completed!" : "Fully Funded!") : "Donate"); ?></a>
 			
 				
 		</div>

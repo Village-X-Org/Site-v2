@@ -2,15 +2,22 @@
 require_once("utilities.php");
 require_once("utility_readSheets.php");
 
+$firstRow = 60;
+if (hasParam('firstRow')) {
+    $firstRow = paramInt('firstRow');
+}
+
 $spreadsheetId = '1YdE_8GNlF1HAKSnDozYZm9cRt0uzD877mRPgEF4Ub2A';
-$range = 'Sheet1!A:AM';
+$range = 'Main!A:AM';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $sheet = $response->getValues();
 
 $rowCount = 0;
 foreach ($sheet as $projRow) {
-    if ($rowCount++ == 0) {
-        $labels = $projRow;
+    if ($rowCount++ < $firstRow) {
+        if ($rowCount == 0) {
+            $labels = $projRow;
+        }
         continue;
     } elseif (!isset($projRow[0])) {
         break;

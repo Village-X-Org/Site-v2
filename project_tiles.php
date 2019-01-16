@@ -53,10 +53,11 @@ require_once("utilities.php");
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, pe_date
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
+				LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors ON p1.project_matching_donor=donor_id 
                 WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
@@ -75,6 +76,7 @@ require_once("utilities.php");
 		      $matchingDonor = $row['matchingDonor'];
 		      $fundedPercent = round($funded / $projectTotal * 100);
 		      $villageContribution = round($projectTotal * .05);
+		      $isCompleted = $row['pe_date'];
 
 		      $projectType = $row['project_type'];
 		      $projectTypeClass = 'education';
@@ -128,7 +130,7 @@ require_once("utilities.php");
 								id='donate_button'
 								class='btn waves-effect waves-light donor-background lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
             } else {
-                $buffer .= "<button class='btn grey' >Fully Funded!</button>";
+                $buffer .= "<button class='btn grey' >".($isCompleted ? "Completed!" : "Fully Funded!")."</button>";
             }
 			$buffer .= "      </div>
                         </div>
