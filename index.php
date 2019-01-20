@@ -360,14 +360,21 @@ if (hasParam('gc')) {
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+	
+	<a href='track.php' style='border:0;'><div class="header center light" style="background-repeat:no-repeat;background-position:center;background-image:url('images/compass.svg');opacity:0.7; height:150px;width:150px;position:absolute;bottom:20px;right:20px;">
+		<div style="border:4px solid white; position:absolute;bottom:20px;left:10px;padding:10px; font-weight:bold; text-shadow: 2px 2px 7px #111111;color:white;">
+			Latest Updates
+		</div>
+	</div></a>
+			
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
 		<div class="row" style="width:100%;">
 			
 			<div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
-        				<h1 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:5% 2% 0% 2%"><b>100%</b></h1>
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 0% 0%">radically</h5>
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:0% 2% 2% 2%">transparent</h5>
+        				<h1 class="header center-align light" style="padding:5% 2% 0% 2%;text-shadow: 2px 2px 7px #111111;"><b>100%</b></h1>
+        				<h5 class="header center-align light" style="padding:0% 2% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically</h5>
+        				<h5 class="header center-align light" style="padding:0% 2% 2% 2%;text-shadow: 2px 2px 7px #111111">transparent</h5>
 			</div>	
 			
 			
