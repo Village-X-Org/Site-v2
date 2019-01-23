@@ -20,7 +20,7 @@ if (hasParam('d')) {
 if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
-                project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, village_name, village_lat, village_lng, 
+                project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
                 CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
@@ -62,9 +62,10 @@ if ($row = $result->fetch_assoc()) {
     $exemplaryDescription = $row['pu_description'];
     $monthCompleted = $row['monthCompleted'];
     $yearCompleted = $row['yearCompleted'];
+    $communityContribution = $row['project_community_contribution'];
     
-    $villageContribution = round($total * .05);
-    $percentFunded = max(5, round($funded * 100 / $total));
+    $villageContribution = round($total * ($communityContribution / 100));
+    $percentFunded = max($communityContribution, round($funded * 100 / $total));
     
     $households = getLatestValueForStat($villageId, "# of HH");
     $population = getLatestValueForStat($villageId, "# of People");
