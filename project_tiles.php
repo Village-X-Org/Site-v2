@@ -52,7 +52,7 @@ require_once("utilities.php");
 			<?php 
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
-                village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, 
+                village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
                 YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
@@ -73,8 +73,9 @@ require_once("utilities.php");
 		      $projectTotal = $row['project_budget'];
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
+		      $communityContribution = $row['communityContribution'];
 		      $fundedPercent = round($funded / $projectTotal * 100);
-		      $villageContribution = round($projectTotal * .05);
+		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 
 		      $projectType = $row['project_type'];
 		      $projectTypeClass = 'education';
