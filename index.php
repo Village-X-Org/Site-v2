@@ -218,7 +218,7 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg" />
+								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg" />
 							</h2>
 							
 							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
@@ -360,38 +360,37 @@ if (hasParam('gc')) {
 
 <div id="index-banner" class="parallax-container"
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
-	
-	<a href='track.php' style='border:0;'><div class="header center light" style="background-repeat:no-repeat;background-position:center;background-image:url('images/compass.svg');opacity:0.7; height:150px;width:150px;position:absolute;bottom:20px;right:20px;">
-		<div style="border:4px solid white; position:absolute;bottom:20px;left:10px;padding:10px; font-weight:bold; text-shadow: 2px 2px 7px #111111;color:white;">
-			Latest Updates
-		</div>
-	</div></a>
-			
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		<div class="row" style="width:100%;">
-			
-			<div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
-        				<h1 class="header center-align light" style="padding:5% 2% 0% 2%;text-shadow: 2px 2px 7px #111111;"><b>100%</b></h1>
-        				<h5 class="header center-align light" style="padding:0% 2% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically</h5>
-        				<h5 class="header center-align light" style="padding:0% 2% 2% 2%;text-shadow: 2px 2px 7px #111111">transparent</h5>
-			</div>	
-			
-			
-			<div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
-				
-				<a href="model.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
-			</div>
-			
-			<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6>
+    <a href='track.php' style='border:0;'><div class="header center light" style="background-repeat:no-repeat;background-position:center;background-image:url('images/compass.svg');opacity:0.7; height:150px;width:150px;position:absolute;bottom:20px;right:20px;">
+        <div style="border:4px solid white; position:absolute;bottom:20px;left:10px;padding:10px; font-weight:bold; text-shadow: 2px 2px 7px #111111;color:white;">
+            Latest Updates
+        </div>
+    </div></a>
+            
+    <div class="section no-pad-bot valign-wrapper"
+        style="height: 100%; width: 100%;">
+        <div class="row" style="width:100%;">
+            
+            <div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
+                        <h1 class="header center-align light" style="padding:5% 2% 0% 2%;text-shadow: 2px 2px 7px #111111;"><b>100%</b></h1>
+                        <h5 class="header center-align light" style="padding:0% 2% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically</h5>
+                        <h5 class="header center-align light" style="padding:0% 2% 2% 2%;text-shadow: 2px 2px 7px #111111">transparent</h5>
+            </div>  
+            
+            
+            <div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
+                
+                <a href="model.php" id="download-button"
+                    class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">our model</a>
+            </div>
+            
+            <h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6>
 
-			<div class="parallax">
-				<img src="images/woman_with_goat.jpg">
-			</div>
-			
-		</div>
-	</div>
+            <div class="parallax">
+                <img src="images/woman_with_goat.jpg">
+            </div>
+            
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -554,59 +553,82 @@ if (CACHING_ENABLED) {
 </div>
 
 <?php
-	if (!CACHING_ENABLED || !file_exists("cached/newsfeed_".date('Ym')) || hasParam('edit')) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
 	    ob_start();
 
+	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
+                FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
+                JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
 	?>    
 	<br>
-	<h4 class="header center light blue-text text-lighten-2" style='margin-bottom:0px;'>Field Updates</h4>
-        <div class="section" style='margin-bottom:0px;margin-top:0px;'>
-			<div class="row center" style='width:95%;overflow-y:scroll;height:600px;margin-bottom:0px;overflow-x:hidden;' id='updatesDiv'>
-			</div>
-            <script src="js/imagelightbox2.js"></script>
-			<script>
+	<h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
+        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
+        		<?php 
+        		$count = $lastDate = $previousDate = 0;
+        		while (true) {
+        		    if ($row = $result->fetch_assoc()) {
+        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS");
+        		    } else {
+        		        $date = 0;
+        		    }
+        		    if ($count > 0) {
+        		        ?>
+            		    <div class="slickSlide" style='outline:0;'>
+            		    <div class='row'>
+            		    <div class='col s12 m12 l6' style='position:relative;'>
+                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
+                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
+                     <table style='width:100%;'>
+                     		<tr><td style='width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
+                     		<td style='text-align:right;width:50%;'>
+                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
+                    	
+                        </div>
+        					<div class='col s12 m12 l6 center-align'>
+        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
+        							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
+                			</div>
+                		</div>
+                  </div></a>
+        		   	<?php }
+        		   	if (!$date) {
+        		   		break;
+        		   	}
+        		    $projectId = $row['project_id'];
+        		  	$projectName = $row['project_name'];
+        		  	$villageName = $row['village_name'];
+        		  	$completion = $row['project_completion'];
+        		  	$picture = $row['picture_filename'];
+        		  	$description = $row['pu_description'];
+        		  	
+        		  	$indexOfPeriod = strpos($completion, '.');
+        		  	$firstSentence = substr($completion, 0, $indexOfPeriod);
+        		  	
+        		  	if ($lastDate) {
+        		  	    $previousDate = $lastDate;
+        		  	}
+        		  	$lastDate = $date;
+        		  	$count++;
+            } ?>
+        	</div></div>
+        <script>	$('.slickContainer').slick({
+          focusOnSelect: false,
+        	  infinite: false 
+        	});</script>
 
-			    function loadMonth(month) {
-			    	$.get("newsfeed.php?month=" + month + "<?php print (hasParam('edit') ? "&edit=1" : ""); ?>", function(data) {
-			    		$("#updatesDiv").html(data);
-			    	});
-			    }
-			    loadMonth("<?php print date('F Y'); ?>");
-
-			    function updateDescription(updateId, description) {
-			    	$.post("admin_updateDescription.php", {id: updateId, newDescription: description}, function(data) {
-			    		if (data == '1') {
-			    			alert("Success!");
-			    		} else {
-			    			alert("Update failed!");
-			    		}
-			    	});
-			    }
-			</script>
-            <div class="row center" style='padding:0px;margin-left:20px;margin-right:20px;margin-bottom:0px;width:100%;height:45px;overflow:hidden;'>
-        		<div style='overflow-x:scroll;width:95%;height:50px;white-space: nowrap;
-        				box-sizing:content-box;padding-bottom:17px;direction:rtl;'>
-	        	<?php 
-	        	$result = doUnprotectedQuery("SELECT DISTINCT DATE_FORMAT(ru_date, '%M %Y') AS labelDate FROM `raw_updates` WHERE YEAR(ru_date)>1969 ORDER BY ru_date DESC");
-	        	while ($row = $result->fetch_assoc()) {
-	        		$labelDate = $row['labelDate'];
-	        		print "<a href='' onclick=\"loadMonth('$labelDate'); return false;\" style='padding:10px;border:1px solid;display:inline-block;font-weight:bold;'>$labelDate</a>";
-	        	} ?>
-        		</div>
-        	</div>
-        </div>
 <?php 
         $contents = ob_get_contents();
         ob_end_clean();
         
-        if (CACHING_ENABLED && !hasParam('edit')) {
-            file_put_contents("cached/newsfeed_".date('Ym'), $contents);
+        if (CACHING_ENABLED) {
+            file_put_contents(CACHED_STORIES_FILENAME, $contents);
         } else {
             print $contents;
         }
     }
-    if (CACHING_ENABLED && !hasParam('edit')) {
-        include("cached/newsfeed_".date('Ym'));
+    if (CACHING_ENABLED) {
+        include(CACHED_STORIES_FILENAME);
     }
     ?>
 <br/><br/>

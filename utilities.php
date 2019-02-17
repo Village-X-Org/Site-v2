@@ -34,6 +34,7 @@ define("EMAIL_TYPE_PROJECT_COMPLETED", 3);
 define("EMAIL_TYPE_PROJECT_UPDATE", 4);
 define("EMAIL_TYPE_FUNDRAISER", 5);
 define("EMAIL_TYPE_PROFILE_ACTIVATION", 6);
+define("EMAIL_TYPE_PROJECT_FAILED", 7);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -85,7 +86,7 @@ function sendMail($receiver, $subject, $body, $from) {
 	    $fromEmail = $fromName = $from;
 	}
 	if (1) {
-	    $from =  "From: $fromName <".getAdminEmail().">\r\nReply-To: ".($fromEmail ? $fromEmail : $from);
+	    $from =  "From: ".getCustomerServiceEmail()."\r\nReply-To: ".($fromEmail ? $fromEmail : $from);
 	} else {
 	    $from = "From: $from";
 	}
