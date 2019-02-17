@@ -203,7 +203,7 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg" />
 							</h2>
 
 							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
@@ -218,7 +218,7 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg">
+								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg" />
 							</h2>
 							
 							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
