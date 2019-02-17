@@ -25,6 +25,7 @@ require_once("utilities.php");
           		<li><a href="" onclick="statusFilter=0; if (typeFilter) { $('.' + typeFilter).show(); } else { $('.projectCell').show(); }  $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='completed';className = '.completed' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Completed &nbsp;&nbsp;&#10004;'); return false;">Completed</a></li>
           	</ul>
           </div>
 	
@@ -53,10 +54,11 @@ require_once("utilities.php");
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, pe_date 
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
+                LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors ON p1.project_matching_donor=donor_id 
                 WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
@@ -73,9 +75,10 @@ require_once("utilities.php");
 		      $projectTotal = $row['project_budget'];
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
-		      $communityContribution = $row['communityContribution'];
+		      $communityContribution = $row['community_contribution'];
 		      $fundedPercent = round($funded / $projectTotal * 100);
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
+		      $isCompleted = $row['pe_date'];
 
 		      $projectType = $row['project_type'];
 		      $projectTypeClass = 'education';
@@ -92,6 +95,9 @@ require_once("utilities.php");
 		      $fundedClass = 'funding';
 		      if ($fundedPercent >= 100) {
 		          $fundedClass = 'funded';
+		      }
+		      if ($isCompleted) {
+		      	$fundedClass = 'completed';
 		      }
 		      
 		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
@@ -129,7 +135,7 @@ require_once("utilities.php");
 								id='donate_button'
 								class='btn waves-effect waves-light donor-background lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
             } else {
-                $buffer .= "<button class='btn grey' >Fully Funded!</button>";
+            	$buffer .= "<button class='btn grey' >".($isCompleted ? "Completed!" : "Fully Funded!")."</button>";
             }
 			$buffer .= "      </div>
                         </div>
