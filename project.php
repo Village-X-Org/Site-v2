@@ -617,7 +617,7 @@ if (!file_exists($mapFilename)) {
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 13.72, 12.11, 9.5, 8.77 ],
+                             data : [ 26, 28, 27, 26, 31 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
