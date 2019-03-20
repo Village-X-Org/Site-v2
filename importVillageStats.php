@@ -2,8 +2,8 @@
 require_once("utilities.php");
 require_once("utility_readSheets.php");
 
-$spreadsheetId = '1UInm1feS27-iZz6TTZEZvP_1yY4VrW8psqrm7ZBPskc';
-$range = 'CompScore!A1:AC97';
+$spreadsheetId = '1DCpbtnHpxi_zUnTI8Vkx3dwh3Gs1zb04O4k_9G-50PA';
+$range = 'verified!A1:AO281';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $sheet = $response->getValues();
 
