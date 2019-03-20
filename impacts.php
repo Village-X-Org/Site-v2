@@ -1,3 +1,4 @@
+<?php require_once("utilities.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -618,7 +619,7 @@
 	<div class="section flow-text"> 
 		<p>We are not satisfied with our impact evaluation. It's a good start, but we can do better. In particular, we could
 		track how projects we finance affect individual household spending within a village. How do families modify their
-		spending in response to village-led projets? Do the projects make families wealthier? We could check our data against development trends revealed by satellite imagery.</p>
+		spending in response to village-led projects? Do the projects make families wealthier? We could check our data against development trends revealed by satellite imagery.</p>
 		<p>Answering these questions requires overcoming two challenges: (1) our current portfolio of partner villages
 		is not large enough (we need at least 100 per year); and (2) we do not possess a large monitoring and evaluation budget. 
 		We plan to scale our operations to overcome the first challenge and to partner with academic researchers to overcome
