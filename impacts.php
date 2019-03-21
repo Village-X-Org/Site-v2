@@ -23,8 +23,9 @@
 		in law, public policy, medicine, engineering, and other disciplines that affect our daily lives. We should hold well-intentioned 
 		charities to the same standard.</p> 
 		<p>Our evaluation method is to collect 25 development indicators per village per year and run a statistical analysis (more on that below). 
-		The data show partner and control villages on divergent development paths, with the former outperforming the latter. To get a sense of this, we graph partner v. control villages over time in terms of
-		average overall development scores and the dimensional scores (health, education, business, lifestyle, agriculture, and livestock) that constitute the overall development scores.</p> 
+		The data show partner and control villages on divergent development paths, with the former outperforming the latter. To get a sense of this, using 2014 as a baseline, 
+		we graph partner v. control villages over time in terms of changes in overall development scores and the dimensional scores (health, education, business, lifestyle, 
+		agriculture, and livestock) that constitute the overall development scores.</p> 
 		<p>Do these graphs reveal statistically significant impacts? Find out below.</p>
 	</div>
 
@@ -32,7 +33,7 @@
 			
 			<div class="col s12 m12 l12 center-align" style="padding: 10px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Overall Development: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Overall Development: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart1" width="350" height="350"></canvas>
 			</div>
@@ -51,7 +52,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 17, 19, 22, 28, 30],
+							data : [ 0, 9, 29, 60, 73],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -62,7 +63,7 @@
 							borderColor: "rgba(192,192,192,1)",
                              pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-							data : [ 26, 28, 27, 26, 31 ],
+							data : [ 0, 8, 4, 1, 19 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -90,7 +91,7 @@
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Health Burden: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (lower scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Health Burden: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (lower % is better)</h5>
 			<div>
 				<canvas id="chart2" width="250" height="250"></canvas>
 			</div>
@@ -109,7 +110,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 54, 43, 32, 30, 24 ],
+							data : [ 0, -20, -41, -44, -56 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -120,7 +121,7 @@
 							borderColor: "rgba(192,192,192,1)",
                              pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-                             data : [ 38, 39, 38, 44, 41 ],
+                             data : [ 0, 3, 3, 17, 10 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -147,7 +148,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Local Education: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Local Education: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -166,7 +167,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 75, 81, 92, 102, 103 ],
+							data : [ 0, 8, 22, 36, 36 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -177,7 +178,7 @@
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 93, 100, 100, 103, 104 ],
+                             data : [ 0, 7, 7, 10, 12 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -206,7 +207,7 @@
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Business Activity: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Business Activity: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart4" width="250" height="250"></canvas>
 			</div>
@@ -225,7 +226,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 14, 17, 21, 25, 19 ],
+							data : [ 0, 28, 56, 86, 42 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -236,7 +237,7 @@
 							borderColor: "rgba(192,192,192,1)",
                              pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-                             data : [ 16, 19, 18, 19, 20 ],
+                             data : [ 0, 18, 13, 16, 23 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -262,7 +263,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Lifestyle Hacks: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Lifestyle Hacks: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -281,7 +282,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 23, 26, 33, 41, 47 ],
+							data : [ 0, 14, 47, 84, 107 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -292,7 +293,7 @@
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 24, 28, 31, 34, 44 ],
+                             data : [ 0, 16, 27, 39, 79 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -321,7 +322,7 @@
 	
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Agricultural Production: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Agricultural Production: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart6" width="250" height="250"></canvas>
 			</div>
@@ -340,7 +341,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 464, 310, 209, 316, 250 ],
+							data : [ 0, -33, -55, -32, -46 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -351,7 +352,7 @@
 							borderColor: "rgba(192,192,192,1)",
                              pointBackgroundColor: "rgba(192,192,192,1)",
                              pointRadius: 10,
-                             data : [ 431, 349, 274, 227, 282 ],
+                             data : [ 0, -19, -36, -47, -35 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -377,7 +378,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>Livestock Holdings: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher scores are better)</h5>
+				<h5 style="text-align: center"><b>% Change in Livestock Holdings: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart7" width="250" height="250"></canvas>
 			</div>
@@ -396,7 +397,7 @@
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ 32, 32, 32, 40, 62 ],
+							data : [ 0, 0, -3, 23, 89 ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -407,7 +408,7 @@
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 78, 88, 81, 73, 87 ],
+                             data : [ 0, 13, 4, -7, 11 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
