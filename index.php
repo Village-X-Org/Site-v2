@@ -67,14 +67,14 @@ if (hasParam('gc')) {
 ?>
 
 <div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
-<div class="container center-align" style="width:100%">	
+<div class="container center-align" style="width:100%;background-color: rgba(0, 0, 0, 0.1)">	
 	<div class="section no-pad-bot">
-		<div class="row center" style="opacity:1">
-			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 0px 2px 3px rgba(255,255,255,0.3);" class="col s12 white-text text-lighten-2 flow-text">
+		<div class="row center" style="opacity:1;">
+			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
 
-			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.75" class="header white-text center light text-shadow: 2px 2px 4px #000000;">
+			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;" class="header white-text center light text-shadow: 2px 2px 7px #111111;">
 				
 				because everyone deserves democracy and development
 					
@@ -96,20 +96,20 @@ if (hasParam('gc')) {
 		 <div class="row center-align" style="width:100%">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px"><b>people</b></i>
-					<h5 style="padding: 0% 5% 0% 5%">lives changed</h5>
-					<h4 class="light center">56,926</h4>
-					<h6 class="light center">in Malawi, Africa</h6>
+					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>people</b></i>
+					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">lives changed</h5>
+					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">56,926</h4>
+					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">in Malawi, Africa</h6>
 					<br> 
 				</div>
 			</div>
 
 			  <div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px"><b>done_outline</b></i>
-					<h5 style="padding: 0% 5% 0% 5%">projects completed</h5>
-					<h4 class="light center">45</h4>
-					<h6 class="light center">from 2014 to 2018</h6>
+					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>done_outline</b></i>
+					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">projects completed</h5>
+					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">45</h4>
+					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">from 2014 to 2018</h6>
 					<br> 
 				</div>
 			</div>  
@@ -122,10 +122,10 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px"><b>attach_money</b></i>
-					<h5 style="padding: 0% 5% 0% 5%">cost per person</h5>
-					<h4 class="light center">$0.66</h4>
-					<h6 class="light center">per year</h6>
+					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
+					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">cost per person</h5>
+					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">$0.66</h4>
+					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">per year</h6>
 					<br> 
 				</div>
 			</div>
@@ -160,7 +160,7 @@ if (hasParam('gc')) {
         		</div>
         		
         		<div style="padding:0% 8% 0% 8%">
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.7;">because everyone deserves democracy and development</h5>
+        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.8;">because everyone deserves democracy and development</h5>
 			</div>
 			
 			<div class="center-align" style="padding:4% 2% 4% 0%">	
@@ -177,9 +177,9 @@ if (hasParam('gc')) {
 		</div>
 	</div>
 	
-	<div class="card-panel flow-text light blue-text z-depth-2">
+	<div class="flow-text light blue-text" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center"><h3>WE DISRUPT EXTREME POVERTY IN RURAL AFRICA.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	<div class="center"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
 	We're changing that with a model that celebrates village democracy, direct giving, and radical transparency. Small transfers of cash make a big difference
 	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
@@ -335,10 +335,10 @@ if (hasParam('gc')) {
             <div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
                 
                 <a href="track.php" id="download-button"
-                    class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">live track our work</a>
+                    class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">latest updates</a>
             </div>
             
-         <!--  <h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">deploy cash, retrieve data</h6> -->
+         <h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">straight from the ground</h6>
 
             <div class="parallax">
                 <img src="images/woman_with_goat.jpg">
@@ -475,7 +475,7 @@ if (CACHING_ENABLED) {
         	<div class="valign-wrapper">
           <div class="card white" style="opacity: 0.7; border-radius:20px;">
             <div class="card-content black-text">
-              <span class="card-title"><b>need some good news? sign<br> up for our quarterly newsletter</b></span>
+              <span class="card-title"><b>like disrupting extreme poverty?<br> sign up for our newsletter</b></span>
       		
     		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
       		<div class="row">
