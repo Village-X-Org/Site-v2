@@ -35,24 +35,20 @@
     </div>
    
     
+    
+    <div class="card-panel" style="padding: 5% 5% 5% 5%;">
     <div class="row">
-    <div class="card">
-    <div class="card-image">
-      <img style="padding: 5% 5% 5% 5%;" class="activator" src="images/extreme_poverty_by_world_region.jpg">
-    </div>
-    <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4"><b>Problem and Opportunity</b><i class="material-icons right">more_vert</i></span>
-      <p class="flow-text">390 million people (and growing) live in extreme poverty in rural 
-          sub-Saharan Africa. We believe this results from a deprivation of empowerment -- the inability of people to choose lives they value.</p>
-    </div>
-    <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4"><b>Problem and Opportunity</b><i class="material-icons right">close</i></span>
-      <p class="flow-text">People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
-          achievable. Although some existing organizations have employed community-driven development models, none has done so in a way that's scales to the size of the extreme povery problem. 
-          Yet, a confluence of recent trends has presented an opportunity to support community-driven development at scale: 
-          (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
-          telecommunications within rural Africa. Now is the time for technology-fueled  poverty disruption.</p>
-    </div>
+      <div class="center-align flow-text"><b>Problem and Opportunity</b></div><br>
+      <div>
+      <p class="flow-text" style="float:right">390 million people (and growing) live in extreme poverty in rural 
+          sub-Saharan Africa. We believe this results from a deprivation of empowerment -- the inability of people to choose lives they value.
+          People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
+          achievable.</p>
+   
+      <img style="float:left; padding: 5% 5% 5% 5%;" class="responsive" src="images/economist_ex_poverty.jpg">
+    
+   </div>
+   
  	 </div>
  	 </div>
     
@@ -87,6 +83,10 @@
 				</div>
 			</div>
 		</div>
+		<p class="flow-text">Although some existing organizations have employed community-driven development models, none has done so in a way that's scales to the size of the extreme povery problem. 
+          Yet, a confluence of recent trends has presented an opportunity to support community-driven development at scale: 
+          (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
+          telecommunications within rural Africa. Now is the time for technology-fueled  poverty disruption.</p>
 	</div>
 	</div>
 
@@ -121,10 +121,10 @@
 	
 	<div class="section">
 		<div class="row">
-			<div class="col s12 m6 l6">
+			<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" src="images/mike_profile.jpg">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO and Co-Founder<i class="material-icons right">more_vert</i></span>
@@ -146,14 +146,34 @@
   				</div>	
 			</div>
 				
-			<div class="col s12 m6 l6">	
+			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" src="images/jeff_profile.jpg">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/jeff_profile.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CTO<i class="material-icons right">more_vert</i></span>
       						<p><a href="mailto:jeff@villagex.org">jeff@villagex.org</a></p>
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
+      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
+      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
+      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
+      					identify opportunities for getting outdoors.</p> 
+    					</div>
+  				</div>	
+			</div>
+			<div class="col s12 m4 l4">	
+				<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/jesse_pic.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Jesse Corradi, CFO<i class="material-icons right">more_vert</i></span>
+      						<p><a href="mailto:jeff@villagex.org">jesse@villagex.org</a></p>
     					</div>
     					
     				<div class="card-reveal">
