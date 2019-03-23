@@ -83,7 +83,7 @@ if (hasParam('gc')) {
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">FIND YOUR VILLAGE</a>
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">MEET THE VILLAGES</a>
 			</div>
 		</div>
 		</div>
@@ -156,9 +156,9 @@ if (hasParam('gc')) {
 		</div>
 	</div>
 	
-	<div class="flow-text light" style="display: flex;">
+	<div class="flow-text" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center" style='color:dark-gray; border-color:dark-gray; border-left:2px solid;border-right:2px solid;padding-left:40px;padding-right:40px;'><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	<div class="center light blue-text" style="padding:1% 0 0 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
 	We're changing that with a model that celebrates village democracy, direct giving, and radical transparency. Small transfers of cash make a big difference
 	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
@@ -470,8 +470,8 @@ if (CACHING_ENABLED) {
 
 	<br><br>
 
-<div class="container"><br>
-<h4 class="header center light blue-text text-lighten-2" style="padding: 0 0 0 0">How It Helps</h4> 
+<div class="container">
+<h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(proving impact with data)</h6>
 <table class="highlight centered responsive-table striped flow-text">
 		        <thead>
@@ -482,10 +482,9 @@ if (CACHING_ENABLED) {
 		              <th>Live goats</th>
 		              <th>Waterborne illness</th>
 		              <th>Infant deaths</th>
-		              <th>Agri biz</th>
-		              <th>Other biz</th>
-		              <th>Homes with 
-		              metal roofs</th>
+		              <th>Agri business</th>
+		              <th>Other business</th>
+		              <th>Homes with metal roofs</th>
 		          </tr>
 		        </thead>
 
