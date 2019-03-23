@@ -29,7 +29,7 @@
       <div class="col s12 m6 l6">
         <div class="card" style="padding: 5% 5% 5% 5%; width:100%; height:175px">
           <div class="center-align flow-text"><b>Mission</b></div><br>
-          <div class="center-align flow-text">Disrupt extreme poverty in rural Africa and prove it with data.</div>
+          <div class="center-align flow-text">Disrupt extreme poverty in rural Africa.</div>
         </div>
       </div>
     </div>
@@ -40,13 +40,12 @@
     <div class="row">
       <div class="center-align flow-text"><b>Problem and Opportunity</b></div><br>
       <div>
-      <p class="flow-text" style="float:right">390 million people (and growing) live in extreme poverty in rural 
-          sub-Saharan Africa. We believe this results from a deprivation of empowerment -- the inability of people to choose lives they value.
-          People living in extreme poverty excel at identifying local development solutions that are technically feasible, and politically and culturally 
-          achievable.</p>
-   
-      <img style="float:left; padding: 5% 5% 5% 5%;" class="responsive" src="images/economist_ex_poverty.jpg">
-    
+      <p class="flow-text center-align">Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting nearly 400 million people. Debates about the primary cause — 
+      bad governance — often miss a key insight: while autocracy festers in many African capitols, democracy thrives in rural villages.  
+      Extreme poverty communities excel at identifying local development solutions that are technically feasible, and politically and culturally achievable.</p>
+   <div class="center-align">
+      <img style="padding: 5% 5% 5% 5%;" class=" responsive" src="images/economist_ex_poverty.jpg">
+    </div>
    </div>
    
  	 </div>
@@ -55,7 +54,10 @@
     <div class="card-panel" style="padding: 5% 5% 5% 5%;">
 		<div class="row">
           <div class="center-align flow-text"><b>Our Solution</b></div><br>
-          <div class="center-align flow-text">Build and deploy technology that disrupts extreme poverty at scale.</div>
+          <div class="center-align flow-text"><p>Build and deploy technology that disrupts extreme poverty at scale. Our data show that annual transfers of small 
+          amounts of cash directly to villages, for development projects of their choosing, generate big development impacts per dollar spent. Additionally, 
+          extreme poverty alleviation facilitates bottom-up democratization by liberating large rural populations from the grip of ruling-party patronage politics. 
+          Hacking poverty and politics together bolsters the stickiness of hard-fought development gains.</p></div>
       </div>
    
 	<div class="section">
@@ -83,10 +85,9 @@
 				</div>
 			</div>
 		</div>
-		<p class="flow-text">Although some existing organizations have employed community-driven development models, none has done so in a way that's scales to the size of the extreme povery problem. 
-          Yet, a confluence of recent trends has presented an opportunity to support community-driven development at scale: 
+		<p class="flow-text center">A confluence of recent trends presents a unique opportunity to support community-driven development at scale: 
           (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
-          telecommunications within rural Africa. Now is the time for technology-fueled  poverty disruption.</p>
+          telecommunications within rural Africa.</p> <p class="flow-text center"><b>Now is the time for tech-fueled extreme poverty disruption.</b></p>
 	</div>
 	</div>
 
@@ -127,7 +128,7 @@
       						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO and Co-Founder<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
     						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
     					</div>
     					
@@ -142,6 +143,7 @@
       					received a MPP from Princeton.</p> 
       					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
       					Africa.</p>
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -163,6 +165,7 @@
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -183,6 +186,80 @@
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+    					</div>
+  				</div>	
+			</div>
+		</div>
+	</div>
+		
+	<div class="section">
+		<div class="row">
+			<div class="col s12 m4 l4">
+					<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/katherine.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
+    						
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
+      					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
+      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
+      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
+      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
+      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
+      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
+      					received a MPP from Princeton.</p> 
+      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
+      					Africa.</p>
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+    					</div>
+  				</div>	
+			</div>
+				
+			<div class="col s12 m4 l4">	
+				<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board<i class="material-icons right">more_vert</i></span>
+      						
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
+      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
+      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
+      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
+      					identify opportunities for getting outdoors.</p> 
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+    					</div>
+  				</div>	
+			</div>
+			<div class="col s12 m4 l4">	
+				<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/beau.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Beau Jackson, Board<i class="material-icons right">more_vert</i></span>
+      						
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
+      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
+      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
+      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
+      					identify opportunities for getting outdoors.</p> 
+      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -198,13 +275,14 @@
 	
         <div class="section">
 			<div class="row">
-				<div class="col s12 m6 l6">
+				<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" src="images/myson_profile.jpg">
+      						<img class="activator" style="border-radius: 50%;" src="images/myson_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Malawi Country Director and Co-Founder<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Malawi Director<i class="material-icons right">more_vert</i></span>
+      						<p class="blue-text">Blantyre and Zomba Districts</p>
       						<p><a href="#">myson@villagex.org</a></p>
     					</div>
     					
@@ -214,25 +292,28 @@
       					on the impact of urbanization on human health in peri-urban areas. He has several years of experience working with NGOs in the area of
       					programming at the community level, including vetting and facilitating projects, youth engagement programming, peer mentoring, monitoring 
       					and evaluation, meeting with government officials and other stakeholders, managing and administering finances, and responding to community 
-      					concerns/offering assistance where needed. He also volunteered to approve proposals from other organizations and collected projects records 
+      					concerns/offering assistance where needed. </p>
+      					<p>He also volunteered to approve proposals from other organizations and collected projects records 
       					for one year with Friends of Malawi. He spent another year conducting health and hygiene trainings and small loans management with the 
-      					Association for Rural Community Development. He believes that communities having the power to decide on projects is the key to successes 
+      					Association for Rural Community Development.</p>
+      					
+      					<p>He believes that communities having the power to decide on projects is the key to successes 
       					in development efforts. When he is not working, Myson enjoys traveling and watching football with 
-      					his favorite team, Manchester United.
-						</p>
+      					his favorite team, Manchester United.</p>
     					</div>
   				</div>
 					
 				</div>
 				
-				<div class="col s12 m6 l6">
+				<div class="col s12 m4 l4">
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" src="images/alfred_profile.jpg">
+          						<img class="activator" style="border-radius: 50%;" src="images/alfred_profile.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Field Officer<i class="material-icons right">more_vert</i></span>
+          						<p class="blue-text">Mulanje District</p>
           						<p><a href="#">alfred@villagex.org</a></p>
         					</div>
         					
@@ -248,17 +329,16 @@
       				</div>
 				
 				</div>
-			</div>
-			
-			<div class="row">	
-				<div class="col s12 m6 l6">
+				
+				<div class="col s12 m4 l4">
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" src="images/wedson_profile.jpg">
+          						<img class="activator" style="border-radius: 50%" src="images/wedson_profile.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Wedson Kondowe, Field Officer<i class="material-icons right">more_vert</i></span>
+          						<p class="blue-text">Karonga District</p>
           						<p><a href="#">wedson@villagex.org</a></p>
         					</div>
         					
@@ -274,25 +354,52 @@
       				</div>
 				
 				</div>
-
-				<div class="col s12 m6 l6">
+			</div>
+			
+			<div class="row">
+				<div class="col s12 m4 l4">
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" src="images/mmacford_profile.jpg">
+          						<img class="activator" style="border-radius: 50%" src="images/mmacford_profile.jpg">
         						</div>
         					<div class="card-content">
-          					<span class="card-title activator grey-text text-darken-4">Mmacford Chinonga, Field Officer<i class="material-icons right">more_vert</i></span>
+          					<span class="card-title activator grey-text text-darken-4">Macford Chinonga, Field Officer<i class="material-icons right">more_vert</i></span>
+          					<p class="blue-text">Mangochi District</p>	
           						<p><a href="#">mmacford@villagex.org</a></p>
         					</div>
         					
         				<div class="card-reveal">
-          				<span class="card-title grey-text text-darken-4">More About Mmacford<i class="material-icons right">close</i></span>
-          					<p>Mmacford is from the Mangochi District of Malawi. He holds an advanced certificate in tropical agriculture and
+          				<span class="card-title grey-text text-darken-4">More About Macford<i class="material-icons right">close</i></span>
+          					<p>Macford is from the Mangochi District of Malawi. He holds an advanced certificate in tropical agriculture and
           			 		a certificate in primary school teaching.</p> 
           			 		<p>He has attended courses in spraying services, grain storage, and grading management. 
-          					Mmacford has several years of experience working with NGOS, local leaders and stakeholders. In this capacity, he has worked on 
+          					Macford has several years of experience working with NGOS, local leaders and stakeholders. In this capacity, he has worked on 
           					project programming and implementation, leadership and conflict management, monitoring and evaluation, and report writing.</p>
+        					</div>
+      				</div>
+				
+				</div>
+				
+				<div class="col s12 m4 l4">
+					
+    					<div class="card">
+        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+          						<img class="activator" style="border-radius: 50%" src="images/benard.jpg">
+        						</div>
+        					<div class="card-content">
+          					<span class="card-title activator grey-text text-darken-4">Benard Dickson, Field Officer<i class="material-icons right">more_vert</i></span>
+          						<p class="blue-text">Chiradzulu District</p>
+          						<p><a href="#">mmacford@villagex.org</a></p>
+        					</div>
+        					
+        				<div class="card-reveal">
+          				<span class="card-title grey-text text-darken-4">More About Benard<i class="material-icons right">close</i></span>
+          					<p>Benard Dickson holds a MSCE (secondary schoool certificate) and has worked with several deveopment organiaations, including
+          					Development Aid from People to People (DAPP) and the Tiwasunge Community Support Organization (TICOSO). Benard has also volunteered 
+          					as a peer educator, field officer, M&E officer, and programs coordinator. Benard is passionate about HIV/AIDS prevention, good 
+          					governance, and self reliance.</p> 
+          			 		<p>In his spare time, he likes to watch football and chat with youth.</p>
         					</div>
       				</div>
 				
@@ -300,39 +407,6 @@
 			</div>
 		</div>
 
-	<div class="center-align">
-		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-			Volunteers
-		</h4>
-	</div>
-	
-		<div class="section">
-			<div class="row">
-				<div class="col s12 m6 l6">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" src="images/katherine_profile.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, RPCV Malawi<i class="material-icons right">more_vert</i></span>
-      						<p><a href="#"></a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Katherine<i class="material-icons right">close</i></span>
-      					<p>Katherine Raynor is originally from New York. After receiving her undergraduate degree in Human Services at SUNY New Paltz, she worked for Family Services, 
-      					a local non-profit organization in New York, for seven years. She started as Youth Prevention and Education Coordinator in their domestic violence program, 
-      					before being promoted to Volunteer Coordinator, and ultimately to Program Coordinator. During her work there, she received her Masters in Social Work from 
-      					Adelphi University, which also enabled her to work with Family Services' Crime Victim and Rape Crisis Center, as well as their Nurturing Parent Program. 
-      					After joining the Peace Corps in 2015, she served in El Salvador as a Youth Development Volunteer. Due to increasing gang violence in the country, Katherine's 
-      					service was interrupted after ten months when all Volunteers country-wide were removed. While saddened by the circumstances surrounding the interruption of her 
-      					service, Katherine is excited that it has given her the opportunity to come to Malawi as a Peace Corps Response Volunteer.</p>
-    					</div>
-  				</div>
-					
-				</div>
-			</div>
-		</div>
 </div>
 
 <?php include('footer.inc'); ?>
