@@ -74,7 +74,7 @@ if (hasParam('gc')) {
 				Fund Projects That Villages Choose
 			</div>
 
-			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;" class="header white-text center light text-shadow: 2px 2px 7px #111111;">
+			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;text-shadow: 2px 2px 7px #111111;" class="header white-text center light">
 				
 				because everyone deserves democracy and development
 					
@@ -138,12 +138,10 @@ if (hasParam('gc')) {
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
 		<div class="section" style="width:100%;">
-			<div>
-        				<h2 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:4% 2% 5% 2%"><b>Fund Projects That Villages Choose</b></h2>
-        		</div>
+				<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
         		
         		<div style="padding:0% 8% 0% 8%">
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.8;">because everyone deserves democracy and development</h5>
+        				<h5 class="center-align light" style="font-size:24px;opacity:0.8; text-shadow: 2px 2px 7px #111111">because everyone deserves democracy and development</h5>
 			</div>
 			
 			<div class="center-align" style="padding:4% 2% 4% 0%">	
