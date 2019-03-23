@@ -14,9 +14,8 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("images/chiyuni_nursery.jpg");
+    background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_nursery.jpg");
     opacity:1.5;
-
     /* Full height */
     height: 100%; 
 
@@ -67,14 +66,14 @@ if (hasParam('gc')) {
 ?>
 
 <div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
-<div class="container center-align" style="width:100%;background-color: rgba(0, 0, 0, 0.1)">	
+<div class="container center-align" style="width:100%;">	
 	<div class="section no-pad-bot">
-		<div class="row center" style="opacity:1;">
+		<div class="row center">
 			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
 
-			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;" class="header white-text center light text-shadow: 2px 2px 7px #111111;">
+			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;text-shadow: 2px 2px 7px #111111;" class="header white-text center light">
 				
 				because everyone deserves democracy and development
 					
@@ -84,7 +83,7 @@ if (hasParam('gc')) {
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large">FIND YOUR VILLAGE</a>
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">FIND YOUR VILLAGE</a>
 			</div>
 		</div>
 		</div>
@@ -96,7 +95,7 @@ if (hasParam('gc')) {
 		 <div class="row center-align" style="width:100%">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>people</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>people</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">lives changed</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">56,926</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">in Malawi, Africa</h6>
@@ -106,7 +105,7 @@ if (hasParam('gc')) {
 
 			  <div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>done_outline</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>done_outline</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">projects completed</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">45</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">from 2014 to 2018</h6>
@@ -114,15 +113,9 @@ if (hasParam('gc')) {
 				</div>
 			</div>  
 
-			<!--   <div class="col s12 m4 l4 center-align" style="padding:10% 10% 10% 10%;opacity:.5">
-			<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/nyt_logo.jpg">
-				<h6 class="light center">industry praise</h6>
-					<br>
-			</div> -->
-
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">cost per person</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">$0.66</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">per year</h6>
@@ -133,17 +126,6 @@ if (hasParam('gc')) {
 		</div>
 		</div> 
 		
-		<!--  <div class='row'>
-		<div class="icon-block white-text center-align">
-					<button id='arrowButton' class="material-icons pulse btn-floating" style="font-size: 36px">keyboard_arrow_down</button>
-					<script>$("#arrowButton").click(function() { 
-						$('html, body').animate({
-							scrollTop: $('#slideshow').offset().top
-						}, 1000);
-					});
-					</script>
-			</div>
-		</div> -->
 		</div>
 		
 		
@@ -152,15 +134,13 @@ if (hasParam('gc')) {
 
 	
 
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
 		<div class="section" style="width:100%;">
-			<div>
-        				<h2 class="header center-align light text-shadow: 2px 2px 7px #111111" style="padding:4% 2% 5% 2%"><b>Fund Projects That Villages Choose</b></h2>
-        		</div>
+				<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
         		
         		<div style="padding:0% 8% 0% 8%">
-        				<h5 class="header center-align light text-shadow: 2px 2px 7px #111111" style="opacity:0.8;">because everyone deserves democracy and development</h5>
+        				<h5 class="center-align light" style="font-size:24px;opacity:0.8; text-shadow: 2px 2px 7px #111111">because everyone deserves democracy and development</h5>
 			</div>
 			
 			<div class="center-align" style="padding:4% 2% 4% 0%">	
@@ -170,25 +150,21 @@ if (hasParam('gc')) {
 			</div>
 
 			<div class="parallax">
-				<!--   <img src="images/villagemtg.jpg"> -->
 				<img src="images/chiyuni_nursery.jpg">
 			</div>
 			
 		</div>
 	</div>
 	
-	<div class="flow-text light blue-text" style="background-color: #FFF5EE; display: flex">
+	<div class="flow-text light" style="display: flex;">
 	<div class="container">
-	<div class="center"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	<div class="center" style='color:dark-gray; border-color:dark-gray; border-left:2px solid;border-right:2px solid;padding-left:40px;padding-right:40px;'><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
 	We're changing that with a model that celebrates village democracy, direct giving, and radical transparency. Small transfers of cash make a big difference
 	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
 	</div>
 
 <div class="container hide-on-med-and-down"">
-	<!--   <div class="carousel carousel-slider center hide-on-med-and-down" id='slideshow' style='cursor:pointer;'>	
-
-		<div class="carousel-item white" href="#one!"> -->
 			<h4 class="header center light blue-text text-lighten-2" style="padding:2% 0 0 0">How It Works</h4>
 
 				<div class="row">
@@ -239,14 +215,6 @@ if (hasParam('gc')) {
 					</div>
 				</div>
 		</div>
-
-		<!--  <div class="carousel-item white" href="#two!"> -->
-			
-
-		<!--   </div>
-				
-
-	</div> -->
 
 	<script> 
 		
@@ -316,10 +284,6 @@ if (hasParam('gc')) {
 </div>	
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
-    <!--  <a href='track.php' style='border:0;'><div class="header center light" style="background-repeat:no-repeat;background-position:center;background-image:url('images/compass.svg');opacity:0.7; height:150px;width:150px;position:absolute;bottom:20px;right:20px;">
-        <div style="border:4px solid white; position:absolute;bottom:20px;left:10px;padding:10px; font-weight:bold; text-shadow: 2px 2px 7px #111111;color:white;">
-            Latest Updates
-        </div> </a>-->
             
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
@@ -352,9 +316,6 @@ if (hasParam('gc')) {
 	<br>
 	<h4 class="header center light blue-text text-lighten-2">Featured Projects</h4>
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate)</h6>
-	<!--  <div class="icon-block" style="width:100%"><i class='material-icons left' style="font-size:20px;color:#03A9F4">timeline</i> = &nbsp;village data trends available
-	<br>
-	<i class='material-icons left' style="font-size:20px;color:#03A9F4">fiber_new</i> = &nbsp;data trends coming soon</div> -->
 	<div class="section">
 
 		<!--   project section   -->
@@ -507,15 +468,6 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-<!--
- <?php
-	if (!CACHING_ENABLED || !file_exists(CACHED_STORIES_FILENAME)) {
-	    ob_start();
-
-	    $result = doUnprotectedQuery("SELECT project_id, project_completion, picture_filename, pu_description, project_name, village_name,  pu_timestamp 
-                FROM projects JOIN villages ON project_completion IS NOT NULL AND project_village_id=village_id JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
-                JOIN pictures ON pu_image_id=picture_id GROUP BY project_id ORDER BY pu_timestamp DESC LIMIT 5");
-	?>    -->
 	<br><br>
 
 <div class="container"><br>
@@ -587,79 +539,8 @@ if (CACHING_ENABLED) {
 		      </table>
 		      <div class="flow-text center" style="padding:5% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per village, on average. 
 		      25 development metrics collected annually in each treatment and control village from 2014 (baseline) to 2018, with statistics calculated 
-				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles (+2 per village) and TVs (+2 per village). % change based on 2014 treatment village average.  More info <a href="impacts.php">here</a>.  
+				using a difference-in-differences model.  More info <a href="impacts.php">here</a>.  
 		      </div>
 		      </div>
-
-	<!--  <h4 class="header center light blue-text text-lighten-2">Field Updates</h4>
-        <div class="section"><div class="slickContainer" style='outline:none;max-width:1000px;margin: auto;'>
-        		<?php 
-        		$count = $lastDate = $previousDate = 0;
-        		while (true) {
-        		    if ($row = $result->fetch_assoc()) {
-        		        $date = (new DateTime($row['pu_timestamp']))->format("F jS");
-        		    } else {
-        		        $date = 0;
-        		    }
-        		    if ($count > 0) {
-        		        ?>
-            		    <div class="slickSlide" style='outline:0;'>
-            		    <div class='row'>
-            		    <div class='col s12 m12 l6' style='position:relative;'>
-                            <span class='flow-text' style='color:black;font-size:20px;cursor:pointer;width:450px;padding-right:5px;margin:auto;' id='newsCompletionSpan' 
-                            		onclick="document.location='project.php?id=<?php print $projectId; ?>';"><?php print $completion; ?></span>
-                     <table style='width:100%;'>
-                     		<tr><td style='width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickPrev'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($previousDate ? "<< previous" : ""); ?></a></td>
-                     		<td style='text-align:right;width:50%;'>
-                     			<a href='' onclick="$('.slickContainer').slick('slickNext'); return false;" style='color:#2F4F4F;font-size:18px;font-weight:bold;'><?php print ($date ? "next >>" : ""); ?></a></td></tr></table>
-                    	
-                        </div>
-        					<div class='col s12 m12 l6 center-align'>
-        					 	<div style="margin:auto;width:100%;max-width:400px;height:450px;padding-left:5px;cursor:pointer;background-size:cover;background-position:center;background-image:url('<?php print (PICTURES_DIR . $picture); ?>');border:solid black 2px;" 
-        							onclick="document.location='project.php?id=<?php print $projectId; ?>';"></div>
-                			</div>
-                		</div>
-                  </div></a>
-        		   	<?php }
-        		   	if (!$date) {
-        		   		break;
-        		   	}
-        		    $projectId = $row['project_id'];
-        		  	$projectName = $row['project_name'];
-        		  	$villageName = $row['village_name'];
-        		  	$completion = $row['project_completion'];
-        		  	$picture = $row['picture_filename'];
-        		  	$description = $row['pu_description'];
-        		  	
-        		  	$indexOfPeriod = strpos($completion, '.');
-        		  	$firstSentence = substr($completion, 0, $indexOfPeriod);
-        		  	
-        		  	if ($lastDate) {
-        		  	    $previousDate = $lastDate;
-        		  	}
-        		  	$lastDate = $date;
-        		  	$count++;
-            } ?>
-        	</div></div> -->
-        <script>	$('.slickContainer').slick({
-          focusOnSelect: false,
-        	  infinite: false 
-        	});</script>
-
-<?php 
-        $contents = ob_get_contents();
-        ob_end_clean();
-        
-        if (CACHING_ENABLED) {
-            file_put_contents(CACHED_STORIES_FILENAME, $contents);
-        } else {
-            print $contents;
-        }
-    }
-    if (CACHING_ENABLED) {
-        include(CACHED_STORIES_FILENAME);
-    }
-    ?>
 <br/><br/>
 <?php include('footer.inc'); ?>
