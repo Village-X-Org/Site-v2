@@ -539,7 +539,7 @@ if (CACHING_ENABLED) {
 		      </table>
 		      <div class="flow-text center" style="padding:5% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per village, on average. 
 		      25 development metrics collected annually in each treatment and control village from 2014 (baseline) to 2018, with statistics calculated 
-				using a difference-in-differences model.  Not shown are small but statistically significant increases in motorcycles (+2 per village) and TVs (+2 per village). % change based on 2014 treatment village average.  More info <a href="impacts.php">here</a>.  
+				using a difference-in-differences model.  More info <a href="impacts.php">here</a>.  
 		      </div>
 		      </div>
 <br/><br/>
