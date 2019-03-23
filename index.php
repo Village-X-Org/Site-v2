@@ -14,9 +14,8 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url("images/chiyuni_nursery.jpg");
+    background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_nursery.jpg");
     opacity:1.5;
-
     /* Full height */
     height: 100%; 
 
@@ -67,9 +66,9 @@ if (hasParam('gc')) {
 ?>
 
 <div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
-<div class="container center-align" style="width:100%;background-color: rgba(0, 0, 0, 0.1)">	
+<div class="container center-align" style="width:100%;">	
 	<div class="section no-pad-bot">
-		<div class="row center" style="opacity:1;">
+		<div class="row center">
 			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111" class="col s12 white-text text-lighten-2 flow-text">
 				Fund Projects That Villages Choose
 			</div>
@@ -84,7 +83,7 @@ if (hasParam('gc')) {
 				<br>
 				<br>
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large">FIND YOUR VILLAGE</a>
+					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">FIND YOUR VILLAGE</a>
 			</div>
 		</div>
 		</div>
@@ -96,7 +95,7 @@ if (hasParam('gc')) {
 		 <div class="row center-align" style="width:100%">
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>people</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>people</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">lives changed</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">56,926</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">in Malawi, Africa</h6>
@@ -106,7 +105,7 @@ if (hasParam('gc')) {
 
 			  <div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>done_outline</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>done_outline</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">projects completed</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">45</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">from 2014 to 2018</h6>
@@ -116,7 +115,7 @@ if (hasParam('gc')) {
 
 			<div class="col s12 m4 l4 center-align">
 				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;style="text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
+					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
 					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">cost per person</h5>
 					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">$0.66</h4>
 					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">per year</h6>
@@ -135,7 +134,7 @@ if (hasParam('gc')) {
 
 	
 
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
 		<div class="section" style="width:100%;">
 				<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
