@@ -150,7 +150,7 @@ if (hasParam('gc')) {
 			</div>
 
 			<div class="parallax">
-				<img src="images/chiyuni_nursery.jpg">
+				<img src="images/chiyuni_banner.jpg">
 			</div>
 			
 		</div>
