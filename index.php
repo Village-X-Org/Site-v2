@@ -14,7 +14,7 @@ body, html {
 
 .bg {
     /* The image used */
-    background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_nursery.jpg");
+    background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
     opacity:1.5;
     /* Full height */
     height: 100%; 
@@ -158,7 +158,7 @@ if (hasParam('gc')) {
 	
 	<div class="flow-text" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center light blue-text" style="padding:1% 0 0 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	<div class="center" style="padding:1% 0 0 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
 	We're changing that with a model that celebrates village democracy, direct giving, and radical transparency. Small transfers of cash make a big difference
 	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
@@ -473,18 +473,18 @@ if (CACHING_ENABLED) {
 <div class="container">
 <h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(proving impact with data)</h6>
-<table class="highlight centered responsive-table striped flow-text">
+<table class="highlight centered responsive-table striped flow-text" style="table-layout: fixed;">
 		        <thead>
 		          <tr>
 		              <th>Metric</th>
 		              <th>Boys in nursery</th>
 		              <th>Girls in nursery</th>
-		              <th>Live goats</th>
+		              <th>Goat assets</th>
 		              <th>Waterborne illness</th>
 		              <th>Infant deaths</th>
 		              <th>Agri business</th>
 		              <th>Other business</th>
-		              <th>Homes with metal roofs</th>
+		              <th>Homes w/ metal roofs</th>
 		          </tr>
 		        </thead>
 
@@ -536,7 +536,7 @@ if (CACHING_ENABLED) {
 		          </tr>
 		        </tbody>
 		      </table>
-		      <div class="flow-text center" style="padding:5% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per village, on average. 
+		      <div class="flow-text center" style="padding:2% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per village, on average. 
 		      25 development metrics collected annually in each treatment and control village from 2014 (baseline) to 2018, with statistics calculated 
 				using a difference-in-differences model.  More info <a href="impacts.php">here</a>.  
 		      </div>
