@@ -33,7 +33,24 @@
         </div>
       </div>
     </div>
+    <div class="col s12 m8 offset-m2 l6 offset-l3">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s4 center-align" style="padding: 2% 2.5% 0% 5%">
+              <img src="images/sdg_1.jpg" alt="" class="responsive-img"> 
+            </div>
+            <div class="col s8 center-align" style="padding: 0% 5% 0% 2.5%">
+            <div class="flow-text center-align"><b>Finish Line</b></div><br>
+              <span class="flow-text center-align">
+                <span class="light blue-text">UN Sustainable Development Target 1.1: </span> By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
    
+<<<<<<< HEAD
     
     <div class="row">
 <<<<<<< HEAD
@@ -56,34 +73,58 @@
     </div>
 =======
       <div class="center-align flow-text"><b>Problem and Opportunity</b></div><br>
+=======
+    <div class="container flow-text" style="background-color: #FFF5EE; display: flex">
+	</div>
+	
+    <div class="container">
+    <div class="card-panel" style="padding: 5% 5% 5% 5%;">
+    <div class="row">
+      <h4 class="center-align flow-text"><b>Problem and Opportunity</b></h4><br>
+>>>>>>> 9cac1b2... more tweaks
       <div>
       <p class="flow-text center-align">Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting nearly 400 million people. Debates about the primary cause — 
       bad governance — often miss a key insight: while autocracy festers in many African capitols, democracy thrives in rural villages.  
       Extreme poverty communities excel at identifying local development solutions that are technically feasible, and politically and culturally achievable.</p>
    <div class="center-align">
-      <img style="padding: 5% 5% 5% 5%;" class=" responsive" src="images/economist_ex_poverty.jpg">
+      <img style="padding: 5% 5% 5% 5%;" class="responsive-img" src="images/economist_ex_poverty.jpg">
     </div>
+    
    </div>
    
 >>>>>>> 59486f0... updating formatting and bios
  	 </div>
+ 	 <div class="row">
+ 	 <p class="flow-text center-align">Symptoms of Extreme Poverty</p>
+      <div class="col s4">
+        <img style="padding: 2.5% 1.25% 2.5% 2.5%;" class="responsive-img" src="images/house_problem.jpg">
+        <p class="flow-text center-align">inadequate housing</p>
+      </div>
+      <div class="col s4" >
+        <img style="padding: 2.5% 1.25% 2.5% 1.25%;" class="responsive-img" src="images/water_problem.jpg">
+        <p class="flow-text center-align">lack of clean water</p>
+      </div>
+      <div class="col s4">
+        <img style="padding: 2.5% 2.5% 2.5% 1.25%;" class="responsive-img" src="images/school_problem.jpg">
+        <p class="flow-text center-align">poor educational infrastructure</p>
+      </div>
+    </div>
  	 </div>
     
-    <div class="card-panel" style="padding: 5% 5% 5% 5%;">
+    <div class="card-panel" style="padding: 5% 5% 3% 5%;">
 		<div class="row">
           <div class="center-align flow-text"><b>Our Solution</b></div><br>
-          <div class="center-align flow-text"><p>Build and deploy technology that disrupts extreme poverty at scale. Our data show that annual transfers of small 
-          amounts of cash directly to villages, for development projects of their choosing, generate big development impacts per dollar spent. Additionally, 
-          extreme poverty alleviation facilitates bottom-up democratization by liberating large rural populations from the grip of ruling-party patronage politics. 
-          Hacking poverty and politics together bolsters the stickiness of hard-fought development gains.</p></div>
+          <div class="center-align flow-text"><p>Build and deploy technology that disrupts extreme poverty at scale by mapping the problem, crowdfunding the response, deploying cash, and reporting impact.  
+          Our data show that annual transfers of small amounts of cash directly to villages, for development projects of their choosing, generate big development impacts 
+          per dollar spent. Additionally, extreme poverty alleviation facilitates bottom-up democratization by liberating large rural populations from the grip of 
+          ruling-party patronage politics. Hacking poverty and politics together bolsters the stickiness of hard-fought development gains.</p></div>
       </div>
    
 	<div class="section">
 
 		<!--   Icon Section   -->
 		<div class="row center">
-			<br>
-			<div class="col s12 m6 l6" style="padding: 0% 2.5% 0% 2.5%;">
+			<div class="col s12 m6 l6" style="padding: 0% 2.5% 2% 2.5%;">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 100px">loop</i>
 					<h5 class="center brown-test">Finance and evaluate village-led projects in remote places, with ruthless efficiency.</h5>
@@ -107,24 +148,44 @@
 =======
 		<p class="flow-text center">A confluence of recent trends presents a unique opportunity to support community-driven development at scale: 
           (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
+<<<<<<< HEAD
           telecommunications within rural Africa.</p> <p class="flow-text center"><b>Now is the time for tech-fueled extreme poverty disruption.</b></p>
 >>>>>>> 59486f0... updating formatting and bios
+=======
+          telecommunications within rural Africa.</p> <!--  <p class="flow-text center"><b>Now is the time for tech-fueled extreme poverty disruption.</b></p> -->
+	</div>
+	<div class="row">
+ 	 <p class="flow-text center-align">Signs of Extreme Poverty Disruption</p>
+      <div class="col s4">
+        <img style="padding: 2.5% 1.25% 2.5% 2.5%;" class="responsive-img" src="images/water_good.jpg">
+        <p class="flow-text center-align">community water wells</p>
+      </div>
+      <div class="col s4">
+        <img style="padding: 2.5% 1.25% 2.5% 1.25%;" class="responsive-img" src="images/goat_good.jpg">
+        <p class="flow-text center-align">livestock assets</p>
+      </div>
+      <div class="col s4">
+        <img style="padding: 2.5% 2.5% 2.5% 1.25%;" class="responsive-img" src="images/nursery_good.jpg">
+        <p class="flow-text center-align">inspiring schools</p>
+      </div>
+    </div>
+>>>>>>> 9cac1b2... more tweaks
 	</div>
 	</div>
 
-<div class='center-align'>
-    <img class="responsive-img" style="padding: 2% 2% 2% 2%;" src="images/chitenje.jpg">
-    </div>
+<div class="container flow-text center-align" style="background-color: #FFF5EE; display: flex">
+	</div>
 	
+<div class="container">	
    <div class="row">
       <div class="col s12 m12 l12">
         <div class="card-panel" style="padding: 5% 5% 5% 5%;">
-          <div class="center-align flow-text"><b>4 Teams, 2 Continents</b></div>
+          <div class="center-align flow-text"><b>US Team</b></div>
         </div>
       </div>
     </div> 
    
-    <div class="row" style="padding: 0% 3% 0% 3%;">
+    <!--  <div class="row" style="padding: 0% 3% 0% 3%;">
     		<div class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text">
 			<p><b>Want to join the party? All are welcome.</b> We're a small but growth-minded nonprofit looking for friends, collaborators, and evangelists.</p> 
 			<p>We have four teams: (1) a lean, US-based team deploying and improving our direct giving and reporting technology, 
@@ -139,7 +200,7 @@
 		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
 			US Team
 		</h4>
-	</div>
+	</div>  -->
 	
 	<div class="section">
 		<div class="row">
@@ -203,12 +264,14 @@
     					</div>
     					
     				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
-      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
-      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
-      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
-      					identify opportunities for getting outdoors.</p> 
+      				<span class="card-title grey-text text-darken-4">More About Jesse<i class="material-icons right">close</i></span>
+      					<p>Jesse is Village X’s CFO and is passionate about leveraging innovative tools to address poverty, spur local development, and improve environmental sustainability.</p>
+      					<p>After graduating from Amherst College and spending much of his career in finance, Jesse served as a Fulbright Scholar in Hong Kong and returned to graduate school at 
+      					Columbia University to pursue his passion. He has worked for USAID’s Development Credit Authority (DCA) since 2015, now as the Head of the unit’s Africa credit guarantee portfolio. 
+      					Jesse has also worked for Closed Loop Partners, an impact investment firm that invests in the circular economy.</p>
+      					<p>Coming from a family of cooks and bakers, Jesse is dedicated to empowering emerging chefs while also tackling food waste issues, having collaborated with innovative non-profit and 
+      					for-profit culinary and food sustainability organizations. In his free time, Jesse enjoys cooking and exploring DC with his wife and son, and has developed a passion for making the perfect pizza.</p>
+
       					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
@@ -291,11 +354,14 @@
 	</div>
 		
 		
-	<div class="center-align">
-		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-			Malawi Team
-		</h4>
-	</div>
+	
+   <div class="row">
+      <div class="col s12 m12 l12">
+        <div class="card-panel" style="padding: 5% 5% 5% 5%;">
+          <div class="center-align flow-text"><b>Malawi Team</b></div>
+        </div>
+      </div>
+    </div>
 	
         <div class="section">
 			<div class="row">
@@ -430,7 +496,6 @@
 				</div>
 			</div>
 		</div>
-
 </div>
 
 <?php include('footer.inc'); ?>
