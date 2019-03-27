@@ -58,8 +58,8 @@
     <div class="row">
       <h4 class="center-align flow-text"><b>Problem and Opportunity</b></h4><br>
       <div>
-      <p class="flow-text center-align">Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting nearly 400 million people. Debates about the primary cause — 
-      bad governance — often miss a key insight: while autocracy festers in many African capitols, democracy thrives in rural villages.  
+      <p class="flow-text center-align">Extreme poverty is growing ONLY in rural sub-Saharan Africa, afflicting nearly 400 million people. Debates about the primary cause (bad governance)
+      often miss a key insight: while corruption festers in many African capitols, democracy thrives in rural villages.  
       Extreme poverty communities excel at identifying local development solutions that are technically feasible, and politically and culturally achievable.</p>
    <div class="center-align">
       <img style="padding: 5% 5% 5% 5%;" class="responsive-img" src="images/economist_ex_poverty.jpg">
@@ -214,7 +214,7 @@
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+      					<p><a href="https://www.linkedin.com/in/jeff-depree-15273625/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -237,7 +237,7 @@
       					<p>Coming from a family of cooks and bakers, Jesse is dedicated to empowering emerging chefs while also tackling food waste issues, having collaborated with innovative non-profit and 
       					for-profit culinary and food sustainability organizations. In his free time, Jesse enjoys cooking and exploring DC with his wife and son, and has developed a passion for making the perfect pizza.</p>
 
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+      					<p><a href="https://www.linkedin.com/in/jesse-corradi-b39b658/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -252,11 +252,11 @@
       						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/katherine.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer</span>
     						
     					</div>
     					
-    				<div class="card-reveal">
+    				<!--  <div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
       					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
       					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
@@ -268,7 +268,7 @@
       					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
       					Africa.</p>
       					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>
+    					</div>  -->
   				</div>	
 			</div>
 				
@@ -278,11 +278,11 @@
       						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board</span>
       						
     					</div>
     					
-    				<div class="card-reveal">
+    				<!--  <div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
       					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
       					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
@@ -290,7 +290,7 @@
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
       					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>
+    					</div> -->
   				</div>	
 			</div>
 			<div class="col s12 m4 l4">	
@@ -299,11 +299,11 @@
       						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/beau.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Beau Jackson, Board<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Beau Jackson, Board</span>
       						
     					</div>
     					
-    				<div class="card-reveal">
+    				<!--  <div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
       					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
       					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
@@ -311,7 +311,7 @@
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
       					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>
+    					</div>  -->
   				</div>	
 			</div>
 		</div>
@@ -460,6 +460,96 @@
 				</div>
 			</div>
 		</div>
+		
+	<div class="card-panel" style="padding: 5% 5% 5% 5%;">
+		<div class="row">
+          <div class="center-align flow-text"><b>Our Partners</b></div><br><br>
+          <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/wcharity_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="https://www.watercharity.com" target="_blank">Water Charity</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/wc_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="https://www.worldconnect-us.org/" target="_blank">World Connect</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/fom_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="https://www.friendsofmalawi.org/cpages/home" target="_blank">Friends of Malawi</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/npca_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="https://www.peacecorpsconnect.org/cpages/home" target="_blank">National Peace Corps Association</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+            <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/nido_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="https://www.nido.cl/" target="_blank">International School Nido de Aguilas</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col s12 m8 offset-m2 l6">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s6 center-align">
+              <img src="images/ss_logo.jpg" alt="" class="circle responsive-img"> <!-- notice the "circle" class -->
+            </div>
+            <div class="col s6">
+              <span class="black-text flow-text">
+                <a href="http://www.ssrentacar.com/" target="_blank">SS Rent a Car (Malawi)</a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+</div>
 </div>
 
 <?php include('footer.inc'); ?>
