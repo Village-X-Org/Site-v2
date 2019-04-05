@@ -4,6 +4,11 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
+  
 <?php
 if (hasParam('id')) {
     $projectId = paramInt('id');
@@ -124,6 +129,8 @@ $(document).ready(function(){
         background:url('<?php print PICTURES_DIR.($otherYearExemplaryPicture ? $otherYearExemplaryPicture : $otherYearPictureFilename); ?>');background-size:80px 80px;">
     <span style='position:absolute;font-weight:bolder;font-size:24px;top:40px;left:10px;color:#DDDDDD'><?php print $otherYearPosted; ?></span>  
   </div>
+   
+ 
 <?php 
   $count++;
 } 
@@ -131,18 +138,18 @@ $stmt->close();
 
 $mapFilename = "uploads/map$projectId.jpg";
 if (!file_exists($mapFilename)) {
-  $url = "https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/$villageLng,$villageLat,15,0,60.00/800x600?access_token=".MAPBOX_API_KEY;
+   $url = "https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/$villageLng,$villageLat,15,0,60.00/800x600?access_token=".MAPBOX_API_KEY; 
   file_put_contents($mapFilename, file_get_contents($url));
 }
-?>
+?>  
 </div>
 
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='<?php print $mapFilename; ?>' 
-            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> 
+					  <a href='<?php print $mapFilename; ?>' 
+            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a>  
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
             <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
@@ -371,15 +378,29 @@ if (!file_exists($mapFilename)) {
 	
 		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
 						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 0px 20%;">
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 5% 20%;">
 							100% tax deductible and securely processed by Stripe
 					</span>
 			</div>
+			
+
+    
+    <div class="section">
+    <div class="card-tabs">
+    <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width z-depth-0.5">
+    <li class="tab"><a class="active" href="#infotab"><span class="flow-text light blue-text">Info</span></a></li>
+    <li class="tab"><a href="#updatestab"><span class="flow-text light blue-text">Updates & Map</span></a></li>
+    <li class="tab"><a href="#datatab"><span class="flow-text light blue-text">Data</span></a></li>
+    </ul>
+    </div>
+    
+    <div class="section">
+    <div id="infotab" class="col s12">
 
 	<?php if (strlen($summary) > 2) { ?>
-	<div class="section" style="text-align:center">
+	<!--  <div class="section" style="text-align:center">
 		<h5 class="donor-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
-	</div>
+	</div> -->
 	
 	<div class="section">	
 		<div class="row">
@@ -523,7 +544,12 @@ if (!file_exists($mapFilename)) {
 			</div>	
 			</div>
 		<?php } ?>
-		
+
+</div> 
+</div>
+
+
+<div id="updatestab" class="col s12">
     <?php
         $stmt = prepare("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=? AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
         $stmt->bind_param('i', $projectId);
@@ -547,7 +573,7 @@ if (!file_exists($mapFilename)) {
                       $('.carousel').carousel();
                     });
                   </script>
-                  </div>
+                  
                   
                 <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
             <?php 
@@ -561,6 +587,10 @@ if (!file_exists($mapFilename)) {
           print "<hr width='85%'>";
         }
     ?>
+    
+    </div>
+    
+    <div id="datatab" class="col s12">
    
 		<?php
 		  $years = array();
@@ -852,8 +882,23 @@ if (!file_exists($mapFilename)) {
 					</script>
 			</div> 
 		</div>
-	</div>
+	
 	<?php } ?>
+	
+	
+	</div>
+	
+	</div>
+    
+    
+    <script> $(document).ready(function(){
+
+ 	   $('.tabs').tabs();
+
+ 	 });</script>
+    </div>
+  </div>
+	
 </div></div></div>
 <?php 
     include('footer.inc');
