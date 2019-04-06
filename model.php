@@ -24,7 +24,8 @@ require_once("utilities.php");
 			Overview
 	</h4></div> 	
 	
-	<blockquote class="flow-text">"We disrupt extreme poverty, at scale in rural Africa, by deploying targeted financing and retrieving impact data for 100% village-led development projects, while celebrating radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
+	<blockquote class="flow-text">"We disrupt extreme poverty in rural Africa. We do this by deploying targeted financing and retrieving information (pics, videos, and impact data) 
+	for 100% village-led development projects. Our light-footprint model scales by leveraging local capacity, while practicing radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
 	<br>
 		<div class="video-container" style="border-style:solid;background-image:url('images/model_video_preview.webp');background-size:cover;background-position:center;"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
@@ -39,7 +40,7 @@ require_once("utilities.php");
 				<div class="icon-block">
 					<i class="material-icons brown-text" style="font-size: 50px">access_time</i>
 					<h5 class="center brown-text">fast</h5>
-					<h6 class="light center brown-text">projects completed within 1 month of funding</h6>
+					<h6 class="light center brown-text">projects often completed within 2 months of funding</h6>
 				</div>
 				<br>
 			</div>
@@ -57,7 +58,7 @@ require_once("utilities.php");
 				<div class="icon-block">
 					<i class="material-icons brown-text" style="font-size: 50px">person_pin</i>
 					<h5 class="center brown-text">local</h5>
-					<h6 class="light center brown-text">villages have contributed over $4,000 of financing</h6>
+					<h6 class="light center brown-text">villages contribute cash (skin in the game)</h6>
 				</div>
 				<br>
 			</div>
@@ -66,7 +67,7 @@ require_once("utilities.php");
 				<div class="icon-block">
 					<i class="material-icons brown-text" style="font-size: 50px">visibility</i>
 					<h5 class="center brown-text">transparent</h5>
-					<h6 class="light center brown-text">cost breakdowns, project updates, and impact data</h6>
+					<h6 class="light center brown-text">cost breakdowns, pics, videos, and impact data</h6>
 				</div>
 				<br>
 			</div>
@@ -162,52 +163,6 @@ require_once("utilities.php");
       </div>
 	
 <hr>	
-
-<div class="row">
-	<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
-			Use of Donations
-	</h4>
-	
-	<div class="flow-text brown-text" style="padding:10% 3% 0% 3%;">To foster <b>sustainability</b>, we collect 10% of every project donation to cover adminstrative costs (e.g., improving our technology). 
-                    		Villages receive 80% or more of each donation, while credit card and money transfer fees account for about 10% (ironically, it takes money to move money).* 
-                    		That's a vast improvement over the industry standard, where a small fraction of donated money reaches the ground. Each project profile on this website features a complete cost breakdown.
-     </div>
-	
-	<div class="row" style="padding:7% 5% 0% 3%;">
-		<div class="col s12 m4 l4">
-			<div class="icon-block center brown-text" style="padding:0% 0% 9% 0%;">
-				<i class="material-icons" style="font-size: 30px">build</i>
-			<h5>project costs</h5>
-			<h6 class="light center">labor, materials like cement and roofing, transport</h6>
-			<h4 class="light center">~80%</h4>
-</div>
-</div>
-
-		<div class="col s12 m4 l4">
-			<div class="icon-block center brown-text" style="padding:0% 9% 9% 9%;">
-			<i class="material-icons" style="font-size: 30px">account_balance</i>
-			<h5>bank fees</h5>
-			<h6 class="light center">credit card and money transfer fees</h6>
-			<h4 class="light center">~10%</h4>
-
-</div>
-</div>
-
-		<div class="col s12 m4 l4" style="padding:0% 0% 5% 0%;">
-			<div class="icon-block center brown-text">
-			<i class="material-icons" style="font-size: 30px">all_inclusive</i>
-			<h5>admin</h5>	
-			<h6 class="light center">project vetting, tech updates, field officer compensation</h6>
-			<h4 class="light center">10%</h4>
-</div>
-</div>
-</div>
-<h6 class="brown-text center-align" style="padding:0% 3% 0% 3%;">*if 10% sounds high, remember that money transfer fees include explicit fees and unfavorable exchange rate conversions</h6>	
-
-</div>
-
-
-<hr>
 	
 
 <div class="row"><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
@@ -217,7 +172,8 @@ require_once("utilities.php");
 	<div class="flow-text brown-text" style="width:100%; padding: 0% 3% 5% 3%">
 			To achieve <b>scalabilty</b>, we recruit and train local field officers, and pay them per completed project. These ambitious young men and women possess smartphones and a passion for community development. 
                	A single field officer covers up to 30 villages a year, using local transportation and mobile technology to reach up to 40,000 people. 
-                This distributed network of oversight allows us rapidly to scale across regions or even countries.
+                Crowdfunding and low fixed costs allow us to leverage a small, US-based staff to support an ever-expanding 
+                network of partner villages and field officers across regions and countries.    
 			</div>
 			
 	<div class="row">
@@ -247,11 +203,9 @@ require_once("utilities.php");
                 tens of millions of dollars per year, depending on the mix of projects chosen by villages. That's a sliver of the $1 billion in overseas development assistance
                 received by Malawi annually.</h6>	  -->
 
-
+<!-- 
 <hr>	
-
-
-
+ 
 <div class="row">
 	<h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%">
 			Three Things We Want To Learn
@@ -295,7 +249,7 @@ require_once("utilities.php");
         		more villages inside and outside of Malawi. Find more on our impact <a href="impacts.php">here</a>.</span></div>
     </li>
     </ul>
-    <br>
+    <br>   -->
 
 </div>
 <?php include('footer.inc'); ?>
