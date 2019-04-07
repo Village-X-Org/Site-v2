@@ -232,7 +232,7 @@
 			<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/katherine.jpg">
+      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
@@ -240,7 +240,7 @@
     					</div>
     					
     		<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
+      				<span class="card-title grey-text text-darken-4">More About Katherine<i class="material-icons right">close</i></span>
       					<p>Katherine Raynor is a dedicated volunteer to Village X, helping to promote the organization in various capacities.</p> 
       					<p>During her Peace Corps service in Malawi, Katherine was invited to participate in multiple Village X activities by her friend and counterpart, 
       					Myson Jambo.  Through these activities, including many visits to village projects, she saw the power the Village X model has to create real change.  
