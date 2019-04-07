@@ -110,7 +110,7 @@ This is part of our 100% radically transparent commitment to prove (not just say
 </div>
 	
 <div class="container center-align" style="padding: 0% 10% 3% 8%">
-<table class="centered responsive-table striped flow-text" style="table-layout: fixed;">
+<table class="centered responsive-table striped flow-text">
         <thead>
           <tr>
               <th>Category</th>
@@ -162,7 +162,7 @@ This is part of our 100% radically transparent commitment to prove (not just say
           </tr>
           <tr>
           <td></td>
-            <td>Taxes & Licenses</td>
+            <td>Taxes &amp; Licenses</td>
             <td>$412.50</td>
           </tr>
           <tr>
@@ -185,7 +185,6 @@ This is part of our 100% radically transparent commitment to prove (not just say
             <td>Rollover for 2019 Projects</td>
             <td>$5,916.98</td>
           </tr>
-          <tr>
         </tbody>
       </table>
       <h6 class="center-align" style="padding:2% 3% 2% 3%;">*We set aside this money for travel, trainings, and emergency expenses.</h6>	
