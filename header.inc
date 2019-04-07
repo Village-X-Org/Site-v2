@@ -42,11 +42,21 @@ if (hasParam('d')) {
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="js/init.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+(function($){
+  $(function(){
+
+    $('.button-collapse').sidenav();
+    $('.parallax').parallax();
+    $(".dropdown-trigger").dropdown();
+	M.AutoInit();
+  }); // end of document ready
+})(jQuery);
+</script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -198,6 +208,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </head>
 
 <body>
+
 <?php if (!$donorId) { ?>
 
 	<nav class="white" role="navigation">

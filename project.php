@@ -5,10 +5,6 @@ require_once("utilities.php");
 <html lang="en">
 <head>
   
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css" rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
-  
 <?php
 if (hasParam('id')) {
     $projectId = paramInt('id');
@@ -386,15 +382,15 @@ if (!file_exists($mapFilename)) {
 
     
     <div class="section">
-    <div class="card-tabs">
-    <ul id="tabs-swipe-demo" class="tabs tabs-fixed-width z-depth-0.5">
-    <li class="tab"><a class="active" href="#infotab"><span class="flow-text light blue-text">Info</span></a></li>
-    <li class="tab"><a href="#updatestab"><span class="flow-text light blue-text">Updates & Map</span></a></li>
-    <li class="tab"><a href="#datatab"><span class="flow-text light blue-text">Data</span></a></li>
-    </ul>
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width z-depth-0.5">
+          <li class="tab"><a class="active" href="#infotab"><span class="flow-text light blue-text">Info</span></a></li>
+          <li class="tab"><a href="#updatestab"><span class="flow-text light blue-text">Updates & Map</span></a></li>
+          <li class="tab"><a href="#datatab"><span class="flow-text light blue-text">Data</span></a></li>
+        </ul>
+      </div>
     </div>
-    
-    <div class="section">
+
     <div id="infotab" class="col s12">
 
 	<?php if (strlen($summary) > 2) { ?>
@@ -546,10 +542,10 @@ if (!file_exists($mapFilename)) {
 		<?php } ?>
 
 </div> 
-</div>
 
 
 <div id="updatestab" class="col s12">
+  Hello World Updates
     <?php
         $stmt = prepare("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=? AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
         $stmt->bind_param('i', $projectId);
@@ -592,6 +588,7 @@ if (!file_exists($mapFilename)) {
     
     <div id="datatab" class="col s12">
    
+      Hello World Data
 		<?php
 		  $years = array();
 		  $values = array();
@@ -891,11 +888,11 @@ if (!file_exists($mapFilename)) {
 	</div>
     
     
-    <script> $(document).ready(function(){
-
- 	   $('.tabs').tabs();
-
- 	 });</script>
+    <script> 
+      $(document).ready(function(){
+ 	      $('.tabs').tabs();
+ 	    });
+    </script>
     </div>
   </div>
 	
