@@ -110,7 +110,7 @@ This is part of our 100% radically transparent commitment to prove (not just say
 </div>
 	
 <div class="container center-align" style="padding: 0% 10% 3% 8%">
-<table class="centered responsive-table striped flow-text" style="table-layout: fixed;">
+<table class="centered responsive-table striped flow-text">
         <thead>
           <tr>
               <th>Category</th>
