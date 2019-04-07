@@ -69,7 +69,7 @@
    
  	 </div>
  	 <div class="row">
- 	 <p class="flow-text center-align">Symptoms of Extreme Poverty</p>
+ 	 <p class="flow-text center-align" style="text-transform: uppercase;">Symptoms of Extreme Poverty</p>
       <div class="col s4">
         <img style="padding: 2.5% 1.25% 2.5% 2.5%;" class="responsive-img" src="images/house_problem.jpg">
         <p class="flow-text center-align">inadequate housing</p>
@@ -120,10 +120,10 @@
 		</div>
 		<p class="flow-text center">A confluence of recent trends presents a unique opportunity to support community-driven development at scale: 
           (1) strong donor demand for direct giving experiences; (2) myriad digital channels to move money within and across borders; and (3) proliferating 
-          telecommunications within rural Africa.</p> <!--  <p class="flow-text center"><b>Now is the time for tech-fueled extreme poverty disruption.</b></p> -->
+          telecommunications within rural Africa.</p> 
 	</div>
 	<div class="row">
- 	 <p class="flow-text center-align">Signs of Extreme Poverty Disruption</p>
+ 	 <p class="flow-text center-align" style="text-transform: uppercase;">Signs of Extreme Poverty Disruption</p>
       <div class="col s4">
         <img style="padding: 2.5% 1.25% 2.5% 2.5%;" class="responsive-img" src="images/water_good.jpg">
         <p class="flow-text center-align">community water wells</p>
@@ -151,23 +151,6 @@
         </div>
       </div>
     </div> 
-   
-    <!--  <div class="row" style="padding: 0% 3% 0% 3%;">
-    		<div class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text">
-			<p><b>Want to join the party? All are welcome.</b> We're a small but growth-minded nonprofit looking for friends, collaborators, and evangelists.</p> 
-			<p>We have four teams: (1) a lean, US-based team deploying and improving our direct giving and reporting technology, 
-			(2) a Malawi-based team interfacing daily with partner villages, (3) an international team of volunteers; and (4) a small 
-			but dedicated board, ripe for expansion.</p>
-			<p><b>Interested in a partnership, board seat, or volunteer opportunity? Let's chat.</b></p>
-		</div>
-	</div>
-		
-<br>
-	<div class="center-align">
-		<h4 class="header brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-			US Team
-		</h4>
-	</div>  -->
 	
 	<div class="section">
 		<div class="row">
@@ -192,7 +175,7 @@
       					received a MPP from Princeton.</p> 
       					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
       					Africa.</p>
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+      					<p><a target="_blank" href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -214,7 +197,7 @@
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
       					identify opportunities for getting outdoors.</p> 
-      					<p><a href="https://www.linkedin.com/in/jeff-depree-15273625/">LinkedIn Profile</a></p>
+      					<p><a target="_blank" href="https://www.linkedin.com/in/jeff-depree-15273625/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -237,7 +220,7 @@
       					<p>Coming from a family of cooks and bakers, Jesse is dedicated to empowering emerging chefs while also tackling food waste issues, having collaborated with innovative non-profit and 
       					for-profit culinary and food sustainability organizations. In his free time, Jesse enjoys cooking and exploring DC with his wife and son, and has developed a passion for making the perfect pizza.</p>
 
-      					<p><a href="https://www.linkedin.com/in/jesse-corradi-b39b658/">LinkedIn Profile</a></p>
+      					<p><a target="_blank" href="https://www.linkedin.com/in/jesse-corradi-b39b658/">LinkedIn Profile</a></p>
     					</div>
   				</div>	
 			</div>
@@ -252,23 +235,22 @@
       						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/katherine.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer</span>
+      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
     						
     					</div>
     					
-    				<!--  <div class="card-reveal">
+    		<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
-      					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
-      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
-      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
-      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
-      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
-      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
-      					received a MPP from Princeton.</p> 
-      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
-      					Africa.</p>
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>  -->
+      					<p>Katherine Raynor is a dedicated volunteer to Village X, helping to promote the organization in various capacities.</p> 
+      					<p>During her Peace Corps service in Malawi, Katherine was invited to participate in multiple Village X activities by her friend and counterpart, 
+      					Myson Jambo.  Through these activities, including many visits to village projects, she saw the power the Village X model has to create real change.  
+      					Having lived in four countries, on three different continents over the course of her life, she had never been very impressed by the international 
+      					development work she had seen.  However, the ethical, effective, and data driven work that Village X is doing, caught not only her attention, but her 
+      					heart and mind in a way that nothing else has.</p> 
+      					<p>Currently, Katherine teaches Human Services in the Sociology Department at the State University of New York at New Paltz.  When she's not working 
+      					or volunteering, she might be found hiking in the mountains, or camping on the beach.</p> 
+      					<p><a target="_blank" href="https://www.linkedin.com/in/katherine-raynor-18a31843/">LinkedIn Profile</a></p>
+    					</div> 
   				</div>	
 			</div>
 				
@@ -282,15 +264,7 @@
       						
     					</div>
     					
-    				<!--  <div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
-      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
-      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
-      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
-      					identify opportunities for getting outdoors.</p> 
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div> -->
+    		
   				</div>	
 			</div>
 			<div class="col s12 m4 l4">	
@@ -303,15 +277,7 @@
       						
     					</div>
     					
-    				<!--  <div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
-      					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
-      					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
-      					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
-      					identify opportunities for getting outdoors.</p> 
-      					<p><a href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>  -->
+  
   				</div>	
 			</div>
 		</div>
