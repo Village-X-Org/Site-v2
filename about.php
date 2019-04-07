@@ -154,7 +154,7 @@
 			<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
@@ -180,7 +180,7 @@
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/jeff_profile.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/jeff_profile.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CTO<i class="material-icons right">more_vert</i></span>
@@ -201,7 +201,7 @@
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/jesse_pic.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/jesse_pic.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Jesse Corradi, CFO<i class="material-icons right">more_vert</i></span>
@@ -229,7 +229,7 @@
 			<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
@@ -254,7 +254,7 @@
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board</span>
@@ -267,7 +267,7 @@
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" width="100%" height="100%" style="border-radius: 50%;" src="images/beau.jpg">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/beau.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Beau Jackson, Board</span>
@@ -295,7 +295,7 @@
 				<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator" style="border-radius: 50%;" src="images/myson_profile.jpg">
+      						<img class="activator responsive-img" style="border-radius: 50%;" src="images/myson_profile.jpg">
     						</div>
     					<div class="card-content">
       					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Malawi Director<i class="material-icons right">more_vert</i></span>
@@ -326,7 +326,7 @@
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" style="border-radius: 50%;" src="images/alfred_profile.jpg">
+          						<img class="activator responsive-img" style="border-radius: 50%;" src="images/alfred_profile.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Field Officer<i class="material-icons right">more_vert</i></span>
@@ -351,7 +351,7 @@
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" style="border-radius: 50%" src="images/wedson_profile.jpg">
+          						<img class="activator responsive-img" style="border-radius: 50%" src="images/wedson_profile.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Wedson Kondowe, Field Officer<i class="material-icons right">more_vert</i></span>
@@ -378,7 +378,7 @@
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" style="border-radius: 50%" src="images/mmacford_profile.jpg">
+          						<img class="activator responsive-img" style="border-radius: 50%" src="images/mmacford_profile.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Macford Chinonga, Field Officer<i class="material-icons right">more_vert</i></span>
@@ -402,7 +402,7 @@
 					
     					<div class="card">
         						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator" style="border-radius: 50%" src="images/benard.jpg">
+          						<img class="activator responsive-img" style="border-radius: 50%" src="images/benard.jpg">
         						</div>
         					<div class="card-content">
           					<span class="card-title activator grey-text text-darken-4">Benard Dickson, Field Officer<i class="material-icons right">more_vert</i></span>
