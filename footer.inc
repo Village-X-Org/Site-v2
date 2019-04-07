@@ -97,12 +97,13 @@
 				</h6>
 				<ul>
 					<li><a class="white-text" href="project_tiles.php">Projects</a></li>
-					<li><a class="white-text" href="map.php">Map</a></li>
-					<li><a class="white-text" href="travel.php">Travel</a></li>
-					<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 					<li><a class="white-text" href="about.php">Mission &amp; Team</a></li>
 					<li><a class="white-text" href="model.php">Model</a></li>
 					<li><a class="white-text" href="impacts.php">Impacts</a></li>
+					<li><a class="white-text" href="map.php">Map</a></li>
+					<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+					<li><a class="white-text" href="travel.php">Travel</a></li>
+					<li><a class="white-text" href="finances.php">Finances</a></li>
 					<li><a class="white-text" href="faq.php">FAQ</a></li>
 				</ul>
 			</div>

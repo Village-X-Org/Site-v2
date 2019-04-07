@@ -220,9 +220,10 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
 				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
-				<li><a href="about.php"><i class="material-icons">info</i>About</a></li>
+				<li><a href="about.php"><i class="material-icons">info</i>Mission &amp; Team</a></li>
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
+  				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
 				
 			
 				<?php if ($session_donor_id) {
@@ -238,12 +239,14 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 		</div>
 
 		<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+	          <li><a href="project_tiles.php">Projects</a></li>
 	          <li><a href="about.php">Mission &amp; Team</a></li>
 	          <li><a href="model.php">Model</a></li>
 	          <li><a href="impacts.php">Impacts</a></li>
 	          <li><a href="map.php">Map</a></li>
 	          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 	          <li><a href="travel.php">Travel</a></li>
+	          <li><a href="finances.php">Finances</a></li>
 	          <hr/>
 
 			<?php if ($session_donor_id) {
