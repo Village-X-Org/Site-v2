@@ -110,15 +110,88 @@
 <div class="section flow-text" style="padding:0% 3% 4% 3%;"> 
 Below is a table showing exactly how we spent your hard-earned money in 2018.  
 This is part of our 100% radically transparent commitment to prove (not just say) that we are good stewards of your donations.</div>
-	
-<div style="padding: 0 0 3% 0">
-<object data="finances_2018.pdf" type="application/pdf" width="100%" height="800px"> 
-  <p>It appears you don't have a PDF plugin for this browser.
-   No biggie... you can <a href="finances_2018.pdf">click here to
-  download the PDF file.</a></p>  
-</object>
 </div>
+	
+<div class="container center-align" style="padding: 0% 10% 3% 8%">
+<table class="centered responsive-table striped flow-text" style="table-layout: fixed;">
+        <thead>
+          <tr>
+              <th>Category</th>
+              <th>Item</th>
+              <th>Amount</th>
+          </tr>
+        </thead>
 
+        <tbody>
+          <tr>
+            <td><b>Revenue</b></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Restricted Donations</td>
+            <td>$59,926.57</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Unrestricted Donations</td>
+            <td>$19.70</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td><b>Total</b></td> 
+            <td><b>$59,946.27</b></td>
+          </tr>
+          <tr>
+            <td><b>Expenses</b></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Bank Fees</td>
+            <td>$145.00</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Cash to Villages</td>
+            <td>$48,034.66</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Office Supplies</td>
+            <td>$95.29</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Taxes & Licenses</td>
+            <td>$412.50</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td><b>Total</b></td>
+            <td><b>$48,687.45</b></td>
+          </tr>
+          <tr>
+            <td><b>Net</b></td>
+            <td></td>
+            <td><b>$11,258.82</b></td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Village X Admin*</td>
+            <td>$5,341.84</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Rollover for 2019 Projects</td>
+            <td>$5,916.98</td>
+          </tr>
+          <tr>
+        </tbody>
+      </table>
+      <h6 class="center-align" style="padding:2% 3% 2% 3%;">*We set aside this money for travel, trainings, and emergency expenses.</h6>	
 </div>
 
 <?php include('footer.inc'); ?>
