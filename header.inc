@@ -200,20 +200,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 <body>
 <?php if (!$donorId) { ?>
 
-	<ul id="About" class="dropdown-content">
-          <li><a href="about.php">Mission &amp; Team</a></li>
-          <li><a href="model.php">Model</a></li>
-          <li><a href="impacts.php">Impacts</a></li>
-          <li><a href="map.php">Map</a></li>
-          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-          <li><a href="travel.php">Travel</a></li>
-   </ul>
-
-   	<ul id="MyAccount" class="dropdown-content">
-   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
-        <li><a href="user_logout.php">Logout</a></li>
-   </ul>
-
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.php" class="brand-logo" style="padding 2% 0 0 0"><img
@@ -223,13 +209,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			<ul class="right hide-on-med-and-down">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<li><a class="dropdown-button" href="#!" data-activates="About">About<i class="material-icons right">arrow_drop_down</i></a></li>
-        			
-				<?php if ($session_donor_id) {
-					print "<li><a class='dropdown-button' href='#!' data-activates='MyAccount'>My Account<i class='material-icons right'>arrow_drop_down</i></a></li>";
-				} else {
-					print "<li><a class='waves-effect waves-light btn-small' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
-				} ?>
+				<li><a class="dropdown-button" href="#!" data-activates="Menu">Info &amp; Tools<i class="material-icons right">arrow_drop_down</i></a></li>
 		
 			</ul>
 		
@@ -256,7 +236,29 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 			</ul>
 		</div>
+
+		<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+	          <li><a href="about.php">Mission &amp; Team</a></li>
+	          <li><a href="model.php">Model</a></li>
+	          <li><a href="impacts.php">Impacts</a></li>
+	          <li><a href="map.php">Map</a></li>
+	          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+	          <li><a href="travel.php">Travel</a></li>
+	          <hr/>
+
+			<?php if ($session_donor_id) {
+				?>
+			   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
+			        <li><a href="user_logout.php">Logout</a></li>
+		        <?php
+			} else {
+				?>
+				<li><a href='user_login.php'>Sign In/Register</a></li>
+				<?php
+			} ?>
+	   </ul>
 	</nav>
+
 <div style="width:100%;border-style:solid; border-width:1px;">
 </div>
 	
