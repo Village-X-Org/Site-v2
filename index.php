@@ -473,7 +473,7 @@ if (CACHING_ENABLED) {
 <div class="container">
 <h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(proving impact with data)</h6>
-<table class="highlight centered responsive-table striped flow-text" style="table-layout: fixed;">
+<table class="highlight centered responsive-table striped flow-text">
 		        <thead>
 		          <tr>
 		              <th>Metric</th>
@@ -482,8 +482,8 @@ if (CACHING_ENABLED) {
 		              <th>Goat assets</th>
 		              <th>Waterborne illness</th>
 		              <th>Infant deaths</th>
-		              <th>Agri business</th>
-		              <th>Other business</th>
+		              <th>Agri biz</th>
+		              <th>Other biz</th>
 		              <th>Homes w/ metal roofs</th>
 		          </tr>
 		        </thead>

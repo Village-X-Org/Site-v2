@@ -261,7 +261,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>% Change in Lifestyle Hacks: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
+				<h5 style="text-align: center"><b>% Change in Lifestyle Upgrades: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -449,7 +449,7 @@
 	
 <div><br>
 
-<table class="highlight centered responsive-table striped flow-text" style="table-layout: fixed;">
+<table class="highlight centered responsive-table striped flow-text">
 		        <thead>
 		          <tr>
 		              <th>Metric</th>
