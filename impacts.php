@@ -1,3 +1,7 @@
+<?php require_once("utilities.php"); ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <?php include('header.inc'); ?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
@@ -18,10 +22,9 @@
 		to help others should support those claims with convincing quantitative evidence of impact. We rely on such evidence
 		in law, public policy, medicine, engineering, and other disciplines that affect our daily lives. We should hold well-intentioned 
 		charities to the same standard.</p> 
-		<p>Our evaluation method is to collect 25 development indicators per village per year and run a statistical analysis (more on that below). 
-		The data show partner and control villages on divergent development paths, with the former outperforming the latter. To get a sense of this, using 2014 as a baseline, 
-		we graph partner v. control villages over time in terms of changes in overall development scores and the dimensional scores (health, education, business, lifestyle, 
-		agriculture, and livestock) that constitute the overall development scores.</p> 
+		<p> 
+		The data we've collected since 2014 show partner and control villages on divergent development paths, with the former outperforming the latter.  
+		Below we graph partner v. control villages over time in terms of changes in a overall development score and categorical scores for health, education, business, lifestyle, agriculture, and livestock.</p> 
 		<p>Do these graphs reveal statistically significant impacts? Find out below.</p>
 	</div>
 
@@ -259,7 +262,7 @@
 		
 	<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-				<h5 style="text-align: center"><b>% Change in Lifestyle Hacks: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
+				<h5 style="text-align: center"><b>% Change in Lifestyle Upgrades: <span class="blue-text">Partner Villages</span> v. <span style="color:rgba(192,192,192,1)">Control Villages</span></b> (higher % is better)</h5>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -436,16 +439,16 @@
 	</h4></div>
 	
 	<div class="section flow-text" style="width:100%;"> 
-		<p>Our most recent impact evaluation occurred in early 2019. Our approach wasn't fancy or expensive (more on that
-		below). Instead, it tested a foundational assumption that financing village-led projects without any sort of preconceived 
+		<p>Our most recent impact evaluation occurred in early 2019. Our approach wasn't fancy or expensive. Instead, it tested a 
+		foundational assumption that financing village-led projects without any sort of preconceived 
 		development agenda would allow local communities to illuminate development pathways obscured from the outside. In other words, 
 		we funded a bunch of projects, collected a bunch of development indicators, and tested whether anything had changed.</p>
-		<p>Did communitites improve and, if so, how? Here's what we found. For starters, treatment villages posted a 9-point increase 
-		in overall development score over control villages, and this result was statistically significant at the 1% level.
-		The table below reveals which of the individual development metrics contributed to this development surge by treatment villages.</p>
+		<p>Did communitites improve and, if so, how? Here's what we found. For starters, while control villages exhibited a 19% increase in overall development
+		score over four years, partner villages posted a whopping 73% increase during the same timeframe. This result was statistically significant at the 1% level.
+		The table below reveals which of the 25 development data metrics we use contributed to this development surge by treatment villages.</p>
 	</div>
 	
-<div class="section"><br>
+<div><br>
 
 <table class="highlight centered responsive-table striped flow-text">
 		        <thead>
@@ -453,13 +456,12 @@
 		              <th>Metric</th>
 		              <th>Boys in nursery</th>
 		              <th>Girls in nursery</th>
-		              <th>Live goats</th>
+		              <th>Goat assets</th>
 		              <th>Waterborne illness</th>
 		              <th>Infant deaths</th>
 		              <th>Agri biz</th>
 		              <th>Other biz</th>
-		              <th>Homes with 
-		              metal roofs</th>
+		              <th>Homes w/ metal roofs</th>
 		          </tr>
 		        </thead>
 
@@ -511,7 +513,7 @@
 		          </tr>
 		        </tbody>
 		      </table>
-		      <div class="flow-text center" style="padding:5% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per treatment village, on average.  
+		      <div class="flow-text center" style="padding:5% 5% 2% 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per treatment village, on average.  
 		      Not shown are small but statistically significant increases in motorcycles (+2 per village) and TVs (+2 per village). In the table above, % change is based on 2014 treatment village average.  
 		      </div>
 		      </div>
@@ -536,7 +538,7 @@
 		<!--   Icon Section   -->
 		<div class="row center">
 			<br>
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 2% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">local_hospital</i>
 					<h5 class="center brown-test">health</h5>
@@ -548,17 +550,17 @@
 				
 			</div>
 
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 2% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">school</i>
 					<h5 class="center brown-test">education</h5>
-					<h6 class="light center"><b>enrollment:</b> # of boys/girls in nursery, primary, secondary, and tertiary</h6>
-					<h6 class="light center"><b>test scores:</b> # of boys/girls passing PLSCE (end of primary exam) and # of boys/girls passing MSCE (end of secondary exam)</h6>
+					<h6 class="light center" style="padding:0 10% 0 10%"><b>enrollment:</b> # of boys/girls in nursery, primary, secondary, and tertiary</h6>
+					<h6 class="light center" style="padding:0 10% 0 10%"><b>test scores:</b> # of boys/girls passing PLSCE (end of primary exam) and # of boys/girls passing MSCE (end of secondary exam)</h6>
 				</div>
 				
 			</div>
 
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 2% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">local_convenience_store</i>
 					<h5 class="center brown-test">business</h5>
@@ -568,7 +570,7 @@
 				
 			</div>
 
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 2% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">tv</i>
 					<h5 class="center brown-test">lifestyle</h5>
@@ -580,7 +582,7 @@
 				
 			</div>
 			
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 2% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">spa</i>
 					<h5 class="center brown-test">agriculture</h5>
@@ -589,7 +591,7 @@
 				
 			</div>
 
-			<div class="col s12 m2 l2">
+			<div class="col s12 m2 l2" style="padding:0 0 0% 0">
 				<div class="icon-block">
 					<i class="material-icons" style="font-size: 50px">goat</i>
 					<h5 class="center brown-test">livestock</h5>
@@ -602,7 +604,7 @@
 	
 	<div class="section flow-text"> 
 		<p>Project profiles on this website have graphs showing how development scores for a given village change
-		over time, including an overall village development score and scores for each of the dimensions set forth above. These scores 
+		over time, including an overall village development score and scores for each of the sub-categories set forth above. These scores 
 		are not precision instruments. Instead, they capture village development trends over time.</p>
 		<p>Want to take a deeper dive? Checkout our dataset <a href="https://docs.google.com/spreadsheets/d/1Ga1Wzh4e8nrXX3gY1x3mflR8a2wnAKUbuxVvLcNGE-8/edit?usp=sharing" target='_blank'>here</a>. It's part of our 100% tranparency guarantee.</p>
 	</div>
