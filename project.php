@@ -540,55 +540,14 @@ if (!file_exists($mapFilename)) {
 			</div>	
 			</div>
 		<?php } ?>
+</div></div>
 
-</div> 
 
-
-<div id="updatestab" class="col s12">
-  Hello World Updates
-    <?php
-        $stmt = prepare("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=? AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
-        $stmt->bind_param('i', $projectId);
-        $result = execute($stmt);
-        $count = 0;
-        while ($row = $result->fetch_assoc()) {
-            if ($count == 0) {
-                print "<hr width='85%'><div id='pics' class='section scrollspy'>
-				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
-                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>".strip_tags($completion)."</span>" : "")."
-                                <div class='carousel'>";
-            }
-            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
-            $count++;
-        }
-        $stmt->close();
-        if ($count > 0) {
-            ?>
-                  <script>
-                  $(document).ready(function(){
-                      $('.carousel').carousel();
-                    });
-                  </script>
-                  
-                  
-                <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
-            <?php 
-        }
-
-        if ($videoId) {
-            print "<br/><br/><div class='video-container' style='border-style:solid;background-size:cover;background-position:center;''>
-                  <iframe src='https://www.youtube.com/embed/".$videoId."?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0' frameborder='0' gesture='media' allow='encrypted-media' width='480' height='270'></iframe>
-                </div><br/>";
-        } elseif ($count > 0) {
-          print "<hr width='85%'>";
-        }
-    ?>
-    
+    <div id="updatestab" class="col s12">
+      <iframe style='width:100%;height:600px;' src='track.php?id=<?php print $projectId; ?>&hideHeader=1' ></iframe>
     </div>
     
     <div id="datatab" class="col s12">
-   
-      Hello World Data
 		<?php
 		  $years = array();
 		  $values = array();
@@ -773,7 +732,6 @@ if (!file_exists($mapFilename)) {
 					<br>
 				</div>
 		<?php } ?>
-	</div>
 	
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
@@ -878,14 +836,10 @@ if (!file_exists($mapFilename)) {
 								});
 					</script>
 			</div> 
-		</div>
 	
 	<?php } ?>
-	
-	
 	</div>
 	
-	</div>
     
     
     <script> 

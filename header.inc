@@ -209,7 +209,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 <body>
 
-<?php if (!$donorId) { ?>
+<?php if (!$donorId && !hasParam('hideHeader')) { ?>
 
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
