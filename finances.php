@@ -1,3 +1,4 @@
+<?php require_once("utilities.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
