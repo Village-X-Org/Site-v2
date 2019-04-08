@@ -18,10 +18,10 @@ require_once("utilities.php");
 		<div class="col s12 m4 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn donor-background" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown1' id='statusFilter'>Filter by Status</a>
+      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown1' id='statusFilter'>Filter by Status</a>
 
             <!-- Dropdown Structure -->
-          	<ul id="dropdown1" class="dropdown-content">
+          	<ul id="dropdown1" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
           		<li><a href="" onclick="statusFilter=0; if (typeFilter) { $('.' + typeFilter).show(); } else { $('.projectCell').show(); }  $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
@@ -31,10 +31,10 @@ require_once("utilities.php");
 	
 		 <div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">			
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-button btn donor-background" style="display: block; margin: 0 auto;" href='#' data-activates='dropdown2' id='typeFilter'>Filter by Type</a>
+      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown2' id='typeFilter'>Filter by Type</a>
 
             <!-- Dropdown Structure -->
-          	<ul id="dropdown2" class="dropdown-content">
+          	<ul id="dropdown2" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
           		<li><a href="" onclick="typeFilter=0; if (statusFilter) { $('.' + statusFilter).show(); } else { $('.projectCell').show(); } $('#typeFilter').html('Filter by Type'); return false;">All</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='agriculture';className = '.agriculture' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
