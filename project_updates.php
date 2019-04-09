@@ -45,6 +45,8 @@ if (strpos($pictureStr, ',') > 0) {
 $picture = $pictureIds[0].".jpg";
 ?>
 <HTML>
+<HEAD>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <style>    
     body {
@@ -113,6 +115,8 @@ $picture = $pictureIds[0].".jpg";
     }
 </style>
 
+</HEAD>
+<BODY>
 <div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
     <div style='width:100%;padding-right:0px;'>
             <div id='updatesDiv'>
