@@ -385,7 +385,8 @@ if (!file_exists($mapFilename)) {
       <div class="card-tabs">
         <ul class="tabs tabs-fixed-width z-depth-0.5">
           <li class="tab"><a class="active" href="#infotab"><span class="flow-text light blue-text">Info</span></a></li>
-          <li class="tab"><a href="#updatestab"><span class="flow-text light blue-text">Updates & Map</span></a></li>
+          <li class="tab"><a href="#updatestab"><span class="flow-text light blue-text">Updates</span></a></li>
+          <li class="tab"><a href="#maptab"><span class="flow-text light blue-text">Map</span></a></li>
           <li class="tab"><a href="#datatab"><span class="flow-text light blue-text">Data</span></a></li>
         </ul>
       </div>
@@ -546,6 +547,11 @@ if (!file_exists($mapFilename)) {
     <div id="updatestab" class="col s12">
       <iframe style='width:100%;height:600px;' src='track.php?id=<?php print $projectId; ?>&hideHeader=1' ></iframe>
     </div>
+    
+     <div id="maptab" class="col s12">
+     	
+     	
+     </div>
     
     <div id="datatab" class="col s12">
 		<?php
