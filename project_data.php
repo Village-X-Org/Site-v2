@@ -1,3 +1,4 @@
+<div class="section">
 <?php
 $years = array();
 $values = array();
@@ -280,3 +281,4 @@ if (count($years) > 1) { ?>
 			</script>
 		</div> 
 <?php } ?>
+</div>
