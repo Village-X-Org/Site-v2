@@ -152,7 +152,6 @@ $picture = $pictureIds[0].".jpg";
 <meta property="og:description" content="<?php print $pageDescription; ?>" />
 <?php 
 $metaProvided = 1;
-$hideHeader = hasParam('hideHeader');
 include('header.inc'); 
 ?>
 <div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
@@ -177,7 +176,7 @@ include('header.inc');
             </div>
 </div>
 </div>
-<div class='map' id='map' style='position:absolute;right:0;top:<?php print ($hideHeader ? "0" : "67"); ?>px;width:50%;height:100%;'></div>
+<div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
 <script>
     projectId = <?php print $projectId; ?>;
     lastScrollTop = 0;
@@ -188,7 +187,7 @@ include('header.inc');
         if (scrollTop > lastScrollTop && scrollTop > 67) {
             $('#map').css({position: 'fixed', top:'0'});
         } else if (scrollTop < lastScrollTop && scrollTop <= 67) {
-            $('#map').css({position: 'absolute', top:'<?php print ($hideHeader ? 0 : 67); ?>'});
+            $('#map').css({position: 'absolute', top:'67'});
         }
         if (!refreshing && hasMoreRecords && scrollTop > $('body').height() - 2000) {
             refreshing = 1;
