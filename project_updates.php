@@ -116,7 +116,7 @@ if (count($updates) > 0) {
 <BODY>
 <?php
 if (count($updates) == 0) {
-    print "<div class='updateHeader' style='text-align:center;'>No updates available just yet. Stay tuned!</div>";
+    print "<div class='updateHeader' style='text-align:center;'>No updates available just yet.<br/>Stay tuned!</div>";
     die(1);
 }
 ?>
