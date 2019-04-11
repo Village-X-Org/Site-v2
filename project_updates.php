@@ -30,19 +30,16 @@ include("track_updates.php");
 $updateHTML = ob_get_contents();
 ob_end_clean();
 
-if (count($updates) == 0) {
-    print "No records found";
-    die(1);
-}
-$latestDate = date("F j, Y", $updates[0]["timestamp"]);
+if (count($updates) > 0) {
+    $latestDate = date("F j, Y", $updates[0]["timestamp"]);
 
-$pictureStr = $updates[0]["picture_ids"];
-if (strpos($pictureStr, ',') > 0) {
-    $pictureIds = explode(",", $pictureStr);
-} else {
-    $pictureIds = array($pictureStr);
+    $pictureStr = $updates[0]["picture_ids"];
+    if (strpos($pictureStr, ',') > 0) {
+        $pictureIds = explode(",", $pictureStr);
+    } else {
+        $pictureIds = array($pictureStr);
+    }
 }
-
 ?>
 <HTML>
 <HEAD>
@@ -117,6 +114,13 @@ if (strpos($pictureStr, ',') > 0) {
 
 </HEAD>
 <BODY>
+<?php
+if (count($updates) == 0) {
+    print "<div class='updateHeader' style='text-align:center;'>No updates available just yet. Stay tuned!</div>";
+    die(1);
+}
+?>
+
 <div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
     <div style='width:100%;padding-right:0px;'>
             <div id='updatesDiv'>
