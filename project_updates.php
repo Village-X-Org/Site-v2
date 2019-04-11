@@ -25,6 +25,7 @@ if (hasParam('small')) {
 }
 
 ob_start();
+$includeFirst = 1;
 include("track_updates.php");
 $updateHTML = ob_get_contents();
 ob_end_clean();
@@ -42,7 +43,6 @@ if (strpos($pictureStr, ',') > 0) {
     $pictureIds = array($pictureStr);
 }
 
-$picture = $pictureIds[0].".jpg";
 ?>
 <HTML>
 <HEAD>

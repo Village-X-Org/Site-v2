@@ -410,9 +410,7 @@ if (!file_exists($mapFilename)) {
     
     
     <script> 
-      $(document).ready(function(){
- 	      $('.tabs').tabs();
- 	    });
+      var instance = M.Tabs.init($('.tabs'));
     </script>
     </div>
   </div>

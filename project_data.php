@@ -7,6 +7,15 @@ while ($row = $result->fetch_assoc()) {
   $years[] = $row['stat_year'];
   $values[] = $row['stat_value'];
 }
+
+$maxValue = 0;
+for ($i = 1; $i < count($values); $i++) {
+	$values[$i] = ($values[$i] - $values[0]) / $values[0];
+	if ($values[$i] > $maxValue) {
+		$maxValue = $values[$i];
+	}
+}
+$values[0] = 0;
 if (count($years) > 1) { ?>
 	<div id="databreakdown" class="section scrollspy">
 		<h5 class="donor-text text-lighten-2" style="text-align: center">
@@ -52,7 +61,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ 26, 28, 27, 26, 31 ],
+                             data : [ (26.0 - 26) / 26, (28.0 - 26) / 26, (27.0 - 26) / 26, (26.0 - 26) / 26, (31.0 - 26) / 26 ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -65,7 +74,8 @@ if (count($years) > 1) { ?>
 					scales : {
 						yAxes : [ {
 							ticks : {
-								beginAtZero : true
+								beginAtZero : true,
+								max: <?php print $maxValue + 1; ?>
 							}
 						} ]
 					},
@@ -278,6 +288,13 @@ if (count($years) > 1) { ?>
 								maintainAspectRatio : false,
 							}
 						});
+
+				function updateGraphs() {
+					chart1.update();
+					chart2.update();
+					chart3.update();
+					chart4.update();
+				}
 			</script>
 		</div> 
 <?php } ?>
