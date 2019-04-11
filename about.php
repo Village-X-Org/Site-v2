@@ -1,14 +1,13 @@
 <?php include('header.inc'); ?>
-<div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
+<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 
     <div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
-        	<div class="row center">
-        		<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">About Us</h2>
-        
-                	<div class="parallax" style="background-size: cover;">
-                		<img src="images/about_banner.jpg">
-                	</div>
-        	</div>
+    		<div class="section" style="width:100%;">
+          <h2 class="header col s12 white-text text-lighten-2 center-align" style="text-shadow: 2px 2px 7px #111111">About Us</h2>
+        </div>
+      	<div class="parallax">
+      		<img src="images/about_banner.jpg">
+      	</div>
     </div>
 </div>
 
