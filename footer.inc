@@ -37,13 +37,13 @@
 					/ month</h5>
 			</div>
 			
-			<div class="parallax">
-				<img src="images/footer1.jpg" alt="Unsplashed background img 2">
-			</div>
 			<div class="center-align" style="padding: 5% 0% 0% 0%">
 				<a class="modal-trigger white-text" href="#cancelModal">(cancel a
 					subscription)</a>
 			</div>
+		</div>
+		<div class="parallax">
+			<img src="images/footer1.jpg" alt="Unsplashed background img 2">
 		</div>
 	</div>
 </div>

@@ -157,22 +157,15 @@ if (hasParam('test')) {
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 	<div class="section no-pad-bot valign-wrapper"
 		style="height: 100%; width: 100%;">
-		<div class="row center" style="width:100%;">
-			
+		<div class="row center section" style="width:100%;">
 			<div style="padding: 0% 5% 5% 5%;">
 				<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">do good and explore</h2>
 			</div>
-
-			<!--  <div style="padding: 15% 10% 5% 10%;">
-				
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111">
-					a tea estate on the slopes of Mulanje Mountain</h5>
-			</div> -->
 			
-			<div class="parallax">
-				<img src="images/mulanje_tea.jpg">
-			</div>
-			
+		</div>
+		
+		<div class="parallax">
+			<img src="images/mulanje_tea.jpg">
 		</div>
 	</div>
 </div>
@@ -288,7 +281,8 @@ if (hasParam('test')) {
 	                 
 	                 <script>
 	                 $(document).ready(function() {
-	          		    $('select').material_select();
+	                 	$('#travelGroupType').formSelect();
+	          		    $('#travelGroupSize').formSelect();
 	          			});
 	            	    </script>
 	                 

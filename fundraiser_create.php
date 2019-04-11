@@ -91,8 +91,8 @@ body, html {
 	                 			
 	                 			<script>
 	                 $(document).ready(function() {
-	          		    $('select').material_select();
-	          			});
+	          		     $('#fundraiser_project_id').formSelect();
+	          			  });
 	            	    </script>
 	                 			
 	                 		
