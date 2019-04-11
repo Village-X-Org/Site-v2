@@ -16,31 +16,32 @@ if (hasParam('test')) {
 ?>
 
 <div id="index-banner" class="parallax-container fullscreen hide-on-med-and-down" 
-	style="background-color: rgba(0, 0, 0, 0.4); height: 800px">
-	<div class="section no-pad-bot valign-wrapper"
-		style="height: 100%; width: 100%;">
-		<div class="row center">
-			<div style="padding: 5% 5% 5% 5%;">
-				<h2
-					class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Visit "The Warm Heart of Africa"</h2>
-			</div>
+	style="background-color: rgba(0, 0, 0, 0.4); height: 500px">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
+    	<div class="section" style="width:100%;">
+			<div class="row center">
+				<div style="padding: 5% 5% 5% 5%;">
+					<h2
+						class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Visit "The Warm Heart of Africa"</h2>
+				</div>
 
-			<div style="padding: 5% 5% 5% 5%;">
-				<br>
-				<br>
-				<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
-					discover Malawi's world-class beaches, game parks, mountains, and people</h5>
-			</div>
+				<div style="padding: 5% 5% 5% 5%;">
+					<br>
+					<br>
+					<h5 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 3% 0% 3%">
+						discover Malawi's world-class beaches, game parks, mountains, and people</h5>
+				</div>
 
-			<div style="padding: 0% 5% 5% 5%;">
-				<br>
-				<br>
-				<a href="#get_started" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">learn how</a>
-			</div>
+				<div style="padding: 0% 5% 5% 5%;">
+					<br>
+					<br>
+					<a href="#get_started" id="download-button"
+						class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">learn how</a>
+				</div>
 
-			<div class="parallax">
-				<img src="images/group_sidwell_trip.jpg">
+				<div class="parallax">
+					<img src="images/group_sidwell_trip.jpg">
+				</div>
 			</div>
 		</div>
 	</div>

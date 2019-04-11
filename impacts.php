@@ -5,12 +5,11 @@
 <?php include('header.inc'); ?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
-		<div class="row center">
+		<div class="section row center">
 			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Our Impacts</h2>	
-
-			<div class="parallax" style="background-size: cover;">
-				<img src="images/reward_good_dev.jpg">
-			</div>
+		</div>
+		<div class="parallax" style="background-size: cover;">
+			<img src="images/reward_good_dev.jpg">
 		</div>
 	</div>
 </div>
