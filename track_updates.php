@@ -96,7 +96,7 @@ if (!isset($start)) {
                     .($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : "").
             "</TEXTAREA></div><div style='width:90%;text-align:right;'><input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate($updateId);' /></div></form></div>";
         $pictures = explode(',', $update["picture_ids"]);
-        for ($pictureIndex = ($count > 0 ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
+        for ($pictureIndex = ($count > 0 || isset($includeFirst) ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
             $pictureId = $pictures[$pictureIndex];
             if (!$pictureId) {
                 continue;

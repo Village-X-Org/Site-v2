@@ -285,6 +285,9 @@ if (hasParam('gc')) {
 
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
             
+            <div class="parallax">
+                <img src="images/woman_with_goat.jpg">
+            </div>
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
         <div class="row" style="width:100%;">
@@ -303,10 +306,6 @@ if (hasParam('gc')) {
             </div>
             
          <h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">straight from the ground</h6>
-
-            <div class="parallax">
-                <img src="images/woman_with_goat.jpg">
-            </div>
             
         </div>
     </div>

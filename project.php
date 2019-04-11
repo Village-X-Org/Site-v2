@@ -4,6 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  
 <?php
 if (hasParam('id')) {
     $projectId = paramInt('id');
@@ -124,6 +125,8 @@ $(document).ready(function(){
         background:url('<?php print PICTURES_DIR.($otherYearExemplaryPicture ? $otherYearExemplaryPicture : $otherYearPictureFilename); ?>');background-size:80px 80px;">
     <span style='position:absolute;font-weight:bolder;font-size:24px;top:40px;left:10px;color:#DDDDDD'><?php print $otherYearPosted; ?></span>  
   </div>
+   
+ 
 <?php 
   $count++;
 } 
@@ -131,18 +134,18 @@ $stmt->close();
 
 $mapFilename = "uploads/map$projectId.jpg";
 if (!file_exists($mapFilename)) {
-  $url = "https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/$villageLng,$villageLat,15,0,60.00/800x600?access_token=".MAPBOX_API_KEY;
+   $url = "https://api.mapbox.com/styles/v1/jdepree/cj37ll51d00032smurmbauiq4/static/$villageLng,$villageLat,15,0,60.00/800x600?access_token=".MAPBOX_API_KEY; 
   file_put_contents($mapFilename, file_get_contents($url));
 }
-?>
+?>  
 </div>
 
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	
 		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					<a href='<?php print $mapFilename; ?>' 
-            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a> 
+					  <a href='<?php print $mapFilename; ?>' 
+            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a>  
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
             <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
@@ -371,489 +374,47 @@ if (!file_exists($mapFilename)) {
 	
 		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
 						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 0px 20%;">
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 5% 20%;">
 							100% tax deductible and securely processed by Stripe
 					</span>
 			</div>
+    
+    <div class="section">
+      <div class="card-tabs">
+        <ul class="tabs tabs-fixed-width z-depth-0.5">
+          <li class="tab"><a class="active" href="#infotab"><span class="flow-text light">Info</span></a></li>
+          <li class="tab"><a href="#updatestab"><span class="flow-text light">Updates</span></a></li>
+          <li class="tab"><a href="#maptab"><span class="flow-text light">Map</span></a></li>
+          <li class="tab"><a href="#datatab"><span class="flow-text light">Data</span></a></li>
+        </ul>
+      </div>
+    </div>
 
-	<?php if (strlen($summary) > 2) { ?>
-	<div class="section" style="text-align:center">
-		<h5 class="donor-text text-lighten-2" style="padding:2% 0% 0% 0%;">Project Info</h5>
-	</div>
+    <div id="infotab" class="col s12">
+      <?php include("project_info.php"); ?>
+    </div>
+
+
+    <div id="updatestab" class="col s12">
+      <iframe style='width:100%;height:600px;' src='project_updates.php?projectId=<?php print $projectId; ?>' ></iframe>
+    </div>
+    
+     <div id="maptab" class="col s12">
+     	  <?php include("project_map.php"); ?>
+     </div>
+    
+    <div id="datatab" class="col s12">
+		    <?php include("project_data.php"); ?>
+	 </div>
 	
-	<div class="section">	
-		<div class="row">
-				<div class="col s12 <?php print ($hasEvents ? "m9 l9" : "m12 l12"); ?>">
-				<div class="card grey lighten-5 z-depth-1">
-					<div class="card-content brown-text text-lighten-2">
-
-							<p class="flow-text"><?php print $summary; ?>
-							</p>
-
-							<?php if (strlen($problem) > 1) { ?> <br>
-							<p>
-								<b>Community Problem:</b> <?php print $problem; ?>
-							</p> 
-							<?php } ?>
-							
-							<?php if (strlen($solution) > 1) { ?> <br>
-						
-							<p>
-								<b>Community Solution:</b> <?php print $solution; ?>
-							</p>
-							<?php } ?>
-							
-							<?php if (strlen($partners) > 1) { ?> <br>
-					
-							<p>
-								<b>Partners:</b> <?php print $partners; ?>
-							</p>
-							<?php } ?>
-							
-							<?php if (strlen($impact) > 1) { ?> <br>
-					
-							<p>
-								<b>Outcome:</b> <?php print $impact; ?>
-							</p>
-							<?php } ?>
-						
-					</div>
-				</div>
-
-			</div>
-			<?php 
-		
-			$stmt = prepare("SELECT pe_date, pet_label FROM project_events JOIN project_event_types ON pe_type=pet_id WHERE pe_project_id=? ORDER BY pe_date");
-			$stmt->bind_param('i', $projectId);
-        		$result = execute($stmt);
-        	    $count = 0;
-        	    while ($row = $result->fetch_assoc()) {
-        	        if ($count == 0) {
-        	            ?>
-        	            <div class="col s12 m3 l3">
-		
-					<div class="timeline-container" style="textalign:center">
-					<?php
-        	        } 
-			     ?>
-    	        			<div class="timeline-block timeline-block-right">
-						<div class="marker donor-background"></div>
-						<div class="timeline-content">
-							<h6><?php print date("M Y", strtotime($row['pe_date'])); ?></h6>
-							<span><?php print $row['pet_label']; ?></span>
-						</div>
-					</div>
-		  <?php $count++; 
-        	  }
-        	  $stmt->close();
-		  if ($count > 0) { ?>
-				</div>
-			</div>
-		  <?php } ?>
-		</div>
-		
-			<?php } ?>
-			<?php 
-			
-			$result = doUnprotectedQuery("SELECT fo_first_name, fo_last_name, picture_filename, fo_email, fo_phone FROM field_officers JOIN pictures ON picture_id=fo_picture_id WHERE fo_id=$staffId");
-			if ($row = $result->fetch_assoc()) {        
-			?>
-    			<div class="row">
-    				<div class="col s12 m9 l9">
-    					<div class="grey lighten-5 z-depth-1">
-    						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
-    							<div class="col s12 m4 l4 center-align">
-    							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
-    								alt="" class="responsive-img circle"
-    								style="width: 100px; height: 100px;">
-    							<!-- notice the "circle" class -->
-    							</div>
-    							<div class="col s12 m8 l8 black-text">
-    								<b>Field Officer <?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></b>
-    								<p/>
-    								<b>Email:</b> <?php print $row['fo_email']; ?><b><br>Phone Number:</b>
-    									<?php print $row['fo_phone']; ?>
-    							</div>
-    						</div>
-    					</div>
-    				</div>
-            <?php } ?>
-     			
-				<div class="col s12 m3 l3 center-align">
-					<h6 class="brown-text">
-						<b>Share <?php print $villageName; ?>'s Story</b>
-					</h6>
-					<br>
-					<?php printShareButtons($projectId, $projectName, $projectName, 60); ?>
-				</div>
-			</div>
-
-		<?php 
-		$stmt = prepare("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=?");
-		$stmt->bind_param('i', $projectId);
-		$result = execute($stmt);
-	    $count = 0;
-	    while ($row = $result->fetch_assoc()) {
-	    		if ($count == 0) { ?>
-			<div id="costbreakdown" class="section scrollspy">
-				<h5 class="donor-text text-lighten-2" style="text-align: center">Cost Breakdown</h5>
-			<br>
-			<div class="row">
-			<?php } 
-			$icon = $row['ct_icon'];
-			$label = $row['pc_label'];
-			$amount = $row['pc_amount']; 
-			?>
-				<div class="col s12 m2 l2">
-					<div class="icon-block center brown-text">
-						<i class="material-icons" style="font-size: 30px"><?php print $icon; ?></i>
-						<h5><?php print $label; ?></h5>
-						<h5 class="light center">
-							$<?php print $amount; ?>
-						</h5>
-							<br>
-					</div>
-				</div>
-		<?php $count++; 
-	    }
-	    $stmt->close();
-		if ($count > 0) { ?>
-		
-			<br>
-			</div>	
-			</div>
-		<?php } ?>
-		
-    <?php
-        $stmt = prepare("SELECT picture_filename, pu_description FROM project_updates JOIN pictures ON pu_project_id=? AND pu_image_id=picture_id ORDER BY pu_timestamp ASC");
-        $stmt->bind_param('i', $projectId);
-        $result = execute($stmt);
-        $count = 0;
-        while ($row = $result->fetch_assoc()) {
-            if ($count == 0) {
-                print "<hr width='85%'><div id='pics' class='section scrollspy'>
-				           <h5 style='text-align: center; color:#4FC3F7; font-weight:300;'>Field Updates</h5>
-                            ".($completion ? "<span class='flow-text align-center' style='font-size:16px;'>".strip_tags($completion)."</span>" : "")."
-                                <div class='carousel'>";
-            }
-            print "<a class='carousel-item' href='' onclick=\"$('#pictureCaption').text('".addslashes($row['pu_description'])."'); return false;\"><img src='".PICTURES_DIR."{$row['picture_filename']}' /></a>";
-            $count++;
-        }
-        $stmt->close();
-        if ($count > 0) {
-            ?>
-                  <script>
-                  $(document).ready(function(){
-                      $('.carousel').carousel();
-                    });
-                  </script>
-                  </div>
-                  
-                <h6 style="text-align: center" id='pictureCaption'>(swipe to view on mobile)</h6>
-            <?php 
-        }
-
-        if ($videoId) {
-            print "<br/><br/><div class='video-container' style='border-style:solid;background-size:cover;background-position:center;''>
-                  <iframe src='https://www.youtube.com/embed/".$videoId."?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0' frameborder='0' gesture='media' allow='encrypted-media' width='480' height='270'></iframe>
-                </div><br/>";
-        } elseif ($count > 0) {
-          print "<hr width='85%'>";
-        }
-    ?>
-   
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Comp Score");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		  if (count($years) > 1) {
-		?>
-		<div id="databreakdown" class="section scrollspy">
-			<h5 class="donor-text text-lighten-2" style="text-align: center">Data Trends in <?php print $villageName; ?> Village</h5>
-				<!--  <p style="font-size: 20px; text-align: center;" class="brown-text text-lighten-2 line-height: 120%">
-					<b>We track the quantitative impact of your donation. In
-					particular, we collect data on several development indicators,
-					calculate an annual village development score, and observe how
-					that score changes over time. You can learn more about our
-					methodology <a href="impacts.php">here</a>.
-					</b>
-				</p>  -->
-					
-		<div class="row">
-			
-			<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-
-				<h6 style="text-align: center"><b>Development Scores: <span class="donor-text"><?php print $villageName; ?> Village</span> v. <span style="color:rgba(220,220,220,1)">Control Villages</span></b></h6>
-			<div>
-				<canvas id="chart2" width="250" height="250"></canvas>
-			</div>
-
-			<script>
-				var ctx = document.getElementById("chart2").getContext('2d');
-
-				var chart2 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							label: "<?php print $villageName; ?>",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "#6495ED",
-                             pointBackgroundColor: "#6495ED",
-                             pointRadius: 10,
-							data : [ <?php print join(',', $values); ?> ],
-							cubicInterpolationMode: 'monotone',
-						}, 
-
-						{
-							label: "Control Villages Average",
-							fill : false,
-							backgroundColor : "#ffce56",
-							borderColor: "rgba(220,220,220,1)",
-                             pointBackgroundColor: "rgba(220,220,220,1)",
-                             pointRadius: 10,
-                             data : [ 26, 28, 27, 26, 31 ],
-							cubicInterpolationMode: 'monotone',
-						}]
-						}, 
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-					scales : {
-						yAxes : [ {
-							ticks : {
-								beginAtZero : true
-							}
-						} ]
-					},
-					}
-
-				});
-			</script>
-		</div>
-			
-			<?php 
-			$stmt = prepare("SELECT project_id, project_name, project_budget, YEAR(pe_date) AS yearPosted FROM projects JOIN project_events ON project_village_id=? AND pe_project_id=project_id AND pe_type=4 ORDER BY yearPosted ASC");
-			$stmt->bind_param('i', $villageId);
-			$result = execute($stmt);
-			$count = 0;
-			$labels = '';
-			$amounts = '';
-			$ids = '';
-			$accum = 0;
-			$currentYear = 2014;
-			while ($row = $result->fetch_assoc()) {
-			     if ($count > 0) {
-			         $labels .= ", ";
-			         $amounts .= ", ";
-			         $ids .= ", ";
-			     }
-           $nextYear = $row['yearPosted'];
-           while ($currentYear < $nextYear) {
-              $ids .= "0, ";
-              $amounts .= "$accum, ";
-              $labels .= "$currentYear, ";
-              $currentYear++;
-              $count++;
-           }
-			     $ids .= $row['project_id'];
-			     $labels .= $row['yearPosted'];
-			     $accum += $row['project_budget'];
-			     $amounts .= $accum;
-			     $count++;
-           $currentYear++;
-			}
-			$stmt->close();
-
-      while ($currentYear <= 2017) {
-        if ($count > 0) {
-          $labels .= ", ";
-          $amounts .= ", ";
-          $ids .= ", ";
-        }
-        $ids .= '0';
-        $amounts .= "$accum";
-        $labels .= "$currentYear";
-
-        $currentYear++;
-        $count++;
-      }
-
-			if ($accum > 0) {
-			?>
-			
-				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Dollars Invested (cumulative)</b></h6>
-						<canvas id="chart1" width="250" height="250"></canvas>
-					</div>
-					
-					<script>
-				var ctx = document.getElementById("chart1").getContext('2d');
-
-				var chart1 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						ids: [<?php print $ids; ?>],
-						labels : [ <?php print $labels; ?> ],
-						datasets : [ {
-							fill : false,
-							backgroundColor : "#ffce56",
-							pointBackgroundColor: "#6495ED",
-                            	pointRadius: 10,
-                            	borderColor: "#6495ED",
-							data : [ <?php print $amounts; ?> ],
-							cubicInterpolationMode: 'monotone',
-							
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-									stacked:true,
-                  max: <?php print (round($accum, -3) + 1000); ?>
-								}
-							} ]
-						},
-						onClick: function(event, active) {
-							if (active && active.length > 0) {
-								id = active[0]._chart.data.ids[active[0]._index];
-								if (id != <?php print $projectId; ?> && id > 0) {
-									window.location.href = "project.php?id=" + id;
-								}
-							}
-						}
-					}
-				});
-				
-			</script>	
-					
-					
-					<br>
-				</div>
-		<?php } ?>
-	</div>
+    
+    
+    <script> 
+      var instance = M.Tabs.init($('.tabs'));
+    </script>
+    </div>
+  </div>
 	
-	<div class="row">
-		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-				
-		<h6 style="text-align: center"><b>Cases of Waterborne Illness</b></h6>
-			<div>
-				<canvas id="chart3" width="250" height="250"></canvas>
-			</div>
-
-		<?php
-		  $years = array();
-		  $values = array();
-		  $result = doStatQuery($villageId, "Waterborne Illness");
-		  while ($row = $result->fetch_assoc()) {
-		      $years[] = $row['stat_year'];
-		      $values[] = $row['stat_value'];
-		  }
-		?>
-			<script>
-				var ctx = document.getElementById("chart3").getContext('2d');
-
-				var chart3 = new Chart(ctx, {
-					type : 'line',
-					data : {
-						labels : [ <?php print join(',', $years); ?> ],
-						datasets : [ {
-							fill : false,
-							backgroundColor : "#6495ED",
-							pointBackgroundColor: "#6495ED",
-                        		pointRadius: 10,
-                        		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
-						} ]
-					},
-					options : {
-						responsive : true,
-						maintainAspectRatio : false,
-						legend : {
-							display : false,
-						},
-						scales : {
-							yAxes : [ {
-								ticks : {
-									beginAtZero : true,
-								}
-							} ]
-						},
-					}
-
-				});
-			</script>
-				
-		</div>
-	
-		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-						<h6 style="text-align: center"><b>Remaining Dimensions</b></h6>
-					<div>
-						<canvas id="chart4" width="250" height="250"></canvas>
-					</div>
-
-		<?php
-		  $business = getStatYearAssociative($villageId, "Biz Score");
-		  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
-		  $education = getStatYearAssociative($villageId, "Edu Score");
-		  $agriculture = getStatYearAssociative($villageId, "Ag Score");
-		  $livestock = getStatYearAssociative($villageId, "Livestock Score");
-		?>
-
-					<script>
-						var ctx = document.getElementById("chart4").getContext(
-								'2d');
-						var chart4 = new Chart(ctx,
-								{
-									type : 'radar',
-									data : {
-										labels : [ 'Business', 'Lifestyle',
-												'Education', 'Agriculture',
-												'Livestock'],
-										datasets : [<?php 
-										  $count = 0;
-										  $keys = array_keys($business);
-										  $colors = array('rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,206,86,0.6)', 'rgba(187,174,204,0.6)', 'rgba(221,119,51,0.6)');
-										  foreach ($keys as $year) {
-										      if ($count > 0) {
-										          print ", \n";
-										      }
-										      print "{
-        											fill : true,
-        											backgroundColor : '{$colors[$count]}',
-                                                 pointRadius: 2,
-        											label : '$year',
-        											data : [ ".round($business[$year]).", ".round($lifestyle[$year]).", ".round($education[$year] * .2).", ".round($agriculture[$year] * .05).", ".round($livestock[$year])."],
-										      }";
-										      $count++;
-										  }
-										?>],
-									},
-									options : {
-										responsive : true,
-										maintainAspectRatio : false,
-									}
-								});
-					</script>
-			</div> 
-		</div>
-	</div>
-	<?php } ?>
 </div></div></div>
 <?php 
     include('footer.inc');

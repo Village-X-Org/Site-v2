@@ -33,20 +33,30 @@ if (hasParam('d')) {
 
 <!-- CSS  -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" media="screen,projection">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" media="screen,projection">
 
 <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
 <script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-<script src="js/init.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+(function($){
+  $(function(){
+
+    $('.sidenav').sidenav();
+    $('.parallax').parallax();
+    $(".dropdown-trigger").dropdown();
+	M.AutoInit();
+  }); // end of document ready
+})(jQuery);
+</script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
@@ -198,22 +208,16 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 </head>
 
 <body>
-<?php if (!$donorId) { ?>
+
+<?php if (!$donorId && !hasParam('hideHeader')) { ?>
 
 	<nav class="white" role="navigation">
 		<div class="nav-wrapper container">
 			<a id="logo-container" href="index.php" class="brand-logo" style="padding 2% 0 0 0"><img
 				src="images/villagex_short_logo.png"></a>
-				<a href="#" data-activates="nav-mobile" class="button-collapse"><i
-				class="material-icons">menu</i></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<li><a class="dropdown-button" href="#!" data-activates="Menu">Info &amp; Tools<i class="material-icons right">arrow_drop_down</i></a></li>
-		
-			</ul>
-		
-			<ul id="nav-mobile" class="side-nav">
+			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
+			class="material-icons">menu</i></a>
+			<ul id="nav-mobile" class="sidenav">
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
@@ -224,8 +228,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
-				
-			
 				<?php if ($session_donor_id) {
 					print "
 					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>
@@ -234,32 +236,36 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
 				} ?> 
 
+			</ul>
 
+			<ul class="right hide-on-med-and-down">
+				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
+				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
+				<li><a class="dropdown-trigger" href="#!" data-target="Menu">Info &amp; Tools<i class="material-icons right">arrow_drop_down</i></a></li>
+		
+				<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+			          <li><a href="about.php">Mission &amp; Team</a></li>
+			          <li><a href="model.php">Model</a></li>
+			          <li><a href="impacts.php">Impacts</a></li>
+			          <li><a href="map.php">Map</a></li>
+			          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+			          <li><a href="travel.php">Travel</a></li>
+	          		  <li><a href="finances.php">Finances</a></li>
+			          <hr/>
+
+					<?php if ($session_donor_id) {
+						?>
+					   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
+					        <li><a href="user_logout.php">Logout</a></li>
+				        <?php
+					} else {
+						?>
+						<li><a href='user_login.php'>Sign In/Register</a></li>
+						<?php
+					} ?>
+			   </ul>
 			</ul>
 		</div>
-
-		<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
-	          <li><a href="project_tiles.php">Projects</a></li>
-	          <li><a href="about.php">Mission &amp; Team</a></li>
-	          <li><a href="model.php">Model</a></li>
-	          <li><a href="impacts.php">Impacts</a></li>
-	          <li><a href="map.php">Map</a></li>
-	          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-	          <li><a href="travel.php">Travel</a></li>
-	          <li><a href="finances.php">Finances</a></li>
-	          <hr/>
-
-			<?php if ($session_donor_id) {
-				?>
-			   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
-			        <li><a href="user_logout.php">Logout</a></li>
-		        <?php
-			} else {
-				?>
-				<li><a href='user_login.php'>Sign In/Register</a></li>
-				<?php
-			} ?>
-	   </ul>
 	</nav>
 
 <div style="width:100%;border-style:solid; border-width:1px;">
