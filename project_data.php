@@ -137,7 +137,7 @@ if (count($years) > 1) { ?>
 			if ($accum > 0) { ?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-					<h5 style="text-align: center"><b>Dollars Invested in Projects<br/>(cumulative)</b></h5>
+					<h5 style="text-align: center"><b>Dollars Invested in Projects in <br/><span class="blue-text"><?php print $villageName; ?> Village</span> (cumulative)</b></h5>
 				<div><canvas id="chart2" width="250" height="250"></canvas></div>
 					
 				<script>
@@ -196,7 +196,7 @@ if (count($years) > 1) { ?>
 
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>Change in Waterborne Diseases:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+			<h5 style="text-align: center"><b>Change in Health Burden:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
 					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
@@ -233,7 +233,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(38, 39, 38, 44, 41))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -257,6 +257,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+			<h6 style="padding:0 3% 0 3%">*Scores based on # of waterborne illnesses, malaria cases, maternal deaths, and infant deaths per capita.</h6>
 		</div>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Local Education:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
@@ -296,7 +297,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(93, 100, 100, 103, 104))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -320,6 +321,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+			<h6 style="padding:0 3% 0 3%">*Scores based on school enrollment and national exam passage rates per capita.</h6>
 		</div> 
 		</div>
 
@@ -362,7 +364,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(16, 19, 18, 19, 20))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -386,6 +388,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+			<h6 style="padding:0 3% 0 3%">*Scores based on # of agriculural and non-agricultural village businesses per capita.</h6>
 		</div>
 	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
@@ -426,7 +429,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(24, 28, 31, 34, 44))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -450,6 +453,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+			<h6 style="padding:0 3% 0 3%">*Scores based on # of roofs with iron sheets, TVs, motorcycles, and smartphones per capita.</h6>
 		</div> 
 		</div>
 
@@ -492,7 +496,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(431, 349, 274, 227, 282))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -516,6 +520,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+			<h6 style="padding:0 3% 0 3%">*Scores based on # of 60 kg bags of maize produced per capita.</h6>
 		</div>
 	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
@@ -556,7 +561,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(78, 88, 81, 73, 87))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						} ]
 					},
@@ -579,6 +584,7 @@ if (count($years) > 1) { ?>
 					}
 				});
 			</script>
+							<h6 style="padding:0 3% 0 3%">*Scores based on # of goats and cows per capita.</h6>
 		</div> 
 		</div>
 	
