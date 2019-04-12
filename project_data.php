@@ -8,13 +8,15 @@ while ($row = $result->fetch_assoc()) {
   $values[] = $row['stat_value'];
 }
 
-$base = max(1, $values[0]);
-for ($i = 1; $i < count($values); $i++) {
-	$values[$i] = ($values[$i] - $base) / $base * 100;
-}
-$values[0] = 0;
+function convertToPercentages($inputArray) {
+	$base = max(1, $inputArray[0]);
+	for ($i = 1; $i < count($inputArray); $i++) {
+		$inputArray[$i] = ($inputArray[$i] - $base) / $base * 100;
+	}
+	$inputArray[0] = 0;
 
-$controlValues = array(0, 8, 4, 1, 19);
+	return $inputArray;
+}
 
 if (count($years) > 1) { ?>
 	<div id="databreakdown" class="section scrollspy">
@@ -24,8 +26,8 @@ if (count($years) > 1) { ?>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
 			<h5 style="text-align: center">
-				<b>% Change in Overall Development: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)
+				<b>Change in Development Score:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span>
 				</b>
 			</h5>
 			
@@ -47,7 +49,7 @@ if (count($years) > 1) { ?>
 							borderColor: "#6495ED",
                              pointBackgroundColor: "#6495ED",
                              pointRadius: 10,
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}, 
 
@@ -58,7 +60,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', array(0, 8, 4, 1, 19)); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}]
 						}, 
@@ -135,7 +137,7 @@ if (count($years) > 1) { ?>
 			if ($accum > 0) { ?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-					<h5 style="text-align: center"><b>Dollars Invested in Projects Over Time (cumulative)</b></h5>
+					<h5 style="text-align: center"><b>Dollars Invested in Projects<br/>(cumulative)</b></h5>
 				<div><canvas id="chart2" width="250" height="250"></canvas></div>
 					
 				<script>
@@ -168,7 +170,10 @@ if (count($years) > 1) { ?>
 									ticks : {
 										beginAtZero : false,
 										stacked:true,
-	                  					max: <?php print (round($accum, -3) + 1000); ?>
+	                  					max: <?php print (round($accum, -3) + 1000); ?>,
+										callback: function(value, index, values) {
+											return '$' + value;
+		                    			}
 									}
 								} ]
 							},
@@ -191,8 +196,8 @@ if (count($years) > 1) { ?>
 
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Health Burden: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (lower % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Waterborne Diseases:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -219,7 +224,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -228,7 +233,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -243,7 +248,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
-								
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
@@ -251,10 +258,9 @@ if (count($years) > 1) { ?>
 				});
 			</script>
 		</div>
-	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Local Education: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Local Education:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart4" width="250" height="250"></canvas>
 			</div>
@@ -262,7 +268,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Edu Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
@@ -281,7 +287,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -290,7 +296,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -305,6 +311,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
@@ -313,11 +322,11 @@ if (count($years) > 1) { ?>
 			</script>
 		</div> 
 		</div>
-	
-<div class="row">
+
+		<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Business Activity: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Business Activity:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
@@ -325,7 +334,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Biz Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
@@ -344,7 +353,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -353,7 +362,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -368,6 +377,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
@@ -377,8 +389,8 @@ if (count($years) > 1) { ?>
 		</div>
 	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Lifestyle Upgrades: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Lifestyle Upgrades:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart6" width="250" height="250"></canvas>
 			</div>
@@ -386,7 +398,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Lifestyle Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
@@ -405,7 +417,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -414,7 +426,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -429,6 +441,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
@@ -437,11 +452,11 @@ if (count($years) > 1) { ?>
 			</script>
 		</div> 
 		</div>
-		
+
 		<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Agricultural Production: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Agricultural Production:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart7" width="250" height="250"></canvas>
 			</div>
@@ -449,7 +464,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Ag Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
@@ -468,7 +483,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -477,7 +492,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						}
 						 ]
@@ -492,6 +507,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
@@ -501,8 +519,8 @@ if (count($years) > 1) { ?>
 		</div>
 	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h5 style="text-align: center"><b>% Change in Livestock Holdings: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<h5 style="text-align: center"><b>Change in Livestock Holdings:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart8" width="250" height="250"></canvas>
 			</div>
@@ -510,7 +528,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Livestock Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
@@ -529,7 +547,7 @@ if (count($years) > 1) { ?>
 							pointBackgroundColor: "#6495ED",
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
-							data : [ <?php print join(',', $values); ?> ],
+							data : [ <?php print join(',', convertToPercentages($values)); ?> ],
 						},
 						{
 							label: "Control Villages Average",
@@ -538,7 +556,7 @@ if (count($years) > 1) { ?>
 							borderColor: "rgba(220,220,220,1)",
                              pointBackgroundColor: "rgba(220,220,220,1)",
                              pointRadius: 10,
-                             data : [ <?php print join(',', $controlValues); ?> ],
+                             data : [ <?php print join(',', convertToPercentages(array(0, 0, 0, 0, 0))); ?> ],
 							cubicInterpolationMode: 'monotone',
 						} ]
 					},
@@ -552,6 +570,9 @@ if (count($years) > 1) { ?>
 							yAxes : [ {
 								ticks : {
 									beginAtZero : false,
+									callback: function(value, index, values) {
+										return value + '%';
+	                    			}
 								}
 							} ]
 						},
