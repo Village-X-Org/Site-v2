@@ -396,7 +396,7 @@ if (!file_exists($mapFilename)) {
 
 
     <div id="updatestab" class="col s12">
-      <iframe style='width:100%;height:600px;' src='project_updates.php?projectId=<?php print $projectId; ?>' ></iframe>
+      <iframe style='width:100%;height:1000px;' src='project_updates.php?projectId=<?php print $projectId; ?>' ></iframe>
     </div>
     
      <div id="maptab" class="col s12">
