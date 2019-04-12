@@ -205,7 +205,7 @@ if (count($years) > 1) { ?>
 			<?php
 				$years = array();
 				$values = array();
-				$result = doStatQuery($villageId, "Waterborne Illness");
+				$result = doStatQuery($villageId, "Health Score");
 				while ($row = $result->fetch_assoc()) {
 				    $years[] = $row['stat_year'];
 				    $values[] = $row['stat_value'];
