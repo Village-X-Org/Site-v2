@@ -18,30 +18,26 @@ $controlValues = array(0, 8, 4, 1, 19);
 
 if (count($years) > 1) { ?>
 	<div id="databreakdown" class="section scrollspy">
-		<h5 class="donor-text text-lighten-2" style="text-align: center">
-			Data Trends in <?php print $villageName; ?> Village
-		</h5>
 				
 	<div class="row">
 			
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
 
-			<h6 style="text-align: center">
-				<b>Development Scores: <span class="donor-text"><?php print $villageName; ?> Village</span> v. 
-					<span style="color:rgba(220,220,220,1)">Control Villages</span>
+			<h5 style="text-align: center">
+				<b>% Change in Overall Development: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)
 				</b>
-			</h6>
+			</h5>
 			
 			<div>
-				<canvas id="chart2" width="250" height="250"></canvas>
+			<canvas id="chart1" width="250" height="250"></canvas>
 			</div>
 
 			<script>
-				var ctx = document.getElementById("chart2").getContext('2d');
+				var ctx = document.getElementById("chart1").getContext('2d');
 
-				var chart2 = new Chart(ctx, {
+				var chart1 = new Chart(ctx, {
 					type : 'line',
-					padding: 10,
 					data : {
 						labels : [ <?php print join(',', $years); ?> ],
 						datasets : [ {
@@ -75,7 +71,8 @@ if (count($years) > 1) { ?>
 					scales : {
 						yAxes : [ {
 							ticks : {
-								beginAtZero : true,
+								beginAtZero : false,
+								stacked:true,
 								callback: function(value, index, values) {
 									return value + '%';
                     			}
@@ -138,14 +135,13 @@ if (count($years) > 1) { ?>
 			if ($accum > 0) { ?>
 			
 				<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">
-					<h6 style="text-align: center"><b>Dollars Invested (cumulative)</b></h6>
-					<canvas id="chart1" width="250" height="250"></canvas>
-				</div>
+					<h5 style="text-align: center"><b>Dollars Invested in Projects Over Time (cumulative)</b></h5>
+				<div><canvas id="chart2" width="250" height="250"></canvas></div>
 					
 				<script>
-					var ctx = document.getElementById("chart1").getContext('2d');
+					var ctx = document.getElementById("chart2").getContext('2d');
 
-					var chart1 = new Chart(ctx, {
+					var chart2 = new Chart(ctx, {
 						type : 'line',
 						data : {
 							ids: [<?php print $ids; ?>],
@@ -170,7 +166,7 @@ if (count($years) > 1) { ?>
 							scales : {
 								yAxes : [ {
 									ticks : {
-										beginAtZero : true,
+										beginAtZero : false,
 										stacked:true,
 	                  					max: <?php print (round($accum, -3) + 1000); ?>
 									}
@@ -195,7 +191,8 @@ if (count($years) > 1) { ?>
 
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
-			<h6 style="text-align: center"><b>Cases of Waterborne Illness</b></h6>
+			<h5 style="text-align: center"><b>% Change in Health Burden: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (lower % is better)</b></h5>
 			<div>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
@@ -223,6 +220,131 @@ if (count($years) > 1) { ?>
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
+						}
+						 ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : false,
+								
+								}
+							} ]
+						},
+					}
+				});
+			</script>
+		</div>
+	
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
+			<h5 style="text-align: center"><b>% Change in Local Education: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<div>
+				<canvas id="chart4" width="250" height="250"></canvas>
+			</div>
+
+			<?php
+				$years = array();
+				$values = array();
+				$result = doStatQuery($villageId, "Waterborne Illness");
+				while ($row = $result->fetch_assoc()) {
+				    $years[] = $row['stat_year'];
+				    $values[] = $row['stat_value'];
+				}
+			?>
+			<script>
+				var ctx = document.getElementById("chart4").getContext('2d');
+
+				var chart4 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : false,
+							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
+						}
+						 ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : false,
+								}
+							} ]
+						},
+					}
+				});
+			</script>
+		</div> 
+		</div>
+	
+<div class="row">
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
+			<h5 style="text-align: center"><b>% Change in Business Activity: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<div>
+				<canvas id="chart5" width="250" height="250"></canvas>
+			</div>
+
+			<?php
+				$years = array();
+				$values = array();
+				$result = doStatQuery($villageId, "Waterborne Illness");
+				while ($row = $result->fetch_assoc()) {
+				    $years[] = $row['stat_year'];
+				    $values[] = $row['stat_value'];
+				}
+			?>
+			<script>
+				var ctx = document.getElementById("chart5").getContext('2d');
+
+				var chart5 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : false,
+							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
 						} ]
 					},
 					options : {
@@ -234,7 +356,7 @@ if (count($years) > 1) { ?>
 						scales : {
 							yAxes : [ {
 								ticks : {
-									beginAtZero : true,
+									beginAtZero : false,
 								}
 							} ]
 						},
@@ -243,62 +365,158 @@ if (count($years) > 1) { ?>
 			</script>
 		</div>
 	
-		<div class="col s12 m6 l6" style="padding: 20px 30px 20px 30px">
-			<h6 style="text-align: center"><b>Remaining Dimensions</b></h6>
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
+			<h5 style="text-align: center"><b>% Change in Lifestyle Upgrades: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
 			<div>
-				<canvas id="chart4" width="250" height="250"></canvas>
+				<canvas id="chart6" width="250" height="250"></canvas>
 			</div>
 
 			<?php
-			  $business = getStatYearAssociative($villageId, "Biz Score");
-			  $lifestyle = getStatYearAssociative($villageId, "Lifestyle Score");
-			  $education = getStatYearAssociative($villageId, "Edu Score");
-			  $agriculture = getStatYearAssociative($villageId, "Ag Score");
-			  $livestock = getStatYearAssociative($villageId, "Livestock Score");
-			?>
-
-			<script>
-				var ctx = document.getElementById("chart4").getContext(
-						'2d');
-				var chart4 = new Chart(ctx,
-						{
-							type : 'radar',
-							data : {
-								labels : [ 'Business', 'Lifestyle',
-										'Education', 'Agriculture',
-										'Livestock'],
-								datasets : [<?php 
-								  $count = 0;
-								  $keys = array_keys($business);
-								  $colors = array('rgba(255,99,132,0.6)', 'rgba(54,162,235,0.6)', 'rgba(255,206,86,0.6)', 'rgba(187,174,204,0.6)', 'rgba(221,119,51,0.6)');
-								  foreach ($keys as $year) {
-								      if ($count > 0) {
-								          print ", \n";
-								      }
-								      print "{
-											fill : true,
-											backgroundColor : '{$colors[$count]}',
-                                         pointRadius: 2,
-											label : '$year',
-											data : [ ".round($business[$year]).", ".round($lifestyle[$year]).", ".round($education[$year] * .2).", ".round($agriculture[$year] * .05).", ".round($livestock[$year])."],
-								      }";
-								      $count++;
-								  }
-								?>],
-							},
-							options : {
-								responsive : true,
-								maintainAspectRatio : false,
-							}
-						});
-
-				function updateGraphs() {
-					chart1.update();
-					chart2.update();
-					chart3.update();
-					chart4.update();
+				$years = array();
+				$values = array();
+				$result = doStatQuery($villageId, "Waterborne Illness");
+				while ($row = $result->fetch_assoc()) {
+				    $years[] = $row['stat_year'];
+				    $values[] = $row['stat_value'];
 				}
+			?>
+			<script>
+				var ctx = document.getElementById("chart6").getContext('2d');
+
+				var chart6 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : false,
+							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : false,
+								}
+							} ]
+						},
+					}
+				});
 			</script>
 		</div> 
+		</div>
+		
+		<div class="row">
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
+			<h5 style="text-align: center"><b>% Change in Agricultural Production: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<div>
+				<canvas id="chart7" width="250" height="250"></canvas>
+			</div>
+
+			<?php
+				$years = array();
+				$values = array();
+				$result = doStatQuery($villageId, "Waterborne Illness");
+				while ($row = $result->fetch_assoc()) {
+				    $years[] = $row['stat_year'];
+				    $values[] = $row['stat_value'];
+				}
+			?>
+			<script>
+				var ctx = document.getElementById("chart7").getContext('2d');
+
+				var chart7 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : false,
+							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : false,
+								}
+							} ]
+						},
+					}
+				});
+			</script>
+		</div>
+	
+		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
+			<h5 style="text-align: center"><b>% Change in Livestock Holdings: <span class="blue-text"><?php print $villageName; ?> Village</span> v. 
+					<span style="color:rgba(192,192,192,1)">Control Villages</span> (higher % is better)</b></h5>
+			<div>
+				<canvas id="chart8" width="250" height="250"></canvas>
+			</div>
+
+			<?php
+				$years = array();
+				$values = array();
+				$result = doStatQuery($villageId, "Waterborne Illness");
+				while ($row = $result->fetch_assoc()) {
+				    $years[] = $row['stat_year'];
+				    $values[] = $row['stat_value'];
+				}
+			?>
+			<script>
+				var ctx = document.getElementById("chart8").getContext('2d');
+
+				var chart8 = new Chart(ctx, {
+					type : 'line',
+					data : {
+						labels : [ <?php print join(',', $years); ?> ],
+						datasets : [ {
+							fill : false,
+							backgroundColor : "#6495ED",
+							pointBackgroundColor: "#6495ED",
+                        		pointRadius: 10,
+                        		borderColor: "#6495ED",
+							data : [ <?php print join(',', $values); ?> ],
+						} ]
+					},
+					options : {
+						responsive : true,
+						maintainAspectRatio : false,
+						legend : {
+							display : false,
+						},
+						scales : {
+							yAxes : [ {
+								ticks : {
+									beginAtZero : false,
+								}
+							} ]
+						},
+					}
+				});
+			</script>
+		</div> 
+		</div>
+	
 <?php } ?>
 </div>

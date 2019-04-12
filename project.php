@@ -396,14 +396,26 @@ if (!file_exists($mapFilename)) {
 
 
     <div id="updatestab" class="col s12">
-      <iframe style='width:100%;height:600px;' src='project_updates.php?projectId=<?php print $projectId; ?>' ></iframe>
+    <h5 class="donor-text text-lighten-2" style="text-align: center; padding:0 0 2% 0">
+			Scroll Updates from <?php print $villageName; ?> Village
+		</h5>
+    
+      <iframe style='width:100%;height:1000px;' src='project_updates.php?projectId=<?php print $projectId; ?>' ></iframe>
     </div>
     
      <div id="maptab" class="col s12">
+     <h5 class="donor-text text-lighten-2" style="text-align: center">
+			<h5 class="donor-text text-lighten-2" style="text-align: center">
+			<?php print $villageName; ?> Village In Circle Below
+		</h5>
+		</h5>
      	  <?php include("project_map.php"); ?>
      </div>
     
     <div id="datatab" class="col s12">
+    <h5 class="donor-text text-lighten-2" style="text-align: center">
+			Data Trends in <?php print $villageName; ?> Village
+		</h5>
 		    <?php include("project_data.php"); ?>
 	 </div>
 	
