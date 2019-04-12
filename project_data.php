@@ -345,7 +345,18 @@ if (count($years) > 1) { ?>
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
-						} ]
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
+						}
+						 ]
 					},
 					options : {
 						responsive : true,
@@ -395,7 +406,18 @@ if (count($years) > 1) { ?>
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
-						} ]
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
+						}
+						 ]
 					},
 					options : {
 						responsive : true,
@@ -447,7 +469,18 @@ if (count($years) > 1) { ?>
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
-						} ]
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
+						}
+						 ]
 					},
 					options : {
 						responsive : true,
@@ -497,6 +530,16 @@ if (count($years) > 1) { ?>
                         		pointRadius: 10,
                         		borderColor: "#6495ED",
 							data : [ <?php print join(',', $values); ?> ],
+						},
+						{
+							label: "Control Villages Average",
+							fill : false,
+							backgroundColor : "#ffce56",
+							borderColor: "rgba(220,220,220,1)",
+                             pointBackgroundColor: "rgba(220,220,220,1)",
+                             pointRadius: 10,
+                             data : [ <?php print join(',', $controlValues); ?> ],
+							cubicInterpolationMode: 'monotone',
 						} ]
 					},
 					options : {
