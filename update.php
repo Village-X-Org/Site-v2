@@ -183,7 +183,26 @@ if (hasParam('upload_file')) {
 		</script>
 	</HEAD>
 	<BODY>
-		<?php if ($session_donor_id) { ?>
+		<?php if ($session_donor_id || (hasParam('user') && hasParam('pass'))) { 
+				if (!$session_donor_id) {
+					$username = param('user');
+					$password = md5(param('pass'));
+					$stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, donor_email, donor_is_admin FROM donors WHERE donor_email=? AND donor_password=?");
+					$stmt->bind_param('ss', $username, $password);
+					$result = execute($stmt);
+					if ($row = $result->fetch_assoc()) {
+						$session_donor_id = $_SESSION['donor_id'] = $row['donor_id'];
+						$session_first_name = $_SESSION['first_name'] = $row['donor_first_name'];
+						$session_last_name = $_SESSION['last_name'] = $row['donor_last_name'];
+						$session_email = $_SESSION['email'] = $row['donor_email'];
+						$session_is_admin = $_SESSION['is_admin'] = $row['donor_is_admin'];
+					} else {
+						print "<script>document.location='user_login.php';</script></BODY></HTML>";
+						die();
+					}
+					$stmt->close();
+				}
+			?>
 		<h4>Post a project update</h4>
 		<form enctype="multipart/form-data" method="post" id='updateForm'>
 			<p><SELECT id='projectId' name='projectId'><option>Select a Project</option>
