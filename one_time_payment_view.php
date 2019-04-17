@@ -194,10 +194,12 @@ include('header.inc');
             				   	<div class='center-align' style='margin-top:15px;'><i class='material-icons' style='width:20px;'>checkmark</i> Your $<?php print $gcValue; ?> credit has been applied!</div>
             				   <?php } else { ?>
             				   <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
-							<input type="checkbox" class="filled-in" id="anonymousCheckbox" 
-									onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
-							<label for="anonymousCheckbox">Make my donation anonymous</label>
-						 	</div>
+                          <label>
+                            <input type="checkbox" class="filled-in" id="anonymousCheckbox" 
+                            onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
+                            <span for="anonymousCheckbox">Make my donation anonymous</span>
+                          </label>
+        						 	</div>
 						 	<?php } ?>
               			</form>
 <script>

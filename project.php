@@ -197,11 +197,12 @@ if (!file_exists($mapFilename)) {
 				
 <?php if ($funded < $total) { ?>					
 <div>
-	<form action="#">
      <p class="center-align">
-      <input type="checkbox" class="filled-in" id="honoreeCheckbox" onclick="showHonoreeModal();" /><label for="honoreeCheckbox">honor someone special</label>
+        <label>
+          <input type="checkbox" class="filled-in" id="honoreeCheckbox" onclick="showHonoreeModal();" />
+          <span for="honoreeCheckbox">honor someone special</span>
+        </label>
      </p>
-     </form>
   </div>
     
       <!-- Modal Structure -->

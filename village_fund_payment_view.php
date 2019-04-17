@@ -72,9 +72,12 @@ require_once("utilities.php");
                 </div>
 
                 <div class="center-align" style="width:100%; padding:5% 5% 0% 5%">
-     				<input type="checkbox" class="filled-in" id="anonymousCheckbox" onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
-    		 			<label for="anonymousCheckbox">Make my donation anonymous</label>
-        
+                        <label>
+                            <input type="checkbox" class="filled-in" id="anonymousCheckbox" 
+                        onclick="if (this.checked) { $('#donationNameDiv').hide(); } else { $('#donationNameDiv').show(); }" />
+                            <span for="anonymousCheckbox">Make my donation anonymous</span>
+                        </label>
+
         			</div>
             </form>
             
