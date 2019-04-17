@@ -162,9 +162,9 @@ $output = ob_get_clean();
 sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
     $output, getCustomerServiceEmail());
 sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
-    $output, getAdminEmail());
+    $output, getCustomerServiceEmail());
 sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
-    $output, getAdminEmail());
+    $output, getCustomerServiceEmail());
 
 if (isset($honoreeFirstName)) {
     $useHonoree = 1;

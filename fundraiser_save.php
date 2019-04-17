@@ -39,9 +39,9 @@ if ($donorId) {
 	sendMail($donorEmail, "Your fundraiser has been created!", 
 	    $output, getCustomerServiceEmail());
 	sendMail(getCustomerServiceEmail(), "Your fundraiser has been created! ($donorId)",
-	    $output, getAdminEmail());
+	    $output, getCustomerServiceEmail());
 	sendMail(getAdminEmail(), "Your fundraiser has been created! ($donorId)",
-	    $output, getAdminEmail());
+	    $output, getCustomerServiceEmail());
 
 	header("Location: fundraiser_view.php?id=$id");
 } else {

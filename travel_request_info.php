@@ -23,9 +23,9 @@ $stmt->bind_param("ssssssss", $firstName, $lastName, $email, $departureDate, $re
 $result = execute($stmt);
 
 sendMail(getCustomerServiceEmail(), "Travel Info Request",
-    "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nDeparture Date: $departureDate\nReturn Date: $returnDate\nAdditional Info: $message", getAdminEmail());
+    "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nDeparture Date: $departureDate\nReturn Date: $returnDate\nAdditional Info: $message", getCustomerServiceEmail());
 sendMail(getAdminEmail(), "Travel Info Request",
-    "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nDeparture Date: $departureDate\nReturn Date: $returnDate\nAdditional Info: $message", getAdminEmail());
+    "First Name: $firstName\nLast Name: $lastName\nEmail: $email\nDeparture Date: $departureDate\nReturn Date: $returnDate\nAdditional Info: $message", getCustomerServiceEmail());
 
 ?>
 
