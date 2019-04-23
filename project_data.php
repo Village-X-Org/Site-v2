@@ -194,6 +194,16 @@ if (count($years) > 1) { ?>
 	
 	</div>
 
+	<?php
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Health Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+	if (count($values) > 0) {
+	?>
 	<div class="row">
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Health Burden:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
@@ -202,15 +212,6 @@ if (count($years) > 1) { ?>
 				<canvas id="chart3" width="250" height="250"></canvas>
 			</div>
 
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Health Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
 			<script>
 				var ctx = document.getElementById("chart3").getContext('2d');
 
@@ -259,22 +260,22 @@ if (count($years) > 1) { ?>
 			</script>
 			<h6 style="padding:0 3% 0 3%">*Scores based on # of waterborne illnesses, malaria cases, maternal deaths, and infant deaths per capita.</h6>
 		</div>
+	<?php }
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Edu Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+		if (count($values) > 0) {
+	 ?>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Local Education:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
 					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
 			<div>
 				<canvas id="chart4" width="250" height="250"></canvas>
 			</div>
-
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Edu Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
 			<script>
 				var ctx = document.getElementById("chart4").getContext('2d');
 
@@ -323,9 +324,19 @@ if (count($years) > 1) { ?>
 			</script>
 			<h6 style="padding:0 3% 0 3%">*Scores based on school enrollment and national exam passage rates per capita.</h6>
 		</div> 
+	<?php } ?>
 		</div>
-
 		<div class="row">
+	<?php
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Biz Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+		if (count($values) > 0) {
+	?>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Business Activity:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
 					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
@@ -333,15 +344,7 @@ if (count($years) > 1) { ?>
 				<canvas id="chart5" width="250" height="250"></canvas>
 			</div>
 
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Biz Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
+
 			<script>
 				var ctx = document.getElementById("chart5").getContext('2d');
 
@@ -390,7 +393,16 @@ if (count($years) > 1) { ?>
 			</script>
 			<h6 style="padding:0 3% 0 3%">*Scores based on # of agriculural and non-agricultural village businesses per capita.</h6>
 		</div>
-	
+	<?php } 
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Lifestyle Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+		if (count($values) > 0) {
+	?>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Lifestyle Upgrades:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
 					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
@@ -398,15 +410,6 @@ if (count($years) > 1) { ?>
 				<canvas id="chart6" width="250" height="250"></canvas>
 			</div>
 
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Lifestyle Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
 			<script>
 				var ctx = document.getElementById("chart6").getContext('2d');
 
@@ -455,9 +458,21 @@ if (count($years) > 1) { ?>
 			</script>
 			<h6 style="padding:0 3% 0 3%">*Scores based on # of roofs with iron sheets, TVs, motorcycles, and smartphones per capita.</h6>
 		</div> 
+	<?php } ?>
 		</div>
 
 		<div class="row">
+
+	<?php
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Ag Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+		if (count($values) > 0) {
+	?>
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Agricultural Production:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
 					<span style="color:rgba(192,192,192,1)">Control Villages</span></b></h5>
@@ -465,15 +480,6 @@ if (count($years) > 1) { ?>
 				<canvas id="chart7" width="250" height="250"></canvas>
 			</div>
 
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Ag Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
 			<script>
 				var ctx = document.getElementById("chart7").getContext('2d');
 
@@ -522,6 +528,16 @@ if (count($years) > 1) { ?>
 			</script>
 			<h6 style="padding:0 3% 0 3%">*Scores based on # of 60 kg bags of maize produced per capita.</h6>
 		</div>
+	<?php } 
+		$years = array();
+		$values = array();
+		$result = doStatQuery($villageId, "Livestock Score");
+		while ($row = $result->fetch_assoc()) {
+		    $years[] = $row['stat_year'];
+		    $values[] = $row['stat_value'];
+		}
+		if (count($values) > 0) {
+	?>
 	
 		<div class="col s12 m6 l6 center-align" style="padding: 20px 30px 20px 30px">	
 			<h5 style="text-align: center"><b>Change in Livestock Holdings:<br/><span class="blue-text"><?php print $villageName; ?> Village</span> v. 
@@ -530,15 +546,6 @@ if (count($years) > 1) { ?>
 				<canvas id="chart8" width="250" height="250"></canvas>
 			</div>
 
-			<?php
-				$years = array();
-				$values = array();
-				$result = doStatQuery($villageId, "Livestock Score");
-				while ($row = $result->fetch_assoc()) {
-				    $years[] = $row['stat_year'];
-				    $values[] = $row['stat_value'];
-				}
-			?>
 			<script>
 				var ctx = document.getElementById("chart8").getContext('2d');
 
@@ -586,6 +593,7 @@ if (count($years) > 1) { ?>
 			</script>
 							<h6 style="padding:0 3% 0 3%">*Scores based on # of goats and cows per capita.</h6>
 		</div> 
+	<?php } ?>
 		</div>
 	
 <?php } ?>
