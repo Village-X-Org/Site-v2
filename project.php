@@ -143,12 +143,12 @@ if (!file_exists($mapFilename)) {
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	
-		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-					  <a href='<?php print $mapFilename; ?>' 
-            data-imagelightbox="map<?php print $projectId; ?>" style='font-weight:bold;color:#654321'><?php print $villageName; ?> Village</a>  
+		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="padding: 0 0 2% 0">
+					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
-            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
+            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor. Partner <a href="https://www.friendsofmalawi.org/cpages/home" target="_blank">Friends of Malawi</a> also made 
+            a generous financial contribution.
 		</h4>
 
 <script>
@@ -375,7 +375,7 @@ if (!file_exists($mapFilename)) {
 	
 		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
 						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 1% 20% 5% 20%;">
+					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 0% 20% 5% 20%;">
 							100% tax deductible and securely processed by Stripe
 					</span>
 			</div>

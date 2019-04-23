@@ -8,14 +8,25 @@ require_once("utilities.php");
 
 <div class="container">
 
-	<div class="row" style="padding:2% 1% 1% 1%;">
-		<div class="col s12 m4 l4; valign-wrapper" style="vertical-align: middle; height:50px;">
-			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-				Choose a project
-			</h5>
-		</div>
-		<script>var statusFilter = 0, typeFilter = 0;</script>
-		<div class="col s12 m4 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
+	<div class="row" style="padding:3% 1% 1% 1%;">
+	<script>var statusFilter = 0, typeFilter = 0;</script>
+		<div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
+	
+    		    <!-- Dropdown Trigger -->
+      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown3' id='statusFilter'>Filter by Funder</a>
+
+            <!-- Dropdown Structure -->
+          	<ul id="dropdown3" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+          		<li><a href="#!">All</a></li>
+            		<li><a href="#!">Water Charity</a></li>
+            		<li><a href="#!">World Connect</a></li>
+            		<li><a href="#!">Friends of Malawi</a></li>
+            		<li><a href="#!">International School Nido de Aguilas</a></li>
+            		<li><a href="#!">SS Rent Car </a></li>
+          	</ul>
+          </div>
+		
+		<div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown1' id='statusFilter'>Filter by Status</a>
@@ -43,11 +54,13 @@ require_once("utilities.php");
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Business</a></li>
           	</ul>
 		</div>
+		
 	</div>
 	
-		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village data trends available
-	<br>
-	<i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;data trends coming soon</div>
+		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;new village partner
+		<br>
+		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;existing village partner
+		</div>
 	
 	<div class="section"><div class='row'>		
 			<?php 
