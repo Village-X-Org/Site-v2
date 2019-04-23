@@ -8,14 +8,37 @@ require_once("utilities.php");
 
 <div class="container">
 
-	<div class="row" style="padding:2% 1% 1% 1%;">
-		<div class="col s12 m4 l4; valign-wrapper" style="vertical-align: middle; height:50px;">
-			<h5 class="left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111">
-				Choose a project
-			</h5>
-		</div>
-		<script>var statusFilter = 0, typeFilter = 0;</script>
-		<div class="col s12 m4 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
+	<div class="row" style="padding:3% 1% 1% 1%;">
+
+		<div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
+	
+    		    <!-- Dropdown Trigger -->
+      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown3' id='partnerFilter'>Filter by Partner</a>
+
+            <!-- Dropdown Structure -->
+          	<ul id="dropdown3" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+          		<li><a href="#!" onclick="partnerFilter=0; $('.projectCell').hide(); className = '' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); if (className == '') { $('.projectCell').show(); } else { $(className).show(); } $('#partnerFilter').html('Filter by Partner'); return false;">All</a></li>
+          		<?php 
+          			$projectPartners = array();
+          			$result = doUnprotectedQuery("SELECT COUNT(donation_project_id) AS count, GROUP_CONCAT(donation_project_id) AS projects, donor_first_name, donor_last_name FROM donors JOIN donations ON donor_is_featured_partner=1 AND donor_id=donation_donor_id GROUP BY donor_id ORDER BY count DESC");
+          			while ($row = $result->fetch_assoc()) {
+          				$partnerName = trim($row['donor_first_name'].' '.$row['donor_last_name']);
+          				$stripped = strtolower(preg_replace("/(?)[\p{P} ]/u", "", $partnerName));
+          				print "<li><a href='' onclick=\"$('.projectCell').hide();partnerFilter='$stripped';className = '.$stripped' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#partnerFilter').html('".str_replace("'", "\\'", $partnerName)." &nbsp;&nbsp;&#10004;'); return false;\">$partnerName</a></li>";
+          				$projects = explode(',', $row['projects']);
+          				foreach ($projects as $project) {
+          					if (isset($projectPartners[$project])) {
+          						$projectPartners[$project] .= ' '.$stripped;
+          					} else {
+          						$projectPartners[$project] = $stripped;
+          					}
+          				}
+          			}
+          		?>
+          	</ul>
+          </div>
+		
+		<div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown1' id='statusFilter'>Filter by Status</a>
@@ -23,9 +46,9 @@ require_once("utilities.php");
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
           		<li><a href="" onclick="statusFilter=0; if (typeFilter) { $('.' + typeFilter).show(); } else { $('.projectCell').show(); }  $('#statusFilter').html('Filter by Status'); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='completed';className = '.completed' + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#statusFilter').html('Completed &nbsp;&nbsp;&#10004;'); return false;">Completed</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); return false;">Seeking Funds</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); return false;">Funded</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();statusFilter='completed';className = '.completed' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Completed &nbsp;&nbsp;&#10004;'); return false;">Completed</a></li>
           	</ul>
           </div>
 	
@@ -36,31 +59,33 @@ require_once("utilities.php");
             <!-- Dropdown Structure -->
           	<ul id="dropdown2" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
           		<li><a href="" onclick="typeFilter=0; if (statusFilter) { $('.' + statusFilter).show(); } else { $('.projectCell').show(); } $('#typeFilter').html('Filter by Type'); return false;">All</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='agriculture';className = '.agriculture' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
-           	 	<li><a href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
-            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Business</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='agriculture';className = '.agriculture' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); return false;">Agriculture</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); return false;">Education</a></li>
+           	 	<li><a href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); return false;">Livestock</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Water</a></li>
+            		<li><a href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Business</a></li>
           	</ul>
 		</div>
+		<script>var statusFilter = 0, typeFilter = 0, partnerFilter = 0;</script>
 	</div>
 	
-		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village data trends available
-	<br>
-	<i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;data trends coming soon</div>
+		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;village's 1st project with Village X
+		<br>
+		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village previously completed projects with Village X
+		</div>
 	
 	<div class="section"><div class='row'>		
 			<?php 
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, pe_date 
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date 
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
-                LEFT JOIN donors ON p1.project_matching_donor=donor_id 
+                LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
                 WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
                 ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, (p1.project_budget - p1.project_funded) / p1.project_budget, 1) ASC, p1.project_date_posted DESC";
@@ -99,8 +124,13 @@ require_once("utilities.php");
 		      if ($isCompleted) {
 		      	$fundedClass = 'completed';
 		      }
+
+		      $partnerClass = '';
+		      if (isset($projectPartners[$projectId])) {
+		      	$partnerClass = $projectPartners[$projectId];
+		      }
 		      
-		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
+		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass $partnerClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
 				<div class='card sticky-action hoverable'>
 					<div class='card-image'>
 						<img class='activator' src='".PICTURES_DIR."{$row['picture_filename']}'>
