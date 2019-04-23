@@ -147,8 +147,7 @@ if (!file_exists($mapFilename)) {
 					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
-            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor. Partner <a href="https://www.friendsofmalawi.org/cpages/home" target="_blank">Friends of Malawi</a> also made 
-            a generous financial contribution.
+            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
 		</h4>
 
 <script>

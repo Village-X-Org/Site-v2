@@ -23,8 +23,8 @@ require_once("utilities.php");
           			$result = doUnprotectedQuery("SELECT COUNT(donation_project_id) AS count, GROUP_CONCAT(donation_project_id) AS projects, donor_first_name, donor_last_name FROM donors JOIN donations ON donor_is_featured_partner=1 AND donor_id=donation_donor_id GROUP BY donor_id ORDER BY count DESC");
           			while ($row = $result->fetch_assoc()) {
           				$partnerName = trim($row['donor_first_name'].' '.$row['donor_last_name']);
-          				$stripped = strtolower(str_replace(' ', '', $partnerName));
-          				print "<li><a href='' onclick=\"$('.projectCell').hide();partnerFilter='$stripped';className = '.$stripped' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#partnerFilter').html('$partnerName &nbsp;&nbsp;&#10004;'); return false;\">$partnerName</a></li>";
+          				$stripped = strtolower(preg_replace("/(?)[\p{P} ]/u", "", $partnerName));
+          				print "<li><a href='' onclick=\"$('.projectCell').hide();partnerFilter='$stripped';className = '.$stripped' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#partnerFilter').html('".str_replace("'", "\\'", $partnerName)." &nbsp;&nbsp;&#10004;'); return false;\">$partnerName</a></li>";
           				$projects = explode(',', $row['projects']);
           				foreach ($projects as $project) {
           					if (isset($projectPartners[$project])) {
