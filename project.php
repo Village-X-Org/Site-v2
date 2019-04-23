@@ -143,7 +143,7 @@ if (!file_exists($mapFilename)) {
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	
-		<div><h4 class="header left brown-text text-lighten-2 text-shadow: 2px 2px 7px #111111" style="padding: 0 0 2% 0">
+		<div><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
 					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 

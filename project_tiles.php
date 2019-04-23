@@ -9,11 +9,11 @@ require_once("utilities.php");
 <div class="container">
 
 	<div class="row" style="padding:3% 1% 1% 1%;">
-	<script>var statusFilter = 0, typeFilter = 0;</script>
+
 		<div class="col s12 m4 l4 center-align valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
 	
     		    <!-- Dropdown Trigger -->
-      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown3' id='statusFilter'>Filter by Funder</a>
+      		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown3' id='partnerFilter'>Filter by Partner</a>
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown3" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
@@ -54,12 +54,12 @@ require_once("utilities.php");
             		<li><a href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); return false;">Business</a></li>
           	</ul>
 		</div>
-		
+		<script>var statusFilter = 0, typeFilter = 0;</script>
 	</div>
 	
-		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;new village partner
+		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;village's 1st project with Village X
 		<br>
-		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;existing village partner
+		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village previously completed projects with Village X
 		</div>
 	
 	<div class="section"><div class='row'>		
