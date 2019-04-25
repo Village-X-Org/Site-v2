@@ -20,6 +20,9 @@ if (!isset($start)) {
     if (hasParam('small')) {
         $small = paramInt('small');
     }
+    if (hasParam('includeFirst')) {
+        $includeFirst = paramInt('includeFirst');
+    }
 	$putInVar = 0;
 } else {
 	$putInVar = 1;

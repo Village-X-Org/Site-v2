@@ -191,7 +191,7 @@ include('header.inc');
         }
         if (!refreshing && hasMoreRecords && scrollTop > $('body').height() - 2000) {
             refreshing = 1;
-            url = "track_updates.php?start=" + newStart;
+            url = "track_updates.php?includeFirst=1&start=" + newStart;
             if (projectId > 0) {
                 url += "&projectId=" + projectId;
             }
