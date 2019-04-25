@@ -20,9 +20,9 @@ require_once("utilities.php");
           		<li><a href="#!" onclick="partnerFilter=0; $('.projectCell').hide(); className = '' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); if (className == '') { $('.projectCell').show(); } else { $(className).show(); } $('#partnerFilter').html('Filter by Partner'); return false;">All</a></li>
           		<?php 
           			$projectPartners = array();
-          			$result = doUnprotectedQuery("SELECT COUNT(donation_project_id) AS count, GROUP_CONCAT(donation_project_id) AS projects, donor_first_name, donor_last_name FROM donors JOIN donations ON donor_is_featured_partner=1 AND donor_id=donation_donor_id GROUP BY donor_id ORDER BY count DESC");
+          			$result = doUnprotectedQuery("SELECT partner_name, GROUP_CONCAT(pp_project_id) AS projects FROM partners JOIN project_partners ON pp_partner_id=partner_id GROUP BY partner_id");
           			while ($row = $result->fetch_assoc()) {
-          				$partnerName = trim($row['donor_first_name'].' '.$row['donor_last_name']);
+          				$partnerName = $row['partner_name'];
           				$stripped = strtolower(preg_replace("/(?)[\p{P} ]/u", "", $partnerName));
           				print "<li><a href='' onclick=\"$('.projectCell').hide();partnerFilter='$stripped';className = '.$stripped' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#partnerFilter').html('".str_replace("'", "\\'", $partnerName)." &nbsp;&nbsp;&#10004;'); return false;\">$partnerName</a></li>";
           				$projects = explode(',', $row['projects']);
