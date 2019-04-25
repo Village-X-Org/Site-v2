@@ -25,10 +25,10 @@
 							</p>
 							<?php } ?>
 							
-							<?php if (strlen($partners) > 1) { ?> <br>
+							<?php if (strlen($communityPartners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $partners; ?>
+								<b>Partners:</b> <?php print $communityPartners; ?>
 							</p>
 							<?php } ?>
 							

@@ -24,13 +24,13 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
                 FROM projects JOIN villages ON village_id=project_village_id 
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
                 LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
-                LEFT JOIN donors ON project_matching_donor=donor_id 
+                LEFT JOIN donors ON project_matching_donor=donor_id
                 LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
                 LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
                         UNION (SELECT sd_donor_id AS donation_donor_id, sd_project_id AS donation_project_id FROM subscription_disbursals WHERE sd_project_id=?)) AS derived ON donation_project_id=project_id
@@ -44,7 +44,7 @@ if ($row = $result->fetch_assoc()) {
     $summary = $row['project_summary'];
     $problem = $row['project_community_problem'];
     $solution = $row['project_community_solution'];
-    $partners = $row['project_community_partners'];
+    $communityPartners = $row['project_community_partners'];
     $completion = $row['project_completion'];
     $videoId = $row['project_youtube_id'];
     $impact = $row['project_impact'];
@@ -58,7 +58,6 @@ if ($row = $result->fetch_assoc()) {
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
-    $matchingDonor = $row['matchingDonor'];
     $exemplaryPicture = $row['exemplaryPicture'];
     $exemplaryDescription = $row['pu_description'];
     $monthCompleted = $row['monthCompleted'];
@@ -70,12 +69,25 @@ if ($row = $result->fetch_assoc()) {
     
     $households = getLatestValueForStat($villageId, "# of HH");
     $population = getLatestValueForStat($villageId, "# of People");
+
+    $matchingDonor = $row['matchingDonor'];
 } else {
     print "The requested project could not be found.";
     die(1);
 }
 $stmt->close();
 
+$stmt = prepare("SELECT partner_name, partner_website FROM partners 
+  JOIN project_partners ON pp_project_id=? AND pp_partner_id=partner_id ORDER BY partner_amount DESC");
+$stmt->bind_param('i', $projectId);
+$result = execute($stmt);
+$partners = array();
+while ($row = $result->fetch_assoc()) {
+  $partners[] = array($row['partner_name'], $row['partner_website']);
+}
+$stmt->close();
+
+$partnerCount = count($partners);
 ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
@@ -142,12 +154,25 @@ if (!file_exists($mapFilename)) {
 
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
-	
+	 
 		<div><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
 					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
-            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor.
+            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor. 
+            <?php if ($partnerCount > 1) {
+              print "Partners ";
+              for ($i = 0; $i < $partnerCount; $i++) {
+                print "<a href=\"".$partners[$i][1]."\" target=\"_blank\">".$partners[$i][0]."</a>";
+                if ($i == $partnerCount - 1) {
+                  print ", and ";
+                } elseif ($i < $partnerCount - 1) {
+                  print ", ";
+                }
+              }
+            } else if ($partnerCount > 0) { ?>  
+              Partner <a href="<?php print $partners[0][1]; ?>" target="_blank"><?php print $partners[0][0]; ?></a> also made a generous financial contribution.
+            <?php } ?>
 		</h4>
 
 <script>
