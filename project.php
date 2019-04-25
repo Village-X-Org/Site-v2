@@ -170,7 +170,7 @@ if (!file_exists($mapFilename)) {
                   print ", ";
                 }
               }
-              print " also made a generous financial contribution.";
+              print " also made generous financial contributions.";
             } else if ($partnerCount > 0) { ?>  
               Partner <a href="<?php print $partners[0][1]; ?>" target="_blank" class='brown-text text-lighten-2' style='font-weight:bold;'><?php print $partners[0][0]; ?></a> also made a generous financial contribution.
             <?php } ?>
