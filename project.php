@@ -78,7 +78,7 @@ if ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 $stmt = prepare("SELECT partner_name, partner_website FROM partners 
-  JOIN project_partners ON pp_project_id=? AND pp_partner_id=partner_id ORDER BY partner_amount DESC");
+  JOIN project_partners ON pp_project_id=? AND pp_partner_id=partner_id ORDER BY pp_amount DESC");
 $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
 $partners = array();
@@ -163,15 +163,16 @@ if (!file_exists($mapFilename)) {
             <?php if ($partnerCount > 1) {
               print "Partners ";
               for ($i = 0; $i < $partnerCount; $i++) {
-                print "<a href=\"".$partners[$i][1]."\" target=\"_blank\">".$partners[$i][0]."</a>";
-                if ($i == $partnerCount - 1) {
-                  print ", and ";
-                } elseif ($i < $partnerCount - 1) {
+                print "<a href=\"".$partners[$i][1]."\" target=\"_blank\" class='brown-text text-lighten-2' style='font-weight:bold;'>".$partners[$i][0]."</a>";
+                if ($i == $partnerCount - 2) {
+                  print ($partnerCount > 2 ? "," : "")." and ";
+                } elseif ($i < $partnerCount - 2) {
                   print ", ";
                 }
               }
+              print " also made a generous financial contribution.";
             } else if ($partnerCount > 0) { ?>  
-              Partner <a href="<?php print $partners[0][1]; ?>" target="_blank"><?php print $partners[0][0]; ?></a> also made a generous financial contribution.
+              Partner <a href="<?php print $partners[0][1]; ?>" target="_blank" class='brown-text text-lighten-2' style='font-weight:bold;'><?php print $partners[0][0]; ?></a> also made a generous financial contribution.
             <?php } ?>
 		</h4>
 
