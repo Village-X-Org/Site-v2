@@ -9,6 +9,11 @@ if (hasParam('d')) {
 		$donorLogo = $row['donor_logo'];
 	}
 }
+
+$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(ru_date) AS lastTimestamp FROM raw_updates ORDER BY ru_id DESC LIMIT 1");
+if ($row = $result->fetch_assoc()) {
+	$newsDate = $row['lastTimestamp'];	
+}
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -211,7 +216,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 <?php if (!$donorId && !hasParam('hideHeader')) { ?>
 
-
 	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
 				<a id="logo-container" href="index.php" class="brand-logo"><img
@@ -219,71 +223,73 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="sidenav">
-			<li><a class="waves-effect waves-light btn" href="track.php">UPDATES!</a></li>
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
-				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
 				<li><a href="about.php"><i class="material-icons">info</i>Mission &amp; Team</a></li>
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
-  				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
+				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
+  				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 				<?php if ($session_donor_id) {
 					print "
 					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>
 					<li><a class='waves-effect waves-light' href='user_logout.php'><i class='material-icons'>exit_to_app</i>Logout</a></li>";
 				} else {
-					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'>person</i></a></li>";
+					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
-
-			</ul>
-			</div>
-			</nav>
-			
-		<div class="navbar-fixed hide-on-med-and-down">
-		<nav class="white" role="navigation">
-			<div class="nav-wrapper container">
-			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
-				src="images/villagex_short_logo.png"></a>
-			<ul class="right hide-on-med-and-down">
-				<li><a class="waves-effect waves-light btn light blue" href="track.php">UPDATES!</a></li>
-				<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
-				<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 15px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
-		
-				<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
-						<li><a href="project_tiles.php">Projects</a></li>
-			          <li><a href="about.php">Mission &amp; Team</a></li>
-			          <li><a href="model.php">Model</a></li>
-			          <li><a href="impacts.php">Impacts</a></li>
-			          <li><a href="map.php">Map</a></li>
-			          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-			          <li><a href="travel.php">Travel</a></li>
-	          		  <li><a href="finances.php">Finances</a></li>
-			          <li class="divider" tabindex="-1"></li>
-
-					<?php if ($session_donor_id) {
-						?>
-					   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
-					        <li><a href="user_logout.php">Logout</a></li>
-				        <?php
-					} else {
-						?>
-						<li><a href='user_login.php'>Sign In</a></li>
-						<?php
-					} ?>
-			   </ul>
+				<?php if (!isset($updates)) { ?>
+					<li><a class="waves-effect waves-light btn" style='' href='track.php'>Latest News <i class='material-icons right' style='color:white;'>fiber_new</i></a></li>
+				<?php } ?>
 			</ul>
 		</div>
 	</nav>
-	</div>
-	
-	
+			
+	<div class="navbar-fixed hide-on-med-and-down">
+		<nav class="white" role="navigation">
+			<div class="nav-wrapper <?php print (isset($updates) ? 'container' : ''); ?>" style='padding-left:10%;'>
+			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
+				src="images/villagex_short_logo.png"></a>
+				<ul class="right hide-on-med-and-down">
+					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
+					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
+					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 15px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
+			
+					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+							<li><a href="project_tiles.php">Projects</a></li>
+				          <li><a href="about.php">Mission &amp; Team</a></li>
+				          <li><a href="model.php">Model</a></li>
+				          <li><a href="impacts.php">Impacts</a></li>
+				          <li><a href="map.php">Map</a></li>
+		          		  <li><a href="finances.php">Finances</a></li>
+				          <li><a href="travel.php">Travel</a></li>
+				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+				          <li class="divider" tabindex="-1"></li>
 
-<div style="width:100%;border-style:solid; border-width:1px;">
-</div>
+						<?php if ($session_donor_id) {
+							?>
+						   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
+						        <li><a href="user_logout.php">Logout</a></li>
+					        <?php
+						} else {
+							?>
+							<li><a href='user_login.php'>Sign In</a></li>
+							<?php
+						} ?>
+				   </ul>
+
+				   <?php if (!isset($updates)) { ?>
+				   	<a class="waves-effect waves-light btn-small transparent" style='border-radius:10px;color:black;' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span style=''><b>Latest:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
+				   <?php } ?>
+				</ul>
+			</div>
+		</nav>
+	</div>
+
+	<div style="width:100%;border-style:solid; border-width:1px;">
+	</div>
 	
 		<div id="donationModal" class="modal">
         		<div class="modal-content" style='color:black;'>

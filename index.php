@@ -134,27 +134,27 @@ if (hasParam('gc')) {
 
 	
 
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px">
-	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width: 100%;">
-		<div class="section" style="width:100%;">
-				<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px;">
+	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
+		<div class="section row center" style="width:100%;">
+			<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
         		
-        		<div style="padding:0% 8% 0% 8%">
-        				<h5 class="center-align light" style="font-size:24px;opacity:0.8; text-shadow: 2px 2px 7px #111111">because everyone deserves democracy and development</h5>
+    		<div style="padding:0% 8% 0% 8%">
+    				<h5 class="center-align light" style="font-size:24px;opacity:0.8; text-shadow: 2px 2px 7px #111111">because everyone deserves democracy and development</h5>
 			</div>
 			
 			<div class="center-align" style="padding:4% 2% 4% 0%">	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size: large">FIND YOUR VILLAGE</a>
 			</div>
-			</div>
-
-			<div class="parallax">
-				<img src="images/chiyuni_banner.jpg">
-			</div>
-			
 		</div>
+
+		<div class="parallax">
+			<img src="images/chiyuni_banner.jpg">
+		</div>
+			
 	</div>
+</div>
 	
 	<div class="flow-text" style="background-color: #FFF5EE; display: flex">
 	<div class="container">

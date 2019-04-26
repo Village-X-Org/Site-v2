@@ -1,3 +1,9 @@
+<?php
+require_once("utilities.php");
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
 <?php include('header.inc'); ?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 
