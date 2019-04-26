@@ -281,7 +281,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				   </ul>
 
 				   <?php if (!isset($updates)) { ?>
-				   	<a class="waves-effect waves-light btn-small transparent" style='border-radius:10px;color:black;' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span style=''><b>Latest:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
+				   	<a class="waves-effect waves-light transparent uppercase" style='border-radius:10px;color:black;margin-right:5px' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span style=''><b>Latest Update:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
 				   <?php } ?>
 				</ul>
 			</div>
