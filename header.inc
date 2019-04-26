@@ -241,7 +241,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
 				<?php if (!isset($updates)) { ?>
-					<li><a class="waves-effect waves-light btn" style='' href='track.php'>Latest News <i class='material-icons right' style='color:white;'>fiber_new</i></a></li>
+					<li><a class="waves-effect waves-light btn" href='track.php'>Latest News <i class='material-icons right' style='color:white;'>fiber_new</i></a></li>
 				<?php } ?>
 			</ul>
 		</div>
@@ -281,7 +281,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				   </ul>
 
 				   <?php if (!isset($updates)) { ?>
-				   	<a class="waves-effect waves-light transparent uppercase" style='border-radius:10px;color:black;margin-right:5px' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span style=''><b>Latest Update:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
+				   	<a class="waves-effect waves-light" style='margin-right:5px' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span class='textLink' style=''><b>Latest Update:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
 				   <?php } ?>
 				</ul>
 			</div>
