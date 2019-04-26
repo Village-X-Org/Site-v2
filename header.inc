@@ -218,7 +218,9 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
-				<a id="logo-container" href="index.php" class="brand-logo"><img
+				<a id="logo-container" href="index.php" class="brand-logo hide-on-medium-only"><img
+				src="images/villagex_short_logo.png"></a>
+				<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 3px 0 0 0"><img
 				src="images/villagex_short_logo.png"></a>
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
@@ -249,10 +251,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			
 	<div class="navbar-fixed hide-on-med-and-down">
 		<nav class="white" role="navigation">
-			<div class="nav-wrapper <?php print (isset($updates) ? 'container' : ''); ?>" style='padding-left:10%;'>
+			<div class="nav-wrapper container">
 			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
 				src="images/villagex_short_logo.png"></a>
-				<ul class="right hide-on-med-and-down">
+				<ul class="right">
+					<li><a href="track.php" style="font-size: 17px" class="valign-wrapper"><b>Updates!</b><span class="new badge">4</span></a></li>
 					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 15px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
@@ -279,10 +282,6 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 							<?php
 						} ?>
 				   </ul>
-
-				   <?php if (!isset($updates)) { ?>
-				   	<a class="waves-effect waves-light" style='margin-right:5px' href='track.php'><img src='images/news.png' style='height:32px;vertical-align:middle;' /> <span class='textLink' style=''><b>Latest Update:</b> <?php print date("M jS, Y", $newsDate); ?></span></a>
-				   <?php } ?>
 				</ul>
 			</div>
 		</nav>
