@@ -211,13 +211,15 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 
 <?php if (!$donorId && !hasParam('hideHeader')) { ?>
 
-	<nav class="white" role="navigation">
+
+	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
-			<a id="logo-container" href="index.php" class="brand-logo" style="padding 2% 0 0 0"><img
+				<a id="logo-container" href="index.php" class="brand-logo"><img
 				src="images/villagex_short_logo.png"></a>
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="sidenav">
+			<li><a class="waves-effect waves-light btn" href="track.php">UPDATES!</a></li>
 				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
 				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
@@ -237,13 +239,22 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				} ?> 
 
 			</ul>
-
+			</div>
+			</nav>
+			
+		<div class="navbar-fixed hide-on-med-and-down">
+		<nav class="white" role="navigation">
+			<div class="nav-wrapper container">
+			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
+				src="images/villagex_short_logo.png"></a>
 			<ul class="right hide-on-med-and-down">
-				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
-				<li><a class="dropdown-trigger" href="#!" data-target="Menu">Info &amp; Tools<i class="material-icons right">arrow_drop_down</i></a></li>
+				<li><a class="waves-effect waves-light btn light blue" href="track.php">UPDATES!</a></li>
+				<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
+				<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
+				<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 15px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
 		
 				<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
+						<li><a href="project_tiles.php">Projects</a></li>
 			          <li><a href="about.php">Mission &amp; Team</a></li>
 			          <li><a href="model.php">Model</a></li>
 			          <li><a href="impacts.php">Impacts</a></li>
@@ -251,7 +262,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 			          <li><a href="travel.php">Travel</a></li>
 	          		  <li><a href="finances.php">Finances</a></li>
-			          <hr/>
+			          <li class="divider" tabindex="-1"></li>
 
 					<?php if ($session_donor_id) {
 						?>
@@ -260,13 +271,16 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				        <?php
 					} else {
 						?>
-						<li><a href='user_login.php'>Sign In/Register</a></li>
+						<li><a href='user_login.php'>Sign In</a></li>
 						<?php
 					} ?>
 			   </ul>
 			</ul>
 		</div>
 	</nav>
+	</div>
+	
+	
 
 <div style="width:100%;border-style:solid; border-width:1px;">
 </div>
