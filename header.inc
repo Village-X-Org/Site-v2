@@ -255,10 +255,12 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
 				src="images/villagex_short_logo.png"></a>
 				<ul class="right">
-					<li><a href="track.php" style="font-size: 17px" class="valign-wrapper"><b>Updates!</b><span class="new badge">4</span></a></li>
+					
 					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
-					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 15px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
+					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 18px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
+					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>updates</a></li>
+					<!--  <li><a href="track.php" style="font-size: 17px" class="valign-wrapper"><b>Updates!</b><span class="new badge">4</span></a></li>  -->
 			
 					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
 							<li><a href="project_tiles.php">Projects</a></li>
