@@ -33,21 +33,21 @@ include('header.inc');
 ?>
 
 <div class="bg" style='height:100%;width:100%'>
-<div class="valign-wrapper">
-  <div class="section" style="width:100%;padding:8% 0% 0 0%;">
+<div class="valign-wrapper" style="height:100%">
+  <div class="section" style="width:100%;">
 
-    <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
+    <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">WELCOME BACK
     </div>
-    <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0">
+    <div class="center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em">
       <span class="white-text">your profile. your impact. your fundraisers.</span>
     </div>
        
 
       <div class="section center-align" style="width:100%">
-        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 10px 50px 0px 50px; border: 4px solid #EEE;">
+        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 40px 0px 40px; border: 4px solid #EEE;">
               <form class="col s12" style="width:100%" id="login_form" method='post'>
                 
-                  <div class="row" style="padding:8% 0% 0 0%; width:300px">
+                  <div class="row" style="padding:5% 0% 0 0%; width:300px">
                     <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>EMAIL</b>
                     </div>
                     <div class="input-field col s12 donor-text">
@@ -57,7 +57,7 @@ include('header.inc');
                       </div>
                   </div>
                             
-                  <div class="row" style="padding:2% 0% 0 0%;width:300px;">
+                  <div class="row" style="padding:1% 0% 0 0%;width:300px;">
                     <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>PASSWORD</b>
                     </div>
                     <div class="input-field col s12 donor-text">
@@ -67,8 +67,7 @@ include('header.inc');
                     </div>
                   </div>
                     
-                  <div class="center-align" style="width:100%; padding:0 0% 0% 0%;">
-                     <div class="input-field center-align" style="width:100%;">
+                     <div class="input-field center-align" style="width:100%;padding:0 0 2% 0%">
                              
                           <button id="loginButton" style="width:100%;height:50px;font-size:20px"
                               class="g-recaptcha btn-large donor-background center-align submit"
@@ -78,20 +77,22 @@ include('header.inc');
                           </button>
                         <div id='loginErrorText' style='margin-top:10px;color:red;'></div>
                      </div>    
-                  </div>
+                  
                 
             </form>
-          
-          <div class="black-text container center-align" style="font-weight:400;padding:0% 0 0% 0">
+          <div class="section" style="height:100%;padding:4% 0 0% 0">
+          <div class="black-text center-align" style="font-weight:400;">
             No account yet? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
           </div>
                                
           <div class="black-text center-align" style="padding:2% 0 10% 0; width:100%;font-weight:400;">
             Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a>
-          </div>   
+          </div>  
+          </div> 
           </div>  
           </div>         
         </div> 
+        
         <script>
             function onSubmit(token) {
                 $('#login_form').submit();
