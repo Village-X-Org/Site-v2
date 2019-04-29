@@ -228,7 +228,7 @@ include('header.inc');
                 behavior: 'smooth'
             });
         }
-        if (lastLat != lat) {
+        if (lastLat != lat && lat != 0) {
             drawCircle(lat, lng);
         }
     }
