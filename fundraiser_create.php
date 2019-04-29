@@ -24,7 +24,7 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: scroll; 
+    
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
     
@@ -34,12 +34,12 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); style='height:100%;width:100%'>
+<div class="bg" style="height:1100px;width:100%">
 <div class="valign-wrapper" style="height:100%">
-	<div class="section" id="jqueryvalidation" style="width:100%;">
-		    <div class="white-text center-align" style="font-weight:800;padding:2% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
+	<div class="section" style="width:100%">
+		    <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
     </div>
-			<div class="section center-align" style="width:100%">
+			<div class="section center-align id="jqueryvalidation" style="width:100%">
         <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 20px 20px 20px; border: 4px solid #EEE;">
           				
          				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
@@ -163,11 +163,11 @@ body, html {
             				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding-bottom:20px;">
                 (clicking this button will create a fundraising page that you can email to friends and post to social media. good luck raising money to disrupt exstreme poverty!)
             </div>
-            				   </div>
-            				   </div>
+            				   
             				  
               			</form>
-
+						</div>
+            				   </div>
 <script>
 	$().ready(function() {
 		$("#fundraiser_form").validate({
@@ -208,8 +208,7 @@ body, html {
 	
 	</div>
 	</div>
-	</div>
-</div>
+	
 
 
 </div>
