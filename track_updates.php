@@ -104,8 +104,8 @@ if (!isset($start)) {
             if (!$pictureId) {
                 continue;
             }
-            print "<img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
-                    onclick=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />\n";
+            print "<a href='".$update['project_id']."' target='_blank'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' /></a>\n";
         }
         $count++;  
     }
