@@ -238,7 +238,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
 				<?php if (!isset($updates)) { ?>
-					<li><a class="waves-effect waves-light btn" href='track.php'>Latest News <i class='material-icons right' style='color:white;'>fiber_new</i></a></li>
+					<li><a class="waves-effect waves-light btn" href='track.php'>Latest News <i class='material-icons right' style='color:white;'>rss_feed</i></a></li>
 				<?php } ?>
 			</ul>
 		</div>
