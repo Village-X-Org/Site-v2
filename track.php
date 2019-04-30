@@ -223,15 +223,49 @@ include('header.inc');
     map.scrollZoom.disable();
     map.addControl(new mapboxgl.NavigationControl(), 'top-right');
 
+    var lastLat = 0;
     function zoomTo(elem, lat, lng) {
-        map.flyTo({center: [lng, lat], zoom: 15});
+        map.flyTo({center: [lng, lat]});
         if (elem) {
             elem.scrollIntoView({
                 behavior: 'smooth'
             });
         }
+        if (lastLat != lat && lat != 0) {
+            drawCircle(lat, lng);
+        }
     }
 
+    function drawCircle(lat, lng) {
+        if (lastLat != 0) {
+            map.removeLayer("circle500");
+            map.removeSource("source_circle_500");
+        }
+        map.addSource("source_circle_500", {
+            "type": "geojson",
+            "data": {
+                "type": "FeatureCollection",
+                "features": [{
+                    "type": "Feature",
+                    "geometry": {
+                        "type": "Point",
+                        "coordinates": [lng, lat]
+                    }
+                }]
+            }
+        });
+        map.addLayer({
+            "id": "circle500",
+            "type": "circle",
+            "source": "source_circle_500",
+            "paint": {
+                "circle-radius": 30,
+                "circle-color": "#5b94c6",
+                "circle-opacity": 0.6
+            }
+        });
+        lastLat = lat;
+    }
     function smoothScroll(elemId) {
         document.getElementById(elemId).scrollIntoView({ 
           behavior: 'smooth' 
@@ -281,30 +315,7 @@ include('header.inc');
 
     <?php if ($projectId) { ?>
         map.on('load', function() {
-            map.addSource("source_circle_500", {
-                "type": "geojson",
-                "data": {
-                    "type": "FeatureCollection",
-                    "features": [{
-                        "type": "Feature",
-                        "geometry": {
-                            "type": "Point",
-                            "coordinates": [<?php print "$villageLng, $villageLat"; ?>]
-                        }
-                    }]
-                }
-            });
-
-            map.addLayer({
-                "id": "circle500",
-                "type": "circle",
-                "source": "source_circle_500",
-                "paint": {
-                    "circle-radius": 20,
-                    "circle-color": "#5b94c6",
-                    "circle-opacity": 0.6
-                }
-            });
+            drawCircle(<?php print "$villageLng, $villageLat"; ?>);
         });
     <?php } ?> 
     </script>

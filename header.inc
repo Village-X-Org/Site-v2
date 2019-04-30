@@ -9,11 +9,6 @@ if (hasParam('d')) {
 		$donorLogo = $row['donor_logo'];
 	}
 }
-
-$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(ru_date) AS lastTimestamp FROM raw_updates ORDER BY ru_id DESC LIMIT 1");
-if ($row = $result->fetch_assoc()) {
-	$newsDate = $row['lastTimestamp'];	
-}
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -259,9 +254,9 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 18px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
+				<?php if (!isset($updates)) { ?>
 					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>updates</a></li>
-					<!--  <li><a href="track.php" style="font-size: 17px" class="valign-wrapper"><b>Updates!</b><span class="new badge">4</span></a></li>  -->
-			
+				<?php } ?>
 					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
 							<li><a href="project_tiles.php">Projects</a></li>
 				          <li><a href="about.php">Mission &amp; Team</a></li>
