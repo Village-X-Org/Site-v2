@@ -116,7 +116,7 @@ $picture = $pictureIds[0].".jpg";
         text-align:center;
     }
 
-    img {
+    img.update {
         padding:10px 10px 0 10px;
         width:100%;
         cursor:pointer;
@@ -157,24 +157,27 @@ include('header.inc');
 <div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
     <div style='width:100%;padding-right:0px;'>
         <div style="width:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
-            <div style='background-color:black;width:100%;padding:0;margin:0;'><div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;"></div></div>
-                <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
-                    <div style='text-align:right;' id='titleDisplay'>
-                        <span class='topTitle' id='topTitle'><?php print $pageTitle; ?></span>
-                        <br/>
-                        <span class='topDescription' id='topDescription'>
-                            <?php print $pageDescription; ?>
-                        </span><br/><br/><span class='topDescription'><i>Last Update: <?php print $latestDate; ?></i></span>
-                    </div>
-                </div> 
+            <div style='background-color:black;width:100%;padding:0;margin:0;'>
+                <div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;">
+                </div>
+            </div>
+            <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
+                <div style='text-align:right;' id='titleDisplay'>
+                    <span class='topTitle' id='topTitle'><?php print $pageTitle; ?></span>
+                    <br/>
+                    <span class='topDescription' id='topDescription'>
+                        <?php print $pageDescription; ?>
+                    </span><br/><br/><span class='topDescription'><i>Last Update: <?php print $latestDate; ?></i></span>
+                </div>
+            </div> 
         </div>
-            <div id='updatesDiv'>
+        <div id='updatesDiv'>
             <?php
             print $updateHTML;
             ?>
             <img id='loadingImage' style='text-align:center;width:32px;visibility:hidden;' src='images/loading.gif' />
-            </div>
-</div>
+        </div>
+    </div>
 </div>
 <div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
 <script>
@@ -316,6 +319,5 @@ include('header.inc');
         });
     <?php } ?> 
     </script>
-</div>
 </BODY>
 </HTML>
