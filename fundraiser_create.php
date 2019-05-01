@@ -44,7 +44,7 @@ body, html {
           				
          				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
 
-         						<div class="row" style="padding:2% 1% 0 1%;margin:0;width:450px">
+         						<div class="row" style="padding:2% 1% 0 1%;margin:0;width:475px">
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
           							<input placeholder="e.g., Sally's 25th Birthday" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
@@ -160,8 +160,8 @@ body, html {
                     			</div>
                     			</div>
                     			
-            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding-bottom:20px;">
-                (clicking this button will create a fundraising page that you can email to friends and post to social media. good luck raising money to disrupt exstreme poverty!)
+            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding: 0 5% 20px 5%;">
+                Clicking this button will create a fundraising page that you can email to friends and post to social media.
             </div>
             				   
             				  
