@@ -24,7 +24,6 @@ body, html {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: scroll; 
     
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
@@ -35,23 +34,20 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style="background-color: rgba(0, 0, 0, 0.2); height: 1000px; width:100%">
-
-<div class="container" style="padding:0 2% 0 2%; width:100%;">
-	<div class="section" id="jqueryvalidation" style="width:100%">
-		    <div class="white-text center-align" style="font-weight:800;padding:2% 0 2% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
+<div class="bg" style="height:1200px;width:100%">
+<div style="height:100%; width:100%; padding:0% 0 0 0">
+	<div class="section" style="width:100%">
+		    <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
     </div>
-			<div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 0px 0px 0px 0px;">
-            		<div class="card-content donor-text" style="height:100%;">
-            		
-         				<div class="row donor-text" style="padding:2% 0% 0% 0%;">
+			<div class="section center-align id="jqueryvalidation" style="width:100%">
+        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 5px; border: 4px solid #EEE;">
           				
-         				<form class="col s12" style="width:90%" id="fundraiser_form" method='post' action="fundraiser_save.php">
+         				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
 
-         						<div class="row" style="padding:0 3% 0 3%;margin:0;">
-         						 <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
+         						<div class="row" style="padding:2% 0% 0 0%;margin:0;width:525px">
+         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
-          							<input placeholder="e.g., Sally's 25th Birthday" class='text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
+          							<input placeholder="e.g., Sally's 25th Birthday" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
                         name="fundraiser_title" required data-error=".errorTxt1"/>
           							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           					 </div>
@@ -60,8 +56,8 @@ body, html {
           						
           						
                              
-                             <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-                             <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>CHOOSE A PROJECT</b></div>
+                             <div class="row" style="padding:2% 0% 0 0%;margin:0;">
+                             <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%;"><b>CHOOSE A PROJECT</b></div>
                                 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
             	                        <select name="fundraiser_project_id">
             	                        	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
@@ -77,7 +73,7 @@ body, html {
                                             $percent = round(100 * $projectFunded / $projectBudget);
                                             $remaining = $projectBudget - $projectFunded;
 
-                                            print "<option data-icon='uploads/$pictureFilename' class='left circle' value='$projectId'>$projectName in $villageName ($percent% funded, $$remaining needed)</option>";
+                                            print "<option data-icon='uploads/$pictureFilename' class='left circle' value='$projectId'>$projectName in $villageName ($percent% funded, $$remaining to go)</option>";
                                           }
                                           ?>
                                       </select>
@@ -97,29 +93,28 @@ body, html {
 	                 			
 	                 		
               
-                <div class="row" style="padding:2% 3% 0 4%">
-                    <div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
-                      <div class="black-text left-align" style="font-size:large; padding:0 0% 3% 3%"><b>FUNDING GOAL?</b>
-                      </div>
-                      <div style="padding:2% 0% 0 0%">
-         							  <i class="material-icons prefix left-align" style="font-size:30px;">attach_money</i>
-          						  <input placeholder="350" class='donor-text' style="font-size:25px;width:80%;" name="fundraiser_amount" required data-error=".errorTxt2" />
+                <div class="row" style="padding:2% 0% 2% 0%;margin:0;">
+                    
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>FUNDING GOAL?</b></div>
+                      <div class="left-align valign-wrapper" style="padding:0 3% 0 2%;">
+         							  <i class="material-icons prefix" style="font-size:30px;padding:0 0 3% 0">attach_money</i>
+          						  <input placeholder="350" class='donor-text' style="font-size:20px;width:100%;" name="fundraiser_amount" required data-error=".errorTxt2" />
           						</div>
                     <div class="errorTxt2 center-align" style="font-size:10px; color:red;"></div>
           					</div>
 
           					
-              			<div class="col l6 m12 s12" style="padding:0% 0% 0 2%">
-              				<div class="black-text left-align" style="font-size:large; padding:0% 0 3% 3%"><b>ENDING WHEN?</b>
+              			<div class="row" style="padding:2% 0% 0 0%;margin:0;">
+              				<div class="black-text left-align" style="font-size:large; padding:0% 0 2% 3%"><b>ENDING WHEN?</b>
                       </div>
-                      <div style="padding:2% 0% 0 0%">
-              				  <i class="material-icons prefix left-align" style="font-size:30px;">date_range</i>
-              				  <input type="text" style="font-size:20px;width:80%;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3" />
+                      <div class="left-align valign-wrapper" style="padding:0% 3% 0 2%">
+              				  <i class="material-icons prefix left-align" style="font-size:30px;padding:0 0 3% 0">date_range</i>
+              				  <input type="text" style="font-size:20px;width:100%;" class="datepicker" placeholder="e.g., March 20" name="fundraiser_deadline" id="end_date" required data-error=".errorTxt3" />
                     	</div>
                       <div class="errorTxt3 center-align" style="font-size:10px; color:red;"></div>
                     </div>
                     
-                </div>
+                
           		
           		
 	          		<script>$('.datepicker').pickadate({
@@ -134,32 +129,29 @@ body, html {
 	          		  });
 	          		</script>
 	          		
-	          		<div class="row" style="padding:1% 3% 0% 5%;">
-	          		   <div class="black-text" style="font-size:large; padding:0 0 0% 2%"><b>TELL YOUR STORY</b>
+	          		<div class="row" style="padding:4% 0% 0% 0%;margin:0;">
+	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>TELL YOUR STORY</b>
                    </div>
                                    
-                      <div class="input-field col s12" style="padding:1% 1% 0% 2%;">
+                      <div class="input-field col s12" style="padding:0% 3% 0% 3%;">
                         <textarea name="fundraiser_description" class="materialize-textarea donor-text" data-length="300" style="font-size:20px;" placeholder="optional: what inspired you?"></textarea>
                       </div>
               
       				  </div>
 
                     <?php if (!$session_donor_id) { ?>
-                      <div class="row" style="padding:1% 3% 0% 5%;">
-                        <div class="black-text" style="font-size:large; padding:0 0 0 2%" >Contact Email:
+                      <div class="row" style="padding:1% 1% 0% 1%;margin:0;">
+                        <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>CONTACT EMAIL</b>
                         </div> 
-                        <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 2%; font-size:20px;">
-                          <input class='text' name="fundraiser_email" placeholder="How can we reach you?" style="padding:0% 0% 0% 0%;" required data-error=".errorTxt4" />
+                        <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%;">
+                          <input class='donor-text' name="fundraiser_email" placeholder="how can we reach you?" style="font-size:20px;" required data-error=".errorTxt4" />
                           <div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;">
                           </div>
                         </div>
                       </div>
                     <?php } ?>   
 	          		
-          			
-                              </div>
-                        
-                           <div class="center-align hide-on-med-and-down valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
+                           <div class="center-align valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
@@ -168,28 +160,28 @@ body, html {
                     			</div>
                     			</div>
                     			
-                    		<div class="center-align hide-on-large-only valign-wrapper" style="width:100%; padding:7% 3% 1% 3%;">		
-                    		   <div class="input-field center-align" style="width:100%;">	
-                    				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:70%;height:70px;font-size:25px;"> 
-                    					Create 
-                    				</button>
-            				   </div>
-            				   </div>
-            				   </div>
+            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding: 0 1% 20px 1%;">
+                Clicking this button will create a fundraising page that you can email to friends and post to social media.
+            </div>
+            				   
             				  
               			</form>
+						</div>
+            				   </div>
 <script>
 	$().ready(function() {
 		$("#fundraiser_form").validate({
 			rules: {
 				fundraiser_title: "required",
         fundraiser_amount: "required",
-				fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>
+				fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>,
+				fundraiser_email: "required"
 			},
 		messages: {
 		      fundraiser_title: "this field is required",
 		      fundraiser_amount: "this field is required",
-		      fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>
+		      fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>,
+		      fundraiser_email: "this field is required"
 		},
 
 		errorElement : 'div',
@@ -208,15 +200,15 @@ body, html {
 	});
 </script>
 
-        			</div>
-			</div>
+        			
+			
 		</div>
 	
 	
 	
 	</div>
 	</div>
-</div>
+	
 
 
 </div>

@@ -25,49 +25,51 @@ body, html {
           transform: translate3d(0, 0, 0);
     
 }
+
+
 </style>
 <?php
 include('header.inc');
 ?>
 
-<div class="bg" style='height:100%;width:100%;min-height:800px;'>
+<div class="bg" style='height:1200px;width:100%'>
+<div style="height:100%; width:100%; padding:10% 0 0 0">
+  <div class="section" style="width:100%;">
 
-  <div class="container" style="width:100%;padding:3% 10% 0 10%">
-
-    <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">WELCOME BACK
+    <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">WELCOME BACK
     </div>
-    <div class="white-text center-align" style="font-weight:500;font-size:large; font-stretch:condensed;text-shadow: black 0.1em 0.1em 0.6em;padding:0 0 2% 0">
+    <div class="center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em">
       <span class="white-text">your profile. your impact. your fundraisers.</span>
     </div>
-        
-      <div class="card donor-border" style="border-style:solid; border-width:3px; border-radius:20px; border-color: black; margin: 20px 0px 20px 0px;">
-          <div class="card-content donor-text" style="height:100%;">
+       
+
+      <div class="section center-align" style="width:100%">
+        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 40px 0px 40px; border: 4px solid #EEE;">
               <form class="col s12" style="width:100%" id="login_form" method='post'>
-                <div class="section" style="width:100%">
-                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-                    <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>EMAIL</b>
+                
+                  <div class="row" style="padding:5% 0% 0 0%; width:300px">
+                    <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>EMAIL</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="login_email" name="login_email" required data-error=".errorTxt3"/>
+                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 0% 0% 0%;font-size:18px;" id="login_email" name="login_email" required data-error=".errorTxt3"/>
                         <div class="errorTxt3 center-align" style="font-size:10px; color:red;">
                         </div>
                       </div>
                   </div>
                             
-                  <div class="row" style="padding:2% 3% 0 3%;margin:0;">
-                    <div class="black-text" style="font-size:large; padding:0 0 0 3%"><b>PASSWORD</b>
+                  <div class="row" style="padding:1% 0% 0 0%;width:300px;">
+                    <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>PASSWORD</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 1% 1% 1%;font-size:20px; border-style:solid; border-width:thin;border-radius:5px" id="login_password" required data-error=".errorTxt4" name="login_password" />
+                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 0% 0% 0%;font-size:18px;" id="login_password" required data-error=".errorTxt4" name="login_password" />
                       <div class="errorTxt4 center-align" style="font-size:10px; color:red;">
                       </div>
                     </div>
                   </div>
                     
-                  <div class="center-align valign-wrapper" style="width:100%; padding:0 3% 0% 3%;">
-                     <div class="input-field center-align" style="width:100%;">
+                     <div class="input-field center-align" style="width:100%;padding:0 0 2% 0%">
                              
-                          <button id="loginButton" style="width:100%;height:70px;font-size:25px"
+                          <button id="loginButton" style="width:100%;height:50px;font-size:20px"
                               class="g-recaptcha btn-large donor-background center-align submit"
                               data-sitekey="<?php print CAPTCHA_SITEKEY; ?>"
                               data-callback="onSubmit">
@@ -75,18 +77,22 @@ include('header.inc');
                           </button>
                         <div id='loginErrorText' style='margin-top:10px;color:red;'></div>
                      </div>    
-                  </div>
-                </div>
+                  
+                
             </form>
-          </div>
-          <div class="black-text container center-align flow-text" style="font-weight:400;padding:0% 0 0% 0">
-            Don't have an account? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
+          <div class="section" style="height:100%;padding:4% 0 0% 0">
+          <div class="black-text center-align" style="font-weight:400;">
+            No account yet? <a href="user_register.php"><span class="blue-text" style='font-weight:bold;'>Sign up</span></a>
           </div>
                                
-          <div class="black-text center-align flow-text" style="padding:1% 0 3% 0; width:100%;font-weight:400;">
+          <div class="black-text center-align" style="padding:2% 0 10% 0; width:100%;font-weight:400;">
             Forgot your password? <a class='modal-trigger blue-text' style='font-weight:bold;' href="#passwordModal">Reset it</a>
-          </div>              
+          </div>  
+          </div> 
+          </div>  
+          </div>         
         </div> 
+        
         <script>
             function onSubmit(token) {
                 $('#login_form').submit();
@@ -130,7 +136,8 @@ include('header.inc');
         </script>
             
     </div>
-  </div>     
+  </div>  
+  </div>   
 
   <div id="passwordModal" class="modal">
     <div class="modal-content">
