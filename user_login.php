@@ -32,8 +32,8 @@ body, html {
 include('header.inc');
 ?>
 
-<div class="bg" style='height:1100px;width:100%'>
-<div class="valign-wrapper" style="height:100%">
+<div class="bg" style='height:1200px;width:100%'>
+<div style="height:100%; width:100%; padding:10% 0 0 0">
   <div class="section" style="width:100%;">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">WELCOME BACK
