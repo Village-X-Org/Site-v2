@@ -32,7 +32,7 @@ body, html {
 include('header.inc');
 ?>
 
-<div class="bg" style='height:100%;width:100%'>
+<div class="bg" style='height:1100px;width:100%'>
 <div class="valign-wrapper" style="height:100%">
   <div class="section" style="width:100%;">
 
