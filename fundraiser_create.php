@@ -40,11 +40,11 @@ body, html {
 		    <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
     </div>
 			<div class="section center-align id="jqueryvalidation" style="width:100%">
-        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 20px 20px 20px; border: 4px solid #EEE;">
+        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 5px; border: 4px solid #EEE;">
           				
          				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
 
-         						<div class="row" style="padding:2% 1% 0 1%;margin:0;width:475px">
+         						<div class="row" style="padding:2% 0% 0 0%;margin:0;width:525px">
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
           							<input placeholder="e.g., Sally's 25th Birthday" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
@@ -56,7 +56,7 @@ body, html {
           						
           						
                              
-                             <div class="row" style="padding:2% 1% 0 1%;margin:0;">
+                             <div class="row" style="padding:2% 0% 0 0%;margin:0;">
                              <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%;"><b>CHOOSE A PROJECT</b></div>
                                 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
             	                        <select name="fundraiser_project_id">
@@ -73,7 +73,7 @@ body, html {
                                             $percent = round(100 * $projectFunded / $projectBudget);
                                             $remaining = $projectBudget - $projectFunded;
 
-                                            print "<option data-icon='uploads/$pictureFilename' class='left circle' value='$projectId'>$projectName in $villageName ($percent% funded, $$remaining needed)</option>";
+                                            print "<option data-icon='uploads/$pictureFilename' class='left circle' value='$projectId'>$projectName in $villageName ($percent% funded, $$remaining to go)</option>";
                                           }
                                           ?>
                                       </select>
@@ -93,7 +93,7 @@ body, html {
 	                 			
 	                 		
               
-                <div class="row" style="padding:2% 1% 2% 1%;margin:0;">
+                <div class="row" style="padding:2% 0% 2% 0%;margin:0;">
                     
                       <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>FUNDING GOAL?</b></div>
                       <div class="left-align valign-wrapper" style="padding:0 3% 0 2%;">
@@ -104,7 +104,7 @@ body, html {
           					</div>
 
           					
-              			<div class="row" style="padding:2% 1% 0 1%;margin:0;">
+              			<div class="row" style="padding:2% 0% 0 0%;margin:0;">
               				<div class="black-text left-align" style="font-size:large; padding:0% 0 2% 3%"><b>ENDING WHEN?</b>
                       </div>
                       <div class="left-align valign-wrapper" style="padding:0% 3% 0 2%">
@@ -129,7 +129,7 @@ body, html {
 	          		  });
 	          		</script>
 	          		
-	          		<div class="row" style="padding:4% 1% 0% 1%;margin:0;">
+	          		<div class="row" style="padding:4% 0% 0% 0%;margin:0;">
 	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>TELL YOUR STORY</b>
                    </div>
                                    
@@ -160,7 +160,7 @@ body, html {
                     			</div>
                     			</div>
                     			
-            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding: 0 5% 20px 5%;">
+            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding: 0 1% 20px 1%;">
                 Clicking this button will create a fundraising page that you can email to friends and post to social media.
             </div>
             				   
