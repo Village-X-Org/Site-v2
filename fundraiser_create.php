@@ -34,17 +34,15 @@ body, html {
 </style>
 <?php include('header.inc'); ?>
 
-<div class="bg" style="height:1200px;width:100%">
-<div style="height:100%; width:100%; padding:0% 0 0 0">
-	<div class="section" style="width:100%">
-		    <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
+<div class="bg" style="height:1200px;width:100%;padding-top:20px;">
+	  <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Ready.  Set.  Fundraise.
     </div>
-			<div class="section center-align id="jqueryvalidation" style="width:100%">
-        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 5px; border: 4px solid #EEE;">
+		<div class="container center-align" id="jqueryvalidation" style='margin-top:20px;'>
+      <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 5px; border: 4px solid #EEE;">
           				
          				<form class="col s12" style="width:100%" id="fundraiser_form" method='post' action="fundraiser_save.php">
 
-         						<div class="row" style="padding:2% 0% 0 0%;margin:0;width:525px">
+         						<div class="row" style="padding:2% 0% 0 0%;margin:0;max-width:525px">
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>FUNDRAISER NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 3% 0% 3%; font-size:20px;">
           							<input placeholder="e.g., Sally's 25th Birthday" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
@@ -160,55 +158,44 @@ body, html {
                     			</div>
                     			</div>
                     			
-            				   <div class="black-text container center-align" style="width:450px;border-radius:10px; font-weight:600;padding: 0 1% 20px 1%;">
+            				   <div class="black-text container center-align" style="max-width:525px;border-radius:10px; font-weight:600;padding: 0 1% 20px 1%;">
                 Clicking this button will create a fundraising page that you can email to friends and post to social media.
             </div>
             				   
             				  
-              			</form>
-						</div>
-            				   </div>
-<script>
-	$().ready(function() {
-		$("#fundraiser_form").validate({
-			rules: {
-				fundraiser_title: "required",
-        fundraiser_amount: "required",
-				fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>,
-				fundraiser_email: "required"
-			},
-		messages: {
-		      fundraiser_title: "this field is required",
-		      fundraiser_amount: "this field is required",
-		      fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>,
-		      fundraiser_email: "this field is required"
-		},
+        </form>
+			</div>
+    </div>
+</div>
 
-		errorElement : 'div',
-     	errorPlacement: function(error, element) {
-       		var placement = $(element).data('error');
-       		if (placement) {
-         		$(placement).append(error)
-       		} else {
-         		error.insertAfter(element);
-       		}
-     	},
+<script>
+  $().ready(function() {
+    $("#fundraiser_form").validate({
+      rules: {
+        fundraiser_title: "required",
+        fundraiser_amount: "required",
+        fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>,
+        fundraiser_email: "required"
+      },
+    messages: {
+          fundraiser_title: "this field is required",
+          fundraiser_amount: "this field is required",
+          fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>,
+          fundraiser_email: "this field is required"
+    },
+
+    errorElement : 'div',
+      errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+      },
         submitHandler: function(form) {
           form.submit();
-        }	
-		});
-	});
+        } 
+    });
+  });
 </script>
-
-        			
-			
-		</div>
-	
-	
-	
-	</div>
-	</div>
-	
-
-
-</div>
