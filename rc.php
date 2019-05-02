@@ -19,6 +19,10 @@
 		print CACHED_LISTING_FILENAME."\n";
         	@unlink(CACHED_LISTING_FILENAME);
     	}
+        if (file_exists(CACHED_SHOP_FILENAME)) {
+        print CACHED_SHOP_FILENAME."\n";
+            @unlink(CACHED_SHOP_FILENAME);
+        }
     	if (file_exists(CACHED_CHARTS_FILENAME)) {
 		print CACHED_CHARTS_FILENAME."\n";
         	@unlink(CACHED_CHARTS_FILENAME);

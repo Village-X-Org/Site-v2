@@ -26,6 +26,7 @@ define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
 define("CACHED_STORIES_FILENAME", "cached/project_stories");
 define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
+define("CACHED_SHOP_FILENAME", "cached/shop_listing");
 define("CACHED_PROJECT_PREFIX", "cached/project_");
 define("EMAIL_TYPE_PROJECT_FULLY_FUNDED", 0);
 define("EMAIL_TYPE_SUBSCRIPTION_CANCELLATION", 1);

@@ -229,6 +229,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
 				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
+				<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>
   				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 				<?php if ($session_donor_id) {
 					print "
@@ -236,10 +237,11 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					<li><a class='waves-effect waves-light' href='user_logout.php'><i class='material-icons'>exit_to_app</i>Logout</a></li>";
 				} else {
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
-				} ?> 
-				<?php if (!isset($updates)) { ?>
+				} 
+				if (!isset($updates)) { ?>
 					<li><a class="waves-effect waves-light btn" href='track.php'>Latest News <i class='material-icons right' style='color:white;'>rss_feed</i></a></li>
 				<?php } ?>
+
 			</ul>
 		</div>
 	</nav>
@@ -255,7 +257,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 18px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
 				<?php if (!isset($updates)) { ?>
-					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>updates</a></li>
+					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px" id='updatesButton'><i class="material-icons right">rss_feed</i>updates</a></li>
 				<?php } ?>
 					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
 							<li><a href="project_tiles.php">Projects</a></li>
@@ -265,6 +267,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				          <li><a href="map.php">Map</a></li>
 		          		  <li><a href="finances.php">Finances</a></li>
 				          <li><a href="travel.php">Travel</a></li>
+				          <li><a href="shop.php">Shop</a></li>
 				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 				          <li class="divider" tabindex="-1"></li>
 
