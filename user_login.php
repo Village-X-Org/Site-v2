@@ -33,7 +33,6 @@ include('header.inc');
 ?>
 
 <div class="bg" style='height:1200px;width:100%'>
-<div style="height:100%; width:100%; padding:10% 0 0 0">
   <div class="section" style="width:100%;">
 
     <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">WELCOME BACK
@@ -43,25 +42,25 @@ include('header.inc');
     </div>
        
 
-      <div class="section center-align" style="width:100%">
-        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 40px 0px 40px; border: 4px solid #EEE;">
+      <div class="container center-align" style="margin-top:20px;">
+        <div class="z-depth-8 grey lighten-4 row" style="max-width:450px;width:100%;display: inline-block; padding: 20px 40px 0px 40px; border: 4px solid #EEE;">
               <form class="col s12" style="width:100%" id="login_form" method='post'>
                 
-                  <div class="row" style="padding:5% 0% 0 0%; width:300px">
-                    <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>EMAIL</b>
+                  <div class="row" style="padding:5% 0% 0 0%;">
+                    <div class="black-text left-align" style="width:100%;font-size:large; padding:0 0 0 4%"><b>EMAIL</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                        <input placeholder="enter your email address" class='email' type="email" style="padding:0% 0% 0% 0%;font-size:18px;" id="login_email" name="login_email" required data-error=".errorTxt3"/>
+                        <input placeholder="enter your email address" class='email' type="email" style="width:100%;padding:0% 0% 0% 0%;font-size:18px;" id="login_email" name="login_email" required data-error=".errorTxt3"/>
                         <div class="errorTxt3 center-align" style="font-size:10px; color:red;">
                         </div>
                       </div>
                   </div>
                             
-                  <div class="row" style="padding:1% 0% 0 0%;width:300px;">
-                    <div class="black-text left-align" style="font-size:large; padding:0 0 0 4%"><b>PASSWORD</b>
+                  <div class="row" style="padding:1% 0% 0 0%;">
+                    <div class="black-text left-align" style="width:100%;font-size:large; padding:0 0 0 4%"><b>PASSWORD</b>
                     </div>
                     <div class="input-field col s12 donor-text">
-                      <input placeholder="enter your password" class='text' type="password" style="padding:0% 0% 0% 0%;font-size:18px;" id="login_password" required data-error=".errorTxt4" name="login_password" />
+                      <input placeholder="enter your password" class='text' type="password" style="width:100%;padding:0% 0% 0% 0%;font-size:18px;" id="login_password" required data-error=".errorTxt4" name="login_password" />
                       <div class="errorTxt4 center-align" style="font-size:10px; color:red;">
                       </div>
                     </div>
@@ -136,8 +135,7 @@ include('header.inc');
         </script>
             
     </div>
-  </div>  
-  </div>   
+  </div> 
 
   <div id="passwordModal" class="modal">
     <div class="modal-content">

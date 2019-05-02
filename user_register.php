@@ -30,17 +30,16 @@ body, html {
 
 <div class="bg" style='height:1200px;width:100%'>
 <div style="height:100%; width:100%; padding:5% 0 0 0">
-  <div class="section" style="width:100%;">
 
   <div class="white-text center-align" style="font-weight:800;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.2em">SIGN UP TODAY</div>
   <div class="center-align" style="font-weight:500;font-size:medium;text-shadow: black 0.1em 0.1em 0.2em"><span class="white-text">your profile. your impact. your fundraisers.</span></div>
   		
-			<div class="section center-align" id="jqueryvalidation" style="width:100%">
-        <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 30px 20px 30px; border: 4px solid #EEE;">
+			<div class="container center-align" id="jqueryvalidation" style="margin-top:20px;">
+        <div class="z-depth-8 grey lighten-4 row" style="max-width:450px;width:100%;display: inline-block; padding: 20px 30px 20px 30px; border: 4px solid #EEE;">
       				
      				   <form class="col s12" style="width:100%" id="register_form" method='post'>
                      
-     					   <div class="row" style="padding:5% 0% 0 0%; width:400px">
+     					   <div class="row" style="padding:5% 0% 0 0%;">
      					   <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>FIRST NAME</b></div>
        						   <div class="input-field col s12 donor-text">
         							 <input placeholder="enter your first name" class='text' type="text" style="padding:0% 0% 0% 0%;font-size:18px;" name="register_first_name" required data-error=".errorTxt1"/>
@@ -92,11 +91,18 @@ body, html {
 
             
 
-            <div class="black-text container center-align" style="width:70%;border-radius:10px; font-weight:600;padding-bottom:10px;">
+            <div class="black-text row center-align" style="border-radius:10px; font-weight:600;padding-bottom:10px;">
                 Already have an account? <a href="user_login.php"><span class="blue-text">Sign in</span></a>
             </div>
             
             </div>
+
+            
+       </div>
+      
+    
+  
+  </div>
 
             <script>
               function onSubmit(token) {
@@ -142,14 +148,4 @@ body, html {
                 });
               });
             </script>  
-            
-			 </div>
-			
-		
-	
-	</div>
-</div>
-</div>
-
-</div>
 
