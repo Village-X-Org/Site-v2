@@ -29,6 +29,57 @@ body, html {
 .carousel-slider {
     height: 800px !important;
 }
+
+.card {
+  overflow: auto;
+}
+
+
+.subheader {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  margin: 0.75rem 16px;
+}
+
+.list-divider {
+  border: 0;
+  height: 1px;
+  overflow: hidden;
+  background-color: #e0e0e0;
+  margin-right: 16px;
+  margin-left: 75px;
+}
+
+.list {
+  margin: 0;
+}
+
+.list li {
+  padding: 0 16px;
+}
+
+.list li .valign-wrapper {
+  min-height: 72px;
+}
+
+.list i.circle {
+  padding: 10px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.list .title span {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+i.ml-auto {
+  color: rgba(0, 0, 0, 0.26);
+}
+
 </style>
 <?php include('header.inc'); 
 if (hasParam('code')) {
@@ -65,7 +116,7 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid;width:100%">
+<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid; width:100%">
 <div class="container center-align" style="width:100%;">	
 	<div class="section no-pad-bot">
 		<div class="row center">
@@ -158,14 +209,14 @@ if (hasParam('gc')) {
 	
 	<div class="flow-text" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center" style="padding:1% 0 0 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
-	We're changing that with a model that celebrates village democracy, direct giving, and radical transparency. Small transfers of cash make a big difference
+	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	We're changing that with a model that celebrates village democracy, direct giving, and data analysis. Small transfers of cash make a big difference
 	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
 	</div>
 
 <div class="container hide-on-med-and-down"">
-			<h4 class="header center light blue-text text-lighten-2" style="padding:2% 0 0 0">How It Works</h4>
+			<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Works</h4>
 
 				<div class="row">
 					<div class="col s12 m4">
@@ -174,10 +225,10 @@ if (hasParam('gc')) {
 								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 							</h2> 
 							
-							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
+							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
 
 							<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
-								Africa. Find a village-led development project that speaks to you.</p>
+								Africa. Find a village-led development project that changes lives and speaks to you.</p>
 								
 							<h5 class="center">#localdemocracy</h5>
 
@@ -190,7 +241,7 @@ if (hasParam('gc')) {
 								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg" />
 							</h2>
 
-							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
+							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
 
 							<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 							biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
@@ -205,12 +256,12 @@ if (hasParam('gc')) {
 								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg" />
 							</h2>
 							
-							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
+							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
 
 							<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
 					 of how your donations change the lives of rural Africans.</p>
 							 
-							 <h5 class="center">#instafeedback</h5>
+							 <h5 class="center">#impactdata</h5>
 						</div>
 					</div>
 				</div>
@@ -238,7 +289,7 @@ if (hasParam('gc')) {
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 					</h2> 
 					
-					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects</h5>
+					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
 
 					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
 						Africa. Find a village-led development project that speaks to you.</p>
@@ -254,7 +305,7 @@ if (hasParam('gc')) {
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
 					</h2>
 
-					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them</h5>
+					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
 
 					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
 					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
@@ -269,12 +320,12 @@ if (hasParam('gc')) {
 						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
 					</h2>
 					
-					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates</h5>
+					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
 
 					<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
 					 of how your donations change the lives of rural Africans.</p>
 					 
-					 <h5 class="center">#instafeedback</h5>
+					 <h5 class="center">#impactdata</h5>
 				</div>
 			</div>
 		</div>
@@ -283,37 +334,72 @@ if (hasParam('gc')) {
 	
 </div>	
 
-<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 600px">
             
             <div class="parallax">
                 <img src="images/woman_with_goat.jpg">
             </div>
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
-        <div class="row" style="width:100%;">
-            
-            <div class="row center" style="opacity:0.7; width:250px; height:250px; border-radius:50%; border-style:solid;">
-                        <h1 class="header center-align light" style="padding:5% 2% 0% 2%;text-shadow: 2px 2px 7px #111111;"><b>100%</b></h1>
-                        <h5 class="header center-align light" style="padding:0% 2% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically</h5>
-                        <h5 class="header center-align light" style="padding:0% 2% 2% 2%;text-shadow: 2px 2px 7px #111111">transparent</h5>
-            </div>  
-            
-            
-            <div class="row center" style="padding: 0% 1% 0% 1%; width:100%;">
-                
-                <a href="track.php" id="download-button"
-                    class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">latest updates</a>
+        <div class="row center-align" style="width:100%;height:100%">
+         
+         <div class="row center-align" style="width:100%;">
+         
+         <h2 class="center-align" style="padding: 1% 0 0 0">WARNING!</h2>
+    
+            <div class="col 12" style="opacity:0.9; width:100%;padding:0% 0% 0% 0%;">
+                        <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically<br>transparent</h5></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;"><i class="material-icons medium">verified_user</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 2px 2px 7px #111111;">donor<br>experience</h5></div>
+                         </div> 
+            </div>
             </div>
             
-         <h6 class="header center light text-shadow: 2px 2px 7px #111111" style="width:100%; padding:0% 15% 0% 15%;">straight from the ground</h6>
-            
+    <div class="row center-align" style="width:325px;opacity:0.8; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
+    <ul class="list center-align">
+      <li class="waves-effect" style="width:100%">
+        <div class="valign-wrapper">
+        <i class="material-icons left circle white-text">place</i>
+          <div class="white-text flow-text" style="font-size: large; padding:0 0 0 0%">
+            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text">geocoded projects</span></a>
+          </div>
+        </div>
+      </li>
+      <li class="waves-effect" style="width:100%">
+        <div class="valign-wrapper">
+          <i class="material-icons left circle white-text">attach_money</i>
+          <div class="flow-text white-text" style="font-size: large;">
+            <a href="https://villagex.org/finances.php" target="_blank"><span class="white-text">clear financial breakdowns</span></a>
+          </div>
+        </div>
+      </li>
+      <li class="waves-effect" style="width:100%">
+        <div class="valign-wrapper">
+          <i class="material-icons left circle white-text">show_chart</i>
+          <div class="flow-text white-text" style="font-size: large;">
+            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text">village-level impact data</span></a>
+          </div>
+        </div>
+      </li>
+      <li class="waves-effect" style="width:100%">
+        <div class="valign-wrapper">
+          <i class="material-icons left circle white-text">insert_photo</i>
+          <div class="flow-text white-text" style="font-size: large;">
+            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">same-day project updates</span></a>
+          </div>
+        </div>
+      </li>
+    </ul>
+    </div>
+    <h7 class="center-align">(click on each item to learn more)</h7>
+            </div>
         </div>
     </div>
 </div>
 
 <div class="container">
-	<br>
-	<h4 class="header center light blue-text text-lighten-2">Featured Projects</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">Featured Projects</h4>
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate)</h6>
 	<div class="section">
 
@@ -467,10 +553,8 @@ if (CACHING_ENABLED) {
 	</div>
 </div>
 
-	<br><br>
-
 <div class="container">
-<h4 class="header center light blue-text text-lighten-2">How It Helps</h4> 
+<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Helps</h4> 
 	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(proving impact with data)</h6>
 <table class="highlight centered responsive-table striped flow-text">
 		        <thead>
