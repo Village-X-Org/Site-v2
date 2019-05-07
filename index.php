@@ -261,7 +261,7 @@ if (hasParam('gc')) {
 							<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
 					 of how your donations change the lives of rural Africans.</p>
 							 
-							 <h5 class="center">#impactdata</h5>
+							 <h5 class="center">#seeingimpact</h5>
 						</div>
 					</div>
 				</div>
@@ -325,7 +325,7 @@ if (hasParam('gc')) {
 					<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
 					 of how your donations change the lives of rural Africans.</p>
 					 
-					 <h5 class="center">#impactdata</h5>
+					 <h5 class="center">#seeingimpact</h5>
 				</div>
 			</div>
 		</div>
@@ -334,35 +334,36 @@ if (hasParam('gc')) {
 	
 </div>	
 
-<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 600px">
+<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.1); height: 500px">
             
             <div class="parallax">
-                <img src="images/woman_with_goat.jpg">
+                <img src="images/benard_taking_pic.jpg">
             </div>
-    <div class="section no-pad-bot valign-wrapper"
+    <div class="section section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
-        <div class="row center-align" style="width:100%;height:100%">
+        <div class="center-align valign-wrapper" style="width:100%">
+        <div class="row center-align" style="width:100%;height:100%;padding:0% 0% 0% 0%;">
          
          <div class="row center-align" style="width:100%;">
+        
          
-         <h2 class="center-align" style="padding: 1% 0 0 0">WARNING!</h2>
-    
-            <div class="col 12" style="opacity:0.9; width:100%;padding:0% 0% 0% 0%;">
+         <div class="col 12" style="opacity:1; width:100%">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 2px 2px 7px #111111;">radically<br>transparent</h5></div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;"><i class="material-icons medium">verified_user</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 2px 2px 7px #111111;">donor<br>experience</h5></div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">radically<br>transparent<br>giving</h5></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;"><i class="material-icons large">security</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">means<br>knowing<br>you helped</h5></div>
                          </div> 
             </div>
+   
             </div>
             
-    <div class="row center-align" style="width:325px;opacity:0.8; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
+    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:325px;opacity:1; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
     <ul class="list center-align">
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
         <i class="material-icons left circle white-text">place</i>
           <div class="white-text flow-text" style="font-size: large; padding:0 0 0 0%">
-            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text">geocoded projects</span></a>
+            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text">every project mapped</span></a>
           </div>
         </div>
       </li>
@@ -392,7 +393,8 @@ if (hasParam('gc')) {
       </li>
     </ul>
     </div>
-    <h7 class="center-align">(click on each item to learn more)</h7>
+    
+            </div>
             </div>
         </div>
     </div>
@@ -555,7 +557,7 @@ if (CACHING_ENABLED) {
 
 <div class="container">
 <h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Helps</h4> 
-	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(proving impact with data)</h6>
+	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 0% 10%">(proving impact with data)</h6>
 <table class="highlight centered responsive-table striped flow-text">
 		        <thead>
 		          <tr>
