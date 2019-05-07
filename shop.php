@@ -34,7 +34,7 @@ require_once("utilities.php");
 	<div class="section"><div class='row'>		
 			<?php 
 	if (!CACHING_ENABLED || !file_exists(CACHED_SHOP_FILENAME)) {
-		$query = "SELECT product_id, product_name, product_description, product_price, picture_filename, product_category, pc_label FROM products JOIN pictures ON picture_id=product_picture JOIN product_categories ON pc_id=product_category";
+		$query = "SELECT product_id, product_name, product_description, product_price, picture_filename, product_category, pc_label, product_stock FROM products JOIN pictures ON picture_id=product_picture JOIN product_categories ON pc_id=product_category";
         $result = doUnprotectedQuery($query);
 
 		$buffer = '';
@@ -44,6 +44,7 @@ require_once("utilities.php");
 			$productName = $row['product_name'];
 			$productDescription = $row['product_description'];
 			$productPrice = $row['product_price'] / 100;
+			$productStock = $row['product_stock'];
 			$productPicture = $row['picture_filename'];
 			$productCategory = $row['product_category'];
 			$categoryLabel = $row['pc_label'];
@@ -65,8 +66,12 @@ require_once("utilities.php");
 						</div>
            	 	     	<div class='row center'>
 							<div class='col s12' style='margin-bottom:15px;'>
+								<?php if ($productStock > 0) { ?>
 		      					<a href=''id='purchase_button' class='btn waves-effect waves-light donor-background lighten-1' 
 		      					onclick="this.innerText='Added &nbsp;&nbsp;&#10004;addToCart(<?php print $productId; ?>);'; return false;">Add to Cart</a>
+		      				<?php } else { ?>
+								<a href=''id='purchase_button' class='btn waves-effect waves-light donor-background lighten-1 disabled'>Out of Stock</a>
+		      				<?php } ?>
 							</div>
                         </div>
 					</div>
