@@ -339,7 +339,7 @@ if (hasParam('gc')) {
             <div class="parallax">
                 <img src="images/benard_taking_pic.jpg">
             </div>
-    <div class="section section no-pad-bot valign-wrapper"
+    <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
         <div class="center-align valign-wrapper" style="width:100%">
         <div class="row center-align" style="width:100%;height:100%;padding:0% 0% 0% 0%;">
@@ -349,8 +349,8 @@ if (hasParam('gc')) {
          
          <div class="col 12" style="opacity:1; width:100%">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">radically<br>transparent<br>giving</h5></div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;"><i class="material-icons large">security</i></div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">radically<br>transparent<br>donating</h5></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;padding: 6px 0 0 0"><i class="material-icons large">smartphone</i></div>
                          <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">means<br>knowing<br>you helped</h5></div>
                          </div> 
             </div>
@@ -402,7 +402,7 @@ if (hasParam('gc')) {
 
 <div class="container">
 	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">Featured Projects</h4>
-	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 2% 10%">(100% completion rate)</h6>
+	<h6 class="header center light" style="padding:0% 10% 2% 10%;">(100% completion rate)</h6>
 	<div class="section">
 
 		<!--   project section   -->
@@ -557,7 +557,7 @@ if (CACHING_ENABLED) {
 
 <div class="container">
 <h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Helps</h4> 
-	<h6 class="header center light text-shadow: 2px 2px 7px #111111" style="padding:0% 10% 0% 10%">(proving impact with data)</h6>
+	<h6 class="header center light" style="padding:0% 10% 0% 10%;">(proving impact with data)</h6>
 <table class="highlight centered responsive-table striped flow-text">
 		        <thead>
 		          <tr>
