@@ -33,7 +33,7 @@ require_once("utilities.php");
 		
 	<div class="section"><div class='row'>		
 			<?php 
-	if (!CACHING_ENABLED || !file_exists(CACHED_SHOP_FILENAME)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_SHOP_FILENAME.$donorId)) {
 		$query = "SELECT product_id, product_name, product_description, product_price, picture_filename, product_category, pc_label, product_stock FROM products JOIN pictures ON picture_id=product_picture JOIN product_categories ON pc_id=product_category";
         $result = doUnprotectedQuery($query);
 
@@ -53,7 +53,7 @@ require_once("utilities.php");
 		      	<div class='col s12 m6 l4 shopCell <?php print $stripped; ?>' style='min-width:225px;cursor:pointer;'>
 					<div class='card sticky-action hoverable'>
 						<div class='card-image'>
-							<div class='activator' style="height:325px;background:url('<?php print PICTURES_DIR.$productPicture; ?>');background-size:cover;background-position:center;"></div>
+							<div class='activator' style="height:325px;background:url('<?php print PICTURES_DIR.$productPicture; ?>');background-size:cover;"></div>
 						</div>
 						<div class='card-content' style='padding-top:0;margin-top:0;'>
 							<h2 class='card-title activator gray-text text-darken-4' style='padding-top:0;margin-top:0;'>
