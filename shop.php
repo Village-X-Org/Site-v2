@@ -17,8 +17,7 @@ if (hasParam('cat')) {
 
 	<div class="row" style="padding:3% 1% 1% 1%;">
 
-		<div class="col s12 m6 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">	
-	
+		<div class="col s12 m6 l4 valign-wrapper" style="vertical-align: middle; height:50px; padding:1% 1% 1% 1%;">		
     		    <!-- Dropdown Trigger -->
       		<a class="dropdown-trigger btn donor-background" style="display: block; margin: 0 auto;" href='#' data-target='dropdown1' id='catFilter'>Filter by Category</a>
 
@@ -40,7 +39,6 @@ if (hasParam('cat')) {
           	100% of proceeds go directly to our projects!
           </div>
       </div>
-		
 	<div class="section"><div class='row'>		
 		<script>
 			var productMapping = new Array();
@@ -115,8 +113,6 @@ if (hasParam('cat')) {
 		<br><br>
 
 </div>
-
-
 <div class="fixed-action-btn" id='cartButton' style='<?php print ($cartCount > 0 ? '' : 'display:none'); ?>'>
   <a class="btn-floating btn-large">
     <i class="large material-icons">shopping_cart</i>
