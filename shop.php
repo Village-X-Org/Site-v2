@@ -114,7 +114,7 @@ if (hasParam('cat')) {
 
 </div>
 <div class="fixed-action-btn" id='cartButton' style='<?php print ($cartCount > 0 ? '' : 'display:none'); ?>'>
-  <a class="btn-floating btn-large">
+  <a class="btn-floating btn-large" onclick="goToCheckout();">
     <i class="large material-icons">shopping_cart</i>
   </a>
   <ul id='productList'>
@@ -160,6 +160,10 @@ if (hasParam('cat')) {
 		});
 	}
 	populateProductList();
+
+	function goToCheckout() {
+		document.location = 'shop_checkout.php?items=' + cartContents;
+	}
 
 	<?php
 	if ($productCat !== 0) {
