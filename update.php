@@ -52,15 +52,16 @@ if (hasParam('upload_file')) {
 
 	return;
 } elseif (isset($_POST['projectId'])) {
+	$postTitle = $_POST['postTitle'];
 	$projectId = $_POST['projectId'];
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
 	$pictureIds = $_POST['pictureIds'];
 	$notes = $_POST['notes'];
 	$updateDate = strtotime($_POST['updateDate']);
-	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
-		VALUES (?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
-	$stmt->bind_param('isisdd', $projectId, $notes, $updateDate, $pictureIds, $lat, $lng);
+	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
+		VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
+	$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
 
 	execute($stmt);
 	print "<p>Update saved successfully!</p>";
@@ -205,7 +206,8 @@ if (hasParam('upload_file')) {
 			?>
 		<h4>Post a project update</h4>
 		<form enctype="multipart/form-data" method="post" id='updateForm'>
-			<p><SELECT id='projectId' name='projectId'><option>Select a Project</option>
+			<p><SELECT id='projectId' name='projectId' onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');"><option>Select a Project</option>
+				<option value='-1'>No Project</option>
 				<?php
 					$result = doUnprotectedQuery("SELECT project_id, project_name, village_name, MAX(pe_date) AS maxDate, MAX(pe_type) AS maxType 
 						FROM projects JOIN villages ON project_village_id=village_id 
@@ -218,7 +220,8 @@ if (hasParam('upload_file')) {
 					}
 				?>
 			</SELECT></p>
-		
+
+			<div style='display:none;margin-bottom:10px;' id='postTitle'>Post Title: <input type='text' name='postTitle' style='width:300px;' /></div>
 			<input type="file" id="fileinput" multiple="multiple" />
 			<div id='imageContainer'>
 			</div>

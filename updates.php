@@ -9,9 +9,9 @@ $projectId = 0;
 if (hasParam('projectId')) {
 	$projectId = paramInt('projectId');
 }
-$result = doUnprotectedQuery("SELECT ru_id, ru_date, ru_description, ru_picture_ids, project_name, project_id, village_name FROM raw_updates 
-	JOIN projects ON ru_project_id=project_id ".($projectId ? "AND project_id=$projectId " : "")." 
-	JOIN villages ON project_village_id=village_id ORDER BY ru_date DESC");
+$result = doUnprotectedQuery("SELECT ru_id, ru_title, ru_date, ru_description, ru_picture_ids, project_name, project_id, village_name FROM raw_updates 
+	LEFT JOIN projects ON ru_project_id=project_id ".($projectId ? "AND project_id=$projectId " : "")." 
+	LEFT JOIN villages ON project_village_id=village_id ORDER BY ru_date DESC");
 $lastProjectId = 0;
 $updateCount = 0;
 while ($row = $result->fetch_assoc()) {
@@ -26,7 +26,11 @@ while ($row = $result->fetch_assoc()) {
 	$villageName = $row['village_name'];
 
 	if ($projectId != $lastProjectId) {
-		print "<H3>$projectName in $villageName</H3>";
+		if ($projectId != -1) {
+			print "<H3>$projectName in $villageName</H3>";
+		} else {
+			print "<H3>$postTitle</H3>";
+		}
 	}
 	$lastProjectId = $projectId;
 
