@@ -206,7 +206,8 @@ if (hasParam('upload_file')) {
 			?>
 		<h4>Post a project update</h4>
 		<form enctype="multipart/form-data" method="post" id='updateForm'>
-			<p><SELECT id='projectId' name='projectId' onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');"><option>Select a Project</option>
+			<p>Select a Project: <input id='projectId' name='projectId' list="projectList" onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');" style='width:50px;' />
+				<datalist id='projectList' >
 				<option value='-1'>No Project</option>
 				<?php
 					$result = doUnprotectedQuery("SELECT project_id, project_name, village_name, MAX(pe_date) AS maxDate, MAX(pe_type) AS maxType 
@@ -219,7 +220,7 @@ if (hasParam('upload_file')) {
 						print "<option value='{$row['project_id']}'>{$row['project_name']} in {$row['village_name']}</option>";
 					}
 				?>
-			</SELECT></p>
+			</datalist></p>
 
 			<div style='display:none;margin-bottom:10px;' id='postTitle'>Post Title: <input type='text' name='postTitle' style='width:300px;' /></div>
 			<input type="file" id="fileinput" multiple="multiple" />
