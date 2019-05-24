@@ -32,7 +32,7 @@ if (!isset($start)) {
     	UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, project_lat, project_lng, project_name, village_name, project_staff_id, 
     	fo_first_name, fo_last_name, fo_color FROM raw_updates LEFT JOIN projects 
     	ON ru_project_id=project_id LEFT JOIN villages ON village_id=project_village_id LEFT JOIN field_officers ON project_staff_id=fo_id " 
-    	.($projectId ? "AND project_id=$projectId" : ($foId ? "AND project_staff_id=$foId" : ($villageId ?  "AND village_id=$villageId" : "")))
+    	.($projectId ? "WHERE project_id=$projectId" : ($foId ? "WHERE project_staff_id=$foId" : ($villageId ?  "WHERE village_id=$villageId" : "")))
     	." ORDER BY ru_date DESC LIMIT $start, ".(RECS_PER_PAGE + 1));
 
     $updates = array();
