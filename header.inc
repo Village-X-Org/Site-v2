@@ -1,6 +1,5 @@
 <?php require_once("utilities.php");
-header("Cache-Control: max-age=31536000");
- 
+
 $donorId = $donorName = $donorColor = $donorLogo = 0;
 if (hasParam('d')) {
 	$donorId = paramInt('d');
@@ -13,7 +12,8 @@ if (hasParam('d')) {
 }
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="Cache-Control" content="max-age=31536000, public" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <?php if (!isset($metaProvided) || !$metaProvided) { ?>
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />

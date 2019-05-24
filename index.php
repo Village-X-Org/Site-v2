@@ -6,22 +6,20 @@ require_once("utilities.php");
 <head>
 <title>Village X | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<script src='js/modernizr-custom.js'></script>
 <style>
 body, html {
     height: 100%;
     margin: 0;
 }
 
-.bg {
-    opacity:1.5;
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+.no-webp .bg {
+	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
+    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+}
+.webp .bg {
+	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.webp");
+    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
 .carousel-slider {

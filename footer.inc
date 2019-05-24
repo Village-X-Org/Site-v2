@@ -43,7 +43,11 @@
 			</div>
 		</div>
 		<div class="parallax">
-			<img src="images/footer1.jpg" alt="Unsplashed background img 2">
+			<picture>
+			  <source type="image/webp" srcset="images/footer1.webp">
+			  <source type="image/jpeg" srcset="images/footer1.jpg">
+			  <img src="images/footer1.jpg" alt="Unsplashed background img 2">
+			</picture>
 		</div>
 	</div>
 </div>
