@@ -38,7 +38,7 @@ if (!isset($start)) {
     $updates = array();
     $count = $hasMore = 0;
     while ($row = $result->fetch_assoc()) {
-    	if (++$count == RECS_PER_PAGE) {
+    	if ($count++ == RECS_PER_PAGE) {
     		$hasMore = 1;
     		break;
     	}
