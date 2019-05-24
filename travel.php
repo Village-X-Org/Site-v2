@@ -207,17 +207,6 @@ if (hasParam('test')) {
 	  	</div>
 	 </div>
 	</div>
- 
-	<div class="carousel carousel-slider" data-indicators="true" dist="0" style="height:500px;">
-	    <div class="carousel-item" style="background-image:url('images/mulanje.jpg');background-size:cover;height:500px;background-position:center;"></div>
-	    <div class="carousel-item" style="background-image:url('images/capemac.jpg');background-size:cover;height:500px;background-position:center;"></div>
-		<div class="carousel-item" style="background-image:url('images/culture.jpg');background-size:cover;height:500px;background-position:center;"></div>
-      	<div class="carousel-item" style="background-image:url('images/kuchawe.jpg');background-size:cover;height:500px;background-position:center;"></div>
-  </div>
-  <script>  $(document).ready(function(){
-      $('.carousel').carousel({fullWidth: true, duration: 200});
-    });
-	</script>
   	
   <br>
 <div class="container">
