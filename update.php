@@ -52,7 +52,10 @@ if (hasParam('upload_file')) {
 
 	return;
 } elseif (isset($_POST['projectId'])) {
-	$postTitle = $_POST['postTitle'];
+	$postTitle = 0;
+	if (isset($_POST['postTitle'])) {
+		$postTitle = $_POST['postTitle'];
+	}
 	$projectId = $_POST['projectId'];
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
