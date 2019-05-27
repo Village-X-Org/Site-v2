@@ -109,14 +109,29 @@ if (!isset($start)) {
                 continue;
             }
             if ($update['project_id'] > 0) {
-                print "<a href='".$update['project_id']."' target='_blank'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
-                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' /></a>\n";
+                print "<div style='position:relative;'><a href='".$update['project_id']."' target='_blank'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' ></a>\n";
             } else {
-                print "<img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                print "<div style='position:relative;'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
                     onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" 
-                        style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' />";
+                        style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' >";
             }
+            if ($session_is_admin) {
+                print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:black;'>delete</i></a>";
+            }
+            print "</div>";
         }
         $count++;  
     }
+    if ($session_is_admin) {?>
+        <script>
+            function deleteImage(updateId, pictureId) {
+                if (confirm('Are you sure you want to delete this image')) {
+                    $.post("update.php", {updateId: updateId, pictureIdToBeDeleted: pictureId}, function( data ) {
+                        alert(data);
+                    });
+                }
+            }
+        </script>
+    <?php }
    ?>

@@ -69,6 +69,32 @@ if (hasParam('upload_file')) {
 	execute($stmt);
 	print "<p>Update saved successfully!</p>";
 	$stmt->close();
+} elseif (isset($_POST['pictureIdToBeDeleted'])) {
+	$updateId = $_POST['updateId'];
+	$pictureId = $_POST['pictureIdToBeDeleted'];
+	$stmt = prepare("SELECT ru_picture_ids FROM raw_updates WHERE ru_id=?");
+	$stmt->bind_param('i', $updateId);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		$pictureIds = str_replace(",$pictureId,", ",", $row['ru_picture_ids']);
+		$stmt->close();
+		if (strlen($pictureIds) < 2) {
+			$stmt = prepare("DELETE FROM raw_updates WHERE ru_id=?");
+			$stmt->bind_param('i', $updateId);
+		} else {
+			$stmt = prepare("UPDATE raw_updates SET ru_picture_ids=? WHERE ru_id=?");
+			$stmt->bind_param('si', $pictureIds, $updateId);
+		}
+		execute($stmt);
+		if (file_exists("$pictureId.jpg")) {
+			unlink("$pictureId.jpg");
+		}
+		print "Image was successfully deleted and will be removed upon refresh.";
+	} else {
+		print "Image could not be found";
+	}
+	$stmt->close();
+	die(0);
 }
 ?>
 <HTML>
@@ -171,6 +197,11 @@ if (hasParam('upload_file')) {
 					context = canvas.getContext("2d");
 					context.drawImage(this, 0, 0, smallWidth, smallHeight);
 					dataUrlSmall = canvas.toDataURL('image/jpeg');
+
+					if (!dateTime) {
+						dateTime = new Date().toISOString();
+					}
+					alert(dateTime);
 
 					uploadFile(dataUrlLarge, dataUrlSmall, latDec, lngDec, orientation, dateTime, image);
 

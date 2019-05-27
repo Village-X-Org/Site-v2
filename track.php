@@ -39,14 +39,15 @@ if (count($updates) == 0) {
 }
 $latestDate = date("F j, Y", $updates[0]["timestamp"]);
 
+$updateId = $updates[0]["update_id"];
 $pictureStr = $updates[0]["picture_ids"];
 if (strpos($pictureStr, ',') > 0) {
     $pictureIds = explode(",", $pictureStr);
 } else {
     $pictureIds = array($pictureStr);
 }
-
-$picture = $pictureIds[0].".jpg";
+$pictureId = $pictureIds[0];
+$picture = $pictureId.".jpg";
 ?>
 <HTML>
 <HEAD><TITLE><?php print str_replace("<br/>", " | ", $pageTitle); ?></TITLE>
@@ -159,6 +160,10 @@ include('header.inc');
         <div style="width:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
             <div style='background-color:black;width:100%;padding:0;margin:0;'>
                 <div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;">
+
+                    <?php if ($session_is_admin) {
+                        print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:white;'>delete</i></a>";
+                    } ?>
                 </div>
             </div>
             <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">
