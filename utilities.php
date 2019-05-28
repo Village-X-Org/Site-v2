@@ -535,4 +535,8 @@ function verifyRecaptcha($responseCode) {
 	}
 }
 
+function getShippingCost() {
+	return 10;
+}
+
 ?>
