@@ -88,11 +88,11 @@ while ($row = $result->fetch_assoc()) {
     </script>
 
 
-<div style='text-align:right;font-size:18px;'>Product Price: $<span id='totalPrice'><?php print $totalPrice; ?></span></div>
+<div style='text-align:right;font-size:18px;'>Price of Product(s): $<span id='totalPrice'><?php print $totalPrice; ?></span></div>
 <div style='text-align:right;font-size:18px;'>Shipping: $<span id='shipping'><?php print getShippingCost(); ?></span></div>
-<div style='text-align:right;font-size:18px;'>Total: $<span id='totalWithShipping'><?php print $totalPrice + getShippingCost(); ?></span></div>
+<div style='text-align:right;font-size:18px;'>Total Purchase Price: $<span id='totalWithShipping'><?php print $totalPrice + getShippingCost(); ?></span></div>
 <div style='text-align:right;font-size:18px;'>-------------------------</span></div>
-<div style='text-align:right;font-size:18px;'>Amount to be Donated: $<span id='totalDonation'><?php print $totalDonation; ?></span></div>
+<div style='text-align:right;font-size:18px;'>Amount for Projects: $<span id='totalDonation'><?php print $totalDonation; ?></span></div>
 <div style='text-align:right;margin-top:10px;margin-bottom:40px;'><button class='btn' id="checkoutButton">Checkout with Stripe</button></div>
 
 
