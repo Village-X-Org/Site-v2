@@ -2,6 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Village X | Where Your Money Goes</title>
+<meta name="description" content="Our hyper-efficient model sends your donation directly to a project in a rural village.  Every project profile features a breakdown of costs."/>
 <?php include('header.inc'); ?>
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 

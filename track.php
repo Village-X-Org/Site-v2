@@ -1,8 +1,8 @@
 <?php
 require_once("utilities.php");
 $projectId = $start = $userId = $foId = $villageId = $small = 0; 
-$pageTitle = "Village X<br/>Latest Updates";
-$pageDescription = 'Get the latest news on our in-progress and completed projects.';
+$pageTitle = "Village X | Same-Day Project Updates";
+$pageDescription = 'See your impact in real time.  We post project updates as they come in.  Providing donors a transparent giving experience is our top priority.';
 $pagePicture = 'images/khwalala_market.jpg';
 
 if (hasParam('projectId')) {

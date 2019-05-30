@@ -4,6 +4,8 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Village X | Projects Villages Want</title>
+<meta name="description" content="Search for villages battling extreme poverty. Find a 100% village-led development project that changes lives and speaks to you."/>
 <?php include('header.inc'); ?>
 
 <div class="container">

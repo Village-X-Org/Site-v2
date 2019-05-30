@@ -4,6 +4,8 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Village X | Team and Mission</title>
+<meta name="description" content="Democracy distrupts extreme poverty.  Villages know how to solve their problems but lack financing for local development solutions."/>
 <?php include('header.inc'); ?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 

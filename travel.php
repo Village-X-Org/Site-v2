@@ -4,8 +4,8 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X Org | Fund Projects That Villages Choose</title>
-<meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<title>Village X | Travel to Malawi</title>
+<meta name="description" content="Visit The Warm Heart of Africa.  Discover Malawi's world-class beaches, game parks, mountains, and people.  Do good and expore."/>
 <?php include('header.inc'); 
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
