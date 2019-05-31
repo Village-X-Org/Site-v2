@@ -201,7 +201,6 @@ if (hasParam('upload_file')) {
 					if (!dateTime) {
 						dateTime = new Date().toISOString();
 					}
-					alert(dateTime);
 
 					uploadFile(dataUrlLarge, dataUrlSmall, latDec, lngDec, orientation, dateTime, image);
 
@@ -240,7 +239,7 @@ if (hasParam('upload_file')) {
 			?>
 		<h4>Post a project update</h4>
 		<form enctype="multipart/form-data" method="post" id='updateForm'>
-			<p>Select a Project: <input id='projectId' name='projectId' list="projectList" onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');" style='width:50px;' />
+			<p>Select a Project: <input id='projectId' name='projectId' list="projectList" value='' onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');" style='width:50px;' />
 				<datalist id='projectList' >
 				<option value='-1'>No Project</option>
 				<?php
@@ -276,7 +275,7 @@ if (hasParam('upload_file')) {
 
 			<p><TEXTAREA style='width:300px;height:100px;' placeholder="Notes on uploaded pictures or general updates on project." 
 				id='notes' name='notes'></TEXTAREA></p>
-			<p><input type='submit' value='Post Update' id='postUpdateButton' /></p>
+			<p><button id='postUpdateButton' onclick="if (document.getElementById('projectId').value == '') { alert('You must select a project'); return false; } else { document.getElementById('updateForm').submit(); }" >Post Update</button></p>
 		</form>
 		<?php } else { ?>
 			<script>document.location='user_login.php';</script>
