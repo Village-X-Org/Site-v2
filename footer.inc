@@ -206,8 +206,6 @@
     				lastname: "required",
     				email: {
     			        required: true,
-    			        // Specify that email should be validated
-    			        // by the built-in "email" rule
     			        email: true
     			      },
     			},
@@ -233,7 +231,7 @@
     			  .done(function(data) {
               		$('#cancelProgress').hide();
             			$('#submitBtn').prop("disabled", false);
-    				  	Materialize.toast(data, 4000); 
+    				  	M.toast({html: data, displayLength: 4000}); 
     				  	$('#cancelModal').modal('close');
     			  });
     		    }
