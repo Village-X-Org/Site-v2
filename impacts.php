@@ -2,9 +2,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X | Knowing You Helped</title>
-<meta name="description" content="Enjoy updates with pictures, videos, and data analysis providing a vivid accounting of how your donations change lives."/>
-<?php include('header.inc'); ?>
+<?php 
+$pageTitle = "Village X | Knowing You Helped";
+$pageDescription = "Enjoy updates with pictures, videos, and data analysis providing a vivid accounting of how your donations change lives.";
+include('header.inc'); 
+?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 		<div class="section row center">

@@ -4,9 +4,11 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X | Travel to Malawi</title>
-<meta name="description" content="Visit The Warm Heart of Africa.  Discover Malawi's world-class beaches, game parks, mountains, and people.  Do good and expore."/>
-<?php include('header.inc'); 
+<?php
+	$pageTitle = "Village X | Travel to Malawi";
+	$pageDescription = "Visit The Warm Heart of Africa.  Discover Malawi's world-class beaches, game parks, mountains, and people.  Do good and expore.";
+	include('header.inc'); 
+
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
 }
