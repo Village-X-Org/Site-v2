@@ -7,6 +7,7 @@ require_once("utilities.php");
 <?php
 	$pageTitle = "Village X | Travel to Malawi";
 	$pageDescription = "Visit The Warm Heart of Africa.  Discover Malawi's world-class beaches, game parks, mountains, and people.  Do good and expore.";
+	$pageUrl = getBaseURL()."travel.php";
 	include('header.inc'); 
 
 if (hasParam('code')) {

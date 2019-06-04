@@ -7,6 +7,7 @@ require_once("utilities.php");
 <?php
     $pageTitle = "Village X | Democracy Model";
     $pageDescription = "Extreme poverty villages choose, partially finance, implement, and document projects. Getting out of their way is our key to success.";
+    $pageUrl = getBaseURL()."model.php";
     include('header.inc'); 
 ?>
 

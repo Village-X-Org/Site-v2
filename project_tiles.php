@@ -7,6 +7,7 @@ require_once("utilities.php");
 <?php 
 	$pageTitle = "Village X | Projects Villages Want";
 	$pageDescription = "Search for villages battling extreme poverty. Find a 100% village-led development project that changes lives and speaks to you.";
+	$pageUrl = getBaseURL()."project_tiles.php";
 	include('header.inc'); 
 ?>
 

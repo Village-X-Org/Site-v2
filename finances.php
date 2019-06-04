@@ -5,6 +5,7 @@
 <?php 
   $pageTitle = "Village X | Where Your Money Goes";
   $pageDescription = "Our hyper-efficient model sends your donation directly to a project in a rural village.  Every project profile features a breakdown of costs.";
+  $pageUrl = getBaseURL()."finances.php";
   include('header.inc'); 
 ?>
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">

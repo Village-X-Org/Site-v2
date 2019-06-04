@@ -7,6 +7,7 @@ require_once("utilities.php");
   <?php 
   $pageTitle = "Village X | Team and Mission";
   $pageDescription = "Democracy disrupts extreme poverty.  Villages know how to solve their problems but lack financing for local development solutions.";
+  $pageUrl = getBaseURL()."about.php";
 include('header.inc'); ?>
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 

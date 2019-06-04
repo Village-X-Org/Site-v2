@@ -14,7 +14,7 @@ if (hasParam('d')) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="Cache-Control" content="max-age=3153600, public" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="fb:app_id" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
 <?php
 	if (!isset($pageImage)) {
