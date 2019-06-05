@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
+<url>
+  <loc>https://www.villagex.org/</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/project_tiles.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/impacts.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/map.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/about.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/model.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/finances.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/travel.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/track.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/faq.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/tos.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://www.villagex.org/privacy_policy.php</loc>
+  <lastmod>2019-05-31T03:24:18+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+</urlset>
