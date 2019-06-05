@@ -4,9 +4,12 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X Org | Fund Projects That Villages Choose</title>
-<meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
-<?php include('header.inc'); 
+<?php
+	$pageTitle = "Village X | Travel to Malawi";
+	$pageDescription = "Visit The Warm Heart of Africa.  Discover Malawi's world-class beaches, game parks, mountains, and people.  Do good and expore.";
+	$pageUrl = getBaseURL()."travel.php";
+	include('header.inc'); 
+
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
 }

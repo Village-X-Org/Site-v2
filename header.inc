@@ -14,14 +14,28 @@ if (hasParam('d')) {
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta name="Cache-Control" content="max-age=3153600, public" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<?php if (!isset($metaProvided) || !$metaProvided) { ?>
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta property="fb:app_id" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://villagex.org/images/header1.jpg"/>
-<meta property="og:title" content="This website disrupts extreme poverty in Africa."/>
-<meta property="og:url" content="<?php print BASE_URL; ?>"/>
-<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
-<?php } ?>
+<?php
+	if (!isset($pageImage)) {
+		$pageImage = "https://villagex.org/images/header1.jpg";
+	}	
+	if (!isset($pageTitle)) {
+		$pageTitle = "This website disrupts extreme poverty in Africa.";
+	}
+	if (!isset($pageUrl)) {
+		$pageUrl = BASE_URL;
+	}
+	if (!isset($pageDescription)) {
+		$pageDescription = "Village X Org is like GoFundMe for rural Africa. Fund projects villages choose.";
+	}
+?>
+<meta property="og:image" content="<?php print $pageImage; ?>" />
+<meta property="og:title" content="<?php print $pageTitle; ?>" />
+<meta property="og:url" content="<?php print $pageUrl; ?>" />
+<meta property="og:description" content="<?php print $pageDescription; ?>" />
+<title><?php print $pageTitle; ?></title>
+<meta name="description" content="<?php print $pageDescription; ?>"/>
 
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57585044-1"></script>
