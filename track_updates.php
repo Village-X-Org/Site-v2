@@ -82,9 +82,9 @@ if (!isset($start)) {
             $dateStr = date("F j, Y", $update["timestamp"]);
         }
         if ($update['project_id'] > 0) {
-            $title = (!$projectId ? "<a style='color:white;font-weight:600;' href='project.php?id=".$update['project_id']."' target='_blank'>".$update['project_name']."</a> in ".$update['village_name']."<br/>" : "").($dateStr ? $dateStr : "");
+            $title = (!$projectId ? "<a style='color:white;font-weight:600;' href='project.php?id=".$update['project_id']."' target='_blank'>".$update['project_name']."</a> in ".$update['village_name'] : "").($dateStr ? "<br/>".$dateStr : "");
         } else {
-            $title = $update['post_title'];
+            $title = $update['post_title'].($dateStr ? "<br/>".$dateStr : "");
         }
         print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
         if ($session_is_admin) { ?>
