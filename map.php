@@ -4,9 +4,11 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X | Project Locations</title>
-<meta name="description" content="Zoom in from a bird's-eye view to visit partner villages and their development projects."/>
-<?php include('header.inc'); ?>
+<?php 
+  $pageTitle = "Village X | Project Locations";
+  $pageDescription = "Zoom in from a bird's-eye view to visit partner villages and their development projects.";
+  $pageUrl = getBaseURL()."map.php";
+include('header.inc'); ?>
 <style>
 .mapboxgl-ctrl-geocoder {
 	font: 15px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
