@@ -54,8 +54,8 @@ if (hasParam('d')) {
 <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" async defer ></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js' async defer ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" ></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js' ></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -86,8 +86,8 @@ if (hasParam('d')) {
 <link rel='stylesheet' href='css/lightbox2.css' type='text/css' />
 <script src="https://checkout.stripe.com/checkout.js" ></script>
 
-<link rel="stylesheet" type="text/css" href="css/slick.css" async defer />
-<link rel="stylesheet" type="text/css" href="css/slick-theme.css" async defer />
+<link rel="stylesheet" type="text/css" href="css/slick.css" />
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>
