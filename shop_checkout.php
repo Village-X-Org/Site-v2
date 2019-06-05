@@ -63,7 +63,7 @@ while ($row = $result->fetch_assoc()) {
             	<option>Select Project to Fund with Your Purchase</option>
             	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                 FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
-                WHERE project_funded < project_budget ORDER BY (project_funded / project_budget) ASC");
+                WHERE project_funded < project_budget ORDER BY (project_funded / project_budget) DESC");
               while ($row = $result->fetch_assoc()) {
                 $projectId = $row['project_id'];
                 $pictureFilename = $row['picture_filename'];
