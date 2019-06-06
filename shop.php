@@ -11,7 +11,12 @@ if (hasParam('cat')) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include('header.inc'); ?>
+<?php 
+  $pageTitle = "Village X | Shop";
+  $pageDescription = "Support our projects by buying cool things from Malawi";
+  $pageUrl = getBaseURL()."shop.php";
+  $pageImage = getBaseURL()."images/shop_banner.jpg";
+include('header.inc'); ?>
 
 <div class="container">
 

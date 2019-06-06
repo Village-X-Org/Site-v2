@@ -97,7 +97,7 @@ while ($row = $result->fetch_assoc()) {
 	<input type='hidden' id='order' name='order' value='<?php print $items; ?>' />
  	<input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='<?php print $totalPrice; ?>' />
 	<input type='hidden' id='projectId' name='projectId' value='' />
-	<div style='text-align:right;margin-top:30px;margin-bottom:40px;'><button class='btn' id="checkoutButton">Checkout with Stripe</button></div>
+	<div style='text-align:right;margin-top:30px;margin-bottom:40px;'><input type='submit' class='btn' id="checkoutButton">Checkout with Stripe</button></div>
 </form>
 
 
@@ -135,7 +135,6 @@ while ($row = $result->fetch_assoc()) {
 		totalWithShippingCell = document.getElementById('totalWithShipping');
 		totalWithShippingCell.innerText = overallTotal + <?php print getShippingCost(); ?>;
 
-		$('#)
 	}
 
   	document.getElementById('checkoutButton').addEventListener('click', function(e) {
