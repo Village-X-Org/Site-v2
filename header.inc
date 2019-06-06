@@ -61,8 +61,6 @@ if (hasParam('d')) {
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-<script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/5929102.js"></script>
-
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script>
 (function($){
