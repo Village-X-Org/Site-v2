@@ -1,4 +1,5 @@
-<?php require_once("utilities.php"); 
+<?php require_once("utilities.php");
+
 $donorId = $donorName = $donorColor = $donorLogo = 0;
 if (hasParam('d')) {
 	$donorId = paramInt('d');
@@ -10,16 +11,31 @@ if (hasParam('d')) {
 	}
 }
 ?>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<?php if (!isset($metaProvided) || !$metaProvided) { ?>
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="Cache-Control" content="max-age=3153600, public" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta property="fb:app_id" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:type" content="website" />
-<meta property="og:image" content="https://villagex.org/images/header1.jpg"/>
-<meta property="og:title" content="This website disrupts extreme poverty in Africa."/>
-<meta property="og:url" content="<?php print BASE_URL; ?>"/>
-<meta property="og:description" content="Village X Org is like GoFundMe for rural Africa. Fund projects villages choose."/>
-<?php } ?>
+<?php
+	if (!isset($pageImage)) {
+		$pageImage = "https://villagex.org/images/header1.jpg";
+	}	
+	if (!isset($pageTitle)) {
+		$pageTitle = "This website disrupts extreme poverty in Africa.";
+	}
+	if (!isset($pageUrl)) {
+		$pageUrl = BASE_URL;
+	}
+	if (!isset($pageDescription)) {
+		$pageDescription = "Village X Org is like GoFundMe for rural Africa. Fund projects villages choose.";
+	}
+?>
+<meta property="og:image" content="<?php print $pageImage; ?>" />
+<meta property="og:title" content="<?php print $pageTitle; ?>" />
+<meta property="og:url" content="<?php print $pageUrl; ?>" />
+<meta property="og:description" content="<?php print $pageDescription; ?>" />
+<title><?php print $pageTitle; ?></title>
+<meta name="description" content="<?php print $pageDescription; ?>"/>
 
 <!-- Global Site Tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-57585044-1"></script>
@@ -38,8 +54,8 @@ if (hasParam('d')) {
 <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" ></script>
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js' ></script>
 <link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
@@ -66,10 +82,10 @@ if (hasParam('d')) {
   <script src="js/jquery-plugin-progressbar.js"></script>
   
 <link rel='stylesheet' href='css/lightbox2.css' type='text/css' />
-<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://checkout.stripe.com/checkout.js" ></script>
 
-<link rel="stylesheet" type="text/css" href="css/slick.css"/>
-<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+<link rel="stylesheet" type="text/css" href="css/slick.css" />
+<link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
 <script>

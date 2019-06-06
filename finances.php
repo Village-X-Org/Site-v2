@@ -2,7 +2,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php include('header.inc'); ?>
+<?php 
+  $pageTitle = "Village X | Where Your Money Goes";
+  $pageDescription = "Our hyper-efficient model sends your donation directly to a project in a rural village.  Every project profile features a breakdown of costs.";
+  $pageUrl = getBaseURL()."finances.php";
+  include('header.inc'); 
+?>
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 
     <div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
@@ -23,7 +28,7 @@
 			Use of Donations
 	</h4>
 	
-	<div class="section flow-text" style="padding:1% 3% 2% 3%;">A direct donation experience means tracking every dollar. Each project profile features a cost breakdown showing how your donations distrupt extreme poverty. 
+	<div class="section flow-text" style="padding:1% 3% 2% 3%;">A direct donation experience means tracking every dollar. Each project profile features a cost breakdown showing how your donations disrupt extreme poverty. 
 						Each breakdown shows that we collect 10% of every donation to acheive <b>sustainability</b>. We use this money to improve our technology 
 						and cover adminstrative costs (e.g., licensing fees) we incur as a lean startup. None of our US-based staff receives a salary. 
                     		As shown below, villages receive 80% or more of each donation for direct project costs like building materials. Credit card and money transfer fees account for about 10% (ironically, it takes money to move money).*</div>

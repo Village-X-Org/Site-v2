@@ -28,17 +28,17 @@ if (!isset($start)) {
 	$putInVar = 1;
 }
 
-    $result = doUnprotectedQuery("SELECT project_id, village_id, ru_id, ru_description, ru_project_id, ru_picture_ids,
+    $result = doUnprotectedQuery("SELECT project_id, village_id, ru_id, ru_description, ru_project_id, ru_title, ru_picture_ids,
     	UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, project_lat, project_lng, project_name, village_name, project_staff_id, 
-    	fo_first_name, fo_last_name, fo_color FROM raw_updates JOIN projects 
-    	ON ru_project_id=project_id JOIN villages ON village_id=project_village_id JOIN field_officers ON project_staff_id=fo_id " 
-    	.($projectId ? "AND project_id=$projectId" : ($foId ? "AND project_staff_id=$foId" : ($villageId ?  "AND village_id=$villageId" : "")))
+    	fo_first_name, fo_last_name, fo_color FROM raw_updates LEFT JOIN projects 
+    	ON ru_project_id=project_id LEFT JOIN villages ON village_id=project_village_id LEFT JOIN field_officers ON project_staff_id=fo_id " 
+    	.($projectId ? "WHERE project_id=$projectId" : ($foId ? "WHERE project_staff_id=$foId" : ($villageId ?  "WHERE village_id=$villageId" : "")))
     	." ORDER BY ru_date DESC LIMIT $start, ".(RECS_PER_PAGE + 1));
 
     $updates = array();
     $count = $hasMore = 0;
     while ($row = $result->fetch_assoc()) {
-    	if (++$count == RECS_PER_PAGE) {
+    	if ($count++ == RECS_PER_PAGE) {
     		$hasMore = 1;
     		break;
     	}
@@ -56,13 +56,14 @@ if (!isset($start)) {
         $nextProjectId = $row['project_id'];
         $projectName = $row['project_name'];
         $villageName = $row['village_name'];
+        $postTitle = $row['ru_title'];
         $color = $row['fo_color'];
         $updateId = $row['ru_id'];
 
         $timestamp = $row['timestamp'];
 
         $lastProjectId = $nextProjectId;
-        array_push($updates, array("update_id"=>$updateId, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "staff"=>$foName, 
+        array_push($updates, array("update_id"=>$updateId, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "post_title"=>$postTitle, "staff"=>$foName, 
         	"picture_ids"=>$pictureIds, "timestamp"=>$timestamp, "lat"=>$lat, "lng"=>$lng, "timestamp"=>$timestamp, "description"=>$description));
     }
     /*if (!$putInVar) {
@@ -80,8 +81,11 @@ if (!isset($start)) {
         } else {
             $dateStr = date("F j, Y", $update["timestamp"]);
         }
-        $title = (!$projectId ? "<a style='color:white;font-weight:600;' href='project.php?id=".$update['project_id']."' target='_blank'>".$update['project_name']
-            ."</a> in ".$update['village_name']."<br/>" : "").($dateStr ? $dateStr : "");
+        if ($update['project_id'] > 0) {
+            $title = (!$projectId ? "<a style='color:white;font-weight:600;' href='project.php?id=".$update['project_id']."' target='_blank'>".$update['project_name']."</a> in ".$update['village_name'] : "").($dateStr ? "<br/>".$dateStr : "");
+        } else {
+            $title = $update['post_title'].($dateStr ? "<br/>".$dateStr : "");
+        }
         print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
         if ($session_is_admin) { ?>
            <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
@@ -104,9 +108,30 @@ if (!isset($start)) {
             if (!$pictureId) {
                 continue;
             }
-            print "<a href='".$update['project_id']."' target='_blank'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
-                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' /></a>\n";
+            if ($update['project_id'] > 0) {
+                print "<div style='position:relative;'><a href='".$update['project_id']."' target='_blank'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' ></a>\n";
+            } else {
+                print "<div style='position:relative;'><img src=\"".ABS_PICTURES_DIR.($small ? 's' : '').$pictureId.".jpg\" id=\"img".$updateId.$pictureIndex."\" 
+                    onmouseover=\"zoomTo(0, ".$update['lat'].", ".$update['lng'].");\" 
+                        style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' >";
+            }
+            if ($session_is_admin) {
+                print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:black;'>delete</i></a>";
+            }
+            print "</div>";
         }
         $count++;  
     }
+    if ($session_is_admin) {?>
+        <script>
+            function deleteImage(updateId, pictureId) {
+                if (confirm('Are you sure you want to delete this image')) {
+                    $.post("update.php", {updateId: updateId, pictureIdToBeDeleted: pictureId}, function( data ) {
+                        alert(data);
+                    });
+                }
+            }
+        </script>
+    <?php }
    ?>

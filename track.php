@@ -1,9 +1,9 @@
 <?php
 require_once("utilities.php");
 $projectId = $start = $userId = $foId = $villageId = $small = 0; 
-$pageTitle = "Village X<br/>Latest Updates";
-$pageDescription = 'Get the latest news on our in-progress and completed projects.';
-$pagePicture = 'images/khwalala_market.jpg';
+$pageTitle = "Village X<br/>Same-Day Project Updates";
+$pageDescription = "See your impact in real time.  We post project updates as they come in.  Providing donors a transparent giving experience is our top priority.";
+$pageImage = 'images/khwalala_market.jpg';
 
 if (hasParam('projectId')) {
     $projectId = paramInt('projectId');
@@ -39,17 +39,17 @@ if (count($updates) == 0) {
 }
 $latestDate = date("F j, Y", $updates[0]["timestamp"]);
 
+$updateId = $updates[0]["update_id"];
 $pictureStr = $updates[0]["picture_ids"];
 if (strpos($pictureStr, ',') > 0) {
     $pictureIds = explode(",", $pictureStr);
 } else {
     $pictureIds = array($pictureStr);
 }
-
-$picture = $pictureIds[0].".jpg";
+$pictureId = $pictureIds[0];
+$picture = $pictureId.".jpg";
 ?>
 <HTML>
-<HEAD><TITLE><?php print str_replace("<br/>", " | ", $pageTitle); ?></TITLE>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <style>    
     body {
@@ -142,16 +142,10 @@ $picture = $pictureIds[0].".jpg";
     }
 </style>
 <meta name="viewport" content="width=640">
-<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js'></script>
-<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta property="og:type" content="website" />
-<meta property="og:image" content="<?php print ($picture ? ABS_PICTURES_DIR.$picture : "https://villagex.org/images/villagemtg.jpg"); ?>" />
-<meta property="og:title" content="<?php print str_replace("<br/>", " | ", $pageTitle); ?>"/>
-<meta property="og:url" content="<?php print getBaseURL().($projectId ? "track.php?projectId=$projectId" : "/track.php"); ?>" />
-<meta property="og:description" content="<?php print $pageDescription; ?>" />
-<?php 
-$metaProvided = 1;
+<?php
+$pageImage = ($picture ? ABS_PICTURES_DIR.$picture : "https://villagex.org/images/villagemtg.jpg");
+$pageTitle = str_replace("<br/>", " | ", $pageTitle);
+$pageUrl = getBaseURL().($projectId ? "track.php?projectId=$projectId" : "/track.php");
 include('header.inc'); 
 ?>
 <div class='trackEntries' style="vertical-align:top;text-align:center;overflow:hidden;right:-17px;display:inline-block;">
@@ -159,6 +153,10 @@ include('header.inc');
         <div style="width:100%;background-size:cover;background-position:center;padding:0;margin:0;position:relative;" >
             <div style='background-color:black;width:100%;padding:0;margin:0;'>
                 <div style="background-image:url('uploads/<?php print $picture; ?>');width:100%;height:100%;background-size:cover;background-position:center;padding:0;margin:0;opacity:.7;">
+
+                    <?php if ($session_is_admin) {
+                        print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:white;'>delete</i></a>";
+                    } ?>
                 </div>
             </div>
             <div style="position:absolute;right:0px;bottom:80px;padding:10px;width:75%;background-color:#00000088;">

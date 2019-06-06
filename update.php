@@ -52,19 +52,49 @@ if (hasParam('upload_file')) {
 
 	return;
 } elseif (isset($_POST['projectId'])) {
+	$postTitle = 0;
+	if (isset($_POST['postTitle'])) {
+		$postTitle = $_POST['postTitle'];
+	}
 	$projectId = $_POST['projectId'];
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
 	$pictureIds = $_POST['pictureIds'];
 	$notes = $_POST['notes'];
 	$updateDate = strtotime($_POST['updateDate']);
-	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
-		VALUES (?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
-	$stmt->bind_param('isisdd', $projectId, $notes, $updateDate, $pictureIds, $lat, $lng);
+	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
+		VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
+	$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
 
 	execute($stmt);
 	print "<p>Update saved successfully!</p>";
 	$stmt->close();
+} elseif (isset($_POST['pictureIdToBeDeleted'])) {
+	$updateId = $_POST['updateId'];
+	$pictureId = $_POST['pictureIdToBeDeleted'];
+	$stmt = prepare("SELECT ru_picture_ids FROM raw_updates WHERE ru_id=?");
+	$stmt->bind_param('i', $updateId);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		$pictureIds = str_replace(",$pictureId,", ",", $row['ru_picture_ids']);
+		$stmt->close();
+		if (strlen($pictureIds) < 2) {
+			$stmt = prepare("DELETE FROM raw_updates WHERE ru_id=?");
+			$stmt->bind_param('i', $updateId);
+		} else {
+			$stmt = prepare("UPDATE raw_updates SET ru_picture_ids=? WHERE ru_id=?");
+			$stmt->bind_param('si', $pictureIds, $updateId);
+		}
+		execute($stmt);
+		if (file_exists("$pictureId.jpg")) {
+			unlink("$pictureId.jpg");
+		}
+		print "Image was successfully deleted and will be removed upon refresh.";
+	} else {
+		print "Image could not be found";
+	}
+	$stmt->close();
+	die(0);
 }
 ?>
 <HTML>
@@ -168,6 +198,10 @@ if (hasParam('upload_file')) {
 					context.drawImage(this, 0, 0, smallWidth, smallHeight);
 					dataUrlSmall = canvas.toDataURL('image/jpeg');
 
+					if (!dateTime) {
+						dateTime = new Date().toISOString();
+					}
+
 					uploadFile(dataUrlLarge, dataUrlSmall, latDec, lngDec, orientation, dateTime, image);
 
 					image.style.width='300px';
@@ -205,7 +239,9 @@ if (hasParam('upload_file')) {
 			?>
 		<h4>Post a project update</h4>
 		<form enctype="multipart/form-data" method="post" id='updateForm'>
-			<p><SELECT id='projectId' name='projectId'><option>Select a Project</option>
+			<p>Select a Project: <input id='projectId' name='projectId' list="projectList" value='' onchange="document.getElementById('postTitle').style.display = (this.value == -1 ? 'block' : 'none');" style='width:50px;' />
+				<datalist id='projectList' >
+				<option value='-1'>No Project</option>
 				<?php
 					$result = doUnprotectedQuery("SELECT project_id, project_name, village_name, MAX(pe_date) AS maxDate, MAX(pe_type) AS maxType 
 						FROM projects JOIN villages ON project_village_id=village_id 
@@ -217,8 +253,9 @@ if (hasParam('upload_file')) {
 						print "<option value='{$row['project_id']}'>{$row['project_name']} in {$row['village_name']}</option>";
 					}
 				?>
-			</SELECT></p>
-		
+			</datalist></p>
+
+			<div style='display:none;margin-bottom:10px;' id='postTitle'>Post Title: <input type='text' name='postTitle' style='width:300px;' /></div>
 			<input type="file" id="fileinput" multiple="multiple" />
 			<div id='imageContainer'>
 			</div>
@@ -238,7 +275,7 @@ if (hasParam('upload_file')) {
 
 			<p><TEXTAREA style='width:300px;height:100px;' placeholder="Notes on uploaded pictures or general updates on project." 
 				id='notes' name='notes'></TEXTAREA></p>
-			<p><input type='submit' value='Post Update' id='postUpdateButton' /></p>
+			<p><button id='postUpdateButton' onclick="if (document.getElementById('projectId').value == '') { alert('You must select a project'); return false; } else { document.getElementById('updateForm').submit(); }" >Post Update</button></p>
 		</form>
 		<?php } else { ?>
 			<script>document.location='user_login.php';</script>

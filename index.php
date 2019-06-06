@@ -6,24 +6,20 @@ require_once("utilities.php");
 <head>
 <title>Village X | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<script src='js/modernizr-custom.js'></script>
 <style>
 body, html {
     height: 100%;
     margin: 0;
 }
 
-.bg {
-    /* The image used */
-    background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
-    opacity:1.5;
-    /* Full height */
-    height: 100%; 
-
-    /* Center and scale the image nicely */
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    
+.no-webp .bg {
+	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
+    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+}
+.webp .bg {
+	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.webp");
+    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
 .carousel-slider {
@@ -201,7 +197,11 @@ if (hasParam('gc')) {
 		</div>
 
 		<div class="parallax">
-			<img src="images/chiyuni_banner.jpg">
+			<picture>
+			  <source type="image/webp" srcset="images/chiyuni_banner.webp">
+			  <source type="image/jpeg" srcset="images/chiyuni_banner.jpg">
+			  <img src="images/chiyuni_banner.jpg" alt="">
+			</picture>
 		</div>
 			
 	</div>
@@ -222,7 +222,9 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+							  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
+							  <source type="image/jpeg" srcset="images/how_it_works_democracy.jpg">
+							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
 							</h2> 
 							
 							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
@@ -238,7 +240,11 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg" />
+								<picture>
+								  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">
+								  <source type="image/jpeg" srcset="images/how_it_works_directgiving.jpg">
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+								</picture>
 							</h2>
 
 							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
@@ -253,7 +259,11 @@ if (hasParam('gc')) {
 					<div class="col s12 m4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<img style="border:5px solid rgba(0, 0, 0, .85);"class="circle responsive-img" src="images/how_it_works_development.jpg" />
+								<picture>
+								  <source type="image/webp" srcset="images/how_it_works_development.webp">
+								  <source type="image/jpeg" srcset="images/how_it_works_development.jpg">
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
+								</picture>
 							</h2>
 							
 							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
@@ -286,7 +296,11 @@ if (hasParam('gc')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+						<picture>
+						  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
+						  <source type="image/jpeg" srcset="images/how_it_works_democracy.jpg">
+						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+						</picture>
 					</h2> 
 					
 					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
@@ -302,7 +316,11 @@ if (hasParam('gc')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center brown-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+						<picture>
+						  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">
+						  <source type="image/jpeg" srcset="images/how_it_works_directgiving.jpg">
+						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+						</picture>
 					</h2>
 
 					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
@@ -317,7 +335,12 @@ if (hasParam('gc')) {
 			<div class="col s12 m4">
 				<div class="icon-block">
 					<h2 class="center black-text">
-						<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
+						<picture>
+						  <source type="image/webp" srcset="images/how_it_works_development.webp">
+						  <source type="image/jpeg" srcset="images/how_it_works_development.jpg">
+						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
+						</picture>
+						
 					</h2>
 					
 					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
@@ -337,7 +360,11 @@ if (hasParam('gc')) {
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.1); height: 500px">
             
             <div class="parallax">
-                <img src="images/benard_taking_pic.jpg">
+            	<picture>
+				  <source type="image/webp" srcset="images/benard_taking_pic.webp">
+				  <source type="image/jpeg" srcset="images/benard_taking_pic.jpg">
+				  <img src="images/benard_taking_pic.jpg" alt="">
+				</picture>
             </div>
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
@@ -549,7 +576,11 @@ if (CACHING_ENABLED) {
         </div>
       
 			<div class="parallax">
-				<img src="images/newsletter_banner_2.jpg">
+				<picture>
+				  <source type="image/webp" srcset="images/newsletter_banner_2.webp">
+				  <source type="image/jpeg" srcset="images/newsletter_banner_2.jpg">
+				  <img src="images/newsletter_banner_2.jpg" alt="">
+				</picture>
 			</div>
 		</div>
 	</div>

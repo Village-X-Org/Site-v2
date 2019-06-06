@@ -43,7 +43,11 @@
 			</div>
 		</div>
 		<div class="parallax">
-			<img src="images/footer1.jpg" alt="Unsplashed background img 2">
+			<picture>
+			  <source type="image/webp" srcset="images/footer1.webp">
+			  <source type="image/jpeg" srcset="images/footer1.jpg">
+			  <img src="images/footer1.jpg" alt="Unsplashed background img 2">
+			</picture>
 		</div>
 	</div>
 </div>
@@ -202,8 +206,6 @@
     				lastname: "required",
     				email: {
     			        required: true,
-    			        // Specify that email should be validated
-    			        // by the built-in "email" rule
     			        email: true
     			      },
     			},
@@ -229,7 +231,7 @@
     			  .done(function(data) {
               		$('#cancelProgress').hide();
             			$('#submitBtn').prop("disabled", false);
-    				  	Materialize.toast(data, 4000); 
+    				  	M.toast({html: data, displayLength: 4000}); 
     				  	$('#cancelModal').modal('close');
     			  });
     		    }
