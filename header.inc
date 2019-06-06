@@ -140,6 +140,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 	  });
 	}
 }
+
 // End Stripe
 
 </script>

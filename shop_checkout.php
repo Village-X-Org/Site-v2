@@ -59,7 +59,7 @@ while ($row = $result->fetch_assoc()) {
 
 	<div class="row">
     	<div class="input-field col s12 donor-text" style="font-size:18px;vertical-align:middle;">
-			<select name="shop_project_id">
+			<select name="shop_project_id" onselect="$('#projectId').value=this.value;">
             	<option>Select Project to Fund with Your Purchase</option>
             	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                 FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
@@ -91,9 +91,14 @@ while ($row = $result->fetch_assoc()) {
 <div style='text-align:right;font-size:18px;'>Price of Product(s): $<span id='totalPrice'><?php print $totalPrice; ?></span></div>
 <div style='text-align:right;font-size:18px;'>Shipping: $<span id='shipping'><?php print getShippingCost(); ?></span></div>
 <div style='text-align:right;font-size:18px;'>Total Purchase Price: $<span id='totalWithShipping'><?php print $totalPrice + getShippingCost(); ?></span></div>
-<div style='text-align:right;font-size:18px;'>-------------------------</span></div>
-<div style='text-align:right;font-size:18px;'>Amount for Projects: $<span id='totalDonation'><?php print $totalDonation; ?></span></div>
-<div style='text-align:right;margin-top:10px;margin-bottom:40px;'><button class='btn' id="checkoutButton">Checkout with Stripe</button></div>
+<div style='text-align:right;font-size:18px;'>--------------------------------------------</span></div>
+<div style='text-align:right;font-size:18px;'>Amount reserved for Projects: $<span id='totalDonation'><?php print $totalDonation; ?></span></div>
+<form action="purchaseWithStripe.php" id="purchaseForm" method='post' action="purchaseWithStripe.php">
+	<input type='hidden' id='order' name='order' value='<?php print $items; ?>' />
+ 	<input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='<?php print $totalPrice; ?>' />
+	<input type='hidden' id='projectId' name='projectId' value='' />
+	<div style='text-align:right;margin-top:30px;margin-bottom:40px;'><button class='btn' id="checkoutButton">Checkout with Stripe</button></div>
+</form>
 
 
 <script>
@@ -129,9 +134,11 @@ while ($row = $result->fetch_assoc()) {
 
 		totalWithShippingCell = document.getElementById('totalWithShipping');
 		totalWithShippingCell.innerText = overallTotal + <?php print getShippingCost(); ?>;
+
+		$('#)
 	}
 
-	  document.getElementById('checkoutButton').addEventListener('click', function(e) {
+  	document.getElementById('checkoutButton').addEventListener('click', function(e) {
 	  handler.open({
 	    name: 'Village X Org',
 	    description: 'Shop Checkout',
@@ -139,7 +146,6 @@ while ($row = $result->fetch_assoc()) {
         shippingAddress: true,
         billingAddress: true
 	  });
-	  e.preventDefault();
 	});
 </script>
 </div>
