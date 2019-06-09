@@ -1,7 +1,7 @@
 <?php
 require_once("utilities.php");
 
-$items = param('items');
+$itemStr = param('items');
 
 ?>
 <!DOCTYPE html>
@@ -11,7 +11,7 @@ $items = param('items');
 <div class='container'>
 	<H5>Your Shopping Cart</H5>
 <?php
-$items = explode(',', $items);
+$items = explode(',', $itemStr);
 $cart = array();
 $inString = '';
 $count = 0;
@@ -94,14 +94,30 @@ while ($row = $result->fetch_assoc()) {
 <div style='text-align:right;font-size:18px;'>--------------------------------------------</span></div>
 <div style='text-align:right;font-size:18px;'>Amount reserved for Projects: $<span id='totalDonation'><?php print $totalDonation; ?></span></div>
 <form action="purchaseWithStripe.php" id="purchaseForm" method='post' action="purchaseWithStripe.php">
-	<input type='hidden' id='order' name='order' value='<?php print $items; ?>' />
- 	<input type='hidden' name='stripeToken' value='' /><input type='hidden' name='stripeEmail' value='' /><input type='hidden' name='stripeAmount' value='<?php print $totalPrice; ?>' />
+	<input type='hidden' id='order' name='order' value='<?php print $itemStr; ?>' />
+ 	<input type='hidden' name='stripeToken' value='' />
+ 	<input type='hidden' name='stripeEmail' value='' />
+ 	<input type='hidden' id='stripeAmount' name='stripeAmount' value='<?php print (($totalPrice + getShippingCost()) * 100); ?>' />
 	<input type='hidden' id='projectId' name='projectId' value='' />
-	<div style='text-align:right;margin-top:30px;margin-bottom:40px;'><input type='submit' class='btn' id="checkoutButton">Checkout with Stripe</button></div>
+	<input type='hidden' id='shippingName' name='shippingName' value='' />
+	<input type='hidden' id='shippingStreet' name='shippingStreet' value='' />
+	<input type='hidden' id='shippingApt' name='shippingApt' value='' />
+	<input type='hidden' id='shippingCity' name='shippingCity' value='' />
+	<input type='hidden' id='shippingState' name='shippingState' value='' />
+	<input type='hidden' id='shippingZip' name='shippingZip' value='' />
+	<div style='text-align:right;margin-top:30px;margin-bottom:40px;'><input type='submit' class='btn' id="checkoutButton" value='Checkout with Stripe' onclick="purchaseWithStripe();return false;" /></div>
 </form>
 
-
+<script src="https://checkout.stripe.com/checkout.js" ></script>
 <script>
+	function getItemString() {
+		return ''<?php foreach ($items as $item) {
+			$parts = explode(':', $item);
+			$id = $parts[0];
+			print " + '$id:' + $('#quantityFor' + $id).val() + ','";
+		} ?>;
+	}
+
 	function updateTotals(id) {
 		quantity = document.getElementById('quantityFor' + id).value;
 		price = document.getElementById('priceFor' + id).innerText;
@@ -135,17 +151,38 @@ while ($row = $result->fetch_assoc()) {
 		totalWithShippingCell = document.getElementById('totalWithShipping');
 		totalWithShippingCell.innerText = overallTotal + <?php print getShippingCost(); ?>;
 
+		document.getElementById('stripeAmount').value = (overallTotal + <?php print getShippingCost(); ?>) * 100;
+		document.getElementById('order').value = getItemString();
+
 	}
 
-  	document.getElementById('checkoutButton').addEventListener('click', function(e) {
+	var handler = StripeCheckout.configure({
+	  key: '<?php print (isset($_SESSION['test']) && $_SESSION['test'] ? STRIPE_TEST_API_KEY : STRIPE_API_KEY); ?>',
+	  image: 'https://villagex.org/images/logox.jpg',
+	  locale: 'auto',
+	  token: function(token, args) {
+		  form = document.getElementById('purchaseForm');
+		  form.stripeToken.value = token.id;
+		  form.stripeEmail.value = token.email;
+  		  form.shippingName.value = args.shipping_name;
+  		  form.shippingStreet.value = args.shipping_address_line1;
+		  form.shippingApt.value = args.shipping_address_apt;
+  		  form.shippingCity.value = args.shipping_address_city;
+		  form.shippingState.value = args.shipping_address_state;
+  		  form.shippingZip.value = args.shipping_address_zip;
+		  form.submit();
+	  }
+	});
+
+	function purchaseWithStripe() {
 	  handler.open({
-	    name: 'Village X Org',
-	    description: 'Shop Checkout',
-	    amount: $('#totalWithShipping').val() * 100,
+	    name: 'Complete Your Purchase',
+	    amount: parseInt($('#stripeAmount').val()),
         shippingAddress: true,
         billingAddress: true
 	  });
-	});
+	}
+
 </script>
 </div>
 <?php 

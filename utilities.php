@@ -36,6 +36,7 @@ define("EMAIL_TYPE_PROJECT_UPDATE", 4);
 define("EMAIL_TYPE_FUNDRAISER", 5);
 define("EMAIL_TYPE_PROFILE_ACTIVATION", 6);
 define("EMAIL_TYPE_PROJECT_FAILED", 7);
+define("EMAIL_TYPE_THANKS_FOR_PURCHASE", 8);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -47,7 +48,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr</P>";
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr \n\n$errfile - $errline\n\n$context\n\n$trace</P>";
     exit();
 }
 set_error_handler("emailErrorHandler");

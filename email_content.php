@@ -14,6 +14,7 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_COMPLETED:
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
         $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
@@ -209,6 +210,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_COMPLETED:
         																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+    																		case EMAIL_TYPE_THANKS_FOR_PURCHASE:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
     																        case EMAIL_TYPE_FUNDRAISER:
         																        if (isset($useHonoree)) {
@@ -256,6 +258,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
             																	Monthly</a> button on our website.
 																		<?php 
 																        break;
+    																case EMAIL_TYPE_THANKS_FOR_PURCHASE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        if (isset($useHonoree)) {
 																            print (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
@@ -286,6 +289,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															        case EMAIL_TYPE_PROJECT_COMPLETED:
 															            break;
 															        case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+															        case EMAIL_TYPE_THANKS_FOR_PURCHASE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        print "Donation details";
 																        break;
@@ -342,6 +346,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									<?php switch ($type) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+
+    																										case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                                         																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                                         																        ?>
                                         																        <p
@@ -376,6 +382,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									<?php switch ($type) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+    																									case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                                         																case EMAIL_TYPE_THANKS_FOR_DONATING: 
         																								case EMAIL_TYPE_FUNDRAISER:
                                     																        ?>
@@ -496,6 +503,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
                     												        break;
+                    												    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
                     												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
@@ -591,6 +599,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+																    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                 											        case EMAIL_TYPE_THANKS_FOR_DONATING:
             											            case EMAIL_TYPE_FUNDRAISER:
             											            case EMAIL_TYPE_PROFILE_ACTIVATION:
