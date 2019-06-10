@@ -197,9 +197,12 @@ $stmt->close();
             <div class='progress'>
               <div class='determinate' style='width: <?php print round(100 * $latestFunded / max(1, $latestBudget)); ?>%'></div>
             </div>
-            <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="project.php?id=<?php print $latestProjectId;?>" target='_blank'><?php print "$latestProject in $latestVillage" ?></a>&nbsp;is <b>&nbsp;<?php print $latestStatus; ?></b></div>
-
-            <?php } ?>
+            <div class="valign-wrapper"><i class="material-icons small" style="padding:0 2% 0 0%">update</i><b>Status Update:&nbsp;</b> <a href="project.php?id=<?php print $latestProjectId;?>" target='_blank'><?php print "$latestProject in $latestVillage"; ?></a>&nbsp;is <b>&nbsp;<?php if ($latestStatus == 'construction') {
+              print "in-progress";
+            } else {
+              print $latestStatus;
+            } 
+          } ?>
 <br>
           
     <div class="left-align">

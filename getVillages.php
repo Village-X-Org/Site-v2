@@ -29,7 +29,7 @@ while ($row = $result->fetch_assoc()) {
 			"boundsNeLng": "'.$row['neLng'].'",
 			"projectCount": "'.($funding > 0 ? "$funding in funding" : "")
 			.($completed > 0 ? ($funding > 0 ? ", " : "")."$completed completed" : "")
-			.($construction > 0 ? ($funding + $completed > 0 ? ", " : "")."$construction under construction" : "")
+			.($construction > 0 ? ($funding + $completed > 0 ? ", " : "")."$construction in-progress" : "")
 			.'"}'/*
 			"village_summary": '.json_encode($row['village_summary']).'
 		*/.'
