@@ -202,6 +202,7 @@ $stmt->close();
             } else {
               print $latestStatus;
             } 
+            print "</div>";
           } ?>
 <br>
           
