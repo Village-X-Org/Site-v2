@@ -86,17 +86,19 @@ if (!isset($start)) {
         } else {
             $title = $update['post_title'].($dateStr ? "<br/>".$dateStr : "");
         }
-        print "<div id='updateDisplay$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
+        print "<div id='updateDisplay$updateId'><form id='updateEditForm$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
         if ($session_is_admin) { ?>
            <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
-                onclick="document.getElementById('updateDisplay<?php print $updateId; ?>').style.display='none';
+                onclick="document.getElementById('updateTitleText<?php print $updateId; ?>').style.display='none';
+                        document.getElementById('updateText<?php print $updateId; ?>').style.display='none';
+                        document.getElementById('updateTitleEdit<?php print $updateId; ?>').style.display='inline-block';
                         document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
                         this.style.display='none';return false;">
                 <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
             </a>
         <?php }
-        print "\n</div><div class='update updateText' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
-        print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'><form id='updateEditForm$updateId'>
+        print "\n<TEXTAREA name='updateTitleEdit' id='updateTitleEdit$updateId' style='padding:5px; background:none;border:0;height:100px;width:100%;color:white;display:none;' ".($update['project_id'] > 0 ? "placeholder='No editable content'" : "").">".$update['post_title']."</TEXTAREA></div><div class='update updateText' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
+        print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'>
                 <input type='hidden' name='updateId' value='$updateId' />
                 <div class='updateText flow-text'>
                 <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit$updateId' style='padding:5px; background:none;border:0;height:100px;width:100%;' placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'>"

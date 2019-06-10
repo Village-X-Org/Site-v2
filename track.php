@@ -295,9 +295,14 @@ include('header.inc');
     }
 
     function saveUpdate(updateId) {
+        if (document.getElementById('updateTitleEdit' + updateId).value != '') {
+            document.getElementById('updateTitleText' + updateId).innerHTML = document.getElementById('updateTitleEdit' + updateId).value;
+        }
         document.getElementById('updateText' + updateId).innerHTML = document.getElementById('updateTextEdit' + updateId).value;
 
-        document.getElementById('updateDisplay' + updateId).style.display = 'block';
+        document.getElementById('updateTitleText' + updateId).style.display = 'inline';
+        document.getElementById('updateText' + updateId).style.display = 'block';
+        document.getElementById('updateTitleEdit' + updateId).style.display = 'none';
         document.getElementById('updateEdit' + updateId).style.display = 'none';
         document.getElementById('updateEditLink' + updateId).style.display = 'inline';
         $.post('<?php print getBaseURL(); ?>/track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
