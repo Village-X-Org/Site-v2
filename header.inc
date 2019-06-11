@@ -82,87 +82,15 @@ if (hasParam('d')) {
   <script src="js/jquery-plugin-progressbar.js"></script>
   
 <link rel='stylesheet' href='css/lightbox2.css' type='text/css' />
-<script src="https://checkout.stripe.com/checkout.js" ></script>
 
 <link rel="stylesheet" type="text/css" href="css/slick.css" />
 <link rel="stylesheet" type="text/css" href="css/slick-theme.css" />
 <script type="text/javascript" src="js/slick.min.js"></script>
 <script src='https://www.google.com/recaptcha/api.js'></script>
-<script>
-// Stripe
-var handler = StripeCheckout.configure({
-  key: '<?php print (isset($_SESSION['test']) && $_SESSION['test'] ? STRIPE_TEST_API_KEY : STRIPE_API_KEY); ?>',
-  image: 'https://s3.amazonaws.com/stripe-uploads/acct_14tfQ6EfZscNLAofmerchant-icon-1414779028120-Screen%20Shot%202014-09-29%20at%2012.21.02%20PM.png',
-  locale: 'auto',
-  token: function(token) {
-	  form = document.getElementById('donateForm');
-	  form.stripeToken.value = token.id;
-	  form.stripeAmount.value = donationAmount;
-	  form.gcAmount.value = donationGCAmount;
-	  form.isSubscription.value = donationIsSubscription;
-	  form.firstName.value = donationFirstName;
-	  form.lastName.value = donationLastName;
-	  form.stripeEmail.value = donationEmail;
-	  form.projectId.value = donationProjectId;
-	  form.honoreeId.value = donationHonoreeId;
-	  form.honoreeMessage.value = donationHonoreeMessage;
-	  form.fundraiserId.value = donationFundraiserId;
-	  form.fundraiserMessage.value = donationFundraiserMessage;
-	  
-	  form.submit();
-  }
-});
-
-//Close Checkout on page navigation:
-window.addEventListener('popstate', function() {
-  handler.close();
-});
-
-function donateWithStripe(subscribe, amount, title, projectId, firstName, lastName, email, anonymous, honoreeId, honoreeMessage, gcAmount, fundraiserId, fundraiserMessage) {
- 	if (<?php print ((isset($_SESSION['offline']) && $_SESSION['offline'] == 1) ? "true" : "false"); ?>
- 		|| amount == 0) {
- 	  form = document.getElementById('donateForm');
-	  form.stripeToken.value = amount == 0 ? 'gcOnly' : 'offline';
-	  form.stripeEmail.value = email;
-	  form.stripeAmount.value = amount;
-	  form.gcAmount.value = gcAmount * 100;
-	  form.isSubscription.value = subscribe;
-	  form.firstName.value = firstName;
-	  form.lastName.value = lastName;
-	  form.projectId.value = projectId;
-	  form.honoreeId.value = honoreeId;
-  	  form.honoreeMessage.value = honoreeMessage;
-  	  form.fundraiserId.value = fundraiserId;
-  	  form.fundraiserMessage.value = fundraiserMessage;
-    	  
-      form.submit();		
- 	} else {
-	  donationIsSubscription = subscribe;
-	  donationFirstName = firstName;
-	  donationLastName = lastName;
-	  donationEmail = email;
-	  donationProjectId = projectId;
-	  donationAmount = amount;
-	  donationGCAmount = gcAmount * 100;
-	  donationHonoreeId = honoreeId;
-	  donationHonoreeMessage = honoreeMessage;
-	  donationFundraiserId = fundraiserId;
-	  donationFundraiserMessage = fundraiserMessage;
-	  handler.open({
-	    name: 'Village X Org',
-	    description: (subscribe ? 'Monthly Subscription' : title),
-	    amount: amount,
-	    email: email
-	  });
-	}
-}
-// End Stripe
-
-</script>
 
 <!-- form validation code -->
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 <script>
 
 	$().ready(function() {
@@ -245,6 +173,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
 				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
+				<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>
   				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
 				<?php if ($session_donor_id) {
 					print "
@@ -256,6 +185,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				<?php if (!isset($updates)) { ?>
 					<li><a class="waves-effect waves-light btn" href='track.php'>Latest Pics <i class='material-icons right' style='color:white;'>rss_feed</i></a></li>
 				<?php } ?>
+
 			</ul>
 		</div>
 	</nav>
@@ -271,6 +201,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 18px">Info/Tools</span><i class="material-icons right" style="font-size: 35px">arrow_drop_down</i></a></li>
 				<?php if (!isset($updates)) { ?>
+
 					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>Latest Pics</a></li>
 				<?php } ?>
 					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
@@ -281,6 +212,7 @@ function donateWithStripe(subscribe, amount, title, projectId, firstName, lastNa
 				          <li><a href="map.php">Map</a></li>
 		          		  <li><a href="finances.php">Finances</a></li>
 				          <li><a href="travel.php">Travel</a></li>
+				          <li><a href="shop.php">Shop</a></li>
 				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 				          <li class="divider" tabindex="-1"></li>
 

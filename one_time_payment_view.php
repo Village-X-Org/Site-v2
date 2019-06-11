@@ -7,8 +7,8 @@ require_once("utilities.php");
 
 <!-- form validation code -->
 <script src="https://jqueryvalidation.org/files/lib/jquery.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+<?php include("stripe_donation_code.php"); ?>
 <style type="text/css">
   .input-field div.error{
     position: relative;

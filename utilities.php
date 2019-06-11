@@ -26,6 +26,7 @@ define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
 define("CACHED_STORIES_FILENAME", "cached/project_stories");
 define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
+define("CACHED_SHOP_FILENAME", "cached/shop_listing");
 define("CACHED_PROJECT_PREFIX", "cached/project_");
 define("EMAIL_TYPE_PROJECT_FULLY_FUNDED", 0);
 define("EMAIL_TYPE_SUBSCRIPTION_CANCELLATION", 1);
@@ -35,6 +36,7 @@ define("EMAIL_TYPE_PROJECT_UPDATE", 4);
 define("EMAIL_TYPE_FUNDRAISER", 5);
 define("EMAIL_TYPE_PROFILE_ACTIVATION", 6);
 define("EMAIL_TYPE_PROJECT_FAILED", 7);
+define("EMAIL_TYPE_THANKS_FOR_PURCHASE", 8);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -46,7 +48,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font><BR>$errstr</P>";
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font></P>";
     exit();
 }
 set_error_handler("emailErrorHandler");
@@ -167,7 +169,6 @@ function doUnprotectedQuery($queryToBeExecuted) {
 
 		emailAdmin("Exception", "Exception caused by: ".mysqli_error($link)."\n\n".$queryToBeExecuted."\n\n".$trace);
 		print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
-		print "<P>details: ".mysqli_error($link)." <BR>QUERY: $queryToBeExecuted</FONT><P>$trace</P>";
 		die();
 	}
 	
@@ -532,6 +533,10 @@ function verifyRecaptcha($responseCode) {
 	} else {
 		return false;
 	}
+}
+
+function getShippingCost() {
+	return 10;
 }
 
 ?>

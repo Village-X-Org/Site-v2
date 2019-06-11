@@ -14,6 +14,7 @@ switch ($type) {
     case EMAIL_TYPE_PROJECT_COMPLETED:
     case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
+    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
         $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
@@ -209,6 +210,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																switch ($type) {
         																    case EMAIL_TYPE_PROJECT_COMPLETED:
         																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+    																		case EMAIL_TYPE_THANKS_FOR_PURCHASE:
         																    case EMAIL_TYPE_THANKS_FOR_DONATING:
     																        case EMAIL_TYPE_FUNDRAISER:
         																        if (isset($useHonoree)) {
@@ -256,6 +258,19 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
             																	Monthly</a> button on our website.
 																		<?php 
 																        break;
+    																case EMAIL_TYPE_THANKS_FOR_PURCHASE:
+    																	?>We deeply appreciate your purchase, of which $<?php print $donationAmountDollars; ?> is a 100% tax-deductible donation. You have disrupted extreme poverty in rural Africa.
+
+    																	<h2 style="color: inherit; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; word-wrap: normal; font-size: 30px; margin: 0 0 10px; padding: 0;" align="left">Purchase Summary</h2>
+    																		<TABLE style='width:100%;'>
+    																	<?php
+
+    																	foreach ($products as $product) {
+    																		print "<TR><TD><b>".$product[1]."</b><br/>Quantity: ".$product[4]."<br/>Price for each: $".($product[2] / 100)."</TD><TD style='align:right;'><div style=\"width:150px;height:150px;background-position:center; background-color:black;background-repeat:no-repeat; background-size:150px; border:1px solid;background-image:url('".ABS_PICTURES_DIR.$product[3]."');\"></div></TD></TR>";
+    																	}
+    																	?></TABLE>
+    																	<?php
+    																	break; 
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        if (isset($useHonoree)) {
 																            print (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." made a donation in your honor.";
@@ -287,6 +302,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															        case EMAIL_TYPE_PROJECT_COMPLETED:
 															            break;
 															        case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+															        case EMAIL_TYPE_THANKS_FOR_PURCHASE:
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        print "Donation details";
 																        break;
@@ -343,6 +359,16 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									<?php switch ($type) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+
+    																										case EMAIL_TYPE_THANKS_FOR_PURCHASE:
+?>
+                                        																        <p
+            																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
+            																										align="left">
+            																										<strong>Purchase ID</strong><br />
+            																										<?php print $purchaseId; ?>
+            																									</p><?php
+    																											break;
                                         																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                                         																        ?>
                                         																        <p
@@ -377,6 +403,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									<?php switch ($type) {
 																									    case EMAIL_TYPE_PROJECT_COMPLETED:
 																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+    																									case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                                         																case EMAIL_TYPE_THANKS_FOR_DONATING: 
         																								case EMAIL_TYPE_FUNDRAISER:
                                     																        ?>
@@ -497,6 +524,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     												        break;
                     												    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
                     												        break;
+                    												    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                     												    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                     												        ?>
                     												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
@@ -592,6 +620,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																<?php switch ($type) {
 																    case EMAIL_TYPE_PROJECT_COMPLETED:
 																    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
+																    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                 											        case EMAIL_TYPE_THANKS_FOR_DONATING:
             											            case EMAIL_TYPE_FUNDRAISER:
             											            case EMAIL_TYPE_PROFILE_ACTIVATION:
