@@ -24,32 +24,26 @@ if ($row = $result->fetch_assoc()) {
     $countryLabel = $row['country_label'];
     $stmt->close();
 ?>
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>
-<meta property="og:title" content="I donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village"/>
-<meta property="og:url" content="<?php print BASE_URL.$projectId; ?>"/>
-<meta property="og:description" content="Disrupt extreme poverty by funding projects villages choose. <?php print $summary; ?>"/>
 
 <?php 
-$metaProvided = 1; 
+$pageImage = PICTURES_DIR.$bannerPicture;
+$pageTitle = "My purchase supported $projectName in $villageName Village";
+$pageUrl = BASE_URL.$projectId;
+$pageDescription = "Disrupt extreme poverty by funding projects villages choose. $summary";
 include('header.inc'); ?>
 
 <div class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;">
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 		<div class="container">
         		<div class="row center">
-        			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for your donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?>!</h2> 
+        			<h2 class="header col s12 white-text text-lighten-2 text-shadow: 2px 2px 7px #111111">Thanks for your purchase!</h2> 
         		</div>
-			<br>
-			<div class="row center">
-				<p class="white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><b>Share your generosity to inspire others</b>
-				</p>	
-			</div> 
-			<div class="row center">
-					<?php printShareButtons($projectId, 
-						    "Disrupt extreme poverty by funding projects villages choose.", 
-						    "I donated to $projectName in $villageName Village", 70); ?>
-			</div>
+                <div class="row center">
+                    <?php foreach ($products as $product) {
+                        print "<div style=\"border:1px solid white; display:inline-block; height:150px;width:150px;background-size:150px; background-repeat:no-repeat;background-color:black;background-position:center; 
+                            background-image:url('".PICTURES_DIR.$product[3]."');margin-left:20px;margin-right:20px;margin-top:20px;\"></div>";
+                    } ?>
+                </div>
 		</div>
 	</div>
 	<div class="parallax">
@@ -67,13 +61,9 @@ include('header.inc'); ?>
               <?php if ($donorFirstName) { ?>
               	<p><?php print $donorFirstName; ?>,</p>
               <?php } ?> 
-    				<p>We processed your donation for $<?php print $donationAmountDollars; ?> to <?php print $projectName; ?> in <?php print $villageName; ?> Village! 
+    				<p>We have processed your purchase and will ship out your selection(s) as soon as possible!  From the total you paid, $<?php print $donationAmountDollars; ?> will be donated to <?php print $projectName; ?> in <?php print $villageName; ?> Village! 
     				<?php print ($matchingDonor ? "With the match from $matchingDonor, this is worth $".($donationAmountDollars * 2)."! " : ""); ?>You have disrupted 
     				extreme poverty for <?php print $peopleCount; ?> people and <?php print $householdCount ?> households in <?php print $countryLabel; ?>.</p>
-    				<p>This was your <?php print ordinal($donationCount); ?> donation to a village-led project. We deeply appreciate every donation and hope you will give again. Please
-    				stay tuned for project updates. As soon as they arrive, we'll notify you by email.</p>
-            		<p>If you haven't done so already, please consider supporting The Village Fund, which allows you to donate automatically every month (as little as $5) and enjoy
-            		email updates all year long.</p> 
             		<p>Sincerely,</p>
             		<p> The Village X Team and <?php print $villageName; ?> Village</p>
     			</div>

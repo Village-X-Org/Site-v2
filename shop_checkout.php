@@ -59,7 +59,7 @@ while ($row = $result->fetch_assoc()) {
 
 	<div class="row">
     	<div class="input-field col s12 donor-text" style="font-size:18px;vertical-align:middle;">
-			<select name="shop_project_id" onselect="$('#projectId').value=this.value;">
+			<select name="shop_project_id" onchange="$('#projectId').val(this.value);">
             	<option>Select Project to Fund with Your Purchase</option>
             	  <?php $result = doUnprotectedQuery("SELECT project_id, picture_filename, project_name, project_budget, project_funded, village_name 
                 FROM projects JOIN pictures ON picture_id=project_profile_image_id JOIN villages ON village_id=project_village_id 
@@ -166,7 +166,11 @@ while ($row = $result->fetch_assoc()) {
 		  form.stripeEmail.value = token.email;
   		  form.shippingName.value = args.shipping_name;
   		  form.shippingStreet.value = args.shipping_address_line1;
-		  form.shippingApt.value = args.shipping_address_apt;
+  		  if (args.shipping_address_line2) {
+		  	form.shippingApt.value = args.shipping_address_line2;
+		  } else {
+		  	form.shippingApt.value = '';
+		  }
   		  form.shippingCity.value = args.shipping_address_city;
 		  form.shippingState.value = args.shipping_address_state;
   		  form.shippingZip.value = args.shipping_address_zip;
