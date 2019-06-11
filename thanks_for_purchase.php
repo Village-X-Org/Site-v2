@@ -72,5 +72,7 @@ include('header.inc'); ?>
 	</div>
 </div>
 <?php } 
+
+unset($_SESSION['session_user_cart']);
 ?>
 <?php include('footer.inc'); ?>
