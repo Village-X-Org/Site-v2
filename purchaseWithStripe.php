@@ -51,12 +51,12 @@ if (!$projectId) {
 }
 
 if ($stripeToken !== 'offline' && $stripeToken !== 'gcOnly') {
-    /*$charge = \Stripe\Charge::create(array(
+    $charge = \Stripe\Charge::create(array(
         "amount" => $purchaseAmount,
         "currency" => "usd",
         "description" => "Project Donation",
         "source" => $stripeToken,
-    ));*/
+    ));
 } 
 
 $gcId = 0;
