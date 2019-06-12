@@ -269,7 +269,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
     																		print "<TR><TD><b>".$product[1]."</b><br/>Quantity: ".$product[4]."<br/>Price for each: $".($product[2] / 100)."</TD><TD style='align:right;'><div style=\"width:150px;height:150px;background-position:center; background-color:black;background-repeat:no-repeat; background-size:150px; border:1px solid;background-image:url('".ABS_PICTURES_DIR.$product[3]."');\"></div></TD></TR>";
     																	}
     																	?></TABLE>
-    																	<?php
+    																	<p/><b>Shipping Address</b>
+    																	<p/><?php print nl2br($address);
     																	break; 
 																    case EMAIL_TYPE_THANKS_FOR_DONATING:
 																        if (isset($useHonoree)) {
