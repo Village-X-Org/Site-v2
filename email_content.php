@@ -358,9 +358,6 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																									</p>
 																									
 																									<?php switch ($type) {
-																									    case EMAIL_TYPE_PROJECT_COMPLETED:
-																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
-
     																										case EMAIL_TYPE_THANKS_FOR_PURCHASE:
 ?>
                                         																        <p
@@ -370,6 +367,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
             																										<?php print $purchaseId; ?>
             																									</p><?php
     																											break;
+    																											case EMAIL_TYPE_PROJECT_COMPLETED:
+																									    case EMAIL_TYPE_PROJECT_FULLY_FUNDED:
                                         																    case EMAIL_TYPE_THANKS_FOR_DONATING: 
                                         																        ?>
                                         																        <p
