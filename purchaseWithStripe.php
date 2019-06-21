@@ -44,6 +44,7 @@ if ($row = $result->fetch_assoc()) {
 
 if (!$projectId) {
     $result = doUnprotectedQuery("SELECT project_id FROM projects JOIN villages ON project_village_id=village_id
+        WHERE project_budget > project_funded
         ORDER BY project_budget - project_funded ASC LIMIT 1");
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
@@ -116,7 +117,7 @@ $stmt->close();
 $donationId = $link->insert_id;
 
 if ($projectId && !$test) {
-    recordDonation($projectId, $purchaseAmountDollars, $donationId);
+    recordDonation($projectId, $donationAmountDollars, $donationId);
 }
 
 include("thanks_for_purchase.php");
