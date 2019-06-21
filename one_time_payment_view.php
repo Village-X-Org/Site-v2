@@ -77,7 +77,7 @@ require_once("utilities.php");
       }
       $stmt->close();
   }
-  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, village_name, country_label, project_matching_donor, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
+  $stmt = prepare("SELECT project_name, project_funded, project_budget, project_summary, project_community_contribution, village_name, country_label, project_matching_donor, bannerPictures.picture_filename AS bannerPicture, similarPictures.picture_filename AS similarPicture FROM projects
         JOIN villages ON project_village_id=village_id
         JOIN countries ON village_country=country_id
         JOIN pictures AS similarPictures ON project_similar_image_id=similarPictures.picture_id
@@ -95,7 +95,7 @@ require_once("utilities.php");
       $similarPicture = $row['similarPicture'];
       $bannerPicture = $row['bannerPicture'];
       $countryName = $row['country_label'];
-      $communityContribution = $projectBudget * .05;
+      $communityContribution = $projectBudget * ($row['project_community_contribution'] / 100);
       
       $remaining = ceil($projectBudget - $projectFunded);
   } else {
