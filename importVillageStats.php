@@ -2,8 +2,8 @@
 require_once("utilities.php");
 require_once("utility_readSheets.php");
 
-$spreadsheetId = '1DCpbtnHpxi_zUnTI8Vkx3dwh3Gs1zb04O4k_9G-50PA';
-$range = 'verified!A1:AO281';
+$spreadsheetId = '1Ga1Wzh4e8nrXX3gY1x3mflR8a2wnAKUbuxVvLcNGE-8';
+$range = 'verified!A1:AO9999';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $sheet = $response->getValues();
 
@@ -13,12 +13,16 @@ foreach ($sheet as $statRow) {
         $labels = $statRow;
         continue;
     }
+    if (!isset($statRow[1])) {
+       break;
+    }
     $village = $statRow[1];
     $year = $statRow[2];
     
     $result = doUnprotectedQuery("SELECT village_id FROM villages WHERE village_name='$village'");
     if ($row = $result->fetch_assoc()) {
         $villageId = $row['village_id'];
+        print "Village $village found with id $villageId\n";
     } else {
         print "Village $village missing\n";
         continue;

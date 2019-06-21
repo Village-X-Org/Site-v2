@@ -57,6 +57,8 @@ foreach ($sheet as $projRow) {
     
     $date = DateTime::createFromFormat("d/m/Y", $dateProjectPosted);
     $projYear = $date->format("Y");
+
+    print "Adding $village for $projYear\n";
     
     $result = doUnprotectedQuery("SELECT district_id FROM districts WHERE district_name='$district'");
     if ($row = $result->fetch_assoc()) {
