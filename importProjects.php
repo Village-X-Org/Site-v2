@@ -3,16 +3,22 @@ require_once("utilities.php");
 require_once("utility_readSheets.php");
 
 $spreadsheetId = '1YdE_8GNlF1HAKSnDozYZm9cRt0uzD877mRPgEF4Ub2A';
-$range = 'Sheet1!A:AM';
+$range = 'Main!A:AO';
 $response = $service->spreadsheets_values->get($spreadsheetId, $range);
 $sheet = $response->getValues();
 
+$startRow = 82;
 $rowCount = 0;
 foreach ($sheet as $projRow) {
     if ($rowCount++ == 0) {
+        print "Got row labels\n";
         $labels = $projRow;
         continue;
+    } elseif ($rowCount < $startRow) {
+        print "Skipping row for ".$projRow[1]."\n";
+        continue;
     } elseif (!isset($projRow[0])) {
+        print "No data, exiting\n";
         break;
     }
     $projId = $projRow[0];
