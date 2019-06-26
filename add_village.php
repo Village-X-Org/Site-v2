@@ -42,7 +42,7 @@ body, html {
           				
          				<form class="col s12" style="width:100%" id="add_village_form" method='post' action="village_save.php">
 
-         						<div class="row" style="padding:2% 0% 0 0%;margin:0;max-width:525px">
+         						<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
          						 <i class="material-icons prefix">account_circle</i>
@@ -53,7 +53,18 @@ body, html {
           						
           					</div>
           					
-          					<div class="row" style="padding:2% 0% 0 0%;margin:0;max-width:525px">
+          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR EMAIL ADDRESS</b></div>
+         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+         						 <i class="material-icons prefix">email</i>
+          							<input placeholder="e.g., Myson Jambo" class='donor-text' type="email" style="padding:0% 0% 0% 0%; font-size:20px;" 
+                        id="advocate_email" required data-error=".errorTxt1"/>
+          							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+          					 </div>
+          						
+          					</div>
+          					
+          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
           					<div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR TELEPHONE # (WHATSAPP IF POSSIBLE)</b></div>
           					<div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           						<i class="material-icons prefix">phone</i>
@@ -63,7 +74,7 @@ body, html {
      
        						 </div>
           						
-          						<div class="row" style="padding:2% 0% 0 0%;margin:0;max-width:525px">
+          						<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>VILLAGE NAME</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           							<i class="material-icons prefix">location_on</i>
@@ -75,7 +86,7 @@ body, html {
           					</div>
                        		  
 	                 			
-	                 			<div class="row" style="padding:2% 0% 0 0%;margin:0;max-width:525px">
+	                 			<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
                     
                       <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>VILLAGE POPULATION</b></div>
                      <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
@@ -87,17 +98,18 @@ body, html {
 	                 			
 	             
           					
-          					<div class="row" style="padding:2% 0% 1% 0%;margin:0;">
+          					<div class="row" style="padding:2% 0% 1% 0%;margin:0;max-width:600px">
           					<div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>PICTURES OF YOUR VILLAGE</b></div>
-          				
-    							<div class="file-field input-field" style="padding:0 13% 0 4%;"> 
+          					
+    							<div class="file-field input-field s12 donor-text" style="padding:0 13% 0 2%;font-size:20px;"> 
       							
-      							<div class="btn">
-        								<span>ADD PICS</span>
+      							<div class="btn" style="background-color: Transparent;outline:none">
+        							<i class="material-icons" style="color:black;font-size:20px">photo_library</i>
+        							
         						<input type="file" multiple>
       						</div>
      			 			<div class="file-path-wrapper">
-        							<input class="file-path validate" type="text" placeholder="Upload one or more pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt2" ">
+        							<input class="file-path validate" type="text" placeholder="click to upload pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt2">
       						</div>
       						<div class="errorTxt1 center-align" style="font-size:10px; color:red;"></div>
     							</div>
@@ -108,13 +120,13 @@ body, html {
     							
     							</div>				
 	          		
-	          		<div class="row" style="padding:2% 0% 0% 0%;margin:0;">
+	          		<div class="row" style="padding:2% 0% 0% 0%;margin:0;max-width:600px">
 	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>BIGGEST DEVELOPMENT PROBLEM</b>
                    </div>
                             
                       <div class="input-field col s12" style="padding:0% 13% 0% 3%;">
                       <i class="material-icons prefix">favorite</i>
-                        <textarea id="village_prob" required class="materialize-textarea donor-text" style="font-size:20px;" data-length="300" placeholder="e.g., lack of clean water or teacher houses" data-error=".errorTxt2"></textarea>
+                        <textarea id="village_prob" required class="materialize-textarea donor-text" style="font-size:20px;" data-length="300" placeholder="e.g., lack of clean water" data-error=".errorTxt2"></textarea>
   						<div class="errorTxt1 center-align" style="font-size:10px; color:red;"></div>
                       </div>
                  
@@ -123,7 +135,7 @@ body, html {
 					
                       
 	          		
-                           <div class="center-align valign-wrapper" style="width:100%; padding:0% 9% 1% 3%">
+                           <div class="center-align valign-wrapper" style="width:100%; padding:0% 9% 1% 3%;max-width:600px">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
                     				<button id="donationButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px"> 
