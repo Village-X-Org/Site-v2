@@ -12,8 +12,8 @@
 			</div>
 			<div class="row center">
 				<a id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger"
-					href='village_fund_payment_view.php'><i class="material-icons left">star</i>Give
+					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" 
+					href='village_fund_payment_view.php' style="font-size:large;"><i class="material-icons left">star</i>Give
 					Monthly</a>
 			</div>
 			<br>
