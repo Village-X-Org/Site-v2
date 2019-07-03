@@ -200,7 +200,8 @@ div.progressBar .ui-progressbar-value {
 				"layout": {
 					"icon-image": "proposed",
 					"icon-size": .5
-				}
+				},
+      			"minzoom": 5
 			});
 		});
 
