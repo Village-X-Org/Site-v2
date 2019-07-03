@@ -187,6 +187,23 @@ div.progressBar .ui-progressbar-value {
 			map.getCanvas().style.cursor = 'default';
 		});
 
+		map.loadImage('images/icon_village.png', function(error, image) {
+			if (error) throw error;
+			map.addImage('proposed', image);
+			map.addLayer({
+				"id": "proposed",
+				"type": "symbol",
+				"source": {
+					"type": "geojson",
+					'data': 'cached/proposed.json'
+				},
+				"layout": {
+					"icon-image": "proposed",
+					"icon-size": .5
+				}
+			});
+		});
+
 		zoomToCountry([35,-15.024]);
 	});
 

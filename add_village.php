@@ -68,6 +68,20 @@ if (hasParam('upload_file')) {
   execute($stmt);
   print "<p>Update saved successfully!</p>";
   $stmt->close();
+
+  $pictures = explode(',', $pictureIds);
+  $pictureStr = '';
+  foreach ($pictures as $next) {
+    if (strlen($next) > 1) {
+      $pictureStr .= "<img src='".ABS_PICTURES_DIR."$next.jpg' /> ";
+    }
+  }
+  $output = "Advocate Name: $advocateName<br/>AdvocateEmail: $advocateEmail<br/>Advocate Phone: $advocatePhone<br/>Village Name: $villageName<br/>Location: $lat, $lng<br/>Village Population: $villagePopulation<br/>Village Problem: $villageProblem<br/><br/>$pictureStr";
+  sendMail(getCustomerServiceEmail(), "Village $villageName uploaded by $advocateName",
+    $output, getCustomerServiceEmail());
+  sendMail(getAdminEmail(), "Village $villageName uploaded by $advocateName",
+    $output, getCustomerServiceEmail());
+  include("generateProposedJson.php");
   die(0);
 }
 ?>
