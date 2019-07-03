@@ -15,11 +15,11 @@ body, html {
 
 .no-webp .bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
-    opacity:1; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 .webp .bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.webp");
-    opacity:1; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
 .carousel-slider {
@@ -151,11 +151,9 @@ if (hasParam('gc')) {
 		</div>
 
 		<div class="parallax">
-			<picture>
-			  <source type="image/webp" srcset="images/chiyuni_banner.webp">
-			  <source type="image/jpeg" srcset="images/chiyuni_banner.jpg">
+			
 			  <img src="images/chiyuni_banner.jpg" alt="">
-			</picture>
+			
 		</div>
 			
 	</div>
@@ -176,9 +174,9 @@ if (hasParam('gc')) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-							  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
-							  <source type="image/jpeg" srcset="images/how_it_works_democracy.jpg">
+							  
 							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+							
 							</h2> 
 							
 							<h5 class="center flow-text" style="font-weight: 300;padding:0% 0 2% 0%">Bakili Village votes to build a nursery school to improve early childhood education.</h5>
@@ -191,11 +189,9 @@ if (hasParam('gc')) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<picture>
-								  <!--  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">  -->
-								  <source type="image/jpeg" srcset="images/how_it_works_directgiving_2.jpg">
-								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving_2.jpg">
-								</picture>
+				
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
+								
 							</h2>
 
 							<h5 class="center flow-text" style="font-weight: 300; padding:0% 10% 2% 10%">Alice, a teacher in New York City, donates to Bakili's project.</h5>
@@ -207,11 +203,9 @@ if (hasParam('gc')) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<picture>
-								  <!--  <source type="image/webp" srcset="images/how_it_works_development.webp">  -->
-								  <source type="image/jpeg" srcset="images/how_it_works_development_2.jpg">
-								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development_2.jpg">
-								</picture>
+								
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
+								
 							</h2>
 							
 							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed school increases nursery enrollment in Bakili by 60%.</h5>
@@ -235,11 +229,9 @@ if (hasParam('gc')) {
 <div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.1); height: 700px">
             
             <div class="parallax">
-            	<picture>
-				  <!--  <source type="image/webp" srcset="images/benard_taking_pic.webp">  -->
-				  <source type="image/jpeg" srcset="images/water_celebration.jpg">
-				  <img src="images/benard_taking_pic.jpg" alt="">
-				</picture>
+            	
+				  <img src="images/water_celebration.jpg" alt="">
+				
             </div>
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
@@ -250,7 +242,7 @@ if (hasParam('gc')) {
          <div class="row center-align" style="width:100%;">
         
          
-         <div class="col 12" style="opacity:1; width:100%">
+         <div class="col 12" style="width:100%">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
                         <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">   give and<br>follow<br>  projects</h5></div>
                          <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;padding: 6px 0 0 0"><i class="material-icons large">phone_iphone</i></div>
@@ -260,7 +252,7 @@ if (hasParam('gc')) {
    
             </div>
           
-    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:350px;opacity:1; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
+    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:350px; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
     <ul class="list center-align">
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
@@ -466,11 +458,9 @@ if (CACHING_ENABLED) {
         </div>
       
 			<div class="parallax">
-				<picture>
-				  <source type="image/webp" srcset="images/newsletter_banner_2.webp">
-				  <source type="image/jpeg" srcset="images/newsletter_banner_2.jpg">
+				
 				  <img src="images/newsletter_banner_2.jpg" alt="">
-				</picture>
+				
 			</div>
 		</div>
 	</div>
@@ -500,11 +490,9 @@ if (CACHING_ENABLED) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<picture>
-								  <!--  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">  -->
-								  <source type="image/jpeg" srcset="images/goat_impacts.jpg">
+								
 								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/goat_impacts.jpg">
-								</picture>
+								
 							</h2>
 
 							<h5 class="light center" style="padding:0% 10% 0% 10%;">Goats owned by families</h5>
@@ -516,11 +504,9 @@ if (CACHING_ENABLED) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<picture>
-								  <!--  <source type="image/webp" srcset="images/how_it_works_development.webp">  -->
-								  <source type="image/jpeg" srcset="images/water_impacts.jpg">
+								
 								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/water_impacts.jpg">
-								</picture>
+								
 							</h2>
 							
 							<h5 class="light center" style="padding:0% 12% 0% 12%;">Waterborne illnesses</h5>

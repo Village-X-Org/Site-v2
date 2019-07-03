@@ -199,7 +199,7 @@ if (hasParam('d')) {
 					
 					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
 					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
-					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><span style="font-size: 18px black"></span><i class="material-icons" style="font-size: 50px">menu</i></a></li>
+					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><i class="material-icons" style="font-size: 50px">menu</i></a></li>
 				<?php if (!isset($updates)) { ?>
 
 					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>Latest Pics</a></li>
