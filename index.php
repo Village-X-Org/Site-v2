@@ -472,9 +472,9 @@ if (CACHING_ENABLED) {
 					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-							  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
-							  <source type="image/jpeg" srcset="images/school_impacts.jpg">
+							 
 							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/school_impacts.jpg">
+							  
 							</h2> 
 							<h5 class="light center" style="padding:0% 10% 0% 10%;">Kids in nursery school</h5>
 							<h4 class="center" style="font-weight: 300;padding:0% 0 2% 0%">+60%</h4>
