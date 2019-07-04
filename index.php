@@ -15,11 +15,11 @@ body, html {
 
 .no-webp .bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
-    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 .webp .bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.webp");
-    opacity:1.5; height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
 .carousel-slider {
@@ -112,166 +112,105 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg hide-on-med-and-down valign-wrapper" style="border-style:solid; width:100%">
-<div class="container center-align" style="width:100%;">	
-	<div class="section no-pad-bot">
-		<div class="row center">
-			<div style="padding: 0% 5% 1% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111" class="col s12 white-text text-lighten-2 flow-text">
-				Fund Projects That Villages Choose
-			</div>
-
-			<div style="padding: 0% 12% 5% 12%;font-size:xx-large;font-weight:250;opacity:0.8;text-shadow: 2px 2px 7px #111111;" class="header white-text center light">
-				
-				because everyone deserves democracy and development
-					
-			</div>  
-
-			<div style="padding: 0% 5% 10% 5%;height:120px;">
-				<br>
-				<br>
-				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size:x-large;box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);">MEET THE VILLAGES</a>
-			</div>
-		</div>
-		</div>
+<div class="bg hide-on-med-and-down" style="width:100%; z-index: -1">
+<div class="row" style="height: 100%;background-color:rgba(0, 0, 0, 0.2)">
+<div class="col s3"></div>
+<div class="valign-wrapper col s6" style="z-index: 1; height: 100%;">
 		
-		   <div class="container" style="padding: 2% 5% 0 5%; width:100%"> 
-	
-		<!--   Icon Section   -->
-		 
-		 <div class="row center-align" style="width:100%">
-			<div class="col s12 m4 l4 center-align">
-				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>people</b></i>
-					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">lives changed</h5>
-					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">56,926</h4>
-					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">in Malawi, Africa</h6>
-					<br> 
-				</div>
-			</div>
-
-			  <div class="col s12 m4 l4 center-align">
-				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111"><b>done_outline</b></i>
-					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">projects completed</h5>
-					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">45</h4>
-					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">from 2014 to 2018</h6>
-					<br> 
-				</div>
-			</div>  
-
-			<div class="col s12 m4 l4 center-align">
-				<div class="icon-block white-text">
-					<i class="material-icons" style="font-size: 50px;text-shadow: 2px 2px 7px #111111""><b>attach_money</b></i>
-					<h5 style="padding: 0% 5% 0% 5%;text-shadow: 2px 2px 7px #111111">cost per person</h5>
-					<h4 class="light center" style="text-shadow: 2px 2px 7px #111111">$0.66</h4>
-					<h6 class="light center" style="text-shadow: 2px 2px 7px #111111">per year</h6>
-					<br> 
-				</div>
+			<div class="section center-align" style="width:100%;position:relative; z-index: 30;">
+			<div style="width:100%;padding: 0% 10% 0% 10%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
+				We fund projects that villages choose
 			</div>
 			
-		</div>
-		</div> 
-		
-		</div>
-		
-		
-	</div>
-	
+			<div class="row" style="width:100%;padding: 3% 0% 5% 0%;height:120px;">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE THE PROJECTS</button></a>
+			</div>
+			
+          </div>
+        
+      </div>
+      <div class="col s3"></div>
+      
+      </div>
+			
+			</div>
+			
 
-	
-
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px;">
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px;"> 
 	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
 		<div class="section row center" style="width:100%;">
-			<h2 class="col s12 center-align white-text text-lighten-2 flow-text" style="padding:4% 2% 0% 2%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-size:36px;">Fund Projects That Villages Choose</h2>
+			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 15% 3% 15%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		
-    		<div style="padding:0% 8% 0% 8%">
-    				<h5 class="center-align light" style="font-size:24px;opacity:0.8; text-shadow: 2px 2px 7px #111111">because everyone deserves democracy and development</h5>
+        		<div class="center-align" style="padding:4% 2% 4% 0%">	
+				<a href="project_tiles.php" id="download-button"
+					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE THE PROJECTS</a>
 			</div>
 			
-			<div class="center-align" style="padding:4% 2% 4% 0%">	
-				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:5px; font-size: large">FIND YOUR VILLAGE</a>
-			</div>
 		</div>
 
 		<div class="parallax">
-			<picture>
-			  <source type="image/webp" srcset="images/chiyuni_banner.webp">
-			  <source type="image/jpeg" srcset="images/chiyuni_banner.jpg">
+			
 			  <img src="images/chiyuni_banner.jpg" alt="">
-			</picture>
+			
 		</div>
 			
 	</div>
 </div>
 	
-	<div class="flow-text" style="background-color: #FFF5EE; display: flex">
+	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY.</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
-	We're changing that with a model that celebrates village democracy, direct giving, and data analysis. Small transfers of cash make a big difference
-	when they target underserved villages on the ground. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
+	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
+	We're changing that with a model that celebrates <b>village democracy, direct giving, and data analysis</b>. Small transfers of cash make a big difference
+	when they target public goods chosen by underserved villages. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
 	</div>
 	</div>
 
-<div class="container hide-on-med-and-down"">
-			<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Works</h4>
+<div class="container">
+			<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">How It Works</h4>
 
 				<div class="row">
-					<div class="col s12 m4">
+					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-							  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
-							  <source type="image/jpeg" srcset="images/how_it_works_democracy.jpg">
+							  
 							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
+							
 							</h2> 
 							
-							<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
-
-							<p class="light center">Search the projects page or interactive map for villages battling extreme poverty in rural
-								Africa. Find a village-led development project that changes lives and speaks to you.</p>
-								
-							<h5 class="center">#localdemocracy</h5>
+							<h5 class="center flow-text" style="font-weight: 300;padding:0% 0 2% 0%">Bakili Village votes to build a nursery school to improve early childhood education.</h5>
+			
+							<h5 class="center">#democracy</h5> 
 
 						</div>
 					</div>
 
-					<div class="col s12 m4">
+					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center brown-text">
-								<picture>
-								  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">
-								  <source type="image/jpeg" srcset="images/how_it_works_directgiving.jpg">
+				
 								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
-								</picture>
+								
 							</h2>
 
-							<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
-
-							<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
-							biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
-							
-							<h5 class="center">#directgiving</h5>
+							<h5 class="center flow-text" style="font-weight: 300; padding:0% 10% 2% 10%">Alice, a teacher in New York City, donates to Bakili's project.</h5>
+					
+							<h5 class="center">#direct</h5>  
 						</div>
 					</div>
 
-					<div class="col s12 m4">
+					<div class="col s12 m12 l4">
 						<div class="icon-block">
 							<h2 class="center black-text">
-								<picture>
-								  <source type="image/webp" srcset="images/how_it_works_development.webp">
-								  <source type="image/jpeg" srcset="images/how_it_works_development.jpg">
+								
 								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
-								</picture>
+								
 							</h2>
 							
-							<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
+							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed school increases nursery enrollment in Bakili by 60%.</h5>
 
-							<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
-					 of how your donations change the lives of rural Africans.</p>
-							 
-							 <h5 class="center">#seeingimpact</h5>
+							 <h5 class="center">#data</h5>  
 						</div>
 					</div>
 				</div>
@@ -287,148 +226,86 @@ if (hasParam('gc')) {
 		$('.carousel').mousedown(function() { clearTimeout(timer); });
 	</script>
 
-
-<div class="container valign-wrapper">
-<div class="hide-on-large-only">
-<h4 class="header center light blue-text text-lighten-2">How It Works</h4>
-
-		<div class="row">
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text">
-						<picture>
-						  <source type="image/webp" srcset="images/how_it_works_democracy.webp">
-						  <source type="image/jpeg" srcset="images/how_it_works_democracy.jpg">
-						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_democracy.jpg">
-						</picture>
-					</h2> 
-					
-					<h5 class="center flow-text" style="font-weight: 600;">Villages choose projects.</h5>
-
-					<p class="light center">Search the projects page or interactive map for tenacious villages battling extreme poverty in rural
-						Africa. Find a village-led development project that speaks to you.</p>
-						
-					<h5 class="center">#localdemocracy</h5>
-
-				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center brown-text">
-						<picture>
-						  <source type="image/webp" srcset="images/how_it_works_directgiving.webp">
-						  <source type="image/jpeg" srcset="images/how_it_works_directgiving.jpg">
-						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_directgiving.jpg">
-						</picture>
-					</h2>
-
-					<h5 class="center flow-text" style="font-weight: 600; padding:0% 10% 0% 10%">You help fund them.</h5>
-
-					<p class="light center">Make a donation directly to a rural village that not only identifies local solutions to its
-					biggest problems, but also contributes labor, materials, and, importantly, cash.</p>
-					
-					<h5 class="center">#directgiving</h5>
-				</div>
-			</div>
-
-			<div class="col s12 m4">
-				<div class="icon-block">
-					<h2 class="center black-text">
-						<picture>
-						  <source type="image/webp" srcset="images/how_it_works_development.webp">
-						  <source type="image/jpeg" srcset="images/how_it_works_development.jpg">
-						  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/how_it_works_development.jpg">
-						</picture>
-						
-					</h2>
-					
-					<h5 class="center flow-text" style="font-weight: 600;padding:0% 5% 0% 5%">We send you updates.</h5>
-
-					<p class="light center">Enjoy mobile phone updates with pictures, videos, and data from the field providing a vivid accounting
-					 of how your donations change the lives of rural Africans.</p>
-					 
-					 <h5 class="center">#seeingimpact</h5>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br>
-	
-</div>	
-
-<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.1); height: 500px">
+<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.1); height: 700px">
             
             <div class="parallax">
-            	<picture>
-				  <source type="image/webp" srcset="images/benard_taking_pic.webp">
-				  <source type="image/jpeg" srcset="images/benard_taking_pic.jpg">
-				  <img src="images/benard_taking_pic.jpg" alt="">
-				</picture>
+            	
+				  <img src="images/water_celebration.jpg" alt="">
+				
             </div>
     <div class="section no-pad-bot valign-wrapper"
         style="height: 100%; width: 100%;">
         <div class="center-align valign-wrapper" style="width:100%">
         <div class="row center-align" style="width:100%;height:100%;padding:0% 0% 0% 0%;">
+        <h4 class="header center light white-text text-lighten-2" style="text-transform:uppercase; padding:0% 0 0 0">our guarantee</h4>
          
          <div class="row center-align" style="width:100%;">
         
          
-         <div class="col 12" style="opacity:1; width:100%">
+         <div class="col 12" style="width:100%">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">radically<br>transparent<br>donating</h5></div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;padding: 6px 0 0 0"><i class="material-icons large">smartphone</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">means<br>knowing<br>you helped</h5></div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">   give and<br>follow<br>  projects</h5></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;padding: 6px 0 0 0"><i class="material-icons large">phone_iphone</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">easily<br>from your<br>phone</h5></div>
                          </div> 
             </div>
    
             </div>
-            
-    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:325px;opacity:1; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
+          
+    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:350px; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
     <ul class="list center-align">
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
         <i class="material-icons left circle white-text">place</i>
-          <div class="white-text flow-text" style="font-size: large; padding:0 0 0 0%">
-            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text">every project mapped</span></a>
+          <div class="white-text flow-text" style="font-size: large; padding:0 0 0 0%;text-shadow: 4px 4px 7px #111111;">
+            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text"><b>every project mapped</b></span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">attach_money</i>
-          <div class="flow-text white-text" style="font-size: large;">
-            <a href="https://villagex.org/finances.php" target="_blank"><span class="white-text">clear financial breakdowns</span></a>
+          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
+            <a href="https://villagex.org/finances.php" target="_blank"><span class="white-text"><b>clear financial breakdowns</b></span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">show_chart</i>
-          <div class="flow-text white-text" style="font-size: large;">
-            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text">village-level impact data</span></a>
+          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
+            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text"><b>village-level impact data</b></span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">insert_photo</i>
-          <div class="flow-text white-text" style="font-size: large;">
-            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">same-day project updates</span></a>
+          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
+            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text"><b>same-day project updates</b></span></a>
+          </div>
+        </div>
+      </li>
+      <li class="waves-effect" style="width:100%">
+        <div class="valign-wrapper">
+          <i class="material-icons left circle white-text">person</i>
+          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
+            <a href="https://villagex.org/user_login.php" target="_blank"><span class="white-text"><b>user profiles track giving</b></span></a>
           </div>
         </div>
       </li>
     </ul>
     </div>
+    </div>
     
-            </div>
+            
             </div>
         </div>
     </div>
 </div>
 
 <div class="container">
-	<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">Featured Projects</h4>
+	<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase;padding:1% 0 0 0">Featured Projects</h4>
 	<h6 class="header center light" style="padding:0% 10% 2% 10%;">(100% completion rate)</h6>
 	<div class="section">
 
@@ -458,7 +335,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         if (!isset($cells[$projectType])) {
             $cells[$projectType] = array();
         }
-        $nextBuffer = "<div class='col s12 m6 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
+        $nextBuffer = "<div class='col s12 m12 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
     			<div class='card sticky-action hoverable'>
     				<div class='card-image'>
     					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
@@ -533,11 +410,13 @@ if (CACHING_ENABLED) {
 		</div>
 		<br>
 
-		<div class="row center">
+		<div class="row center" style="padding:0 0 1% 0">
 			<a href='project_tiles.php' id="download-button"
-				class="btn-large waves-effect waves-light light blue lighten-1" style="border-radius:20px;">more
+				class="btn-large waves-effect waves-light light blue-text lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: light blue; font-size:large;">more
 				projects</a>
 		</div>
+		
 	</div>
 </div>
 
@@ -548,9 +427,11 @@ if (CACHING_ENABLED) {
 		
 		<div class="row center">
         	<div class="valign-wrapper">
+        	<div>
+                  	<h4 class="header center light white-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 1% 0">newsletter</h4> 
           <div class="card white" style="opacity: 0.7; border-radius:20px;">
             <div class="card-content black-text">
-              <span class="card-title"><b>like disrupting extreme poverty?<br> sign up for our newsletter</b></span>
+              <span class="card-title"><b>like disrupting extreme poverty?<br> sign up to stay in the loop</b></span>
       		
     		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
       		<div class="row">
@@ -561,7 +442,7 @@ if (CACHING_ENABLED) {
     		
 			
         		<div class="center-align" style="width:100%; padding: 0 0 5% 0">
-          			<button class="btn-large blue waves-effect waves-light center-align" style="border-radius:20px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
+          			<button class="btn-large blue waves-effect waves-light center-align" style="font-size:large;border-radius:5px; margin:0% 0% 5% 0%;" type="submit" name="action">submit
   					</button>
     			</div>
     		
@@ -572,90 +453,75 @@ if (CACHING_ENABLED) {
 			</form>
 			
 			</div>	
+			</div>
           </div>
         </div>
       
 			<div class="parallax">
-				<picture>
-				  <source type="image/webp" srcset="images/newsletter_banner_2.webp">
-				  <source type="image/jpeg" srcset="images/newsletter_banner_2.jpg">
+				
 				  <img src="images/newsletter_banner_2.jpg" alt="">
-				</picture>
+				
 			</div>
 		</div>
 	</div>
 </div>
 
 <div class="container">
-<h4 class="header center light blue-text text-lighten-2" style="padding:1% 0 0 0">How It Helps</h4> 
-	<h6 class="header center light" style="padding:0% 10% 0% 10%;">(proving impact with data)</h6>
-<table class="highlight centered responsive-table striped flow-text">
-		        <thead>
-		          <tr>
-		              <th>Metric</th>
-		              <th>Boys in nursery</th>
-		              <th>Girls in nursery</th>
-		              <th>Goat assets</th>
-		              <th>Waterborne illness</th>
-		              <th>Infant deaths</th>
-		              <th>Agri biz</th>
-		              <th>Other biz</th>
-		              <th>Homes w/ metal roofs</th>
-		          </tr>
-		        </thead>
+<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">Verified Impacts</h4> 
+	<div class="row">
+					<div class="col s12 m12 l4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+							 
+							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/school_impacts.jpg">
+							  
+							</h2> 
+							<h5 class="light center" style="padding:0% 10% 0% 10%;">Kids in nursery school</h5>
+							<h4 class="center" style="font-weight: 300;padding:0% 0 2% 0%">+60%</h4>
+							<h5 class="center flow-text light blue-text" style="font-weight: 300;padding:0% 0 2% 0%">increase</h5>
 
-		        <tbody>
-		          <tr>
-		            <td>% change</td>
-		            <td>+50%</td>
-		            <td>+67%</td>
-		            <td>+83%</td>
-		            <td>-64%</td>
-		            <td>-100%</td>
-		            <td>+81%</td>
-		            <td>+100%</td>
-		            <td>+50%</td>
-		          </tr>
-		          <tr>
-		            <td>impact per village</td>
-		            <td>+7 boys</td>
-		            <td>+12 girls</td>
-		            <td>+45 goats</td>
-		            <td>-109 cases</td>
-		            <td>-2 deaths</td>
-		            <td>+13 biz</td>
-		            <td>+8 biz</td>
-		            <td>+13 homes</td>
-		          </tr>
-		          <tr>
-		            <td>p-value</td>
-		            <td>p&lt;0.05</td>
-		            <td>p&lt;0.01</td>
-		            <td>p&lt;0.01</td>
-		            <td>p&lt;0.01</td>
-		            <td>p&lt;0.05</td>
-		            <td>p&lt;0.01</td>
-		            <td>p&lt;0.01</td>
-		            <td>p&lt;0.05</td>
-		          </tr>
-		      
-		          <tr>
-		            <td>total impact (all villages)</td>
-		            <td>+133 boys</td>
-		            <td>+228 girls</td>
-		            <td>+855 goats</td>
-		            <td>-2071 cases</td>
-		            <td>-38 deaths</td>
-		            <td>+247 biz</td>
-		            <td>+152 biz</td>
-		            <td>+247 homes</td>
-		          </tr>
-		        </tbody>
-		      </table>
-		      <div class="flow-text center" style="padding:2% 5% 0 5%;font-size:20px;">*Table shows development impacts (changes in treatment v. control villages) after two projects and a total investment of $7,000 per village, on average. 
-		      25 development metrics collected annually in each treatment and control village from 2014 (baseline) to 2018, with statistics calculated 
-				using a difference-in-differences model.  More info <a href="impacts.php">here</a>.  
+							
+								
+							 
+
+						</div>
+					</div>
+
+					<div class="col s12 m12 l4">
+						<div class="icon-block">
+							<h2 class="center brown-text">
+								
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/goat_impacts.jpg">
+								
+							</h2>
+
+							<h5 class="light center" style="padding:0% 10% 0% 10%;">Goats owned by families</h5>
+							<h4 class="center" style="font-weight: 300;padding:0% 0 2% 0%">+83%</h4>
+							<h5 class="center flow-text light blue-text" style="font-weight: 300;padding:0% 0 2% 0%">increase</h5>  
+						</div>
+					</div>
+
+					<div class="col s12 m12 l4">
+						<div class="icon-block">
+							<h2 class="center black-text">
+								
+								  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/water_impacts.jpg">
+								
+							</h2>
+							
+							<h5 class="light center" style="padding:0% 12% 0% 12%;">Waterborne illnesses</h5>
+							<h4 class="center" style="font-weight: 300;padding:0% 0 2% 0%">-64%</h4>
+							<h5 class="center flow-text light blue-text" style="font-weight: 300;padding:0% 0 2% 0%">decrease</h5>  
+						</div>
+					</div>
+				</div>
+				<div class="row center" style="padding:1% 0 0 0">
+			<a href='impacts.php' id="download-button"
+				class="btn-large waves-effect waves-light blue-text lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: light blue; font-size:large;">more
+				impacts</a>
+		</div>
+		     
 		      </div>
-		      </div>
-<br/><br/>
+<br/>
 <?php include('footer.inc'); ?>

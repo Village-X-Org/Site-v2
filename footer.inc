@@ -12,8 +12,8 @@
 			</div>
 			<div class="row center">
 				<a id="download-button"
-					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger"
-					href='village_fund_payment_view.php'><i class="material-icons left">star</i>Give
+					class="btn-large waves-effect waves-light light blue lighten-1 modal-trigger" 
+					href='village_fund_payment_view.php' style="font-size:large;"><i class="material-icons left">star</i>Give
 					Monthly</a>
 			</div>
 			<br>
@@ -43,11 +43,9 @@
 			</div>
 		</div>
 		<div class="parallax">
-			<picture>
-			  <source type="image/webp" srcset="images/footer1.webp">
-			  <source type="image/jpeg" srcset="images/footer1.jpg">
+			
 			  <img src="images/footer1.jpg" alt="Unsplashed background img 2">
-			</picture>
+			
 		</div>
 	</div>
 </div>
