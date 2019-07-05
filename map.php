@@ -135,6 +135,14 @@ div.progressBar .ui-progressbar-value {
 
 </div>
 
+<div id='proposedModal' class='modal'>
+	<center><h5 id='proposedName'></h5></center>
+	<p style='margin-left:20px;'><b>Most Urgent Development Problem:</b> <span id='dev_problem'></span><br/>
+		<b>Village Population: </b><span id='population'></span><br/>
+		<b>Date Posted: </b><span id='date_added'></span><br/>
+	<div id='proposedPictures' style='margin:20px;width:100%;height:250px;overflow-x:scroll;overflow-y:hidden;'></div>
+</div>
+
 <script>
 	// Global variables.
 	var selectedCell, selectedElem, selectedVillage, selectedCountry, retryCount = 1, timer;
@@ -202,6 +210,30 @@ div.progressBar .ui-progressbar-value {
 					"icon-size": .5
 				},
       			"minzoom": 5
+			});
+			$('#proposedModal').modal();
+
+			map.on("mousemove", "proposed", function(e) {
+				map.getCanvas().style.cursor = 'pointer';
+			});
+			map.on("mouseleave", "proposed", function() {
+				map.getCanvas().style.cursor = 'default';
+			});
+			map.on("click", "proposed", function(e) {
+				$('#proposedName').text(e.features[0].properties.name);
+				$('#dev_problem').text(e.features[0].properties.dev_problem);
+				$('#population').text(e.features[0].properties.population);
+				$('#date_added').text(e.features[0].properties.date_added);
+				$.each(e.features[0].properties.pictures.split(','), function(i, next) {
+					if (next.length > 0) {
+						img = document.createElement("img");
+						img.style.height = '250px';
+						img.src = '<?php print ABS_PICTURES_DIR; ?>' + next + '.jpg';
+						$('#proposedPictures').append(img);
+					}
+				});
+
+				$('#proposedModal').modal('open');
 			});
 		});
 
@@ -352,5 +384,6 @@ div.progressBar .ui-progressbar-value {
 		$("#buttonHolder").show();
 		retryCount = 1;
 	}
+
 </script>
 <?php include('footer.inc'); ?>
