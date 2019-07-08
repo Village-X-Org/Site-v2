@@ -5,6 +5,10 @@ require_once('lib/stripe/init.php');
 $test = (isset($_SESSION['test']) && $_SESSION['test'] ? 1 : 0);
 \Stripe\Stripe::setApiKey($test ? STRIPE_TEST_SECRET_KEY : STRIPE_SECRET_KEY);
 
+if (!hasParam('stripeEmail')) {
+    print "Looks like you tried to access this script directly.  I'm assuming you're a bot.  Please notify the admin if you are a real person.  Thanks!";
+    die(1);
+}
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
