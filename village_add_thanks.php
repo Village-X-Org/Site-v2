@@ -1,15 +1,26 @@
+
+<?php include("utilities.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php
+$proposedId = param('proposed');
+$stmt = prepare("SELECT pv_picture_ids, pv_name FROM proposed_villages WHERE pv_id=?");
+$stmt->bind_param('i', $proposedId);
+$result = execute($stmt);
+if ($row = $result->fetch_assoc()) {
+	$pictureIds = $row['pv_picture_ids'];
+	$villageName = $row['pv_name'];
+}
+$stmt->close();
 
-<meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
-<meta property="og:image" content="<?php print PICTURES_DIR.$bannerPicture; ?>"/>  <!-- here could we put the pic uploaded by the user? -->
-<meta property="og:title" content="I just added <?php print $villageName; ?> to Village X's map!"/>
-<meta property="og:url" content="<?php print BASE_URL.$projectId; ?>"/>  <!-- not sure what to put here -->
-<meta property="og:description" content="Village X maps villages and funds development projects chosen by them."/>
+$commaIndex = strpos($pictureIds, ',');
+$firstPic = substr($pictureIds, 0, $commaIndex);
 
-<?php 
-$metaProvided = 1; 
+$pageImage = PICTURES_DIR.$firstPic.".jpg";
+$pageTitle = "I just added $villageName to Village X's map!";
+$pageUrl = BASE_URL."village_add_thanks.php?proposed=$proposedId";
+$pageDescription = "Village X maps villages and funds development projects chosen by them.";
 include('header.inc'); ?>
 
 <div class="row" style="height:90vh;">
@@ -18,7 +29,7 @@ include('header.inc'); ?>
 	<div class="valign-wrapper">
 		<div>
         		<div class="row left-align">
-        			<h3 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Thanks, (name), for adding your village in (country) on (date)!</h3>
+        			<h3 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Thanks for adding <?php print villageName; ?>!</h3>
         			<h4 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">We put your village on our map to recognize your commitment to community-led 
         			development and share your village's development needs with organizations that might be able to help.</h4> 
         			<h4 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Please add more villages to the map and encourage your friends to do the same.</h4>
