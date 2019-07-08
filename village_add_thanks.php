@@ -4,12 +4,16 @@
 <html lang="en">
 <head>
 <?php
+if (!hasParam('proposed')) {
+	print "You must supply a proposed village id.";
+	die(0);
+}
 $proposedId = param('proposed');
-$stmt = prepare("SELECT pv_picture_ids, pv_name FROM proposed_villages WHERE pv_id=?");
+$stmt = prepare("SELECT pv_images, pv_name FROM proposed_villages WHERE pv_id=?");
 $stmt->bind_param('i', $proposedId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
-	$pictureIds = $row['pv_picture_ids'];
+	$pictureIds = $row['pv_images'];
 	$villageName = $row['pv_name'];
 }
 $stmt->close();
@@ -29,7 +33,7 @@ include('header.inc'); ?>
 	<div class="valign-wrapper">
 		<div>
         		<div class="row left-align">
-        			<h3 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Thanks for adding <?php print villageName; ?>!</h3>
+        			<h3 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Thanks for adding <?php print $villageName; ?>!</h3>
         			<h4 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">We put your village on our map to recognize your commitment to community-led 
         			development and share your village's development needs with organizations that might be able to help.</h4> 
         			<h4 class="header col s12 black-text text-lighten-2 text-shadow: 2px 2px 7px #111111 flow-text" style="font-weight: 300">Please add more villages to the map and encourage your friends to do the same.</h4>
@@ -43,7 +47,7 @@ include('header.inc'); ?>
 				</h5>	
 			</div> 
 			<div class="row center">
-					<?php printShareButtons($projectId, 
+					<?php printShareButtons($proposedId, 
 						    "Put your village on the map.", 
 						    "I just added $villageName Village", 70); ?>
 			</div>
