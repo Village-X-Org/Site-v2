@@ -206,8 +206,7 @@ div.progressBar .ui-progressbar-value {
 					'data': 'cached/proposed.json'
 				},
 				"layout": {
-					"icon-image": "proposed",
-					"icon-size": .5
+					"icon-image": "proposed"
 				},
       			"minzoom": 5
 			});
