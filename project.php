@@ -252,7 +252,7 @@ if (!file_exists($mapFilename)) {
          				</div>
           		</div>
           		
-         		<div class="row" style="padding:0;margin:0;"">
+         		<div class="row" style="padding:0;margin:0;">
          				<div class="input-field col s12" style="border-radius: 5px;padding:0;margin-bottom:5px;">
                    				<textarea style="border-style:none;font-size:20px; height:80px; width:100%" id="honoreeMessage" placeholder="message for honoree" name="honoreeMessage"></textarea>
                 	 		</div>
