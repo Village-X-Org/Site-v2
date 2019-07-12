@@ -1,14 +1,16 @@
 
-<?php include("utilities.php"); ?>
+<?php require_once("utilities.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <?php
-if (!hasParam('proposed')) {
+if (!isset($proposedId) && !hasParam('proposed')) {
 	print "You must supply a proposed village id.";
 	die(0);
 }
-$proposedId = param('proposed');
+if (!isset($proposedId)) {
+	$proposedId = param('proposed');
+}
 $stmt = prepare("SELECT pv_images, pv_name, pv_lat, pv_lng FROM proposed_villages WHERE pv_id=?");
 $stmt->bind_param('i', $proposedId);
 $result = execute($stmt);

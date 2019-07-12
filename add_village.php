@@ -66,8 +66,8 @@ if (hasParam('upload_file')) {
   $stmt->bind_param('ssssisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageProblem, $lat, $lng, $pictureIds);
 
   execute($stmt);
-  print "<p>Update saved successfully!</p>";
   $stmt->close();
+  $proposedId = $link->insert_id;
 
   $pictures = explode(',', $pictureIds);
   $pictureStr = '';
@@ -82,7 +82,9 @@ if (hasParam('upload_file')) {
   sendMail(getAdminEmail(), "Village $villageName uploaded by $advocateName",
     $output, getCustomerServiceEmail());
   include("generateProposedJson.php");
-  die(0);
+  include('village_add_thanks.php');
+  
+  return;
 }
 ?>
 <!DOCTYPE html>
