@@ -153,7 +153,7 @@ if (hasParam('gc')) {
 			</div>
 			
 
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px;"> 
+<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
 	<div class="section no-pad-bot valign-wrapper" style="width:100%;">
 		<div class="section row center" style="width:100%;">
 			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 15% 3% 15%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
