@@ -90,8 +90,13 @@ if (hasParam('upload_file')) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Village X Org | Fund Projects That Villages Choose</title>
-<meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
+<?php
+    $pageTitle = "Village X | Map Your Village";
+    $pageDescription = "Add your village and its development needs to our map.  We want to connect you with organizations that might be able to help.";
+    $pageUrl = getBaseURL()."add_village.php";
+    include('header.inc'); 
+?>
+
 <style>
 body, html {
     height: 100%;
@@ -223,9 +228,8 @@ body, html {
       reader.readAsDataURL(file);
     }
 </script>
-<?php include('header.inc'); ?>
 
-<div class="bg" style="height:1400px;width:100%;padding-top:20px;">
+<div class="bg" style="height:1850px;width:100%;padding-top:20px;">
 	  <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Add your village to our map.
     </div>
 		<div class="container center-align" id="jqueryvalidation" style='margin-top:20px;'>
@@ -248,7 +252,7 @@ body, html {
          						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR EMAIL ADDRESS</b></div>
          						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
          						 <i class="material-icons prefix">email</i>
-          							<input placeholder="e.g., Myson Jambo" class='donor-text' type="email" style="padding:0% 0% 0% 0%; font-size:20px;" id="advocate_email" name='advocate_email' required data-error=".errorTxt2"/>
+          							<input placeholder="e.g., myson@gmail.com" class='donor-text' type="email" style="padding:0% 0% 0% 0%; font-size:20px;" id="advocate_email" name='advocate_email' required data-error=".errorTxt2"/>
           							<div class="errorTxt2 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           					 </div>
           						
@@ -344,7 +348,7 @@ body, html {
                     			</div>
                     			
             				   <div class="black-text center-align" style="max-width:600px;border-radius:10px; font-weight:600;padding: 0 10% 20px 5%;">
-                At least one picture with GPS coordinates is required.
+                This button will change color when you've added a picture with GPS coordinates.
             </div>
             				   
             				  

@@ -127,18 +127,34 @@ if (hasParam('gc')) {
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE THE PROJECTS</button></a>
 			</div>
 			
+			<div class="row center-align" style="width:100%;padding:5% 2% 0 0">
+        
+         
+         <a href="add_village.php">
+         <div class="col 12 light-green-text" style="opacity:0.8;width:100%;">
+                        <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add your<br>village</div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:80px;padding: 6px 0 0 0"><i class="material-icons medium">add_circle</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our<br>map</div>
+                         </div>    
+            </div>
+            </a> 
+   
+            </div>
+			
           </div>
         
       </div>
       <div class="col s3"></div>
       
       </div>
+      
 			
 			</div>
 			
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height: 500px;"> 
-	<div class="section no-pad-bot valign-wrapper" style="height: 100%; width:100%;">
+	<div class="section no-pad-bot valign-wrapper" style="width:100%;">
 		<div class="section row center" style="width:100%;">
 			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 15% 3% 15%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		
@@ -149,14 +165,30 @@ if (hasParam('gc')) {
 			</div>
 			
 		</div>
-
-		<div class="parallax">
+			
+	</div>
+	
+	<div class="row center-align" style="width:100%;padding:5% 4% 0 0">
+        
+         
+         <a href="add_village.php">
+         <div class="col 12 light-green-text" style="width:100%;">
+                        <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add your<br>village</h6></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:80px;padding: 6px 0 0 0"><i class="material-icons medium">add_circle</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our<br>map</h6></div>
+                         </div>    
+            </div>
+            </a> 
+   
+            </div>
+            
+            <div class="parallax">
 			
 			  <img src="images/chiyuni_banner.jpg" alt="">
 			
 		</div>
-			
-	</div>
+	
 </div>
 	
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
