@@ -133,9 +133,9 @@ if (hasParam('gc')) {
          <a href="add_village.php">
          <div class="col s12 white-text" style="opacity:0.8;width:100%;">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add your<br>village</div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:80px;padding: 6px 0 0 0"><i class="material-icons medium">add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our<br>map</div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add your village</div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:60px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:48px;'>add_circle</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map</div>
                          </div>    
             </div>
             </a> 
@@ -174,9 +174,9 @@ if (hasParam('gc')) {
          <a href="add_village.php">
          <div class="col s12 white-text" style="width:100%;">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add your<br>village</h6></div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:80px;padding: 6px 0 0 0"><i class="material-icons medium">add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our<br>map</h6></div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add your village</h6></div>
+                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:40px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:32px;'>add_circle</i></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our map</h6></div>
                          </div>    
             </div>
             </a> 
