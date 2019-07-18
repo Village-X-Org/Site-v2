@@ -135,7 +135,7 @@ if (hasParam('gc')) {
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
                         <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add a village</div>
                          <div class="center-align" style="vertical-align:middle;display:inline-block; width:60px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:48px;'>add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map  </div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map </div>
                          </div>    
             </div>
             </a> 
