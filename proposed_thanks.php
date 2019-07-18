@@ -27,7 +27,7 @@ $firstPic = substr($pictureIds, 0, $commaIndex);
 
 $pageImage = PICTURES_DIR.$firstPic.".jpg";
 $pageTitle = "I just added $villageName to Village X's map!";
-$pageUrl = BASE_URL."village_add_thanks.php?proposed=$proposedId";
+$pageUrl = BASE_URL."proposed_thanks.php?proposed=$proposedId";
 $pageDescription = "Village X maps villages and funds development projects chosen by them.";
 include('header.inc'); ?>
 

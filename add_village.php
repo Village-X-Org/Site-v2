@@ -82,7 +82,7 @@ if (hasParam('upload_file')) {
   sendMail(getAdminEmail(), "Village $villageName uploaded by $advocateName",
     $output, getCustomerServiceEmail());
   include("generateProposedJson.php");
-  include('village_add_thanks.php');
+  include('proposed_thanks.php');
   
   return;
 }

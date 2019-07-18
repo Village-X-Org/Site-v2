@@ -137,13 +137,13 @@ div.progressBar .ui-progressbar-value {
 
 <div id='proposedModal' class='modal' style='position:relative;'>
 	<?php if (isset($session_is_admin) && $session_is_admin) { ?>
-		<img src='images/delete.png' style='width:24px;cursor:pointer;position:absolute;left:20px;top:20px;' onclick="deleteVillage();" />
+		<a href='' onclick="deleteVillage(); return false;"><i class='material-icons' style='width:24px;cursor:pointer;position:absolute;left:20px;top:20px;'>delete</i></a>
 	<?php } ?>
  	<center><h5 id='proposedName'></h5></center> <img src='images/close.png' style='width:24px;cursor:pointer;position:absolute;right:20px;top:20px;' onclick="$('#proposedModal').modal('close');" />
 	<p style='margin-left:20px;'><b>Most Urgent Development Problem:</b> <span id='dev_problem'></span><br/>
 		<b>Village Population: </b><span id='population'></span><br/>
 		<b>Date Posted: </b><span id='date_added'></span><br/>
-	<div id='proposedPictures' style='margin:20px;width:100%;height:250px;overflow-x:scroll;overflow-y:hidden;'></div>
+	<div id='proposedPictures' style='margin:20px;overflow-x:scroll;overflow-y:hidden;white-space: nowrap;'></div>
 </div>
 
 <script>
@@ -162,6 +162,8 @@ div.progressBar .ui-progressbar-value {
 	map.addControl(new mapboxgl.NavigationControl(), 'top-left');
 	map.scrollZoom.disable();
 
+	var selectedVillage = 0;
+	var selectedIcon = 0;
 	map.on('load', function() {
 		window.scrollTo(0,1);
 		map.on('click', 'villages', function(e) {
@@ -221,7 +223,6 @@ div.progressBar .ui-progressbar-value {
 			map.on("mouseleave", "proposed", function() {
 				map.getCanvas().style.cursor = 'default';
 			});
-			var selectedVillage = 0;
 			map.on("click", "proposed", function(e) {
 				selectedVillage = e.features[0].properties.id;
 				$('#proposedName').text(e.features[0].properties.name);
@@ -244,6 +245,17 @@ div.progressBar .ui-progressbar-value {
 
 		zoomToCountry([35,-15.024]);
 	});
+
+	function deleteVillage() {
+		if (confirm("Are you sure you want to delete this village?")) {
+			$('#proposedModal').modal('close');
+			$.get('proposed_delete.php', {id: selectedVillage}, function(data) {
+				alert(data);
+			});
+		} else {
+			return false;
+		}
+	}
 
 	function zoomToCountry(coords) {
 		selectedCountry = coords;
