@@ -19,6 +19,9 @@ if ($row = $result->fetch_assoc()) {
 	$villageName = $row['pv_name'];
 	$villageLat = $row['pv_lat'];
 	$villageLng = $row['pv_lng'];
+} else {
+	print "Village id not found.";
+	die(0);
 }
 $stmt->close();
 
