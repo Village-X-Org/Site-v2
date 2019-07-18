@@ -131,11 +131,11 @@ if (hasParam('gc')) {
         
          
          <a href="add_village.php">
-         <div class="col s12 white-text" style="opacity:0.8;width:100%;">
+         <div class="col s12 white-text" style="opacity:0.6;width:100%;">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add your village</div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add a village</div>
                          <div class="center-align" style="vertical-align:middle;display:inline-block; width:60px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:48px;'>add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map</div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map </div>
                          </div>    
             </div>
             </a> 
@@ -154,7 +154,8 @@ if (hasParam('gc')) {
 			
 
 <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
-	<div class="section no-pad-bot valign-wrapper" style="width:100%;">
+	<div class="col s12 valign-wrapper" style="width:100%;height:100%;">
+		<div style="width:100%;">
 		<div class="section row center" style="width:100%;">
 			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 15% 3% 15%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		
@@ -165,23 +166,23 @@ if (hasParam('gc')) {
 			</div>
 			
 		</div>
-			
-	</div>
-	
-	<div class="row center-align" style="width:100%;padding:4% 4% 0 0">
+		<div class="row center-align" style="width:100%;padding:4% 4% 0 0;">
         
          
          <a href="add_village.php">
-         <div class="col s12 white-text" style="width:100%;">
+         <div class="col s12 white-text" style="width:100%;opacity:0.7">
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add your village</h6></div>
+                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add a village</h6></div>
                          <div class="center-align" style="vertical-align:middle;display:inline-block; width:40px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:32px;'>add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our map</h6></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our map   </h6></div>
                          </div>    
             </div>
             </a> 
    
             </div>
+            </div>
+			
+	</div>
             
             <div class="parallax">
 			
