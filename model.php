@@ -31,7 +31,7 @@ require_once("utilities.php");
 	<blockquote class="flow-text">"We disrupt extreme poverty in rural Africa. We do this by deploying targeted financing and retrieving information (pics, videos, and impact data) 
 	for 100% village-led development projects. Our light-footprint model scales by leveraging local capacity, while practicing radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
 	<br>
-		<div class="video-container" style="border-style:solid;background-image:url('images/model_video_preview.webp');background-size:cover;background-position:center;"><br>
+		<div class="video-container" style="border-style:solid;background-image:url('images/model_video_preview.jpg');background-size:cover;background-position:center;"><br>
         		<iframe src="https://player.vimeo.com/video/205724824" width="640" height="360"></iframe>
       	</div>
       	<br>
