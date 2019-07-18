@@ -135,8 +135,11 @@ div.progressBar .ui-progressbar-value {
 
 </div>
 
-<div id='proposedModal' class='modal'>
-	<center><h5 id='proposedName'></h5></center>
+<div id='proposedModal' class='modal' style='position:relative;'>
+	<?php if (isset($session_is_admin) && $session_is_admin) { ?>
+		<img src='images/delete.png' style='width:24px;cursor:pointer;position:absolute;left:20px;top:20px;' onclick="deleteVillage();" />
+	<?php } ?>
+ 	<center><h5 id='proposedName'></h5></center> <img src='images/close.png' style='width:24px;cursor:pointer;position:absolute;right:20px;top:20px;' onclick="$('#proposedModal').modal('close');" />
 	<p style='margin-left:20px;'><b>Most Urgent Development Problem:</b> <span id='dev_problem'></span><br/>
 		<b>Village Population: </b><span id='population'></span><br/>
 		<b>Date Posted: </b><span id='date_added'></span><br/>
@@ -218,11 +221,14 @@ div.progressBar .ui-progressbar-value {
 			map.on("mouseleave", "proposed", function() {
 				map.getCanvas().style.cursor = 'default';
 			});
+			var selectedVillage = 0;
 			map.on("click", "proposed", function(e) {
+				selectedVillage = e.features[0].properties.id;
 				$('#proposedName').text(e.features[0].properties.name);
 				$('#dev_problem').text(e.features[0].properties.dev_problem);
 				$('#population').text(e.features[0].properties.population);
 				$('#date_added').text(e.features[0].properties.date_added);
+				$('#proposedPictures').empty();
 				$.each(e.features[0].properties.pictures.split(','), function(i, next) {
 					if (next.length > 0) {
 						img = document.createElement("img");
