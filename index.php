@@ -13,12 +13,8 @@ body, html {
     margin: 0;
 }
 
-.no-webp .bg {
+.bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
-    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
-}
-.webp .bg {
-	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.webp");
     height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
