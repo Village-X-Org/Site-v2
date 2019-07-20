@@ -17,7 +17,7 @@ while ($row = $result->fetch_assoc()) {
 			"name": "'.$row['pv_name'].'",
 			"pictures": "'.$row['pv_images'].'",
 			"date_added": "'.$row['dateAdded'].'",
-			"dev_problem": "'.$row['pv_dev_problem'].'",
+			"dev_problem": "'.str_replace(array("\r\n", "\n", "\r"), ' ', $row['pv_dev_problem']).'",
 			"population": "'.$row['pv_population'].'"
 		}
 	}');
