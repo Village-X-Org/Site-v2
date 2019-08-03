@@ -229,8 +229,8 @@ body, html {
     }
 </script>
 
-<div class="bg" style="height:1850px;width:100%;padding-top:20px;">
-	  <div class="white-text center-align" style="font-weight:800;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;">Add your village to our map.
+<div class="bg" style="height:1850px;width:100%;padding-top:40px;">
+	  <div class="white-text center-align" style="font-weight:300;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;padding: 0 10% 0 10%">Add your village and development problem to our map.
     </div>
 		<div class="container center-align" id="jqueryvalidation" style='margin-top:20px;'>
       <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 30px; border: 4px solid #EEE;">

@@ -110,38 +110,29 @@ if (hasParam('gc')) {
 
 <div class="bg hide-on-med-and-down" style="width:100%; z-index: -1">
 <div class="row" style="height: 100%;background-color:rgba(0, 0, 0, 0.2)">
-<div class="col s3"></div>
-<div class="valign-wrapper col s6" style="z-index: 1; height: 100%;">
+<div class="col s2"></div>
+<div class="valign-wrapper col s8" style="z-index: 1; height: 100%;">
 		
 			<div class="section center-align" style="width:100%;position:relative; z-index: 30;">
-			<div style="width:100%;padding: 0% 10% 0% 10%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
+			<div style="width:100%;padding: 0% 20% 0% 20%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
 				We fund projects that villages choose
 			</div>
 			
 			<div class="row" style="width:100%;padding: 3% 0% 5% 0%;height:120px;">
-			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE THE PROJECTS</button></a>
+			<div class="col s6 right-align">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE PROJECTS</button></a>
 			</div>
-			
-			<div class="row center-align" style="width:100%;padding:4% 2% 0 0">
-        
-         
-         <a href="add_village.php">
-         <div class="col s12 white-text" style="opacity:0.6;width:100%;">
-                        <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">add a village</div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:60px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:48px;'>add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;text-shadow: 4px 4px 7px #111111;font-size:20px">to our map </div>
-                         </div>    
-            </div>
-            </a> 
-   
-            </div>
+			<div class="col s6 left-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</button></a>
+			</div>
+			</div>
 			
           </div>
         
       </div>
-      <div class="col s3"></div>
+      <div class="col s2"></div>
       
       </div>
       
@@ -153,29 +144,23 @@ if (hasParam('gc')) {
 	<div class="col s12 valign-wrapper" style="width:100%;height:100%;">
 		<div style="width:100%;">
 		<div class="section row center" style="width:100%;">
-			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 15% 3% 15%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
+			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		
         		<div class="center-align" style="padding:4% 2% 4% 0%">	
 				<a href="project_tiles.php" id="download-button"
-					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE THE PROJECTS</a>
+					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE PROJECTS</a>
 			</div>
 			
+			<div class="center-align" style="padding:0 2% 4% 0%">	
+				<a href="add_village.php" id="download-button"
+					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</a>
+			</div>
+			
+			
 		</div>
-		<div class="row center-align" style="width:100%;padding:4% 4% 0 0;">
-        
-         
-         <a href="add_village.php">
-         <div class="col s12 white-text" style="width:100%;opacity:0.7">
-                        <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
-                        <div class="right-align" style="vertical-align:middle; display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">add a village</h6></div>
-                         <div class="center-align" style="vertical-align:middle;display:inline-block; width:40px;padding: 6px 0 0 0"><i class="material-icons" style='font-size:32px;'>add_circle</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h6 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">to our map   </h6></div>
-                         </div>    
-            </div>
-            </a> 
-   
-            </div>
+		
             </div>
 			
 	</div>
