@@ -153,14 +153,15 @@ if (hasParam('d')) {
 
 <body>
 
-<?php if (!$donorId && !hasParam('hideHeader')) { ?>
+<?php if (!$donorId && !hasParam('hideHeader')) { 
+	$rebranded = isset($rebranded) ? $rebranded : 0; ?>
 
 	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
-				<a id="logo-container" href="index.php" class="brand-logo hide-on-medium-only"><img
-				src="images/villagex_short_logo.png"></a>
-				<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 3px 0 0 0"><img
-				src="images/villagex_short_logo.png"></a>
+				<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>" class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
+				src='<?php print ($rebranded ? "$logo' style='height:75px;" : "images/villagex_short_logo.png"); ?>'></a>
+
+			<?php if ($rebranded == 0) { ?>	
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="sidenav">
@@ -187,14 +188,24 @@ if (hasParam('d')) {
 				<?php } ?>
 
 			</ul>
+			<?php } else { ?>
+				<a href="add_village.php" class="right">
+                    <div style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%;">
+                        <div style="vertical-align:middle; display:inline-block;font-size:20px;color:gray;">add a village</div>
+                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:48px;color:gray;'>add_circle</i></div>
+                         <div style="vertical-align:middle;display:inline-block;font-size:20px;color:gray;">to our map</div>
+                     </div>
+	            </a>
+	        <?php } ?> 
 		</div>
 	</nav>
-			
+				
 	<div class="navbar-fixed hide-on-med-and-down">
 		<nav class="white" role="navigation">
 			<div class="nav-wrapper container">
-			<a id="logo-container" href="index.php" class="brand-logo hide-on-small-only" style="padding: 5px 0 0 0"><img
-				src="images/villagex_short_logo.png"></a>
+			<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>"class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
+				src='<?php print ($rebranded ? "$logo' style='height:75px;" : "images/villagex_short_logo.png"); ?>'></a>
+				<?php if ($rebranded == 0) { ?>	
 				<ul class="right">
 					
 					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
@@ -228,6 +239,15 @@ if (hasParam('d')) {
 						} ?>
 				   </ul>
 				</ul>
+				<?php } else { ?>
+				<a href="add_village.php" class="right">
+                    <div style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%;">
+                        <div style="vertical-align:middle; display:inline-block;font-size:20px;color:gray;">add a village</div>
+                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:48px;color:gray;'>add_circle</i></div>
+                         <div style="vertical-align:middle;display:inline-block;font-size:20px;color:gray;">to our map</div>
+                     </div>
+	            </a>
+	        	<?php } ?> 
 			</div>
 		</nav>
 	</div>

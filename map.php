@@ -1,13 +1,37 @@
 <?php
 require_once("utilities.php");
+$rebranded = 0;
+if (hasParam('branding')) {
+	$rebranded = paramInt('branding');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php 
+<?php
+if ($rebranded) {
+	$stmt = prepare("SELECT org_name, org_lat, org_lng, org_zoom, org_logo, org_url, org_project_prefix, org_description, org_banner FROM orgs WHERE org_id=?");
+	$stmt->bind_param("i", $rebranded);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		$pageTitle = $row['org_name']." | Project Locations";
+		$lat = $row['org_lat'];
+		$lng = $row['org_lng'];
+		$zoom = $row['org_zoom'];
+		$logo = $row['org_logo'];
+		$url = $row['org_url'];
+		$prefix = $row['org_project_prefix'];
+		$pageDescription = $row['org_description'];
+		$pageImage = $row['org_banner'];
+	}
+} else {
   $pageTitle = "Village X | Project Locations";
   $pageDescription = "Zoom in from a bird's-eye view to visit partner villages and their development projects.";
-  $pageUrl = getBaseURL()."map.php";
+  $lat = -15.024;
+  $lng = 35;
+  $zoom = 7;
+}
+$pageUrl = getBaseURL()."map.php".($rebranded ? "?branding=$rebranded" : "");
 include('header.inc'); ?>
 <style>
 .mapboxgl-ctrl-geocoder {
@@ -123,7 +147,7 @@ div.progressBar .ui-progressbar-value {
 			style='position: absolute; display:none;top: 0px; right: 5px; z-index: 3;'>
 
 			<button class="btn-floating btn-large blue" id='zoomOutButton'
-				onclick="zoomToCountry(selectedCountry);"
+				onclick="zoomToCountry(selectedCountry, 7);"
 				style='margin-left:10px;'> <i class="large material-icons"
 				id='zoomOutButtonText'>zoom_out</i>
 			</button>
@@ -225,7 +249,7 @@ div.progressBar .ui-progressbar-value {
 			});
 			map.on("click", "proposed", function(e) {
 				selectedVillage = e.features[0].properties.id;
-				$('#proposedName').text(e.features[0].properties.name);
+				$('#proposedName').text("Community Proposal: " + e.features[0].properties.name);
 				$('#dev_problem').text(e.features[0].properties.dev_problem);
 				$('#population').text(e.features[0].properties.population);
 				$('#date_added').text(e.features[0].properties.date_added);
@@ -240,10 +264,12 @@ div.progressBar .ui-progressbar-value {
 				});
 
 				$('#proposedModal').modal('open');
+
+				e.preventDefault();
 			});
 		});
 
-		zoomToCountry([35,-15.024]);
+		zoomToCountry(<?php print "[$lng, $lat], $zoom"; ?>);
 	});
 
 	function deleteVillage() {
@@ -257,11 +283,11 @@ div.progressBar .ui-progressbar-value {
 		}
 	}
 
-	function zoomToCountry(coords) {
+	function zoomToCountry(coords, zoom) {
 		selectedCountry = coords;
 		$("#buttonHolder").hide();
 
-		map.flyTo({center: coords, zoom: 7, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60}); 
+		map.flyTo({center: coords, zoom: zoom, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60}); 
 		//map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 	
@@ -403,4 +429,6 @@ div.progressBar .ui-progressbar-value {
 	}
 
 </script>
-<?php include('footer.inc'); ?>
+<?php if (!$rebranded) {
+	include('footer.inc');
+} ?>
