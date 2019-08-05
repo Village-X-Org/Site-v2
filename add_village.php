@@ -221,6 +221,7 @@ body, html {
           image.style.width='300px';
           image.style.opacity=.5;
           uploading++;
+          document.getElementById('example_image').style.display = 'none';
           document.getElementById('imageContainer').appendChild(image);
         };
             image.src = e.target.result;
@@ -301,6 +302,7 @@ body, html {
                           <i class="material-icons prefix" style="color:black;font-size:20px;">photo_library</i>
           							 <input class="file-path validate donor-text" type="text" placeholder="click to upload pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt6" />
         						    </div>
+                        <img id='example_image' src='images/add_village_example.jpg' style='width:300px;opacity:.6' />
                       <div id='imageContainer'>
                         </div>
                         <input type='hidden' id='pictureIds' name='pictureIds' value=',' />
