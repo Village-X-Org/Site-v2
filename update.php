@@ -6,6 +6,7 @@ if (hasParam('upload_file')) {
 	$smallFile = param("upload_file_small");
 	$filename = uniqid() . '.jpg';
 	$smallFilename = uniqId() . '.jpg';
+	$projectId = param('project_id');
 
 	$ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
@@ -35,12 +36,33 @@ if (hasParam('upload_file')) {
 	            break;
 	    }
 	    imagejpeg($newImage, 'uploads/'.$filename, 100);
+
 	    imagedestroy($image);
 	    imagedestroy($newImage);
 	}
 
-	$stmt = prepare("INSERT INTO pictures (picture_filename) VALUES (?)");
-	$stmt->bind_param('s', $filename);
+ 	$profilePicId = 0;
+	$stmt = prepare("SELECT project_profile_image_id FROM projects WHERE project_id=?");
+	$stmt->bind_param('d', $projectId);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		print "PROJECT PROFILE IMAGE ID: ".$row['project_profile_image_id'];
+		if (!$row['project_profile_image_id']) {
+			$newImage = imagecreatefromjpeg('uploads/'.$filename);
+			$profileImage = cropAndResize('uploads/'.$filename, $newImage, 400, 400);
+			$profileFilename = 'profile_'.$filename;
+			imagejpeg($profileImage, 'uploads/'.$profileFilename, 100);
+			$stmt = prepare("INSERT INTO pictures (picture_filename, picture_hash) VALUES (?, MD5(?))");
+			$stmt->bind_param('ss', $filename, $filename);
+			execute($stmt);
+			$profilePicId = $link->insert_id;
+			$stmt->close();
+			imagedestroy($profileImage);
+		}
+	}
+
+	$stmt = prepare("INSERT INTO pictures (picture_filename, picture_hash) VALUES (?, MD5(?))");
+	$stmt->bind_param('ss', $filename, $filename);
 	execute($stmt);
 	$picId = $link->insert_id;
 	print $picId;
@@ -49,6 +71,15 @@ if (hasParam('upload_file')) {
 	rename("uploads/$filename", "uploads/$picId.jpg");
 	rename("uploads/$smallFilename", "uploads/s$picId.jpg");
 	doUnprotectedQuery("UPDATE pictures SET picture_filename='$picId.jpg' WHERE picture_id=$picId");
+
+	if ($profilePicId) {
+		rename("uploads/$profileFilename", "uploads/$profilePicId.jpg");
+		doUnprotectedQuery("UPDATE pictures SET picture_filename='$profilePicId.jpg' WHERE picture_id=$profilePicId");
+		$stmt = prepare("UPDATE projects SET project_profile_image_id=?, project_banner_image_id=? WHERE project_id=?");
+		$stmt->bind_param('ddd', $profilePicId, $picId, $projectId);
+		execute($stmt);
+		$stmt->close();
+	}
 
 	return;
 } elseif (isset($_POST['projectId'])) {
@@ -62,6 +93,7 @@ if (hasParam('upload_file')) {
 	$pictureIds = $_POST['pictureIds'];
 	$notes = $_POST['notes'];
 	$updateDate = strtotime($_POST['updateDate']);
+
 	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
 		VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
 	$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
@@ -118,6 +150,7 @@ if (hasParam('upload_file')) {
 		    };
 		    fd.append("upload_file", file);
 		    fd.append("upload_file_small", smallFile);
+		    fd.append("project_id", document.getElementById('projectId').value);
 		    if (lat) {
 		    	document.getElementById('lat').value = lat;
 		    	document.getElementById('lng').value = lng;

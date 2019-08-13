@@ -48,7 +48,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font></P>";
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on. $errno -$errstr $errfile - $errline</font></P>";
     exit();
 }
 set_error_handler("emailErrorHandler");
@@ -537,6 +537,26 @@ function verifyRecaptcha($responseCode) {
 
 function getShippingCost() {
 	return 10;
+}
+
+function cropAndResize($filename, $image, $width, $height) {
+	$ratio = $width / $height;
+	list($originalWidth, $originalHeight) = getimagesize($filename);
+	$originalRatio = $originalWidth / $originalHeight;
+	if ($originalRatio > 1) {
+		$sourceHeight = $originalHeight;
+		$sourceWidth = ceil(($sourceHeight * $width) / $height);
+		$sourceX = ceil(($originalWidth - $sourceWidth) / 2);
+		$sourceY = 0;
+	} else {
+		$sourceWidth = $originalWidth;
+		$sourceHeight = ceil(($sourceWidth * $height) / $width);
+		$sourceX = 0;
+		$sourceY = ceil(($originalHeight - $sourceHeight) / 2);
+	}
+	$new = imagecreatetruecolor($width, $height);
+	imagecopyresampled($new, $image, 0, 0, $sourceX, $sourceY, $width, $height, $originalWidth, $originalHeight);
+	return $new;
 }
 
 ?>
