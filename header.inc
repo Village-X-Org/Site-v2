@@ -21,7 +21,7 @@ if (hasParam('d')) {
 		$pageImage = "https://villagex.org/images/header1.jpg";
 	}	
 	if (!isset($pageTitle)) {
-		$pageTitle = "This innovatative nonprofit disrupts extreme poverty in rural Africa.";
+		$pageTitle = "This innovative nonprofit disrupts extreme poverty in rural Africa.";
 	}
 	if (!isset($pageUrl)) {
 		$pageUrl = BASE_URL;
