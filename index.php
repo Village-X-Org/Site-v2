@@ -186,7 +186,7 @@ if (hasParam('gc')) {
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
 			</div>
 			
-			<div class="col s6 right-align">
+			<!--<div class="col s6 right-align">
 			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
 			</div>
@@ -194,7 +194,7 @@ if (hasParam('gc')) {
 			<div class="col s6 left-align">
 			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
-			</div>
+			</div>-->
 			</div>
 
 			<div class="row center-align hide-on-large-only" style="width:100%;padding: 2% 0% 5% 1.5%;height:120px;">
@@ -204,7 +204,7 @@ if (hasParam('gc')) {
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
 			</div>
 			
-			<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
+			<!--<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
 			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
 			</div>
@@ -212,7 +212,7 @@ if (hasParam('gc')) {
 			<div class="col s12 center-align">
 			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
-			</div>
+			</div>-->
 			</div>
 			
           </div>
