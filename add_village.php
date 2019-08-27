@@ -297,7 +297,7 @@ body, html {
         					 <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>PICTURES OF YOUR VILLAGE</b>
                    </div>
           					
-      							 <div class="file-field input-field col s12" style="padding:0% 8% 0% 3%;font-size:20px;"> 
+      							 <div class="file-field input-field col s12" style="padding:0% 20% 0% 3%;font-size:20px;"> 
           						  <input id='fileinput' type="file" multiple />
                           <i class="material-icons prefix" style="color:black;font-size:20px;">photo_library</i>
           							 <input class="file-path validate donor-text" type="text" placeholder="click to upload pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt6" />
@@ -321,7 +321,7 @@ body, html {
                       </div>
       							
       							<div class="black-text center-align" style="max-width:600px;border-radius:10px; font-weight:600;padding: 0 10% 2% 5%;">
-                  				NOTE:  Your picture(s) must contain GPS coordinates.  Smartphones usually take pictures with GPS coordinates.
+                  				NOTE:  Here's an example showing a village requesting a development project.  Your picture(s) must contain GPS coordinates.  Smartphones usually take pictures with GPS coordinates.
               			</div>
     					  </div>				
 	          		
