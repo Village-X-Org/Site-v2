@@ -261,9 +261,8 @@ function getTimeRemaining(endtime) {
 	  updateClock();
 	  var timeinterval = setInterval(updateClock, 1000);
 	}
-
-	var deadline = new Date(Date.parse(new Date()) + 7 * 24 * 60 * 60 * 1000);
-	initializeClock('clockdiv', deadline);
+	var seconds = <?php print (new DateTime("2019-09-03", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
+	initializeClock('clockdiv', new Date(seconds * 1000));
 </script>
 			
           </div>
