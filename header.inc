@@ -21,13 +21,13 @@ if (hasParam('d')) {
 		$pageImage = "https://villagex.org/images/header1.jpg";
 	}	
 	if (!isset($pageTitle)) {
-		$pageTitle = "This website disrupts extreme poverty in Africa.";
+		$pageTitle = "This innovative nonprofit disrupts extreme poverty in rural Africa.";
 	}
 	if (!isset($pageUrl)) {
 		$pageUrl = BASE_URL;
 	}
 	if (!isset($pageDescription)) {
-		$pageDescription = "Village X Org is like GoFundMe for rural Africa. Fund projects villages choose.";
+		$pageDescription = "Make your donation count with data-verified direct giving.";
 	}
 ?>
 <meta property="og:image" content="<?php print $pageImage; ?>" />

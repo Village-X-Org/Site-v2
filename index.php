@@ -7,6 +7,7 @@ require_once("utilities.php");
 <title>Village X | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <script src='js/modernizr-custom.js'></script>
+
 <style>
 body, html {
     height: 100%;
@@ -72,6 +73,33 @@ i.ml-auto {
   color: rgba(0, 0, 0, 0.26);
 }
 
+#clockdiv{
+  color: #fff;
+  display: inline-block;
+  font-weight: 100;
+  text-align: center;
+  font-size: 30px;
+}
+
+#clockdiv > div{
+  padding: 10px;
+  border-radius: 3px;
+  background: #00BF96;
+  display: inline-block;
+}
+
+#clockdiv div > span{
+  padding: 15px;
+  border-radius: 3px;
+  background: #00816A;
+  display: inline-block;
+}
+
+.smalltext{
+  padding-top: 5px;
+  font-size: 10px;
+}
+
 </style>
 <?php include('header.inc'); 
 if (hasParam('code')) {
@@ -108,13 +136,13 @@ if (hasParam('gc')) {
 }
 ?>
 
-<div class="bg hide-on-med-and-down" style="width:100%; z-index: -1">
+<div class="bg" style="width:100%; z-index: -1">
 <div class="row" style="height: 100%;background-color:rgba(0, 0, 0, 0.2)">
 <div class="col s2"></div>
 <div class="valign-wrapper col s8" style="z-index: 1; height: 100%;">
 		
 			<div class="section center-align" style="width:100%;position:relative; z-index: 30;">
-			<div style="width:100%;padding: 0% 20% 0% 20%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
+			<!--  <div style="width:100%;padding: 0% 20% 0% 20%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
 				We fund projects that villages choose
 			</div>
 			
@@ -127,6 +155,64 @@ if (hasParam('gc')) {
 			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</button></a>
 			</div>
+			</div> -->
+			
+			<div style="width:100%;padding: 0% 5% 0% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96" class="row text-lighten-2;">LABOR DAY FUNDRAISER</div>
+			<h5 class="white-text" style="padding:0% 5% 1% 5%">1 week only, FIRST $7,000 MATCHED</h5>
+			
+<div class="row" id="clockdiv" style="width:100%; padding: 2% 0 0 0;">
+  <div>
+    <span class="days"></span>
+    <div class="smalltext">Days</div>
+  </div>
+  <div>
+    <span class="hours"></span>
+    <div class="smalltext">Hours</div>
+  </div>
+  <div>
+    <span class="minutes"></span>
+    <div class="smalltext">Minutes</div>
+  </div>
+  <div>
+    <span class="seconds"></span>
+    <div class="smalltext">Secs</div>
+  </div>
+</div>
+
+<div class="row center-align hide-on-med-and-down" style="width:100%;padding: 2% 0% 5% 0;height:120px;">
+			
+			<div class="col s12 center-align" style="padding: 0% 0% 4% 0">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
+			</div>
+			
+			<div class="col s6 right-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
+			</div>
+			
+			<div class="col s6 left-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
+			</div>
+			</div>
+
+			<div class="row center-align hide-on-large-only" style="width:100%;padding: 2% 0% 5% 1.5%;height:120px;">
+			
+			<div class="col s12 center-align" style="padding: 2% 0% 0% 0">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
+			</div>
+			
+			<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
+			</div>
+			
+			<div class="col s12 center-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
+			</div>
 			</div>
 			
           </div>
@@ -136,13 +222,56 @@ if (hasParam('gc')) {
       
       </div>
       
+      <script>
+function getTimeRemaining(endtime) {
+	  var t = Date.parse(endtime) - Date.parse(new Date());
+	  var seconds = Math.floor((t / 1000) % 60);
+	  var minutes = Math.floor((t / 1000 / 60) % 60);
+	  var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+	  var days = Math.floor(t / (1000 * 60 * 60 * 24));
+	  return {
+	    'total': t,
+	    'days': days,
+	    'hours': hours,
+	    'minutes': minutes,
+	    'seconds': seconds
+	  };
+	}
+
+	function initializeClock(id, endtime) {
+	  var clock = document.getElementById(id);
+	  var daysSpan = clock.querySelector('.days');
+	  var hoursSpan = clock.querySelector('.hours');
+	  var minutesSpan = clock.querySelector('.minutes');
+	  var secondsSpan = clock.querySelector('.seconds');
+
+	  function updateClock() {
+	    var t = getTimeRemaining(endtime);
+
+	    daysSpan.innerHTML = t.days;
+	    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+	    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+	    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+	    if (t.total <= 0) {
+	      clearInterval(timeinterval);
+	    }
+	  }
+
+	  updateClock();
+	  var timeinterval = setInterval(updateClock, 1000);
+	}
+	var seconds = <?php print (new DateTime("2019-09-03", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
+	initializeClock('clockdiv', new Date(seconds * 1000));
+</script>
 			
-			</div>
+          </div>
 			
 
-<div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
+<!-- <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
 	<div class="col s12 valign-wrapper" style="width:100%;height:100%;">
 		<div style="width:100%;">
+		
 		<div class="section row center" style="width:100%;">
 			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		
@@ -160,10 +289,6 @@ if (hasParam('gc')) {
 			
 			
 		</div>
-		
-            </div>
-			
-	</div>
             
             <div class="parallax">
 			
@@ -171,7 +296,7 @@ if (hasParam('gc')) {
 			
 		</div>
 	
-</div>
+</div>  -->
 	
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
