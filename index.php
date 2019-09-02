@@ -16,7 +16,7 @@ body, html {
 
 .bg {
 	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
-    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+    height: 900px; background-position: center; background-repeat: no-repeat; background-size: cover;
 }
 
 .carousel-slider {
@@ -160,7 +160,7 @@ if (hasParam('gc')) {
 			<div style="width:100%;padding: 0% 5% 0% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96" class="row text-lighten-2;">LABOR DAY FUNDRAISER</div>
 			<h5 class="white-text" style="padding:0% 5% 1% 5%">1 week only, FIRST $7,000 MATCHED</h5>
 			
-<div class="row" id="clockdiv" style="width:100%; padding: 2% 0 0 0;">
+<div class="row" id="clockdiv" style="width:100%; padding: 2% 2% 0 0;">
   <div>
     <span class="days"></span>
     <div class="smalltext">Days</div>
@@ -169,11 +169,11 @@ if (hasParam('gc')) {
     <span class="hours"></span>
     <div class="smalltext">Hours</div>
   </div>
-  <div>
+  <div class="hide-on-med-and-down">
     <span class="minutes"></span>
     <div class="smalltext">Minutes</div>
   </div>
-  <div>
+  <div class="hide-on-med-and-down">
     <span class="seconds"></span>
     <div class="smalltext">Secs</div>
   </div>
@@ -215,9 +215,7 @@ if (hasParam('gc')) {
 			</div>
 			</div>
 			
-          </div>
-        
-        <script>
+			<script>
 	function getTimeRemaining(endtime) {
 	  	var t = Date.parse(endtime) - Date.parse(new Date());
 	  	var seconds = Math.floor((t / 1000) % 60);
@@ -258,6 +256,8 @@ if (hasParam('gc')) {
 	updateClock('clockdiv', new Date(seconds * 1000));
 	*/
 </script>
+			
+          </div>
         
       </div>
       <div class="col s2"></div>
