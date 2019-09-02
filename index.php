@@ -14,6 +14,11 @@ body, html {
     margin: 0;
 }
 
+.bg {
+	background-image:  linear-gradient( rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2) ), url("images/chiyuni_banner.jpg");
+    height: 100%; background-position: center; background-repeat: no-repeat; background-size: cover;
+}
+
 .carousel-slider {
     height: 800px !important;
 }
