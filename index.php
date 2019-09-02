@@ -130,9 +130,30 @@ if (hasParam('gc')) {
 	}
 }
 ?>
-	<!--		
-<div style="width:100%;padding: 0% 5% 0% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96" class="row text-lighten-2;">LABOR DAY FUNDRAISER</div>
-<h5 class="white-text" style="padding:0% 5% 1% 5%">1 week only, FIRST $7,000 MATCHED</h5>
+
+<div class="bg" style="width:100%; z-index: -1">
+<div class="row" style="height: 100%;background-color:rgba(0, 0, 0, 0.2)">
+<div class="col s2"></div>
+<div class="valign-wrapper col s8" style="z-index: 1; height: 100%;">
+		
+			<div class="section center-align" style="width:100%;position:relative; z-index: 30;">
+			<!--  <div style="width:100%;padding: 0% 20% 0% 20%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300" class="row white-text text-lighten-2;">
+				We fund projects that villages choose
+			</div>
+			
+			<div class="row" style="width:100%;padding: 3% 0% 5% 0%;height:120px;">
+			<div class="col s6 right-align">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE PROJECTS</button></a>
+			</div>
+			<div class="col s6 left-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</button></a>
+			</div>
+			</div> -->
+			
+			<div style="width:100%;padding: 0% 5% 0% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96" class="row text-lighten-2;">LABOR DAY FUNDRAISER</div>
+			<h5 class="white-text" style="padding:0% 5% 1% 5%">1 week only, FIRST $7,000 MATCHED</h5>
 			
 <div class="row" id="clockdiv" style="width:100%; padding: 2% 0 0 0;">
   <div>
@@ -154,24 +175,44 @@ if (hasParam('gc')) {
 </div>
 
 <div class="row center-align hide-on-med-and-down" style="width:100%;padding: 2% 0% 5% 0;height:120px;">
+			
+			<div class="col s12 center-align" style="padding: 0% 0% 4% 0">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
+			</div>
+			
+			<div class="col s6 right-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
+			</div>
+			
+			<div class="col s6 left-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
+			</div>
+			</div>
 
-	<div class="col s12 center-align" style="padding: 2% 0% 0% 0">
-	<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
-	</div>
-	
-	<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
-	<a href=""><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
-	</div>
-	
-	<div class="col s12 center-align">
-	<a href=""><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
-	</div>
-</div>-->
-      
-<script>
+			<div class="row center-align hide-on-large-only" style="width:100%;padding: 2% 0% 5% 1.5%;height:120px;">
+			
+			<div class="col s12 center-align" style="padding: 2% 0% 0% 0">
+			<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
+			</div>
+			
+			<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
+			</div>
+			
+			<div class="col s12 center-align">
+			<a href="add_village.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
+			</div>
+			</div>
+			
+          </div>
+        
+        <script>
 	function getTimeRemaining(endtime) {
 	  	var t = Date.parse(endtime) - Date.parse(new Date());
 	  	var seconds = Math.floor((t / 1000) % 60);
@@ -211,19 +252,30 @@ if (hasParam('gc')) {
 	var seconds = <?php print (new DateTime("2019-09-03", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
 	updateClock('clockdiv', new Date(seconds * 1000));
 	*/
-</script>	
+</script>
+        
+      </div>
+      <div class="col s2"></div>
+      
+      </div>
+			
+          </div>
+			
 
-<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
+<!-- <div id="index-banner" class="parallax-container hide-on-large-only" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
 	<div class="col s12 valign-wrapper" style="width:100%;height:100%;">
+		<div style="width:100%;">
+		
 		<div class="section row center" style="width:100%;">
 			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
-        		<div class="center-align col s12 l3 offset-l3" style='padding:10px;'>	
+        		
+        		<div class="center-align" style="padding:4% 2% 4% 0%">	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE PROJECTS</a>
 			</div>
 			
-			<div class="center-align col s12 l3" style='padding:10px;'>	
+			<div class="center-align" style="padding:0 2% 4% 0%">	
 				<a href="add_village.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</a>
@@ -232,12 +284,14 @@ if (hasParam('gc')) {
 			
 		</div>
             
-        <div class="parallax">
-			<img src="images/chiyuni_banner.jpg" alt="">
+            <div class="parallax">
+			
+			  <img src="images/chiyuni_banner.jpg" alt="">
+			
 		</div>
 	
-	</div>
-</div>
+</div>  -->	
+
 	
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
