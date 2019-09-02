@@ -129,94 +129,53 @@ if (hasParam('gc')) {
 	    $stmt->close();
 	}
 }
-?>
-	<!--		
-<div style="width:100%;padding: 0% 5% 0% 5%;text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96" class="row text-lighten-2;">LABOR DAY FUNDRAISER</div>
-<h5 class="white-text" style="padding:0% 5% 1% 5%">1 week only, FIRST $7,000 MATCHED</h5>
-			
-<div class="row" id="clockdiv" style="width:100%; padding: 2% 0 0 0;">
-  <div>
-    <span class="days"></span>
-    <div class="smalltext">Days</div>
-  </div>
-  <div>
-    <span class="hours"></span>
-    <div class="smalltext">Hours</div>
-  </div>
-  <div>
-    <span class="minutes"></span>
-    <div class="smalltext">Minutes</div>
-  </div>
-  <div>
-    <span class="seconds"></span>
-    <div class="smalltext">Secs</div>
-  </div>
-</div>
+?>	
 
-<div class="row center-align hide-on-med-and-down" style="width:100%;padding: 2% 0% 5% 0;height:120px;">
+<div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
+	<div class="section">
+			<p class="center-align text-lighten" style="text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96;margin:0;padding:0;">Labor Day Fundraiser</p>
+      <h5 class="center-align white-text">1 week only, FIRST $7,000 MATCHED</h5>
+              
+        <div class="center-align" id="clockdiv" style="width:100%; padding-top:20px;">
+          <div>
+            <span class="days"></span>
+            <div class="smalltext">Days</div>
+          </div>
+          <div>
+            <span class="hours"></span>
+            <div class="smalltext">Hours</div>
+          </div>
+          <div>
+            <span class="minutes"></span>
+            <div class="smalltext">Minutes</div>
+          </div>
+          <div>
+            <span class="seconds"></span>
+            <div class="smalltext">Secs</div>
+          </div>
+        </div>
+        <div class="row" style='padding-top:20px;'>
+          <div class="center-align col s12" style='padding:20px;'>
+          <a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
+          </div>
+          
+          <div class="center-align col s12 l2 offset-l4" style='padding-top:10px;'>
+          <a href="https://www.facebook.com/dialog/feed?app_id=<?php print FACEBOOK_APP_ID; ?>&display=popup&caption=<?php print urlencode('This website disrupts extreme poverty.  Double your donation - one week only!');?>&link=<?php print BASE_URL;?>" target="_blank"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
+          </div>
+          
+          <div class="center-align col s12 l2" style='padding-top:10px;'>
+          <a href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=<?php print urlencode('This website disrupts extreme poverty.  Double your donation - one week only!');?>;hashtags=villagex"
+        target="_blank"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
+          </div>
+        </div>  
+      </div>
+      <!--
 
-	<div class="col s12 center-align" style="padding: 2% 0% 0% 0">
-	<a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
-	</div>
-	
-	<div class="col s12 center-align" style="padding: 8% 0% 4% 0%">
-	<a href=""><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
-	</div>
-	
-	<div class="col s12 center-align">
-	<a href=""><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-		border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
-	</div>
-</div>-->
-      
-<script>
-	function getTimeRemaining(endtime) {
-	  	var t = Date.parse(endtime) - Date.parse(new Date());
-	  	var seconds = Math.floor((t / 1000) % 60);
-	  	var minutes = Math.floor((t / 1000 / 60) % 60);
-	  	var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-	  	var days = Math.floor(t / (1000 * 60 * 60 * 24));
-	 	return {
-	    	'total': t,
-	    	'days': days,
-	    	'hours': hours,
-	    	'minutes': minutes,
-	    	'seconds': seconds
-	  	};
-	}
-
-  	function updateClock(clockDivId, endTime) {
-    	var t = getTimeRemaining(endTime);
-
-	  	var clock = document.getElementById(clockDivId);
-	  	var daysSpan = clock.querySelector('.days');
-	  	var hoursSpan = clock.querySelector('.hours');
-	  	var minutesSpan = clock.querySelector('.minutes');
-	  	var secondsSpan = clock.querySelector('.seconds');
-
-    	daysSpan.innerHTML = t.days;
-    	hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    	minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    	secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    	if (t.total <= 0) {
-      		clearInterval(timeinterval);
-    	}
-  	}
-  	/*
-	var timeinterval = setInterval(updateClock, 1000);
-
-	var seconds = <?php print (new DateTime("2019-09-03", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
-	updateClock('clockdiv', new Date(seconds * 1000));
-	*/
-</script>	
-
-<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
-	<div class="col s12 valign-wrapper" style="width:100%;height:100%;">
-		<div class="section row center" style="width:100%;">
-			<h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
+    <div class="section row center" style="width:100%;">
+      <h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		<div class="center-align col s12 l3 offset-l3" style='padding:10px;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
@@ -228,17 +187,57 @@ if (hasParam('gc')) {
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</a>
 			</div>
+    </div>
+            -->
 			
 			
-		</div>
-            
         <div class="parallax">
 			<img src="images/chiyuni_banner.jpg" alt="">
 		</div>
 	
-	</div>
 </div>
-	
+      
+<script>
+  function getTimeRemaining(endtime) {
+      var t = Date.parse(endtime) - Date.parse(new Date());
+      var seconds = Math.floor((t / 1000) % 60);
+      var minutes = Math.floor((t / 1000 / 60) % 60);
+      var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+      var days = Math.floor(t / (1000 * 60 * 60 * 24));
+    return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+      };
+  }
+
+  var seconds = <?php print (new DateTime("2019-09-09", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
+  endTime = new Date(seconds * 1000);
+
+  function updateClock() {
+    var t = getTimeRemaining(endTime);
+
+    var clock = document.getElementById('clockdiv');
+    var daysSpan = clock.querySelector('.days');
+    var hoursSpan = clock.querySelector('.hours');
+    var minutesSpan = clock.querySelector('.minutes');
+    var secondsSpan = clock.querySelector('.seconds');
+
+    daysSpan.innerHTML = t.days;
+    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
+    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
+    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
+
+    if (t.total <= 0) {
+        clearInterval(timeinterval);
+    }
+  }
+  updateClock();
+  var timeinterval = setInterval(updateClock, 1000);
+</script>
+
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
 	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
