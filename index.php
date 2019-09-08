@@ -133,7 +133,7 @@ if (hasParam('gc')) {
 
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
 	<div class="section">
-			<p class="center-align text-lighten" style="text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96;margin:0;padding:0;">Labor Day Fundraiser</p>
+			<p class="center-align text-lighten" style="text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96;margin:0;padding:0;line-height:40px;">Labor Day Fundraiser</p>
       <h5 class="center-align white-text">1 week only, FIRST $7,000 MATCHED</h5>
               
         <div class="center-align" id="clockdiv" style="width:100%; padding-top:20px;">

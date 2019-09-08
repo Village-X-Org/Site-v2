@@ -15,7 +15,7 @@ $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $projectName = $row['project_name'];
-    $matchingDonor = $row['matchingDonor'];
+    $matchingDonor = trim($row['matchingDonor']);
     $villageName = $row['village_name'];
     $bannerPicture = $row['picture_filename'];
     $summary = $row['project_summary'];

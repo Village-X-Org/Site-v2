@@ -17,7 +17,7 @@ switch ($type) {
     case EMAIL_TYPE_THANKS_FOR_PURCHASE:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
         $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
-                        CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor FROM donations
+                        CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor, donation_matched_to FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
                     LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
@@ -35,6 +35,7 @@ switch ($type) {
             $donorFirstName = $row['donorFirstName'];
             $donorEmail = $row['donorEmail'];
             $donationAmountDollars = $row['donation_amount'];
+            $donationMatchedTo = $row['donation_matched_to'];
             $matchingDonor = $row['matchingDonor'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
@@ -410,10 +411,10 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                     																        <p
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
-        																										<?php if (isset($donationAmount)) { ?>
+        																										<?php if (isset($donationAmountDollars)) { ?>
         																											<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
         																										<?php } ?>
-        																										<?php print (isset($matchingDonor) && $matchingDonor ? " (matched to $".money_format('%n', ($donationAmountDollars * 2)).")" : ""); ?>
+        																										<?php print (isset($donationMatchedTo) && $donationMatchedTo ? " (matched to $".money_format('%n', ($donationMatchedTo)).")" : ""); ?>
         																									</p>
         																									<?php if (isset($projectName)) { ?>
         																									<p

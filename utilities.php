@@ -302,6 +302,12 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
             $stmt->bind_param("idi", $matchingDonorId, $donationAmountDollars, $projectId);
             execute($stmt);
             $stmt->close();
+
+            $stmt = prepare("UPDATE donations SET donation_matched_to=? WHERE donation_id=?");
+            $doubledDonation = $donationAmountDollars * 2;
+            $stmt->bind_param("ii", $doubledDonation, $donationId);
+            execute($stmt);
+            $stmt->close();
         }
         
         $stmt = prepare("UPDATE projects SET project_funded=project_funded + ? WHERE project_id=?");
