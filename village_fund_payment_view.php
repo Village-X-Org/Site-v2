@@ -31,8 +31,8 @@ require_once("utilities.php");
  <div class="container">
             <br>
     
-            <div id="jquery-validation" class="section" style="display:table; width:100%">
-            <div class="col-project valign-wrapper" style="vertical-align: middle;">
+            <div id="jquery-validation" class="section row" style="display:table; width:100%">
+            <div class="col s12 m12 l6 valign-wrapper" style="vertical-align: middle;">
             <div class="card" style="border-style:solid; border-width:1px; border-color:blue; border-radius:20px; margin: 0px 0px 0px 0px;">
             <div class="card-content blue-text" style="height:100%;">
             <span class="card-title black-text">Give monthly and help many rural villages disrupt extreme poverty!</span>
@@ -115,7 +115,7 @@ require_once("utilities.php");
             </div>
             </div>
             
-            <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+            <div class="col s12 m12 l6 center-align" style="vertical-align: middle;margin-top:20px;">
             <img src="images/monthly_giving_donation_page.jpg" width="800" height="800" class="responsive-img">
             <div>Enjoy email updates with pictures and data from the field providing a vivid accounting of how your donations change development outcomes for rural Africans.</div>
 		</div>

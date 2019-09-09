@@ -213,7 +213,7 @@ if (hasParam('gc')) {
       };
   }
 
-  var seconds = <?php print (new DateTime("2019-09-09", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
+  var seconds = <?php print (new DateTime("2019-09-10", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
   endTime = new Date(seconds * 1000);
 
   function updateClock() {

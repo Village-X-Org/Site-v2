@@ -124,8 +124,8 @@ include('header.inc');
 <div class="container">
 <br>
 
-	<div class="section" id="jqueryvalidation" style="display:table; width:100%">
-		<div class="col-project valign-wrapper" style="vertical-align: middle;">
+	<div class="section row" id="jqueryvalidation" style="display:table; width:100%">
+		<div class="col s12 m12 l6" style="vertical-align: middle;">
 			<div class="card donor-border" style="border-style:solid; border-width:1px; border-radius:20px; margin: 0px 0px 0px 0px;">
             		<div class="card-content donor-text" style="height:100%;">
             		<span class="card-title black-text">You are donating to <?php print $projectName; ?> in   
@@ -236,7 +236,7 @@ include('header.inc');
 		</div>
 	</div>
 		
-		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+		<div class="col s12 m12 l6 center-align" style="vertical-align: middle;margin-top:20px;">
 			<img src="<?php print PICTURES_DIR.$similarPicture; ?>" width="800" height="800" class="responsive-img" style="border-radius:20px;">
 			<p>Here's a similar project.</p>
 		</div>

@@ -188,9 +188,8 @@ if (!file_exists($mapFilename)) {
   </script>
 		</div>
 	
-  	
-  	<div style="display:table; width:100%">
-  	     <div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+  	<div class='row'>
+  	     <div class="col s12 m12 l6 center-align" style="vertical-align: middle;">
       <?php if ($donorId) { ?>
         <span class='flow-text'>A cooperation between<BR><b class='donor-text'><?php print $donorName; ?></b> and <b class='donor-text'>Village X</b></span>
       <?php } ?>
@@ -200,7 +199,7 @@ if (!file_exists($mapFilename)) {
 				<br>
 		</div>
 				
-		<div class="col-project valign-wrapper center-align" style="vertical-align: middle;">
+		<div class="col s12 m12 l6 center-align" style="vertical-align: middle;">
 							
 					<div class="progress-bar" style="margin: 0 auto;" data-percent="<?php print $percentFunded; ?>" data-duration="1000" data-color="#ccc, #4b86db"></div>
 					
@@ -392,10 +391,9 @@ if (!file_exists($mapFilename)) {
 			<?php } ?>
 		</div>
 	</div>
-	
-		<div class="valign-wrapper center-align" style="vertical-align:middle; margin: 0px 20px 0px 20px; opacity:0.5">
+		<div class="center-align" style="vertical-align:middle; margin-bottom:20px;opacity:0.5">
 						
-					<span class="black-text" style="margin: 0 auto; vertical-align:middle; padding: 0% 20% 5% 20%;">
+					<span class="black-text">
 							100% tax deductible and securely processed by Stripe
 					</span>
 			</div>
