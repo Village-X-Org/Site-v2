@@ -132,48 +132,6 @@ if (hasParam('gc')) {
 ?>	
 
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
-	<div class="section">
-			<p class="center-align text-lighten" style="text-transform:uppercase;font-size:48px;text-shadow: 2px 2px 7px #111111;font-weight:300; color: #00BF96;margin:0;padding:0;line-height:40px;">Labor Day Fundraiser</p>
-      <h5 class="center-align white-text">1 week only, FIRST $7,000 MATCHED</h5>
-              
-        <div class="center-align" id="clockdiv" style="width:100%; padding-top:20px;">
-          <div>
-            <span class="days"></span>
-            <div class="smalltext">Days</div>
-          </div>
-          <div>
-            <span class="hours"></span>
-            <div class="smalltext">Hours</div>
-          </div>
-          <div>
-            <span class="minutes"></span>
-            <div class="smalltext">Minutes</div>
-          </div>
-          <div>
-            <span class="seconds"></span>
-            <div class="smalltext">Secs</div>
-          </div>
-        </div>
-        <div class="row" style='padding-top:20px;'>
-          <div class="center-align col s12" style='padding:20px;'>
-          <a href="project_tiles.php"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">DONATE</button></a>
-          </div>
-          
-          <div class="center-align col s12 l2 offset-l4" style='padding-top:10px;'>
-          <a href="https://www.facebook.com/dialog/feed?app_id=<?php print FACEBOOK_APP_ID; ?>&display=popup&caption=<?php print urlencode('This website disrupts extreme poverty.  Double your donation - one week only!');?>&link=<?php print BASE_URL;?>" target="_blank"><button id="download-button" class="btn-large waves-effect waves-light lighten-1 social facebook" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-facebook left"></i>Share</button></a>
-          </div>
-          
-          <div class="center-align col s12 l2" style='padding-top:10px;'>
-          <a href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=<?php print urlencode('This website disrupts extreme poverty.  Double your donation - one week only!');?>;hashtags=villagex"
-        target="_blank"><button id="download-button" class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-            border-width: 1px; border-style:solid; border-color: white; font-size:x-large;"><i class="fa fa-twitter left"></i>Tweet</button></a>
-          </div>
-        </div>  
-      </div>
-      <!--
-
     <div class="section row center" style="width:100%;">
       <h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
         		<div class="center-align col s12 l3 offset-l3" style='padding:10px;'>	
@@ -188,7 +146,6 @@ if (hasParam('gc')) {
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</a>
 			</div>
     </div>
-            -->
 			
 			
         <div class="parallax">
@@ -197,47 +154,6 @@ if (hasParam('gc')) {
 	
 </div>
       
-<script>
-  function getTimeRemaining(endtime) {
-      var t = Date.parse(endtime) - Date.parse(new Date());
-      var seconds = Math.floor((t / 1000) % 60);
-      var minutes = Math.floor((t / 1000 / 60) % 60);
-      var hours = Math.floor((t / (1000 * 60 * 60)) % 24);
-      var days = Math.floor(t / (1000 * 60 * 60 * 24));
-    return {
-        'total': t,
-        'days': days,
-        'hours': hours,
-        'minutes': minutes,
-        'seconds': seconds
-      };
-  }
-
-  var seconds = <?php print (new DateTime("2019-09-10", new DateTimeZone("Pacific/Honolulu")))->getTimestamp(); ?>;
-  endTime = new Date(seconds * 1000);
-
-  function updateClock() {
-    var t = getTimeRemaining(endTime);
-
-    var clock = document.getElementById('clockdiv');
-    var daysSpan = clock.querySelector('.days');
-    var hoursSpan = clock.querySelector('.hours');
-    var minutesSpan = clock.querySelector('.minutes');
-    var secondsSpan = clock.querySelector('.seconds');
-
-    daysSpan.innerHTML = t.days;
-    hoursSpan.innerHTML = ('0' + t.hours).slice(-2);
-    minutesSpan.innerHTML = ('0' + t.minutes).slice(-2);
-    secondsSpan.innerHTML = ('0' + t.seconds).slice(-2);
-
-    if (t.total <= 0) {
-        clearInterval(timeinterval);
-    }
-  }
-  updateClock();
-  var timeinterval = setInterval(updateClock, 1000);
-</script>
-
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
 	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
@@ -398,7 +314,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors ON p1.project_matching_donor=donor_id 
-                GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, ABS(p1.project_budget-p1.project_funded)");
+                GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, p1.project_funded/p1.project_budget DESC");
     $buffer = '';
     $cells = array();
     while ($row = $result->fetch_assoc()) {
