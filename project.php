@@ -328,7 +328,7 @@ if (!file_exists($mapFilename)) {
 
 					<br>
 				
-		<?php if ($donorCount > 0) { ?>	
+		<?php if ($donorCount > 0 || $matchingDonor) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donorCount.($donorCount > 1 ? " people have" : " person has"); ?> donated!</b> 
 								
