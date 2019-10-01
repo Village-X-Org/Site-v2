@@ -8,7 +8,7 @@ $stmt = prepare("SELECT user_id FROM users WHERE user_username=? AND user_passwo
 $stmt->bind_param('ss', $username, $password);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
-    $stmt = prepare("SELECT project_id, project_funded, project_budget, picture_filename FROM projects JOIN raw_updates ON project_id=? AND project_id=ru_project_id JOIN pictures ON ru_picture_ids LIKE CONCAT('%,', picture_id, ',%') LIMIT 1");
+    $stmt = prepare("SELECT project_id, project_funded, project_budget, picture_filename FROM projects JOIN raw_updates ON project_id=? AND project_id=ru_project_id JOIN pictures ON ru_picture_ids LIKE CONCAT('%,', picture_id, ',%') ORDER BY picture_id DESC LIMIT 1");
     $stmt->bind_param("i", $projectId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
