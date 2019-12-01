@@ -42,7 +42,9 @@ switch ($type) {
             $villageName = $row['village_name'];
             $countryName = $row['country_label'];
             $exemplaryPicture = $row['exemplaryPicture'];
-            $projectExampleImage = $row['similarPicture'];
+            if (!isset($projectExampleImage)) {
+           		$projectExampleImage = $row['similarPicture'];
+           	}
             if ($exemplaryPicture) {
             	$projectExampleImage = $exemplaryPicture;
             }

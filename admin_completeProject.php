@@ -15,7 +15,7 @@ if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         $funded = $row['project_funded'];
         $budget = $row['project_budget'];
-        $pictureFilename = $row['picture_filename'];
+        $projectExampleImage = $row['picture_filename'];
         
         if ($funded < $budget - 1) {
             print "This project is not fully funded.  Please insure that it is funded before attempting to mark it completed.";
