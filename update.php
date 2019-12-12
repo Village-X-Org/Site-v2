@@ -264,6 +264,7 @@ if (hasParam('upload_file')) {
 			<input type='hidden' id='lat' name='lat' value='' />
 			<input type='hidden' id='lng' name='lng' value='' />
 			<script>
+				var submitted = false;
 				var uploadfiles = document.getElementById('fileinput');
 				uploadfiles.addEventListener('change', function () {
 				    var files = this.files;
@@ -275,7 +276,7 @@ if (hasParam('upload_file')) {
 
 			<p><TEXTAREA style='width:300px;height:100px;' placeholder="Notes on uploaded pictures or general updates on project." 
 				id='notes' name='notes'></TEXTAREA></p>
-			<p><button id='postUpdateButton' onclick="if (document.getElementById('projectId').value == '') { alert('You must select a project'); return false; } else { document.getElementById('updateForm').submit(); }" >Post Update</button></p>
+			<p><button id='postUpdateButton' onclick="if (document.getElementById('projectId').value == '') { alert('You must select a project'); return false; } else if (!submitted) { document.getElementById('updateForm').submit(); submitted = true; }" >Post Update</button></p>
 		</form>
 		<?php } else { ?>
 			<script>document.location='user_login.php';</script>

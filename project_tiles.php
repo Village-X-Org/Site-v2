@@ -175,7 +175,7 @@ require_once("utilities.php");
 						<p>Locals Contributed: \$$villageContribution</p>
 					</div>
 					<div class='card-action'>".($matchingDonor && $fundedPercent < 100 ? "
-				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-20px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>Partner $matchingDonor will match all donations made to this project!</span>
+				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-20px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
                             <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>Gift<br>Match</b></span>
                             <!-- <img src='images/matching.png' style='border-radius:25px;padding:2px;border:2px solid black;' />  -->
                             <i class='material-icons center donor-text' style='opacity:0.6;font-size:50px; '>flash_on</i>
