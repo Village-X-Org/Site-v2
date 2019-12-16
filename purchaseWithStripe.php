@@ -27,8 +27,8 @@ if (count($donorName) > 0) {
 }
 $donationCount = $isSubscription = $fundraiserId = 0;
 
-$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
-$stmt->bind_param('s', $buyerEmail);
+$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=? AND donor_first_name=? AND donor_last_name=?");
+$stmt->bind_param('sss', $buyerEmail, $donorFirstName, $donorLastName);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];

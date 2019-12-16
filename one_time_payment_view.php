@@ -63,8 +63,8 @@ require_once("utilities.php");
       $honoreeLastName = param('honoreeLastName');
       $honoreeMessage = param('honoreeMessage');
       
-      $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
-      $stmt->bind_param('s', $honoreeEmail);
+      $stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=? AND donor_first_name=? AND donor_last_name=?");
+      $stmt->bind_param('sss', $honoreeEmail, $honoreeFirstName, $honoreeLastName);
       $result = execute($stmt);
       if ($row = $result->fetch_assoc()) {
           $honoreeId = $row['donor_id'];

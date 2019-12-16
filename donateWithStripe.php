@@ -21,8 +21,8 @@ $honoreeMessage = param('honoreeMessage');
 $fundraiserId = param('fundraiserId');
 $donationMessage = param('fundraiserMessage');
 
-$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
-$stmt->bind_param('s', $donorEmail);
+$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=? AND donor_first_name=? AND donor_last_name=?");
+$stmt->bind_param('sss', $donorEmail, $donorFirstName, $donorLastName);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
