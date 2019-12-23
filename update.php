@@ -62,13 +62,22 @@ if (hasParam('upload_file')) {
 	$pictureIds = $_POST['pictureIds'];
 	$notes = $_POST['notes'];
 	$updateDate = strtotime($_POST['updateDate']);
-	$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
-		VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
-	$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
+	$stmt = prepare("SELECT ru_id FROM raw_updates WHERE ru_picture_ids=?");
+	$stmt->bind_param('s', $pictureIds);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		print "<p>Update previously saved.</p>";
+		$stmt->close();
+	} else {
+		$stmt->close();
+		$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
+			VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
+		$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
 
-	execute($stmt);
-	print "<p>Update saved successfully!</p>";
-	$stmt->close();
+		execute($stmt);
+		print "<p>Update saved successfully!</p>";
+		$stmt->close();
+	}
 } elseif (isset($_POST['pictureIdToBeDeleted'])) {
 	$updateId = $_POST['updateId'];
 	$pictureId = $_POST['pictureIdToBeDeleted'];
