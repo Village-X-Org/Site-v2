@@ -361,8 +361,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<div class='row center'>
     						<div class='col s12'>";
         if ($fundedPercent < 100) {
-            $nextBuffer .= "<a href='one_time_payment_view.php?id=$projectId'
-    								id='donate_button'
+            $nextBuffer .= "<a id='donate_button'
     								class='btn waves-effect waves-light light blue lighten-1'>Donate".($matchingDonor ? " (2x)" : "")."</a>";
         } else {
             $nextBuffer .= "<button href='' class='btn grey'>Fully Funded!</button>";
