@@ -111,7 +111,7 @@ require_once("utilities.php");
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
                 WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
-                ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, (p1.project_budget - p1.project_funded) / p1.project_budget, 1) ASC, p1.project_date_posted DESC";
+                ORDER BY p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted DESC";
         $result = doUnprotectedQuery($query);
 
 		$buffer = '';
