@@ -7,6 +7,14 @@ $projectId = paramInt('fundraiser_project_id');
 $deadline = strtotime(param('fundraiser_deadline')) + (24 * 3600);
 $amount = paramInt('fundraiser_amount');
 $description = param('fundraiser_description');
+$captcha = param('g-recaptcha-response');
+
+if (!verifyRecaptcha($captcha)) {
+	print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
+    emailAdmin("Robot detected in fundraiser_create", "Someone tried to create a fundraiser with donor id: $donorId and email: ".(hasParam('fundraiser_email') ? param('fundraiser_email') : ""));
+    die(1);
+}
+
 if (hasParam('fundraiser_email')) {
 	$email = param('fundraiser_email');
 	$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=?");
