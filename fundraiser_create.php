@@ -152,7 +152,7 @@ body, html {
                            <div class="center-align valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
-                    				<button id="donationButton" class=" g-recaptcha btn-large donor-background center-align submit" data-sitekey="<?php print CAPTCHA_SITEKEY; ?>" type="submit" data-callback="onSubmit" style="width:100%;height:70px;font-size:25px"> 
+                    				<button id="donationButton" class="g-recaptcha btn-large donor-background center-align submit" data-sitekey="<?php print CAPTCHA_SITEKEY; ?>" type="submit" data-callback="onSubmit" style="width:100%;height:70px;font-size:25px"> 
                     					Create Fundraiser 
                     				</button>
                     			</div>
@@ -169,6 +169,11 @@ body, html {
 </div>
 
 <script>
+
+  function onSubmit(token) {
+      $('#fundraiser_form').submit();
+  }
+
   $().ready(function() {
     $("#fundraiser_form").validate({
       rules: {
@@ -180,7 +185,7 @@ body, html {
     messages: {
           fundraiser_title: "this field is required",
           fundraiser_amount: "this field is required",
-          fundraiser_deadline: "this field is required"<?php print (!$session_donor_id ? ", \"a valid email is required\"" : ""); ?>,
+          fundraiser_deadline: "this field is required<?php print (!$session_donor_id ? ", a valid email is required" : ""); ?>",
           fundraiser_email: "this field is required"
     },
 
