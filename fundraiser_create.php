@@ -178,13 +178,17 @@ body, html {
     $("#fundraiser_form").validate({
       rules: {
         fundraiser_title: "required",
-        fundraiser_amount: "required",
+        fundraiser_amount: {
+            required: true,
+            minlength: 2,
+            digits: true
+        },
         fundraiser_deadline: "required"<?php print (!$session_donor_id ? ", fundraiser_email: { required: true, email: true}" : ""); ?>,
         fundraiser_email: "required"
       },
     messages: {
           fundraiser_title: "this field is required",
-          fundraiser_amount: "this field is required",
+          fundraiser_amount: "amount must be at least $10",
           fundraiser_deadline: "this field is required<?php print (!$session_donor_id ? ", a valid email is required" : ""); ?>",
           fundraiser_email: "this field is required"
     },
