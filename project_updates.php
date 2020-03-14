@@ -43,6 +43,7 @@ if (count($updates) > 0) {
 ?>
 <HTML>
 <HEAD>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <style>    
