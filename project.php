@@ -21,7 +21,7 @@ if (hasParam('d')) {
 if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
-                project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, village_name, village_lat, village_lng, 
+                project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, project_status, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
                 CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
@@ -48,6 +48,8 @@ if ($row = $result->fetch_assoc()) {
     $completion = $row['project_completion'];
     $videoId = $row['project_youtube_id'];
     $impact = $row['project_impact'];
+    $status = $row['project_status'];
+    $isCancelled = $status === 'cancelled';
     $villageId = $row['village_id'];
     $villageName = $row['village_name'];
     $villageLat = $row['village_lat'];
@@ -150,7 +152,7 @@ if (!file_exists($mapFilename)) {
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	 
-		<div><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
+		<div style='position:relative;'><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
 					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
             to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
@@ -170,7 +172,10 @@ if (!file_exists($mapFilename)) {
               Partner <a href="<?php print $partners[0][1]; ?>" target="_blank" class='brown-text text-lighten-2' style='font-weight:bold;'><?php print $partners[0][0]; ?></a> also made a generous financial contribution.
             <?php } ?>
 		</h4>
-
+    <?php if ($isCancelled) {
+      print "<img src='images/cancelled.png' style='position:absolute;right:0px;top:0px;' />";
+    }
+    ?>
 <script>
       var attrs = {};
       var classes = $("a[data-imagelightbox]").map(function(index, element) {
