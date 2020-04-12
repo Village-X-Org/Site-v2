@@ -339,6 +339,11 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
                 sendMail($donorEmail, "Project Fully Funded!", $output, getCustomerServiceEmail());
             }
             $donorStmt->close();
+
+
+		    $stmt = prepare("UPDATE projects SET project_status='construction' WHERE project_id=?");
+		    $stmt->bind_param("i", $projectId);
+		    execute($stmt);
         }
     }   
 }

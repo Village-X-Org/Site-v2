@@ -53,4 +53,7 @@ if ($row = $result->fetch_assoc()) {
         sendMail($donorEmail, "Project Complete!", $output, getCustomerServiceEmail());
     }
     print $output;
+    $stmt = prepare("UPDATE projects SET project_status='completed' WHERE project_id=?");
+    $stmt->bind_param("i", $projectId);
+    execute($stmt);
 }
