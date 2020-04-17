@@ -11,8 +11,8 @@
     var map = new mapboxgl.Map({
         container : 'map',
         style : 'mapbox://styles/jdepree/cj37ll51d00032smurmbauiq4',
-        center : [34,-13.024],
-        zoom : 6, 
+        center : [<?php print ($rebranded ? "$lng, $lat" : "34,-13.024"); ?>],
+        zoom : <?php print ($rebranded ? "$zoom" : "6"); ?>, 
         padding: {top: 20, bottom:150, left: 20, right: 20}
     });
     map.scrollZoom.disable();
