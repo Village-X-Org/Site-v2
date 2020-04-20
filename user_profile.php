@@ -11,7 +11,7 @@ if (!hasParam('id')) {
   $userId = param('id');
 }
 
-$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
+$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $healthcareCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
 $donorLocation = "";
 $populations = array();
 $households = array();
@@ -34,7 +34,7 @@ $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donat
               LEFT JOIN village_stats AS vs1 ON vs1.stat_village_id=village_id AND vs1.stat_type_id=18 AND YEAR(donation_date)=vs1.stat_year
               LEFT JOIN village_stats AS vs2 ON vs2.stat_village_id=village_id AND vs2.stat_type_id=19 AND YEAR(donation_date)=vs2.stat_year
               WHERE donor_id=?
-              ORDER BY donation_date DESC");
+              GROUP BY donation_id ORDER BY donation_date DESC");
 $stmt->bind_param('i', $userId);
 $result = execute($stmt);
 $count = 0;
@@ -69,11 +69,13 @@ while ($row = $result->fetch_assoc()) {
 
   $livestockCount += ($projectType == 'livestock' ? $amount : 0);
   $waterCount += ($projectType == 'water' ? $amount : 0);
-  $educationCount += ($projectType == 'school' || $projectType == 'house' || $projectType == 'nursery' ? $amount : 0);
+  $educationCount += ($projectType == 'school' || $projectType == 'library' || $projectType == 'house' || $projectType == 'nursery' ? $amount : 0);
   $agCount += ($projectType == 'farm' ? $amount : 0);
   $bizCount += ($projectType == 'business' ? $amount : 0);
+  $healthcareCount += ($projectType == 'clinic' ? $amount : 0);
   $count++;
 } 
+
 $stmt->close();
 
 if (!$userFirstName) {
@@ -91,12 +93,11 @@ if (count($donationDates) > 0) {
   $latestProjectId = $projectIds[0];
 }
 $totalDonationAmount = max(.001, $totalDonationAmount);
-  $labels = ["Livestock", "Water", "Education", "Farming", "Business"];
-  $counts = [round($livestockCount * 100 / $totalDonationAmount), round($waterCount * 100 / $totalDonationAmount), 
-    round($educationCount * 100 / $totalDonationAmount), round($agCount * 100 / $totalDonationAmount), 
-    round($bizCount * 100 / $totalDonationAmount)];
-  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#D2691E'];
-
+  $labels = ["Livestock", "Water", "Education", "Farming", "Business", "Healthcare"];
+  $counts = [round($livestockCount * 10000 / $totalDonationAmount), round($waterCount * 10000 / $totalDonationAmount), 
+    round($educationCount * 10000 / $totalDonationAmount), round($agCount * 10000 / $totalDonationAmount), 
+    round($bizCount * 10000 / $totalDonationAmount), round($healthcareCount * 10000 / $totalDonationAmount)];
+  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#D2691E', '#808000'];
   for ($i = count($labels) - 1; $i >= 0; $i--) {
     if ($counts[$i] == 0) {
       unset($counts[$i]);
@@ -263,7 +264,7 @@ $stmt->close();
                       if ($count++ > 0) {
                         print ", ";
                       }
-                      print "$datum";
+                      print ($datum/100);
                     }
                   ?>]
                   }
@@ -278,7 +279,7 @@ $stmt->close();
     
     <div class="col s12 m12 l6 left-align" style="vertical-align: middle;padding: 0% 2% 2% 3%">
   
-            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation/Fundraiser History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".money_format('%.2n', $totalDonationAmount).")" : ""); ?></span></h5>
+            <h5 class="valign-wrapper" style="padding: 4% 0% 2% 0%"><b>Donation/Fundraiser History</b>&nbsp;<span style="font-size: smaller; font-weight: lighter;"><?php print ($session_donor_id == $userId ? "(Total: $".(numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($totalDonationAmount, 'USD')).")" : ""); ?></span></h5>
 
                     <div style="overflow: scroll; height:600px;">
           <?php
@@ -291,7 +292,7 @@ $stmt->close();
                                         text-align: center;display: table-cell;vertical-align:middle;"><img style='filter: brightness(0) invert(.97);width:50px;' src='images/type_<?php print $projectTypes[$i]; ?>.svg' /></span></a>
                         
                   </div>
-                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_donor_id == $userId ? "<b>Donated $".money_format('%.2n', $donationAmounts[$i])."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
+                  <div style="padding:0 0 0% 5%;vertical-align:middle; display: inline-block;"><span style="font-size: 16px; font-weight: 300"><?php print ($session_donor_id == $userId ? "<b>Donated $".(numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationAmounts[$i], 'USD'))."</b>" : "Donated "); ?><span style="font-size: medium; font-weight: 300; text-color:#efebe9"> on <?php print date('M j, Y', $donationDates[$i]); ?> to</span>
                     <div style="font-weight: 200; font-size:16px;"><a href="project.php?id=<?php print $projectIds[$i];?>" target='_blank'><?php print $projectNames[$i]; ?></a> in <?php print $villageNames[$i]; ?> Village</div>
                   </div>
                 </div>

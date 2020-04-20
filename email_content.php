@@ -414,9 +414,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
         																										<?php if (isset($donationAmountDollars)) { ?>
-        																											<strong>Donation Amount</strong><br /> $<?php print money_format('%n', $donationAmountDollars); ?>
+        																											<strong>Donation Amount</strong><br /> $<?php print numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationAmountDollars, 'USD'); ?>
         																										<?php } ?>
-        																										<?php print (isset($donationMatchedTo) && $donationMatchedTo ? " (matched to $".money_format('%n', ($donationMatchedTo)).")" : ""); ?>
+        																										<?php print (isset($donationMatchedTo) && $donationMatchedTo ? " (matched to $".numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationMatchedTo, 'USD').")" : ""); ?>
         																									</p>
         																									<?php if (isset($projectName)) { ?>
         																									<p

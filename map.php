@@ -191,7 +191,8 @@ div.progressBar .ui-progressbar-value {
 	map.on('load', function() {
 		window.scrollTo(0,1);
 		map.on('click', 'countries', function(e) {
-			console.log(e.features[0]);
+			props = e.features[0].properties;
+			zoomToCountryBounds(props.swLat, props.swLng, props.neLat, props.neLng);
 		})
 		map.on('click', 'villages', function(e) {
 			selectVillage(e.features[0]);
@@ -223,7 +224,7 @@ div.progressBar .ui-progressbar-value {
 		map.on("mousemove", "projects", function(e) {
 			map.getCanvas().style.cursor = 'pointer';
 		});
-		map.on("mousemove", "countries", function(e) {
+		map.on("mouseleave", "countries", function(e) {
 			map.getCanvas().style.cursor = 'default';
 		});
 		map.on("mouseleave", "villages", function() {
@@ -290,6 +291,10 @@ div.progressBar .ui-progressbar-value {
 		} else {
 			return false;
 		}
+	}
+
+	function zoomToCountryBounds(swLat, swLng, neLat, neLng) {
+		map.fitBounds([[swLng, swLat],[neLng, neLat]], {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 
 	function zoomToCountry(coords, zoom) {
