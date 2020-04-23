@@ -4,6 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <style>
@@ -152,7 +153,7 @@ body, html {
                            <div class="center-align valign-wrapper" style="width:100%; padding:0% 3% 1% 3%">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
-                    				<button id="donationButton" class="g-recaptcha btn-large donor-background center-align submit" data-sitekey="<?php print CAPTCHA_SITEKEY; ?>" type="submit" data-callback="onSubmit" style="width:100%;height:70px;font-size:25px"> 
+                    				<button id="donationButton" class="g-recaptcha btn-large donor-background center-align submit" data-sitekey="<?php print CAPTCHA_SITEKEY_V2; ?>" type="submit" data-callback="onSubmit" style="width:100%;height:70px;font-size:25px"> 
                     					Create Fundraiser 
                     				</button>
                     			</div>

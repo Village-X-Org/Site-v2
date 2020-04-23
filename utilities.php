@@ -530,8 +530,8 @@ function invalidateCaches($projectId) {
     include("getVillages.php");
 }
 
-function verifyRecaptcha($responseCode) {
-	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET."&response=".$responseCode;
+function verifyRecaptcha2($responseCode) {
+	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET_V2."&response=".$responseCode;
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt( $ch, CURLOPT_HEADER, 0);
@@ -540,6 +540,22 @@ function verifyRecaptcha($responseCode) {
 	$json = json_decode($response);
 
 	if (isset($json->{'success'}) && $json->{'success'}) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function verifyRecaptcha3($responseCode, $action) {
+	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET_V3."&action=".$action."&response=".$responseCode;
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+	$response = curl_exec( $ch );
+	$json = json_decode($response);
+
+	if (isset($json->{'success'}) && $json->{'success'} && isset($json->{'score'}) && $json->{'score'} > .5) {
 		return true;
 	} else {
 		return false;

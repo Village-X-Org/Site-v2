@@ -7,6 +7,18 @@ if (hasParam('upload_file')) {
   $filename = uniqid() . '.jpg';
   $smallFilename = uniqId() . '.jpg';
 
+  if (hasParam('g-recaptcha-response')) {
+    $captcha = param('g-recaptcha-response');
+  } else {
+    die(1);
+  }
+
+  if (!verifyRecaptcha3($captcha, 'addVillage')) {
+    print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
+      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      die(1);
+  }
+
   $ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
   fwrite($ifp, base64_decode($data[1]));
@@ -55,8 +67,20 @@ if (hasParam('upload_file')) {
   $advocateName = $_POST['advocate_name'];
   $advocatePhone = $_POST['advocate_phone'];
   $advocateEmail = $_POST['advocate_email'];
-
   $villageName = $_POST['village_name'];
+
+  if (hasParam('g-recaptcha-response')) {
+    $captcha = param('g-recaptcha-response');
+  } else {
+    die(1);
+  }
+
+  if (!verifyRecaptcha3($captcha, 'addVillage')) {
+    print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
+      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      die(1);
+  }
+
   $lat = $_POST['lat'];
   $lng = $_POST['lng'];
   $pictureIds = $_POST['pictureIds'];
@@ -90,13 +114,21 @@ if (hasParam('upload_file')) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://www.google.com/recaptcha/api.js?render=<?php print CAPTCHA_SITEKEY_V3; ?>"></script>
 <?php
     $pageTitle = "Village X | Map Your Village";
     $pageDescription = "Add your village and its development needs to our map.  We want to connect you with organizations that might be able to help.";
     $pageUrl = getBaseURL()."add_village.php";
     include('header.inc'); 
 ?>
-
+<script>
+  grecaptcha.ready(function() {
+    grecaptcha.execute('<?php print CAPTCHA_SITEKEY_V3; ?>', {action: 'addVillage'}).then(function(token) {
+      $('#g-recaptcha-response').val(token);
+      captchaResult = token
+    });
+  });
+</script>
 <style>
 body, html {
     height: 100%;
@@ -126,6 +158,7 @@ body, html {
 <script src="js/exif.js"></script>
     <script>
     var uploading = 0;
+    var captchaResult;
     function uploadFile(file, smallFile, lat, lng, orientation, image){
         var xhr = new XMLHttpRequest();
         var fd = new FormData();
@@ -139,6 +172,7 @@ body, html {
         };
         fd.append("upload_file", file);
         fd.append("upload_file_small", smallFile);
+        fd.append("g-recaptcha-response", captchaResult)
         if (lat) {
           document.getElementById('lat').value = lat;
           document.getElementById('lng').value = lng;
@@ -308,6 +342,7 @@ body, html {
                         <input type='hidden' id='pictureIds' name='pictureIds' value=',' />
                         <input type='hidden' id='lat' name='lat' value='' />
                         <input type='hidden' id='lng' name='lng' value='' />
+                        <input type='hidden' id='g-recaptcha-response' name='g-recaptcha-response' value='' />
                         <script>
                           var uploadfiles = document.getElementById('fileinput');
                           uploadfiles.addEventListener('change', function () {
@@ -343,7 +378,7 @@ body, html {
                            <div class="center-align valign-wrapper" style="width:100%; padding:0% 9% 1% 3%;max-width:600px">
                     		   <div class="input-field center-align" style="width:100%;">
                     		   		
-                    				<button id="addVillageButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px;" disabled="true"> 
+                    				<button disabled="true" id="addVillageButton" class="btn-large donor-background center-align submit" type="submit" style="width:100%;height:70px;font-size:25px;" > 
                     					Submit 
                     				</button>
                     			</div>
@@ -393,7 +428,7 @@ $(document).ready(function() {
           }
       },
         submitHandler: function(form) {
-          form.submit();
+            form.submit();
         } 
     });
   });

@@ -305,7 +305,7 @@ include('header.inc');
         document.getElementById('updateTitleEdit' + updateId).style.display = 'none';
         document.getElementById('updateEdit' + updateId).style.display = 'none';
         document.getElementById('updateEditLink' + updateId).style.display = 'inline';
-        $.post('<?php print getBaseURL(); ?>/track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
+        $.post('track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
     }
 
     map.on('click', 'villages', function(e) {

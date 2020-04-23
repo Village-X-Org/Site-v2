@@ -4,6 +4,7 @@ require_once("utilities.php");
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <title>Village X Org | Fund Projects That Villages Choose</title>
 <meta name="description" content="Disrupting extreme poverty in rural Africa with democracy, direct giving, and data."/>
 <style>
@@ -80,7 +81,7 @@ body, html {
                 		   		
                       <button id="donationButton" style="width:100%;height:70px;font-size:25px"
                           class="g-recaptcha btn-large donor-background center-align submit"
-                          data-sitekey="<?php print CAPTCHA_SITEKEY; ?>"
+                          data-sitekey="<?php print CAPTCHA_SITEKEY_V2; ?>"
                           data-callback="onSubmit">
                           SIGN UP 
                       </button>
