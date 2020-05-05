@@ -294,6 +294,10 @@ include('header.inc');
         });
     }
 
+    function emailUpdate(updateId) {
+        $.get('track_emailUpdate.php', 'updateId=' + updateId);
+    }
+
     function saveUpdate(updateId) {
         if (document.getElementById('updateTitleEdit' + updateId).value != '') {
             document.getElementById('updateTitleText' + updateId).innerHTML = document.getElementById('updateTitleEdit' + updateId).value;

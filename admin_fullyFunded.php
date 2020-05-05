@@ -34,6 +34,7 @@ if ($row = $result->fetch_assoc()) {
             include("email_content.php");
             $output = ob_get_clean();
             sendMail($donorEmail, "Project Fully Funded!", $output, getCustomerServiceEmail());
+            recordProjectEmailDate($projectId);
         }
         $donorStmt->close();
     }

@@ -18,8 +18,12 @@ $donorId = 0;
 if (hasParam('d')) {
   $donorId = paramInt('d');
 }
+$selectedTab = 0;
+if (hasParam('t')) {
+  $selectedTab = param('t');
+}
 
-if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
+if (!CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
@@ -27,7 +31,7 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
                 CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description, project_org_id
                 FROM projects JOIN villages ON village_id=project_village_id
-                LEFT JOIN countries ON village_country_id=country_id
+                LEFT JOIN countries ON village_country=country_id
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
@@ -435,8 +439,8 @@ if (!file_exists($mapFilename)) {
     <div class="section">
       <div class="card-tabs">
         <ul class="tabs tabs-fixed-width z-depth-0.5">
-          <li class="tab"><a class="active" href="#infotab"><span class="flow-text light">Info</span></a></li>
-          <li class="tab"><a href="#updatestab"><span class="flow-text light">Updates</span></a></li>
+          <li class="tab"><a <?php print ($selectedTab == 0 ? "class='active'" : ""); ?> href="#infotab"><span class="flow-text light">Info</span></a></li>
+          <li class="tab"><a <?php print ($selectedTab == 1 ? "class='active'" : ""); ?> href="#updatestab"><span class="flow-text light">Updates</span></a></li>
           <li class="tab"><a href="#maptab"><span class="flow-text light">Map</span></a></li>
           <?php if ($hasStats) { ?>
             <li class="tab"><a href="#datatab"><span class="flow-text light">Data</span></a></li>
@@ -482,5 +486,5 @@ if (!file_exists($mapFilename)) {
     }
 } 
 if (CACHING_ENABLED) {
-    include(CACHED_PROJECT_PREFIX.'o'.$rebranded.'d'.$donorId); 
+    include(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId); 
 } ?>

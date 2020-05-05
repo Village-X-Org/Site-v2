@@ -88,6 +88,23 @@ switch ($type) {
 		}
 		$stmt->close();
     	break;
+    case EMAIL_TYPE_UPDATE:
+    	$stmt = prepare("SELECT project_id, project_name, ru_title, ru_description, ru_picture_ids, ru_date, village_name FROM raw_updates 
+    		JOIN projects ON project_id=ru_project_id JOIN villages ON project_village_id=village_id WHERE ru_id=?");
+    	$stmt->bind_param('i', $updateId);
+    	$result = execute($stmt);
+    	if ($row = $result->fetch_assoc()) {
+    		$projectId = $row['project_id'];
+    		$projectName = $row['project_name'];
+    		$villageName = $row['village_name'];
+    		$updateTitle = $row['ru_title'];
+    		$updateDescription = $row['ru_description'];
+    		$updatePictures = explode(',', $row['ru_picture_ids']);
+    		$updateDate = $row['ru_date'];
+    	}
+    	$donorFirstName = "n/a";
+    	$stmt->close();
+    	break;
     default:
         break;
 }
@@ -228,6 +245,10 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																    case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
         																        print "$donorFirstName,";
         																        break;
+																		    case EMAIL_TYPE_UPDATE:
+																		    	print "<div style='position:absolute;left:10px;top:10px;font-size:14px;'><a href='".BASE_URL."$projectId' target='_blank' style='color:#014421;text-decoration:none;'>$projectName</a></div>";
+																		    	print "<div style='position:absolute;right:10px;top:10px;font-size:14px;'><a href='".BASE_URL."user_profile.php?id=$donorId' target='_blank' style='color:#014421;text-decoration:none;'>My Donations</a></div>";
+																		    	print "<br/><center>What's New with $villageName?</center>";
         																    default:
         																        break;
         																}
@@ -296,6 +317,16 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		print "Click on this link to activate your impact profile:<br/><a href='$profileActivationLink'>$profileActivationLink</a></p>
 																		<p>We created Village X to take direct giving to a whole new level.  We deploy your donations straight to problems on the ground.  We then send you data, pics, and videos providing a vivid accounting of exactly how your money improves development outcomes for rural Africans fighting extreme poverty.</p><p>Today we are happy to announce the next step in our efforts to put you on the front lines:  impact profiles.  Click on the link above to activate your profile.  Each profile includes the status of the last project you helped and a listing of your donations.  Your profile also features the number of people you have directly helped and a carousel of pictures from your projects.</p><p>Thanks again for your support.  To provide feedback or just connect, shoot us an email at chat@villagex.org.  We're here to help.</p>";
     																	break;
+																    case EMAIL_TYPE_UPDATE:
+																    	print "<div style='margin-top:-10px;'>$updateDescription</div>";
+																    	foreach ($updatePictures as $pictureId) {
+																    		?>
+																    		<br/><img src="<?php print ABS_PICTURES_DIR.$pictureId.'.jpg'; ?>" alt=""
+                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    														<?php
+																    	}
+																		print "<center><span style='font-size:20px'>You can learn more about $projectName <a href='".BASE_URL.$projectId."' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a>.</span></center>";
+																    	break;
                                                                     default:
                                                                         break;
 																}?>
@@ -318,11 +349,13 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
     																	break;
     																case EMAIL_TYPE_PROFILE_ACTIVATION:
     																	break;
+																	case EMAIL_TYPE_UPDATE:
+																		break;
 																    default:
 																        break;
 																}?>
 															</h2>
-															<?php if ($type != EMAIL_TYPE_PROFILE_ACTIVATION) { ?>
+															<?php if ($type != EMAIL_TYPE_PROFILE_ACTIVATION && $type != EMAIL_TYPE_UPDATE) { ?>
 															<table class="callout"
 																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
 																<tr
@@ -385,6 +418,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                         																        break;
                                     																        case EMAIL_TYPE_FUNDRAISER:
         																										break;
+        																									case EMAIL_TYPE_UPDATE:
+        																										break;
                                         																    default:
                                         																        break;
                                         																}?>
@@ -422,7 +457,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																									<p
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
-        																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.$projectId; ?>"
+        																										<strong>Project</strong><br /> <a href="<?php print BASE_URL.'project.php?'.($type == EMAIL_TYPE_PROJECT_COMPLETED ? 't=1&' : '')."id=$projectId"; ?>"
         																											target="_blank"
         																											style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">
         																											<?php print $projectName; ?></a>
@@ -462,6 +497,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
         																										<strong>Location</strong><br /> <?php print $villageName; ?>
         																										Village, <?php print $countryName; ?>
         																									</p><?php
+        																									break;
+        																								case EMAIL_TYPE_UPDATE:
         																									break;
                                                                                                         default:
                                                                                                             break;
@@ -613,6 +650,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		case EMAIL_TYPE_PROFILE_ACTIVATION:
 																			print "<img src='https://villagex.org/images/woman_with_goat_small.jpg' />";
 																			print "<br/>Thank you from Chikumbu Village, Malawi!<p/>";
+																		case EMAIL_TYPE_UPDATE:
+																			break;
 	                                                                    default:
 	                                                                        break;
                     												}?>
@@ -626,6 +665,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_THANKS_FOR_PURCHASE:
                 											        case EMAIL_TYPE_THANKS_FOR_DONATING:
             											            case EMAIL_TYPE_FUNDRAISER:
+            											            case EMAIL_TYPE_UPDATE:
             											            case EMAIL_TYPE_PROFILE_ACTIVATION:
                 												        print "With profound gratitude,";
                 												        break;

@@ -158,7 +158,7 @@ if (hasParam('d')) {
 	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
 				<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>" class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
-				src='<?php print ($rebranded ? "$logo' style='height:75px;" : "images/villagex_short_logo.png"); ?>'></a>
+				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>'></a>
 
 			<?php if ($rebranded == 0) { ?>	
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
@@ -188,11 +188,12 @@ if (hasParam('d')) {
 
 			</ul>
 			<?php } else { ?>
-				<a href="add_village.php" class="right">
+				<a href="add_<?php print ($rebranded > 0 ? "project" : "village"); ?>.php" class="right">
                     <div style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%;">
-                        <div style="vertical-align:middle; display:inline-block;font-size:20px;color:gray;">add a village</div>
-                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:48px;color:gray;'>add_circle</i></div>
-                         <div style="vertical-align:middle;display:inline-block;font-size:20px;color:gray;">to our map</div>
+                        <div style="vertical-align:middle; display:inline-block;font-size:16px;color:gray;">add a <?php print ($rebranded > 0 ? "project" : "village"); ?></div>
+                        <div style="vertical-align:middle; display:inline-block;font-size:16px;color:gray;text-decoration:underline;">add a village</div>
+                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:32px;color:gray;'>add_circle</i></div>
+                         <div style="vertical-align:middle;display:inline-block;font-size:16px;color:gray;text-decoration:underline;">to our map</div>
                      </div>
 	            </a>
 	        <?php } ?> 
@@ -203,7 +204,7 @@ if (hasParam('d')) {
 		<nav class="white" role="navigation">
 			<div class="nav-wrapper container">
 			<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>"class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
-				src='<?php print ($rebranded ? "$logo' style='height:75px;" : "images/villagex_short_logo.png"); ?>'></a>
+				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>'></a>
 				<?php if ($rebranded == 0) { ?>	
 				<ul class="right">
 					
@@ -239,11 +240,11 @@ if (hasParam('d')) {
 				   </ul>
 				</ul>
 				<?php } else { ?>
-				<a href="add_village.php" class="right">
+				<a href="add_<?php print ($rebranded > 0 ? "project" : "village"); ?>.php" class="right">
                     <div style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%;">
-                        <div style="vertical-align:middle; display:inline-block;font-size:20px;color:gray;">add a village</div>
-                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:48px;color:gray;'>add_circle</i></div>
-                         <div style="vertical-align:middle;display:inline-block;font-size:20px;color:gray;">to our map</div>
+                        <div style="vertical-align:middle; display:inline-block;font-size:16px;color:gray;text-decoration:underline;">add a <?php print ($rebranded > 0 ? "project" : "village"); ?></div>
+                         <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:32px;color:gray;'>add_circle</i></div>
+                         <div style="vertical-align:middle;display:inline-block;font-size:16px;color:gray;text-decoration:underline;">to our map</div>
                      </div>
 	            </a>
 	        	<?php } ?> 

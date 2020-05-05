@@ -37,6 +37,7 @@ define("EMAIL_TYPE_FUNDRAISER", 5);
 define("EMAIL_TYPE_PROFILE_ACTIVATION", 6);
 define("EMAIL_TYPE_PROJECT_FAILED", 7);
 define("EMAIL_TYPE_THANKS_FOR_PURCHASE", 8);
+define("EMAIL_TYPE_UPDATE", 9);
 
 if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_POST;
@@ -286,6 +287,13 @@ function checked($key) {
 	return (isset($reqVar[$key]) ? 1 : 0);
 }
 // End request processing
+
+function recordProjectEmailDate($projectId) {
+	$stmt = prepare("UPDATE projects SET project_last_email=NOW() WHERE project_id=?");
+	$stmt->bind_param("i", $projectId);
+	execute($stmt);
+	$stmt->close();
+}
 
 function recordDonation($projectId, $donationAmountDollars, $donationId) {
     $stmt = prepare("SELECT project_name, project_funded, project_budget, project_matching_donor FROM projects WHERE project_id=?");
