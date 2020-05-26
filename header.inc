@@ -184,7 +184,7 @@ if (hasParam('d')) {
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
 				<?php if (!isset($updates)) { ?>
-					<li><a class="waves-effect waves-light btn" href='track.php'>Add Villages<i class='material-icons right' style='color:white;'>add_circle_outline</i></a></li>
+					<li><a class="waves-effect waves-light btn" href='add_village.php'>Add Villages<i class='material-icons right' style='color:white;'>add_circle_outline</i></a></li>
 				<?php } ?>
 
 			</ul>
