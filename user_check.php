@@ -26,8 +26,5 @@ if ($row = $result->fetch_assoc()) {
 
 	setcookie ( "username", $email, time () + (60 * 60 * 24 * 30) );
 	setcookie ( "password", $password, time () + (60 * 60 * 24 * 30) );
-	print 'success';
-} else {
-	print 'Username or password incorrect';
 }
 ?>

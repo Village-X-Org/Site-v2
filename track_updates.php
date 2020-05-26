@@ -135,7 +135,11 @@ if (!isset($start)) {
                         style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' >";
             }
             if ($session_is_admin) {
-                print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:black;'>delete</i></a>";
+                ?><div style='position:absolute;bottom:10px;right:10px;'>
+                    <a href='' onclick='spotlightImage(this, <?php print $update['project_id'].", $pictureId";?>);return false;'><img style='border:none;width:24px;' src='images/spotlight.svg' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <a href='' onclick='deleteImage(<?php print "$updateId, $pictureId";?>);return false;'><img style='border:none;width:24px;' src='images/trash.svg' /></a>
+                </div>
+                <?php
             }
             print "</div>";
         }
@@ -143,6 +147,13 @@ if (!isset($start)) {
     }
     if ($session_is_admin) {?>
         <script>
+            function spotlightImage(link, projectId, pictureId) {
+                if (confirm('Are you sure you want to set this image as the spotlighted image on the project page?')) {
+                    $.post("update.php", {updateProjectId: projectId, pictureIdToBeSpotlighted: pictureId}, function(data) {
+                        alert(data);
+                    })
+                }
+            }
             function deleteImage(updateId, pictureId) {
                 if (confirm('Are you sure you want to delete this image')) {
                     $.post("update.php", {updateId: updateId, pictureIdToBeDeleted: pictureId}, function( data ) {

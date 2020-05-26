@@ -89,13 +89,14 @@ switch ($type) {
 		$stmt->close();
     	break;
     case EMAIL_TYPE_UPDATE:
-    	$stmt = prepare("SELECT project_id, project_name, ru_title, ru_description, ru_picture_ids, ru_date, village_name FROM raw_updates 
-    		JOIN projects ON project_id=ru_project_id JOIN villages ON project_village_id=village_id WHERE ru_id=?");
+    	$stmt = prepare("SELECT project_id, project_name, ru_title, ru_description, ru_picture_ids, ru_date, village_name, country_label FROM raw_updates 
+    		JOIN projects ON project_id=ru_project_id JOIN villages ON project_village_id=village_id JOIN countries ON village_country=country_id WHERE ru_id=?");
     	$stmt->bind_param('i', $updateId);
     	$result = execute($stmt);
     	if ($row = $result->fetch_assoc()) {
     		$projectId = $row['project_id'];
     		$projectName = $row['project_name'];
+    		$countryName = $row['country_label'];
     		$villageName = $row['village_name'];
     		$updateTitle = $row['ru_title'];
     		$updateDescription = $row['ru_description'];
@@ -248,7 +249,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																		    case EMAIL_TYPE_UPDATE:
 																		    	print "<div style='position:absolute;left:10px;top:10px;font-size:14px;'><a href='".BASE_URL."$projectId' target='_blank' style='color:#014421;text-decoration:none;'>$projectName</a></div>";
 																		    	print "<div style='position:absolute;right:10px;top:10px;font-size:14px;'><a href='".BASE_URL."user_profile.php?id=$donorId' target='_blank' style='color:#014421;text-decoration:none;'>My Donations</a></div>";
-																		    	print "<br/><center>What's New with $villageName?</center>";
+																		    	print "<br/><center style='font-size:20px;'>UPDATE: $projectName in $villageName Village, $countryName<br/><span style='font-size:18px;font-weight:normal;'>(you donated to this project -- thank you!)</span></center>";
         																    default:
         																        break;
         																}
@@ -320,12 +321,14 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_UPDATE:
 																    	print "<div style='margin-top:-10px;'>$updateDescription</div>";
 																    	foreach ($updatePictures as $pictureId) {
+																    		if ($pictureId) {
 																    		?>
 																    		<br/><img src="<?php print ABS_PICTURES_DIR.$pictureId.'.jpg'; ?>" alt=""
                     															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														<?php
+                    														}
 																    	}
-																		print "<center><span style='font-size:20px'>You can learn more about $projectName <a href='".BASE_URL.$projectId."' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a>.</span></center>";
+																		print "<center><span style='font-size:20px'>Click <a href='".BASE_URL.$projectId."' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a> to get more project details.</span></center>";
 																    	break;
                                                                     default:
                                                                         break;
@@ -761,7 +764,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															</table>
 														</th>
 														<th class="small-12 large-6 columns last"
-															style="width: 274px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 auto; padding: 0 16px 16px 8px;"
+															style="width: 274px; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 auto; padding: 10px 16px 16px 8px;"
 															align="left">
 															<table
 																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; padding: 0;">

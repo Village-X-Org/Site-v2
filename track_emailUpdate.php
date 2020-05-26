@@ -25,6 +25,7 @@ if (hasParam('send')) {
 	        $output = ob_get_clean();
 	        sendMail($donorEmail, "There's an update for one of the projects you've supported!", $output, getCustomerServiceEmail());
 	    }
+	    sendMail(getCustomerServiceEmail(), "There's an update for one of the projects you've supported!", $output, getCustomerServiceEmail());
 	    recordProjectEmailDate($projectId);
 	    print $output;
 	} else {

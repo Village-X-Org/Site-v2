@@ -274,16 +274,27 @@ body, html {
 
          						
           						
-          						<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>VILLAGE NAME</b></div>
-         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+      						  <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+           						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Village Name</b></div>
+           						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           							<i class="material-icons prefix">location_on</i>
           							<input placeholder="e.g., Chimphepo Village" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
                         id="village_name" name="village_name" required data-error=".errorTxt4"/>
           							<div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          					 </div>
-          						
+          					   </div>	
           					</div>
+
+                    <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                     <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Project Name</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">location_on</i>
+                        <input placeholder="e.g., Start a Goat Herd" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
+                        id="project_name" name="project_name" required data-error=".errorTxt4"/>
+                        <div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+                     </div>
+                      
+                    </div>
+                            
                        		  
 	                 			
 	                 			<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
@@ -337,7 +348,7 @@ body, html {
                           <i class="material-icons prefix" style="color:black;font-size:20px;">photo_library</i>
           							 <input class="file-path validate donor-text" type="text" placeholder="click to upload pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt6" />
         						    </div>
-                        <img id='example_image' src='images/add_village_example.jpg' style='width:300px;opacity:.6' />
+                        <img id='example_image' src='images/saiti_project_request.jpg' style='width:600px;opacity:.6' />
                       <div id='imageContainer'>
                         </div>
                         <input type='hidden' id='pictureIds' name='pictureIds' value=',' />
@@ -358,7 +369,7 @@ body, html {
       							
       							<div class="black-text center-align" style="max-width:600px;border-radius:10px; font-weight:600;padding: 0 10% 2% 5%;">
                   				NOTE:  Here's an example showing a village requesting a development project.  Your picture(s) must contain GPS coordinates.  Smartphones usually take pictures with GPS coordinates.
-                  				<p/>If possible, please include a page-width image and a square one.
+                  				<p/>If possible, please include a banner photo that's at least 1280px wide.
               			</div>
     					  </div>				
 	          		

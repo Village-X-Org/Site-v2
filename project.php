@@ -29,7 +29,7 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description, project_org_id
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, project_org_id
                 FROM projects JOIN villages ON village_id=project_village_id
                 LEFT JOIN countries ON village_country=country_id
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
@@ -37,7 +37,7 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
                 LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
                 LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
                 LEFT JOIN donors ON project_matching_donor=donor_id
-                LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
+                LEFT JOIN pictures AS exemplary_pictures ON project_exemplary_image_id=exemplary_pictures.picture_id
                 LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
                         UNION (SELECT sd_donor_id AS donation_donor_id, sd_project_id AS donation_project_id FROM subscription_disbursals WHERE sd_project_id=?)) AS derived ON donation_project_id=project_id
                 WHERE project_id=? GROUP BY project_id");
@@ -66,7 +66,6 @@ if ($row = $result->fetch_assoc()) {
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
     $exemplaryPicture = $row['exemplaryPicture'];
-    $exemplaryDescription = $row['pu_description'];
     $monthCompleted = $row['monthCompleted'];
     $yearCompleted = $row['yearCompleted'];
     $communityContribution = $row['project_community_contribution'];
@@ -141,8 +140,7 @@ $(document).ready(function(){
       AND peStart.pe_project_id=project_id AND peStart.pe_type=1
       LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
       LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
-      LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1
-      LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
+      LEFT JOIN pictures AS exemplary_pictures ON project_exemplary_image_id=exemplary_pictures.picture_id
       ORDER BY yearPosted DESC");
   $stmt->bind_param('ii', $villageId, $projectId);
   $result = execute($stmt);
