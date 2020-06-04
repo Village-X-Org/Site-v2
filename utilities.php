@@ -531,7 +531,7 @@ function invalidateCaches($projectId) {
 }
 
 function verifyRecaptcha($responseCode) {
-	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET."&response=".$responseCode;
+	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET_V3."&response=".$responseCode;
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
 	curl_setopt( $ch, CURLOPT_HEADER, 0);
