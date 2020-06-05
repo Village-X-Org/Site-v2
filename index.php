@@ -136,35 +136,85 @@ if (hasParam('gc')) {
 }
 ?>	
 
-<div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.2); height:100vh;"> 
-    <div class="section row center" style="width:100%;">
-      <h2 class="col s12 center-align white-text text-lighten-2" style="padding:3% 20% 3% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:36px;">We Fund Projects That Villages Choose</h2>
-        		<div class="center-align col s12 l3 offset-l3" style='padding:10px;'>	
+<div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.1);"> 
+    <div class="section row center hide-on-small-only" style="width:100%;">
+     <div class="section row center" style="width:100%;">
+      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 3% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+        		<div class="right-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">SEE PROJECTS</a>
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
 			</div>
 			
-			<div class="center-align col s12 l3" style='padding:10px;'>	
-				<a href="add_village.php" id="download-button"
+			<div class="left-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
+				<a href="track.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
-				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">ADD VILLAGES</a>
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
 			</div>
-    </div>
+			</div>
 			
+			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
+			<div class="col s12">
+						<div class="icon-block">
+							  <img class="responsive-img" src="images/guidestar_2019.webp">
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			
+			
+			<div class="section row center hide-on-med-and-up" style="width:100%;">
+     <div class="section row center" style="width:100%;">
+      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 6% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+        		<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+				<a href="project_tiles.php" id="download-button"
+					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
+			</div>
+			
+			<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+				<a href="track.php" id="download-button"
+					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
+				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
+			</div>
+			</div>
+			
+			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
+			<div class="col s12">
+						<div class="icon-block">
+							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">
+						</div>
+					</div>
+				</div>
+			
+			</div>
+			
+					
 			
         <div class="parallax">
 			<img src="images/chiyuni_banner.jpg" alt="">
 		</div>
-	
-</div>
+    </div>
+
       
 	<div class="flow-text section" style="background-color: #FFF5EE; display: flex">
 	<div class="container">
-	<div class="center" style="padding:1% 0 1% 0"><h3>DEMOCRACY DISRUPTS EXTREME POVERTY</h3> <br>Nearly 400 million people (and growing) live in extreme poverty in rural Africa. 
-	We're changing that with a model that celebrates <b>village democracy, direct giving, and data analysis</b>. Small transfers of cash make a big difference
-	when they target public goods chosen by underserved villages. Read about us in <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank">The New York Times</a>.</div><br>
+	<div class="center" style="padding:1% 0 1% 0; width:100%"><h3>DIRECT DONATIONS DRIVE LOCAL CHANGE</h3>
+		<div class="section row center" style="width:100%; padding: 1% 0% 1% 0%;opacity: .9">Disrupt extreme poverty in rural Africa with a radically transparent model that celebrates <b>village 
+	democracy, direct giving, and data analysis</b>. Small transfers of cash make a big difference when they target community-led projects.</div>
 	</div>
+	
+	<div class="section row center" style="width:100%; padding: 0% 0% 1% 0%;opacity: .7">
+			<div class="col s12">
+						
+							  <a href="https://www.nytimes.com/2018/07/17/opinion/development-aid-liberia.html" target="_blank"><img class="responsive-img" src="images/nyt_logo.svg"></a>
+						
+					</div>
+				</div>
+	
+	</div>
+	
 	</div>
 
 <div class="container">
@@ -196,7 +246,7 @@ if (hasParam('gc')) {
 
 							<h5 class="center flow-text" style="font-weight: 300; padding:0% 10% 2% 10%">Alice, a teacher in New York City, donates to Bakili's project.</h5>
 					
-							<h5 class="center">#direct</h5>  
+							<h5 class="center">#directgiving</h5>  
 						</div>
 					</div>
 
@@ -237,7 +287,7 @@ if (hasParam('gc')) {
         style="height: 100%; width: 100%;">
         <div class="center-align valign-wrapper" style="width:100%">
         <div class="row center-align" style="width:100%;height:100%;padding:0% 0% 0% 0%;">
-        <h4 class="header center light white-text text-lighten-2" style="text-transform:uppercase; padding:0% 0 0 0">our guarantee</h4>
+        <h4 class="header center light white-text text-lighten-2" style="text-transform:uppercase; padding:0% 0 0 0">Our Guarantee</h4>
          
          <div class="row center-align" style="width:100%;">
         
@@ -246,56 +296,58 @@ if (hasParam('gc')) {
                         <div class="row valign-wrapper" style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%">
                         <div class="right-align" style="vertical-align:middle; display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">   give and<br>follow<br>  projects</h5></div>
                          <div class="center-align" style="vertical-align:middle;display:inline-block; width:100px;padding: 6px 0 0 0"><i class="material-icons large">phone_iphone</i></div>
-                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">easily<br>from your<br>phone</h5></div>
+                         <div class="left-align" style="vertical-align:middle;display:inline-block;"><h5 class="header light" style="padding:0% 0% 0% 0%;text-shadow: 4px 4px 7px #111111;">easily<br>from a<br>phone</h5></div>
                          </div> 
             </div>
    
-            </div>
+            </div>            
+   
           
-    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:350px; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
-    <ul class="list center-align">
+    <div class="row center-align" style="text-shadow: 4px 4px 7px #111111;width:325px; border-style:solid; border-width:thin; border-radius: 15px; padding:0 0 0 0%; overflow: auto;">
+    <ul class="list center-align" style="padding: 0 0 0 4%">
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
         <i class="material-icons left circle white-text">place</i>
-          <div class="white-text flow-text" style="font-size: large; padding:0 0 0 0%;text-shadow: 4px 4px 7px #111111;">
-            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text"><b>every project mapped</b></span></a>
+          <div class="white-text" style="font-size: 25px;text-shadow: 4px 4px 7px #111111; padding: 0 0 0 2%">
+            <a href="https://villagex.org/map.php" target="_blank"><span class="white-text">projects mapped</span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">attach_money</i>
-          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
-            <a href="https://villagex.org/finances.php" target="_blank"><span class="white-text"><b>clear financial breakdowns</b></span></a>
+          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
+            <a href="https://villagex.org/finances.php" target="_blank"><span class="white-text">cost breakdowns</span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">show_chart</i>
-          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
-            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text"><b>village-level impact data</b></span></a>
+          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
+            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text">impact data</span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">insert_photo</i>
-          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
-            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text"><b>same-day project updates</b></span></a>
+          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
+            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">same-day updates</span></a>
           </div>
         </div>
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
           <i class="material-icons left circle white-text">person</i>
-          <div class="flow-text white-text" style="font-size: large;text-shadow: 4px 4px 7px #111111;">
-            <a href="https://villagex.org/user_login.php" target="_blank"><span class="white-text"><b>user profiles track giving</b></span></a>
+          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
+            <a href="https://villagex.org/user_login.php" target="_blank"><span class="white-text">user profiles</span></a>
           </div>
         </div>
       </li>
     </ul>
-    </div>
+    </div> 
+    
     </div>
     
             
@@ -430,7 +482,7 @@ if (CACHING_ENABLED) {
                   	<h4 class="header center light white-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 1% 0">newsletter</h4> 
           <div class="card white" style="opacity: 0.7; border-radius:20px;">
             <div class="card-content black-text">
-              <span class="card-title"><b>like disrupting extreme poverty?<br> sign up to stay in the loop</b></span>
+              <span class="card-title"><b>sign up to stay in the loop</b></span>
       		
     		<form action="//villagexapp.us8.list-manage.com/subscribe/post?u=0aa3c6538384ca95760dc6be6&amp;id=2efaede0d4" method="post" target="_blank" class="col s12">
       		<div class="row">

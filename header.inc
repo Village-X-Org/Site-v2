@@ -183,7 +183,7 @@ if (hasParam('d')) {
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
 				<?php if (!isset($updates)) { ?>
-					<li><a class="waves-effect waves-light btn" href='track.php'>Latest Pics <i class='material-icons right' style='color:white;'>rss_feed</i></a></li>
+					<li><a class="waves-effect waves-light btn" href='add_village.php'>Add Villages<i class='material-icons right' style='color:white;'>add_circle_outline</i></a></li>
 				<?php } ?>
 
 			</ul>
@@ -191,7 +191,6 @@ if (hasParam('d')) {
 				<a href="add_<?php print ($rebranded > 0 ? "project" : "village"); ?>.php" class="right">
                     <div style="vertical-align:middle; display:inline-block;margin: 0 auto;width:100%;">
                         <div style="vertical-align:middle; display:inline-block;font-size:16px;color:gray;">add a <?php print ($rebranded > 0 ? "project" : "village"); ?></div>
-                        <div style="vertical-align:middle; display:inline-block;font-size:16px;color:gray;text-decoration:underline;">add a village</div>
                          <div style="vertical-align:middle;display:inline-block;"><i class="material-icons" style='font-size:32px;color:gray;'>add_circle</i></div>
                          <div style="vertical-align:middle;display:inline-block;font-size:16px;color:gray;text-decoration:underline;">to our map</div>
                      </div>
@@ -213,7 +212,7 @@ if (hasParam('d')) {
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><i class="material-icons" style="font-size: 50px">menu</i></a></li>
 				<?php if (!isset($updates)) { ?>
 
-					<li><a class="waves-effect waves-light btn white blue-text" href="track.php" style="border-radius:20px"><i class="material-icons right">rss_feed</i>Latest Pics</a></li>
+					<li><a class="waves-effect waves-light btn white blue-text" href="add_village.php" style="border-radius:20px"><i class="material-icons right">add_circle_outline</i>Add Villages</a></li>
 				<?php } ?>
 					<ul id="Menu" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
 							<li><a href="project_tiles.php">Projects</a></li>
