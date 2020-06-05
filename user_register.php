@@ -81,7 +81,7 @@ body, html {
                 		   		
                       <button id="donationButton" style="width:100%;height:70px;font-size:25px"
                           class="g-recaptcha btn-large donor-background center-align submit"
-                          data-sitekey="<?php print CAPTCHA_SITEKEY_V2; ?>"
+                          data-sitekey="<?php print CAPTCHA_SITEKEY_V3; ?>"
                           data-callback="onSubmit">
                           SIGN UP 
                       </button>

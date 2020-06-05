@@ -122,7 +122,7 @@ if (hasParam('branding')) {
 	
 	<div class="section"><div class='row'>		
 			<?php 
-	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$branding.'d'.$donorId)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
                 YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date
@@ -221,7 +221,7 @@ if (hasParam('branding')) {
 		      $count++;
 		}
 		if (CACHING_ENABLED) {
-		  $handle = fopen(CACHED_LISTING_FILENAME.'o'.$branding.'d'.$donorId, 'w');
+		  $handle = fopen(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId, 'w');
 		  fwrite($handle, $buffer);
 		  fclose($handle);
 		} else {
@@ -229,7 +229,7 @@ if (hasParam('branding')) {
 		}
 	}
 	if (CACHING_ENABLED) {
-	   include(CACHED_LISTING_FILENAME.'o'.$branding.'d'.$donorId);
+	   include(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId);
 	}
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->

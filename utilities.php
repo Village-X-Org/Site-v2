@@ -49,7 +49,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on. $errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace</font></P>";
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font></P>";
     exit();
 }
 set_error_handler("emailErrorHandler");
