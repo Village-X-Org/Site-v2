@@ -6,7 +6,7 @@ $email = param('register_email');
 $password = md5(param('register_password'));
 $captcha = param('g-recaptcha-response');
 
-if (!verifyRecaptcha($captcha)) {
+if (!verifyRecaptcha3($captcha)) {
 	print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator.";
     emailAdmin("Robot detected in login", "Someone tried to login with these parameters: FirstName: $firstName\n LastName: $lastName\n
     		Email: $email");
@@ -29,6 +29,7 @@ $_SESSION['donor_id'] = $session_donor_id = $id = $link->insert_id;
 $session_first_name = $_SESSION['first_name'] = $firstName;
 $session_last_name = $_SESSION['last_name'] = $lastName;
 $session_email = $_SESSION['email'] = $email;
+$session_is_admin = $_SESSION['is_admin'] = 0;
 
 print 'success';
 

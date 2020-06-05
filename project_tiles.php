@@ -1,13 +1,36 @@
 <?php
 require_once("utilities.php");
+$rebranded = 0;
+if (hasParam('branding')) {
+	$rebranded = paramInt('branding');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <?php 
-	$pageTitle = "Village X | Projects Villages Want";
-	$pageDescription = "Search for villages battling extreme poverty. Find a 100% village-led development project that changes lives and speaks to you.";
-	$pageUrl = getBaseURL()."project_tiles.php";
+	if ($rebranded) {
+		$stmt = prepare("SELECT org_name, org_lat, org_lng, org_zoom, org_logo, org_url, org_project_prefix, org_description, org_banner FROM orgs WHERE org_id=?");
+		$stmt->bind_param("i", $rebranded);
+		$result = execute($stmt);
+		if ($row = $result->fetch_assoc()) {
+			$orgName = $row['org_name'];
+			$pageTitle = $orgName." | Project Locations";
+			$lat = $row['org_lat'];
+			$lng = $row['org_lng'];
+			$zoom = $row['org_zoom'];
+			$logo = $row['org_logo'];
+			$url = $row['org_url'];
+			$prefix = $row['org_project_prefix'];
+			$pageDescription = $row['org_description'];
+			$pageImage = $row['org_banner'];
+		}
+	} else {
+		$orgName = "Village X";
+		$pageTitle = "Village X | Projects Villages Want";
+		$pageDescription = "Search for villages battling extreme poverty. Find a 100% village-led development project that changes lives and speaks to you.";
+	}
+	$pageUrl = getBaseURL()."project_tiles.php".($rebranded ? "?branding=$rebranded" : "");
 	include('header.inc'); 
 
 	$statusFilter = isset($_COOKIE['statusFilter']) ? $_COOKIE['statusFilter'] : 0;
@@ -92,24 +115,24 @@ require_once("utilities.php");
 		</script>
 	</div>
 	
-		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;village's 1st project with Village X
+		<div class="icon-block" style="width:100%"><i class='material-icons left donor-text' style="font-size:20px;">fiber_new</i> = &nbsp;village's 1st project with <?php print $orgName; ?>
 		<br>
-		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village previously completed projects with Village X
+		<i class='material-icons left donor-text' style="font-size:20px;">timeline</i> = &nbsp;village previously completed projects with <?php print $orgName; ?>
 		</div>
 	
 	<div class="section"><div class='row'>		
 			<?php 
-	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.$donorId)) {
+	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date 
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
-                WHERE p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
+                WHERE p1.project_org_id=$rebranded AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
                 ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted DESC";
         $result = doUnprotectedQuery($query);
@@ -198,7 +221,7 @@ require_once("utilities.php");
 		      $count++;
 		}
 		if (CACHING_ENABLED) {
-		  $handle = fopen(CACHED_LISTING_FILENAME.$donorId, 'w');
+		  $handle = fopen(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId, 'w');
 		  fwrite($handle, $buffer);
 		  fclose($handle);
 		} else {
@@ -206,7 +229,7 @@ require_once("utilities.php");
 		}
 	}
 	if (CACHING_ENABLED) {
-	   include(CACHED_LISTING_FILENAME.$donorId);
+	   include(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId);
 	}
 ?>			</div><!-- row end -->
 		</div> <!-- section end -->
@@ -221,5 +244,7 @@ require_once("utilities.php");
 </div>
 
 <?php 
-include('footer.inc'); 
+if (!$rebranded) {
+	include('footer.inc');
+} 
 ?>

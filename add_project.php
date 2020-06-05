@@ -15,7 +15,7 @@ if (hasParam('upload_file')) {
 
   if (!verifyRecaptcha3($captcha, 'addVillage')) {
     print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      emailAdmin("Robot detected in add project", "Someone tried to add a project with projectName: $projectName");
       die(1);
   }
 
@@ -75,9 +75,9 @@ if (hasParam('upload_file')) {
     die(1);
   }
 
-  if (!verifyRecaptcha3($captcha, 'addVillage')) {
+  if (!verifyRecaptcha3($captcha, 'addProject')) {
     print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      emailAdmin("Robot detected in add project", "Someone tried to add a project with name: $projectName");
       die(1);
   }
 
@@ -116,7 +116,7 @@ if (hasParam('upload_file')) {
 <head>
 <script src="https://www.google.com/recaptcha/api.js?render=<?php print CAPTCHA_SITEKEY_V3; ?>"></script>
 <?php
-    $pageTitle = "Village X | Map Your Village";
+    $pageTitle = "Village X | Map Your Project";
     $pageDescription = "Add your village and its development needs to our map.  We want to connect you with organizations that might be able to help.";
     $pageUrl = getBaseURL()."add_village.php";
     include('header.inc'); 
@@ -265,54 +265,36 @@ body, html {
 </script>
 
 <div class="bg" style="height:1850px;width:100%;padding-top:40px;">
-	  <div class="white-text center-align" style="font-weight:300;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;padding: 0 10% 0 10%">Add your village and development problem to our map.
+	  <div class="white-text center-align" style="font-weight:300;padding:1% 0 1% 0;font-size:xx-large;text-shadow: black 0.1em 0.1em 0.4em;padding: 0 10% 0 10%">Add your project to our map.
     </div>
 		<div class="container center-align" id="jqueryvalidation" style='margin-top:20px;'>
       <div class="z-depth-8 grey lighten-4 row" style="display: inline-block; padding: 20px 5px 20px 30px; border: 4px solid #EEE;">
           				
          				<form class="col s12" style="width:100%" id="add_village_form" method='post' action="add_village.php">
 
-         						<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR NAME</b></div>
-         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
-         						 <i class="material-icons prefix">account_circle</i>
-          							<input placeholder="e.g., Myson Jambo" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
-                        id="advocate_name" name="advocate_name" required data-error=".errorTxt1"/>
-          							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          					 </div>
+         						
           						
-          					</div>
-          					
-          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR EMAIL ADDRESS</b></div>
-         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
-         						 <i class="material-icons prefix">email</i>
-          							<input placeholder="e.g., myson@gmail.com" class='donor-text' type="email" style="padding:0% 0% 0% 0%; font-size:20px;" id="advocate_email" name='advocate_email' required data-error=".errorTxt2"/>
-          							<div class="errorTxt2 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          					 </div>
-          						
-          					</div>
-          					
-          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-          					<div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>YOUR TELEPHONE # (WHATSAPP IF POSSIBLE)</b></div>
-          					<div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
-          						<i class="material-icons prefix">phone</i>
-          						<input id="advocate_phone" name='advocate_phone'  placeholder="[+] [country code] [phone number]"  type="tel" class="validate" style="padding:0% 0% 0% 0%; font-size:20px;" required data-error=".errorTxt3">
-          						<div class="errorTxt3 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          					</div>
-     
-       						 </div>
-          						
-          						<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>VILLAGE NAME</b></div>
-         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+      						  <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+           						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Village Name</b></div>
+           						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           							<i class="material-icons prefix">location_on</i>
           							<input placeholder="e.g., Chimphepo Village" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
                         id="village_name" name="village_name" required data-error=".errorTxt4"/>
           							<div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
-          					 </div>
-          						
+          					   </div>	
           					</div>
+
+                    <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                     <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Project Name</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">location_on</i>
+                        <input placeholder="e.g., Start a Goat Herd" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
+                        id="project_name" name="project_name" required data-error=".errorTxt4"/>
+                        <div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+                     </div>
+                      
+                    </div>
+                            
                        		  
 	                 			
 	                 			<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
@@ -326,7 +308,37 @@ body, html {
           					</div>
 	                 			
 	             
+          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>In-Country Agent's Name</b></div>
+         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+         						 <i class="material-icons prefix">account_circle</i>
+          							<input placeholder="e.g., Myson Jambo" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
+                        id="advocate_name" name="advocate_name" required data-error=".errorTxt1"/>
+          							<div class="errorTxt1 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+          					 </div>
+          						
+          					</div>
           					
+          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+         						 <div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Agent's email (optional)</b></div>
+         						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+         						 <i class="material-icons prefix">email</i>
+          							<input placeholder="e.g., myson@gmail.com" class='donor-text' type="email" style="padding:0% 0% 0% 0%; font-size:20px;" id="advocate_email" name='advocate_email' required data-error=".errorTxt2"/>
+          							<div class="errorTxt2 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+          					 </div>
+          						
+          					</div>
+          					
+          					<div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+          					<div class="black-text left-align" style="font-size:large; padding:0 0 0 3%"><b>Agent's WhatsApp/Phone (optional)</b></div>
+          					<div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
+          						<i class="material-icons prefix">phone</i>
+          						<input id="advocate_phone" name='advocate_phone'  placeholder="[+] [country code] [phone number]"  type="tel" class="validate" style="padding:0% 0% 0% 0%; font-size:20px;" required data-error=".errorTxt3">
+          						<div class="errorTxt3 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
+          					</div>
+     
+       						 </div>
+
         					<div class="row" style="padding:2% 0% 1% 0%;margin:0;max-width:600px">
         					 <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>PICTURES OF YOUR VILLAGE</b>
                    </div>
@@ -336,7 +348,7 @@ body, html {
                           <i class="material-icons prefix" style="color:black;font-size:20px;">photo_library</i>
           							 <input class="file-path validate donor-text" type="text" placeholder="click to upload pics" style="padding:0% 0% 0% 0%; font-size:20px;" id="village_pics" required data-error=".errorTxt6" />
         						    </div>
-                        <img id='example_image' src='images/add_village_example.jpg' style='width:300px;opacity:.6' />
+                        <img id='example_image' src='images/saiti_project_request.jpg' style='width:600px;opacity:.6' />
                       <div id='imageContainer'>
                         </div>
                         <input type='hidden' id='pictureIds' name='pictureIds' value=',' />
@@ -357,6 +369,7 @@ body, html {
       							
       							<div class="black-text center-align" style="max-width:600px;border-radius:10px; font-weight:600;padding: 0 10% 2% 5%;">
                   				NOTE:  Here's an example showing a village requesting a development project.  Your picture(s) must contain GPS coordinates.  Smartphones usually take pictures with GPS coordinates.
+                  				<p/>If possible, please include a banner photo that's at least 1280px wide.
               			</div>
     					  </div>				
 	          		

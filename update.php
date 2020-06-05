@@ -81,28 +81,45 @@ if (hasParam('upload_file')) {
 } elseif (isset($_POST['pictureIdToBeDeleted'])) {
 	$updateId = $_POST['updateId'];
 	$pictureId = $_POST['pictureIdToBeDeleted'];
-	$stmt = prepare("SELECT ru_picture_ids FROM raw_updates WHERE ru_id=?");
-	$stmt->bind_param('i', $updateId);
-	$result = execute($stmt);
-	if ($row = $result->fetch_assoc()) {
-		$pictureIds = str_replace(",$pictureId,", ",", $row['ru_picture_ids']);
-		$stmt->close();
-		if (strlen($pictureIds) < 2) {
-			$stmt = prepare("DELETE FROM raw_updates WHERE ru_id=?");
-			$stmt->bind_param('i', $updateId);
+
+	if ($session_is_admin) {
+		$stmt = prepare("SELECT ru_picture_ids FROM raw_updates WHERE ru_id=?");
+		$stmt->bind_param('i', $updateId);
+		$result = execute($stmt);
+		if ($row = $result->fetch_assoc()) {
+			$pictureIds = str_replace(",$pictureId,", ",", $row['ru_picture_ids']);
+			$stmt->close();
+			if (strlen($pictureIds) < 2) {
+				$stmt = prepare("DELETE FROM raw_updates WHERE ru_id=?");
+				$stmt->bind_param('i', $updateId);
+			} else {
+				$stmt = prepare("UPDATE raw_updates SET ru_picture_ids=? WHERE ru_id=?");
+				$stmt->bind_param('si', $pictureIds, $updateId);
+			}
+			execute($stmt);
+			if (file_exists("$pictureId.jpg")) {
+				unlink("$pictureId.jpg");
+			}
+			print "Image was successfully deleted and will be removed upon refresh.";
 		} else {
-			$stmt = prepare("UPDATE raw_updates SET ru_picture_ids=? WHERE ru_id=?");
-			$stmt->bind_param('si', $pictureIds, $updateId);
+			print "Image could not be found";
 		}
-		execute($stmt);
-		if (file_exists("$pictureId.jpg")) {
-			unlink("$pictureId.jpg");
-		}
-		print "Image was successfully deleted and will be removed upon refresh.";
-	} else {
-		print "Image could not be found";
+		$stmt->close();
 	}
-	$stmt->close();
+	die(0);
+} elseif (isset($_POST['pictureIdToBeSpotlighted'])) {
+	$projectId = $_POST['updateProjectId'];
+	$pictureId = $_POST['pictureIdToBeSpotlighted'];
+	if ($session_is_admin) {
+		$stmt = prepare("UPDATE projects SET project_exemplary_image_id=? WHERE project_id=?");
+		$stmt->bind_param('ii', $pictureId, $projectId);
+		execute($stmt);
+		if ($link->affected_rows) {
+			print "Image was set to be project spotlight";
+		} else {
+			print "Image was already the project spotlight";
+		}
+	}	
 	die(0);
 }
 ?>

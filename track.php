@@ -294,6 +294,10 @@ include('header.inc');
         });
     }
 
+    function emailUpdate(updateId) {
+        $.get('track_emailUpdate.php', 'updateId=' + updateId);
+    }
+
     function saveUpdate(updateId) {
         if (document.getElementById('updateTitleEdit' + updateId).value != '') {
             document.getElementById('updateTitleText' + updateId).innerHTML = document.getElementById('updateTitleEdit' + updateId).value;
@@ -305,7 +309,7 @@ include('header.inc');
         document.getElementById('updateTitleEdit' + updateId).style.display = 'none';
         document.getElementById('updateEdit' + updateId).style.display = 'none';
         document.getElementById('updateEditLink' + updateId).style.display = 'inline';
-        $.post('<?php print getBaseURL(); ?>/track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
+        $.post('track_saveUpdate.php', $('#updateEditForm' + updateId).serialize());
     }
 
     map.on('click', 'villages', function(e) {

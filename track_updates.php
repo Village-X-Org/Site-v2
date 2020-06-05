@@ -29,11 +29,12 @@ if (!isset($start)) {
 }
 
     $result = doUnprotectedQuery("SELECT project_id, village_id, ru_id, ru_description, ru_project_id, ru_title, ru_picture_ids,
-    	UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, project_lat, project_lng, project_name, village_name, project_staff_id, 
-    	fo_first_name, fo_last_name, fo_color FROM raw_updates LEFT JOIN projects 
-    	ON ru_project_id=project_id LEFT JOIN villages ON village_id=project_village_id LEFT JOIN field_officers ON project_staff_id=fo_id " 
+    	UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, ru_emailed, project_lat, project_lng, project_name, village_name, project_staff_id, project_last_email,
+    	fo_first_name, fo_last_name, fo_color, COUNT(donation_donor_id) AS donorCount FROM raw_updates LEFT JOIN projects 
+    	ON ru_project_id=project_id LEFT JOIN villages ON village_id=project_village_id LEFT JOIN field_officers ON project_staff_id=fo_id 
+        LEFT JOIN donations ON donation_project_id=project_id " 
     	.($projectId ? "WHERE project_id=$projectId" : ($foId ? "WHERE project_staff_id=$foId" : ($villageId ?  "WHERE village_id=$villageId" : "")))
-    	." ORDER BY ru_date DESC LIMIT $start, ".(RECS_PER_PAGE + 1));
+    	." GROUP BY ru_id ORDER BY ru_date DESC LIMIT $start, ".(RECS_PER_PAGE + 1));
 
     $updates = array();
     $count = $hasMore = 0;
@@ -59,11 +60,14 @@ if (!isset($start)) {
         $postTitle = $row['ru_title'];
         $color = $row['fo_color'];
         $updateId = $row['ru_id'];
+        $updateEmail = $row['ru_emailed'];
+        $lastEmail = $row['project_last_email'];
+        $donorCount = $row['donorCount'];
 
         $timestamp = $row['timestamp'];
 
         $lastProjectId = $nextProjectId;
-        array_push($updates, array("update_id"=>$updateId, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "post_title"=>$postTitle, "staff"=>$foName, 
+        array_push($updates, array("update_id"=>$updateId, "update_email"=>$updateEmail, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "post_title"=>$postTitle, "staff"=>$foName, "last_email"=>$lastEmail, "donor_count"=>$donorCount,
         	"picture_ids"=>$pictureIds, "timestamp"=>$timestamp, "lat"=>$lat, "lng"=>$lng, "timestamp"=>$timestamp, "description"=>$description));
     }
     /*if (!$putInVar) {
@@ -96,6 +100,18 @@ if (!isset($start)) {
                         this.style.display='none';return false;">
                 <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
             </a>
+            <?php if ($update['update_email']) { ?>
+                <br/><span style='color:white;font-size:small;'> This update was emailed to <?php print $update['donor_count']
+                        ." donors on ".$update['update_email']; ?>
+           <?php } else if ($update['donor_count']) { ?>
+            <br/>
+            <?php if ($update['project_id']) { ?>
+            <a href='track_emailUpdate.php?id=<?php print $update['update_id']; ?>&count=<?php print $update['donor_count']; ?>&lastEmail=<?php print $update['last_email']; ?>' 
+                target='_blank' style='color:white;font-size:small;font-weight:bold;'>Email this update to donors for this project</a> 
+            <?php } ?>
+            &nbsp;&nbsp; <span style='color:white;font-size:small;'> Last email for this project went to <?php print $update['donor_count']." donors"
+                    .($update['last_email'] ? " on ".$update['last_email'] : "."); ?>
+            <?php } ?>
         <?php }
         print "\n<TEXTAREA name='updateTitleEdit' id='updateTitleEdit$updateId' style='padding:5px; background:none;border:0;height:100px;width:100%;color:white;display:none;' ".($update['project_id'] > 0 ? "placeholder='No editable content'" : "").">".$update['post_title']."</TEXTAREA></div><div class='update updateText' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
         print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'>
@@ -119,7 +135,11 @@ if (!isset($start)) {
                         style='width:100%;padding:0;margin-left:0px;margin-right:0px;margin-top:5px;margin-bottom:5px;' >";
             }
             if ($session_is_admin) {
-                print "<a href='' onclick='deleteImage($updateId, $pictureId);return false;' style='position:absolute;bottom:10px;right:10px;'><i class='material-icons' style='color:black;'>delete</i></a>";
+                ?><div style='position:absolute;bottom:10px;right:10px;'>
+                    <a href='' onclick='spotlightImage(this, <?php print $update['project_id'].", $pictureId";?>);return false;'><img style='border:none;width:24px;' src='images/spotlight.svg' /></a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                    <a href='' onclick='deleteImage(<?php print "$updateId, $pictureId";?>);return false;'><img style='border:none;width:24px;' src='images/trash.svg' /></a>
+                </div>
+                <?php
             }
             print "</div>";
         }
@@ -127,6 +147,13 @@ if (!isset($start)) {
     }
     if ($session_is_admin) {?>
         <script>
+            function spotlightImage(link, projectId, pictureId) {
+                if (confirm('Are you sure you want to set this image as the spotlighted image on the project page?')) {
+                    $.post("update.php", {updateProjectId: projectId, pictureIdToBeSpotlighted: pictureId}, function(data) {
+                        alert(data);
+                    })
+                }
+            }
             function deleteImage(updateId, pictureId) {
                 if (confirm('Are you sure you want to delete this image')) {
                     $.post("update.php", {updateId: updateId, pictureIdToBeDeleted: pictureId}, function( data ) {

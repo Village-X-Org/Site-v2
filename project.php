@@ -1,5 +1,6 @@
 <?php 
 require_once("utilities.php");
+$rebranded = 0;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,21 +18,26 @@ $donorId = 0;
 if (hasParam('d')) {
   $donorId = paramInt('d');
 }
+$selectedTab = 0;
+if (hasParam('t')) {
+  $selectedTab = param('t');
+}
 
-if (!CACHING_ENABLED || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId)) {
+if (!CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
     ob_start();
-$stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, 
+$stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
                 project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
-                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, pu_description
-                FROM projects JOIN villages ON village_id=project_village_id 
+                CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, project_org_id
+                FROM projects JOIN villages ON village_id=project_village_id
+                LEFT JOIN countries ON village_country=country_id
                 LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
                 LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
                 LEFT JOIN donors ON project_matching_donor=donor_id
-                LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
+                LEFT JOIN pictures AS exemplary_pictures ON project_exemplary_image_id=exemplary_pictures.picture_id
                 LEFT JOIN ((SELECT donation_donor_id, donation_project_id FROM donations WHERE donation_project_id=? AND donation_is_test=0) 
                         UNION (SELECT sd_donor_id AS donation_donor_id, sd_project_id AS donation_project_id FROM subscription_disbursals WHERE sd_project_id=?)) AS derived ON donation_project_id=project_id
                 WHERE project_id=? GROUP BY project_id");
@@ -60,7 +66,6 @@ if ($row = $result->fetch_assoc()) {
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
     $exemplaryPicture = $row['exemplaryPicture'];
-    $exemplaryDescription = $row['pu_description'];
     $monthCompleted = $row['monthCompleted'];
     $yearCompleted = $row['yearCompleted'];
     $communityContribution = $row['project_community_contribution'];
@@ -72,6 +77,10 @@ if ($row = $result->fetch_assoc()) {
     $population = getLatestValueForStat($villageId, "# of People");
 
     $matchingDonor = $row['matchingDonor'];
+    $rebranded = $row['project_org_id'];
+    $lat = $row['country_latitude'];
+    $lng = $row['country_longitude'];
+    $zoom = $row['country_zoom'];
 } else {
     print "The requested project could not be found.";
     die(1);
@@ -89,6 +98,22 @@ while ($row = $result->fetch_assoc()) {
 $stmt->close();
 
 $partnerCount = count($partners);
+
+if ($rebranded) {
+  $stmt = prepare("SELECT org_name, org_logo, org_url, org_project_prefix, org_description, org_banner FROM orgs WHERE org_id=?");
+  $stmt->bind_param("i", $rebranded);
+  $result = execute($stmt);
+  if ($row = $result->fetch_assoc()) {
+    $orgName = $row['org_name'];
+    $pageTitle = $orgName." | Project Locations";
+    $logo = $row['org_logo'];
+    $url = $row['org_url'];
+    $prefix = $row['org_project_prefix'];
+  }
+} else {
+  $orgName = "Village X";
+}
+
 $pageImage = PICTURES_DIR.$bannerPicture;
 $pageTitle = "Fund Projects Villages Choose: $projectName in $villageName Village";
 $pageUrl = BASE_URL.$projectId;
@@ -115,8 +140,7 @@ $(document).ready(function(){
       AND peStart.pe_project_id=project_id AND peStart.pe_type=1
       LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
       LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
-      LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1
-      LEFT JOIN pictures AS exemplary_pictures ON pu_image_id=exemplary_pictures.picture_id
+      LEFT JOIN pictures AS exemplary_pictures ON project_exemplary_image_id=exemplary_pictures.picture_id
       ORDER BY yearPosted DESC");
   $stmt->bind_param('ii', $villageId, $projectId);
   $result = execute($stmt);
@@ -154,7 +178,7 @@ if (!file_exists($mapFilename)) {
 		<div style='position:relative;'><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
 					   <b><?php print $villageName; ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
-            to <?php print strtolower($projectName); ?>. This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. 
+            to <?php print strtolower($projectName); ?>. <?php if ($population > 0 && $households > 0) { ?> This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. <?php } ?> 
             <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor. 
             <?php if ($partnerCount > 1) {
               print "Partners ";
@@ -337,7 +361,7 @@ if (!file_exists($mapFilename)) {
 								
 		</div><br>
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
-		<?php 
+    <?php
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
                         ((SELECT donation_donor_id AS f_donor_id, 0 AS isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0 ORDER BY donation_amount DESC) 
                         UNION (SELECT sd_donor_id AS f_donor_id, 1 AS isSubscription FROM subscription_disbursals WHERE sd_project_id=? ORDER BY sd_amount DESC)) AS derived 
@@ -401,13 +425,24 @@ if (!file_exists($mapFilename)) {
 					</span>
 			</div>
     
+<?php 
+      $result = doUnprotectedQuery("SELECT stat_year FROM village_stats WHERE stat_village_id=$villageId");
+      if ($row = $result->fetch_assoc()) {
+        $hasStats = true;
+      } else {
+        $hasStats = false;
+      }
+?>
+
     <div class="section">
       <div class="card-tabs">
         <ul class="tabs tabs-fixed-width z-depth-0.5">
-          <li class="tab"><a class="active" href="#infotab"><span class="flow-text light">Info</span></a></li>
-          <li class="tab"><a href="#updatestab"><span class="flow-text light">Updates</span></a></li>
+          <li class="tab"><a <?php print ($selectedTab == 0 ? "class='active'" : ""); ?> href="#infotab"><span class="flow-text light">Info</span></a></li>
+          <li class="tab"><a <?php print ($selectedTab == 1 ? "class='active'" : ""); ?> href="#updatestab"><span class="flow-text light">Updates</span></a></li>
           <li class="tab"><a href="#maptab"><span class="flow-text light">Map</span></a></li>
-          <li class="tab"><a href="#datatab"><span class="flow-text light">Data</span></a></li>
+          <?php if ($hasStats) { ?>
+            <li class="tab"><a href="#datatab"><span class="flow-text light">Data</span></a></li>
+          <?php } ?>
         </ul>
       </div>
     </div>
@@ -425,11 +460,11 @@ if (!file_exists($mapFilename)) {
      	  <?php include("project_map.php"); ?>
      </div>
     
+    <?php if ($hasStats) { ?>
     <div id="datatab" class="col s12">
 		    <?php include("project_data.php"); ?>
 	 </div>
-	
-    
+  <?php } ?>
     
     <script> 
       var instance = M.Tabs.init($('.tabs'));
@@ -443,11 +478,11 @@ if (!file_exists($mapFilename)) {
     $contents = ob_get_contents();
     ob_end_clean();
     if (CACHING_ENABLED) {
-        file_put_contents(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId,$contents);
+        file_put_contents(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId,$contents);
     } else {
         print $contents;
     }
 } 
 if (CACHING_ENABLED) {
-    include(CACHED_PROJECT_PREFIX.$projectId.'d'.$donorId); 
+    include(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId); 
 } ?>

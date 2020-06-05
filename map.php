@@ -190,6 +190,10 @@ div.progressBar .ui-progressbar-value {
 	var selectedIcon = 0;
 	map.on('load', function() {
 		window.scrollTo(0,1);
+		map.on('click', 'countries', function(e) {
+			props = e.features[0].properties;
+			zoomToCountryBounds(props.swLat, props.swLng, props.neLat, props.neLng);
+		})
 		map.on('click', 'villages', function(e) {
 			selectVillage(e.features[0]);
 		});
@@ -210,12 +214,18 @@ div.progressBar .ui-progressbar-value {
 				getTilesForBounds();
 			}, 1000);
 		});
-	    
+	    	    
+		map.on("mousemove", "countries", function(e) {
+			map.getCanvas().style.cursor = 'pointer';
+		});
 		map.on("mousemove", "villages", function(e) {
 			map.getCanvas().style.cursor = 'pointer';
 		});
 		map.on("mousemove", "projects", function(e) {
 			map.getCanvas().style.cursor = 'pointer';
+		});
+		map.on("mouseleave", "countries", function(e) {
+			map.getCanvas().style.cursor = 'default';
 		});
 		map.on("mouseleave", "villages", function() {
 			map.getCanvas().style.cursor = 'default';
@@ -283,11 +293,15 @@ div.progressBar .ui-progressbar-value {
 		}
 	}
 
+	function zoomToCountryBounds(swLat, swLng, neLat, neLng) {
+		map.fitBounds([[swLng, swLat],[neLng, neLat]], {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
+	}
+
 	function zoomToCountry(coords, zoom) {
 		selectedCountry = coords;
 		$("#buttonHolder").hide();
 
-		map.flyTo({center: coords, zoom: zoom, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60}); 
+		map.flyTo({center: coords, zoom: zoom, padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: <?php print ($zoom > 4 ? "60" : "40"); ?>}); 
 		//map.fitBounds(bounds, {padding: {top: 20, bottom:150, left: 20, right: 20}, pitch: 60});
 	}
 	
