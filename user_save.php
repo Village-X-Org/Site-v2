@@ -6,7 +6,7 @@ $email = param('register_email');
 $password = md5(param('register_password'));
 $captcha = param('g-recaptcha-response');
 
-if (!verifyRecaptcha3($captcha)) {
+if (!verifyRecaptcha3($captcha, 'userSave')) {
 	print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator.";
     emailAdmin("Robot detected in login", "Someone tried to login with these parameters: FirstName: $firstName\n LastName: $lastName\n
     		Email: $email");

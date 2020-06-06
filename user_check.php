@@ -7,7 +7,7 @@ if (!isset($password)) {
 	$password = md5(param('login_password'));
 
 	$captcha = param('g-recaptcha-response');
-	if (!verifyRecaptcha3($captcha)) {
+	if (!verifyRecaptcha3($captcha, 'userCheck')) {
 		print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
 	    emailAdmin("Robot detected in login", "Someone tried to login with these parameters: Email: $email");
 	    die(1);
@@ -26,5 +26,8 @@ if ($row = $result->fetch_assoc()) {
 
 	setcookie ( "username", $email, time () + (60 * 60 * 24 * 30) );
 	setcookie ( "password", $password, time () + (60 * 60 * 24 * 30) );
+	print "success";
+} else {
+	print "user with email $email not found";
 }
 ?>

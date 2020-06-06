@@ -1,11 +1,4 @@
-<?php
-require_once("utilities.php");
-if (!$session_donor_id && isset($_COOKIE['username'])) {
-  $username = $email = $_COOKIE ['username'];
-  $password = $_COOKIE ['password'];
-  include('user_check.php');
-}
-?>
+<?php require_once("utilities.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,6 +95,15 @@ i.ml-auto {
 
 </style>
 <?php include('header.inc'); 
+
+if (!$session_donor_id && isset($_COOKIE['username'])) {
+  $username = $email = $_COOKIE ['username'];
+  $password = $_COOKIE ['password'];
+  print "<!--";
+  include('user_check.php');
+  print "-->";
+}
+
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');
 }
