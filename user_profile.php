@@ -27,7 +27,7 @@ $statuses = array();
 $stmt = prepare("SELECT donor_first_name, donor_last_name, donor_location, donation_amount, UNIX_TIMESTAMP(donation_date) AS donation_date, project_id, project_name, project_type, village_name, fundraiser_id, fundraiser_title,
               vs1.stat_value AS peopleCount, vs2.stat_value AS houseCount, project_status, project_funded, project_budget
               FROM donors 
-              LEFT JOIN donations ON donation_donor_id=donor_id 
+              LEFT JOIN ((SELECT donation_id, donation_date, donation_amount, donation_project_id, donation_donor_id FROM donations) UNION (SELECT sd_id AS donation_id, sd_timestamp AS donation_date, sd_amount AS donation_amount, sd_project_id AS donation_project_id, sd_donor_id AS donation_donor_id FROM subscription_disbursals)) AS donations ON donation_donor_id=donor_id 
               LEFT JOIN projects ON donation_project_id=project_id 
               LEFT JOIN villages ON project_village_id=village_id
               LEFT JOIN fundraisers ON fundraiser_donor_id=donor_id
