@@ -12,7 +12,7 @@ $stmt->close();
 
 $body = "<H3>Distribution of $donorFirstName $donorLastName's $$donationAmountDollars Subscription</H3><TABLE>";
 
-$stmt = prepare("SELECT project_id, project_name, village_name, project_budget - project_funded AS remaining, COUNT(sd_project_id) AS disbursalCount, p1.project_type, typeCount FROM projects AS p1 JOIN (SELECT project_type, COUNT(project_id) AS typeCount FROM subscription_disbursals JOIN projects ON sd_project_id=project_id AND sd_donor_id=? GROUP BY project_type) AS types ON types.project_type=p1.project_type JOIN villages ON project_village_id=village_id LEFT JOIN subscription_disbursals ON project_id=sd_project_id AND sd_donor_id=? WHERE project_funded<project_budget GROUP BY project_id ORDER BY disbursalCount ASC, typeCount ASC, remaining ASC");
+$stmt = prepare("SELECT project_id, project_name, village_name, project_budget - project_funded AS remaining, COUNT(sd_project_id) AS disbursalCount, p1.project_type, IFNULL(typeCount, 0) FROM projects AS p1 LEFT JOIN (SELECT project_type, COUNT(project_id) AS typeCount FROM subscription_disbursals JOIN projects ON sd_project_id=project_id AND sd_donor_id=? GROUP BY project_type) AS types ON types.project_type=p1.project_type JOIN villages ON project_village_id=village_id LEFT JOIN subscription_disbursals ON project_id=sd_project_id AND sd_donor_id=? WHERE project_funded<project_budget GROUP BY project_id ORDER BY disbursalCount ASC, typeCount ASC, remaining ASC");
 $stmt->bind_param('ii', $donorId, $donorId);
 $result = execute($stmt);
 
