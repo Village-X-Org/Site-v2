@@ -1,11 +1,13 @@
 <?php require_once("utilities.php"); 
 $hasCookies = 0;
 if (!$session_donor_id && isset($_COOKIE['username'])) {
-  $hasCookies = 1;
   $username = $email = $_COOKIE ['username'];
   $password = $_COOKIE ['password'];
+  $hideOutput = 1;
+  include('user_check.php');
 }
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <title>Village X | Fund Projects That Villages Choose</title>
@@ -101,12 +103,6 @@ i.ml-auto {
 
 </style>
 <?php include('header.inc'); 
-
-if ($hasCookies) {
-  print "<!--";
-  include('user_check.php');
-  print "-->";
-}
 
 if (hasParam('code')) {
     $_SESSION['code'] = param('code');

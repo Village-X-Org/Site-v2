@@ -130,6 +130,7 @@ $picture = $pictureId.".jpg";
 
     .trackEntries {
         width:50%;
+        padding-right:10px;
     }
 
     @media only screen and (max-width : 920px) {
@@ -177,7 +178,7 @@ include('header.inc');
         </div>
     </div>
 </div>
-<div class='map' id='map' style='position:absolute;right:0;top:67px;width:50%;height:100%;'></div>
+<div class='map' id='map' style='position:absolute;right:10px;width:50%;top:67px;height:100%;'></div>
 <script>
     projectId = <?php print $projectId; ?>;
     lastScrollTop = 0;

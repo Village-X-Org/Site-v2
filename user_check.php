@@ -1,5 +1,6 @@
 <?php
 require_once("utilities.php");
+
 if (!isset($email)) {
 	$email = param('login_email');
 }
@@ -26,8 +27,12 @@ if ($row = $result->fetch_assoc()) {
 
 	setcookie ( "username", $email, time () + (60 * 60 * 24 * 30) );
 	setcookie ( "password", $password, time () + (60 * 60 * 24 * 30) );
-	print "success";
+	if (!isset($hideOutput)) {
+		print "success";
+	}
 } else {
-	print "user with email $email not found";
+	if (!isset($hideOutput)) {
+		print "user with email $email not found";
+	}
 }
 ?>

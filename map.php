@@ -23,6 +23,9 @@ if ($rebranded) {
 		$prefix = $row['org_project_prefix'];
 		$pageDescription = $row['org_description'];
 		$pageImage = $row['org_banner'];
+	} else {
+		print "</head><body>This organization does not exist</body></html>";
+		die(1);
 	}
 } else {
   $pageTitle = "Village X | Project Locations";

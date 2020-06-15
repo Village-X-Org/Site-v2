@@ -157,8 +157,12 @@ if (hasParam('d')) {
 
 	<nav class="white hide-on-large-only" role="navigation">
 		<div class="nav-wrapper container">
-				<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>" class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
-				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>'></a>
+				<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>" class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0;'");?>><img
+				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>' />
+				<?php 
+				if ($rebranded) {
+					print " <div class='brand-logo' style='left:155px;top:12px;'><a href='https://villagex.org' style='font-size:12px;font-weight:bold;color:black;font-style:italic;'>powered by Village X</a></div>";
+				} ?></a>
 
 			<?php if ($rebranded == 0) { ?>	
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
@@ -203,7 +207,12 @@ if (hasParam('d')) {
 		<nav class="white" role="navigation">
 			<div class="nav-wrapper container">
 			<a id="logo-container" href="<?php print ($rebranded ? $url : 'index.php'); ?>"class='brand-logo <?php print ($rebranded ?  "left'" : "' style='padding: 3px 0 0 0'"); ?>><img
-				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>'></a>
+				src='<?php print ($rebranded ? "$logo' style='height:60px;" : "images/villagex_short_logo.png"); ?>'>
+				<?php 
+				if ($rebranded) {
+					print " <div class='brand-logo' style='left:90px;top:12px;'><a href='https://villagex.org' style='font-size:12px;font-weight:bold;color:black;font-style:italic;'>powered by Village X</a></div>";
+				} ?>
+				</a>
 				<?php if ($rebranded == 0) { ?>	
 				<ul class="right">
 					
