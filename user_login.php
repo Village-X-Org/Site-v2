@@ -163,7 +163,7 @@ include('header.inc');
                 <div class="row s12 m12 l12 center-align"
                     style="padding: 0% 0% 0% 0%;">
                     <div class="input-field">
-                      <button id="resetButton" style="width:100%;height:70px;font-size:25px"
+                      <button id="resetButton" style="width:100%;height:70px;font-size:22px"
                           class="g-recaptcha btn-large red center-align submit"
                           data-sitekey="<?php print CAPTCHA_SITEKEY_V3; ?>"
                           data-callback="onReset">
