@@ -147,7 +147,7 @@ if (hasParam('branding')) {
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
 		      $communityContribution = $row['community_contribution'];
-		      $fundedPercent = round($funded / $projectTotal * 100);
+		      $fundedPercent = floor($funded / $projectTotal * 100);
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 		      $isCompleted = $row['pe_date'];
 
