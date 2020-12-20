@@ -23,7 +23,7 @@ if (hasParam('t')) {
   $selectedTab = param('t');
 }
 
-if (!CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
+if ($session_is_admin || !CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
@@ -477,12 +477,12 @@ if (!file_exists($mapFilename)) {
     include('footer.inc');
     $contents = ob_get_contents();
     ob_end_clean();
-    if (CACHING_ENABLED) {
+    if (CACHING_ENABLED && !$session_is_admin) {
         file_put_contents(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId,$contents);
     } else {
         print $contents;
     }
 } 
-if (CACHING_ENABLED) {
+if (CACHING_ENABLED && !$session_is_admin) {
     include(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId); 
 } ?>
