@@ -563,7 +563,7 @@ function verifyRecaptcha3($responseCode, $action) {
 	$response = curl_exec( $ch );
 	$json = json_decode($response);
 
-	if (isset($json->{'success'}) && $json->{'success'} && isset($json->{'score'}) && $json->{'score'} > .5) {
+	if (isset($json->{'success'}) && $json->{'success'} && isset($json->{'score'}) && $json->{'score'} > .2) {
 		return true;
 	} else {
 		return false;
@@ -572,6 +572,14 @@ function verifyRecaptcha3($responseCode, $action) {
 
 function getShippingCost() {
 	return 10;
+}
+
+function getDistanceMeters($startLat, $startLng, $endLat, $endLng) {
+	$theta = $startLng - $endLng;
+	$dist = sin(deg2rad($startLat)) * sin(deg2rad($endLat)) +  cos(deg2rad($startLat)) * cos(deg2rad($endLat)) * cos(deg2rad($theta));	
+	$dist = acos($dist);
+	$dist = rad2deg($dist);
+	return $dist * 111189.3006; // meters conversion
 }
 
 ?>
