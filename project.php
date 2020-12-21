@@ -71,7 +71,7 @@ if ($row = $result->fetch_assoc()) {
     $communityContribution = $row['project_community_contribution'];
     
     $villageContribution = round($total * ($communityContribution / 100));
-    $percentFunded = max($communityContribution, round($funded * 100 / $total));
+    $percentFunded = max($communityContribution, round($funded * 100 / max($total, 1)));
     
     $households = getLatestValueForStat($villageId, "# of HH");
     $population = getLatestValueForStat($villageId, "# of People");

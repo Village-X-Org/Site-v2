@@ -132,7 +132,7 @@ if (hasParam('branding')) {
                 LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
-                WHERE p1.project_org_id=$rebranded AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
+                WHERE p1.project_org_id=$rebranded AND p1.project_budget > 0 AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
                 ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted ASC";
         $result = doUnprotectedQuery($query);
@@ -147,7 +147,7 @@ if (hasParam('branding')) {
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
 		      $communityContribution = $row['community_contribution'];
-		      $fundedPercent = floor($funded / $projectTotal * 100);
+		      $fundedPercent = floor($funded / max($projectTotal, 1) * 100);
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 		      $isCompleted = $row['pe_date'];
 
@@ -179,7 +179,7 @@ if (hasParam('branding')) {
 		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass $partnerClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
 				<div class='card sticky-action hoverable'>
 					<div class='card-image'>
-						<img class='activator' src='".PICTURES_DIR."{$row['picture_filename']}'>
+						<div class='activator' style=\"width:100%;height:370px;background-position:center;background-size:cover;background-image:url('".PICTURES_DIR."{$row['picture_filename']}');\"></div>
 					</div>
 					<div class='card-content'>
 						<span class='card-title activator grey-text text-darken-4' style='font-size:18px;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">$projectName
