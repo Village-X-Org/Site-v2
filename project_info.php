@@ -127,7 +127,7 @@
 			</div>
 
 		<?php 
-		$stmt = prepare("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=?");
+		$stmt = prepare("SELECT pc_id, pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=?");
 		$stmt->bind_param('i', $projectId);
 		$result = execute($stmt);
 	    $count = 0;
@@ -138,6 +138,7 @@
 			<br>
 			<div class="row">
 			<?php } 
+			$pcId = $row['pc_id'];
 			$icon = $row['ct_icon'];
 			$label = $row['pc_label'];
 			$amount = $row['pc_amount']; 
@@ -147,7 +148,7 @@
 						<i class="material-icons" style="font-size: 30px"><?php print $icon; ?></i>
 						<h5><?php print $label; ?></h5>
 						<h5 class="light center">
-							$<?php print $amount; ?>
+							$<?php print editable("project_costs","$pcId","pc_amount", "pc_id", $amount); ?>
 						</h5>
 							<br>
 					</div>
