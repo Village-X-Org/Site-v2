@@ -96,16 +96,21 @@
     					<div class="grey lighten-5 z-depth-1">
     						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
     							<div class="col s12 m4 l4 center-align">
-    							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
+    							<img id='officerImage' src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
     								alt="" class="responsive-img circle"
-    								style="width: 100px; height: 100px;">
+    								style="width: 100px; height: 100px;"
+    							<?php 
+    							if ($session_is_admin) {
+          							print "onclick=\"$.get('admin_edit_increment_officer.php?id=$projectId', function(data) { data = JSON.parse(data); $('#officerImage').attr('src',data.picture); $('#officerName').text(data.name); $('#officerEmail').text(data.email);$('#officerPhone').text(data.phone); });\"";
+						        }
+						        ?> />
     							<!-- notice the "circle" class -->
     							</div>
     							<div class="col s12 m8 l8 black-text">
-    								<b>Field Officer <?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></b>
+    								<b>Field Officer <span id='officerName'><?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></span></b>
     								<p/>
-    								<b>Email:</b> <?php print $row['fo_email']; ?><b><br>Phone Number:</b>
-    									<?php print $row['fo_phone']; ?>
+    								<b>Email:</b> <span id='officerEmail'><?php print $row['fo_email']; ?></span><b><br>Phone Number:</b>
+    									<span id='officerPhone'><?php print $row['fo_phone']; ?></span>
     							</div>
     						</div>
     					</div>
