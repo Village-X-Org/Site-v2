@@ -23,16 +23,29 @@ if (hasParam('t')) {
   $selectedTab = param('t');
 }
 
+function editable($table, $id, $column, $idColumn, $text) {
+  $id = $table.':'.$id.':'.$column;
+  global $session_is_admin;
+  if ($session_is_admin) {
+    print "<span id='text$id' onclick=\"var input=document.getElementById('input$id'); input.style.display='inline-block';input.focus();$(this).hide();\">$text</span>";
+    print "<input id='input$id' type='text' value='$text' style='background:none;border:0;width:min-content;display:none;font-size:inherit;color:inherit;font-weight:inherit;' "
+      ."onkeypress=\"if (event.which == 13 || event.keyCode == 13) {\$(this).hide();var text=document.getElementById('text$id');text.innerText=this.value;text.style.display='inline-block';$.get('admin_edit.php?id=$id&idColumn=$idColumn&value=' + this.value);}\" />";
+  } else {
+    print $text;
+  }
+}
+
 if ($session_is_admin || !CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
     ob_start();
 $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
-                project_funded, project_budget, project_type, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
+                project_funded, project_budget, pt_label, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
                 CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor, project_completion, project_youtube_id, project_completion, project_youtube_id, exemplary_pictures.picture_filename AS exemplaryPicture, project_org_id
                 FROM projects JOIN villages ON village_id=project_village_id
                 LEFT JOIN countries ON village_country=country_id
-                LEFT JOIN pictures AS similar_pictures ON project_similar_image_id=similar_pictures.picture_id 
+                LEFT JOIN project_types ON project_type_id=pt_id
+                LEFT JOIN pictures AS similar_pictures ON pt_sample_image=similar_pictures.picture_id 
                 LEFT JOIN pictures AS banner_pictures ON project_banner_image_id=banner_pictures.picture_id 
                 LEFT JOIN project_events AS peAll ON peAll.pe_project_id=project_id 
                 LEFT JOIN project_events AS peEnd ON peEnd.pe_project_id=project_id AND peEnd.pe_type=4
@@ -61,7 +74,7 @@ if ($row = $result->fetch_assoc()) {
     $villageLng = $row['village_lng'];
     $funded = round($row['project_funded']);
     $total = $row['project_budget'];
-    $projectType = $row['project_type'];
+    $projectType = $row['pt_label'];
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
     $donorCount = $row['donorCount'];
@@ -73,8 +86,8 @@ if ($row = $result->fetch_assoc()) {
     $villageContribution = round($total * ($communityContribution / 100));
     $percentFunded = max($communityContribution, round($funded * 100 / max($total, 1)));
     
-    $households = getLatestValueForStat($villageId, "# of HH");
-    $population = getLatestValueForStat($villageId, "# of People");
+    list($householdsId, $households) = getLatestValueForStat($villageId, "# of HH");
+    list($populationId, $population) = getLatestValueForStat($villageId, "# of People");
 
     $matchingDonor = $row['matchingDonor'];
     $rebranded = $row['project_org_id'];
@@ -176,10 +189,10 @@ if (!file_exists($mapFilename)) {
 <div class="container">
 	 
 		<div style='position:relative;'><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
-					   <b><?php print $villageName; ?> Village </b>
-            <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print $total; ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
-            to <?php print strtolower($projectName); ?>. <?php if ($population > 0 && $households > 0) { ?> This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print $population; ?> people across <?php print $households; ?> households. <?php } ?> 
-            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed $<?php print $villageContribution; ?>, materials, and labor. 
+					   <b><?php print editable("villages", "$villageId", "village_name", "village_id", $villageName); ?> Village </b>
+            <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print editable("projects","$projectId","project_budget", "project_id", $total); ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
+            to <?php print editable("projects","$projectId","project_name", "project_id", strtolower($projectName)); ?>. <?php if ($population > 0 && $households > 0) { ?> This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print editable("village_stats","$populationId","stat_value", "stat_id", $population); ?> people across <?php print editable("village_stats","$householdsId","stat_value", "stat_id", $households); ?> households. <?php } ?> 
+            <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed <?php print editable("projects", "$projectId", "project_community_contribution", "project_id", $communityContribution); ?>% ($<?php print $villageContribution; ?>), materials, and labor. 
             <?php if ($partnerCount > 1) {
               print "Partners ";
               for ($i = 0; $i < $partnerCount; $i++) {
@@ -221,7 +234,11 @@ if (!file_exists($mapFilename)) {
       <?php if ($donorId) { ?>
         <span class='flow-text'>A cooperation between<BR><b class='donor-text'><?php print $donorName; ?></b> and <b class='donor-text'>Village X</b></span>
       <?php } ?>
-				<img src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; border: black 2px solid; box-shadow: 10px 10px 5px #888888; border-radius:10px;'>
+				<img id='similarImage' src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; border: black 2px solid; box-shadow: 10px 10px 5px #888888; border-radius:10px;'
+        <?php if ($session_is_admin && !$exemplaryPicture) {
+          print "onclick=\"$.get('admin_edit_increment_type.php?id=$projectId', function(data) { \$('#similarImage').attr('src',data); });\"";
+        }
+        ?> />
 				<p class="center-align">
 					<b><?php print ($exemplaryPicture ? "Project complete!" : "Here's a similar project."); ?></b>
 				<br>

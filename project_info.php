@@ -9,33 +9,33 @@
 				<div class="card grey lighten-5 z-depth-1">
 					<div class="card-content brown-text text-lighten-2">
 
-							<p class="flow-text"><?php print $summary; ?>
+							<p class="flow-text"><?php print editable("projects","$projectId","project_summary", "project_id", $summary); ?>
 							</p>
 
 							<?php if (strlen($problem) > 1) { ?> <br>
 							<p>
-								<b>Community Problem:</b> <?php print $problem; ?>
+								<b>Community Problem:</b> <?php print editable("projects","$projectId","project_community_problem", "project_id", $problem); ?>
 							</p> 
 							<?php } ?>
 							
 							<?php if (strlen($solution) > 1) { ?> <br>
 						
 							<p>
-								<b>Community Solution:</b> <?php print $solution; ?>
+								<b>Community Solution:</b> <?php print editable("projects","$projectId","project_community_solution", "project_id", $solution); ?>
 							</p>
 							<?php } ?>
 							
 							<?php if (strlen($communityPartners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $communityPartners; ?>
+								<b>Partners:</b> <?php print editable("projects","$projectId","project_community_partners", "project_id", $communityPartners); ?>
 							</p>
 							<?php } ?>
 							
 							<?php if (strlen($impact) > 1) { ?> <br>
 					
 							<p>
-								<b>Outcome:</b> <?php print $impact; ?>
+								<b>Outcome:</b> <?php print editable("projects","$projectId","project_impact", "project_id", $impact); ?>
 							</p>
 							<?php } ?>
 						
