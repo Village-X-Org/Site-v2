@@ -138,11 +138,13 @@ $(document).ready(function(){
     $('.scrollspy').scrollSpy();
   });
 </script>
-<div id="index-banner" class="parallax-container"
+<div id="index-banner" class="parallax-container" <?php if ($session_is_admin) { ?>
+      onclick="$('#bannerUpload').trigger('click');"
+    <?php } ?>
 	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
 
 	<div class="parallax">
-		<img style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>">
+		<img id='bannerImage' style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>" />
 	</div>
 
 <?php
@@ -504,3 +506,75 @@ if (!file_exists($mapFilename)) {
 if (CACHING_ENABLED && !$session_is_admin) {
     include(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId); 
 } ?>
+
+<?php if ($session_is_admin) { ?>
+<input id='bannerUpload' type="file" style='visibility:hidden;' accept=".jpg,.jpeg" />
+<script src="js/exif.js"></script>
+<script>
+  var bannerUpload = document.getElementById('bannerUpload');
+  bannerUpload.addEventListener('change', function () {
+    resizeAndUpload(this.files[0]);
+  }, false);
+
+      function uploadFile(file, smallFile, orientation, image){
+        var xhr = new XMLHttpRequest();
+        var fd = new FormData();
+        xhr.open("POST", 'upload_image.php', true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+              imageIds = JSON.parse(xhr.responseText);
+              $.get('admin_edit_banner_picture.php?projectId=<?php print $projectId;?>&imageId=' + imageIds['large'] + '&smallImageId=' + imageIds['small']);
+            }
+        };
+        fd.append("upload_file", file);
+        fd.append("upload_file_small", smallFile);
+        fd.append("orientation", orientation);
+        xhr.send(fd);
+    }
+    function resizeAndUpload(file) {              
+      var reader = new FileReader();  
+      reader.onload = function(e) {
+        var image =  document.getElementById('bannerImage');
+        image.onload = function () {
+          orientation = 0;
+
+          EXIF.getData(image, function() {
+            var allMetaData = EXIF.getAllTags(this);
+            orientation = EXIF.getTag(this, "Orientation");
+          });
+
+          var canvas = document.createElement('canvas');
+
+          var MAX_WIDTH = 1280;
+          var width = this.width;
+          var height = this.height;
+
+          if (width > MAX_WIDTH) {
+            height *= MAX_WIDTH / width;
+            width = MAX_WIDTH;
+          }
+
+          canvas.width = width;
+          canvas.height = height;
+          var context = canvas.getContext("2d");
+          context.drawImage(this, 0, 0, width, height);
+          dataUrlLarge = canvas.toDataURL('image/jpeg');
+
+          var MIN_SIDE_LENGTH = 400;
+          smallWidth = (width / height) * MIN_SIDE_LENGTH;
+          smallHeight = MIN_SIDE_LENGTH;
+          
+          canvas.width = smallWidth;
+          canvas.height = smallHeight;
+          context = canvas.getContext("2d");
+          context.drawImage(this, 0, 0, smallWidth, smallHeight);
+          dataUrlSmall = canvas.toDataURL('image/jpeg');
+
+          uploadFile(dataUrlLarge, dataUrlSmall, orientation, image);
+        };
+        image.src = e.target.result;
+      }
+      reader.readAsDataURL(file);
+    }
+</script>
+<?php } ?>
