@@ -86,14 +86,14 @@ if ($row = $result->fetch_assoc()) {
     $villageContribution = round($total * ($communityContribution / 100));
     $percentFunded = max($communityContribution, round($funded * 100 / max($total, 1)));
     
-    list($householdsId, $households) = getLatestValueForStat($villageId, "# of HH");
-    list($populationId, $population) = getLatestValueForStat($villageId, "# of People");
-
     $matchingDonor = $row['matchingDonor'];
     $rebranded = $row['project_org_id'];
     $lat = $row['country_latitude'];
     $lng = $row['country_longitude'];
     $zoom = $row['country_zoom'];
+
+    list($householdsId, $households) = getLatestValueForStat($villageId, "# of HH");
+    list($populationId, $population) = getLatestValueForStat($villageId, "# of People");
 } else {
     print "The requested project could not be found.";
     die(1);
@@ -254,7 +254,8 @@ if (!file_exists($mapFilename)) {
 				
 				<br>
 				
-		<div class="center-align donor-text"><b><font>$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go</font></b></div>
+		<div class="center-align donor-text"><b><font><?php print ($session_is_admin ? "<span id='raisedSpan' onclick=\"$.get('admin_edit_square_village_contribution.php?id=$projectId', function(data) { $('#raisedSpan').text(data); });\">" : ""); ?>$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go
+      <?php print ($session_is_admin ? "</span>" : ""); ?></font></b></div>
 				
 					<br>
 				
@@ -443,9 +444,9 @@ if (!file_exists($mapFilename)) {
 			</div>
     
 <?php 
-      $result = doUnprotectedQuery("SELECT stat_year FROM village_stats WHERE stat_village_id=$villageId");
+      $result = doUnprotectedQuery("SELECT COUNT(stat_year) AS count FROM village_stats WHERE stat_village_id=$villageId");
       if ($row = $result->fetch_assoc()) {
-        $hasStats = true;
+        $hasStats = $row['count'] > 10;
       } else {
         $hasStats = false;
       }
