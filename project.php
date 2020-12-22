@@ -446,7 +446,7 @@ if (!file_exists($mapFilename)) {
 <?php 
       $result = doUnprotectedQuery("SELECT COUNT(stat_year) AS count FROM village_stats WHERE stat_village_id=$villageId");
       if ($row = $result->fetch_assoc()) {
-        $hasStats = $row['count'] > 10;
+        $hasStats = $row['count'] > 4;
       } else {
         $hasStats = false;
       }
