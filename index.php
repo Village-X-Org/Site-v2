@@ -384,7 +384,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $projectTotal = $row['project_budget'];
         $previousYear = $row['previousYear'];
         $matchingDonor = $row['matchingDonor'];
-        $fundedPercent = $funded / $projectTotal * 100;
+        $fundedPercent = $funded / max(1, $projectTotal) * 100;
         $villageContribution = round($projectTotal * .05);
         if (!isset($cells[$projectType])) {
             $cells[$projectType] = array();

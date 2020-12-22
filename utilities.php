@@ -49,7 +49,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font></P>";
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on. $errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace</font></P>";
     exit();
 }
 set_error_handler("emailErrorHandler");
@@ -228,15 +228,16 @@ function getStatYearAssociative($villageId, $statName) {
 }
 
 function getLatestValueForStat($villageId, $statName) {
-    $stmt = prepare("SELECT stat_value FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?) ORDER BY stat_year DESC LIMIT 1");
+    $stmt = prepare("SELECT stat_id, stat_value FROM village_stats WHERE stat_village_id=? AND stat_type_id=(SELECT st_id FROM stat_types WHERE st_label=?) ORDER BY stat_year DESC LIMIT 1");
     $stmt->bind_param("is", $villageId, $statName);
     $result = execute($stmt);
-    $value = -1;
+    $statId = $statValue = -1;
     if ($row = $result->fetch_assoc()) {
-        $value = $row['stat_value'];
+    	$statId = $row['stat_id'];
+        $statValue = $row['stat_value'];
     }
     $stmt->close();
-    return $value;
+    return array($statId, $statValue);
 }
 
 // Request processing

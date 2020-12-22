@@ -9,33 +9,33 @@
 				<div class="card grey lighten-5 z-depth-1">
 					<div class="card-content brown-text text-lighten-2">
 
-							<p class="flow-text"><?php print $summary; ?>
+							<p class="flow-text"><?php print editable("projects","$projectId","project_summary", "project_id", $summary); ?>
 							</p>
 
 							<?php if (strlen($problem) > 1) { ?> <br>
 							<p>
-								<b>Community Problem:</b> <?php print $problem; ?>
+								<b>Community Problem:</b> <?php print editable("projects","$projectId","project_community_problem", "project_id", $problem); ?>
 							</p> 
 							<?php } ?>
 							
 							<?php if (strlen($solution) > 1) { ?> <br>
 						
 							<p>
-								<b>Community Solution:</b> <?php print $solution; ?>
+								<b>Community Solution:</b> <?php print editable("projects","$projectId","project_community_solution", "project_id", $solution); ?>
 							</p>
 							<?php } ?>
 							
 							<?php if (strlen($communityPartners) > 1) { ?> <br>
 					
 							<p>
-								<b>Partners:</b> <?php print $communityPartners; ?>
+								<b>Partners:</b> <?php print editable("projects","$projectId","project_community_partners", "project_id", $communityPartners); ?>
 							</p>
 							<?php } ?>
 							
 							<?php if (strlen($impact) > 1) { ?> <br>
 					
 							<p>
-								<b>Outcome:</b> <?php print $impact; ?>
+								<b>Outcome:</b> <?php print editable("projects","$projectId","project_impact", "project_id", $impact); ?>
 							</p>
 							<?php } ?>
 						
@@ -96,16 +96,21 @@
     					<div class="grey lighten-5 z-depth-1">
     						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
     							<div class="col s12 m4 l4 center-align">
-    							<img src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
+    							<img id='officerImage' src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
     								alt="" class="responsive-img circle"
-    								style="width: 100px; height: 100px;">
+    								style="width: 100px; height: 100px;"
+    							<?php 
+    							if ($session_is_admin) {
+          							print "onclick=\"$.get('admin_edit_increment_officer.php?id=$projectId', function(data) { data = JSON.parse(data); $('#officerImage').attr('src',data.picture); $('#officerName').text(data.name); $('#officerEmail').text(data.email);$('#officerPhone').text(data.phone); });\"";
+						        }
+						        ?> />
     							<!-- notice the "circle" class -->
     							</div>
     							<div class="col s12 m8 l8 black-text">
-    								<b>Field Officer <?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></b>
+    								<b>Field Officer <span id='officerName'><?php print "{$row['fo_first_name']} {$row['fo_last_name']}"; ?></span></b>
     								<p/>
-    								<b>Email:</b> <?php print $row['fo_email']; ?><b><br>Phone Number:</b>
-    									<?php print $row['fo_phone']; ?>
+    								<b>Email:</b> <span id='officerEmail'><?php print $row['fo_email']; ?></span><b><br>Phone Number:</b>
+    									<span id='officerPhone'><?php print $row['fo_phone']; ?></span>
     							</div>
     						</div>
     					</div>
@@ -122,7 +127,7 @@
 			</div>
 
 		<?php 
-		$stmt = prepare("SELECT pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=?");
+		$stmt = prepare("SELECT pc_id, pc_label, pc_amount, ct_icon FROM project_costs JOIN cost_types ON pc_type=ct_id WHERE pc_project_id=?");
 		$stmt->bind_param('i', $projectId);
 		$result = execute($stmt);
 	    $count = 0;
@@ -133,6 +138,7 @@
 			<br>
 			<div class="row">
 			<?php } 
+			$pcId = $row['pc_id'];
 			$icon = $row['ct_icon'];
 			$label = $row['pc_label'];
 			$amount = $row['pc_amount']; 
@@ -142,7 +148,7 @@
 						<i class="material-icons" style="font-size: 30px"><?php print $icon; ?></i>
 						<h5><?php print $label; ?></h5>
 						<h5 class="light center">
-							$<?php print $amount; ?>
+							$<?php print editable("project_costs","$pcId","pc_amount", "pc_id", $amount); ?>
 						</h5>
 							<br>
 					</div>

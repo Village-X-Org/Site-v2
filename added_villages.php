@@ -36,18 +36,73 @@ if (hasParam('promote')) {
 	}
 	$stmt->close();
 
+	$url = "https://nominatim.openstreetmap.org/search?q=$lat,$lng&format=json&addressdetails=1";
+	$ch = curl_init( $url );
+	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt( $ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_USERAGENT,'Village X');
+    $result = curl_exec($ch);
+    $geoloc = json_decode($result, true);
+    
+    $first = $geoloc[0]['address'];
+    $district = 0;
+    $region = 0;
+    $country = 0;
+    $districtId = $regionId = $countryId = 0;
+    if (isset($first['state_district'])) {
+        $district = $first['state_district'];
+    } elseif (isset($first['county'])) {
+		$district = $first['county'];
+    } elseif (isset($first['state'])) {
+		$district = $first['state'];
+    }
+    if (isset($first['region'])) {
+		$region = $first['region'];
+    } 
+    if (isset($first['country'])) {
+    	$country = $first['country'];
+    }
+
+    if ($district) {
+	    $result = doUnprotectedQuery("SELECT district_id FROM districts WHERE district_name='$district'");
+	    if ($row = $result->fetch_assoc()) {
+	        $districtId = $row['district_id'];
+	    } else {
+	        doUnprotectedQuery("INSERT INTO districts (district_name) VALUES ('$district')");
+	        $districtId = $link->insert_id;
+	    }
+	}
+
+    if ($region) {
+	    $result = doUnprotectedQuery("SELECT region_id FROM regions WHERE region_name='$region'");
+	    if ($row = $result->fetch_assoc()) {
+	        $regionId = $row['region_id'];
+	    } else {
+	        doUnprotectedQuery("INSERT INTO regions (region_name) VALUES ('$region')");
+	        $regionId = $link->insert_id;
+	    }
+	}
+
+	if ($country) {
+		$result = doUnprotectedQuery("SELECT country_id FROM countries WHERE country_label='$country'");
+	    if ($row = $result->fetch_assoc()) {
+	        $countryId = $row['country_id'];
+	    }
+	}
+
 	$result = doUnprotectedQuery("SELECT village_id FROM villages WHERE village_name='$villageName' AND round($lat * 10)=round(village_lat*10) AND round($lng * 10)=round(village_lng*10)");
     if ($row = $result->fetch_assoc()) {
     	$villageId = $row['village_id'];
     } else {
-		$stmt = prepare("INSERT INTO villages (village_name, village_district, village_lat, village_lng, village_pending, village_country) VALUES (?, 0, ?, ?, 0, 0)");
-		$stmt->bind_param('sdd', $villageName, $lat, $lng);
+		$stmt = prepare("INSERT INTO villages (village_name, village_district, village_region, village_country, village_lat, village_lng, village_pending) VALUES (?, ?, ?, ?, ?, ?, 0)");
+		$stmt->bind_param('siiidd', $villageName, $districtId, $regionId, $countryId, $lat, $lng);
 		execute($stmt);
 		$villageId = $link->insert_id;
 		$stmt->close();
 	}
 
-	$stmt = prepare("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type, project_elapsed_days, project_people_reached, project_completion) VALUES (?, 'Insert Goal Here', ?, ?, 0, ?, ?, ?, 2511, 'Insert Summary Here', 'Insert Community Problem Here', 'Insert Community Solution Here', 'Insert Partners Here', 'Insert Impact Here', 0, 'funding', 'business', 0, 0, '')");
+	$stmt = prepare("INSERT INTO projects (project_village_id, project_name, project_lat, project_lng, project_budget, project_staff_id, project_banner_image_id, project_profile_image_id, project_similar_image_id, project_summary, project_community_problem, project_community_solution, project_community_partners, project_impact, project_funded, project_status, project_type, project_type_id, project_elapsed_days, project_people_reached, project_completion) VALUES (?, 'Insert Goal Here', ?, ?, 0, ?, ?, ?, 2511, 'Insert Summary Here', 'Insert Community Problem Here', 'Insert Community Solution Here', 'Insert Partners Here', 'Insert Impact Here', 0, 'funding', 'business', 1, 0, 0, '')");
 	$stmt->bind_param('iddiii', $villageId, $lat, $lng, $foId, $imageId, $imageId);
 	execute($stmt);
     $projectId = $link->insert_id;
@@ -56,6 +111,7 @@ if (hasParam('promote')) {
 	doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'labor', 0, 1),
 		($projectId, 'materials', 0, 2), ($projectId, 'admin', 0, 3), ($projectId, 'transport', 0, 4), ($projectId, 'fees', 0, 5)");
 	doUnprotectedQuery("INSERT INTO project_events (pe_date, pe_type, pe_project_id) VALUES (NOW(), 1, $projectId), (NOW(), 2, $projectId)");
+	doUnprotectedQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, 100, YEAR(NOW())), (19, $villageId, 100, YEAR(NOW()))");
 	header("Location: project.php?id=$projectId");
 	doUnprotectedQuery("UPDATE proposed_villages SET pv_promoted=$projectId WHERE pv_id=$id");
 	die(0);
