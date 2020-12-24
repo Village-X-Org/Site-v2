@@ -112,7 +112,7 @@ if (hasParam('promote')) {
 	doUnprotectedQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, 100, YEAR(NOW())), (19, $villageId, 100, YEAR(NOW()))");
 	header("Location: project.php?id=$projectId");
 	doUnprotectedQuery("UPDATE proposed_villages SET pv_promoted=$projectId WHERE pv_id=$id");
-	die(0);
+	return;
 }
 
 
