@@ -367,7 +367,7 @@ if (hasParam('gc')) {
 		<div class="row">
 <?php
 if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type AS project_type, YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
+    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type_id AS project_type_id, YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
@@ -379,7 +379,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     while ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         $projectName = $row['project_name'];
-        $projectType = $row['project_type'];
+        $projectType = $row['project_type_id'];
         $funded = round($row['project_funded']);
         $projectTotal = $row['project_budget'];
         $previousYear = $row['previousYear'];
@@ -392,7 +392,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $nextBuffer = "<div class='col s12 m12 l4 ' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId';\">
     			<div class='card sticky-action hoverable'>
     				<div class='card-image'>
-    					<img class='activator' src='" . PICTURES_DIR . "/{$row['picture_filename']}'>
+    					<div class='activator' style=\"width:100%;height:370px;background-position:center;background-size:cover;background-image:url('".PICTURES_DIR."{$row['picture_filename']}');\"></div>
     				</div>
     				<div class='card-content'>
     					<span class='card-title activator grey-text text-darken-4'  style='font-size:18px;'  onclick=\"document.location='project.php?id=$projectId';\">$projectName

@@ -9,12 +9,13 @@ $result = doUnprotectedQuery("SELECT donor_id, donor_first_name, donor_last_name
 while ($row = $result->fetch_assoc()) {
 	$donorId = $row['donor_id'];
 	$donorName = $row['donor_first_name'].' '.$row['donor_last_name'];
+	$monthly = $row['sd_amount'];
 	$amount = $row['total'];
 	$last = $row['latest'];
 
-	$next = doUnprotectedQuery("SELECT project_id, project_name, village_name, project_budget - project_funded AS remaining, COUNT(sd_project_id) AS disbursalCount, p1.project_type, IFNULL(typeCount, 0) FROM projects AS p1 LEFT JOIN (SELECT project_type, COUNT(project_id) AS typeCount FROM subscription_disbursals JOIN projects ON sd_project_id=project_id AND sd_donor_id=$donorId GROUP BY project_type) AS types ON types.project_type=p1.project_type JOIN villages ON project_village_id=village_id LEFT JOIN subscription_disbursals ON project_id=sd_project_id AND sd_donor_id=$donorId WHERE project_funded<project_budget GROUP BY project_id ORDER BY disbursalCount ASC, typeCount ASC, project_date_posted ASC, remaining ASC");
+	$next = doUnprotectedQuery("SELECT project_id, project_name, village_name, project_budget - project_funded AS remaining, COUNT(sd_project_id) AS disbursalCount, p1.project_type_id, IFNULL(typeCount, 0) FROM projects AS p1 LEFT JOIN (SELECT project_type_id, COUNT(project_id) AS typeCount FROM subscription_disbursals JOIN projects ON sd_project_id=project_id AND sd_donor_id=$donorId GROUP BY project_type_id) AS types ON types.project_type_id=p1.project_type_id JOIN villages ON project_village_id=village_id LEFT JOIN subscription_disbursals ON project_id=sd_project_id AND sd_donor_id=$donorId WHERE project_funded<project_budget GROUP BY project_id ORDER BY disbursalCount ASC, typeCount ASC, project_date_posted ASC, remaining ASC");
 	if ($rowNext = $next->fetch_assoc()) {
-		print "<tr><td>$donorName</td><td>$$amount</td><td>$last</td><td>".$rowNext['project_name'].' for '.$rowNext['village_name']."</td></tr>";
+		print "<tr><td>$donorId</td><td>$donorName</td><td>$$amount</td><td>$last ($$monthly)</td><td>".$rowNext['project_name'].' for '.$rowNext['village_name']."</td></tr>";
 	}
 }
 print "</table>";

@@ -9,9 +9,9 @@ if (!isset($password)) {
 
 	$captcha = param('g-recaptcha-response');
 	if (!verifyRecaptcha3($captcha, 'userCheck')) {
-		print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-	    emailAdmin("Robot detected in login", "Someone tried to login with these parameters: Email: $email");
-	    die(1);
+		//print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
+	    //emailAdmin("Robot detected in login", "Someone tried to login with these parameters: Email: $email");
+	    //die(1);
 	}
 }
 

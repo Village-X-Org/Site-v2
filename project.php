@@ -9,6 +9,18 @@ $rebranded = 0;
 <?php
 if (hasParam('id')) {
     $projectId = paramInt('id');
+} elseif (hasParam('shortcut')) {
+  $projectShortcut = param('shortcut');
+  $stmt = prepare("SELECT project_id FROM projects WHERE project_shortcut=?");
+  $stmt->bind_param('s', $projectShortcut);
+  $result = execute($stmt);
+  if ($row = $result->fetch_assoc()) {
+    $projectId = $row['project_id'];
+  } else {
+    print "Path not found";
+    die(0);
+  }
+  $stmt->close();
 } else {
     include('project_tiles.php');
     return;
@@ -27,7 +39,7 @@ function editable($table, $id, $column, $idColumn, $text) {
   $id = $table.':'.$id.':'.$column;
   global $session_is_admin;
   if ($session_is_admin) {
-    print "<span id='text$id' onclick=\"var input=document.getElementById('input$id'); input.style.display='inline-block';input.focus();$(this).hide();\">$text</span>";
+    print "<span id='text$id' style='border-bottom:2px solid orange;' onclick=\"var input=document.getElementById('input$id'); input.style.display='inline-block';input.focus();$(this).hide();\">$text</span>";
     print "<input id='input$id' type='text' value='$text' style='background:none;border:0;width:min-content;display:none;font-size:inherit;color:inherit;font-weight:inherit;' "
       ."onkeypress=\"if (event.which == 13 || event.keyCode == 13) {\$(this).hide();var text=document.getElementById('text$id');text.innerText=this.value;text.style.display='inline-block';$.get('admin_edit.php?id=$id&idColumn=$idColumn&value=' + this.value);}\" />";
   } else {
@@ -37,7 +49,7 @@ function editable($table, $id, $column, $idColumn, $text) {
 
 if ($session_is_admin || !CACHING_ENABLED || $selectedTab > 0 || !file_exists(CACHED_PROJECT_PREFIX.$projectId.'o'.$rebranded.'d'.$donorId)) {
     ob_start();
-$stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
+$stmt = prepare("SELECT project_id, project_shortcut, village_id, project_name, similar_pictures.picture_filename AS similar_picture, banner_pictures.picture_filename AS banner_picture, country_latitude, country_longitude, country_zoom, 
                 project_summary, project_community_problem, project_community_solution, project_community_partners, project_community_contribution, project_impact, IF(project_status='cancelled', 1, 0) AS isCancelled, village_name, village_lat, village_lng, 
                 project_funded, project_budget, pt_label, project_staff_id, COUNT(DISTINCT peAll.pe_id) AS eventCount, COUNT(DISTINCT donation_donor_id) AS donorCount,
                 MONTHNAME(peEnd.pe_date) AS monthCompleted, YEAR(peEnd.pe_date) AS yearCompleted, 
@@ -57,6 +69,7 @@ $stmt = prepare("SELECT project_id, village_id, project_name, similar_pictures.p
 $stmt->bind_param('iii', $projectId, $projectId, $projectId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
+    $projectShortcut = $row['project_shortcut'];
     $projectName = $row['project_name'];
     $pictureFilename = $row['similar_picture'];
     $bannerPicture = $row['banner_picture'];
@@ -129,7 +142,7 @@ if ($rebranded) {
 
 $pageImage = PICTURES_DIR.$bannerPicture;
 $pageTitle = "Fund Projects Villages Choose: $projectName in $villageName Village";
-$pageUrl = BASE_URL.$projectId;
+$pageUrl = BASE_URL.$projectShortcut;
 $pageDescription = "Disrupt extreme poverty by funding projects villages choose. $summary";
 include('header.inc'); 
 ?>
@@ -138,10 +151,9 @@ $(document).ready(function(){
     $('.scrollspy').scrollSpy();
   });
 </script>
-<div id="index-banner" class="parallax-container" <?php if ($session_is_admin) { ?>
-      onclick="$('#bannerUpload').trigger('click');"
-    <?php } ?>
-	style="background-color: rgba(0, 0, 0, 0.3); height: 500px">
+<div id="index-banner" class="parallax-container" style="background-color: rgba(0, 0, 0, 0.3); height: 500px;<?php 
+      print ($session_is_admin ? "border-bottom:5px solid orange;\" onclick=\"$('#bannerUpload').trigger('click');\"" : "\"");
+    ?>>
 
 	<div class="parallax">
 		<img id='bannerImage' style="object-fit: cover; height:100%" src="<?php print PICTURES_DIR.$bannerPicture; ?>" />
@@ -190,10 +202,12 @@ if (!file_exists($mapFilename)) {
 <script type="text/javascript" src="js/imagelightbox2.js"></script>
 <div class="container">
 	 
-		<div style='position:relative;'><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;">
-					   <b><?php print editable("villages", "$villageId", "village_name", "village_id", $villageName); ?> Village </b>
+		<div style='position:relative;'><h4 class="header left brown-text text-lighten-2" style="padding: 0 0 2% 0;"> 
+      <?php if ($session_is_admin) {
+        print editable("projects", "$projectId", "project_shortcut", "project_id", $projectShortcut).": ";
+      } ?><b><?php print editable("villages", "$villageId", "village_name", "village_id", $villageName); ?> Village </b>
             <?php print ($monthCompleted ? "used" : "needs"); ?> $<?php print editable("projects","$projectId","project_budget", "project_id", $total); ?> <?php print ($monthCompleted ? "in <b>$monthCompleted, $yearCompleted</b>" : ""); ?> 
-            to <?php print editable("projects","$projectId","project_name", "project_id", strtolower($projectName)); ?>. <?php if ($population > 0 && $households > 0) { ?> This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print editable("village_stats","$populationId","stat_value", "stat_id", $population); ?> people across <?php print editable("village_stats","$householdsId","stat_value", "stat_id", $households); ?> households. <?php } ?> 
+            to <span style='text-transform:lowercase;'><?php print editable("projects","$projectId","project_name", "project_id", $projectName); ?></span>. <?php if ($population > 0 && $households > 0) { ?> This project <?php print ($monthCompleted ? "helped" : "will help"); ?> <?php print editable("village_stats","$populationId","stat_value", "stat_id", $population); ?> people across <?php print editable("village_stats","$householdsId","stat_value", "stat_id", $households); ?> households. <?php } ?> 
             <?php print $villageName; ?> <?php print ($monthCompleted ? "" : "has "); ?>contributed <?php print editable("projects", "$projectId", "project_community_contribution", "project_id", $communityContribution); ?>% ($<?php print $villageContribution; ?>), materials, and labor. 
             <?php if ($partnerCount > 1) {
               print "Partners ";
@@ -236,9 +250,10 @@ if (!file_exists($mapFilename)) {
       <?php if ($donorId) { ?>
         <span class='flow-text'>A cooperation between<BR><b class='donor-text'><?php print $donorName; ?></b> and <b class='donor-text'>Village X</b></span>
       <?php } ?>
-				<img id='similarImage' src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; border: black 2px solid; box-shadow: 10px 10px 5px #888888; border-radius:10px;'
-        <?php if ($session_is_admin && !$exemplaryPicture) {
-          print "onclick=\"$.get('admin_edit_increment_type.php?id=$projectId', function(data) { \$('#similarImage').attr('src',data); });\"";
+				<img id='similarImage' src="<?php print PICTURES_DIR.($exemplaryPicture ? $exemplaryPicture : $pictureFilename); ?>" class="responsive-img" style='width:400px; box-shadow: 10px 10px 5px #888888; border-radius:10px;<?php if ($session_is_admin && !$exemplaryPicture) {
+          print "border: orange 2px solid;' onclick=\"$.get('admin_edit_increment_type.php?id=$projectId', function(data) { \$('#similarImage').attr('src',data); });\"";
+        } else {
+          print "border: black 2px solid;'";
         }
         ?> />
 				<p class="center-align">
@@ -256,7 +271,7 @@ if (!file_exists($mapFilename)) {
 				
 				<br>
 				
-		<div class="center-align donor-text"><b><font><?php print ($session_is_admin ? "<span id='raisedSpan' onclick=\"$.get('admin_edit_square_village_contribution.php?id=$projectId', function(data) { $('#raisedSpan').text(data); });\">" : ""); ?>$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go
+		<div class="center-align donor-text"><b><font><?php print ($session_is_admin ? "<span id='raisedSpan' style='border-bottom:2px solid orange;' onclick=\"$.get('admin_edit_square_village_contribution.php?id=$projectId', function(data) { $('#raisedSpan').text(data); });\">" : ""); ?>$<?php print $funded; ?> raised, $<?php print max(0, $total - $funded); ?> to go
       <?php print ($session_is_admin ? "</span>" : ""); ?></font></b></div>
 				
 					<br>
@@ -276,7 +291,7 @@ if (!file_exists($mapFilename)) {
    <div id="honoreeModal" class="modal" style="z-index:10;">
      <div class="modal-content" id="jqueryvalidation">
       	<div class="container" style="width:100%; padding:0 10% 0 10%">
-          <p class="flow-text left-align black-text">Please enter the <b>honoree's details</b>. They'll be notified of your gift by email and included on project update emails.</p>
+        <p class="flow-text left-align black-text">Please enter the <b>honoree's details</b>. They'll be notified of your gift by email and included on project update emails.</p>
           
          <div class="container center-align" id="jqueryvalidation" style="width:100%; padding:0;margin:0;">
          		<form id="honoree_details" method="post" action="one_time_payment_view.php">
@@ -534,7 +549,7 @@ if (CACHING_ENABLED && !$session_is_admin) {
     function resizeAndUpload(file) {              
       var reader = new FileReader();  
       reader.onload = function(e) {
-        var image =  document.getElementById('bannerImage');
+        var image =  document.createElement('img');
         image.onload = function () {
           orientation = 0;
 
@@ -550,7 +565,7 @@ if (CACHING_ENABLED && !$session_is_admin) {
           var height = this.height;
 
           if (width > MAX_WIDTH) {
-            height *= MAX_WIDTH / width;
+            height = height * MAX_WIDTH / width;
             width = MAX_WIDTH;
           }
 
@@ -573,6 +588,7 @@ if (CACHING_ENABLED && !$session_is_admin) {
           uploadFile(dataUrlLarge, dataUrlSmall, orientation, image);
         };
         image.src = e.target.result;
+        document.getElementById('bannerImage').src = image.src;
       }
       reader.readAsDataURL(file);
     }

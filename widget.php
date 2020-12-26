@@ -62,13 +62,13 @@ a.tag:focus {
         $adId = $row['ad_id'];
         $adMessage = $row['ad_message'];
         
-        $stmt = prepare("SELECT project_name, project_funded, project_budget, village_name, project_type, country_label FROM projects JOIN villages ON project_village_id=village_id JOIN countries ON country_id=village_country WHERE project_id=?");
+        $stmt = prepare("SELECT project_name, project_funded, project_budget, village_name, pt_label, country_label FROM projects JOIN villages ON project_village_id=village_id JOIN countries ON country_id=village_country JOIN project_types ON project_type_id=pt_id WHERE project_id=?");
         $stmt->bind_param('i', $projectId);
         $result = execute($stmt);
         $count = 0;
         if ($row = $result->fetch_assoc()) {
             $projectName = $row['project_name'];
-            $projectType = $row['project_type'];
+            $projectType = $row['pt_label'];
             $funded = $row['project_funded'];
             $budget = $row['project_budget'];
             $villageName = $row['village_name'];
