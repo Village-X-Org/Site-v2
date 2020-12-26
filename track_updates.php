@@ -90,36 +90,60 @@ if (!isset($start)) {
         } else {
             $title = $update['post_title'].($dateStr ? "<br/>".$dateStr : "");
         }
-        print "<div id='updateDisplay$updateId'><form id='updateEditForm$updateId'><div id='updateTitle$updateId' class='updateHeader'><span id='updateTitleText$updateId'>$title</span>";
-        if ($session_is_admin) { ?>
-           <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
-                onclick="document.getElementById('updateTitleText<?php print $updateId; ?>').style.display='none';
-                        document.getElementById('updateText<?php print $updateId; ?>').style.display='none';
-                        document.getElementById('updateTitleEdit<?php print $updateId; ?>').style.display='inline-block';
-                        document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
-                        this.style.display='none';return false;">
-                <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
-            </a>
-            <?php if ($update['update_email']) { ?>
-                <br/><span style='color:white;font-size:small;'> This update was emailed to <?php print $update['donor_count']
-                        ." donors on ".$update['update_email']; ?>
-           <?php } else if ($update['donor_count']) { ?>
-            <br/>
-            <?php if ($update['project_id']) { ?>
-            <a href='track_emailUpdate.php?id=<?php print $update['update_id']; ?>&count=<?php print $update['donor_count']; ?>&lastEmail=<?php print $update['last_email']; ?>' 
-                target='_blank' style='color:white;font-size:small;font-weight:bold;'>Email this update to donors for this project</a> 
-            <?php } ?>
-            &nbsp;&nbsp; <span style='color:white;font-size:small;'> Last email for this project went to <?php print $update['donor_count']." donors"
-                    .($update['last_email'] ? " on ".$update['last_email'] : "."); ?>
-            <?php } ?>
-        <?php }
-        print "\n<TEXTAREA name='updateTitleEdit' id='updateTitleEdit$updateId' style='padding:5px; background:none;border:0;height:100px;width:100%;color:white;display:none;' ".($update['project_id'] > 0 ? "placeholder='No editable content'" : "").">".$update['post_title']."</TEXTAREA></div><div class='update updateText' id='updateText$updateId'>".($update['description'] ? stripslashes($update['description']) : "")."</div></div>";
-        print "\n<div id='updateEdit$updateId' style='display:none;width:100%;'>
-                <input type='hidden' name='updateId' value='$updateId' />
-                <div class='updateText flow-text'>
-                <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit$updateId' style='padding:5px; background:none;border:0;height:100px;width:100%;' placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'>"
-                    .($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : "").
-            "</TEXTAREA></div><div style='width:90%;text-align:right;'><input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate($updateId);' /></div></form></div>";
+        ?>
+        <div id='updateDisplay<?php print $updateId; ?>'>
+            <form id='updateEditForm<?php print $updateId; ?>'>
+                <div id='updateTitle<?php print $updateId; ?>' class='updateHeader'>
+                    <span id='updateTitleText<?php print $updateId; ?>'><?php print $title; ?></span>
+                    <?php if ($session_is_admin) { ?>
+                        <a id='updateEditLink<?php print $updateId; ?>' href='' style='color:white;font-size:small;vertical-align:bottom;' 
+                            onclick="document.getElementById('updateTitleText<?php print $updateId; ?>').style.display='none';
+                                document.getElementById('updateText<?php print $updateId; ?>').style.display='none';
+                                document.getElementById('updateTitleEdit<?php print $updateId; ?>').style.display='inline-block';
+                                document.getElementById('updateEdit<?php print $updateId; ?>').style.display='inline-block';
+                                this.style.display='none';return false;">
+                            <?php print (!$update['description'] ? " what happened here?" : " edit"); ?>    
+                        </a>
+                    <?php if ($update['update_email']) { ?>
+                        <br/>
+                        <span style='color:white;font-size:small;'> This update was emailed to 
+                                <?php print $update['donor_count']." donors on ".$update['update_email']; ?>
+                        </span>
+                    <?php } else if ($update['donor_count']) { ?>
+                        <br/>
+                    <?php if ($update['project_id']) { ?>
+                        <a href='track_emailUpdate.php?id=<?php print $update['update_id']; ?>&count=<?php print $update['donor_count']; ?>&lastEmail=<?php print $update['last_email']; ?>' 
+                            target='_blank' style='color:white;font-size:small;font-weight:bold;'>Email this update to donors for this project
+                        </a> 
+                    <?php } ?>
+                        &nbsp;&nbsp; <span style='color:white;font-size:small;'> Last email for this project went to 
+                            <?php print $update['donor_count']." donors".($update['last_email'] ? " on ".$update['last_email'] : "."); ?>
+                        </span>
+                    <?php } ?>
+                <?php } ?>
+                    <TEXTAREA name='updateTitleEdit' id='updateTitleEdit<?php print$updateId; ?>' style='padding:5px; background:none;border:0;height:100px;width:100%;color:white;display:none;' <?php print ($update['project_id'] > 0 ? "placeholder='No editable content - Project Name is autopopulated'" : ""); ?> ><?php 
+                        print $update['post_title']; 
+                    ?></TEXTAREA>
+                </div>
+                <div class='update updateText' id='updateText<?php print $updateId; ?>'>
+                    <?php print ($update['description'] ? stripslashes($update['description']) : ""); ?>
+                </div>
+                <div id='updateEdit<?php print $updateId; ?>' style='display:none;width:100%;'>
+                    <input type='hidden' name='updateId' value='<?php print $updateId; ?>' />
+                    <div class='updateText flow-text'>
+                        <TEXTAREA name='updateContent' class='updateText' id='updateTextEdit<?php print $updateId; ?>' 
+                            style='padding:5px; background:none;border:0;height:100px;width:100%;' 
+                            placeholder='Say something about your update.  But this box has no auto-save, so copy+paste it from an editor.'><?php 
+                            print ($update['description'] ? htmlspecialchars(stripslashes($update['description'])) : ""); 
+                            ?></TEXTAREA>
+                    </div>
+                    <div style='width:90%;text-align:right;'>
+                        <input type='button' value='save content' style='margin-top:10px;' onclick='saveUpdate(<?php print $updateId; ?>);' />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <?php 
         $pictures = explode(',', $update["picture_ids"]);
         for ($pictureIndex = ($count > 0 || isset($includeFirst) ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
             $pictureId = $pictures[$pictureIndex];

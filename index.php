@@ -372,8 +372,9 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
+                JOIN project_events ON p1.project_id=pe_project_id
                 LEFT JOIN donors ON p1.project_matching_donor=donor_id 
-                GROUP BY p1.project_id ORDER BY (p1.project_status = 'funding' AND p1.project_funded<p1.project_budget) DESC, p1.project_funded - (p1.project_budget * .1) DESC");
+                GROUP BY p1.project_id ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted ASC");
     $buffer = '';
     $cells = array();
     while ($row = $result->fetch_assoc()) {
