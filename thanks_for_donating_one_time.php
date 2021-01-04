@@ -3,7 +3,7 @@
 <head>
 
 <?php 
-$stmt = prepare("SELECT project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount, 
+$stmt = prepare("SELECT project_shortcut, project_name, project_summary, village_name, country_label, picture_filename, peopleStats.stat_value AS peopleCount, hhStats.stat_value AS householdCount, 
             CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
         FROM projects JOIN villages ON project_id=? AND project_village_id=village_id
         JOIN countries ON country_id=village_country
@@ -14,6 +14,7 @@ $stmt = prepare("SELECT project_name, project_summary, village_name, country_lab
 $stmt->bind_param('i', $projectId);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
+    $projectShortcut = $row['project_shortcut'];
     $projectName = $row['project_name'];
     $matchingDonor = trim($row['matchingDonor']);
     $villageName = $row['village_name'];
@@ -46,7 +47,7 @@ include('header.inc'); ?>
 				</p>	
 			</div> 
 			<div class="row center">
-					<?php printShareButtons($projectId, 
+					<?php printShareButtons($projectShortcut, 
 						    "Disrupt extreme poverty by funding projects villages choose.", 
 						    "I donated to $projectName in $villageName Village", 70); ?>
 			</div>

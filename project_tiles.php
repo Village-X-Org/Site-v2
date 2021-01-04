@@ -124,12 +124,13 @@ if (hasParam('branding')) {
 			<?php 
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
-                village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, p1.project_type AS project_type, 
+                village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, pt_label, 
                 YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
                 LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
+                JOIN project_types ON p1.project_type_id=pt_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
                 WHERE p1.project_org_id=$rebranded AND p1.project_budget > 0 AND p1.project_funded > 0 AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
@@ -151,7 +152,7 @@ if (hasParam('branding')) {
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 		      $isCompleted = $row['pe_date'];
 
-		      $projectType = $row['project_type'];
+		      $projectType = $row['pt_label'];
 		      $projectTypeClass = 'education';
 		      if ($projectType == 'farm') {
 		          $projectTypeClass = 'agriculture';

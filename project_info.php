@@ -98,11 +98,10 @@
     							<div class="col s12 m4 l4 center-align">
     							<img id='officerImage' src="<?php print PICTURES_DIR.$row['picture_filename']; ?>"
     								alt="" class="responsive-img circle"
-    								style="width: 100px; height: 100px;"
-    							<?php 
+    								style='width: 100px; height: 100px;<?php 
     							if ($session_is_admin) {
-          							print "onclick=\"$.get('admin_edit_increment_officer.php?id=$projectId', function(data) { data = JSON.parse(data); $('#officerImage').attr('src',data.picture); $('#officerName').text(data.name); $('#officerEmail').text(data.email);$('#officerPhone').text(data.phone); });\"";
-						        }
+          							print "border:3px solid orange;' onclick=\"$.get('admin_edit_increment_officer.php?id=$projectId', function(data) { data = JSON.parse(data); $('#officerImage').attr('src',data.picture); $('#officerName').text(data.name); $('#officerEmail').text(data.email);$('#officerPhone').text(data.phone); });\"";
+						        } else { print "'"; }
 						        ?> />
     							<!-- notice the "circle" class -->
     							</div>
@@ -122,7 +121,7 @@
 						<b>Share <?php print $villageName; ?>'s Story</b>
 					</h6>
 					<br>
-					<?php printShareButtons($projectId, $projectName, $projectName, 60); ?>
+					<?php printShareButtons($projectShortcut, $projectName, $projectName, 60); ?>
 				</div>
 			</div>
 

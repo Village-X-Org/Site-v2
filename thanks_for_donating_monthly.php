@@ -2,6 +2,15 @@
 <html lang="en">
 <head>
 
+<?php $stmt = prepare("SELECT project_shortcut FROM projects WHERE project_id=?");
+$stmt->bind_param('i', $projectId);
+$result = execute($stmt);
+if ($row = $result->fetch_assoc()) {
+	$projectShortcut = $row['project_shortcut'];
+}
+$stmt->close();
+?>
+
 <meta property="fb:appid" content="<?php print FACEBOOK_APP_ID; ?>"/>
 <meta property="og:image" content="images/village_family.jpg"/>
 <meta property="og:title" content="I signed up for the Village Fund!"/>
@@ -22,7 +31,7 @@ include('header.inc'); ?>
 			<div class="row center"><p class="white-text text-lighten-2 text-shadow: 2px 2px 7px #111111"><b>Share your generosity to inspire others</b></p>	
 			</div> 
 			<div class="row center">
-					<?php printShareButtons($projectId, 
+					<?php printShareButtons($projectShortcut, 
 						    "I disrupt extreme poverty every month by funding projects villages choose.", 
 						    "I donate monthly to projects chosen by extreme poverty villages in Africa.", 70); ?>
 			</div>

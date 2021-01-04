@@ -107,7 +107,7 @@ if (hasParam('promote')) {
 	$stmt->close();
 
 	doUnprotectedQuery("INSERT INTO project_costs (pc_project_id, pc_label, pc_amount, pc_type) VALUES ($projectId, 'labor', 0, 1),
-		($projectId, 'materials', 0, 2), ($projectId, 'admin', 0, 3), ($projectId, 'transport', 0, 4), ($projectId, 'fees', 0, 5)");
+		($projectId, 'materials', 0, 2), ($projectId, 'admin', 0, 3), ($projectId, 'transport', 0, 4), ($projectId, 'fees', 0, 5), ($projectId, 'pics/data', 0, 6)");
 	doUnprotectedQuery("INSERT INTO project_events (pe_date, pe_type, pe_project_id) VALUES (NOW(), 1, $projectId), (NOW(), 2, $projectId)");
 	doUnprotectedQuery("INSERT INTO village_stats (stat_type_id, stat_village_id, stat_value, stat_year) VALUES (18, $villageId, 100, YEAR(NOW())), (19, $villageId, 100, YEAR(NOW()))");
 	header("Location: project.php?id=$projectId");
