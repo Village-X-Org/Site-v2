@@ -52,4 +52,6 @@ if ($session_is_admin) {
     $stmt = prepare("UPDATE projects SET project_status='completed' WHERE project_id=?");
     $stmt->bind_param("i", $projectId);
     execute($stmt);
+
+    include('rc.php');
 }

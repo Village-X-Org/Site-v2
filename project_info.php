@@ -69,11 +69,19 @@
         	  }
         	  $stmt->close();
 		  if ($count > 0) { 
-	  			if ($count == 3 && $session_is_admin) { ?>
+		  		if ($count == 2 && $session_is_admin) { ?>
+		  			<div class="timeline-block timeline-block-right">
+						<div class="marker donor-background"></div>
+						<div class="timeline-content">
+							<span><a href='admin_fullyFundedTest.php?id=<?php print $projectId; ?>'>Test Fully Funded Email</a></span>
+						</div>
+					</div>
+		  		<?php
+	  			} elseif ($count == 3 && $session_is_admin) { ?>
 					<div class="timeline-block timeline-block-right">
 						<div class="marker donor-background"></div>
 						<div class="timeline-content">
-							<span><a href="" onclick="if (confirm('Are you sure you want to complete this project? Emails will be sent to donors and this page will be updated') { document.location = 'admin_completeProject.php?id=<?php print $projectId; ?>'; } return false;">Complete Project (admin)</a></span>
+							<span><a href="" onclick="if (confirm('Are you sure you want to complete this project? Emails will be sent to donors and this page will be updated')) { document.location = 'admin_completeProject.php?id=<?php print $projectId; ?>'; } return false;">Complete Project (admin)</a> <a href='admin_completeProjectTest.php?id=<?php print $projectId; ?>'>(test)</a></span>
 						</div>
 					</div>
 		  		<?php

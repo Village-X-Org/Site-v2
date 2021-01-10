@@ -27,11 +27,11 @@ $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
     $donorId = $row['donor_id'];
     
-    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_remote_id<>? AND donation_is_test=0");
-    $stmt->bind_param('is', $donorId, $token);
+    $stmt = prepare("SELECT count(donation_id) AS donationCount FROM donations WHERE donation_donor_id=? AND donation_is_test=0");
+    $stmt->bind_param('i', $donorId);
     $result = execute($stmt);
     if ($row = $result->fetch_assoc()) {
-        $donationCount = $row['donationCount'] + 1;
+        $donationCount = $row['donationCount'];
     }
     $stmt->close();
 } else {

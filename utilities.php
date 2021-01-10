@@ -583,4 +583,8 @@ function getDistanceMeters($startLat, $startLng, $endLat, $endLng) {
 	return $dist * 111189.3006; // meters conversion
 }
 
+function getProjectUrl($id, $shortcut) {
+	return BASE_URL.$shortcut;
+}
+
 ?>

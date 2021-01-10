@@ -25,8 +25,7 @@ switch ($type) {
                     JOIN villages ON project_village_id=village_id
                     JOIN countries ON village_country=country_id
                     JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
-                    LEFT JOIN project_updates ON pu_project_id=project_id AND pu_exemplary=1 
-                    LEFT JOIN pictures AS exemplaryPictures ON pu_image_id=exemplaryPictures.picture_id 
+                    LEFT JOIN pictures AS exemplaryPictures ON project_exemplary_image_id=exemplaryPictures.picture_id 
                     WHERE donation_id=?");
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
@@ -519,8 +518,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 															<?php switch ($type) {
     															    case EMAIL_TYPE_PROJECT_COMPLETED:
     															        ?>
-                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt=""
-                    															style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
+                    												        <img src="<?php print ABS_PICTURES_DIR.$projectExampleImage; ?>" alt="" style="outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; width: 100%; clear: both; display: block;" />
                     														<table class="callout"
                     																style="border-spacing: 0; border-collapse: collapse; vertical-align: top; text-align: left; width: 100%; margin-bottom: 16px; padding: 0;">
                 																<tr
