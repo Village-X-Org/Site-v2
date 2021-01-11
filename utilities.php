@@ -587,4 +587,22 @@ function getProjectUrl($id, $shortcut) {
 	return BASE_URL.$shortcut;
 }
 
+function parseOutYouTubeId($url) {
+	$firstNeedle = "youtu.be/";
+	$secondNeedle = "v=";
+	$index = strpos($url, $firstNeedle);
+	if ($index >= 0) {
+		return substr($url, $index + strlen($firstNeedle));
+	} 
+	$index = strpos($url, $secondNeedle);
+	if ($index < 0) {
+		return 0;
+	}
+	$endPos = strpos($url, '&', $index);
+	if ($endPos < 0) {
+		$endPos = strlen($url);
+	}
+	return substr($url, $index + strlen($secondNeedle), $endPos);
+}
+
 ?>

@@ -28,7 +28,7 @@ if (!isset($start)) {
 	$putInVar = 1;
 }
 
-    $result = doUnprotectedQuery("SELECT project_id, village_id, ru_id, ru_description, ru_project_id, ru_title, ru_picture_ids,
+    $result = doUnprotectedQuery("SELECT project_id, village_id, ru_id, ru_description, ru_project_id, ru_title, ru_picture_ids, ru_video_id,
     	UNIX_TIMESTAMP(ru_date) AS timestamp, ru_lat, ru_lng, ru_emailed, project_lat, project_lng, project_name, village_name, project_staff_id, project_last_email,
     	fo_first_name, fo_last_name, fo_color, COUNT(donation_donor_id) AS donorCount FROM raw_updates LEFT JOIN projects 
     	ON ru_project_id=project_id LEFT JOIN villages ON village_id=project_village_id LEFT JOIN field_officers ON project_staff_id=fo_id 
@@ -44,6 +44,7 @@ if (!isset($start)) {
     		break;
     	}
         $pictureIds = $row['ru_picture_ids'];
+        $videoId = $row['ru_video_id'];
         $pictureIds = substr($pictureIds, 1, -1);
         $lat = $row['ru_lat'];
         $lng = $row['ru_lng'];
@@ -68,7 +69,8 @@ if (!isset($start)) {
 
         $lastProjectId = $nextProjectId;
         array_push($updates, array("update_id"=>$updateId, "update_email"=>$updateEmail, "project_id"=>$nextProjectId, "project_name"=>$projectName, "village_name"=>$villageName, "post_title"=>$postTitle, "staff"=>$foName, "last_email"=>$lastEmail, "donor_count"=>$donorCount,
-        	"picture_ids"=>$pictureIds, "timestamp"=>$timestamp, "lat"=>$lat, "lng"=>$lng, "timestamp"=>$timestamp, "description"=>$description));
+        	"picture_ids"=>$pictureIds, "video_id"=>$videoId, "timestamp"=>$timestamp, "lat"=>$lat, "lng"=>$lng, "timestamp"=>$timestamp, 
+            "description"=>$description));
     }
     /*if (!$putInVar) {
     	print json_encode(array("has_more_records"=>$hasMore, "updates"=>$updates));
@@ -76,7 +78,7 @@ if (!isset($start)) {
     $count = 0;
     print "<script>hasMoreRecords = $hasMore;newStart = ".(RECS_PER_PAGE + $start)."</script>";
     foreach ($updates as $update) {
-        if (strlen($update['picture_ids']) < 2) {
+        if (strlen($update['picture_ids']) < 2 && !$update['video_id']) {
             continue;
         }
         $updateId = $update['update_id'];
@@ -143,6 +145,16 @@ if (!isset($start)) {
                 </div>
             </form>
         </div>
+        <?php if ($update['video_id']) { ?>
+        <iframe src='https://www.youtube.com/embed/<?php print $update['video_id']; ?>?modestbranding=1&autohide=1&showinfo=0&controls=0&rel=0&fs=0' frameborder='0' gesture='media' allow='encrypted-media' width='100%' height='500px'>
+        </iframe>
+                <?php if ($session_is_admin) {
+                ?><div style='text-align:right;'>
+                    <a href='' onclick='deleteVideo(<?php print "$updateId";?>);return false;'><img style='border:none;width:24px;' src='images/trash.svg' /></a>
+                </div>
+                <?php
+            } ?>
+        <?php } ?>
         <?php 
         $pictures = explode(',', $update["picture_ids"]);
         for ($pictureIndex = ($count > 0 || isset($includeFirst) ? 0 : 1); $pictureIndex < count($pictures); $pictureIndex++) {
@@ -179,8 +191,15 @@ if (!isset($start)) {
                 }
             }
             function deleteImage(updateId, pictureId) {
-                if (confirm('Are you sure you want to delete this image')) {
+                if (confirm('Are you sure you want to delete this image?')) {
                     $.post("update.php", {updateId: updateId, pictureIdToBeDeleted: pictureId}, function( data ) {
+                        alert(data);
+                    });
+                }
+            }
+            function deleteVideo(updateId) {
+                if (confirm('Are you sure you want to delete this video?')) {
+                    $.post("update.php", {updateId: updateId, videoToBeDeleted: true}, function( data ) {
                         alert(data);
                     });
                 }

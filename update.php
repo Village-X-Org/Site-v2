@@ -59,20 +59,29 @@ if (hasParam('upload_file')) {
 	$projectId = $_POST['projectId'];
 	$lat = $_POST['lat'];
 	$lng = $_POST['lng'];
+	$video = $_POST['video'];
+	if (strlen($video) > 0) {
+		$video = parseOutYouTubeId($video);
+	}
 	$pictureIds = $_POST['pictureIds'];
 	$notes = $_POST['notes'];
-	$updateDate = strtotime($_POST['updateDate']);
-	$stmt = prepare("SELECT ru_id FROM raw_updates WHERE ru_picture_ids=?");
-	$stmt->bind_param('s', $pictureIds);
+	$dateParam = $_POST['updateDate'];
+	if ($dateParam) {
+		$updateDate = strtotime($dateParam);
+	} else {
+		$updateDate = time();
+	}
+	$stmt = prepare("SELECT ru_id FROM raw_updates WHERE ru_picture_ids=? AND (".(!$video ? "1" : "0")." OR ru_video_id=?)");
+	$stmt->bind_param('ss', $pictureIds, $video);
 	$result = execute($stmt);
 	if ($row = $result->fetch_assoc()) {
 		print "<p>Update previously saved.</p>";
 		$stmt->close();
 	} else {
 		$stmt->close();
-		$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_lat, ru_lng) 
-			VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?)");
-		$stmt->bind_param('issisdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $lat, $lng);
+		$stmt = prepare("INSERT INTO raw_updates (ru_project_id, ru_title, ru_description, ru_date, ru_picture_ids, ru_video_id, ru_lat, ru_lng) 
+			VALUES (?, ?, ?, FROM_UNIXTIME(?), ?, ?, ?, ?)");
+		$stmt->bind_param('ississdd', $projectId, $postTitle, $notes, $updateDate, $pictureIds, $video, $lat, $lng);
 
 		execute($stmt);
 		print "<p>Update saved successfully!</p>";
@@ -120,6 +129,23 @@ if (hasParam('upload_file')) {
 			print "Image was already the project spotlight";
 		}
 	}	
+	die(0);
+} elseif (isset($_POST['videoToBeDeleted'])) {
+	$updateId = $_POST['updateId'];
+	$stmt = prepare("UPDATE raw_updates SET ru_video_id=0 WHERE ru_id=?");
+	$stmt->bind_param('i', $updateId);
+	execute($stmt);
+	$stmt = prepare("SELECT ru_picture_ids FROM raw_updates WHERE ru_id=?");
+	$stmt->bind_param('i', $updateId);
+	$result = execute($stmt);
+	if ($row = $result->fetch_assoc()) {
+		if (strlen($row['ru_picture_ids']) < 2) {
+			$stmt = prepare("DELETE FROM raw_updates WHERE ru_id=?");
+			$stmt->bind_param('i', $updateId);
+			execute($stmt);
+		}
+	}
+	print "Video removed.";
 	die(0);
 }
 ?>
@@ -282,7 +308,7 @@ if (hasParam('upload_file')) {
 			</datalist></p>
 
 			<div style='display:none;margin-bottom:10px;' id='postTitle'>Post Title: <input type='text' name='postTitle' style='width:300px;' /></div>
-			<input type="file" id="fileinput" multiple="multiple" />
+			<input type="file" id="fileinput" multiple="multiple" /> -- and/or YouTube Link: <input type='text' name='video' style='width:200px;' placeholder='https://youtu.be/_niTVjnfPZc' />
 			<div id='imageContainer'>
 			</div>
 			<input type='hidden' id='updateDate' name='updateDate' value='' />
