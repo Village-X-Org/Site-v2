@@ -12,5 +12,6 @@ RewriteRule ^reset/([\d]+)/(.*)$    https://villagex.org/user_forgotPassword.php
 RewriteRule ^updates/([\d]+)    https://villagex.org/updates.php?projectId=$1
 RewriteRule ^track/([\d]+)    https://villagex.org/track.php?projectId=$1
 RewriteRule ^fundraiser/([\d]+)$    https://villagex.org/fundraiser_view.php?id=$1  [NC,L]
-RewriteRule    ^([\d]+)$    project.php?shortcut=$1    [NC,L]
 RewriteRule ^api/([a-z]+)$  api/$1.php  [NC,L]
+RewriteRule    ^([\d]+)$    project.php?id=$1    [NC,L]
+RewriteRule    ^([.]+)$    project.php?shortcut=$1    [NC,L]
