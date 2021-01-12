@@ -88,7 +88,7 @@ switch ($type) {
 		$stmt->close();
     	break;
     case EMAIL_TYPE_UPDATE:
-    	$stmt = prepare("SELECT project_id, project_name, ru_title, ru_description, ru_picture_ids, ru_date, village_name, country_label FROM raw_updates 
+    	$stmt = prepare("SELECT project_id, project_name, ru_title, ru_description, ru_picture_ids, ru_video_id, ru_date, village_name, country_label FROM raw_updates 
     		JOIN projects ON project_id=ru_project_id JOIN villages ON project_village_id=village_id JOIN countries ON village_country=country_id WHERE ru_id=?");
     	$stmt->bind_param('i', $updateId);
     	$result = execute($stmt);
@@ -100,6 +100,7 @@ switch ($type) {
     		$updateTitle = $row['ru_title'];
     		$updateDescription = $row['ru_description'];
     		$updatePictures = explode(',', $row['ru_picture_ids']);
+    		$videoId = $row['ru_video_id'];
     		$updateDate = $row['ru_date'];
     	}
     	$donorFirstName = "n/a";
