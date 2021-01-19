@@ -321,7 +321,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_UPDATE:
 																    	print "<div style='margin-top:-10px;'>$updateDescription</div>";
 																    	if ($videoId) {
-																    		?><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:100%;height:320px;"><img src='images/youtube.png' style='position:absolute;top:125px;width:100px;left:235px;' /></div></a>
+																    		?><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:100%;height:320px;"></div></a>
 																    		<?php
 																    	}
 																    	foreach ($updatePictures as $pictureId) {
