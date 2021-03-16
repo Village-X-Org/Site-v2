@@ -2,6 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
+define('STRIPE_FEE', .029);
 $test = (isset($_SESSION['test']) && $_SESSION['test'] ? 1 : 0);
 \Stripe\Stripe::setApiKey($test ? STRIPE_TEST_SECRET_KEY : STRIPE_SECRET_KEY);
 
@@ -98,6 +99,9 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
+    if ($token === 'offline') {
+        $donationAmountDollars = floor($donationAmountDollars / (1 - STRIPE_FEE));
+    }
     $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test, donation_gc_id, donation_fundraiser_id, donation_message) VALUES (?, ?, ?, ?, ?, ?, ?, $test, $gcId, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
     $stmt->bind_param("idisssiis", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId, $fundraiserId, $donationMessage);

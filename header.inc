@@ -231,7 +231,7 @@ if (hasParam('d')) {
 				          <li><a href="map.php">Map</a></li>
 		          		  <li><a href="finances.php">Finances</a></li>
 				          <li><a href="travel.php">Travel</a></li>
-				          <li><a href="shop.php">Shop</a></li>
+				          <!--<li><a href="shop.php">Shop</a></li>-->
 				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
 				          <li class="divider" tabindex="-1"></li>
 
