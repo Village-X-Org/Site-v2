@@ -141,8 +141,9 @@ if ($isSubscription) {
     JOIN countries ON country_id=village_country
     JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
     JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
-    JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
+    JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget AND project_type_id!=3 ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
         project_budget - project_funded ASC, hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1");
+
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         $projectName = $row['project_name'];
