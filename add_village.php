@@ -186,6 +186,10 @@ body, html {
              (60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
     }
 
+    function toDecimal2(obj) {
+      return obj[0] + (obj[1] / 60) + (obj[2] / 3600);
+    }
+
     function resizeAndUpload(file) {              
       var reader = new FileReader();  
       reader.onload = function(e) {
@@ -200,16 +204,24 @@ body, html {
                 var latitude = EXIF.getTag(this, 'GPSLatitude');
 
                 if (longitude) {
-                latDec = toDecimal(latitude);
-                if (EXIF.getTag(this, 'GPSLatitudeRef') == 'S') {
-                  latDec *= -1;
+                  if (latitude[0].numerator) {
+                    latDec = toDecimal(latitude);
+                  } else {
+                    latDec = toDecimal2(latitude);
+                  }
+                  if (EXIF.getTag(this, 'GPSLatitudeRef') == 'S') {
+                    latDec *= -1;
+                  }
+                  if (longitude[0].numerator) {
+                    lngDec = toDecimal(longitude);
+                  } else {
+                    lngDec = toDecimal2(longitude);
+                  }
+                  if (EXIF.getTag(this, 'GPSLongitudeRef') == 'W') {
+                    lngDec *= -1;
+                  }
                 }
-                lngDec = toDecimal(longitude);
-                if (EXIF.getTag(this, 'GPSLongitudeRef') == 'W') {
-                  lngDec *= -1;
-                }
-              }
-              orientation = EXIF.getTag(this, "Orientation");
+                orientation = EXIF.getTag(this, "Orientation");
               });
 
           var canvas = document.createElement('canvas');
