@@ -13,12 +13,6 @@ if (hasParam('upload_file')) {
     die(1);
   }
 
-  if (!verifyRecaptcha3($captcha, 'addVillage')) {
-    print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add project", "Someone tried to add a project with projectName: $projectName");
-      die(1);
-  }
-
   $ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
   fwrite($ifp, base64_decode($data[1]));

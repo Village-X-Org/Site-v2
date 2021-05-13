@@ -13,12 +13,6 @@ if (hasParam('upload_file')) {
     die(1);
   }
 
-  if (!verifyRecaptcha3($captcha, 'addVillage')) {
-    print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
-      die(1);
-  }
-
   $ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
   fwrite($ifp, base64_decode($data[1]));
@@ -274,6 +268,20 @@ body, html {
       }
       reader.readAsDataURL(file);
     }
+
+    function lookupVillage(name) {
+      pos = name.toUpperCase().indexOf("VILLAGE");
+      if (pos > 0) {
+        name = name.substring(0, pos - 1);
+      }
+      $.getJSON("lookup_village.php?villageName=" + name, function(data) {
+        if (data.length > 0) {
+          document.getElementById('lat').value = data[0]['village_lat'];
+          document.getElementById('lng').value = data[0]['village_lng'];
+          document.getElementById('addVillageButton').disabled = false;
+        }
+      }); 
+    }
 </script>
 
 <div class="bg" style="height:1850px;width:100%;padding-top:40px;">
@@ -320,7 +328,7 @@ body, html {
          						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           							<i class="material-icons prefix">location_on</i>
           							<input placeholder="e.g., Chimphepo Village" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
-                        id="village_name" name="village_name" required data-error=".errorTxt4"/>
+                        id="village_name" name="village_name" required data-error=".errorTxt4" onblur="lookupVillage(this.value);" />
           							<div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           					 </div>
           						
