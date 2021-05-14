@@ -115,14 +115,6 @@ if (hasParam('upload_file')) {
     $pageUrl = getBaseURL()."add_village.php";
     include('header.inc'); 
 ?>
-<script>
-  grecaptcha.ready(function() {
-    grecaptcha.execute('<?php print CAPTCHA_SITEKEY_V3; ?>', {action: 'addVillage'}).then(function(token) {
-      $('#g-recaptcha-response').val(token);
-      captchaResult = token
-    });
-  });
-</script>
 <style>
 body, html {
     height: 100%;
@@ -448,7 +440,13 @@ $(document).ready(function() {
           }
       },
         submitHandler: function(form) {
-            form.submit();
+            grecaptcha.ready(function() {
+              grecaptcha.execute('<?php print CAPTCHA_SITEKEY_V3; ?>', {action: 'addVillage'}).then(function(token) {
+                $('#g-recaptcha-response').val(token);
+                captchaResult = token
+                form.submit();
+              });
+            });
         } 
     });
   });
