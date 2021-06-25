@@ -143,8 +143,8 @@ if (hasParam('branding')) {
 		while ($row = $result->fetch_assoc()) {
 		    $projectId = $row['project_id'];
 		    $projectName = $row['project_name'];
-		      $funded = round($row['project_funded']);
 		      $projectTotal = $row['project_budget'];
+		      $funded = min(round($row['project_funded']), $projectTotal);
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
 		      $communityContribution = $row['community_contribution'];
