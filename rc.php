@@ -24,4 +24,5 @@
 	    print CACHED_CHARTS_FILENAME."\n";
     	@unlink(CACHED_CHARTS_FILENAME);
 	}
+	invalidateCaches(0);
 ?>
