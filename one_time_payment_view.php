@@ -1,5 +1,10 @@
 <?php
 require_once("utilities.php");
+
+$prepopAmount=0;
+if (hasParam('amount')) {
+  $prepopAmount = param('amount');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -152,7 +157,7 @@ include('header.inc');
          						<div class="input-field col s12 center-align">
          							<i class="material-icons prefix donor-text" style="font-size:40px;">attach_money&nbsp;&nbsp;</i>
                       <?php if (!$gcValue) { ?>
-          							<input placeholder="50" class='donor-text' style="font-size:40px;" id="donation_amount" />
+          							<input placeholder="50" class='donor-text' style="font-size:40px;" id="donation_amount" value='<?php print ($prepopAmount ? $prepopAmount : ''); ?>' />
                       <?php } else { ?>
                         <input placeholder="<?php print $gcValue; ?>" class='donor-text' style='font-size:40px;width:90px;display:inline;' 
                             id='donation_amount' /><span style='font-size:30px;font-color:#48a7f2;display:inline;text-decoration;:underline;'>
