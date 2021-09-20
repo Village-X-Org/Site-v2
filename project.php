@@ -390,11 +390,13 @@ if (!file_exists($mapFilename)) {
 
 					<br>
 				
-		<?php if ($donorCount > 0 || $matchingDonor) { ?>	
+		<?php if ($donorCount > 0) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donorCount.($donorCount > 1 ? " people have" : " person has"); ?> donated!</b> 
 								
 		</div><br>
+    <?php }
+    if ($donorCount > 0 || $matchingDonor) { ?> 
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
     <?php
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 
