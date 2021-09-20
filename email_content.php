@@ -321,7 +321,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_UPDATE:
 																    	print "<div style='margin-top:-10px;'>$updateDescription</div>";
 																    	if ($videoId) {
-																    		?><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:100%;height:320px;"></div></a>
+																    		?><center><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:98%;height:350px;"></div>Click to watch the above video</a></center>
 																    		<?php
 																    	}
 																    	foreach ($updatePictures as $pictureId) {
@@ -332,7 +332,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     														<?php
                     														}
 																    	}
-																		print "<center><span style='font-size:20px'>Click <a href='".BASE_URL.$projectId."' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a> to get more project details.</span></center>";
+																		print "<br/><center><span style='font-size:20px'>Click <a href='".BASE_URL.$projectId."' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a> to get more project details.</span></center>";
 																    	break;
                                                                     default:
                                                                         break;
@@ -455,7 +455,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                     																        <p
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
-        																										<?php if (isset($donationAmountDollars)) { ?>
+        																										<?php if (isset($donationAmountDollars) && $donationAmountDollars > 0) { ?>
         																											<strong>Donation Amount</strong><br /> $<?php print numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationAmountDollars, 'USD'); ?>
         																										<?php } ?>
         																										<?php print (isset($donationMatchedTo) && $donationMatchedTo ? " (matched to $".numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationMatchedTo, 'USD').")" : ""); ?>
