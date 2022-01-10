@@ -66,7 +66,7 @@ if ($token !== 'offline' && $token !== 'gcOnly') {
              $subscriptionId = $customer->subscriptions->data[0]->id;
              
         } catch (Exception $e) {
-            sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
+            sendMail(getAdminEmail(), "Problem creating subscription for email $donorEmail, amount $donationAmount, id: $planName token: $token plan: $plan", $e->getMessage(), getAdminEmail());
         }
     } else {
         $charge = \Stripe\Charge::create(array(
