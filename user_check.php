@@ -32,7 +32,7 @@ if ($row = $result->fetch_assoc()) {
 	}
 } else {
 	if (!isset($hideOutput)) {
-		print "user with email $email not found";
+		print "Email or password not found";
 	}
 }
 ?>

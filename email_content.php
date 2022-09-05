@@ -35,6 +35,9 @@ switch ($type) {
             $donorEmail = $row['donorEmail'];
             $donationAmountDollars = $row['donation_amount'];
             $donationMatchedTo = $row['donation_matched_to'];
+            if ($donationMatchedTo) {
+            	$donationMatchedTo = $donationAmountDollars * 2;
+            }
             $matchingDonor = $row['matchingDonor'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
@@ -515,6 +518,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																							</tr>
 																						</table></th>
 																				</tr>
+																<tr style='padding:0px;margin:0px;'><td colspan="2" style='margin:0;padding:0:;font-size:12px;'>No goods or services were provided in exchange for the donation.</td></tr>
 																			</tbody>
 																		</table></th>
 																</tr>
@@ -821,10 +825,12 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 													<br />
 													<th class="menu-item float-center"
 														style="float: none; text-align: center; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; margin: 0 auto; padding: 10px;"
-														align="center"><a href="<?php print BASE_URL; ?>"
+														align="center"><center
+																style="width: 100%; min-width: 580px;"><a href="<?php print BASE_URL; ?>"
 														target="_blank"
-														style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;"><center
-																style="width: 100%; min-width: 580px;">Village X Org</center></a></th>
+														style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Village X Org</a>
+																<br><span style='font-size: 12px;'>501(c)(3) exempt organization</span><br/>
+																	<span style='font-size: 12px;'>EIN: 47-1845825</span></center></th>
 
 
 												</tr>
