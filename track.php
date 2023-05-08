@@ -224,7 +224,9 @@ include('header.inc');
 
     var lastLat = 0;
     function zoomTo(elem, lat, lng) {
-        map.flyTo({center: [lng, lat]});
+        if (lat != 0 || lng != 0) {
+            map.flyTo({center: [lng, lat]});
+        }
         if (elem) {
             elem.scrollIntoView({
                 behavior: 'smooth'
