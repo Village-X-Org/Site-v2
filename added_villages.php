@@ -119,7 +119,7 @@ if (hasParam('promote')) {
 print "Max distance from existing projects (miles): <a href='added_villages.php'>∞</a> <a href='added_villages.php?max=200'>200</a> <a href='added_villages.php?max=100'>100</a> <a href='added_villages.php?max=50'>50</a> <a href='added_villages.php?max=20'>20</a> <a href='added_villages.php?max=10'>10</a> <a href='added_villages.php?max=5'>5</a> <a href='added_villages.php?max=2'>2</a> <a href='added_villages.php?max=1'>1</a><p/>";
 
 $lastEmail = '';
-$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2 ORDER BY pv_submitter_email, pv_date_added DESC");
+$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2 ORDER BY pv_submitter_email, pv_date_added DESC");
 while ($row = $result->fetch_assoc()) {
 	$buffer = '';
 
@@ -127,6 +127,9 @@ while ($row = $result->fetch_assoc()) {
 	$villageName = $row['pv_name'];
 	$devProblem = $row['pv_dev_problem'];
 	$population = $row['pv_population'];
+	$households = $row['pv_households'];
+	$cost = $row['pv_cost'];
+	$hasContribution = $row['pv_has_contribution'];
 	$submitterName = $row['pv_submitter_name'];
 	$submitterEmail = $row['pv_submitter_email'];
 	$promotedProject = $row['pv_promoted'];

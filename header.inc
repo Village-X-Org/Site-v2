@@ -168,8 +168,8 @@ if (hasParam('d')) {
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="sidenav">
-				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
+				<li><a class="waves-effect waves-light btn" href="project_tiles.php">PROJECTS</a></li>
+				<li><a class="waves-effect waves-light btn" href="track.php">UPDATES</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
@@ -219,8 +219,8 @@ if (hasParam('d')) {
 				<?php if ($rebranded == 0) { ?>	
 				<ul class="right">
 					
-					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
-					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
+					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">PROJECTS</a></li>
+					<li><a class="waves-effect waves-light btn light blue" href="track.php">UPDATES</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><i class="material-icons" style="font-size: 50px">menu</i></a></li>
 				<?php if (!isset($updates)) { ?>
 

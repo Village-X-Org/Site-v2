@@ -71,7 +71,7 @@ if (hasParam('upload_file')) {
 
   if (!verifyRecaptcha3($captcha, 'addVillage')) {
     print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      //emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
       die(1);
   }
 
@@ -79,9 +79,12 @@ if (hasParam('upload_file')) {
   $lng = $_POST['lng'];
   $pictureIds = $_POST['pictureIds'];
   $villagePopulation = $_POST['village_population'];
+  $villageHouseholds = $_POST['village_households'];
+  $projectCost = $_POST['project_cost'];
+  $hasContribution = $_POST['has_cash_contribution'];
   $villageProblem = $_POST['village_problem'];
-  $stmt = prepare("INSERT INTO proposed_villages (pv_name, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_dev_problem, pv_lat, pv_lng, pv_images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param('ssssisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageProblem, $lat, $lng, $pictureIds);
+  $stmt = prepare("INSERT INTO proposed_villages (pv_name, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param('ssssisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageHouseholds, $projectCost, $hasContribution, $villageProblem, $lat, $lng, $pictureIds);
 
   execute($stmt);
   $stmt->close();
@@ -337,7 +340,33 @@ body, html {
           						</div>
           					</div>
 	                 			
-	             
+	                                 <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Number of Households</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">house</i>
+                        <input placeholder="number of households (e.g., 300)" type="number" class='donor-text' style="font-size:20px;width:100%;" id="village_households" name="village_households" required data-error=".errorTxt5" />
+                      <div class="errorTxt5 center-align" style="font-size:10px; color:red; padding:0 0 0% 9%"></div>
+                      </div>
+                    </div>
+
+
+                    <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Overall Project Cost (Kwacha)</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">payments</i>
+                        <input placeholder="overall project cost" type="number" class='donor-text' style="font-size:20px;width:100%;" id="project_cost" name="project_cost" required data-error=".errorTxt5" />
+                      <div class="errorTxt5 center-align" style="font-size:10px; color:red; padding:0 0 0% 9%"></div>
+                      </div>
+                    </div>
+
+                      <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Community Has Raised Cash Contribution?<div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">savings</i>
+                        <input type="checkbox" class="filled-in" id="has_cash_contribution" name="has_cash_contribution" />
+                      </div>
+                    </div>
+
           					
         					<div class="row" style="padding:2% 0% 1% 0%;margin:0;max-width:600px">
         					 <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>PICTURES OF YOUR VILLAGE</b>
@@ -373,7 +402,7 @@ body, html {
     					  </div>				
 	          		
 	          		<div class="row" style="padding:2% 0% 0% 0%;margin:0;max-width:600px">
-	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>BIGGEST DEVELOPMENT PROBLEM</b>
+	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>DETAILED DESCRIPTION OF PROJECT</b>
                    </div>
                             
                       <div class="input-field col s12" style="padding:0% 13% 0% 3%;">

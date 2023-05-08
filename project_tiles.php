@@ -96,6 +96,8 @@ if (hasParam('branding')) {
            	 	<li><a id='typelivestock' href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Livestock</a></li>
             		<li><a id='typewater' href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Water</a></li>
             		<li><a id='typebusiness' href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Business &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Business</a></li>
+            		<li><a id='typesolar' href="" onclick="$('.projectCell').hide();typeFilter='solar';className = '.solar' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Solar &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Solar</a></li>
+            		<li><a id='typerelief' href="" onclick="$('.projectCell').hide();typeFilter='relief';className = '.relief' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Relief &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Relief</a></li>
           	</ul>
 		</div>
 		<script>
@@ -162,6 +164,10 @@ if (hasParam('branding')) {
 		          $projectTypeClass = 'water';
 		      } elseif ($projectType == 'business') {
 		      	  $projectTypeClass = 'business';
+		      } elseif ($projectType == 'solar') {
+		      	$projectTypeClass = 'solar';
+		      } elseif ($projectType == 'relief') {
+		      	$projectTypeClass = 'relief';
 		      }
 		      
 		      $fundedClass = 'funding';
