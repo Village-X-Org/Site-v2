@@ -81,10 +81,10 @@ if (hasParam('upload_file')) {
   $villagePopulation = $_POST['village_population'];
   $villageHouseholds = $_POST['village_households'];
   $projectCost = $_POST['project_cost'];
-  $hasContribution = $_POST['has_cash_contribution'];
+  $hasContribution = isset($_POST['has_cash_contribution']) && $_POST['has_cash_contribution'] == 'on' ? 1 : 0;
   $villageProblem = $_POST['village_problem'];
   $stmt = prepare("INSERT INTO proposed_villages (pv_name, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param('ssssisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageHouseholds, $projectCost, $hasContribution, $villageProblem, $lat, $lng, $pictureIds);
+  $stmt->bind_param('ssssiiiisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageHouseholds, $projectCost, $hasContribution, $villageProblem, $lat, $lng, $pictureIds);
 
   execute($stmt);
   $stmt->close();
@@ -97,7 +97,7 @@ if (hasParam('upload_file')) {
       $pictureStr .= "<img src='".ABS_PICTURES_DIR."$next.jpg' /> ";
     }
   }
-  $output = "Advocate Name: $advocateName<br/>AdvocateEmail: $advocateEmail<br/>Advocate Phone: $advocatePhone<br/>Village Name: $villageName<br/>Location: $lat, $lng<br/>Village Population: $villagePopulation<br/>Village Problem: $villageProblem<br/><br/>$pictureStr";
+  $output = "Advocate Name: $advocateName<br/>AdvocateEmail: $advocateEmail<br/>Advocate Phone: $advocatePhone<br/>Village Name: $villageName<br/>Location: $lat, $lng<br/>Village Population: $villagePopulation<br/>Number of Households: $villageHouseholds<br/>Project Cost (Kwacha): $projectCost<br/>Has Cash Contribution?: $hasContribution<br/>Village Problem: $villageProblem<br/><br/>$pictureStr";
   sendMail(getCustomerServiceEmail(), "Village $villageName uploaded by $advocateName",
     $output, getCustomerServiceEmail());
   sendMail(getAdminEmail(), "Village $villageName uploaded by $advocateName",
@@ -359,11 +359,12 @@ body, html {
                       </div>
                     </div>
 
-                      <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
-                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Community Has Raised Cash Contribution?<div>
-                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
-                        <i class="material-icons prefix">savings</i>
-                        <input type="checkbox" class="filled-in" id="has_cash_contribution" name="has_cash_contribution" />
+                    <div class="row" style="padding:0% 0% 8% 2%;margin:0;max-width:600px">
+                      <div class="input-field col s12" style="width:100%; padding:0% 0% 0% 0%">
+                          <label>
+                            <input type="checkbox" class="filled-in" id="has_cash_contribution" name="has_cash_contribution" />
+                            <span for="has_cash_contribution" style='font-size:large;color:black;'><b>Community Has Raised Cash Contribution?</b></span>
+                          </label>
                       </div>
                     </div>
 
