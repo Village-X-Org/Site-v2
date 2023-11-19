@@ -13,7 +13,12 @@ if (!hasParam('stripeEmail')) {
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
-$donationAmount = param('stripeAmount') + param('gcAmount');
+$stripeAmount = param('stripeAmount');
+$gcAmount = param('gcAmount');
+if (!is_numeric($stripeAmount) || !is_numeric($gcAmount)) {
+    return;
+}
+$donationAmount = $stripeAmount + $gcAmount;
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
@@ -47,6 +52,9 @@ if ($row = $result->fetch_assoc()) {
 $subscriptionId = "NULL";
 
 if ($token !== 'offline' && $token !== 'gcOnly') {
+    if (!str_starts_with($token, 'tok_')) {
+        return;
+    }
     if ($isSubscription) {
         $planName = "basic-monthly-$donorId-".time();
          try {
@@ -100,7 +108,9 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
 } else {
     $stmt->close();
     if ($token === 'offline') {
-        $donationAmountDollars = floor($donationAmountDollars / (1 - STRIPE_FEE));
+        $donationAmountAdjusted = floor($donationAmountDollars / (1 - STRIPE_FEE));
+    } else {
+        $donationAmountAdjusted = $donationAmountDollars;
     }
     $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test, donation_gc_id, donation_fundraiser_id, donation_message) VALUES (?, ?, ?, ?, ?, ?, ?, $test, $gcId, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
@@ -117,7 +127,7 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     }
     
     if ($projectId && !$test) {
-        recordDonation($projectId, $donationAmountDollars, $donationId);
+        recordDonation($projectId, $donationAmountAdjusted, $donationId);
     }
 }
 
@@ -141,7 +151,7 @@ if ($isSubscription) {
     JOIN countries ON country_id=village_country
     JOIN village_stats AS peopleStats ON peopleStats.stat_type_id=18 AND peopleStats.stat_village_id=village_id
     JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
-    JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget AND project_type_id!=3 ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
+    JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
         project_budget - project_funded ASC, hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1");
 
     if ($row = $result->fetch_assoc()) {

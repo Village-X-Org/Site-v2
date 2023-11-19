@@ -2,6 +2,9 @@
 require_once("utilities.php");
 
 if (!isset($email)) {
+	if (!hasParam('login_email')) {
+		return;
+	}
 	$email = param('login_email');
 }
 if (!isset($password)) {

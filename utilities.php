@@ -45,7 +45,7 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_GET;
 }
 
-function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
+function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext=0) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
@@ -250,6 +250,9 @@ function getPost($key) {
 }
 
 function getFromReq($key, $req) {
+	if (is_array($req[$key])) {
+		return '';
+	}
 	return stripslashes($req[$key]);
 }
 

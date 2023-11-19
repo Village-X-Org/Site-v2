@@ -1,6 +1,9 @@
 <?php
 require_once("utilities.php");
 
+if (!hasParam('travelFirstName')) {
+	return;
+}
 $firstName = param('travelFirstName');
 $lastName = param('travelLastName');
 $email = param('travelEmail');

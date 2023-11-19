@@ -307,6 +307,9 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																                print "  They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
 																            }
 																        } else {
+																        	if (!$fundraiserTitle) {
+																        		return;
+																        	}
     																            ?>We deeply appreciate your 100% tax
                 																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId ? " to <a href='".getBaseURL()."fundraiser/$fundraiserId' target='_blank'
         																											style='color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;'>$fundraiserTitle</a>" : ""); ?>. You have

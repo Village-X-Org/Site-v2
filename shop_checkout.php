@@ -1,6 +1,9 @@
 <?php
 require_once("utilities.php");
 
+if (!hasParam('items')) {
+	return;
+}
 $itemStr = param('items');
 
 ?>
@@ -28,7 +31,9 @@ foreach ($items as $item) {
 
 $totalPrice = 0;
 $totalDonation = 0;
-$result = doUnprotectedQuery("SELECT product_id, product_name, product_description, product_price, product_picture, product_donation, picture_filename FROM products JOIN pictures ON product_picture=picture_id WHERE product_id IN ($inString)");
+$stmt = prepare("SELECT product_id, product_name, product_description, product_price, product_picture, product_donation, picture_filename FROM products JOIN pictures ON product_picture=picture_id WHERE product_id IN (?)");
+$stmt->bind_param("s", $inString);
+$result = execute($stmt);
 while ($row = $result->fetch_assoc()) {
 	$productId = $row['product_id'];
 	$quantity = $cart[$productId];

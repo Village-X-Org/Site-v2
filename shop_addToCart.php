@@ -10,6 +10,9 @@ foreach ($items as $item) {
 		continue;
 	}
 	$split = explode(':', $item);
+	if (count($split) < 2) {
+		return;
+	}
 	$cart[$split[0]] = $split[1];
 }
 
