@@ -16,7 +16,19 @@ switch ($type) {
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_PURCHASE:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
+    	if ($isSubscription) {
+    		$stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, sd_amount as donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture,
+                        CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor, 0 as donation_matched_to, 0 as fundraiser_id, '' as fundraiser_title FROM subscription_disbursals
+                    JOIN donors AS thisDonor ON sd_donor_id=thisDonor.donor_id
+                    JOIN projects ON sd_project_id=project_id
+                    LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
+                    LEFT JOIN pictures AS exemplaryPictures ON project_exemplary_image_id=exemplaryPictures.picture_id 
+                    WHERE sd_id=?");
+    	} else {
+        	$stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor, donation_matched_to FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
@@ -27,6 +39,8 @@ switch ($type) {
                     JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
                     LEFT JOIN pictures AS exemplaryPictures ON project_exemplary_image_id=exemplaryPictures.picture_id 
                     WHERE donation_id=?");
+    		
+    	}
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
         if ($row = $result->fetch_assoc()) {
@@ -307,11 +321,8 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																                print "  They included this message: <blockquote>&quot;$honoreeMessage&quot;</blockquote>";
 																            }
 																        } else {
-																        	if (!$fundraiserTitle) {
-																        		return;
-																        	}
     																            ?>We deeply appreciate your 100% tax
-                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId ? " to <a href='".getBaseURL()."fundraiser/$fundraiserId' target='_blank'
+                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId && $fundraiserTitle ? " to <a href='".getBaseURL()."fundraiser/$fundraiserId' target='_blank'
         																											style='color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;'>$fundraiserTitle</a>" : ""); ?>. You have
                 																disrupted extreme poverty in rural Africa!
     																			<?php 

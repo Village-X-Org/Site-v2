@@ -30,7 +30,7 @@ if ($session_is_admin) {
     $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (4, ?)"); // 4=Project Completed in project_event_types
     $stmt->bind_param("i", $projectId);
     execute($stmt);
-    $donorStmt = prepare("SELECT donor_id, donor_email, donation_id, donor_first_name, donor_last_name FROM donors JOIN ((SELECT 0 as donation_id, sd_donor_id AS donation_donor_id FROM subscription_disbursals WHERE sd_project_id=?) UNION (SELECT donation_id, donation_donor_id FROM donations WHERE donation_project_id=? AND donation_is_test=0)) AS derived ON donation_donor_id=donor_id GROUP BY donor_id");
+    $donorStmt = prepare("SELECT donor_id, donor_email, donation_id, donor_first_name, donor_last_name, isSubscription FROM donors JOIN ((SELECT sd_id as donation_id, sd_donor_id AS donation_donor_id, 1 as isSubscription FROM subscription_disbursals WHERE sd_project_id=?) UNION (SELECT donation_id, donation_donor_id, 0 as isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0)) AS derived ON donation_donor_id=donor_id GROUP BY donor_id");
     $donorStmt->bind_param("ii", $projectId, $projectId);
     $donorResult = execute($donorStmt);
     
@@ -42,7 +42,7 @@ if ($session_is_admin) {
         
         $type = EMAIL_TYPE_PROJECT_COMPLETED;
         ob_start();
-        $isSubscription = 1;
+        $isSubscription = $donorRow['isSubscription'];
         include("email_content.php");
         $output = ob_get_clean();
         sendMail($donorEmail, "Project Complete!", $output, getCustomerServiceEmail());
