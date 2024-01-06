@@ -52,7 +52,7 @@ if ($row = $result->fetch_assoc()) {
 $subscriptionId = "NULL";
 
 if ($token !== 'offline' && $token !== 'gcOnly') {
-    if (!str_starts_with($token, 'tok_')) {
+    if (substr($token, 0, 4) !== 'tok_') {
         return;
     }
     if ($isSubscription) {
@@ -180,7 +180,7 @@ sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for 
 sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
     $output, getCustomerServiceEmail());
 
-if (isset($honoreeFirstName)) {
+if (isset($honoreeFirstName) && strlen($honoreeEmail) > 1) {
     $useHonoree = 1;
     ob_start();
     include("email_content.php");
