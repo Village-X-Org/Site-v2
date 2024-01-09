@@ -333,8 +333,8 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
             $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (3, ?)"); // 3=Project Funded in project_event_types
             $stmt->bind_param("i", $projectId);
             execute($stmt);
-            $donorStmt = prepare("SELECT donor_email, donation_id, donor_first_name, donor_last_name FROM donors JOIN donations ON donation_donor_id=donor_id WHERE donation_project_id=? AND donation_is_test=0 GROUP BY donor_id");
-            $donorStmt->bind_param("i", $projectId);
+            $donorStmt = prepare("SELECT donor_id, donor_email, donation_id, donor_first_name, donor_last_name, isSubscription FROM donors JOIN ((SELECT sd_id as donation_id, sd_donor_id AS donation_donor_id, 1 as isSubscription FROM subscription_disbursals WHERE sd_project_id=?) UNION (SELECT donation_id, donation_donor_id, 0 as isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0)) AS derived ON donation_donor_id=donor_id GROUP BY donor_id");
+            $donorStmt->bind_param("ii", $projectId, $projectId);
             $donorResult = execute($donorStmt);
             
             while ($donorRow = $donorResult->fetch_assoc()) {
@@ -342,10 +342,10 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
                 $donorEmail = $donorRow['donor_email'];
                 $donorFirstName = $donorRow['donor_first_name'];
                 $donorLastName = $donorRow['donor_last_name'];
+                $isSubscription = $donorRow['isSubscription'];
                 
                 $type = EMAIL_TYPE_PROJECT_FULLY_FUNDED;
                 ob_start();
-                $isSubscription = 1;
                 include("email_content.php");
                 $output = ob_get_clean();
                 sendMail($donorEmail, "Project Fully Funded!", $output, getCustomerServiceEmail());
