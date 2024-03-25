@@ -1,6 +1,9 @@
 <?php
 require_once("utilities.php");
 
+if (!hasParam('fundraiser_title')) {
+	die(1);
+}
 $title = param('fundraiser_title');
 $donorId = $session_donor_id;
 $projectId = paramInt('fundraiser_project_id');
