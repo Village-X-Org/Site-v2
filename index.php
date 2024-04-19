@@ -381,8 +381,8 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $projectId = $row['project_id'];
         $projectName = $row['project_name'];
         $projectType = $row['project_type_id'];
-        $funded = round($row['project_funded']);
         $projectTotal = $row['project_budget'];
+        $funded = min($projectTotal, round($row['project_funded']));
         $previousYear = $row['previousYear'];
         $matchingDonor = $row['matchingDonor'];
         $fundedPercent = $funded / max(1, $projectTotal) * 100;
