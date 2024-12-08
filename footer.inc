@@ -169,7 +169,7 @@
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
-						©Village X Org, 2019 <br>501(c)(3) nonprofit <br>EIN:
+						©Village X Org, 2024 <br>501(c)(3) nonprofit <br>EIN:
 						47&#65279;-1845825&#65279;
 					</p>
 				</div>

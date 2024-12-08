@@ -140,9 +140,9 @@ if (hasParam('gc')) {
 
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.1);"> 
     <div class="section row center hide-on-small-only" style="width:100%;">
-     <div class="section row center" style="width:100%;">
-      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 3% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
-        		<div class="right-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
+     	<div class="section row center" style="width:100%;">
+      		<h2 class="col s12 center-align white-text text-lighten-2" style="padding: 3% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+        	<div class="right-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
@@ -153,23 +153,24 @@ if (hasParam('gc')) {
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
 			</div>
-			</div>
+		</div>
 			
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
-			<div class="col s12">
-						<div class="icon-block">
-							  <img class="responsive-img" src="images/guidestar_2019.webp">
-						</div>
+				<div class="col s12">
+					<div class="icon-block">
+						<!--<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">-->
+						<div style='height:187px;'><!--placeholder for guidestar badge --></div>
 					</div>
 				</div>
-			
 			</div>
 			
+		</div>
 			
-			<div class="section row center hide-on-med-and-up" style="width:100%;">
-     <div class="section row center" style="width:100%;">
-      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 6% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
-        		<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+			
+	<div class="section row center hide-on-med-and-up" style="width:100%;">
+     	<div class="section row center" style="width:100%;">
+      		<h2 class="col s12 center-align white-text text-lighten-2" style="padding: 6% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+			<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
@@ -183,14 +184,15 @@ if (hasParam('gc')) {
 			</div>
 			
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
-			<div class="col s12">
-						<div class="icon-block">
-							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">
-						</div>
+				<div class="col s12">
+					<div class="icon-block">
+						<!--<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">-->
+						<div style='height:187px;'><!--placeholder for guidestar badge --></div>
 					</div>
 				</div>
-			
 			</div>
+			
+		</div>
 			
 					
 			
