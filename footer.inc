@@ -103,8 +103,8 @@
 					<li><a class="white-text" href="model.php">Model</a></li>
 					<li><a class="white-text" href="impacts.php">Impacts</a></li>
 					<li><a class="white-text" href="map.php">Map</a></li>
-					<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-					<li><a class="white-text" href="travel.php">Travel</a></li>
+					<!--<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>-->
+					<!--<li><a class="white-text" href="travel.php">Travel</a></li>-->
 					<li><a class="white-text" href="finances.php">Finances</a></li>
 					<li><a class="white-text" href="faq.php">FAQ</a></li>
 				</ul>
@@ -123,7 +123,7 @@
 							style="font-size: 15px" class="fa">&#xf082;</i> Facebook</a></li>
 					<li><a class="white-text" href="https://twitter.com/villagexorg"
 						target="_blank"><i style="font-size: 15px" class="fa">&#xf081;</i>
-							Twitter</a></li>
+							Twitter (X)</a></li>
 				</ul>
 				<br>
 
@@ -132,19 +132,16 @@
 				</h6>
 
 
-				<a
+				<a class="white-text"
 					href="https://www.facebook.com/dialog/feed?
   									app_id=<?php print FACEBOOK_APP_ID; ?>
   									&display=popup&caption=This site disrupts extreme poverty in Africa
   									&link=<?php print BASE_URL; ?>"
-					target="_blank"> <img
-					src="https://simplesharebuttons.com/images/somacro/facebook.png"
-					alt="Facebook" align="middle" height="30" width="30" />
-				</a> &nbsp;&nbsp;&nbsp; <a
+					target="_blank"> <i
+							style="font-size: 15px" class="fa">&#xf082;</i>
+				</a> &nbsp;&nbsp;&nbsp; <a class="white-text"
 					href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=This site disrupts extreme poverty in Africa by funding projects that villages choose&amp;hashtags=villagex"
-					target="_blank"> <img
-					src="https://simplesharebuttons.com/images/somacro/twitter.png"
-					alt="Twitter" align="middle" height="30" width="30" />
+					target="_blank"> <i style="font-size: 15px" class="fa">&#xf081;</i>
 				</a> <br> <br>
 			</div>
 

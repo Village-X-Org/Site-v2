@@ -127,7 +127,8 @@ if (hasParam('branding')) {
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, pt_label, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date, 
+				UNIX_TIMESTAMP(MAX(ru_date)) AS latestUpdate
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
@@ -135,9 +136,12 @@ if (hasParam('branding')) {
                 JOIN project_types ON p1.project_type_id=pt_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
+				LEFT JOIN raw_updates ON ru_project_id=p1.project_id
                 WHERE p1.project_org_id=$rebranded AND p1.project_budget > 0 AND p1.project_funded > 0 AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
-                ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted ASC";
+                ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, 
+				IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, 
+				latestUpdate DESC, p1.project_date_posted ASC";
         $result = doUnprotectedQuery($query);
 
 		$buffer = '';
@@ -153,6 +157,7 @@ if (hasParam('branding')) {
 		      $fundedPercent = floor($funded / max($projectTotal, 1) * 100);
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 		      $isCompleted = $row['pe_date'];
+			  $latestUpdate = $row['latestUpdate'];
 
 		      $projectType = $row['pt_label'];
 		      $projectTypeClass = 'education';
@@ -202,8 +207,14 @@ if (hasParam('branding')) {
 						<div class='progress'>
 							<div class='determinate' style='width: $fundedPercent%'></div>
 						</div>
-						<p>Locals Contributed: \$$villageContribution</p>
-					</div>
+						<p>Locals Contributed: \$$villageContribution<br/>";
+			if ($latestUpdate) {
+				$buffer .= "<i style='font-size:smaller;'>Latest Update: ".date("F jS, Y", $latestUpdate)."</i>";
+			} else {
+				$buffer .= "&nbsp;";
+			}
+
+			$buffer .= "</p></div>
 					<div class='card-action'>".($matchingDonor && $fundedPercent < 100 ? "
 				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-20px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
                             <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>Gift<br>Match</b></span>

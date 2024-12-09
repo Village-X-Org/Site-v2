@@ -176,9 +176,9 @@ if (hasParam('d')) {
 				<li><a href="about.php"><i class="material-icons">info</i>Mission &amp; Team</a></li>
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
-				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
-				<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>
-  				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
+				<!--<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>-->
+				<!--<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>-->
+  				<!--<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>-->
 				<?php if ($session_donor_id) {
 					print "
 					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>";
@@ -233,9 +233,9 @@ if (hasParam('d')) {
 				          <li><a href="impacts.php">Impacts</a></li>
 				          <li><a href="map.php">Map</a></li>
 		          		  <li><a href="finances.php">Finances</a></li>
-				          <li><a href="travel.php">Travel</a></li>
+				          <!--<li><a href="travel.php">Travel</a></li>-->
 				          <!--<li><a href="shop.php">Shop</a></li>-->
-				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+				          <!--<li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>-->
 				          <li class="divider" tabindex="-1"></li>
 
 						<?php if ($session_donor_id) {
