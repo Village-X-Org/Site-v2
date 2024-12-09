@@ -176,8 +176,9 @@ if (hasParam('gc')) {
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
 			</div>
 			
-			<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+			<div class="center-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
 				<a href="track.php" id="download-button"
+					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
 			</div>
 			</div>
