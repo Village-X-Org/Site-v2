@@ -24,5 +24,9 @@
 	    print CACHED_CHARTS_FILENAME."\n";
     	@unlink(CACHED_CHARTS_FILENAME);
 	}
+	if (file_exists(CACHED_STATUS_FILENAME)) {
+	    print CACHED_STATUS_FILENAME."\n";
+    	@unlink(CACHED_STATUS_FILENAME);
+	}
 	invalidateCaches(0);
 ?>

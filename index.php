@@ -136,6 +136,47 @@ if (hasParam('gc')) {
 	    $stmt->close();
 	}
 }
+
+if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
+	$statusBuffer = '';
+	$currentYear = date('Y');
+	if (date('m') < 4) {
+		$currentYear--;
+	}
+	$result = doUnprotectedQuery("SELECT COUNT(pe_id) AS count FROM project_events WHERE pe_type=4 AND YEAR(pe_date)=$currentYear;");
+	if ($row = $result->fetch_assoc()) {
+		$thisYearCount = $row['count'];
+		if ($thisYearCount > 1) {
+			$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'><b>$thisYearCount</b> projects completed in $currentYear.</div>";
+		}
+		mysqli_free_result($result);
+	}
+
+	$result = doUnprotectedQuery("SELECT COUNT(maxDate) AS count FROM (SELECT MAX(pe_type) AS maxType, MAX(pe_date) AS maxDate FROM project_events GROUP BY pe_project_id) AS summarized WHERE maxType=3 AND YEAR(maxDate)=$currentYear;");
+	if ($row = $result->fetch_assoc()) {
+		$inProgressCount = $row['count'];
+		if ($inProgressCount > 1) {
+			$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> are currently under construction.</div>";
+		}
+		mysqli_free_result($result);
+	}
+
+	$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(MAX(ru_date)) AS latest FROM raw_updates");
+	if ($row = $result->fetch_assoc()) {
+		$latest = $row['latest'];
+		$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'>Latest village update on <b>".date("F jS", $latest)."</b></div>";
+		mysqli_free_result($result);
+	}
+
+	if (CACHING_ENABLED) {
+        $handle = fopen(CACHED_STATUS_FILENAME, "w");
+        fwrite($handle, $statusBuffer);
+        fclose($handle);
+    }
+} else {
+	$statusBuffer = file_get_contents(CACHED_STATUS_FILENAME);
+}
+
 ?>	
 
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.1);"> 
@@ -157,10 +198,10 @@ if (hasParam('gc')) {
 			
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
 				<div class="col s12">
-					<div class="icon-block">
-						<!--<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">-->
-						<div style='height:187px;'><!--placeholder for guidestar badge --></div>
-					</div>
+						<?php print $statusBuffer; ?>
+						<!--<div style='height:187px;'>placeholder for guidestar badge </div>-->
+						<!--<div class="icon-block"><img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp"></div>-->
+						
 				</div>
 			</div>
 			
@@ -186,8 +227,9 @@ if (hasParam('gc')) {
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
 				<div class="col s12">
 					<div class="icon-block">
+						<?php print $statusBuffer; ?>
 						<!--<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">-->
-						<div style='height:187px;'><!--placeholder for guidestar badge --></div>
+						<!-- <div style='height:187px;'> placeholder for guidestar badge</div>-->
 					</div>
 				</div>
 			</div>
