@@ -147,7 +147,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	if ($row = $result->fetch_assoc()) {
 		$thisYearCount = $row['count'];
 		if ($thisYearCount > 1) {
-			$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'><b>$thisYearCount</b> projects completed in $currentYear.</div>";
+			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$thisYearCount</b> projects completed in $currentYear.</div>";
 		}
 		mysqli_free_result($result);
 	}
@@ -156,7 +156,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	if ($row = $result->fetch_assoc()) {
 		$inProgressCount = $row['count'];
 		if ($inProgressCount > 1) {
-			$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> are currently under construction.</div>";
+			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> are currently under construction.</div>";
 		}
 		mysqli_free_result($result);
 	}
@@ -164,7 +164,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(MAX(ru_date)) AS latest FROM raw_updates");
 	if ($row = $result->fetch_assoc()) {
 		$latest = $row['latest'];
-		$statusBuffer .= "<div style='height:60px;font-size:18px;text-shadow: 2px 2px 7px #111111;'>Latest village update on <b>".date("F jS", $latest)."</b></div>";
+		$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'>Latest village update on <b>".date("F jS", $latest)."</b></div>";
 		mysqli_free_result($result);
 	}
 
@@ -248,7 +248,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	<div class="container">
 	<div class="center" style="padding:1% 0 1% 0; width:100%"><h3>DIRECT DONATIONS DRIVE LOCAL CHANGE</h3>
 		<div class="section row center" style="width:100%; padding: 1% 0% 1% 0%;opacity: .9">Disrupt extreme poverty in rural Africa with a radically transparent model that celebrates <b>village 
-	democracy, direct giving, and data analysis</b>. Small transfers of cash make a big difference when they target community-led projects.</div>
+	democracy, direct giving, and donor updates (e.g., pics, videos)</b>. Small transfers of cash make a big difference when they target community-led projects.</div>
 	</div>
 	
 	<div class="section row center" style="width:100%; padding: 0% 0% 1% 0%;opacity: .7">
@@ -304,9 +304,9 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 								
 							</h2>
 							
-							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed school increases nursery enrollment in Bakili by 60%.</h5>
+							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed nursery school welcomes its first class of students.</h5>
 
-							 <h5 class="center">#data</h5>  
+							 <h5 class="center">#donorupdates</h5>  
 						</div>
 					</div>
 				</div>
@@ -369,17 +369,9 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
-          <i class="material-icons left circle white-text">show_chart</i>
-          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
-            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text">impact data</span></a>
-          </div>
-        </div>
-      </li>
-      <li class="waves-effect" style="width:100%">
-        <div class="valign-wrapper">
           <i class="material-icons left circle white-text">insert_photo</i>
           <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
-            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">same-day updates</span></a>
+            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">regular updates</span></a>
           </div>
         </div>
       </li>
@@ -581,7 +573,7 @@ if (CACHING_ENABLED) {
 </div>
 
 <div class="container">
-<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">Verified Impacts</h4> 
+<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">Measured Impacts</h4> 
 	<div class="row">
 					<div class="col s12 m12 l4">
 						<div class="icon-block">

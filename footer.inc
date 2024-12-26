@@ -22,7 +22,7 @@
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;"
 					style="padding: 0% 5% 0% 5%;">
 					automatic donations, going<br>directly to village projects,<br>with
-					monthly email updates
+					regular email updates
 				</h6>
 			</div>
 			<div class="row center">
@@ -173,7 +173,7 @@
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
 						<b>We disrupt extreme poverty with democracy, direct
-							giving, and data. Aiming to reach 390 million people in rural
+							giving, and donor updates. Aiming to reach 390 million people in rural
 							Africa.</b>
 					</p>
 				</div>
