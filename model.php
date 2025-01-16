@@ -184,18 +184,18 @@ require_once("utilities.php");
 		<div class="grey lighten-5 z-depth-1">
     						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
     							<div class="col s12 m6 l6 center-align">
-    							<img src="images/mmacford_profile.jpg"
+    							<img src="images/myson_profile.jpg"
     								alt="" class="responsive-img circle"
     								style="width: 150px; height: 150px;">
     							<!-- notice the "circle" class -->
     							</div>
     							<div class="col s12 m6 l6 black-text">
-    								<b>Field Officer Macford Chinonga</b>
+    								<b>Field Officer Myson Jambo</b>
     								<br>
-    								<b>Email:</b> mmacford@villagex.org<b><br>Phone Number:</b>
-    									 +265995666910
+    								<b>Email:</b> myson@villagex.org<b><br>Phone Number:</b>
+    									 +265 881 893 987
     									<br>
-    								<b>Location:</b> Mangochi, Malawi
+    								<b>Location:</b> Zomba, Malawi
     							</div>
     						</div>
     					</div>

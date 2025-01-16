@@ -294,7 +294,7 @@ include('header.inc'); ?>
       						<img class="activator responsive-img" style="border-radius: 50%;" src="images/myson_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Malawi Director<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Co-founder and Malawi Director<i class="material-icons right">more_vert</i></span>
       						<p class="blue-text">Blantyre and Zomba Districts</p>
       						<p><a href="#">myson@villagex.org</a></p>
     					</div>
