@@ -156,7 +156,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	if ($row = $result->fetch_assoc()) {
 		$inProgressCount = $row['count'];
 		if ($inProgressCount > 1) {
-			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> are currently under construction.</div>";
+			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> projects under construction.</div>";
 		}
 		mysqli_free_result($result);
 	}
@@ -164,7 +164,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
 	$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(MAX(ru_date)) AS latest FROM raw_updates");
 	if ($row = $result->fetch_assoc()) {
 		$latest = $row['latest'];
-		$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'>Latest village update on <b>".date("F jS", $latest)."</b></div>";
+		$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'>Latest update on <b>".date("F jS", $latest)."</b></div>";
 		mysqli_free_result($result);
 	}
 
