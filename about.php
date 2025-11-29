@@ -166,7 +166,7 @@ include('header.inc'); ?>
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO, Board<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
     						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
     					</div>
     					
@@ -241,7 +241,7 @@ include('header.inc'); ?>
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Board<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
     						
     					</div>
     					
@@ -259,7 +259,20 @@ include('header.inc'); ?>
     					</div> 
   				</div>	
 			</div>
-
+				
+			<div class="col s12 m4 l4">	
+				<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board</span>
+      						
+    					</div>
+    					
+    		
+  				</div>	
+			</div>
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
@@ -288,35 +301,6 @@ include('header.inc'); ?>
 	
         <div class="section">
 			<div class="row">
-				<div class="col s12 m4 l4">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator responsive-img" style="border-radius: 50%;" src="images/myson_profile.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Co-founder and Malawi Director<i class="material-icons right">more_vert</i></span>
-      						<p class="blue-text">Blantyre and Zomba Districts</p>
-      						<p><a href="#">myson@villagex.org</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Myson<i class="material-icons right">close</i></span>
-      					<p>Myson Jambo is from the Zomba District of Malawi. He holds an advanced degree in public health, for which he wrote his research paper 
-      					on the impact of urbanization on human health in peri-urban areas. He has several years of experience working with NGOs in the area of
-      					programming at the community level, including vetting and facilitating projects, youth engagement programming, peer mentoring, monitoring 
-      					and evaluation, meeting with government officials and other stakeholders, managing and administering finances, and responding to community 
-      					concerns/offering assistance where needed. </p>
-      					<p>He also volunteered to approve proposals from other organizations and collected projects records 
-      					for one year with Friends of Malawi. He spent another year conducting health and hygiene trainings and small loans management with the 
-      					Association for Rural Community Development.</p>
-      					
-      					<p>He believes that communities having the power to decide on projects is the key to successes 
-      					in development efforts. When he is not working, Myson enjoys traveling and watching football with 
-      					his favorite team, Manchester United.</p>
-    					</div>
-  				</div>
-					
-				</div>
 				
 				<div class="col s12 m4 l4">
 					
@@ -325,7 +309,7 @@ include('header.inc'); ?>
           						<img class="activator responsive-img" style="border-radius: 50%;" src="images/alfred_profile.jpg">
         						</div>
         					<div class="card-content">
-          					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Field Officer<i class="material-icons right">more_vert</i></span>
+          					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Malawi Director and Field Officer<i class="material-icons right">more_vert</i></span>
           						<p class="blue-text">Mulanje District</p>
           						<p><a href="#">alfred@villagex.org</a></p>
         					</div>
