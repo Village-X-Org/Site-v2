@@ -86,6 +86,7 @@ if (hasParam('upload_file')) {
 		execute($stmt);
 		print "<p>Update saved successfully!</p>";
 		$stmt->close();
+		include('rc.php');	
 	}
 } elseif (isset($_POST['pictureIdToBeDeleted'])) {
 	$updateId = $_POST['updateId'];

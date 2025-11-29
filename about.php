@@ -166,7 +166,7 @@ include('header.inc'); ?>
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO, Board<i class="material-icons right">more_vert</i></span>
     						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
     					</div>
     					
@@ -241,7 +241,7 @@ include('header.inc'); ?>
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Volunteer<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Katherine Raynor, Board<i class="material-icons right">more_vert</i></span>
     						
     					</div>
     					
@@ -259,20 +259,7 @@ include('header.inc'); ?>
     					</div> 
   				</div>	
 			</div>
-				
-			<div class="col s12 m4 l4">	
-				<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/erica.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Erica Burman, Board</span>
-      						
-    					</div>
-    					
-    		
-  				</div>	
-			</div>
+
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">

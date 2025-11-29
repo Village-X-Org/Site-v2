@@ -27,7 +27,7 @@ include('header.inc');
 		in law, public policy, medicine, engineering, and other disciplines that affect our daily lives. We should hold well-intentioned 
 		charities to the same standard.</p> 
 		<p> 
-		The data we've collected since 2014 show partner and control villages on divergent development paths, with the former outperforming the latter.  
+		Our proof-of-concept study, consisting of 5 years of collection from 2014 to 2018, showed partner and control villages on divergent development paths, with the former outperforming the latter.  
 		Below we graph partner v. control villages over time in terms of changes in a overall development score and categorical scores for health, education, business, lifestyle, agriculture, and livestock.</p> 
 		<p>Do these graphs reveal statistically significant impacts? Find out below.</p>
 	</div>
@@ -47,7 +47,7 @@ include('header.inc');
 				var chart1 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018],
+						labels : [ "Year 1", "Year 2", "Year 3", "Year 4", "Year 5"],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -105,7 +105,7 @@ include('header.inc');
 				var chart2 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -162,7 +162,7 @@ include('header.inc');
 				var chart3 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -221,7 +221,7 @@ include('header.inc');
 				var chart4 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -277,7 +277,7 @@ include('header.inc');
 				var chart5 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -336,7 +336,7 @@ include('header.inc');
 				var chart6 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -392,7 +392,7 @@ include('header.inc');
 				var chart7 = new Chart(ctx, {
 					type : 'line',
 					data : {
-						labels : [ 2014, 2015, 2016, 2017, 2018 ],
+						labels : [  "Year 1", "Year 2", "Year 3", "Year 4", "Year 5" ],
 						datasets : [ {
 							label: "Partner Villages Average",
 							fill : false,
@@ -443,7 +443,7 @@ include('header.inc');
 	</h4></div>
 	
 	<div class="section flow-text" style="width:100%;"> 
-		<p>Our most recent impact evaluation occurred in early 2019. Our approach wasn't fancy or expensive. Instead, it tested a 
+		<p>Our approach wasn't fancy or expensive. Instead, it tested a 
 		foundational assumption that financing village-led projects without any sort of preconceived 
 		development agenda would allow local communities to illuminate development pathways obscured from the outside. In other words, 
 		we funded a bunch of projects, collected a bunch of development indicators, and tested whether anything had changed.</p>

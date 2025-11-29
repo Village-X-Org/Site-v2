@@ -28,7 +28,7 @@ require_once("utilities.php");
 			Overview
 	</h4></div> 	
 	
-	<blockquote class="flow-text">"We disrupt extreme poverty in rural Africa. We do this by deploying targeted financing and retrieving information (pics, videos, and impact data) 
+	<blockquote class="flow-text">"We disrupt extreme poverty in rural Africa. We do this by deploying targeted financing and retrieving information ((e.g., pics, videos) 
 	for 100% village-led development projects. Our light-footprint model scales by leveraging local capacity, while practicing radical transparency and ruthless efficiency." -- Mike B., CEO</blockquote>
 	<br>
 		<div class="video-container" style="border-style:solid;background-image:url('images/model_video_preview.jpg');background-size:cover;background-position:center;"><br>
@@ -71,7 +71,7 @@ require_once("utilities.php");
 				<div class="icon-block">
 					<i class="material-icons brown-text" style="font-size: 50px">visibility</i>
 					<h5 class="center brown-text">transparent</h5>
-					<h6 class="light center brown-text">cost breakdowns, pics, videos, and impact data</h6>
+					<h6 class="light center brown-text">cost breakdowns and donor updates (e.g., pics, videos)</h6>
 				</div>
 				<br>
 			</div>
@@ -142,10 +142,10 @@ require_once("utilities.php");
         	</div>
         	<div class="row valign-wrapper">
         		<div class="col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/model_step8.png">
+        			<img class="responsive-img" style="border:5px solid black" width="100%" height="100%" src="images/project_complete.jpg">
         		</div>
         		<div class="brown-text col s12 m6 l6" style="padding: 5% 5% 5% 5%;">
-        			<h5>Step 8:</h5><br> <b>Measure and share</b> impact data with donors to evaluate how the project made a difference.
+        			<h5>Step 8:</h5><br> <b>Share project completion email</b> with donors so that they can review the project from start to finish.
         		</div>
         	</div>
         	<div class="row valign-wrapper">
@@ -184,18 +184,18 @@ require_once("utilities.php");
 		<div class="grey lighten-5 z-depth-1">
     						<div class="row valign-wrapper" style="padding: 2% 2% 2% 2%">
     							<div class="col s12 m6 l6 center-align">
-    							<img src="images/mmacford_profile.jpg"
+    							<img src="images/myson_profile.jpg"
     								alt="" class="responsive-img circle"
     								style="width: 150px; height: 150px;">
     							<!-- notice the "circle" class -->
     							</div>
     							<div class="col s12 m6 l6 black-text">
-    								<b>Field Officer Macford Chinonga</b>
+    								<b>Field Officer Myson Jambo</b>
     								<br>
-    								<b>Email:</b> mmacford@villagex.org<b><br>Phone Number:</b>
-    									 +265995666910
+    								<b>Email:</b> myson@villagex.org<b><br>Phone Number:</b>
+    									 +265 881 893 987
     									<br>
-    								<b>Location:</b> Mangochi, Malawi
+    								<b>Location:</b> Zomba, Malawi
     							</div>
     						</div>
     					</div>

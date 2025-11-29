@@ -136,13 +136,54 @@ if (hasParam('gc')) {
 	    $stmt->close();
 	}
 }
+
+if (!CACHING_ENABLED || !file_exists(CACHED_STATUS_FILENAME)) {
+	$statusBuffer = '';
+	$currentYear = date('Y');
+	if (date('m') < 4) {
+		$currentYear--;
+	}
+	$result = doUnprotectedQuery("SELECT COUNT(pe_id) AS count FROM project_events WHERE pe_type=4 AND YEAR(pe_date)=$currentYear;");
+	if ($row = $result->fetch_assoc()) {
+		$thisYearCount = $row['count'];
+		if ($thisYearCount > 1) {
+			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$thisYearCount</b> projects completed in $currentYear.</div>";
+		}
+		mysqli_free_result($result);
+	}
+
+	$result = doUnprotectedQuery("SELECT COUNT(maxDate) AS count FROM (SELECT MAX(pe_type) AS maxType, MAX(pe_date) AS maxDate FROM project_events GROUP BY pe_project_id) AS summarized WHERE maxType=3 AND YEAR(maxDate)=$currentYear;");
+	if ($row = $result->fetch_assoc()) {
+		$inProgressCount = $row['count'];
+		if ($inProgressCount > 1) {
+			$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'><b>$inProgressCount</b> projects under construction.</div>";
+		}
+		mysqli_free_result($result);
+	}
+
+	$result = doUnprotectedQuery("SELECT UNIX_TIMESTAMP(MAX(ru_date)) AS latest FROM raw_updates");
+	if ($row = $result->fetch_assoc()) {
+		$latest = $row['latest'];
+		$statusBuffer .= "<div style='height:60px;font-size:24px;text-shadow: 2px 2px 7px #111111;'>Latest update on <b>".date("F jS", $latest)."</b></div>";
+		mysqli_free_result($result);
+	}
+
+	if (CACHING_ENABLED) {
+        $handle = fopen(CACHED_STATUS_FILENAME, "w");
+        fwrite($handle, $statusBuffer);
+        fclose($handle);
+    }
+} else {
+	$statusBuffer = file_get_contents(CACHED_STATUS_FILENAME);
+}
+
 ?>	
 
 <div id="index-banner" class="parallax-container valign-wrapper" style="background-color: rgba(0, 0, 0, 0.1);"> 
     <div class="section row center hide-on-small-only" style="width:100%;">
-     <div class="section row center" style="width:100%;">
-      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 3% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
-        		<div class="right-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
+     	<div class="section row center" style="width:100%;">
+      		<h2 class="col s12 center-align white-text text-lighten-2" style="padding: 3% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+        	<div class="right-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
@@ -153,29 +194,30 @@ if (hasParam('gc')) {
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
 			</div>
-			</div>
+		</div>
 			
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
-			<div class="col s12">
-						<div class="icon-block">
-							  <img class="responsive-img" src="images/guidestar_2019.webp">
-						</div>
-					</div>
+				<div class="col s12">
+						<?php print $statusBuffer; ?>
+						<!--<div style='height:187px;'>placeholder for guidestar badge </div>-->
+						<!--<div class="icon-block"><img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp"></div>-->
+						
 				</div>
-			
 			</div>
 			
+		</div>
 			
-			<div class="section row center hide-on-med-and-up" style="width:100%;">
-     <div class="section row center" style="width:100%;">
-      <h2 class="col s12 center-align white-text text-lighten-2" style="padding: 6% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
-        		<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+			
+	<div class="section row center hide-on-med-and-up" style="width:100%;">
+     	<div class="section row center" style="width:100%;">
+      		<h2 class="col s12 center-align white-text text-lighten-2" style="padding: 6% 20% 2% 20%; text-shadow: 2px 2px 7px #111111;text-transform:uppercase;font-weight:300;font-size:50px;">Fund Projects That Villages Choose</h2>
+			<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
 				<a href="project_tiles.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1 white black-text" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">FIND PROJECTS</a>
 			</div>
 			
-			<div class="center-align col s12 m6 l6" style='padding:1% 0 0 0;'>	
+			<div class="center-align col s12 m6 l6" style='padding:10px 1% 0 1%;'>	
 				<a href="track.php" id="download-button"
 					class="btn-large waves-effect waves-light lighten-1" style="background-color:rgba(0, 0, 0, 0);border-radius:5px; 
 				border-width: 1px; border-style:solid; border-color: white; font-size:x-large;">VIEW UPDATES</a>
@@ -183,14 +225,16 @@ if (hasParam('gc')) {
 			</div>
 			
 			<div class="section row center" style="width:100%; padding: 2% 0% 2% 0%;">
-			<div class="col s12">
-						<div class="icon-block">
-							  <img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">
-						</div>
+				<div class="col s12">
+					<div class="icon-block">
+						<?php print $statusBuffer; ?>
+						<!--<img style="border:5px solid rgba(0, 0, 0, .85);" class="circle responsive-img" src="images/guidestar_2019.webp">-->
+						<!-- <div style='height:187px;'> placeholder for guidestar badge</div>-->
 					</div>
 				</div>
-			
 			</div>
+			
+		</div>
 			
 					
 			
@@ -204,7 +248,7 @@ if (hasParam('gc')) {
 	<div class="container">
 	<div class="center" style="padding:1% 0 1% 0; width:100%"><h3>DIRECT DONATIONS DRIVE LOCAL CHANGE</h3>
 		<div class="section row center" style="width:100%; padding: 1% 0% 1% 0%;opacity: .9">Disrupt extreme poverty in rural Africa with a radically transparent model that celebrates <b>village 
-	democracy, direct giving, and data analysis</b>. Small transfers of cash make a big difference when they target community-led projects.</div>
+	democracy, direct giving, and donor updates (e.g., pics, videos)</b>. Small transfers of cash make a big difference when they target community-led projects.</div>
 	</div>
 	
 	<div class="section row center" style="width:100%; padding: 0% 0% 1% 0%;opacity: .7">
@@ -260,9 +304,9 @@ if (hasParam('gc')) {
 								
 							</h2>
 							
-							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed school increases nursery enrollment in Bakili by 60%.</h5>
+							<h5 class="center flow-text" style="font-weight: 300;padding:0% 5% 2% 5%">The completed nursery school welcomes its first class of students.</h5>
 
-							 <h5 class="center">#data</h5>  
+							 <h5 class="center">#donorupdates</h5>  
 						</div>
 					</div>
 				</div>
@@ -325,17 +369,9 @@ if (hasParam('gc')) {
       </li>
       <li class="waves-effect" style="width:100%">
         <div class="valign-wrapper">
-          <i class="material-icons left circle white-text">show_chart</i>
-          <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
-            <a href="https://villagex.org/impacts.php" target="_blank"><span class="white-text">impact data</span></a>
-          </div>
-        </div>
-      </li>
-      <li class="waves-effect" style="width:100%">
-        <div class="valign-wrapper">
           <i class="material-icons left circle white-text">insert_photo</i>
           <div class="flow-text white-text" style="font-size: 25px; text-shadow: 4px 4px 7px #111111;padding: 0 0 0 2%">
-            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">same-day updates</span></a>
+            <a href="https://villagex.org/track.php" target="_blank"><span class="white-text">regular updates</span></a>
           </div>
         </div>
       </li>
@@ -367,14 +403,23 @@ if (hasParam('gc')) {
 		<div class="row">
 <?php
 if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
-    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_type_id AS project_type_id, YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(donor_first_name, ' ', donor_last_name) AS matchingDonor 
+    $result = doUnprotectedQuery("SELECT p1.project_id AS project_id, p1.project_name AS project_name, p1.project_type_id AS project_type_id, picture_filename, p1.project_summary AS project_summary, 
+                village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, pt_label, 
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date, 
+				UNIX_TIMESTAMP(MAX(ru_date)) AS latestUpdate
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
+                LEFT JOIN project_events ON pe_type=4 AND pe_project_id=p1.project_id
+                JOIN project_types ON p1.project_type_id=pt_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
-                JOIN project_events ON p1.project_id=pe_project_id
-                LEFT JOIN donors ON p1.project_matching_donor=donor_id 
-                GROUP BY p1.project_id ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted ASC");
+                LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
+				LEFT JOIN raw_updates ON ru_project_id=p1.project_id
+                WHERE p1.project_org_id=0 AND p1.project_budget > 0 AND p1.project_funded > 0 AND p1.project_status<>'cancelled'
+                GROUP BY p1.project_id 
+                ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, 
+				IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, 
+				latestUpdate DESC, p1.project_date_posted ASC");
     $buffer = '';
     $cells = array();
     while ($row = $result->fetch_assoc()) {
@@ -382,6 +427,7 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         $projectName = $row['project_name'];
         $projectType = $row['project_type_id'];
         $projectTotal = $row['project_budget'];
+		$latestUpdate = $row['latestUpdate'];
         $funded = min($projectTotal, round($row['project_funded']));
         $previousYear = $row['previousYear'];
         $matchingDonor = $row['matchingDonor'];
@@ -409,8 +455,14 @@ if (!CACHING_ENABLED || !file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
     					<div class='progress'>
     						<div class='determinate' style='width: $fundedPercent%'></div>
     					</div>
-    					<p>Locals Contributed: \$$villageContribution</p>
-    				</div>
+    					<p>Locals Contributed: \$$villageContribution</p>";
+						if ($latestUpdate) {
+							$nextBuffer .= "<i style='font-size:smaller;'>Latest Update: ".date("F jS, Y", $latestUpdate)."</i>";
+						} else {
+							$nextBuffer .= "&nbsp;";
+						}
+
+    				$nextBuffer .= "</div>
     				<div class='card-action'>".($matchingDonor ? "
 				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-15px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>$matchingDonor will match all donations!</span>
                             <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>100%<br>Match</b></span>
@@ -521,7 +573,7 @@ if (CACHING_ENABLED) {
 </div>
 
 <div class="container">
-<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">Verified Impacts</h4> 
+<h4 class="header center light blue-text text-lighten-2" style="text-transform:uppercase; padding:1% 0 0 0">Measured Impacts</h4> 
 	<div class="row">
 					<div class="col s12 m12 l4">
 						<div class="icon-block">

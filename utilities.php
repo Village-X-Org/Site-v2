@@ -23,6 +23,7 @@ define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
 
 define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
+define("CACHED_STATUS_FILENAME", "cached/project_status");
 define("CACHED_STORIES_FILENAME", "cached/project_stories");
 define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
@@ -524,6 +525,9 @@ function invalidateCaches($projectId) {
     }
     if (file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         @unlink(CACHED_HIGHLIGHTED_FILENAME);
+    }
+	if (file_exists(CACHED_STATUS_FILENAME)) {
+        @unlink(CACHED_STATUS_FILENAME);
     }
     $files = glob(CACHED_LISTING_FILENAME.'*');
     foreach ($files as $file) {
