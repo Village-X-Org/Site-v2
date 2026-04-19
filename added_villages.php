@@ -118,10 +118,83 @@ if (hasParam('promote')) {
 }
 
 
+$sort = (hasParam('sort') && param('sort') === 'date_asc') ? 'date_asc' : 'date_desc';
+$villageFilter = hasParam('village') ? trim(param('village')) : '';
+$advocateFilter = hasParam('advocate') ? trim(param('advocate')) : '';
+$maxParam = $max ? "&max=$max" : '';
+$filterParams = $maxParam;
+if ($villageFilter) $filterParams .= '&village=' . urlencode($villageFilter);
+if ($advocateFilter) $filterParams .= '&advocate=' . urlencode($advocateFilter);
+
 print "Max distance from existing projects (miles): <a href='added_villages.php'>∞</a> <a href='added_villages.php?max=200'>200</a> <a href='added_villages.php?max=100'>100</a> <a href='added_villages.php?max=50'>50</a> <a href='added_villages.php?max=20'>20</a> <a href='added_villages.php?max=10'>10</a> <a href='added_villages.php?max=5'>5</a> <a href='added_villages.php?max=2'>2</a> <a href='added_villages.php?max=1'>1</a><p/>";
+print "Sort by date: <a href='added_villages.php?sort=date_desc$filterParams'>Newest first</a> <a href='added_villages.php?sort=date_asc$filterParams'>Oldest first</a><p/>";
+
+$villageNames = [];
+$vnResult = doUnprotectedQuery("SELECT DISTINCT pv_name FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2 ORDER BY pv_name ASC");
+while ($vnRow = $vnResult->fetch_assoc()) {
+	$villageNames[] = htmlspecialchars($vnRow['pv_name']);
+}
+$villageNamesJson = json_encode($villageNames);
+$villageFilterEsc = htmlspecialchars($villageFilter);
+
+$advocateNames = [];
+$anResult = doUnprotectedQuery("SELECT DISTINCT pv_submitter_name FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2 ORDER BY pv_submitter_name ASC");
+while ($anRow = $anResult->fetch_assoc()) {
+	$advocateNames[] = htmlspecialchars($anRow['pv_submitter_name']);
+}
+$advocateNamesJson = json_encode($advocateNames);
+$advocateFilterEsc = htmlspecialchars($advocateFilter);
+
+print <<<HTML
+<form method="get" action="added_villages.php" style="display:inline;">
+  <input type="hidden" name="sort" value="$sort" />
+  <input type="hidden" name="max" value="$max" />
+  <input type="hidden" name="advocate" value="$advocateFilterEsc" />
+  Village filter: <input type="text" id="village_filter" name="village" value="$villageFilterEsc" placeholder="type to filter..." autocomplete="off" list="village_list" />
+  <datalist id="village_list"></datalist>
+  <button type="submit">Filter</button>
+  <a href="added_villages.php?sort=$sort$maxParam">Clear</a>
+</form>
+<form method="get" action="added_villages.php" style="display:inline; margin-left:20px;">
+  <input type="hidden" name="sort" value="$sort" />
+  <input type="hidden" name="max" value="$max" />
+  <input type="hidden" name="village" value="$villageFilterEsc" />
+  Advocate filter: <input type="text" id="advocate_filter" name="advocate" value="$advocateFilterEsc" placeholder="type to filter..." autocomplete="off" list="advocate_list" />
+  <datalist id="advocate_list"></datalist>
+  <button type="submit">Filter</button>
+  <a href="added_villages.php?sort=$sort$maxParam">Clear</a>
+</form><p/>
+<script>
+(function() {
+  function wireAutocomplete(inputId, listId, names) {
+    var input = document.getElementById(inputId);
+    var list = document.getElementById(listId);
+    input.addEventListener('input', function() {
+      var val = this.value.toLowerCase();
+      list.innerHTML = '';
+      if (!val) return;
+      names.filter(function(n) { return n.toLowerCase().indexOf(val) !== -1; })
+           .slice(0, 20)
+           .forEach(function(n) {
+             var opt = document.createElement('option');
+             opt.value = n;
+             list.appendChild(opt);
+           });
+    });
+  }
+  wireAutocomplete('village_filter', 'village_list', $villageNamesJson);
+  wireAutocomplete('advocate_filter', 'advocate_list', $advocateNamesJson);
+})();
+</script>
+HTML;
+
+$kwachaRate = getMalawiKwachaUsdRate();
 
 $lastEmail = '';
-$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2 ORDER BY pv_submitter_email, pv_date_added DESC");
+$dateOrder = ($sort === 'date_asc') ? 'ASC' : 'DESC';
+$villageWhere = $villageFilter ? " AND pv_name LIKE '%" . escStr($villageFilter) . "%'" : '';
+$advocateWhere = $advocateFilter ? " AND pv_submitter_name LIKE '%" . escStr($advocateFilter) . "%'" : '';
+$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2$villageWhere$advocateWhere ORDER BY pv_date_added $dateOrder");
 while ($row = $result->fetch_assoc()) {
 	$buffer = '';
 
@@ -134,6 +207,7 @@ while ($row = $result->fetch_assoc()) {
 	$hasContribution = $row['pv_has_contribution'];
 	$submitterName = $row['pv_submitter_name'];
 	$submitterEmail = $row['pv_submitter_email'];
+	$submitterPhone = $row['pv_submitter_phone'];
 	$promotedProject = $row['pv_promoted'];
 	$lat = $row['pv_lat'];
 	$lng = $row['pv_lng'];
@@ -160,11 +234,17 @@ while ($row = $result->fetch_assoc()) {
 		continue;
 	}
 
-	print "$buffer<br/>Submitted by <b>$submitterName</b><br/>$villageName <a href=\"\" onclick=\"if (confirm('Are you sure you want to hide this')) { document.location = 'added_villages.php?hide=$id';} return false;\">hide</a> &nbsp;";
+	print "$buffer<br/>Submitted by <b>$submitterName</b> | $submitterEmail | $submitterPhone<br/>$villageName <a href=\"\" onclick=\"if (confirm('Are you sure you want to hide this')) { document.location = 'added_villages.php?hide=$id';} return false;\">hide</a> &nbsp;";
 	if ($promotedProject) {
 		print "<a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
 	} else {
 		print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to promote this? Clicking OK will create a new project.')) { document.location = 'added_villages.php?promote=$id&fo=$foId';} return false;\">promote</a>";
 	}
-	print "<br/>$devProblem<br/>pop. $population, $dateAdded, added by $submitterName<br/>$distance miles from $closestVillage ($foName) (<a href='https://www.google.com/maps/dir/$closestVillageLat,$closestVillageLng/$lat,$lng/' target='_blank'>map</a>)<br/><br/>";
+	$contributionStr = $hasContribution ? 'Yes' : 'No';
+	$costStr = $cost ? $cost . ' MK' : '0 MK';
+	if ($cost && $kwachaRate) {
+		$usd = number_format($cost * $kwachaRate, 2);
+		$costStr .= " (\$$usd USD)";
+	}
+	print "<br/>$devProblem<br/>pop. $population, households: $households, cost: $costStr, cash contribution: $contributionStr<br/>$dateAdded, added by $submitterName<br/>$distance miles from $closestVillage ($foName) (<a href='https://www.google.com/maps/dir/$closestVillageLat,$closestVillageLng/$lat,$lng/' target='_blank'>map</a>)<br/><br/>";
 }
