@@ -13,12 +13,6 @@ if (hasParam('upload_file')) {
     die(1);
   }
 
-  if (!verifyRecaptcha3($captcha, 'addVillage')) {
-    print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
-      die(1);
-  }
-
   $ifp = fopen('uploads/'.$filename, 'wb');
     $data = explode(',', $img);
   fwrite($ifp, base64_decode($data[1]));
@@ -77,7 +71,7 @@ if (hasParam('upload_file')) {
 
   if (!verifyRecaptcha3($captcha, 'addVillage')) {
     print "Google has decided you are a robot.  If you think this is an error, please tell the site administrator, or maybe just try again.";
-      emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
+      //emailAdmin("Robot detected in add village", "Someone tried to add a village with villageName: $villageName");
       die(1);
   }
 
@@ -85,9 +79,12 @@ if (hasParam('upload_file')) {
   $lng = $_POST['lng'];
   $pictureIds = $_POST['pictureIds'];
   $villagePopulation = $_POST['village_population'];
+  $villageHouseholds = $_POST['village_households'];
+  $projectCost = $_POST['project_cost'];
+  $hasContribution = isset($_POST['has_cash_contribution']) && $_POST['has_cash_contribution'] == 'on' ? 1 : 0;
   $villageProblem = $_POST['village_problem'];
-  $stmt = prepare("INSERT INTO proposed_villages (pv_name, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_dev_problem, pv_lat, pv_lng, pv_images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  $stmt->bind_param('ssssisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageProblem, $lat, $lng, $pictureIds);
+  $stmt = prepare("INSERT INTO proposed_villages (pv_name, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+  $stmt->bind_param('ssssiiiisdds', $villageName, $advocateName, $advocateEmail, $advocatePhone, $villagePopulation, $villageHouseholds, $projectCost, $hasContribution, $villageProblem, $lat, $lng, $pictureIds);
 
   execute($stmt);
   $stmt->close();
@@ -100,7 +97,7 @@ if (hasParam('upload_file')) {
       $pictureStr .= "<img src='".ABS_PICTURES_DIR."$next.jpg' /> ";
     }
   }
-  $output = "Advocate Name: $advocateName<br/>AdvocateEmail: $advocateEmail<br/>Advocate Phone: $advocatePhone<br/>Village Name: $villageName<br/>Location: $lat, $lng<br/>Village Population: $villagePopulation<br/>Village Problem: $villageProblem<br/><br/>$pictureStr";
+  $output = "Advocate Name: $advocateName<br/>AdvocateEmail: $advocateEmail<br/>Advocate Phone: $advocatePhone<br/>Village Name: $villageName<br/>Location: $lat, $lng<br/>Village Population: $villagePopulation<br/>Number of Households: $villageHouseholds<br/>Project Cost (Kwacha): $projectCost<br/>Has Cash Contribution?: $hasContribution<br/>Village Problem: $villageProblem<br/><br/>$pictureStr";
   sendMail(getCustomerServiceEmail(), "Village $villageName uploaded by $advocateName",
     $output, getCustomerServiceEmail());
   sendMail(getAdminEmail(), "Village $villageName uploaded by $advocateName",
@@ -121,14 +118,6 @@ if (hasParam('upload_file')) {
     $pageUrl = getBaseURL()."add_village.php";
     include('header.inc'); 
 ?>
-<script>
-  grecaptcha.ready(function() {
-    grecaptcha.execute('<?php print CAPTCHA_SITEKEY_V3; ?>', {action: 'addVillage'}).then(function(token) {
-      $('#g-recaptcha-response').val(token);
-      captchaResult = token
-    });
-  });
-</script>
 <style>
 body, html {
     height: 100%;
@@ -186,6 +175,10 @@ body, html {
              (60 * number[1].denominator) + number[2].numerator / (3600 * number[2].denominator);
     }
 
+    function toDecimal2(obj) {
+      return obj[0] + (obj[1] / 60) + (obj[2] / 3600);
+    }
+
     function resizeAndUpload(file) {              
       var reader = new FileReader();  
       reader.onload = function(e) {
@@ -200,16 +193,24 @@ body, html {
                 var latitude = EXIF.getTag(this, 'GPSLatitude');
 
                 if (longitude) {
-                latDec = toDecimal(latitude);
-                if (EXIF.getTag(this, 'GPSLatitudeRef') == 'S') {
-                  latDec *= -1;
+                  if (latitude[0].numerator) {
+                    latDec = toDecimal(latitude);
+                  } else {
+                    latDec = toDecimal2(latitude);
+                  }
+                  if (EXIF.getTag(this, 'GPSLatitudeRef') == 'S') {
+                    latDec *= -1;
+                  }
+                  if (longitude[0].numerator) {
+                    lngDec = toDecimal(longitude);
+                  } else {
+                    lngDec = toDecimal2(longitude);
+                  }
+                  if (EXIF.getTag(this, 'GPSLongitudeRef') == 'W') {
+                    lngDec *= -1;
+                  }
                 }
-                lngDec = toDecimal(longitude);
-                if (EXIF.getTag(this, 'GPSLongitudeRef') == 'W') {
-                  lngDec *= -1;
-                }
-              }
-              orientation = EXIF.getTag(this, "Orientation");
+                orientation = EXIF.getTag(this, "Orientation");
               });
 
           var canvas = document.createElement('canvas');
@@ -262,6 +263,20 @@ body, html {
       }
       reader.readAsDataURL(file);
     }
+
+    function lookupVillage(name) {
+      pos = name.toUpperCase().indexOf("VILLAGE");
+      if (pos > 0) {
+        name = name.substring(0, pos - 1);
+      }
+      $.getJSON("lookup_village.php?villageName=" + name, function(data) {
+        if (data.length > 0) {
+          document.getElementById('lat').value = data[0]['village_lat'];
+          document.getElementById('lng').value = data[0]['village_lng'];
+          document.getElementById('addVillageButton').disabled = false;
+        }
+      }); 
+    }
 </script>
 
 <div class="bg" style="height:1850px;width:100%;padding-top:40px;">
@@ -308,7 +323,7 @@ body, html {
          						 <div class="input-field col s12 donor-text" style="padding:0% 0% 0% 3%; font-size:20px;">
           							<i class="material-icons prefix">location_on</i>
           							<input placeholder="e.g., Chimphepo Village" class='donor-text' type="text" style="padding:0% 0% 0% 0%; font-size:20px;" 
-                        id="village_name" name="village_name" required data-error=".errorTxt4"/>
+                        id="village_name" name="village_name" required data-error=".errorTxt4" onblur="lookupVillage(this.value);" />
           							<div class="errorTxt4 center-align" style="padding:0 0 0% 0; font-size:10px; color:red;"></div>
           					 </div>
           						
@@ -325,7 +340,34 @@ body, html {
           						</div>
           					</div>
 	                 			
-	             
+	                                 <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Number of Households</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">house</i>
+                        <input placeholder="number of households (e.g., 300)" type="number" class='donor-text' style="font-size:20px;width:100%;" id="village_households" name="village_households" required data-error=".errorTxt5" />
+                      <div class="errorTxt5 center-align" style="font-size:10px; color:red; padding:0 0 0% 9%"></div>
+                      </div>
+                    </div>
+
+
+                    <div class="row" style="padding:2% 14% 0 0%;margin:0;max-width:600px">
+                      <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%;"><b>Overall Project Cost (Kwacha)</b></div>
+                     <div class="input-field col s12 donor-text" style="padding:0% 8% 0% 3%; font-size:20px;">
+                        <i class="material-icons prefix">payments</i>
+                        <input placeholder="overall project cost" type="number" class='donor-text' style="font-size:20px;width:100%;" id="project_cost" name="project_cost" required data-error=".errorTxt5" />
+                      <div class="errorTxt5 center-align" style="font-size:10px; color:red; padding:0 0 0% 9%"></div>
+                      </div>
+                    </div>
+
+                    <div class="row" style="padding:0% 0% 8% 2%;margin:0;max-width:600px">
+                      <div class="input-field col s12" style="width:100%; padding:0% 0% 0% 0%">
+                          <label>
+                            <input type="checkbox" class="filled-in" id="has_cash_contribution" name="has_cash_contribution" />
+                            <span for="has_cash_contribution" style='font-size:large;color:black;'><b>Community Has Raised Cash Contribution?</b></span>
+                          </label>
+                      </div>
+                    </div>
+
           					
         					<div class="row" style="padding:2% 0% 1% 0%;margin:0;max-width:600px">
         					 <div class="black-text left-align" style="font-size:large; padding:0 0 2% 3%;"><b>PICTURES OF YOUR VILLAGE</b>
@@ -361,7 +403,7 @@ body, html {
     					  </div>				
 	          		
 	          		<div class="row" style="padding:2% 0% 0% 0%;margin:0;max-width:600px">
-	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>BIGGEST DEVELOPMENT PROBLEM</b>
+	          		   <div class="black-text left-align" style="font-size:large; padding:0 0 0% 3%"><b>DETAILED DESCRIPTION OF PROJECT</b>
                    </div>
                             
                       <div class="input-field col s12" style="padding:0% 13% 0% 3%;">
@@ -428,7 +470,13 @@ $(document).ready(function() {
           }
       },
         submitHandler: function(form) {
-            form.submit();
+            grecaptcha.ready(function() {
+              grecaptcha.execute('<?php print CAPTCHA_SITEKEY_V3; ?>', {action: 'addVillage'}).then(function(token) {
+                $('#g-recaptcha-response').val(token);
+                captchaResult = token
+                form.submit();
+              });
+            });
         } 
     });
   });

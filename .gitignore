@@ -7,3 +7,4 @@ cached/*
 uploads/*
 api/*.json
 .htaccess
+vendor/*

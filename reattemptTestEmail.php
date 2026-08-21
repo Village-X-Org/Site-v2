@@ -54,23 +54,12 @@ if ($isSubscription) {
 }
 
 $type = EMAIL_TYPE_THANKS_FOR_DONATING;
-ob_start();
+
 include("email_content.php");
-$output = ob_get_clean();
-sendMail($donorEmail, $isSubscription ? "Monthly Subscription for Village X": "Donation to Village X", 
-    $output, getCustomerServiceEmail());
-sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
-    $output, getCustomerServiceEmail());
-sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
-    $output, getCustomerServiceEmail());
+
 
 if (isset($honoreeFirstName) && strlen($honoreeEmail) > 1) {
     $useHonoree = 1;
-    ob_start();
-    include("email_content.php");
-    $output = ob_get_clean();
-        
-    sendMail($honoreeEmail, (strlen($donorFirstName) > 0 ? "$donorFirstName $donorLastName" : "Someone")." has donated to Village X in your honor!",
-        $output, getCustomerServiceEmail());
+    print "<br/><br/>Would also be sent to honoree.";
 }
 ?>

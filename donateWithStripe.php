@@ -2,6 +2,7 @@
 require_once("utilities.php");
 require_once('lib/stripe/init.php');
 
+define('STRIPE_FEE', .029);
 $test = (isset($_SESSION['test']) && $_SESSION['test'] ? 1 : 0);
 \Stripe\Stripe::setApiKey($test ? STRIPE_TEST_SECRET_KEY : STRIPE_SECRET_KEY);
 
@@ -12,7 +13,12 @@ if (!hasParam('stripeEmail')) {
 $donorEmail = param('stripeEmail');
 $donorFirstName = param('firstName');
 $donorLastName = param('lastName');
-$donationAmount = param('stripeAmount') + param('gcAmount');
+$stripeAmount = param('stripeAmount');
+$gcAmount = param('gcAmount');
+if (!is_numeric($stripeAmount) || !is_numeric($gcAmount)) {
+    return;
+}
+$donationAmount = $stripeAmount + $gcAmount;
 $projectId = param('projectId');
 $isSubscription = param('isSubscription');
 $token = param('stripeToken');
@@ -46,6 +52,9 @@ if ($row = $result->fetch_assoc()) {
 $subscriptionId = "NULL";
 
 if ($token !== 'offline' && $token !== 'gcOnly') {
+    if (substr($token, 0, 4) !== 'tok_') {
+        return;
+    }
     if ($isSubscription) {
         $planName = "basic-monthly-$donorId-".time();
          try {
@@ -65,7 +74,7 @@ if ($token !== 'offline' && $token !== 'gcOnly') {
              $subscriptionId = $customer->subscriptions->data[0]->id;
              
         } catch (Exception $e) {
-            sendMail(getAdminEmail(), "Problem creating subscription", $e->getMessage(), getAdminEmail());
+            sendMail(getAdminEmail(), "Problem creating subscription for email $donorEmail, amount $donationAmount, id: $planName token: $token plan: $plan", $e->getMessage(), getAdminEmail());
         }
     } else {
         $charge = \Stripe\Charge::create(array(
@@ -98,6 +107,11 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     $donationId = $row['donation_id'];
 } else {
     $stmt->close();
+    if ($token === 'offline') {
+        $donationAmountAdjusted = floor($donationAmountDollars / (1 - STRIPE_FEE));
+    } else {
+        $donationAmountAdjusted = $donationAmountDollars;
+    }
     $stmt = prepare("INSERT INTO donations (donation_donor_id, donation_amount, donation_project_id, donation_subscription_id, donation_remote_id, donation_code, donation_honoree_id, donation_is_test, donation_gc_id, donation_fundraiser_id, donation_message) VALUES (?, ?, ?, ?, ?, ?, ?, $test, $gcId, ?, ?)");
     $insertAmount = $isSubscription ? 0 : $donationAmountDollars;
     $stmt->bind_param("idisssiis", $donorId, $insertAmount, $projectId, $subscriptionId, $token, $code, $honoreeId, $fundraiserId, $donationMessage);
@@ -113,7 +127,7 @@ if ($row = $result->fetch_assoc() && $token !== 'offline' && $token !== 'gcOnly'
     }
     
     if ($projectId && !$test) {
-        recordDonation($projectId, $donationAmountDollars, $donationId);
+        recordDonation($projectId, $donationAmountAdjusted, $donationId);
     }
 }
 
@@ -139,6 +153,7 @@ if ($isSubscription) {
     JOIN village_stats AS hhStats ON hhStats.stat_type_id=19 AND hhStats.stat_village_id=village_id
     JOIN pictures ON picture_id=project_similar_image_id WHERE project_funded<project_budget ORDER BY (EXISTS (SELECT sd_project_id FROM subscription_disbursals WHERE sd_donor_id=$donorId)) ASC,
         project_budget - project_funded ASC, hhStats.stat_year DESC, peopleStats.stat_year DESC LIMIT 1");
+
     if ($row = $result->fetch_assoc()) {
         $projectId = $row['project_id'];
         $projectName = $row['project_name'];
@@ -165,7 +180,7 @@ sendMail(getCustomerServiceEmail(), $isSubscription ? "Monthly Subscription for 
 sendMail(getAdminEmail(), $isSubscription ? "Monthly Subscription for Village X ($donorEmail) ($honoreeId)": "Donation to Village X ($donorEmail)",
     $output, getCustomerServiceEmail());
 
-if (isset($honoreeFirstName)) {
+if (isset($honoreeFirstName) && strlen($honoreeEmail) > 1) {
     $useHonoree = 1;
     ob_start();
     include("email_content.php");

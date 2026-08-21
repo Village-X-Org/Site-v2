@@ -23,6 +23,7 @@ define('MAX_MAIL_PER_REQUEST', 10);
 define('MAX_MAIL_PER_HOUR', 600);
 
 define("CACHED_HIGHLIGHTED_FILENAME", "cached/project_highlighted");
+define("CACHED_STATUS_FILENAME", "cached/project_status");
 define("CACHED_STORIES_FILENAME", "cached/project_stories");
 define("CACHED_CHARTS_FILENAME", "cached/project_charts");
 define("CACHED_LISTING_FILENAME", "cached/project_listing");
@@ -45,17 +46,18 @@ if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
 	$reqVar = $_GET;
 }
 
-function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext) {
+function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext=0) {
 	$context = print_r($errcontext, true);
 	$trace = print_r(debug_backtrace(), true); 
 	sendMail(getAdminEmail(), "VillageX Diagnostic Error: $errstr", "$errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace", getAdminEmail());
-	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on. $errno - $errstr \n\n$errfile - $errline\n\n$context\n\n$trace</font></P>";
-    exit();
+	print "<P><font color='red'>The system has suffered a terrible error.  Try reloading the page - that will probably fix it, and if you have a moment, please email the admin and let him know the circumstances that brought this on.</font></P>";
+    //print "<P>details: $errno - $errstr <BR>FILE: $errfile - LINE: $errline</P>$trace</P>";
+	exit();
 }
 set_error_handler("emailErrorHandler");
 
 function getCustomerServiceEmail() {
-    return "Michael Buckler at Village X <mike@villagex.org>";
+    return "Jeff DePree at Village X <jeff@villagex.org>";
 }
 
 function getAdminEmail() {
@@ -170,6 +172,7 @@ function doUnprotectedQuery($queryToBeExecuted) {
 
 		emailAdmin("Exception", "Exception caused by: ".mysqli_error($link)."\n\n".$queryToBeExecuted."\n\n".$trace);
 		print "<FONT color='red'>Something has gone terribly wrong.  The administrator has been notified.  Please do not panic - you will be emailed as soon as the issue is resolved. ";
+		
 		die();
 	}
 	
@@ -250,6 +253,9 @@ function getPost($key) {
 }
 
 function getFromReq($key, $req) {
+	if (is_array($req[$key])) {
+		return '';
+	}
 	return stripslashes($req[$key]);
 }
 
@@ -330,8 +336,8 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
             $stmt = prepare("INSERT INTO project_events (pe_type, pe_project_id) VALUES (3, ?)"); // 3=Project Funded in project_event_types
             $stmt->bind_param("i", $projectId);
             execute($stmt);
-            $donorStmt = prepare("SELECT donor_email, donation_id, donor_first_name, donor_last_name FROM donors JOIN donations ON donation_donor_id=donor_id WHERE donation_project_id=? AND donation_is_test=0 GROUP BY donor_id");
-            $donorStmt->bind_param("i", $projectId);
+            $donorStmt = prepare("SELECT donor_id, donor_email, donation_id, donor_first_name, donor_last_name, isSubscription FROM donors JOIN ((SELECT sd_id as donation_id, sd_donor_id AS donation_donor_id, 1 as isSubscription FROM subscription_disbursals WHERE sd_project_id=?) UNION (SELECT donation_id, donation_donor_id, 0 as isSubscription FROM donations WHERE donation_project_id=? AND donation_is_test=0)) AS derived ON donation_donor_id=donor_id GROUP BY donor_id");
+            $donorStmt->bind_param("ii", $projectId, $projectId);
             $donorResult = execute($donorStmt);
             
             while ($donorRow = $donorResult->fetch_assoc()) {
@@ -339,10 +345,10 @@ function recordDonation($projectId, $donationAmountDollars, $donationId) {
                 $donorEmail = $donorRow['donor_email'];
                 $donorFirstName = $donorRow['donor_first_name'];
                 $donorLastName = $donorRow['donor_last_name'];
+                $isSubscription = $donorRow['isSubscription'];
                 
                 $type = EMAIL_TYPE_PROJECT_FULLY_FUNDED;
                 ob_start();
-                $isSubscription = 1;
                 include("email_content.php");
                 $output = ob_get_clean();
                 sendMail($donorEmail, "Project Fully Funded!", $output, getCustomerServiceEmail());
@@ -522,6 +528,9 @@ function invalidateCaches($projectId) {
     if (file_exists(CACHED_HIGHLIGHTED_FILENAME)) {
         @unlink(CACHED_HIGHLIGHTED_FILENAME);
     }
+	if (file_exists(CACHED_STATUS_FILENAME)) {
+        @unlink(CACHED_STATUS_FILENAME);
+    }
     $files = glob(CACHED_LISTING_FILENAME.'*');
     foreach ($files as $file) {
         @unlink($file);
@@ -556,6 +565,9 @@ function verifyRecaptcha2($responseCode) {
 }
 
 function verifyRecaptcha3($responseCode, $action) {
+	if (preg_match('/[^A-Za-z0-9-_]/', $responseCode)) {
+		return;
+	}
 	$url = "https://www.google.com/recaptcha/api/siteverify?secret=".CAPTCHA_SECRET_V3."&action=".$action."&response=".$responseCode;
 	$ch = curl_init( $url );
 	curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -581,6 +593,30 @@ function getDistanceMeters($startLat, $startLng, $endLat, $endLng) {
 	$dist = acos($dist);
 	$dist = rad2deg($dist);
 	return $dist * 111189.3006; // meters conversion
+}
+
+function getMalawiKwachaUsdRate() {
+	$cacheFile = 'cached/kwacha_rate.json';
+	if (file_exists($cacheFile)) {
+		$cached = json_decode(file_get_contents($cacheFile), true);
+		if (isset($cached['rate']) && isset($cached['fetched']) && (time() - $cached['fetched']) < 7 * 86400) {
+			return $cached['rate'];
+		}
+	}
+	$ch = curl_init('https://open.er-api.com/v6/latest/MWK');
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+	curl_setopt($ch, CURLOPT_USERAGENT, 'Village X');
+	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+	$response = curl_exec($ch);
+	curl_close($ch);
+	$data = json_decode($response, true);
+	if (isset($data['rates']['USD'])) {
+		$rate = $data['rates']['USD'];
+		file_put_contents($cacheFile, json_encode(['rate' => $rate, 'fetched' => time()]));
+		return $rate;
+	}
+	return isset($cached['rate']) ? $cached['rate'] : 0;
 }
 
 function getProjectUrl($id, $shortcut) {

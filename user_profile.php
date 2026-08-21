@@ -11,7 +11,7 @@ if (!hasParam('id')) {
   $userId = param('id');
 }
 
-$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $healthcareCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
+$livestockCount = $waterCount = $educationCount = $agCount = $bizCount = $healthcareCount = $solarCount = $totalDonationAmount = $userFirstName = $userLastName = 0;
 $donorLocation = "";
 $populations = array();
 $households = array();
@@ -74,6 +74,7 @@ while ($row = $result->fetch_assoc()) {
   $agCount += ($projectType == 'farm' ? $amount : 0);
   $bizCount += ($projectType == 'business' ? $amount : 0);
   $healthcareCount += ($projectType == 'clinic' ? $amount : 0);
+  $solarCount += ($projectType == 'solar' ? $amount : 0);
   $count++;
 } 
 
@@ -94,11 +95,11 @@ if (count($donationDates) > 0) {
   $latestProjectId = $projectIds[0];
 }
 $totalDonationAmount = max(.001, $totalDonationAmount);
-  $labels = ["Livestock", "Water", "Education", "Farming", "Business", "Healthcare"];
+  $labels = ["Livestock", "Water", "Education", "Farming", "Business", "Healthcare", "Solar"];
   $counts = [round($livestockCount * 10000 / $totalDonationAmount), round($waterCount * 10000 / $totalDonationAmount), 
     round($educationCount * 10000 / $totalDonationAmount), round($agCount * 10000 / $totalDonationAmount), 
-    round($bizCount * 10000 / $totalDonationAmount), round($healthcareCount * 10000 / $totalDonationAmount)];
-  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#D2691E', '#808000'];
+    round($bizCount * 10000 / $totalDonationAmount), round($healthcareCount * 10000 / $totalDonationAmount), round($solarCount * 10000 / $totalDonationAmount)];
+  $colors = ["#3e95cd", "#8e5ea2","#3cba9f", "#FFD700", '#D2691E', '#808000', '#2B3B92'];
   for ($i = count($labels) - 1; $i >= 0; $i--) {
     if ($counts[$i] == 0) {
       unset($counts[$i]);

@@ -85,8 +85,8 @@ if ($row = $result->fetch_assoc()) {
     $villageName = $row['village_name'];
     $villageLat = $row['village_lat'];
     $villageLng = $row['village_lng'];
-    $funded = round($row['project_funded']);
     $total = $row['project_budget'];
+    $funded = min(round($row['project_funded']), $total);
     $projectType = $row['pt_label'];
     $staffId = $row['project_staff_id'];
     $hasEvents = $row['eventCount'] > 0;
@@ -390,11 +390,13 @@ if (!file_exists($mapFilename)) {
 
 					<br>
 				
-		<?php if ($donorCount > 0 || $matchingDonor) { ?>	
+		<?php if ($donorCount > 0) { ?>	
 		<div style="margin:auto;" class="center-align">
 								<b><?php print $donorCount.($donorCount > 1 ? " people have" : " person has"); ?> donated!</b> 
 								
 		</div><br>
+    <?php }
+    if ($donorCount > 0 || $matchingDonor) { ?> 
 		<div class='center-align' style="margin:auto;max-width:300px;height:<?php print (min(3, ceil($donorCount / 5)) * 60 + 40); ?>px;">
     <?php
 		     $stmt = prepare("SELECT donor_id, donor_first_name, donor_last_name, isSubscription FROM 

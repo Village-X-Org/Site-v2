@@ -1,5 +1,8 @@
 <?php
 require_once("utilities.php");
+if (!hasParam('updateId')) {
+	return;
+}
 $updateId = paramInt('updateId');
 $content = param('updateContent');
 $title = param('updateTitleEdit');

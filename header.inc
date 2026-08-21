@@ -21,7 +21,7 @@ if (hasParam('d')) {
 		$pageImage = "https://villagex.org/images/header1.jpg";
 	}	
 	if (!isset($pageTitle)) {
-		$pageTitle = "This website disrupts extreme poverty.  Double your donation - one week only!";
+		$pageTitle = "This website disrupts extreme poverty.";
 	}
 	if (!isset($pageUrl)) {
 		$pageUrl = BASE_URL;
@@ -55,8 +55,8 @@ if (hasParam('d')) {
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet" media="screen,projection">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js" ></script>
-<script src='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.js' ></script>
-<link href='https://api.mapbox.com/mapbox-gl-js/v0.46.0/mapbox-gl.css' rel='stylesheet' />
+<script src='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v2.5.1/mapbox-gl.css' rel='stylesheet' />
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -168,21 +168,24 @@ if (hasParam('d')) {
 			<a href="#" data-target="nav-mobile" class="button-collapse sidenav-trigger"><i
 			class="material-icons">menu</i></a>
 			<ul id="nav-mobile" class="sidenav">
-				<li><a class="waves-effect waves-light btn" href="project_tiles.php">DONATE</a></li>
-				<li><a class="waves-effect waves-light btn" href="fundraiser_create.php">FUNDRAISE</a></li>
+				<li><a class="waves-effect waves-light btn" href="project_tiles.php">PROJECTS</a></li>
+				<li><a class="waves-effect waves-light btn" href="track.php">UPDATES</a></li>
 				<li><a href="project_tiles.php"><i class="material-icons">view_module</i>Projects</a></li>
 				<li><a href="impacts.php"><i class="material-icons">timeline</i>Impacts</a></li>
 				<li><a href="map.php"><i class="material-icons">public</i>Map</a></li>
 				<li><a href="about.php"><i class="material-icons">info</i>Mission &amp; Team</a></li>
   				<li><a href="model.php"><i class="material-icons">transform</i>Model</a></li>
   				<li><a href="finances.php"><i class="material-icons">attach_money</i>Finances</a></li>
-				<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>
-				<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>
-  				<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>
+				<!--<li><a href="travel.php"><i class="material-icons">airplanemode_active</i>Travel</a></li>-->
+				<!--<li><a href="shop.php"><i class="material-icons">shopping_cart</i>Shop</a></li>-->
+  				<!--<li><a href="https://medium.com/village-x-org" target="_blank"><i class="material-icons">library_books</i>Blog</a></li>-->
 				<?php if ($session_donor_id) {
 					print "
-					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>
-					<li><a class='waves-effect waves-light' href='user_logout.php'><i class='material-icons'>exit_to_app</i>Logout</a></li>";
+					<li><a class='waves-effect waves-light' href='user_profile.php?id=$session_donor_id'><i class='material-icons'>person</i>View Profile</a></li>";
+					if ($session_is_admin) {
+						print "<li><a class='waves-effect waves-light' href='added_villages.php'>Added Villages</a></li>";
+					}
+					print "<li><a class='waves-effect waves-light' href='user_logout.php'><i class='material-icons'>exit_to_app</i>Logout</a></li>";
 				} else {
 					print "<li><a class='waves-effect waves-light btn' href='user_login.php'>SIGN IN <i class='material-icons right'  style='color:white;'>person</i></a></li>";
 				} ?> 
@@ -216,8 +219,8 @@ if (hasParam('d')) {
 				<?php if ($rebranded == 0) { ?>	
 				<ul class="right">
 					
-					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">DONATE</a></li>
-					<li><a class="waves-effect waves-light btn light blue" href="fundraiser_create.php">FUNDRAISE</a></li>
+					<li><a class="waves-effect waves-light btn light blue" href="project_tiles.php">PROJECTS</a></li>
+					<li><a class="waves-effect waves-light btn light blue" href="track.php">UPDATES</a></li>
 					<li><a class="dropdown-trigger" href="#!" data-target="Menu"><i class="material-icons" style="font-size: 50px">menu</i></a></li>
 				<?php if (!isset($updates)) { ?>
 
@@ -230,14 +233,17 @@ if (hasParam('d')) {
 				          <li><a href="impacts.php">Impacts</a></li>
 				          <li><a href="map.php">Map</a></li>
 		          		  <li><a href="finances.php">Finances</a></li>
-				          <li><a href="travel.php">Travel</a></li>
-				          <li><a href="shop.php">Shop</a></li>
-				          <li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
+				          <!--<li><a href="travel.php">Travel</a></li>-->
+				          <!--<li><a href="shop.php">Shop</a></li>-->
+				          <!--<li><a href="https://medium.com/village-x-org" target="_blank">Blog</a></li>-->
 				          <li class="divider" tabindex="-1"></li>
 
 						<?php if ($session_donor_id) {
 							?>
 						   		<li><a href="user_profile.php?id=<?php print $session_donor_id; ?>">View Profile</a></li>
+						   		<?php if ($session_is_admin) { ?>
+									<li><a href='added_villages.php'>Added Villages</a></li>
+								<?php } ?>
 						        <li><a href="user_logout.php">Logout</a></li>
 					        <?php
 						} else {

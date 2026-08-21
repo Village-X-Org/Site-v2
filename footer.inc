@@ -22,7 +22,7 @@
 					class="header col s12 white-text light text-shadow: 4px 4px 7px #FFFFFF;"
 					style="padding: 0% 5% 0% 5%;">
 					automatic donations, going<br>directly to village projects,<br>with
-					monthly email updates
+					regular email updates
 				</h6>
 			</div>
 			<div class="row center">
@@ -103,8 +103,8 @@
 					<li><a class="white-text" href="model.php">Model</a></li>
 					<li><a class="white-text" href="impacts.php">Impacts</a></li>
 					<li><a class="white-text" href="map.php">Map</a></li>
-					<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>
-					<li><a class="white-text" href="travel.php">Travel</a></li>
+					<!--<li><a class="white-text" href="https://medium.com/village-x-org" target="_blank">Blog</a></li>-->
+					<!--<li><a class="white-text" href="travel.php">Travel</a></li>-->
 					<li><a class="white-text" href="finances.php">Finances</a></li>
 					<li><a class="white-text" href="faq.php">FAQ</a></li>
 				</ul>
@@ -121,9 +121,6 @@
 					<li><a class="white-text"
 						href="https://www.facebook.com/villagexorg/" target="_blank"><i
 							style="font-size: 15px" class="fa">&#xf082;</i> Facebook</a></li>
-					<li><a class="white-text" href="https://twitter.com/villagexorg"
-						target="_blank"><i style="font-size: 15px" class="fa">&#xf081;</i>
-							Twitter</a></li>
 				</ul>
 				<br>
 
@@ -132,19 +129,13 @@
 				</h6>
 
 
-				<a
+				<a class="white-text"
 					href="https://www.facebook.com/dialog/feed?
   									app_id=<?php print FACEBOOK_APP_ID; ?>
   									&display=popup&caption=This site disrupts extreme poverty in Africa
   									&link=<?php print BASE_URL; ?>"
-					target="_blank"> <img
-					src="https://simplesharebuttons.com/images/somacro/facebook.png"
-					alt="Facebook" align="middle" height="30" width="30" />
-				</a> &nbsp;&nbsp;&nbsp; <a
-					href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=This site disrupts extreme poverty in Africa by funding projects that villages choose&amp;hashtags=villagex"
-					target="_blank"> <img
-					src="https://simplesharebuttons.com/images/somacro/twitter.png"
-					alt="Twitter" align="middle" height="30" width="30" />
+					target="_blank"> <i
+							style="font-size: 15px" class="fa">&#xf082;</i>
 				</a> <br> <br>
 			</div>
 
@@ -169,14 +160,14 @@
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
-						©Village X Org, 2019 <br>501(c)(3) nonprofit <br>EIN:
+						©Village X Org, 2026 <br>501(c)(3) nonprofit <br>EIN:
 						47&#65279;-1845825&#65279;
 					</p>
 				</div>
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
 						<b>We disrupt extreme poverty with democracy, direct
-							giving, and data. Aiming to reach 390 million people in rural
+							giving, and donor updates. Aiming to reach 390 million people in rural
 							Africa.</b>
 					</p>
 				</div>

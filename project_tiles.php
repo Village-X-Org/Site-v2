@@ -38,6 +38,27 @@ if (hasParam('branding')) {
 	$partnerFilter = isset($_COOKIE['partnerFilter']) ? $_COOKIE['partnerFilter']: 0;
 ?>
 
+<style>
+	.row {
+		margin-bottom: 0 !important;
+	}
+	.projectCell {
+		display: flex !important;
+		flex-direction: column;
+		padding: 12px !important;
+	}
+	.projectCell.hidden {
+		display: none !important;
+	}
+	.projectCell .card {
+		width: 100%;
+		margin: 0;
+	}
+	.projectCell .card-content {
+		flex-grow: 1;
+	}
+</style>
+
 <div class="container">
 
 	<div class="row" style="padding:3% 1% 1% 1%;">
@@ -49,14 +70,14 @@ if (hasParam('branding')) {
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown3" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
-          		<li><a id='partner0' href="#!" onclick="partnerFilter=0; $('.projectCell').hide(); className = '' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); if (className == '') { $('.projectCell').show(); } else { $(className).show(); } $('#partnerFilter').html('Filter by Partner'); updateCookies(); return false;">All</a></li>
-          		<?php 
+          		<li><a id='partner0' href="#!" onclick="partnerFilter=0; updateFilter(); $('#partnerFilter').html('Filter by Partner'); updateCookies(); return false;">All</a></li>
+          		<?php
           			$projectPartners = array();
           			$result = doUnprotectedQuery("SELECT partner_name, GROUP_CONCAT(pp_project_id) AS projects FROM partners JOIN project_partners ON pp_partner_id=partner_id GROUP BY partner_id");
           			while ($row = $result->fetch_assoc()) {
           				$partnerName = $row['partner_name'];
           				$stripped = strtolower(preg_replace("/(?)[\p{P} ]/u", "", $partnerName));
-          				print "<li><a id='partner$stripped' href='' onclick=\"$('.projectCell').hide();partnerFilter='$stripped';className = '.$stripped' + (statusFilter ? '.' + statusFilter : '') + (typeFilter ? '.' + typeFilter : ''); $(className).show(); $('#partnerFilter').html('".str_replace("'", "\\'", $partnerName)." &nbsp;&nbsp;&#10004;'); updateCookies(); return false;\">$partnerName</a></li>";
+          				print "<li><a id='partner$stripped' href='' onclick=\"partnerFilter='$stripped';updateFilter(); $('#partnerFilter').html('".str_replace("'", "\\'", $partnerName)." &nbsp;&nbsp;&#10004;'); updateCookies(); return false;\">$partnerName</a></li>";
           				$projects = explode(',', $row['projects']);
           				foreach ($projects as $project) {
           					if (isset($projectPartners[$project])) {
@@ -77,10 +98,10 @@ if (hasParam('branding')) {
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown1" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
-          		<li><a id='status0' href="" onclick="statusFilter=0; if (typeFilter) { $('.' + typeFilter).show(); } else { $('.projectCell').show(); }  $('#statusFilter').html('Filter by Status'); updateCookies(); return false;">All</a></li>
-            		<li><a id='statusfunding' href="" onclick="$('.projectCell').hide();statusFilter='funding';className = '.funding' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Seeking Funds</a></li>
-            		<li><a id='statusfunded' href="" onclick="$('.projectCell').hide();statusFilter='funded';className = '.funded' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Funded</a></li>
-            		<li><a  id='statuscompleted' href="" onclick="$('.projectCell').hide();statusFilter='completed';className = '.completed' + (typeFilter ? '.' + typeFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#statusFilter').html('Completed &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Completed</a></li>
+          		<li><a id='status0' href="" onclick="statusFilter=0; updateFilter(); $('#statusFilter').html('Filter by Status'); updateCookies(); return false;">All</a></li>
+            		<li><a id='statusfunding' href="" onclick="statusFilter='funding';updateFilter(); $('#statusFilter').html('Seeking Funds &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Seeking Funds</a></li>
+            		<li><a id='statusfunded' href="" onclick="statusFilter='funded';updateFilter(); $('#statusFilter').html('Funded &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Funded</a></li>
+            		<li><a  id='statuscompleted' href="" onclick="statusFilter='completed';updateFilter(); $('#statusFilter').html('Completed &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Completed</a></li>
           	</ul>
           </div>
 	
@@ -90,18 +111,32 @@ if (hasParam('branding')) {
 
             <!-- Dropdown Structure -->
           	<ul id="dropdown2" class="dropdown-content" style="margin-left:25px;margin-top:50px;">
-          		<li><a id='type0' href="" onclick="typeFilter=0; if (statusFilter) { $('.' + statusFilter).show(); } else { $('.projectCell').show(); } $('#typeFilter').html('Filter by Type'); updateCookies(); return false;">All</a></li>
-            		<li><a id='typeagriculture' href="" onclick="$('.projectCell').hide();typeFilter='agriculture';className = '.agriculture' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Agriculture</a></li>
-            		<li><a id='typeeducation' href="" onclick="$('.projectCell').hide();typeFilter='education';className = '.education' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Education</a></li>
-           	 	<li><a id='typelivestock' href="" onclick="$('.projectCell').hide();typeFilter='livestock';className = '.livestock' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Livestock</a></li>
-            		<li><a id='typewater' href="" onclick="$('.projectCell').hide();typeFilter='water';className = '.water' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Water</a></li>
-            		<li><a id='typebusiness' href="" onclick="$('.projectCell').hide();typeFilter='business';className = '.business' + (statusFilter ? '.' + statusFilter : '') + (partnerFilter ? '.' + partnerFilter : ''); $(className).show(); $('#typeFilter').html('Business &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Business</a></li>
+          		<li><a id='type0' href="" onclick="typeFilter=0; updateFilter(); $('#typeFilter').html('Filter by Type'); updateCookies(); return false;">All</a></li>
+            		<li><a id='typeagriculture' href="" onclick="typeFilter='agriculture';updateFilter(); $('#typeFilter').html('Agriculture &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Agriculture</a></li>
+            		<li><a id='typeeducation' href="" onclick="typeFilter='education';updateFilter(); $('#typeFilter').html('Education &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Education</a></li>
+           	 	<li><a id='typelivestock' href="" onclick="typeFilter='livestock';updateFilter(); $('#typeFilter').html('Livestock &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Livestock</a></li>
+            		<li><a id='typewater' href="" onclick="typeFilter='water';updateFilter(); $('#typeFilter').html('Water &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Water</a></li>
+            		<li><a id='typebusiness' href="" onclick="typeFilter='business';updateFilter(); $('#typeFilter').html('Business &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Business</a></li>
+            		<li><a id='typesolar' href="" onclick="typeFilter='solar';updateFilter(); $('#typeFilter').html('Solar &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Solar</a></li>
+            		<li><a id='typerelief' href="" onclick="typeFilter='relief';updateFilter(); $('#typeFilter').html('Relief &nbsp;&nbsp;&#10004;'); updateCookies(); return false;">Relief</a></li>
           	</ul>
 		</div>
 		<script>
 			var statusFilter = '<?php print $statusFilter; ?>', typeFilter = '<?php print $typeFilter; ?>', partnerFilter = '<?php print $partnerFilter; ?>';
+			function updateFilter() {
+				$('.projectCell').removeClass('hidden');
+				var filters = [];
+				if (statusFilter) filters.push('.' + statusFilter);
+				if (typeFilter) filters.push('.' + typeFilter);
+				if (partnerFilter) filters.push('.' + partnerFilter);
+
+				if (filters.length > 0) {
+					var selector = filters.join('');
+					$('.projectCell').not($(selector)).addClass('hidden');
+				}
+			}
 			function updateCookies() {
-				$.get('project_tiles_update_filters.php', 
+				$.get('project_tiles_update_filters.php',
 					{typeFilter: typeFilter, statusFilter: statusFilter, partnerFilter: partnerFilter});
 			}
 			document.addEventListener('DOMContentLoaded', function() {
@@ -110,7 +145,7 @@ if (hasParam('branding')) {
 						$('#partner' + partnerFilter).trigger('click');
 					});
 				});
-				
+
 			});
 		</script>
 	</div>
@@ -125,7 +160,8 @@ if (hasParam('branding')) {
 	if (!CACHING_ENABLED || !file_exists(CACHED_LISTING_FILENAME.'o'.$rebranded.'d'.$donorId)) {
 		$query = "SELECT p1.project_id AS project_id, p1.project_name AS project_name, picture_filename, p1.project_summary AS project_summary, 
                 village_name, p1.project_funded AS project_funded, p1.project_budget AS project_budget, p1.project_community_contribution AS community_contribution, pt_label, 
-                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date
+                YEAR(MIN(p2.project_date_posted)) AS previousYear, CONCAT(matchingDonor.donor_first_name, ' ', matchingDonor.donor_last_name) AS matchingDonor, pe_date, 
+				UNIX_TIMESTAMP(MAX(ru_date)) AS latestUpdate
                 FROM projects AS p1 
                 JOIN villages ON p1.project_village_id=village_id 
                 LEFT JOIN projects AS p2 ON p1.project_village_id=p2.project_village_id AND p1.project_id<>p2.project_id AND p2.project_funded>=p2.project_budget 
@@ -133,9 +169,12 @@ if (hasParam('branding')) {
                 JOIN project_types ON p1.project_type_id=pt_id
                 JOIN pictures ON p1.project_profile_image_id=picture_id 
                 LEFT JOIN donors AS matchingDonor ON p1.project_matching_donor=matchingDonor.donor_id
+				LEFT JOIN raw_updates ON ru_project_id=p1.project_id
                 WHERE p1.project_org_id=$rebranded AND p1.project_budget > 0 AND p1.project_funded > 0 AND p1.project_status<>'cancelled' ".($donorId ? " AND $donorId IN (SELECT donation_donor_id FROM donations WHERE donation_project_id=p1.project_id) " : "")
                 ."GROUP BY p1.project_id 
-                ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, p1.project_date_posted ASC";
+                ORDER BY pe_date IS NOT NULL, p1.project_status = 'funding' DESC, p1.project_funded < p1.project_budget DESC, 
+				IF(p1.project_funded < p1.project_budget, p1.project_funded - (p1.project_budget * .1), 0) DESC, 
+				latestUpdate DESC, p1.project_date_posted ASC";
         $result = doUnprotectedQuery($query);
 
 		$buffer = '';
@@ -143,14 +182,15 @@ if (hasParam('branding')) {
 		while ($row = $result->fetch_assoc()) {
 		    $projectId = $row['project_id'];
 		    $projectName = $row['project_name'];
-		      $funded = round($row['project_funded']);
 		      $projectTotal = $row['project_budget'];
+		      $funded = min(round($row['project_funded']), $projectTotal);
 		      $previousYear = $row['previousYear'];
 		      $matchingDonor = $row['matchingDonor'];
 		      $communityContribution = $row['community_contribution'];
 		      $fundedPercent = floor($funded / max($projectTotal, 1) * 100);
 		      $villageContribution = round($projectTotal * ($communityContribution / 100));
 		      $isCompleted = $row['pe_date'];
+			  $latestUpdate = $row['latestUpdate'];
 
 		      $projectType = $row['pt_label'];
 		      $projectTypeClass = 'education';
@@ -162,6 +202,10 @@ if (hasParam('branding')) {
 		          $projectTypeClass = 'water';
 		      } elseif ($projectType == 'business') {
 		      	  $projectTypeClass = 'business';
+		      } elseif ($projectType == 'solar') {
+		      	$projectTypeClass = 'solar';
+		      } elseif ($projectType == 'relief') {
+		      	$projectTypeClass = 'relief';
 		      }
 		      
 		      $fundedClass = 'funding';
@@ -177,8 +221,8 @@ if (hasParam('branding')) {
 		      	$partnerClass = $projectPartners[$projectId];
 		      }
 		      
-		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass $partnerClass' style='min-width:225px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
-				<div class='card sticky-action hoverable'>
+		      $buffer .= "<div class='col s12 m6 l4 projectCell $projectTypeClass $fundedClass $partnerClass' style='padding:12px;cursor:pointer;' onclick=\"document.location='project.php?id=$projectId&d=$donorId';\">
+				<div class='card sticky-action hoverable' style='margin:0;height:100%;'>
 					<div class='card-image'>
 						<div class='activator' style=\"width:100%;height:370px;background-position:center;background-size:cover;background-image:url('".PICTURES_DIR."{$row['picture_filename']}');\"></div>
 					</div>
@@ -196,8 +240,14 @@ if (hasParam('branding')) {
 						<div class='progress'>
 							<div class='determinate' style='width: $fundedPercent%'></div>
 						</div>
-						<p>Locals Contributed: \$$villageContribution</p>
-					</div>
+						<p>Locals Contributed: \$$villageContribution<br/>";
+			if ($latestUpdate) {
+				$buffer .= "<i style='font-size:smaller;'>Latest Update: ".date("F jS, Y", $latestUpdate)."</i>";
+			} else {
+				$buffer .= "&nbsp;";
+			}
+
+			$buffer .= "</p></div>
 					<div class='card-action'>".($matchingDonor && $fundedPercent < 100 ? "
 				    <a class='tooltip' style='text-decoration:none;position:absolute;right:-20px;bottom:10px;text-transform:none;text-align:center;'><span class='tooltiptext' style='left:-190%;top:-150%;'>$matchingDonor will match all donations made to this project!</span>
                             <span style='margin:auto 0;position:absolute;top:14%;left:3%;color:black;font-size:15px;z-index:10;line-height:95%'><b>Gift<br>Match</b></span>

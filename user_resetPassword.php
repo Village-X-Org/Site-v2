@@ -1,6 +1,12 @@
 <?php
 	require_once("utilities.php");
+	if (!hasParam('email')) {
+		return;
+	}
 	$email = param('email');
+	if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		return;
+	}
 	$stmt = prepare("SELECT donor_id, donor_email, donor_password FROM donors WHERE donor_email=?");
 	$stmt->bind_param('s', $email);
 	$result = execute($stmt);

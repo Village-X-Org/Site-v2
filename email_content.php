@@ -16,7 +16,19 @@ switch ($type) {
     case EMAIL_TYPE_SUBSCRIPTION_CANCELLATION:
     case EMAIL_TYPE_THANKS_FOR_PURCHASE:
     case EMAIL_TYPE_THANKS_FOR_DONATING:
-        $stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
+    	if ($isSubscription) {
+    		$stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, sd_amount as donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture,
+                        CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor, 0 as donation_matched_to, 0 as fundraiser_id, '' as fundraiser_title FROM subscription_disbursals
+                    JOIN donors AS thisDonor ON sd_donor_id=thisDonor.donor_id
+                    JOIN projects ON sd_project_id=project_id
+                    LEFT JOIN donors AS matchingDonors ON matchingDonors.donor_id=project_matching_donor
+                    JOIN villages ON project_village_id=village_id
+                    JOIN countries ON village_country=country_id
+                    JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
+                    LEFT JOIN pictures AS exemplaryPictures ON project_exemplary_image_id=exemplaryPictures.picture_id 
+                    WHERE sd_id=?");
+    	} else {
+        	$stmt = prepare("SELECT thisDonor.donor_id AS donorId, thisDonor.donor_first_name AS donorFirstName, thisDonor.donor_email AS donorEmail, donation_amount, project_id, project_name, village_name, country_label, similarPictures.picture_filename AS similarPicture, exemplaryPictures.picture_filename as exemplaryPicture, fundraiser_id, fundraiser_title,
                         CONCAT(matchingDonors.donor_first_name, ' ', matchingDonors.donor_last_name) AS matchingDonor, donation_matched_to FROM donations
                     JOIN donors AS thisDonor ON donation_donor_id=thisDonor.donor_id
                     JOIN projects ON donation_project_id=project_id
@@ -27,6 +39,8 @@ switch ($type) {
                     JOIN pictures AS similarPictures ON project_similar_image_id=picture_id
                     LEFT JOIN pictures AS exemplaryPictures ON project_exemplary_image_id=exemplaryPictures.picture_id 
                     WHERE donation_id=?");
+    		
+    	}
         $stmt->bind_param("i", $donationId);
         $result = execute($stmt);
         if ($row = $result->fetch_assoc()) {
@@ -35,6 +49,9 @@ switch ($type) {
             $donorEmail = $row['donorEmail'];
             $donationAmountDollars = $row['donation_amount'];
             $donationMatchedTo = $row['donation_matched_to'];
+            if ($donationMatchedTo) {
+            	$donationMatchedTo = $donationAmountDollars * 2;
+            }
             $matchingDonor = $row['matchingDonor'];
             $projectId = $row['project_id'];
             $projectName = $row['project_name'];
@@ -305,7 +322,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																            }
 																        } else {
     																            ?>We deeply appreciate your 100% tax
-                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId ? " to <a href='".getBaseURL()."fundraiser/$fundraiserId' target='_blank'
+                																deductible <?php print ($isSubscription ? "monthly " : ""); ?>donation<?php print (isset($honoreeFirstName) ? " in honor of $honoreeFirstName" : ""); ?><?php print ($fundraiserId && $fundraiserTitle ? " to <a href='".getBaseURL()."fundraiser/$fundraiserId' target='_blank'
         																											style='color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;'>$fundraiserTitle</a>" : ""); ?>. You have
                 																disrupted extreme poverty in rural Africa!
     																			<?php 
@@ -321,7 +338,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																    case EMAIL_TYPE_UPDATE:
 																    	print "<div style='margin-top:-10px;'>$updateDescription</div>";
 																    	if ($videoId) {
-																    		?><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:100%;height:320px;"></div></a>
+																    		?><center><a href='https://youtu.be/<?php print $videoId; ?>' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'><div style="position:relative;background-position:center;background-size:cover;background-image:url('https://img.youtube.com/vi/<?php print $videoId; ?>/hqdefault.jpg');width:98%;height:350px;"></div>Click to watch the above video</a></center>
 																    		<?php
 																    	}
 																    	foreach ($updatePictures as $pictureId) {
@@ -332,7 +349,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                     														<?php
                     														}
 																    	}
-																		print "<center><span style='font-size:20px'>Click <a href='".BASE_URL.$projectId."' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a> to get more project details.</span></center>";
+																		print "<br/><center><span style='font-size:20px'>Click <a href='".BASE_URL.$projectId."' target='_blank' style='text-decoration:none;color:#014421;font-weight:bold;'>here</a> to get more project details.</span></center>";
 																    	break;
                                                                     default:
                                                                         break;
@@ -455,7 +472,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
                                     																        <p
         																										style="color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; font-size: 16px; margin: 0 0 10px; padding: 0;"
         																										align="left">
-        																										<?php if (isset($donationAmountDollars)) { ?>
+        																										<?php if (isset($donationAmountDollars) && $donationAmountDollars > 0) { ?>
         																											<strong>Donation Amount</strong><br /> $<?php print numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationAmountDollars, 'USD'); ?>
         																										<?php } ?>
         																										<?php print (isset($donationMatchedTo) && $donationMatchedTo ? " (matched to $".numfmt_create('en_US', NumberFormatter::DECIMAL)->formatCurrency($donationMatchedTo, 'USD').")" : ""); ?>
@@ -515,6 +532,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																							</tr>
 																						</table></th>
 																				</tr>
+																<tr style='padding:0px;margin:0px;'><td colspan="2" style='margin:0;padding:0:;font-size:12px;'>No goods or services were provided in exchange for the donation.</td></tr>
 																			</tbody>
 																		</table></th>
 																</tr>
@@ -751,12 +769,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																								href="https://www.facebook.com/villagexorg/"
 																								target="_blank"
 																								style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; width: 100%; margin: 0; padding: 0;">Facebook</a></th>
-																							<th
-																								style="text-align: left; float: none; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; display: block; margin: 0 auto; padding: 10px 0 10px 10px;"
-																								class="menu-item float-center" align="left"><a
-																								href="https://twitter.com/villagexorg"
-																								target="_blank"
-																								style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; width: 100%; margin: 0; padding: 0;">Twitter</a></th>
+	
 																						</tr>
 																					</table>
 																				</td>
@@ -821,10 +834,12 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 													<br />
 													<th class="menu-item float-center"
 														style="float: none; text-align: center; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; margin: 0 auto; padding: 10px;"
-														align="center"><a href="<?php print BASE_URL; ?>"
+														align="center"><center
+																style="width: 100%; min-width: 580px;"><a href="<?php print BASE_URL; ?>"
 														target="_blank"
-														style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;"><center
-																style="width: 100%; min-width: 580px;">Village X Org</center></a></th>
+														style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; margin: 0; padding: 0;">Village X Org</a>
+																<br><span style='font-size: 12px;'>501(c)(3) exempt organization</span><br/>
+																	<span style='font-size: 12px;'>EIN: 47-1845825</span></center></th>
 
 
 												</tr>

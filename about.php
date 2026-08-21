@@ -160,45 +160,19 @@ include('header.inc'); ?>
 	
 	<div class="section">
 		<div class="row">
-			<div class="col s12 m4 l4">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
-    						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
-      					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
-      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
-      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
-      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
-      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
-      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
-      					received a MPP from Princeton.</p> 
-      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
-      					Africa.</p>
-      					<p><a target="_blank" href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>
-  				</div>	
-			</div>
-				
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/jeff_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CTO<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CEO<i class="material-icons right">more_vert</i></span>
       						<p><a href="mailto:jeff@villagex.org">jeff@villagex.org</a></p>
     					</div>
     					
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>Jeff DePree is the CEO and supervises the development of the Village X website, database, and associated backend processes.</p> 
       					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
@@ -207,6 +181,8 @@ include('header.inc'); ?>
     					</div>
   				</div>	
 			</div>
+
+
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
@@ -230,12 +206,8 @@ include('header.inc'); ?>
     					</div>
   				</div>	
 			</div>
-		</div>
-	</div>
-		
-	<div class="section">
-		<div class="row">
-			<div class="col s12 m4 l4">
+
+						<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
@@ -259,6 +231,11 @@ include('header.inc'); ?>
     					</div> 
   				</div>	
 			</div>
+		</div>
+	</div>
+		
+	<div class="section">
+		<div class="row">
 				
 			<div class="col s12 m4 l4">	
 				<div class="card">
@@ -286,6 +263,31 @@ include('header.inc'); ?>
   
   				</div>	
 			</div>
+			<div class="col s12 m4 l4">
+					<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, Founder<i class="material-icons right">more_vert</i></span>
+    						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
+      					<p>Mike Buckler founded Village X and now advises in a volunteer capacity.</p> 
+      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
+      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
+      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
+      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
+      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
+      					received a MPP from Princeton.</p> 
+      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
+      					Africa.</p>
+      					<p><a target="_blank" href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+    					</div>
+  				</div>	
+			</div>
 		</div>
 	</div>
 		
@@ -301,35 +303,6 @@ include('header.inc'); ?>
 	
         <div class="section">
 			<div class="row">
-				<div class="col s12 m4 l4">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator responsive-img" style="border-radius: 50%;" src="images/myson_profile.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Myson Jambo, Malawi Director<i class="material-icons right">more_vert</i></span>
-      						<p class="blue-text">Blantyre and Zomba Districts</p>
-      						<p><a href="#">myson@villagex.org</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Myson<i class="material-icons right">close</i></span>
-      					<p>Myson Jambo is from the Zomba District of Malawi. He holds an advanced degree in public health, for which he wrote his research paper 
-      					on the impact of urbanization on human health in peri-urban areas. He has several years of experience working with NGOs in the area of
-      					programming at the community level, including vetting and facilitating projects, youth engagement programming, peer mentoring, monitoring 
-      					and evaluation, meeting with government officials and other stakeholders, managing and administering finances, and responding to community 
-      					concerns/offering assistance where needed. </p>
-      					<p>He also volunteered to approve proposals from other organizations and collected projects records 
-      					for one year with Friends of Malawi. He spent another year conducting health and hygiene trainings and small loans management with the 
-      					Association for Rural Community Development.</p>
-      					
-      					<p>He believes that communities having the power to decide on projects is the key to successes 
-      					in development efforts. When he is not working, Myson enjoys traveling and watching football with 
-      					his favorite team, Manchester United.</p>
-    					</div>
-  				</div>
-					
-				</div>
 				
 				<div class="col s12 m4 l4">
 					
@@ -338,7 +311,7 @@ include('header.inc'); ?>
           						<img class="activator responsive-img" style="border-radius: 50%;" src="images/alfred_profile.jpg">
         						</div>
         					<div class="card-content">
-          					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Field Officer<i class="material-icons right">more_vert</i></span>
+          					<span class="card-title activator grey-text text-darken-4">Alfred Piyo, Malawi Director and Field Officer<i class="material-icons right">more_vert</i></span>
           						<p class="blue-text">Mulanje District</p>
           						<p><a href="#">alfred@villagex.org</a></p>
         					</div>
@@ -378,61 +351,10 @@ include('header.inc'); ?>
           					  Wedson likes  traveling around his community, reading books, and listening to country music.</p>
         					</div>
       				</div>
-				
+				  </div>
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="col s12 m4 l4">
-					
-    					<div class="card">
-        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator responsive-img" style="border-radius: 50%" src="images/mmacford_profile.jpg">
-        						</div>
-        					<div class="card-content">
-          					<span class="card-title activator grey-text text-darken-4">Macford Chinonga, Field Officer<i class="material-icons right">more_vert</i></span>
-          					<p class="blue-text">Mangochi District</p>	
-          						<p><a href="#">mmacford@villagex.org</a></p>
-        					</div>
-        					
-        				<div class="card-reveal">
-          				<span class="card-title grey-text text-darken-4">More About Macford<i class="material-icons right">close</i></span>
-          					<p>Macford is from the Mangochi District of Malawi. He holds an advanced certificate in tropical agriculture and
-          			 		a certificate in primary school teaching.</p> 
-          			 		<p>He has attended courses in spraying services, grain storage, and grading management. 
-          					Macford has several years of experience working with NGOS, local leaders and stakeholders. In this capacity, he has worked on 
-          					project programming and implementation, leadership and conflict management, monitoring and evaluation, and report writing.</p>
-        					</div>
-      				</div>
-				
-				</div>
-				
-				<div class="col s12 m4 l4">
-					
-    					<div class="card">
-        						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-          						<img class="activator responsive-img" style="border-radius: 50%" src="images/benard.jpg">
-        						</div>
-        					<div class="card-content">
-          					<span class="card-title activator grey-text text-darken-4">Benard Dickson, Field Officer<i class="material-icons right">more_vert</i></span>
-          						<p class="blue-text">Chiradzulu District</p>
-          						<p><a href="#">mmacford@villagex.org</a></p>
-        					</div>
-        					
-        				<div class="card-reveal">
-          				<span class="card-title grey-text text-darken-4">More About Benard<i class="material-icons right">close</i></span>
-          					<p>Benard Dickson holds a MSCE (secondary schoool certificate) and has worked with several deveopment organiaations, including
-          					Development Aid from People to People (DAPP) and the Tiwasunge Community Support Organization (TICOSO). Benard has also volunteered 
-          					as a peer educator, field officer, M&E officer, and programs coordinator. Benard is passionate about HIV/AIDS prevention, good 
-          					governance, and self reliance.</p> 
-          			 		<p>In his spare time, he likes to watch football and chat with youth.</p>
-        					</div>
-      				</div>
-				
-				</div>
-			</div>
-		</div>
-		
 	<div class="card-panel" style="padding: 5% 5% 5% 5%;">
 		<div class="row">
           <div class="center-align flow-text"><b>Our Partners</b></div><br><br>
