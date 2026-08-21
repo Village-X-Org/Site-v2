@@ -57,7 +57,7 @@ function emailErrorHandler ($errno, $errstr, $errfile, $errline, $errcontext=0) 
 set_error_handler("emailErrorHandler");
 
 function getCustomerServiceEmail() {
-    return "Michael Buckler at Village X <mike@villagex.org>";
+    return "Jeff DePree at Village X <jeff@villagex.org>";
 }
 
 function getAdminEmail() {

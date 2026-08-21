@@ -55,7 +55,7 @@ include('header.inc'); ?>
 		</div>
 		<br>
 		<div class="row center">
-			<h5 class="black-text text-lighten-2 flow-text"><b>Share the good news on Facebook and Twitter!</b>
+			<h5 class="black-text text-lighten-2 flow-text"><b>Share the good news on Facebook!</b>
 			</h5>	
 		</div> 
 		<div class="row center">

@@ -26,7 +26,7 @@ if ($numToSend > 0) {
 	}
 }
 
-doUnprotectedQuery("DELETE FROM mail WHERE mail_sent IS NOT NULL AND mail_sent > DATE_SUB(NOW(), INTERVAL 4 WEEK) AND mail_sent < DATE_SUB( NOW( ) , INTERVAL 1 WEEK)");
+doUnprotectedQuery("DELETE FROM mail WHERE mail_sent IS NOT NULL AND mail_sent < DATE_SUB( NOW( ) , INTERVAL 52 WEEK)");
 
 print "Mail Sent: $sentCount\n\n";
 print $mailSentList;
