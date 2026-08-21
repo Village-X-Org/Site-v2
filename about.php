@@ -160,45 +160,19 @@ include('header.inc'); ?>
 	
 	<div class="section">
 		<div class="row">
-			<div class="col s12 m4 l4">
-					<div class="card">
-    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
-      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
-    						</div>
-    					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, CEO<i class="material-icons right">more_vert</i></span>
-    						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
-    					</div>
-    					
-    				<div class="card-reveal">
-      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
-      					<p>Mike Buckler is the CEO and General Counsel of Village X.</p> 
-      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
-      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
-      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
-      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
-      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
-      					received a MPP from Princeton.</p> 
-      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
-      					Africa.</p>
-      					<p><a target="_blank" href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
-    					</div>
-  				</div>	
-			</div>
-				
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/jeff_profile.jpg">
     						</div>
     					<div class="card-content">
-      					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CTO<i class="material-icons right">more_vert</i></span>
+      					<span class="card-title activator grey-text text-darken-4">Jeff DePree, CEO<i class="material-icons right">more_vert</i></span>
       						<p><a href="mailto:jeff@villagex.org">jeff@villagex.org</a></p>
     					</div>
     					
     				<div class="card-reveal">
       				<span class="card-title grey-text text-darken-4">More About Jeff<i class="material-icons right">close</i></span>
-      					<p>Jeff DePree supervises the development of the Village X website, database, and associated backend processes.</p> 
+      					<p>Jeff DePree is the CEO and supervises the development of the Village X website, database, and associated backend processes.</p> 
       					<p>When not working on Village X, he builds websites and apps for growing communities and sharing resources.  Whilst in Peace Corps Sierra Leone, 
       					he put together <a href='https://rpcvs.com' target='_blank'>rpcvs.com</a> to connect returned Peace Corps volunteers around the world.</p>
       					<p>Jeff is a vocal advocate for outdoor adventure, travel, and carpooling, and founded <a href='https://adventureanywhere.org' target='_blank'>Adventure Anywhere</a> to make it easier to
@@ -207,6 +181,8 @@ include('header.inc'); ?>
     					</div>
   				</div>	
 			</div>
+
+
 			<div class="col s12 m4 l4">	
 				<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
@@ -230,12 +206,8 @@ include('header.inc'); ?>
     					</div>
   				</div>	
 			</div>
-		</div>
-	</div>
-		
-	<div class="section">
-		<div class="row">
-			<div class="col s12 m4 l4">
+
+						<div class="col s12 m4 l4">
 					<div class="card">
     						<div class="card-image" style="padding: 5% 5% 5% 5%;">
       						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/profile_katherine.jpg">
@@ -259,6 +231,11 @@ include('header.inc'); ?>
     					</div> 
   				</div>	
 			</div>
+		</div>
+	</div>
+		
+	<div class="section">
+		<div class="row">
 				
 			<div class="col s12 m4 l4">	
 				<div class="card">
@@ -284,6 +261,31 @@ include('header.inc'); ?>
     					</div>
     					
   
+  				</div>	
+			</div>
+			<div class="col s12 m4 l4">
+					<div class="card">
+    						<div class="card-image" style="padding: 5% 5% 5% 5%;">
+      						<img class="activator responsive-img" width="100%" height="100%" style="border-radius: 50%;" src="images/mike_profile.jpg">
+    						</div>
+    					<div class="card-content">
+      					<span class="card-title activator grey-text text-darken-4">Mike Buckler, Founder<i class="material-icons right">more_vert</i></span>
+    						<p><a href="mailto:mike@villagex.org">mike@villagex.org</a></p>
+    					</div>
+    					
+    				<div class="card-reveal">
+      				<span class="card-title grey-text text-darken-4">More About Mike<i class="material-icons right">close</i></span>
+      					<p>Mike Buckler founded Village X and now advises in a volunteer capacity.</p> 
+      					<p>After returning from Peace Corps Malawi in late 2008, Mike began searching for ways to improve development work in 
+      					sub-Saharan Africa. In his spare time, he served as a board member and grants coordinator for Friends of Malawi (FOM), a 
+      					non-profit formed by Returned Peace Corps Volunteers. Village X arose from grantmaking experimentation at FOM -- in particular,
+      					issuing grants to grassroots organizations and using Facebook pages to track outcomes.</p> 
+      					<p>Before serving as an education volunteer in Malawi, Mike received a JD from Duke and BS in Electrical Engineering from Cornell. He recently 
+      					received a MPP from Princeton.</p> 
+      					<p>Mike enjoys writing books and articles inspired by his international experiences and bicycling on dusty roads in 
+      					Africa.</p>
+      					<p><a target="_blank" href="https://www.linkedin.com/in/mike-buckler-052a4b/">LinkedIn Profile</a></p>
+    					</div>
   				</div>	
 			</div>
 		</div>

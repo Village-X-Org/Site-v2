@@ -81,7 +81,7 @@ When you donate, we send you a thank you email. Once the project is underway, we
 
 <p><b>Is the website integrated with social media?</b></p>
 
-Absolutely. You can share projects and donations through Facebook and Twitter.
+Absolutely. You can share projects and donations through Facebook.
 
 <p><b>How does Village X keep the lights on?</b></p>
 

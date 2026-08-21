@@ -769,12 +769,7 @@ if ($type == EMAIL_TYPE_THANKS_FOR_DONATING) {
 																								href="https://www.facebook.com/villagexorg/"
 																								target="_blank"
 																								style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; width: 100%; margin: 0; padding: 0;">Facebook</a></th>
-																							<th
-																								style="text-align: left; float: none; color: #0a0a0a; font-family: Helvetica, Arial, sans-serif; font-weight: normal; line-height: 1.3; font-size: 16px; display: block; margin: 0 auto; padding: 10px 0 10px 10px;"
-																								class="menu-item float-center" align="left"><a
-																								href="https://twitter.com/villagexorg"
-																								target="_blank"
-																								style="color: #2199e8; font-family: Helvetica, Arial, sans-serif; font-weight: normal; text-align: left; line-height: 1.3; text-decoration: none; width: 100%; margin: 0; padding: 0;">Twitter</a></th>
+	
 																						</tr>
 																					</table>
 																				</td>

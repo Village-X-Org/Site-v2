@@ -121,9 +121,6 @@
 					<li><a class="white-text"
 						href="https://www.facebook.com/villagexorg/" target="_blank"><i
 							style="font-size: 15px" class="fa">&#xf082;</i> Facebook</a></li>
-					<li><a class="white-text" href="https://twitter.com/villagexorg"
-						target="_blank"><i style="font-size: 15px" class="fa">&#xf081;</i>
-							Twitter (X)</a></li>
 				</ul>
 				<br>
 
@@ -139,9 +136,6 @@
   									&link=<?php print BASE_URL; ?>"
 					target="_blank"> <i
 							style="font-size: 15px" class="fa">&#xf082;</i>
-				</a> &nbsp;&nbsp;&nbsp; <a class="white-text"
-					href="https://twitter.com/share?url=<?php print BASE_URL; ?>;text=This site disrupts extreme poverty in Africa by funding projects that villages choose&amp;hashtags=villagex"
-					target="_blank"> <i style="font-size: 15px" class="fa">&#xf081;</i>
 				</a> <br> <br>
 			</div>
 
@@ -166,7 +160,7 @@
 			<div class="row">
 				<div class="col s12 m4 l4" align="left">
 					<p style="line-height: 1.5;">
-						©Village X Org, 2024 <br>501(c)(3) nonprofit <br>EIN:
+						©Village X Org, 2026 <br>501(c)(3) nonprofit <br>EIN:
 						47&#65279;-1845825&#65279;
 					</p>
 				</div>
