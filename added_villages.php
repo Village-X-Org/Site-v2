@@ -1,6 +1,6 @@
 <?php
 require_once("utilities.php");
-if (!$session_is_admin) {
+if (!$session_donor_id) {
 	print "Please log in.";
 	die(0);
 }
@@ -11,6 +11,10 @@ if (hasParam('max')) {
 }
 
 if (hasParam('hide')) {
+	if (!$session_is_admin) {
+		print "Only admins can hide proposals.";
+		die(0);
+	}
 	$toHide = paramInt('hide');
 	$stmt = prepare("UPDATE proposed_villages SET pv_hidden=1 WHERE pv_id=?");
 	$stmt->bind_param('i', $toHide);
@@ -19,6 +23,10 @@ if (hasParam('hide')) {
 }
 
 if (hasParam('promote')) {
+	if (!$session_is_admin) {
+		print "Only admins can promote proposals.";
+		die(0);
+	}
 	$id = paramInt('promote');
 	$foId = paramInt('fo');
 
@@ -234,11 +242,18 @@ while ($row = $result->fetch_assoc()) {
 		continue;
 	}
 
-	print "$buffer<br/>Submitted by <b>$submitterName</b> | $submitterEmail | $submitterPhone<br/>$villageName <a href=\"\" onclick=\"if (confirm('Are you sure you want to hide this')) { document.location = 'added_villages.php?hide=$id';} return false;\">hide</a> &nbsp;";
-	if ($promotedProject) {
-		print "<a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
+	print "$buffer<br/>Submitted by <b>$submitterName</b> | $submitterEmail | $submitterPhone<br/>$villageName";
+	if ($session_is_admin) {
+		print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to hide this')) { document.location = 'added_villages.php?hide=$id';} return false;\">hide</a> &nbsp;";
+		if ($promotedProject) {
+			print "<a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
+		} else {
+			print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to promote this? Clicking OK will create a new project.')) { document.location = 'added_villages.php?promote=$id&fo=$foId';} return false;\">promote</a>";
+		}
 	} else {
-		print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to promote this? Clicking OK will create a new project.')) { document.location = 'added_villages.php?promote=$id&fo=$foId';} return false;\">promote</a>";
+		if ($promotedProject) {
+			print " <a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
+		}
 	}
 	$contributionStr = $hasContribution ? 'Yes' : 'No';
 	$costStr = $cost ? $cost . ' MK' : '0 MK';
