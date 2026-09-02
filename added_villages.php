@@ -1,9 +1,5 @@
 <?php
 require_once("utilities.php");
-if (!$session_donor_id) {
-	print "Please log in.";
-	die(0);
-}
 
 $max = 0;
 if (hasParam('max')) {
@@ -246,13 +242,13 @@ while ($row = $result->fetch_assoc()) {
 	if ($session_is_admin) {
 		print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to hide this')) { document.location = 'added_villages.php?hide=$id';} return false;\">hide</a> &nbsp;";
 		if ($promotedProject) {
-			print "<a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
+			print "<a href=\"$promotedProject\" target='_blank'>view project</a>";
 		} else {
 			print " <a href=\"\" onclick=\"if (confirm('Are you sure you want to promote this? Clicking OK will create a new project.')) { document.location = 'added_villages.php?promote=$id&fo=$foId';} return false;\">promote</a>";
 		}
 	} else {
 		if ($promotedProject) {
-			print " <a href=\"project.php?id=$promotedProject\" target='_blank'>view project</a>";
+			print " <a href=\"$promotedProject\" target='_blank'>view project</a>";
 		}
 	}
 	$contributionStr = $hasContribution ? 'Yes' : 'No';
