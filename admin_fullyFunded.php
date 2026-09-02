@@ -4,7 +4,7 @@ $username = param('username');
 $password = md5(param('password'));
 $projectId = param('id');
 
-$stmt = prepare("SELECT user_id FROM users WHERE user_username=? AND user_password=?");
+$stmt = prepare("SELECT donor_id FROM donors WHERE donor_email=? AND donor_password=? AND donor_is_admin=1");
 $stmt->bind_param('ss', $username, $password);
 $result = execute($stmt);
 if ($row = $result->fetch_assoc()) {
