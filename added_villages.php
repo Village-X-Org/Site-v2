@@ -125,6 +125,8 @@ if (hasParam('promote')) {
 $sort = (hasParam('sort') && param('sort') === 'date_asc') ? 'date_asc' : 'date_desc';
 $villageFilter = hasParam('village') ? trim(param('village')) : '';
 $advocateFilter = hasParam('advocate') ? trim(param('advocate')) : '';
+$page = hasParam('page') ? max(1, paramInt('page')) : 1;
+$perPage = 10;
 $maxParam = $max ? "&max=$max" : '';
 $filterParams = $maxParam;
 if ($villageFilter) $filterParams .= '&village=' . urlencode($villageFilter);
@@ -198,7 +200,37 @@ $lastEmail = '';
 $dateOrder = ($sort === 'date_asc') ? 'ASC' : 'DESC';
 $villageWhere = $villageFilter ? " AND pv_name LIKE '%" . escStr($villageFilter) . "%'" : '';
 $advocateWhere = $advocateFilter ? " AND pv_submitter_name LIKE '%" . escStr($advocateFilter) . "%'" : '';
-$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2$villageWhere$advocateWhere ORDER BY pv_date_added $dateOrder");
+
+$countResult = doUnprotectedQuery("SELECT COUNT(*) as total FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2$villageWhere$advocateWhere");
+$countRow = $countResult->fetch_assoc();
+$totalResults = $countRow['total'];
+$totalPages = ceil($totalResults / $perPage);
+$offset = ($page - 1) * $perPage;
+
+$result = doUnprotectedQuery("SELECT pv_id, pv_name, pv_dev_problem, pv_submitter_name, pv_submitter_email, pv_submitter_phone, pv_population, pv_households, pv_cost, pv_has_contribution, pv_dev_problem, pv_lat, pv_lng, pv_images, pv_date_added, pv_promoted FROM proposed_villages WHERE pv_hidden=0 AND LENGTH(pv_images) > 2$villageWhere$advocateWhere ORDER BY pv_date_added $dateOrder LIMIT $perPage OFFSET $offset");
+
+print "<p style='color: #666;'>Showing " . ($offset + 1) . " to " . min($offset + $perPage, $totalResults) . " of $totalResults projects</p>";
+
+if ($totalPages > 1) {
+	print "<div style='margin-bottom: 20px;'>";
+	if ($page > 1) {
+		print "<a href='added_villages.php?page=1&sort=$sort$filterParams'>&laquo; First</a> ";
+		print "<a href='added_villages.php?page=" . ($page - 1) . "&sort=$sort$filterParams'>&lt; Previous</a> ";
+	}
+	for ($i = max(1, $page - 2); $i <= min($totalPages, $page + 2); $i++) {
+		if ($i === $page) {
+			print "<strong>$i</strong> ";
+		} else {
+			print "<a href='added_villages.php?page=$i&sort=$sort$filterParams'>$i</a> ";
+		}
+	}
+	if ($page < $totalPages) {
+		print "<a href='added_villages.php?page=" . ($page + 1) . "&sort=$sort$filterParams'>Next &gt;</a> ";
+		print "<a href='added_villages.php?page=$totalPages&sort=$sort$filterParams'>Last &raquo;</a>";
+	}
+	print "</div>";
+}
+
 while ($row = $result->fetch_assoc()) {
 	$buffer = '';
 
@@ -259,3 +291,24 @@ while ($row = $result->fetch_assoc()) {
 	}
 	print "<br/>$devProblem<br/>pop. $population, households: $households, cost: $costStr, cash contribution: $contributionStr<br/>$dateAdded, added by $submitterName<br/>$distance miles from $closestVillage ($foName) (<a href='https://www.google.com/maps/dir/$closestVillageLat,$closestVillageLng/$lat,$lng/' target='_blank'>map</a>)<br/><br/>";
 }
+
+if ($totalPages > 1) {
+	print "<div style='margin-top: 20px;'>";
+	if ($page > 1) {
+		print "<a href='added_villages.php?page=1&sort=$sort$filterParams'>&laquo; First</a> ";
+		print "<a href='added_villages.php?page=" . ($page - 1) . "&sort=$sort$filterParams'>&lt; Previous</a> ";
+	}
+	for ($i = max(1, $page - 2); $i <= min($totalPages, $page + 2); $i++) {
+		if ($i === $page) {
+			print "<strong>$i</strong> ";
+		} else {
+			print "<a href='added_villages.php?page=$i&sort=$sort$filterParams'>$i</a> ";
+		}
+	}
+	if ($page < $totalPages) {
+		print "<a href='added_villages.php?page=" . ($page + 1) . "&sort=$sort$filterParams'>Next &gt;</a> ";
+		print "<a href='added_villages.php?page=$totalPages&sort=$sort$filterParams'>Last &raquo;</a>";
+	}
+	print "</div>";
+}
+?>

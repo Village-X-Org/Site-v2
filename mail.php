@@ -1,7 +1,7 @@
 <?php
 
 require_once('utilities.php');
-if (!$session_is_admin) {
+if (!isset($session_is_admin) || !$session_is_admin) {
     die(0);
 }
 
