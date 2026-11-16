@@ -108,12 +108,13 @@
 <hr>
 <div class="left text-lighten-2 text-shadow: 2px 2px 7px #111111" style="width:100%; padding: 1% 0 1% 0">
 <h4>
-			2023 Financial Report
+			2025 Financial Report
 	</h4>
 </div>
 
 <div class="section flow-text" style="padding:0% 3% 4% 3%;"> 
-Below is a table showing exactly how we spent your hard-earned money in 2023.  
+You can find last year's 990 form here: <B><a href='finances/VillageX_990_2025.pdf'>VillageX_990_2025.pdf</a></B>
+<br/>Below is a table showing exactly how we spent your hard-earned money in 2023.  
 This is part of our 100% radically transparent commitment to prove (not just say) that we are good stewards of your donations.</div>
 </div>
 	
@@ -136,7 +137,7 @@ This is part of our 100% radically transparent commitment to prove (not just say
           <tr>
           <td></td>
             <td>Restricted Donations</td>
-            <td>$114,918.35</td>
+            <td>$109,133</td>
           </tr>
           <tr>
           <td></td>
@@ -146,7 +147,7 @@ This is part of our 100% radically transparent commitment to prove (not just say
           <tr>
           <td></td>
             <td><b>Total</b></td> 
-            <td><b>$114,918.35</b></td>
+            <td><b>$109,133</b></td>
           </tr>
           <tr>
             <td><b>Expenses</b></td>
@@ -156,57 +157,52 @@ This is part of our 100% radically transparent commitment to prove (not just say
           <tr>
           <td></td>
             <td>Bank Charges &amp; Fees</td>
-            <td>$58.09</td>
-          </tr>
-          <tr>
-          <td></td>
-            <td>Contractors</td>
-            <td>$558.72</td>
+            <td>$16</td>
           </tr>
           <tr>
           <td></td>
             <td>Cash to Villages</td>
-            <td>$163,344.88 </td>
+            <td>$130,017</td>
           </tr>
           <tr>
           <td></td>
             <td>Insurance</td>
-            <td>$346.00</td>
+            <td>$352</td>
           </tr>
           <tr>
           <td></td>
             <td>Office Supplies & Software</td>
-            <td>$243.32</td>
-          </tr>
-          <tr>
-          <td></td>
-            <td>Personnel Expenses (Field Officers)</td>
-            <td>$600.00</td>
+            <td>$103</td>
           </tr>
           <tr>
           <td></td>
             <td>Taxes &amp; Licenses</td>
-            <td>$121.00</td>
+            <td>$121</td>
+          </tr>
+          <tr>
+          <td></td>
+            <td>Other Business Expenses</td>
+            <td>$47</td>
           </tr>
           <tr>
           <td></td>
             <td><b>Total</b></td>
-            <td><b>$165,649.76</b></td>
+            <td><b>$130,656</b></td>
           </tr>
           <tr>
             <td><b>Net</b></td>
             <td></td>
-            <td><b>-$50,731.41 </b></td>
+            <td><b>-$21,523 </b></td>
           </tr>
           <tr>
           <td></td>
-            <td>Assets as of end of 2022</td>
-            <td>$112,626.35</td>
+            <td>Assets as of end of 2024</td>
+            <td>$60,739</td>
           </tr>
           <tr>
           <td></td>
-            <td>Assets as of end of 2023</td>
-            <td>$61,894.94</td>
+            <td>Assets as of end of 2025</td>
+            <td>$39,216</td>
           </tr>
         </tbody>
       </table>
