@@ -48,12 +48,13 @@ $stmt = prepare("
     ru.ru_description as latest_description,
     ru.ru_picture_ids as picture_ids
 FROM projects p
-LEFT JOIN (
-    SELECT ru_project_id, MAX(ru_date) as max_date
-    FROM raw_updates
-    GROUP BY ru_project_id
-) max_ru ON p.project_id = max_ru.ru_project_id
-LEFT JOIN raw_updates ru ON max_ru.ru_project_id = ru.ru_project_id AND max_ru.max_date = ru.ru_date
+LEFT JOIN raw_updates ru ON ru.ru_id = (
+    SELECT r2.ru_id
+    FROM raw_updates r2
+    WHERE r2.ru_project_id = p.project_id
+    ORDER BY r2.ru_date DESC, r2.ru_id DESC
+    LIMIT 1
+)
 ORDER BY p.project_id
 ");
 $result = execute($stmt);
@@ -284,6 +285,17 @@ $noRecentCount = $totalProjects - $coloredProjects;
 
 		// Create GeoJSON for projects with color coding
 		var features = [];
+
+		// Nudge each project randomly by up to JITTER_FEET in any direction so projects with nearly identical coordinates don't stack on top of each other
+		var JITTER_FEET = 300;
+		function jitterCoordinates(lng, lat) {
+			var feetPerDegreeLat = 364000;
+			var feetPerDegreeLng = 364000 * Math.cos(lat * Math.PI / 180);
+			return [
+				lng + (Math.random() * 2 - 1) * JITTER_FEET / feetPerDegreeLng,
+				lat + (Math.random() * 2 - 1) * JITTER_FEET / feetPerDegreeLat
+			];
+		}
 		console.log('colorMap:', colorMap);
 		console.log('projectsData sample:', projectsData.slice(0, 3));
 
@@ -296,16 +308,16 @@ $noRecentCount = $totalProjects - $coloredProjects;
 				type: 'Feature',
 				geometry: {
 					type: 'Point',
-					coordinates: [parseFloat(project.project_lng), parseFloat(project.project_lat)]
+					coordinates: jitterCoordinates(parseFloat(project.project_lng), parseFloat(project.project_lat))
 				},
 				properties: {
 					id: project.project_id,
 					name: project.project_name,
 					color: color,
-					update_year: project.update_year,
-					latest_update_date: project.latest_update_date,
-					latest_description: project.latest_description,
-					picture_ids: project.picture_ids
+					update_year: project.update_year || '',
+					latest_update_date: project.latest_update_date || '',
+					latest_description: project.latest_description || '',
+					picture_ids: project.picture_ids || ''
 				}
 			});
 		});
